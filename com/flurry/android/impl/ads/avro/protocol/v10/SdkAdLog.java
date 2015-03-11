@@ -1,0 +1,80 @@
+package com.flurry.android.impl.ads.avro.protocol.v10;
+
+import com.flurry.sdk.fk;
+import com.flurry.sdk.fn;
+import com.flurry.sdk.fn.q;
+import com.flurry.sdk.gv;
+import com.flurry.sdk.gw;
+import java.util.List;
+
+public class SdkAdLog extends gw
+  implements gv
+{
+  public static final fn SCHEMA$ = new fn.q().a("{\"type\":\"record\",\"name\":\"SdkAdLog\",\"namespace\":\"com.flurry.android.impl.ads.avro.protocol.v10\",\"fields\":[{\"name\":\"sessionId\",\"type\":\"long\"},{\"name\":\"adLogGUID\",\"type\":\"string\"},{\"name\":\"sdkAdEvents\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"SdkAdEvent\",\"fields\":[{\"name\":\"type\",\"type\":\"string\"},{\"name\":\"params\",\"type\":{\"type\":\"map\",\"values\":\"string\"}},{\"name\":\"timeOffset\",\"type\":\"long\"}]}}}]}");
+
+  @Deprecated
+  public long a;
+
+  @Deprecated
+  public CharSequence b;
+
+  @Deprecated
+  public List<SdkAdEvent> c;
+
+  public fn a()
+  {
+    return SCHEMA$;
+  }
+
+  public Object a(int paramInt)
+  {
+    switch (paramInt)
+    {
+    default:
+      throw new fk("Bad index");
+    case 0:
+      return Long.valueOf(this.a);
+    case 1:
+      return this.b;
+    case 2:
+    }
+    return this.c;
+  }
+
+  public void a(int paramInt, Object paramObject)
+  {
+    switch (paramInt)
+    {
+    default:
+      throw new fk("Bad index");
+    case 0:
+      this.a = ((Long)paramObject).longValue();
+      return;
+    case 1:
+      this.b = ((CharSequence)paramObject);
+      return;
+    case 2:
+    }
+    this.c = ((List)paramObject);
+  }
+
+  public void a(CharSequence paramCharSequence)
+  {
+    this.b = paramCharSequence;
+  }
+
+  public void a(Long paramLong)
+  {
+    this.a = paramLong.longValue();
+  }
+
+  public void a(List<SdkAdEvent> paramList)
+  {
+    this.c = paramList;
+  }
+}
+
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+ * Qualified Name:     com.flurry.android.impl.ads.avro.protocol.v10.SdkAdLog
+ * JD-Core Version:    0.6.2
+ */

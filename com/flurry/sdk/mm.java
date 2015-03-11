@@ -1,0 +1,33 @@
+package com.flurry.sdk;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.AnnotatedElement;
+import java.lang.reflect.Type;
+
+public abstract class mm
+{
+  public sh a(qr paramqr)
+  {
+    return paramqr.a(c());
+  }
+
+  public abstract <A extends Annotation> A a(Class<A> paramClass);
+
+  public abstract AnnotatedElement a();
+
+  public abstract String b();
+
+  public final <A extends Annotation> boolean b(Class<A> paramClass)
+  {
+    return a(paramClass) != null;
+  }
+
+  public abstract Type c();
+
+  public abstract Class<?> d();
+}
+
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+ * Qualified Name:     com.flurry.sdk.mm
+ * JD-Core Version:    0.6.2
+ */

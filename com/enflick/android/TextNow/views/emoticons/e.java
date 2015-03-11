@@ -1,0 +1,11 @@
+package com.enflick.android.TextNow.views.emoticons;
+
+public abstract interface e
+{
+  public abstract void a(a parama);
+}
+
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+ * Qualified Name:     com.enflick.android.TextNow.views.emoticons.e
+ * JD-Core Version:    0.6.2
+ */

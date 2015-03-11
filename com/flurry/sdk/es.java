@@ -1,0 +1,43 @@
+package com.flurry.sdk;
+
+import android.content.Context;
+
+public class es
+  implements et
+{
+  private final et a;
+
+  public es(et paramet)
+  {
+    this.a = paramet;
+  }
+
+  public void a(dj paramdj)
+  {
+    if (this.a != null)
+      this.a.a(paramdj);
+  }
+
+  public void a(dj paramdj, Context paramContext)
+  {
+    if (this.a != null)
+      this.a.a(paramdj, paramContext);
+  }
+
+  public void b(dj paramdj, Context paramContext)
+  {
+    if (this.a != null)
+      this.a.b(paramdj, paramContext);
+  }
+
+  public void c(dj paramdj, Context paramContext)
+  {
+    if (this.a != null)
+      this.a.c(paramdj, paramContext);
+  }
+}
+
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+ * Qualified Name:     com.flurry.sdk.es
+ * JD-Core Version:    0.6.2
+ */

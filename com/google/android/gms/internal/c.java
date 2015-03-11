@@ -1,0 +1,10 @@
+package com.google.android.gms.internal;
+
+public abstract interface c
+{
+}
+
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+ * Qualified Name:     com.google.android.gms.internal.c
+ * JD-Core Version:    0.6.2
+ */
