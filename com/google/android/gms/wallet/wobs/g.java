@@ -8,31 +8,31 @@ public final class g
   implements SafeParcelable
 {
   public static final Parcelable.Creator<g> CREATOR = new h();
-  int akT;
-  String akU;
-  double akV;
-  String akW;
-  long akX;
-  int akY;
-  private final int xM;
+  private final int BR;
+  int auD;
+  String auE;
+  double auF;
+  String auG;
+  long auH;
+  int auI;
 
   g()
   {
-    this.xM = 1;
-    this.akY = -1;
-    this.akT = -1;
-    this.akV = -1.0D;
+    this.BR = 1;
+    this.auI = -1;
+    this.auD = -1;
+    this.auF = -1.0D;
   }
 
   g(int paramInt1, int paramInt2, String paramString1, double paramDouble, String paramString2, long paramLong, int paramInt3)
   {
-    this.xM = paramInt1;
-    this.akT = paramInt2;
-    this.akU = paramString1;
-    this.akV = paramDouble;
-    this.akW = paramString2;
-    this.akX = paramLong;
-    this.akY = paramInt3;
+    this.BR = paramInt1;
+    this.auD = paramInt2;
+    this.auE = paramString1;
+    this.auF = paramDouble;
+    this.auG = paramString2;
+    this.auH = paramLong;
+    this.auI = paramInt3;
   }
 
   public final int describeContents()
@@ -42,7 +42,7 @@ public final class g
 
   public final int getVersionCode()
   {
-    return this.xM;
+    return this.BR;
   }
 
   public final void writeToParcel(Parcel paramParcel, int paramInt)
@@ -51,7 +51,7 @@ public final class g
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.wobs.g
  * JD-Core Version:    0.6.2
  */

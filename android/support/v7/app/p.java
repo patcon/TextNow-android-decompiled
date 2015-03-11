@@ -1,50 +1,56 @@
 package android.support.v7.app;
 
-import android.view.ActionMode;
-import android.view.ActionMode.Callback;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.app.ActionBar;
+import android.app.Activity;
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 
 final class p
-  implements ActionMode.Callback
+  implements j
 {
-  private final ActionMode.Callback b;
+  final Activity a;
 
-  p(o paramo, ActionMode.Callback paramCallback)
+  private p(Activity paramActivity)
   {
-    this.b = paramCallback;
+    this.a = paramActivity;
   }
 
-  public final boolean onActionItemClicked(ActionMode paramActionMode, MenuItem paramMenuItem)
+  public final Drawable a()
   {
-    return this.b.onActionItemClicked(paramActionMode, paramMenuItem);
+    TypedArray localTypedArray = b().obtainStyledAttributes(null, new int[] { 16843531 }, 16843470, 0);
+    Drawable localDrawable = localTypedArray.getDrawable(0);
+    localTypedArray.recycle();
+    return localDrawable;
   }
 
-  public final boolean onCreateActionMode(ActionMode paramActionMode, Menu paramMenu)
+  public final void a(int paramInt)
   {
-    boolean bool = this.b.onCreateActionMode(paramActionMode, paramMenu);
-    if (bool)
+    ActionBar localActionBar = this.a.getActionBar();
+    if (localActionBar != null)
+      localActionBar.setHomeActionContentDescription(paramInt);
+  }
+
+  public final void a(Drawable paramDrawable, int paramInt)
+  {
+    ActionBar localActionBar = this.a.getActionBar();
+    if (localActionBar != null)
     {
-      o.a(this.a, paramActionMode);
-      this.a.e();
+      localActionBar.setHomeAsUpIndicator(paramDrawable);
+      localActionBar.setHomeActionContentDescription(paramInt);
     }
-    return bool;
   }
 
-  public final void onDestroyActionMode(ActionMode paramActionMode)
+  public final Context b()
   {
-    this.b.onDestroyActionMode(paramActionMode);
-    this.a.f();
-    o.a(this.a, null);
-  }
-
-  public final boolean onPrepareActionMode(ActionMode paramActionMode, Menu paramMenu)
-  {
-    return this.b.onPrepareActionMode(paramActionMode, paramMenu);
+    ActionBar localActionBar = this.a.getActionBar();
+    if (localActionBar != null)
+      return localActionBar.getThemedContext();
+    return this.a;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v7.app.p
  * JD-Core Version:    0.6.2
  */

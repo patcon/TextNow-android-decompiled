@@ -1,62 +1,22 @@
 package android.support.v4.app;
 
-import android.os.Build.VERSION;
-import android.os.Bundle;
+import android.app.Notification;
+import android.app.NotificationManager;
 
-public final class bs extends bz
+class bs extends br
 {
-  public static final ca a;
-  private static final bt g;
-  private final String b;
-  private final CharSequence c;
-  private final CharSequence[] d;
-  private final boolean e;
-  private final Bundle f;
-
-  static
+  public final void a(NotificationManager paramNotificationManager, String paramString, int paramInt)
   {
-    if (Build.VERSION.SDK_INT >= 20)
-      g = new bu();
-    while (true)
-    {
-      a = new ca()
-      {
-      };
-      return;
-      if (Build.VERSION.SDK_INT >= 16)
-        g = new bw();
-      else
-        g = new bv();
-    }
+    paramNotificationManager.cancel(paramString, paramInt);
   }
 
-  public final String a()
+  public final void a(NotificationManager paramNotificationManager, String paramString, int paramInt, Notification paramNotification)
   {
-    return this.b;
-  }
-
-  public final CharSequence b()
-  {
-    return this.c;
-  }
-
-  public final CharSequence[] c()
-  {
-    return this.d;
-  }
-
-  public final boolean d()
-  {
-    return this.e;
-  }
-
-  public final Bundle e()
-  {
-    return this.f;
+    paramNotificationManager.notify(paramString, paramInt, paramNotification);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.app.bs
  * JD-Core Version:    0.6.2
  */

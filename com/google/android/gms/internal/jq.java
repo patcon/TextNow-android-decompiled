@@ -1,83 +1,59 @@
 package com.google.android.gms.internal;
 
 import android.os.Parcel;
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-import java.util.concurrent.TimeUnit;
+import android.os.Parcelable.Creator;
+import com.google.android.gms.common.internal.safeparcel.a;
+import com.google.android.gms.common.internal.safeparcel.a.a;
+import com.google.android.gms.common.internal.safeparcel.b;
 
-public final class jq
-  implements SafeParcelable
+public class jq
+  implements Parcelable.Creator<jp>
 {
-  public static final jr CREATOR = new jr();
-  static final long Wm = TimeUnit.HOURS.toMillis(1L);
-  private final long Vl;
-  private final jm Wn;
-  private final int mPriority;
-  final int xM;
-
-  public jq(int paramInt1, jm paramjm, long paramLong, int paramInt2)
+  static void a(jp paramjp, Parcel paramParcel, int paramInt)
   {
-    this.xM = paramInt1;
-    this.Wn = paramjm;
-    this.Vl = paramLong;
-    this.mPriority = paramInt2;
+    int i = b.D(paramParcel);
+    b.c(paramParcel, 1, paramjp.getVersionCode());
+    b.a(paramParcel, 2, paramjp.hx(), false);
+    b.a(paramParcel, 3, paramjp.hy(), paramInt, false);
+    b.H(paramParcel, i);
   }
 
-  public final int describeContents()
+  public jp M(Parcel paramParcel)
   {
-    return 0;
-  }
-
-  public final boolean equals(Object paramObject)
-  {
-    if (this == paramObject);
-    jq localjq;
-    do
+    jm localjm = null;
+    int i = a.C(paramParcel);
+    int j = 0;
+    Parcel localParcel = null;
+    while (paramParcel.dataPosition() < i)
     {
-      return true;
-      if (!(paramObject instanceof jq))
-        return false;
-      localjq = (jq)paramObject;
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
+      {
+      default:
+        a.b(paramParcel, k);
+        break;
+      case 1:
+        j = a.g(paramParcel, k);
+        break;
+      case 2:
+        localParcel = a.D(paramParcel, k);
+        break;
+      case 3:
+        localjm = (jm)a.a(paramParcel, k, jm.CREATOR);
+      }
     }
-    while ((hk.equal(this.Wn, localjq.Wn)) && (this.Vl == localjq.Vl) && (this.mPriority == localjq.mPriority));
-    return false;
+    if (paramParcel.dataPosition() != i)
+      throw new a.a("Overread allowed size end=" + i, paramParcel);
+    return new jp(j, localParcel, localjm);
   }
 
-  public final long getInterval()
+  public jp[] aM(int paramInt)
   {
-    return this.Vl;
-  }
-
-  public final int getPriority()
-  {
-    return this.mPriority;
-  }
-
-  public final int hashCode()
-  {
-    Object[] arrayOfObject = new Object[3];
-    arrayOfObject[0] = this.Wn;
-    arrayOfObject[1] = Long.valueOf(this.Vl);
-    arrayOfObject[2] = Integer.valueOf(this.mPriority);
-    return hk.hashCode(arrayOfObject);
-  }
-
-  public final jm jf()
-  {
-    return this.Wn;
-  }
-
-  public final String toString()
-  {
-    return hk.e(this).a("filter", this.Wn).a("interval", Long.valueOf(this.Vl)).a("priority", Integer.valueOf(this.mPriority)).toString();
-  }
-
-  public final void writeToParcel(Parcel paramParcel, int paramInt)
-  {
-    jr.a(this, paramParcel, paramInt);
+    return new jp[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.jq
  * JD-Core Version:    0.6.2
  */

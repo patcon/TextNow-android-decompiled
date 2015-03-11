@@ -43,18 +43,18 @@ public final class d extends Card
   public final int b()
   {
     if (TextUtils.isEmpty(getName()))
-      return 2131493496;
+      return 2131296870;
     if ((TextUtils.isEmpty(getAddressLine1())) && (TextUtils.isEmpty(getAddressLine2())))
-      return 2131493497;
+      return 2131296871;
     if (TextUtils.isEmpty(getAddressZip()))
-      return 2131493498;
+      return 2131296872;
     if ((getAddressCountry() != null) && (((getAddressCountry().equalsIgnoreCase("Canada")) && (!getAddressZip().toUpperCase().matches("^[ABCEGHJKLMNPRSTVXY]\\d[ABCEGHJKLMNPRSTVWXYZ]( )?\\d[ABCEGHJKLMNPRSTVWXYZ]\\d$"))) || ((getAddressCountry().equalsIgnoreCase("United States")) && (!getAddressZip().matches("^\\d{5}(-\\d{4})?$")))))
-      return 2131493499;
+      return 2131296873;
     return 0;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.activities.account.d
  * JD-Core Version:    0.6.2
  */

@@ -1,26 +1,23 @@
 package com.google.android.gms.internal;
 
-public final class cv
+import android.os.IInterface;
+
+public abstract interface cv extends IInterface
 {
-  public long pl;
-  public final String pm;
-  public final String pn;
+  public abstract void onAdClicked();
 
-  public cv(long paramLong, String paramString1, String paramString2)
-  {
-    this.pl = paramLong;
-    this.pn = paramString1;
-    this.pm = paramString2;
-  }
+  public abstract void onAdClosed();
 
-  public cv(String paramString1, String paramString2)
-  {
-    this.pn = paramString1;
-    this.pm = paramString2;
-  }
+  public abstract void onAdFailedToLoad(int paramInt);
+
+  public abstract void onAdLeftApplication();
+
+  public abstract void onAdLoaded();
+
+  public abstract void onAdOpened();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.cv
  * JD-Core Version:    0.6.2
  */

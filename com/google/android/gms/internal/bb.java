@@ -1,166 +1,143 @@
 package com.google.android.gms.internal;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.text.TextUtils;
-import java.util.HashMap;
-import java.util.Map;
+import android.util.AttributeSet;
+import com.google.android.gms.R.styleable;
+import com.google.android.gms.ads.AdSize;
 
+@ez
 public final class bb
 {
-  public static final bc mT = new bc()
+  private final AdSize[] oj;
+  private final String ok;
+
+  public bb(Context paramContext, AttributeSet paramAttributeSet)
   {
-    public final void b(ex paramAnonymousex, Map<String, String> paramAnonymousMap)
+    TypedArray localTypedArray = paramContext.getResources().obtainAttributes(paramAttributeSet, R.styleable.AdsAttrs);
+    String str1 = localTypedArray.getString(R.styleable.AdsAttrs_adSize);
+    String str2 = localTypedArray.getString(R.styleable.AdsAttrs_adSizes);
+    int j;
+    if (!TextUtils.isEmpty(str1))
     {
+      j = i;
+      if (TextUtils.isEmpty(str2))
+        break label114;
+      label58: if ((j == 0) || (i != 0))
+        break label119;
     }
-  };
-  public static final bc mU = new bc()
-  {
-    public final void b(ex paramAnonymousex, Map<String, String> paramAnonymousMap)
+    for (this.oj = q(str1); ; this.oj = q(str2))
     {
-      String str1 = (String)paramAnonymousMap.get("urls");
-      if (TextUtils.isEmpty(str1))
-      {
-        eu.D("URLs missing in canOpenURLs GMSG.");
+      this.ok = localTypedArray.getString(R.styleable.AdsAttrs_adUnitId);
+      if (!TextUtils.isEmpty(this.ok))
         return;
-      }
-      String[] arrayOfString1 = str1.split(",");
-      HashMap localHashMap = new HashMap();
-      PackageManager localPackageManager = paramAnonymousex.getContext().getPackageManager();
-      int i = arrayOfString1.length;
-      int j = 0;
-      if (j < i)
+      throw new IllegalArgumentException("Required XML attribute \"adUnitId\" was missing.");
+      j = 0;
+      break;
+      label114: i = 0;
+      break label58;
+      label119: if ((j != 0) || (i == 0))
+        break label140;
+    }
+    label140: if (j != 0)
+      throw new IllegalArgumentException("Either XML attribute \"adSize\" or XML attribute \"supportedAdSizes\" should be specified, but not both.");
+    throw new IllegalArgumentException("Required XML attribute \"adSize\" was missing.");
+  }
+
+  private static AdSize[] q(String paramString)
+  {
+    String[] arrayOfString1 = paramString.split("\\s*,\\s*");
+    AdSize[] arrayOfAdSize = new AdSize[arrayOfString1.length];
+    int i = 0;
+    if (i < arrayOfString1.length)
+    {
+      String str = arrayOfString1[i].trim();
+      String[] arrayOfString2;
+      if (str.matches("^(\\d+|FULL_WIDTH)\\s*[xX]\\s*(\\d+|AUTO_HEIGHT)$"))
       {
-        String str2 = arrayOfString1[j];
-        String[] arrayOfString2 = str2.split(";", 2);
-        String str3 = arrayOfString2[0].trim();
-        String str4;
-        if (arrayOfString2.length > 1)
+        arrayOfString2 = str.split("[xX]");
+        arrayOfString2[0] = arrayOfString2[0].trim();
+        arrayOfString2[1] = arrayOfString2[1].trim();
+      }
+      while (true)
+      {
+        try
         {
-          str4 = arrayOfString2[1].trim();
-          label108: if (localPackageManager.resolveActivity(new Intent(str4, Uri.parse(str3)), 65536) == null)
-            break label161;
+          if ("FULL_WIDTH".equals(arrayOfString2[0]))
+          {
+            j = -1;
+            boolean bool = "AUTO_HEIGHT".equals(arrayOfString2[1]);
+            if (!bool)
+              continue;
+            m = -2;
+            arrayOfAdSize[i] = new AdSize(j, m);
+            i++;
+            break;
+          }
+          int j = Integer.parseInt(arrayOfString2[0]);
+          continue;
+          int k = Integer.parseInt(arrayOfString2[1]);
+          int m = k;
+          continue;
         }
-        label161: for (boolean bool = true; ; bool = false)
+        catch (NumberFormatException localNumberFormatException)
         {
-          localHashMap.put(str2, Boolean.valueOf(bool));
-          j++;
-          break;
-          str4 = "android.intent.action.VIEW";
-          break label108;
+          throw new IllegalArgumentException("Could not parse XML attribute \"adSize\": " + str);
         }
-      }
-      paramAnonymousex.a("openableURLs", localHashMap);
-    }
-  };
-  public static final bc mV = new bc()
-  {
-    public final void b(ex paramAnonymousex, Map<String, String> paramAnonymousMap)
-    {
-      String str1 = (String)paramAnonymousMap.get("u");
-      if (str1 == null)
-      {
-        eu.D("URL missing from click GMSG.");
-        return;
-      }
-      Uri localUri1 = Uri.parse(str1);
-      try
-      {
-        k localk = paramAnonymousex.cc();
-        if ((localk != null) && (localk.b(localUri1)))
+        if ("BANNER".equals(str))
         {
-          Uri localUri3 = localk.a(localUri1, paramAnonymousex.getContext());
-          localUri2 = localUri3;
-          String str2 = localUri2.toString();
-          new es(paramAnonymousex.getContext(), paramAnonymousex.cd().sw, str2).start();
-          return;
+          arrayOfAdSize[i] = AdSize.BANNER;
         }
-      }
-      catch (l locall)
-      {
-        while (true)
+        else if ("LARGE_BANNER".equals(str))
         {
-          eu.D("Unable to append parameter to URL: " + str1);
-          Uri localUri2 = localUri1;
+          arrayOfAdSize[i] = AdSize.LARGE_BANNER;
+        }
+        else if ("FULL_BANNER".equals(str))
+        {
+          arrayOfAdSize[i] = AdSize.FULL_BANNER;
+        }
+        else if ("LEADERBOARD".equals(str))
+        {
+          arrayOfAdSize[i] = AdSize.LEADERBOARD;
+        }
+        else if ("MEDIUM_RECTANGLE".equals(str))
+        {
+          arrayOfAdSize[i] = AdSize.MEDIUM_RECTANGLE;
+        }
+        else if ("SMART_BANNER".equals(str))
+        {
+          arrayOfAdSize[i] = AdSize.SMART_BANNER;
+        }
+        else
+        {
+          if (!"WIDE_SKYSCRAPER".equals(str))
+            break label316;
+          arrayOfAdSize[i] = AdSize.WIDE_SKYSCRAPER;
         }
       }
+      label316: throw new IllegalArgumentException("Could not parse XML attribute \"adSize\": " + str);
     }
-  };
-  public static final bc mW = new bc()
+    if (arrayOfAdSize.length == 0)
+      throw new IllegalArgumentException("Could not parse XML attribute \"adSize\": " + paramString);
+    return arrayOfAdSize;
+  }
+
+  public final AdSize[] f(boolean paramBoolean)
   {
-    public final void b(ex paramAnonymousex, Map<String, String> paramAnonymousMap)
-    {
-      cf localcf = paramAnonymousex.ca();
-      if (localcf == null)
-      {
-        eu.D("A GMSG tried to close something that wasn't an overlay.");
-        return;
-      }
-      localcf.close();
-    }
-  };
-  public static final bc mX = new bc()
+    if ((!paramBoolean) && (this.oj.length != 1))
+      throw new IllegalArgumentException("The adSizes XML attribute is only allowed on PublisherAdViews.");
+    return this.oj;
+  }
+
+  public final String getAdUnitId()
   {
-    public final void b(ex paramAnonymousex, Map<String, String> paramAnonymousMap)
-    {
-      cf localcf = paramAnonymousex.ca();
-      if (localcf == null)
-      {
-        eu.D("A GMSG tried to use a custom close button on something that wasn't an overlay.");
-        return;
-      }
-      localcf.j("1".equals(paramAnonymousMap.get("custom_close")));
-    }
-  };
-  public static final bc mY = new bc()
-  {
-    public final void b(ex paramAnonymousex, Map<String, String> paramAnonymousMap)
-    {
-      String str = (String)paramAnonymousMap.get("u");
-      if (str == null)
-      {
-        eu.D("URL missing from httpTrack GMSG.");
-        return;
-      }
-      new es(paramAnonymousex.getContext(), paramAnonymousex.cd().sw, str).start();
-    }
-  };
-  public static final bc mZ = new bc()
-  {
-    public final void b(ex paramAnonymousex, Map<String, String> paramAnonymousMap)
-    {
-      eu.B("Received log message: " + (String)paramAnonymousMap.get("string"));
-    }
-  };
-  public static final bc na = new bc()
-  {
-    public final void b(ex paramAnonymousex, Map<String, String> paramAnonymousMap)
-    {
-      String str1 = (String)paramAnonymousMap.get("tx");
-      String str2 = (String)paramAnonymousMap.get("ty");
-      String str3 = (String)paramAnonymousMap.get("td");
-      try
-      {
-        int i = Integer.parseInt(str1);
-        int j = Integer.parseInt(str2);
-        int k = Integer.parseInt(str3);
-        k localk = paramAnonymousex.cc();
-        if (localk != null)
-          localk.z().a(i, j, k);
-        return;
-      }
-      catch (NumberFormatException localNumberFormatException)
-      {
-        eu.D("Could not parse touch parameters from gmsg.");
-      }
-    }
-  };
-  public static final bc nb = new bh();
+    return this.ok;
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.bb
  * JD-Core Version:    0.6.2
  */

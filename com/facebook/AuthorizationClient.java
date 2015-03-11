@@ -5,9 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import com.facebook.android.R.string;
-import com.facebook.model.GraphMultiResult;
-import com.facebook.model.GraphObject;
-import com.facebook.model.GraphObjectList;
 import com.facebook.model.GraphUser;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,7 +17,6 @@ import org.json.JSONObject;
 class AuthorizationClient
   implements Serializable
 {
-  static final String EVENT_EXTRAS_APP_CALL_ID = "call_id";
   static final String EVENT_EXTRAS_DEFAULT_AUDIENCE = "default_audience";
   static final String EVENT_EXTRAS_IS_LEGACY = "is_legacy";
   static final String EVENT_EXTRAS_LOGIN_BEHAVIOR = "login_behavior";
@@ -28,12 +24,9 @@ class AuthorizationClient
   static final String EVENT_EXTRAS_NEW_PERMISSIONS = "new_permissions";
   static final String EVENT_EXTRAS_NOT_TRIED = "not_tried";
   static final String EVENT_EXTRAS_PERMISSIONS = "permissions";
-  static final String EVENT_EXTRAS_PROTOCOL_VERSION = "protocol_version";
   static final String EVENT_EXTRAS_REQUEST_CODE = "request_code";
-  static final String EVENT_EXTRAS_SERVICE_DISABLED = "service_disabled";
   static final String EVENT_EXTRAS_TRY_LEGACY = "try_legacy";
   static final String EVENT_EXTRAS_TRY_LOGIN_ACTIVITY = "try_login_activity";
-  static final String EVENT_EXTRAS_WRITE_PRIVACY = "write_privacy";
   static final String EVENT_NAME_LOGIN_COMPLETE = "fb_mobile_login_complete";
   private static final String EVENT_NAME_LOGIN_METHOD_COMPLETE = "fb_mobile_login_method_complete";
   private static final String EVENT_NAME_LOGIN_METHOD_START = "fb_mobile_login_method_start";
@@ -77,7 +70,7 @@ class AuthorizationClient
 
   private AppEventsLogger getAppEventsLogger()
   {
-    if ((this.appEventsLogger == null) || (this.appEventsLogger.getApplicationId() != this.pendingRequest.getApplicationId()))
+    if ((this.appEventsLogger == null) || (!this.appEventsLogger.getApplicationId().equals(this.pendingRequest.getApplicationId())))
       this.appEventsLogger = AppEventsLogger.newLogger(this.context, this.pendingRequest.getApplicationId());
     return this.appEventsLogger;
   }
@@ -103,10 +96,7 @@ class AuthorizationClient
     if (localSessionLoginBehavior.allowsKatanaAuth())
     {
       if (!paramAuthorizationRequest.isLegacy())
-      {
         localArrayList.add(new AuthorizationClient.GetTokenAuthHandler(this));
-        localArrayList.add(new AuthorizationClient.KatanaLoginDialogAuthHandler(this));
-      }
       localArrayList.add(new AuthorizationClient.KatanaProxyAuthHandler(this));
     }
     if (localSessionLoginBehavior.allowsWebViewAuth())
@@ -273,7 +263,6 @@ class AuthorizationClient
   Request createGetPermissionsRequest(String paramString)
   {
     Bundle localBundle = new Bundle();
-    localBundle.putString("fields", "id");
     localBundle.putString("access_token", paramString);
     return new Request(null, "me/permissions", localBundle, HttpMethod.GET, null);
   }
@@ -290,6 +279,7 @@ class AuthorizationClient
   {
     final ArrayList localArrayList1 = new ArrayList();
     final ArrayList localArrayList2 = new ArrayList();
+    final ArrayList localArrayList3 = new ArrayList();
     String str1 = paramResult.token.getToken();
     Request.Callback local3 = new Request.Callback()
     {
@@ -319,15 +309,11 @@ class AuthorizationClient
       {
         try
         {
-          GraphMultiResult localGraphMultiResult = (GraphMultiResult)paramAnonymousResponse.getGraphObjectAs(GraphMultiResult.class);
-          if (localGraphMultiResult != null)
+          Session.PermissionsPair localPermissionsPair = Session.handlePermissionResponse(paramAnonymousResponse);
+          if (localPermissionsPair != null)
           {
-            GraphObjectList localGraphObjectList = localGraphMultiResult.getData();
-            if ((localGraphObjectList != null) && (localGraphObjectList.size() == 1))
-            {
-              GraphObject localGraphObject = (GraphObject)localGraphObjectList.get(0);
-              localArrayList2.addAll(localGraphObject.asMap().keySet());
-            }
+            localArrayList2.addAll(localPermissionsPair.getGrantedPermissions());
+            localArrayList3.addAll(localPermissionsPair.getDeclinedPermissions());
           }
           return;
         }
@@ -346,7 +332,7 @@ class AuthorizationClient
         {
           AccessToken localAccessToken;
           if ((localArrayList1.size() == 2) && (localArrayList1.get(0) != null) && (localArrayList1.get(1) != null) && (((String)localArrayList1.get(0)).equals(localArrayList1.get(1))))
-            localAccessToken = AccessToken.createFromTokenWithRefreshedPermissions(paramResult.token, localArrayList2);
+            localAccessToken = AccessToken.createFromTokenWithRefreshedPermissions(paramResult.token, localArrayList2, localArrayList3);
           AuthorizationClient.Result localResult;
           for (Object localObject2 = AuthorizationClient.Result.createTokenResult(AuthorizationClient.this.pendingRequest, localAccessToken); ; localObject2 = localResult)
           {
@@ -406,7 +392,7 @@ class AuthorizationClient
 
   boolean onActivityResult(int paramInt1, int paramInt2, Intent paramIntent)
   {
-    if (paramInt1 == this.pendingRequest.getRequestCode())
+    if ((this.pendingRequest != null) && (paramInt1 == this.pendingRequest.getRequestCode()))
       return this.currentHandler.onActivityResult(paramInt1, paramInt2, paramIntent);
     return false;
   }
@@ -497,7 +483,7 @@ class AuthorizationClient
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.AuthorizationClient
  * JD-Core Version:    0.6.2
  */

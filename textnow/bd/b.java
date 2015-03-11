@@ -1,17 +1,21 @@
 package textnow.bd;
 
-public enum b
+class b
 {
-  static
+  protected final q a;
+
+  b(q paramq)
   {
-    b[] arrayOfb = new b[3];
-    arrayOfb[0] = a;
-    arrayOfb[1] = b;
-    arrayOfb[2] = c;
+    this.a = paramq;
+  }
+
+  public final q a()
+  {
+    return this.a;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.bd.b
  * JD-Core Version:    0.6.2
  */

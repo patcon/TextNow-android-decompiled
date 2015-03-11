@@ -17,7 +17,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import textnow.bi.e;
+import textnow.bp.e;
 
 public final class b
 {
@@ -435,7 +435,7 @@ public final class b
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     net.hockeyapp.android.b
  * JD-Core Version:    0.6.2
  */

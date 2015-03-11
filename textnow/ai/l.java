@@ -1,42 +1,27 @@
 package textnow.ai;
 
-final class l<K, V>
+import textnow.ak.a;
+import textnow.ak.c;
+
+abstract class l
 {
-  private p<K, V> a;
+  final String g;
+  final boolean h;
+  final boolean i;
 
-  public final p<K, V> a()
+  protected l(String paramString, boolean paramBoolean1, boolean paramBoolean2)
   {
-    p localp1 = this.a;
-    if (localp1 == null)
-      return null;
-    Object localObject1 = localp1.a;
-    localp1.a = null;
-    p localp2;
-    for (Object localObject2 = localp1.c; localObject2 != null; localObject2 = localp2)
-    {
-      ((p)localObject2).a = ((p)localObject1);
-      localp2 = ((p)localObject2).b;
-      localObject1 = localObject2;
-    }
-    this.a = ((p)localObject1);
-    return localp1;
+    this.g = paramString;
+    this.h = paramBoolean1;
+    this.i = paramBoolean2;
   }
 
-  final void a(p<K, V> paramp)
-  {
-    Object localObject1 = null;
-    p localp;
-    for (Object localObject2 = paramp; localObject2 != null; localObject2 = localp)
-    {
-      ((p)localObject2).a = localObject1;
-      localp = ((p)localObject2).b;
-      localObject1 = localObject2;
-    }
-    this.a = localObject1;
-  }
+  abstract void a(a parama, Object paramObject);
+
+  abstract void a(c paramc, Object paramObject);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.ai.l
  * JD-Core Version:    0.6.2
  */

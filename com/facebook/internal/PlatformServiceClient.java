@@ -114,8 +114,16 @@ public abstract class PlatformServiceClient
   public void onServiceDisconnected(ComponentName paramComponentName)
   {
     this.sender = null;
-    this.context.unbindService(this);
-    callback(null);
+    try
+    {
+      this.context.unbindService(this);
+      label13: callback(null);
+      return;
+    }
+    catch (IllegalArgumentException localIllegalArgumentException)
+    {
+      break label13;
+    }
   }
 
   protected abstract void populateRequestBundle(Bundle paramBundle);
@@ -133,7 +141,7 @@ public abstract class PlatformServiceClient
     {
       do
         return false;
-      while (NativeProtocol.getLatestAvailableProtocolVersion(this.context, this.protocolVersion) == -1);
+      while (NativeProtocol.getLatestAvailableProtocolVersionForService(this.context, this.protocolVersion) == -1);
       localIntent = NativeProtocol.createPlatformServiceIntent(this.context);
     }
     while (localIntent == null);
@@ -143,7 +151,7 @@ public abstract class PlatformServiceClient
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.internal.PlatformServiceClient
  * JD-Core Version:    0.6.2
  */

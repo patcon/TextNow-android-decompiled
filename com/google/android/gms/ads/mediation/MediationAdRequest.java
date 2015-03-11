@@ -1,5 +1,6 @@
 package com.google.android.gms.ads.mediation;
 
+import android.location.Location;
 import java.util.Date;
 import java.util.Set;
 
@@ -15,12 +16,14 @@ public abstract interface MediationAdRequest
 
   public abstract Set<String> getKeywords();
 
+  public abstract Location getLocation();
+
   public abstract boolean isTesting();
 
   public abstract int taggedForChildDirectedTreatment();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.ads.mediation.MediationAdRequest
  * JD-Core Version:    0.6.2
  */

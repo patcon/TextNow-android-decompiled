@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-public class a<K, V> extends l<K, V>
+public class a<K, V> extends o<K, V>
   implements Map<K, V>
 {
   f<K, V> a;
@@ -105,7 +105,7 @@ public class a<K, V> extends l<K, V>
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.e.a
  * JD-Core Version:    0.6.2
  */

@@ -9,7 +9,7 @@ class FileUtils
   static native int setPermissions(String paramString, int paramInt1, int paramInt2, int paramInt3);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.mologiq.analytics.FileUtils
  * JD-Core Version:    0.6.2
  */

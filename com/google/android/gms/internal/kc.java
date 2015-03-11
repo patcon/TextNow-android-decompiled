@@ -1,22 +1,57 @@
 package com.google.android.gms.internal;
 
-import android.content.Intent;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.panorama.PanoramaApi.a;
+import android.os.Build.VERSION;
 
-public class kc extends kh
-  implements PanoramaApi.a
+public final class kc
 {
-  private final int abj;
-
-  public kc(Status paramStatus, Intent paramIntent, int paramInt)
+  private static boolean aR(int paramInt)
   {
-    super(paramStatus, paramIntent);
-    this.abj = paramInt;
+    return Build.VERSION.SDK_INT >= paramInt;
+  }
+
+  public static boolean hB()
+  {
+    return aR(11);
+  }
+
+  public static boolean hC()
+  {
+    return aR(12);
+  }
+
+  public static boolean hD()
+  {
+    return aR(13);
+  }
+
+  public static boolean hE()
+  {
+    return aR(14);
+  }
+
+  public static boolean hF()
+  {
+    return aR(16);
+  }
+
+  public static boolean hG()
+  {
+    return aR(17);
+  }
+
+  @Deprecated
+  public static boolean hH()
+  {
+    return hI();
+  }
+
+  public static boolean hI()
+  {
+    return aR(19);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.kc
  * JD-Core Version:    0.6.2
  */

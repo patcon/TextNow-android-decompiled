@@ -9,46 +9,46 @@ public final class MaskedWalletRequest
   implements SafeParcelable
 {
   public static final Parcelable.Creator<MaskedWalletRequest> CREATOR = new l();
-  String aiL;
-  String aiR;
-  boolean ajF;
-  boolean ajG;
-  boolean ajH;
-  String ajI;
-  String ajJ;
-  boolean ajK;
-  boolean ajL;
-  CountrySpecification[] ajM;
-  boolean ajN;
-  boolean ajO;
-  ArrayList<com.google.android.gms.identity.intents.model.CountrySpecification> ajP;
-  Cart aja;
-  private final int xM;
+  private final int BR;
+  String asC;
+  Cart asL;
+  String asw;
+  boolean atp;
+  boolean atq;
+  boolean atr;
+  String ats;
+  String att;
+  boolean atu;
+  boolean atv;
+  CountrySpecification[] atw;
+  boolean atx;
+  boolean aty;
+  ArrayList<com.google.android.gms.identity.intents.model.CountrySpecification> atz;
 
   MaskedWalletRequest()
   {
-    this.xM = 3;
-    this.ajN = true;
-    this.ajO = true;
+    this.BR = 3;
+    this.atx = true;
+    this.aty = true;
   }
 
   MaskedWalletRequest(int paramInt, String paramString1, boolean paramBoolean1, boolean paramBoolean2, boolean paramBoolean3, String paramString2, String paramString3, String paramString4, Cart paramCart, boolean paramBoolean4, boolean paramBoolean5, CountrySpecification[] paramArrayOfCountrySpecification, boolean paramBoolean6, boolean paramBoolean7, ArrayList<com.google.android.gms.identity.intents.model.CountrySpecification> paramArrayList)
   {
-    this.xM = paramInt;
-    this.aiR = paramString1;
-    this.ajF = paramBoolean1;
-    this.ajG = paramBoolean2;
-    this.ajH = paramBoolean3;
-    this.ajI = paramString2;
-    this.aiL = paramString3;
-    this.ajJ = paramString4;
-    this.aja = paramCart;
-    this.ajK = paramBoolean4;
-    this.ajL = paramBoolean5;
-    this.ajM = paramArrayOfCountrySpecification;
-    this.ajN = paramBoolean6;
-    this.ajO = paramBoolean7;
-    this.ajP = paramArrayList;
+    this.BR = paramInt;
+    this.asC = paramString1;
+    this.atp = paramBoolean1;
+    this.atq = paramBoolean2;
+    this.atr = paramBoolean3;
+    this.ats = paramString2;
+    this.asw = paramString3;
+    this.att = paramString4;
+    this.asL = paramCart;
+    this.atu = paramBoolean4;
+    this.atv = paramBoolean5;
+    this.atw = paramArrayOfCountrySpecification;
+    this.atx = paramBoolean6;
+    this.aty = paramBoolean7;
+    this.atz = paramArrayList;
   }
 
   public static MaskedWalletRequest.Builder newBuilder()
@@ -60,12 +60,12 @@ public final class MaskedWalletRequest
 
   public final boolean allowDebitCard()
   {
-    return this.ajO;
+    return this.aty;
   }
 
   public final boolean allowPrepaidCard()
   {
-    return this.ajN;
+    return this.atx;
   }
 
   public final int describeContents()
@@ -75,67 +75,67 @@ public final class MaskedWalletRequest
 
   public final ArrayList<com.google.android.gms.identity.intents.model.CountrySpecification> getAllowedCountrySpecificationsForShipping()
   {
-    return this.ajP;
+    return this.atz;
   }
 
   public final CountrySpecification[] getAllowedShippingCountrySpecifications()
   {
-    return this.ajM;
+    return this.atw;
   }
 
   public final Cart getCart()
   {
-    return this.aja;
+    return this.asL;
   }
 
   public final String getCurrencyCode()
   {
-    return this.aiL;
+    return this.asw;
   }
 
   public final String getEstimatedTotalPrice()
   {
-    return this.ajI;
+    return this.ats;
   }
 
   public final String getMerchantName()
   {
-    return this.ajJ;
+    return this.att;
   }
 
   public final String getMerchantTransactionId()
   {
-    return this.aiR;
+    return this.asC;
   }
 
   public final int getVersionCode()
   {
-    return this.xM;
+    return this.BR;
   }
 
   public final boolean isBillingAgreement()
   {
-    return this.ajL;
+    return this.atv;
   }
 
   public final boolean isPhoneNumberRequired()
   {
-    return this.ajF;
+    return this.atp;
   }
 
   public final boolean isShippingAddressRequired()
   {
-    return this.ajG;
+    return this.atq;
   }
 
   public final boolean shouldRetrieveWalletObjects()
   {
-    return this.ajK;
+    return this.atu;
   }
 
   public final boolean useMinimalBillingAddress()
   {
-    return this.ajH;
+    return this.atr;
   }
 
   public final void writeToParcel(Parcel paramParcel, int paramInt)
@@ -144,7 +144,7 @@ public final class MaskedWalletRequest
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.MaskedWalletRequest
  * JD-Core Version:    0.6.2
  */

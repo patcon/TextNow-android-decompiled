@@ -2,27 +2,27 @@ package com.google.android.gms.internal;
 
 class j$a
 {
-  private String kd;
-  private boolean ke;
+  private String kO;
+  private boolean kP;
 
   public j$a(j paramj, String paramString, boolean paramBoolean)
   {
-    this.kd = paramString;
-    this.ke = paramBoolean;
+    this.kO = paramString;
+    this.kP = paramBoolean;
   }
 
   public String getId()
   {
-    return this.kd;
+    return this.kO;
   }
 
   public boolean isLimitAdTrackingEnabled()
   {
-    return this.ke;
+    return this.kP;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.j.a
  * JD-Core Version:    0.6.2
  */

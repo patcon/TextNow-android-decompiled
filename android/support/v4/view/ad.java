@@ -1,37 +1,24 @@
 package android.support.v4.view;
 
-import android.view.MotionEvent;
+import android.view.MenuItem;
+import android.view.View;
 
-final class ad
-  implements ae
+abstract interface ad
 {
-  public final int a(MotionEvent paramMotionEvent)
-  {
-    return paramMotionEvent.getPointerCount();
-  }
+  public abstract MenuItem a(MenuItem paramMenuItem, View paramView);
 
-  public final int a(MotionEvent paramMotionEvent, int paramInt)
-  {
-    return paramMotionEvent.findPointerIndex(paramInt);
-  }
+  public abstract View a(MenuItem paramMenuItem);
 
-  public final int b(MotionEvent paramMotionEvent, int paramInt)
-  {
-    return paramMotionEvent.getPointerId(paramInt);
-  }
+  public abstract void a(MenuItem paramMenuItem, int paramInt);
 
-  public final float c(MotionEvent paramMotionEvent, int paramInt)
-  {
-    return paramMotionEvent.getX(paramInt);
-  }
+  public abstract MenuItem b(MenuItem paramMenuItem, int paramInt);
 
-  public final float d(MotionEvent paramMotionEvent, int paramInt)
-  {
-    return paramMotionEvent.getY(paramInt);
-  }
+  public abstract boolean b(MenuItem paramMenuItem);
+
+  public abstract boolean c(MenuItem paramMenuItem);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.view.ad
  * JD-Core Version:    0.6.2
  */

@@ -11,12 +11,12 @@ import java.util.ArrayList;
 public class FragmentTabHost extends TabHost
   implements TabHost.OnTabChangeListener
 {
-  private final ArrayList<ab> a = new ArrayList();
+  private final ArrayList<r> a = new ArrayList();
   private Context b;
-  private y c;
+  private n c;
   private int d;
   private TabHost.OnTabChangeListener e;
-  private ab f;
+  private r f;
   private boolean g;
 
   public FragmentTabHost(Context paramContext, AttributeSet paramAttributeSet)
@@ -28,15 +28,15 @@ public class FragmentTabHost extends TabHost
     super.setOnTabChangedListener(this);
   }
 
-  private ac a(String paramString, ac paramac)
+  private s a(String paramString, s params)
   {
     Object localObject1 = null;
     int i = 0;
     Object localObject2;
     if (i < this.a.size())
     {
-      localObject2 = (ab)this.a.get(i);
-      if (!ab.b((ab)localObject2).equals(paramString))
+      localObject2 = (r)this.a.get(i);
+      if (!r.b((r)localObject2).equals(paramString))
         break label202;
     }
     while (true)
@@ -48,23 +48,23 @@ public class FragmentTabHost extends TabHost
         throw new IllegalStateException("No tab known for tag " + paramString);
       if (this.f != localObject1)
       {
-        if (paramac == null)
-          paramac = this.c.a();
-        if ((this.f != null) && (ab.a(this.f) != null))
-          paramac.b(ab.a(this.f));
+        if (params == null)
+          params = this.c.a();
+        if ((this.f != null) && (r.a(this.f) != null))
+          params.b(r.a(this.f));
         if (localObject1 != null)
         {
-          if (ab.a(localObject1) != null)
+          if (r.a(localObject1) != null)
             break label190;
-          ab.a(localObject1, Fragment.instantiate(this.b, ab.c(localObject1).getName(), ab.d(localObject1)));
-          paramac.a(this.d, ab.a(localObject1), ab.b(localObject1));
+          r.a(localObject1, Fragment.instantiate(this.b, r.c(localObject1).getName(), r.d(localObject1)));
+          params.a(this.d, r.a(localObject1), r.b(localObject1));
         }
       }
       while (true)
       {
         this.f = localObject1;
-        return paramac;
-        label190: paramac.c(ab.a(localObject1));
+        return params;
+        label190: params.c(r.a(localObject1));
       }
       label202: localObject2 = localObject1;
     }
@@ -74,32 +74,32 @@ public class FragmentTabHost extends TabHost
   {
     super.onAttachedToWindow();
     String str = getCurrentTabTag();
-    ac localac1 = null;
+    s locals1 = null;
     int i = 0;
     if (i < this.a.size())
     {
-      ab localab = (ab)this.a.get(i);
-      ab.a(localab, this.c.a(ab.b(localab)));
-      if ((ab.a(localab) != null) && (!ab.a(localab).isDetached()))
+      r localr = (r)this.a.get(i);
+      r.a(localr, this.c.a(r.b(localr)));
+      if ((r.a(localr) != null) && (!r.a(localr).isDetached()))
       {
-        if (!ab.b(localab).equals(str))
+        if (!r.b(localr).equals(str))
           break label98;
-        this.f = localab;
+        this.f = localr;
       }
       while (true)
       {
         i++;
         break;
-        label98: if (localac1 == null)
-          localac1 = this.c.a();
-        localac1.b(ab.a(localab));
+        label98: if (locals1 == null)
+          locals1 = this.c.a();
+        locals1.b(r.a(localr));
       }
     }
     this.g = true;
-    ac localac2 = a(str, localac1);
-    if (localac2 != null)
+    s locals2 = a(str, locals1);
+    if (locals2 != null)
     {
-      localac2.a();
+      locals2.a();
       this.c.b();
     }
   }
@@ -128,9 +128,9 @@ public class FragmentTabHost extends TabHost
   {
     if (this.g)
     {
-      ac localac = a(paramString, null);
-      if (localac != null)
-        localac.a();
+      s locals = a(paramString, null);
+      if (locals != null)
+        locals.a();
     }
     if (this.e != null)
       this.e.onTabChanged(paramString);
@@ -148,7 +148,7 @@ public class FragmentTabHost extends TabHost
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.app.FragmentTabHost
  * JD-Core Version:    0.6.2
  */

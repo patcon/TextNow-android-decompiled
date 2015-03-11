@@ -1,71 +1,60 @@
 package com.google.android.gms.internal;
 
 import android.os.Parcel;
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
+import android.os.Parcelable.Creator;
+import com.google.android.gms.common.internal.safeparcel.a;
+import com.google.android.gms.common.internal.safeparcel.a.a;
+import com.google.android.gms.common.internal.safeparcel.b;
+import java.util.ArrayList;
 
 public class jo
-  implements SafeParcelable
+  implements Parcelable.Creator<jm.a>
 {
-  public static final jp CREATOR = new jp();
-  private final String Wl;
-  private final String mTag;
-  final int xM;
-
-  jo(int paramInt, String paramString1, String paramString2)
+  static void a(jm.a parama, Parcel paramParcel, int paramInt)
   {
-    this.xM = paramInt;
-    this.Wl = paramString1;
-    this.mTag = paramString2;
+    int i = b.D(paramParcel);
+    b.c(paramParcel, 1, parama.versionCode);
+    b.a(paramParcel, 2, parama.className, false);
+    b.c(paramParcel, 3, parama.ML, false);
+    b.H(paramParcel, i);
   }
 
-  public int describeContents()
+  public jm.a L(Parcel paramParcel)
   {
-    return 0;
-  }
-
-  public boolean equals(Object paramObject)
-  {
-    if (!(paramObject instanceof jo));
-    jo localjo;
-    do
+    ArrayList localArrayList = null;
+    int i = a.C(paramParcel);
+    int j = 0;
+    String str = null;
+    while (paramParcel.dataPosition() < i)
     {
-      return false;
-      localjo = (jo)paramObject;
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
+      {
+      default:
+        a.b(paramParcel, k);
+        break;
+      case 1:
+        j = a.g(paramParcel, k);
+        break;
+      case 2:
+        str = a.o(paramParcel, k);
+        break;
+      case 3:
+        localArrayList = a.c(paramParcel, k, jm.b.CREATOR);
+      }
     }
-    while ((!hk.equal(this.Wl, localjo.Wl)) || (!hk.equal(this.mTag, localjo.mTag)));
-    return true;
+    if (paramParcel.dataPosition() != i)
+      throw new a.a("Overread allowed size end=" + i, paramParcel);
+    return new jm.a(j, str, localArrayList);
   }
 
-  public String getTag()
+  public jm.a[] aL(int paramInt)
   {
-    return this.mTag;
-  }
-
-  public int hashCode()
-  {
-    Object[] arrayOfObject = new Object[2];
-    arrayOfObject[0] = this.Wl;
-    arrayOfObject[1] = this.mTag;
-    return hk.hashCode(arrayOfObject);
-  }
-
-  public String jj()
-  {
-    return this.Wl;
-  }
-
-  public String toString()
-  {
-    return hk.e(this).a("mPlaceId", this.Wl).a("mTag", this.mTag).toString();
-  }
-
-  public void writeToParcel(Parcel paramParcel, int paramInt)
-  {
-    jp.a(this, paramParcel, paramInt);
+    return new jm.a[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.jo
  * JD-Core Version:    0.6.2
  */

@@ -1,102 +1,39 @@
 package android.support.v7.app;
 
-import android.support.v7.internal.view.menu.o;
-import android.support.v7.internal.widget.ActionBarContextView;
-import android.support.v7.internal.widget.ActionBarView;
-import android.view.Menu;
-import android.view.MenuItem;
-import textnow.i.a;
-import textnow.i.b;
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 
-final class n extends a
-  implements o
+final class n
+  implements j
 {
-  private b b;
-  private android.support.v7.internal.view.menu.n c;
+  final Activity a;
 
-  public n(m paramm, b paramb)
+  n(Activity paramActivity)
   {
-    this.b = paramb;
-    this.c = new android.support.v7.internal.view.menu.n(paramm.c()).a(1);
-    this.c.a(this);
+    this.a = paramActivity;
   }
 
-  public final Menu a()
+  public final Drawable a()
   {
-    return this.c;
+    return null;
   }
 
-  public final void a(android.support.v7.internal.view.menu.n paramn)
+  public final void a(int paramInt)
   {
-    if (this.b == null)
-      return;
-    c();
-    m.c(this.a).b();
   }
 
-  public final void a(CharSequence paramCharSequence)
+  public final void a(Drawable paramDrawable, int paramInt)
   {
-    m.c(this.a).a(paramCharSequence);
   }
 
-  public final boolean a(MenuItem paramMenuItem)
+  public final Context b()
   {
-    if (this.b != null)
-      return this.b.a(this, paramMenuItem);
-    return false;
-  }
-
-  public final void b()
-  {
-    if (this.a.a != this)
-      return;
-    if (!m.a(m.a(this.a), m.b(this.a), false))
-    {
-      this.a.b = this;
-      this.a.c = this.b;
-    }
-    while (true)
-    {
-      this.b = null;
-      this.a.d(false);
-      m.c(this.a).g();
-      m.d(this.a).sendAccessibilityEvent(32);
-      this.a.a = null;
-      return;
-      this.b.a(this);
-    }
-  }
-
-  public final void c()
-  {
-    this.c.f();
-    try
-    {
-      this.b.b(this, this.c);
-      return;
-    }
-    finally
-    {
-      this.c.g();
-    }
-  }
-
-  public final boolean d()
-  {
-    this.c.f();
-    try
-    {
-      boolean bool = this.b.a(this, this.c);
-      return bool;
-    }
-    finally
-    {
-      this.c.g();
-    }
+    return this.a;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v7.app.n
  * JD-Core Version:    0.6.2
  */

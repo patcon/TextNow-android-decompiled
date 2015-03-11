@@ -7,9 +7,9 @@ public abstract class a
 {
   protected TNContentProvider a;
   protected Context b;
-  protected textnow.v.a c;
+  protected textnow.ab.a c;
 
-  public a(TNContentProvider paramTNContentProvider, Context paramContext, textnow.v.a parama)
+  public a(TNContentProvider paramTNContentProvider, Context paramContext, textnow.ab.a parama)
   {
     this.a = paramTNContentProvider;
     this.b = paramContext;
@@ -27,7 +27,7 @@ public abstract class a
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.persistence.contentproviders.a
  * JD-Core Version:    0.6.2
  */

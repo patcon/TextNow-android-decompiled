@@ -13,23 +13,23 @@ public class DetectedActivityCreator
 
   static void a(DetectedActivity paramDetectedActivity, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
-    b.c(paramParcel, 1, paramDetectedActivity.UY);
+    int i = b.D(paramParcel);
+    b.c(paramParcel, 1, paramDetectedActivity.aef);
     b.c(paramParcel, 1000, paramDetectedActivity.getVersionCode());
-    b.c(paramParcel, 2, paramDetectedActivity.UZ);
-    b.G(paramParcel, i);
+    b.c(paramParcel, 2, paramDetectedActivity.aeg);
+    b.H(paramParcel, i);
   }
 
   public DetectedActivity createFromParcel(Parcel paramParcel)
   {
     int i = 0;
-    int j = a.B(paramParcel);
+    int j = a.C(paramParcel);
     int k = 0;
     int m = 0;
     while (paramParcel.dataPosition() < j)
     {
-      int n = a.A(paramParcel);
-      switch (a.ar(n))
+      int n = a.B(paramParcel);
+      switch (a.aD(n))
       {
       default:
         a.b(paramParcel, n);
@@ -55,7 +55,7 @@ public class DetectedActivityCreator
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.location.DetectedActivityCreator
  * JD-Core Version:    0.6.2
  */

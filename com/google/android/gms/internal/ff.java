@@ -1,35 +1,39 @@
 package com.google.android.gms.internal;
 
 import android.content.Context;
-import android.os.Looper;
-import com.google.android.gms.common.api.Api;
-import com.google.android.gms.common.api.Api.ApiOptions.NoOptions;
-import com.google.android.gms.common.api.Api.b;
-import com.google.android.gms.common.api.Api.c;
-import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
-import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
-import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 
+@ez
 public final class ff
 {
-  public static final Api.c<fx> xI = new Api.c();
-  private static final Api.b<fx, Api.ApiOptions.NoOptions> xJ = new Api.b()
+  public static gg a(Context paramContext, fi paramfi, ff.a parama)
   {
-    public final fx a(Context paramAnonymousContext, Looper paramAnonymousLooper, gy paramAnonymousgy, Api.ApiOptions.NoOptions paramAnonymousNoOptions, GoogleApiClient.ConnectionCallbacks paramAnonymousConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener paramAnonymousOnConnectionFailedListener)
-    {
-      return new fx(paramAnonymousContext, paramAnonymousLooper, paramAnonymousConnectionCallbacks, paramAnonymousOnConnectionFailedListener);
-    }
+    if (paramfi.lD.wG)
+      return b(paramContext, paramfi, parama);
+    return c(paramContext, paramfi, parama);
+  }
 
-    public final int getPriority()
+  private static gg b(Context paramContext, fi paramfi, ff.a parama)
+  {
+    gs.S("Fetching ad response from local ad request service.");
+    fg.a locala = new fg.a(paramContext, paramfi, parama);
+    locala.start();
+    return locala;
+  }
+
+  private static gg c(Context paramContext, fi paramfi, ff.a parama)
+  {
+    gs.S("Fetching ad response from remote ad request service.");
+    if (GooglePlayServicesUtil.isGooglePlayServicesAvailable(paramContext) != 0)
     {
-      return 2147483647;
+      gs.W("Failed to connect to remote ad request service.");
+      return null;
     }
-  };
-  public static final Api<Api.ApiOptions.NoOptions> xK = new Api(xJ, xI, new Scope[0]);
-  public static final ft xL = new fy();
+    return new fg.b(paramContext, paramfi, parama);
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ff
  * JD-Core Version:    0.6.2
  */

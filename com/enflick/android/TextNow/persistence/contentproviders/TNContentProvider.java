@@ -6,26 +6,28 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
 import java.util.HashMap;
-import textnow.v.a;
+import textnow.ab.a;
 
 public class TNContentProvider extends ContentProvider
 {
   private static final UriMatcher b = new UriMatcher(-1);
   private static final HashMap<Integer, b> c = new HashMap();
   private a a;
-  private f d;
-  private c e;
-  private e f;
-  private d g;
-  private g h;
+  private g d;
+  private d e;
+  private f f;
+  private e g;
+  private h h;
+  private c i;
 
   static
   {
-    f.a(b);
-    c.a(b);
-    e.a(b);
-    d.a(b);
     g.a(b);
+    d.a(b);
+    f.a(b);
+    e.a(b);
+    h.a(b);
+    c.a(b);
   }
 
   public static void a(int paramInt, b paramb)
@@ -35,52 +37,54 @@ public class TNContentProvider extends ContentProvider
 
   public int delete(Uri paramUri, String paramString, String[] paramArrayOfString)
   {
-    int i = b.match(paramUri);
-    return ((b)c.get(Integer.valueOf(i))).a(paramUri, paramString, paramArrayOfString, i);
+    int j = b.match(paramUri);
+    return ((b)c.get(Integer.valueOf(j))).a(paramUri, paramString, paramArrayOfString, j);
   }
 
   public String getType(Uri paramUri)
   {
-    int i = b.match(paramUri);
-    return ((b)c.get(Integer.valueOf(i))).a(i);
+    int j = b.match(paramUri);
+    return ((b)c.get(Integer.valueOf(j))).a(j);
   }
 
   public Uri insert(Uri paramUri, ContentValues paramContentValues)
   {
-    int i = b.match(paramUri);
-    return ((b)c.get(Integer.valueOf(i))).a(paramUri, paramContentValues, i);
+    int j = b.match(paramUri);
+    return ((b)c.get(Integer.valueOf(j))).a(paramUri, paramContentValues, j);
   }
 
   public boolean onCreate()
   {
     this.a = new a(getContext());
-    this.d = new f(this, getContext(), this.a);
+    this.d = new g(this, getContext(), this.a);
     this.d.a();
-    this.e = new c(this, getContext(), this.a);
+    this.e = new d(this, getContext(), this.a);
     this.e.a();
-    this.f = new e(this, getContext(), this.a);
+    this.f = new f(this, getContext(), this.a);
     this.f.a();
-    this.g = new d(this, getContext(), this.a);
+    this.g = new e(this, getContext(), this.a);
     this.g.a();
-    this.h = new g(this, getContext(), this.a);
+    this.h = new h(this, getContext(), this.a);
     this.h.a();
+    this.i = new c(this, getContext(), this.a);
+    this.i.a();
     return true;
   }
 
   public Cursor query(Uri paramUri, String[] paramArrayOfString1, String paramString1, String[] paramArrayOfString2, String paramString2)
   {
-    int i = b.match(paramUri);
-    return ((b)c.get(Integer.valueOf(i))).a(paramUri, paramArrayOfString1, paramString1, paramArrayOfString2, paramString2, i);
+    int j = b.match(paramUri);
+    return ((b)c.get(Integer.valueOf(j))).a(paramUri, paramArrayOfString1, paramString1, paramArrayOfString2, paramString2, j);
   }
 
   public int update(Uri paramUri, ContentValues paramContentValues, String paramString, String[] paramArrayOfString)
   {
-    int i = b.match(paramUri);
-    return ((b)c.get(Integer.valueOf(i))).a(paramUri, paramContentValues, paramString, paramArrayOfString, i);
+    int j = b.match(paramUri);
+    return ((b)c.get(Integer.valueOf(j))).a(paramUri, paramContentValues, paramString, paramArrayOfString, j);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.persistence.contentproviders.TNContentProvider
  * JD-Core Version:    0.6.2
  */

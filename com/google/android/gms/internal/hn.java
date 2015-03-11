@@ -1,48 +1,55 @@
 package com.google.android.gms.internal;
 
-import android.content.Context;
-import android.os.IBinder;
-import android.view.View;
-import com.google.android.gms.dynamic.d;
-import com.google.android.gms.dynamic.e;
-import com.google.android.gms.dynamic.g;
-import com.google.android.gms.dynamic.g.a;
+import android.accounts.Account;
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import com.google.android.gms.common.internal.safeparcel.a;
+import com.google.android.gms.common.internal.safeparcel.a.a;
+import com.google.android.gms.common.internal.safeparcel.b;
 
-public final class hn extends g<hj>
+public class hn
+  implements Parcelable.Creator<hm.a>
 {
-  private static final hn GL = new hn();
-
-  private hn()
+  static void a(hm.a parama, Parcel paramParcel, int paramInt)
   {
-    super("com.google.android.gms.common.ui.SignInButtonCreatorImpl");
+    int i = b.D(paramParcel);
+    b.a(paramParcel, 1, parama.Cj, paramInt, false);
+    b.c(paramParcel, 1000, parama.BR);
+    b.H(paramParcel, i);
   }
 
-  public static View b(Context paramContext, int paramInt1, int paramInt2)
+  public hm.a[] M(int paramInt)
   {
-    return GL.c(paramContext, paramInt1, paramInt2);
+    return new hm.a[paramInt];
   }
 
-  private View c(Context paramContext, int paramInt1, int paramInt2)
+  public hm.a p(Parcel paramParcel)
   {
-    try
+    int i = a.C(paramParcel);
+    int j = 0;
+    Account localAccount = null;
+    while (paramParcel.dataPosition() < i)
     {
-      d locald = e.h(paramContext);
-      View localView = (View)e.e(((hj)G(paramContext)).a(locald, paramInt1, paramInt2));
-      return localView;
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
+      {
+      default:
+        a.b(paramParcel, k);
+        break;
+      case 1:
+        localAccount = (Account)a.a(paramParcel, k, Account.CREATOR);
+        break;
+      case 1000:
+        j = a.g(paramParcel, k);
+      }
     }
-    catch (Exception localException)
-    {
-      throw new g.a("Could not get button with size " + paramInt1 + " and color " + paramInt2, localException);
-    }
-  }
-
-  public final hj N(IBinder paramIBinder)
-  {
-    return hj.a.M(paramIBinder);
+    if (paramParcel.dataPosition() != i)
+      throw new a.a("Overread allowed size end=" + i, paramParcel);
+    return new hm.a(j, localAccount);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.hn
  * JD-Core Version:    0.6.2
  */

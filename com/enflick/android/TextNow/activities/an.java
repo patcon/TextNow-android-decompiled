@@ -1,132 +1,115 @@
 package com.enflick.android.TextNow.activities;
 
-import android.app.Activity;
-import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.content.res.Resources.Theme;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.util.TypedValue;
 import android.view.MenuItem;
-import android.view.View;
-import com.enflick.android.TextNow.views.AbsDrawerView;
+import textnow.v.y;
+import textnow.z.u;
 
-public abstract class an extends ah
-  implements com.enflick.android.TextNow.views.a
+public abstract class an extends ap
 {
-  private DrawerLayout b;
-  private AbsDrawerView c;
-  private android.support.v4.app.a d;
+  private boolean a = false;
+  protected boolean g = false;
+  protected boolean h = false;
 
-  public final boolean B()
+  public final void a(CharSequence paramCharSequence)
   {
-    if (this.b != null)
-      return this.b.f(this.c);
-    return false;
+    ActionBar localActionBar = b();
+    if (localActionBar != null)
+      localActionBar.b(paramCharSequence);
   }
 
-  public final void C()
+  public final void a(boolean paramBoolean1, boolean paramBoolean2)
   {
-    if (this.b != null)
-      this.b.e(this.c);
-  }
-
-  protected final void a(int paramInt1, int paramInt2)
-  {
-    this.b = ((DrawerLayout)findViewById(2131165521));
-    this.b.a(2130837857, 8388611);
-    this.d = new android.support.v4.app.a(this, this.b, 2130837894, 2131493310, 2131493311)
-    {
-      public final void a(View paramAnonymousView)
-      {
-        an.this.c().a(2131493012);
-        an.this.supportInvalidateOptionsMenu();
-        ((AbsDrawerView)paramAnonymousView).b();
-      }
-
-      public final void b(View paramAnonymousView)
-      {
-        an.this.c().a(an.this.getTitle());
-        an.this.supportInvalidateOptionsMenu();
-        AbsDrawerView.a();
-      }
-    };
-    this.b.a(this.d);
-    this.c = ((AbsDrawerView)findViewById(2131165527));
-    this.c.a(this);
-  }
-
-  public final void b(boolean paramBoolean)
-  {
-    boolean bool = true;
-    this.g = paramBoolean;
-    ActionBar localActionBar = c();
+    this.g = paramBoolean1;
+    ActionBar localActionBar = b();
     if (localActionBar != null)
     {
-      localActionBar.a(bool);
-      localActionBar.b(bool);
-      localActionBar.c(bool);
-    }
-    android.support.v4.app.a locala;
-    if (this.d != null)
-    {
-      locala = this.d;
-      if (paramBoolean)
-        break label55;
+      if (!paramBoolean1)
+        break label34;
+      localActionBar.b(true);
+      localActionBar.c(true);
     }
     while (true)
     {
-      locala.a(bool);
+      localActionBar.a(paramBoolean2);
       return;
-      label55: bool = false;
+      label34: localActionBar.a(false);
+      localActionBar.b(false);
     }
   }
 
-  public final void f(int paramInt)
+  public void d(boolean paramBoolean)
   {
-    if (this.c != null)
-      this.c.a(2131165539);
+    a(paramBoolean, paramBoolean);
   }
 
-  public int k()
+  public final void e(boolean paramBoolean)
   {
-    return -1;
+    this.a = paramBoolean;
   }
 
-  public void onConfigurationChanged(Configuration paramConfiguration)
+  public void onCreate(Bundle paramBundle)
   {
-    super.onConfigurationChanged(paramConfiguration);
-    if (this.d != null)
-      this.d.b();
-  }
-
-  protected void onDestroy()
-  {
-    super.onDestroy();
-    this.c = null;
-    this.b = null;
-    this.d = null;
+    setTheme(y.a(this, new u(getApplicationContext()).ab().intValue()));
+    super.onCreate(paramBundle);
+    ActionBar localActionBar = b();
+    if (localActionBar != null)
+      localActionBar.a(new ColorDrawable(y.b(this, 2130772068)));
   }
 
   public boolean onOptionsItemSelected(MenuItem paramMenuItem)
   {
-    if ((this.d != null) && (this.d.a(paramMenuItem)))
-      return true;
-    return super.onOptionsItemSelected(paramMenuItem);
+    switch (paramMenuItem.getItemId())
+    {
+    default:
+    case 16908332:
+    case 2131558400:
+    }
+    do
+      return super.onOptionsItemSelected(paramMenuItem);
+    while (!this.g);
+    onBackPressed();
+    return true;
   }
 
-  public void onPostCreate(Bundle paramBundle)
+  public void setTitle(int paramInt)
   {
-    super.onPostCreate(paramBundle);
-    this.d.a();
+    super.setTitle(paramInt);
+    ActionBar localActionBar = b();
+    if (localActionBar != null)
+      localActionBar.a(paramInt);
   }
 
-  public final void t()
+  public void setTitle(CharSequence paramCharSequence)
   {
-    if (this.c != null)
-      this.c.a(k());
+    super.setTitle(paramCharSequence);
+    ActionBar localActionBar = b();
+    if (localActionBar != null)
+      localActionBar.a(paramCharSequence);
+  }
+
+  public final int t()
+  {
+    TypedValue localTypedValue = new TypedValue();
+    boolean bool = getTheme().resolveAttribute(16843499, localTypedValue, true);
+    int i = 0;
+    if (bool)
+      i = TypedValue.complexToDimensionPixelSize(localTypedValue.data, getResources().getDisplayMetrics());
+    return i;
+  }
+
+  public final boolean u()
+  {
+    return this.a;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.activities.an
  * JD-Core Version:    0.6.2
  */

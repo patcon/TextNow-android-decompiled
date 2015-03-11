@@ -22,14 +22,14 @@ public class QuickReplyConversationFlipper extends LinearLayout
   private Animation f;
   private ViewFlipper g;
   private PageIndicator h;
-  private f i;
+  private g i;
   private float j = 0.0F;
   private boolean k = false;
 
   public QuickReplyConversationFlipper(Context paramContext)
   {
     super(paramContext);
-    LayoutInflater.from(paramContext).inflate(2130903172, this);
+    LayoutInflater.from(paramContext).inflate(2130903190, this);
     this.b = paramContext;
     b();
   }
@@ -37,22 +37,22 @@ public class QuickReplyConversationFlipper extends LinearLayout
   public QuickReplyConversationFlipper(Context paramContext, AttributeSet paramAttributeSet)
   {
     super(paramContext, paramAttributeSet);
-    LayoutInflater.from(paramContext).inflate(2130903172, this);
+    LayoutInflater.from(paramContext).inflate(2130903190, this);
     this.b = paramContext;
     b();
   }
 
   private void b()
   {
-    this.c = AnimationUtils.loadAnimation(this.b, 2130968589);
+    this.c = AnimationUtils.loadAnimation(this.b, 2130968595);
     this.c.setDuration(200L);
     this.c.setAnimationListener(this);
-    this.d = AnimationUtils.loadAnimation(this.b, 2130968590);
+    this.d = AnimationUtils.loadAnimation(this.b, 2130968596);
     this.d.setDuration(200L);
     this.d.setAnimationListener(this);
-    this.e = AnimationUtils.loadAnimation(this.b, 2130968591);
+    this.e = AnimationUtils.loadAnimation(this.b, 2130968597);
     this.e.setDuration(200L);
-    this.f = AnimationUtils.loadAnimation(this.b, 2130968592);
+    this.f = AnimationUtils.loadAnimation(this.b, 2130968598);
     this.f.setDuration(200L);
     a = 50;
   }
@@ -71,9 +71,9 @@ public class QuickReplyConversationFlipper extends LinearLayout
       this.h.setVisibility(0);
   }
 
-  public final void a(f paramf)
+  public final void a(g paramg)
   {
-    this.i = paramf;
+    this.i = paramg;
   }
 
   public final void b(View paramView)
@@ -82,17 +82,17 @@ public class QuickReplyConversationFlipper extends LinearLayout
     this.h.a();
     if (this.h.g() <= 1)
     {
-      this.h.b(0);
+      this.h.e(0);
       this.h.setVisibility(4);
       return;
     }
     int m = this.h.f();
     if (m >= this.h.g())
     {
-      this.h.b(-1 + this.h.g());
+      this.h.e(-1 + this.h.g());
       return;
     }
-    this.h.b(m);
+    this.h.e(m);
   }
 
   public boolean dispatchTouchEvent(MotionEvent paramMotionEvent)
@@ -150,9 +150,9 @@ public class QuickReplyConversationFlipper extends LinearLayout
   protected void onFinishInflate()
   {
     super.onFinishInflate();
-    this.g = ((ViewFlipper)findViewById(2131165635));
-    this.h = ((PageIndicator)findViewById(2131165519));
-    this.h.a(new e()
+    this.g = ((ViewFlipper)findViewById(2131558937));
+    this.h = ((PageIndicator)findViewById(2131558791));
+    this.h.a(new f()
     {
       public final void a(int paramAnonymousInt1, int paramAnonymousInt2)
       {
@@ -176,7 +176,7 @@ public class QuickReplyConversationFlipper extends LinearLayout
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.views.QuickReplyConversationFlipper
  * JD-Core Version:    0.6.2
  */

@@ -8,19 +8,19 @@ import java.util.List;
 
 public class b
 {
-  public static int C(Parcel paramParcel)
+  public static int D(Parcel paramParcel)
   {
-    return E(paramParcel, 20293);
+    return F(paramParcel, 20293);
   }
 
-  private static int E(Parcel paramParcel, int paramInt)
+  private static int F(Parcel paramParcel, int paramInt)
   {
     paramParcel.writeInt(0xFFFF0000 | paramInt);
     paramParcel.writeInt(0);
     return paramParcel.dataPosition();
   }
 
-  private static void F(Parcel paramParcel, int paramInt)
+  private static void G(Parcel paramParcel, int paramInt)
   {
     int i = paramParcel.dataPosition();
     int j = i - paramInt;
@@ -29,9 +29,9 @@ public class b
     paramParcel.setDataPosition(i);
   }
 
-  public static void G(Parcel paramParcel, int paramInt)
+  public static void H(Parcel paramParcel, int paramInt)
   {
-    F(paramParcel, paramInt);
+    G(paramParcel, paramInt);
   }
 
   public static void a(Parcel paramParcel, int paramInt, byte paramByte)
@@ -66,9 +66,9 @@ public class b
         b(paramParcel, paramInt, 0);
       return;
     }
-    int i = E(paramParcel, paramInt);
+    int i = F(paramParcel, paramInt);
     paramParcel.writeBundle(paramBundle);
-    F(paramParcel, i);
+    G(paramParcel, i);
   }
 
   public static void a(Parcel paramParcel, int paramInt, IBinder paramIBinder, boolean paramBoolean)
@@ -79,9 +79,9 @@ public class b
         b(paramParcel, paramInt, 0);
       return;
     }
-    int i = E(paramParcel, paramInt);
+    int i = F(paramParcel, paramInt);
     paramParcel.writeStrongBinder(paramIBinder);
-    F(paramParcel, i);
+    G(paramParcel, i);
   }
 
   public static void a(Parcel paramParcel1, int paramInt, Parcel paramParcel2, boolean paramBoolean)
@@ -92,9 +92,9 @@ public class b
         b(paramParcel1, paramInt, 0);
       return;
     }
-    int i = E(paramParcel1, paramInt);
+    int i = F(paramParcel1, paramInt);
     paramParcel1.appendFrom(paramParcel2, 0, paramParcel2.dataSize());
-    F(paramParcel1, i);
+    G(paramParcel1, i);
   }
 
   public static void a(Parcel paramParcel, int paramInt1, Parcelable paramParcelable, int paramInt2, boolean paramBoolean)
@@ -105,9 +105,9 @@ public class b
         b(paramParcel, paramInt1, 0);
       return;
     }
-    int i = E(paramParcel, paramInt1);
+    int i = F(paramParcel, paramInt1);
     paramParcelable.writeToParcel(paramParcel, paramInt2);
-    F(paramParcel, i);
+    G(paramParcel, i);
   }
 
   public static void a(Parcel paramParcel, int paramInt, Boolean paramBoolean, boolean paramBoolean1)
@@ -158,12 +158,12 @@ public class b
         b(paramParcel, paramInt, 0);
       return;
     }
-    int i = E(paramParcel, paramInt);
+    int i = F(paramParcel, paramInt);
     paramParcel.writeString(paramString);
-    F(paramParcel, i);
+    G(paramParcel, i);
   }
 
-  public static void a(Parcel paramParcel, int paramInt, List<String> paramList, boolean paramBoolean)
+  public static void a(Parcel paramParcel, int paramInt, List<Integer> paramList, boolean paramBoolean)
   {
     if (paramList == null)
     {
@@ -171,9 +171,12 @@ public class b
         b(paramParcel, paramInt, 0);
       return;
     }
-    int i = E(paramParcel, paramInt);
-    paramParcel.writeStringList(paramList);
-    F(paramParcel, i);
+    int i = F(paramParcel, paramInt);
+    int j = paramList.size();
+    paramParcel.writeInt(j);
+    for (int k = 0; k < j; k++)
+      paramParcel.writeInt(((Integer)paramList.get(k)).intValue());
+    G(paramParcel, i);
   }
 
   public static void a(Parcel paramParcel, int paramInt, short paramShort)
@@ -201,9 +204,9 @@ public class b
         b(paramParcel, paramInt, 0);
       return;
     }
-    int i = E(paramParcel, paramInt);
+    int i = F(paramParcel, paramInt);
     paramParcel.writeByteArray(paramArrayOfByte);
-    F(paramParcel, i);
+    G(paramParcel, i);
   }
 
   public static void a(Parcel paramParcel, int paramInt, int[] paramArrayOfInt, boolean paramBoolean)
@@ -214,9 +217,9 @@ public class b
         b(paramParcel, paramInt, 0);
       return;
     }
-    int i = E(paramParcel, paramInt);
+    int i = F(paramParcel, paramInt);
     paramParcel.writeIntArray(paramArrayOfInt);
-    F(paramParcel, i);
+    G(paramParcel, i);
   }
 
   public static <T extends Parcelable> void a(Parcel paramParcel, int paramInt1, T[] paramArrayOfT, int paramInt2, boolean paramBoolean)
@@ -227,7 +230,7 @@ public class b
         b(paramParcel, paramInt1, 0);
       return;
     }
-    int i = E(paramParcel, paramInt1);
+    int i = F(paramParcel, paramInt1);
     int j = paramArrayOfT.length;
     paramParcel.writeInt(j);
     int k = 0;
@@ -243,7 +246,7 @@ public class b
         a(paramParcel, ?, paramInt2);
       }
     }
-    F(paramParcel, i);
+    G(paramParcel, i);
   }
 
   public static void a(Parcel paramParcel, int paramInt, String[] paramArrayOfString, boolean paramBoolean)
@@ -254,9 +257,9 @@ public class b
         b(paramParcel, paramInt, 0);
       return;
     }
-    int i = E(paramParcel, paramInt);
+    int i = F(paramParcel, paramInt);
     paramParcel.writeStringArray(paramArrayOfString);
-    F(paramParcel, i);
+    G(paramParcel, i);
   }
 
   public static void a(Parcel paramParcel, int paramInt, byte[][] paramArrayOfByte, boolean paramBoolean)
@@ -268,7 +271,7 @@ public class b
         b(paramParcel, paramInt, 0);
       return;
     }
-    int j = E(paramParcel, paramInt);
+    int j = F(paramParcel, paramInt);
     int k = paramArrayOfByte.length;
     paramParcel.writeInt(k);
     while (i < k)
@@ -276,7 +279,7 @@ public class b
       paramParcel.writeByteArray(paramArrayOfByte[i]);
       i++;
     }
-    F(paramParcel, j);
+    G(paramParcel, j);
   }
 
   private static <T extends Parcelable> void a(Parcel paramParcel, T paramT, int paramInt)
@@ -302,7 +305,7 @@ public class b
     paramParcel.writeInt(paramInt1 | paramInt2 << 16);
   }
 
-  public static <T extends Parcelable> void b(Parcel paramParcel, int paramInt, List<T> paramList, boolean paramBoolean)
+  public static void b(Parcel paramParcel, int paramInt, List<String> paramList, boolean paramBoolean)
   {
     if (paramList == null)
     {
@@ -310,7 +313,26 @@ public class b
         b(paramParcel, paramInt, 0);
       return;
     }
-    int i = E(paramParcel, paramInt);
+    int i = F(paramParcel, paramInt);
+    paramParcel.writeStringList(paramList);
+    G(paramParcel, i);
+  }
+
+  public static void c(Parcel paramParcel, int paramInt1, int paramInt2)
+  {
+    b(paramParcel, paramInt1, 4);
+    paramParcel.writeInt(paramInt2);
+  }
+
+  public static <T extends Parcelable> void c(Parcel paramParcel, int paramInt, List<T> paramList, boolean paramBoolean)
+  {
+    if (paramList == null)
+    {
+      if (paramBoolean)
+        b(paramParcel, paramInt, 0);
+      return;
+    }
+    int i = F(paramParcel, paramInt);
     int j = paramList.size();
     paramParcel.writeInt(j);
     int k = 0;
@@ -326,16 +348,10 @@ public class b
         a(paramParcel, localParcelable, 0);
       }
     }
-    F(paramParcel, i);
+    G(paramParcel, i);
   }
 
-  public static void c(Parcel paramParcel, int paramInt1, int paramInt2)
-  {
-    b(paramParcel, paramInt1, 4);
-    paramParcel.writeInt(paramInt2);
-  }
-
-  public static void c(Parcel paramParcel, int paramInt, List paramList, boolean paramBoolean)
+  public static void d(Parcel paramParcel, int paramInt, List paramList, boolean paramBoolean)
   {
     if (paramList == null)
     {
@@ -343,13 +359,13 @@ public class b
         b(paramParcel, paramInt, 0);
       return;
     }
-    int i = E(paramParcel, paramInt);
+    int i = F(paramParcel, paramInt);
     paramParcel.writeList(paramList);
-    F(paramParcel, i);
+    G(paramParcel, i);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.common.internal.safeparcel.b
  * JD-Core Version:    0.6.2
  */

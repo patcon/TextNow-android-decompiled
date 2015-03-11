@@ -12,11 +12,6 @@ import java.util.List;
 
 public class a
 {
-  public static int A(Parcel paramParcel)
-  {
-    return paramParcel.readInt();
-  }
-
   public static String[] A(Parcel paramParcel, int paramInt)
   {
     int i = a(paramParcel, paramInt);
@@ -30,10 +25,29 @@ public class a
 
   public static int B(Parcel paramParcel)
   {
-    int i = A(paramParcel);
+    return paramParcel.readInt();
+  }
+
+  public static ArrayList<Integer> B(Parcel paramParcel, int paramInt)
+  {
+    int i = a(paramParcel, paramInt);
+    int j = paramParcel.dataPosition();
+    if (i == 0)
+      return null;
+    ArrayList localArrayList = new ArrayList();
+    int k = paramParcel.readInt();
+    for (int m = 0; m < k; m++)
+      localArrayList.add(Integer.valueOf(paramParcel.readInt()));
+    paramParcel.setDataPosition(j + i);
+    return localArrayList;
+  }
+
+  public static int C(Parcel paramParcel)
+  {
+    int i = B(paramParcel);
     int j = a(paramParcel, i);
     int k = paramParcel.dataPosition();
-    if (ar(i) != 20293)
+    if (aD(i) != 20293)
       throw new a.a("Expected object header. Got 0x" + Integer.toHexString(i), paramParcel);
     int m = k + j;
     if ((m < k) || (m > paramParcel.dataSize()))
@@ -41,7 +55,7 @@ public class a
     return m;
   }
 
-  public static ArrayList<String> B(Parcel paramParcel, int paramInt)
+  public static ArrayList<String> C(Parcel paramParcel, int paramInt)
   {
     int i = a(paramParcel, paramInt);
     int j = paramParcel.dataPosition();
@@ -52,7 +66,7 @@ public class a
     return localArrayList;
   }
 
-  public static Parcel C(Parcel paramParcel, int paramInt)
+  public static Parcel D(Parcel paramParcel, int paramInt)
   {
     int i = a(paramParcel, paramInt);
     int j = paramParcel.dataPosition();
@@ -64,7 +78,7 @@ public class a
     return localParcel;
   }
 
-  public static Parcel[] D(Parcel paramParcel, int paramInt)
+  public static Parcel[] E(Parcel paramParcel, int paramInt)
   {
     int i = a(paramParcel, paramInt);
     int j = paramParcel.dataPosition();
@@ -136,7 +150,7 @@ public class a
     paramParcel.setDataPosition(i + j);
   }
 
-  public static int ar(int paramInt)
+  public static int aD(int paramInt)
   {
     return 0xFFFF & paramInt;
   }
@@ -408,7 +422,7 @@ public class a
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.common.internal.safeparcel.a
  * JD-Core Version:    0.6.2
  */

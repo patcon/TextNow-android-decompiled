@@ -1,66 +1,29 @@
 package com.google.android.gms.internal;
 
-import android.content.Context;
-import android.os.IBinder;
-import android.os.RemoteException;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.dynamic.d;
-import com.google.android.gms.dynamic.e;
-import com.google.android.gms.dynamic.g;
-import com.google.android.gms.dynamic.g.a;
+import org.json.JSONObject;
 
-public final class ah extends g<ar>
+public abstract interface ah
 {
-  private static final ah lR = new ah();
+  public abstract void a(ah.a parama);
 
-  private ah()
-  {
-    super("com.google.android.gms.ads.AdManagerCreatorImpl");
-  }
+  public abstract void a(t paramt, dn paramdn, bw parambw, dq paramdq, boolean paramBoolean, bz parambz);
 
-  public static aq a(Context paramContext, al paramal, String paramString, bs parambs)
-  {
-    Object localObject;
-    if (GooglePlayServicesUtil.isGooglePlayServicesAvailable(paramContext) == 0)
-    {
-      localObject = lR.b(paramContext, paramal, paramString, parambs);
-      if (localObject != null);
-    }
-    else
-    {
-      eu.z("Using AdManager from the client jar.");
-      localObject = new u(paramContext, paramal, paramString, parambs, new ev(5089000, 5089000, true));
-    }
-    return localObject;
-  }
+  public abstract void a(String paramString, by paramby);
 
-  private aq b(Context paramContext, al paramal, String paramString, bs parambs)
-  {
-    try
-    {
-      d locald = e.h(paramContext);
-      aq localaq = aq.a.f(((ar)G(paramContext)).a(locald, paramal, paramString, parambs, 5089000));
-      return localaq;
-    }
-    catch (RemoteException localRemoteException)
-    {
-      eu.c("Could not create remote AdManager.", localRemoteException);
-      return null;
-    }
-    catch (g.a locala)
-    {
-      eu.c("Could not create remote AdManager.", locala);
-    }
-    return null;
-  }
+  public abstract void a(String paramString, JSONObject paramJSONObject);
 
-  protected final ar c(IBinder paramIBinder)
-  {
-    return ar.a.g(paramIBinder);
-  }
+  public abstract void destroy();
+
+  public abstract void f(String paramString);
+
+  public abstract void g(String paramString);
+
+  public abstract void pause();
+
+  public abstract void resume();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ah
  * JD-Core Version:    0.6.2
  */

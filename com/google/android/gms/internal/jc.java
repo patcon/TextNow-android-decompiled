@@ -1,101 +1,59 @@
 package com.google.android.gms.internal;
 
-import android.app.PendingIntent;
-import android.util.Log;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.Geofence;
-import com.google.android.gms.location.GeofencingApi;
-import com.google.android.gms.location.LocationClient.OnAddGeofencesResultListener;
-import com.google.android.gms.location.LocationClient.OnRemoveGeofencesResultListener;
-import com.google.android.gms.location.LocationStatusCodes;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import com.google.android.gms.common.internal.safeparcel.a;
+import com.google.android.gms.common.internal.safeparcel.a.a;
+import com.google.android.gms.common.internal.safeparcel.b;
 
 public class jc
-  implements GeofencingApi
+  implements Parcelable.Creator<jb>
 {
-  public PendingResult<Status> addGeofences(GoogleApiClient paramGoogleApiClient, List<Geofence> paramList, final PendingIntent paramPendingIntent)
+  static void a(jb paramjb, Parcel paramParcel, int paramInt)
   {
-    ArrayList localArrayList1;
-    if (paramList != null)
+    int i = b.D(paramParcel);
+    b.c(paramParcel, 1, paramjb.BR);
+    b.a(paramParcel, 2, paramjb.Mq, false);
+    b.c(paramParcel, 3, paramjb.Mr);
+    b.H(paramParcel, i);
+  }
+
+  public jb E(Parcel paramParcel)
+  {
+    int i = 0;
+    int j = a.C(paramParcel);
+    String str = null;
+    int k = 0;
+    while (paramParcel.dataPosition() < j)
     {
-      localArrayList1 = new ArrayList(paramList.size());
-      Iterator localIterator = paramList.iterator();
-      while (localIterator.hasNext())
+      int m = a.B(paramParcel);
+      switch (a.aD(m))
       {
-        Geofence localGeofence = (Geofence)localIterator.next();
-        hm.b(localGeofence instanceof jh, "Geofence must be created using Geofence.Builder.");
-        localArrayList1.add((jh)localGeofence);
+      default:
+        a.b(paramParcel, m);
+        break;
+      case 1:
+        k = a.g(paramParcel, m);
+        break;
+      case 2:
+        str = a.o(paramParcel, m);
+        break;
+      case 3:
+        i = a.g(paramParcel, m);
       }
     }
-    for (final ArrayList localArrayList2 = localArrayList1; ; localArrayList2 = null)
-      return paramGoogleApiClient.b(new jc.a(localArrayList2)
-      {
-        protected void a(jg paramAnonymousjg)
-        {
-          LocationClient.OnAddGeofencesResultListener local1 = new LocationClient.OnAddGeofencesResultListener()
-          {
-            public void onAddGeofencesResult(int paramAnonymous2Int, String[] paramAnonymous2ArrayOfString)
-            {
-              jc.1.this.b(LocationStatusCodes.cK(paramAnonymous2Int));
-            }
-          };
-          paramAnonymousjg.addGeofences(localArrayList2, paramPendingIntent, local1);
-        }
-      });
+    if (paramParcel.dataPosition() != j)
+      throw new a.a("Overread allowed size end=" + j, paramParcel);
+    return new jb(k, str, i);
   }
 
-  public PendingResult<Status> removeGeofences(GoogleApiClient paramGoogleApiClient, final PendingIntent paramPendingIntent)
+  public jb[] aE(int paramInt)
   {
-    return paramGoogleApiClient.b(new jc.a(paramPendingIntent)
-    {
-      protected void a(jg paramAnonymousjg)
-      {
-        LocationClient.OnRemoveGeofencesResultListener local1 = new LocationClient.OnRemoveGeofencesResultListener()
-        {
-          public void onRemoveGeofencesByPendingIntentResult(int paramAnonymous2Int, PendingIntent paramAnonymous2PendingIntent)
-          {
-            jc.2.this.b(LocationStatusCodes.cK(paramAnonymous2Int));
-          }
-
-          public void onRemoveGeofencesByRequestIdsResult(int paramAnonymous2Int, String[] paramAnonymous2ArrayOfString)
-          {
-            Log.wtf("GeofencingImpl", "Request ID callback shouldn't have been called");
-          }
-        };
-        paramAnonymousjg.removeGeofences(paramPendingIntent, local1);
-      }
-    });
-  }
-
-  public PendingResult<Status> removeGeofences(GoogleApiClient paramGoogleApiClient, final List<String> paramList)
-  {
-    return paramGoogleApiClient.b(new jc.a(paramList)
-    {
-      protected void a(jg paramAnonymousjg)
-      {
-        LocationClient.OnRemoveGeofencesResultListener local1 = new LocationClient.OnRemoveGeofencesResultListener()
-        {
-          public void onRemoveGeofencesByPendingIntentResult(int paramAnonymous2Int, PendingIntent paramAnonymous2PendingIntent)
-          {
-            Log.wtf("GeofencingImpl", "PendingIntent callback shouldn't have been called");
-          }
-
-          public void onRemoveGeofencesByRequestIdsResult(int paramAnonymous2Int, String[] paramAnonymous2ArrayOfString)
-          {
-            jc.3.this.b(LocationStatusCodes.cK(paramAnonymous2Int));
-          }
-        };
-        paramAnonymousjg.removeGeofences(paramList, local1);
-      }
-    });
+    return new jb[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.jc
  * JD-Core Version:    0.6.2
  */

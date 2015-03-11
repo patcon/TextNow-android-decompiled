@@ -1,64 +1,53 @@
 package com.google.android.gms.internal;
 
-import android.os.Parcel;
-import android.os.Parcelable.Creator;
-import com.google.android.gms.common.internal.safeparcel.a;
-import com.google.android.gms.common.internal.safeparcel.a.a;
-import com.google.android.gms.common.internal.safeparcel.b;
+import android.content.Context;
+import android.os.Bundle;
+import android.os.IBinder;
+import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallbacks;
+import com.google.android.gms.common.GooglePlayServicesClient.OnConnectionFailedListener;
+import com.google.android.gms.common.internal.e;
+import com.google.android.gms.common.internal.e.e;
+import com.google.android.gms.common.internal.l;
 
-public class fh
-  implements Parcelable.Creator<fg>
+@ez
+public class fh extends e<fm>
 {
-  static void a(fg paramfg, Parcel paramParcel, int paramInt)
+  final int pP;
+
+  public fh(Context paramContext, GooglePlayServicesClient.ConnectionCallbacks paramConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener paramOnConnectionFailedListener, int paramInt)
   {
-    int i = b.C(paramParcel);
-    b.a(paramParcel, 1, paramfg.xN, paramInt, false);
-    b.c(paramParcel, 1000, paramfg.xM);
-    b.a(paramParcel, 2, paramfg.xO, false);
-    b.a(paramParcel, 3, paramfg.xP);
-    b.G(paramParcel, i);
+    super(paramContext, paramConnectionCallbacks, paramOnConnectionFailedListener, new String[0]);
+    this.pP = paramInt;
   }
 
-  public fg[] D(int paramInt)
+  protected fm C(IBinder paramIBinder)
   {
-    return new fg[paramInt];
+    return fm.a.D(paramIBinder);
   }
 
-  public fg l(Parcel paramParcel)
+  protected void a(l paraml, e.e parame)
   {
-    int i = a.B(paramParcel);
-    String str = null;
-    fk[] arrayOffk = null;
-    int j = 0;
-    boolean bool = false;
-    while (paramParcel.dataPosition() < i)
-    {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
-      {
-      default:
-        a.b(paramParcel, k);
-        break;
-      case 1:
-        arrayOffk = (fk[])a.b(paramParcel, k, fk.CREATOR);
-        break;
-      case 1000:
-        j = a.g(paramParcel, k);
-        break;
-      case 2:
-        str = a.o(paramParcel, k);
-        break;
-      case 3:
-        bool = a.c(paramParcel, k);
-      }
-    }
-    if (paramParcel.dataPosition() != i)
-      throw new a.a("Overread allowed size end=" + i, paramParcel);
-    return new fg(j, arrayOffk, str, bool);
+    Bundle localBundle = new Bundle();
+    paraml.g(parame, this.pP, getContext().getPackageName(), localBundle);
+  }
+
+  public fm cE()
+  {
+    return (fm)super.gS();
+  }
+
+  protected String getServiceDescriptor()
+  {
+    return "com.google.android.gms.ads.internal.request.IAdRequestService";
+  }
+
+  protected String getStartServiceAction()
+  {
+    return "com.google.android.gms.ads.service.START";
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.fh
  * JD-Core Version:    0.6.2
  */

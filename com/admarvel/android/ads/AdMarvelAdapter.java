@@ -39,30 +39,46 @@ public abstract class AdMarvelAdapter
 
   protected abstract void cleanupView(View paramView);
 
+  public abstract void destroy(View paramView);
+
   protected abstract void displayInterstitial(Activity paramActivity, String paramString);
 
   protected abstract void forceCloseFullScreenAd(Activity paramActivity);
 
   public abstract String getAdapterVersion();
 
-  protected abstract String getAdnetworkSDKVersionInfo();
+  public abstract String getAdnetworkSDKVersionInfo();
 
-  protected abstract void initialize(Activity paramActivity, Map<AdMarvelUtils.SDKAdNetwork, String> paramMap);
+  public abstract void handleClick();
+
+  public abstract void handleImpression();
+
+  public abstract void initialize(Activity paramActivity, Map<AdMarvelUtils.SDKAdNetwork, String> paramMap);
 
   protected abstract AdMarvelAd loadAd(AdMarvelAd paramAdMarvelAd, AdMarvelXMLReader paramAdMarvelXMLReader);
 
-  protected abstract void pause(Activity paramActivity, Map<AdMarvelUtils.SDKAdNetwork, String> paramMap);
+  public abstract Object loadNativeAd(Object paramObject, AdMarvelXMLReader paramAdMarvelXMLReader);
+
+  public abstract void notifyAddedToListView(View paramView);
+
+  public abstract void pause(Activity paramActivity, View paramView);
+
+  public abstract void registerViewForInteraction(View paramView);
 
   protected abstract void requestIntersitialNewAd(AdMarvelInterstitialAdapterListener paramAdMarvelInterstitialAdapterListener, Context paramContext, AdMarvelAd paramAdMarvelAd, Map<String, Object> paramMap, int paramInt1, int paramInt2);
 
+  public abstract Object requestNativeAd(AdMarvelAdapterListener paramAdMarvelAdapterListener, Object paramObject);
+
   protected abstract View requestNewAd(AdMarvelAdapterListener paramAdMarvelAdapterListener, Context paramContext, AdMarvelAd paramAdMarvelAd, Map<String, Object> paramMap, int paramInt1, int paramInt2);
 
-  protected abstract void resume(Activity paramActivity, Map<AdMarvelUtils.SDKAdNetwork, String> paramMap);
+  public abstract void resume(Activity paramActivity, View paramView);
 
-  protected abstract void uninitialize(Activity paramActivity, Map<AdMarvelUtils.SDKAdNetwork, String> paramMap);
+  public abstract void uninitialize(Activity paramActivity, Map<AdMarvelUtils.SDKAdNetwork, String> paramMap);
+
+  public abstract void unregisterView();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.AdMarvelAdapter
  * JD-Core Version:    0.6.2
  */

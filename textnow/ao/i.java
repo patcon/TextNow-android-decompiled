@@ -1,76 +1,67 @@
 package textnow.ao;
 
-import android.view.View;
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.HashMap;
-import textnow.am.a;
-import textnow.am.b;
-import textnow.am.o;
-import textnow.am.q;
+import java.math.BigInteger;
 
-final class i
-  implements b, q
+public final class i extends Number
 {
-  private i(h paramh)
+  private final String a;
+
+  public i(String paramString)
   {
+    this.a = paramString;
   }
 
-  public final void a(a parama)
+  public final double doubleValue()
   {
-    if (h.b(this.a) != null)
-      h.b(this.a).a(parama);
+    return Double.parseDouble(this.a);
   }
 
-  public final void a(o paramo)
+  public final float floatValue()
   {
-    float f1 = paramo.e();
-    k localk = (k)h.c(this.a).get(paramo);
-    if ((0x1FF & localk.a) != 0)
+    return Float.parseFloat(this.a);
+  }
+
+  public final int intValue()
+  {
+    try
     {
-      View localView2 = (View)h.d(this.a).get();
-      if (localView2 != null)
-        localView2.invalidate();
+      int i = Integer.parseInt(this.a);
+      return i;
     }
-    ArrayList localArrayList = localk.b;
-    if (localArrayList != null)
+    catch (NumberFormatException localNumberFormatException1)
     {
-      int i = localArrayList.size();
-      for (int j = 0; j < i; j++)
+      try
       {
-        j localj = (j)localArrayList.get(j);
-        float f2 = localj.b + f1 * localj.c;
-        h.a(this.a, localj.a, f2);
+        long l = Long.parseLong(this.a);
+        return (int)l;
+      }
+      catch (NumberFormatException localNumberFormatException2)
+      {
       }
     }
-    View localView1 = (View)h.d(this.a).get();
-    if (localView1 != null)
-      localView1.invalidate();
+    return new BigInteger(this.a).intValue();
   }
 
-  public final void b(a parama)
+  public final long longValue()
   {
-    if (h.b(this.a) != null)
-      h.b(this.a).b(parama);
-    h.c(this.a).remove(parama);
-    if (h.c(this.a).isEmpty())
-      h.a(this.a, null);
+    try
+    {
+      long l = Long.parseLong(this.a);
+      return l;
+    }
+    catch (NumberFormatException localNumberFormatException)
+    {
+    }
+    return new BigInteger(this.a).longValue();
   }
 
-  public final void c(a parama)
+  public final String toString()
   {
-    if (h.b(this.a) != null)
-      h.b(this.a).c(parama);
-  }
-
-  public final void d(a parama)
-  {
-    if (h.b(this.a) != null)
-      h.b(this.a).d(parama);
+    return this.a;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.ao.i
  * JD-Core Version:    0.6.2
  */

@@ -1,17 +1,34 @@
 package com.admarvel.android.ads;
 
-import android.app.Activity;
-import android.view.Window;
+import android.view.View;
+import java.lang.ref.WeakReference;
 
 class AdMarvelView$j
+  implements Runnable
 {
-  static void a(Activity paramActivity)
+  final WeakReference<AdMarvelView> a;
+
+  public AdMarvelView$j(AdMarvelView paramAdMarvelView)
   {
-    paramActivity.getWindow().setFlags(16777216, 16777216);
+    this.a = new WeakReference(paramAdMarvelView);
+  }
+
+  public void run()
+  {
+    AdMarvelView localAdMarvelView = (AdMarvelView)this.a.get();
+    if (localAdMarvelView == null);
+    View localView;
+    do
+    {
+      return;
+      localView = localAdMarvelView.findViewWithTag("PENDING");
+    }
+    while (localView == null);
+    localAdMarvelView.removeView(localView);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.AdMarvelView.j
  * JD-Core Version:    0.6.2
  */

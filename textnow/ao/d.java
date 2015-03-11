@@ -1,76 +1,95 @@
 package textnow.ao;
 
-import android.view.View;
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.HashMap;
-import textnow.am.a;
-import textnow.am.b;
-import textnow.am.o;
-import textnow.am.q;
+import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.Arrays;
 
 final class d
-  implements b, q
+  implements Serializable, ParameterizedType
 {
-  private d(c paramc)
-  {
-  }
+  private final Type a;
+  private final Type b;
+  private final Type[] c;
 
-  public final void a(a parama)
+  public d(Type paramType1, Type paramType2, Type[] paramArrayOfType)
   {
-    if (c.b(this.a) != null)
-      c.b(this.a).a(parama);
-  }
-
-  public final void a(o paramo)
-  {
-    float f1 = paramo.e();
-    f localf = (f)c.c(this.a).get(paramo);
-    if ((0x1FF & localf.a) != 0)
+    boolean bool2;
+    if ((paramType2 instanceof Class))
     {
-      View localView2 = (View)c.d(this.a).get();
-      if (localView2 != null)
-        localView2.invalidate();
-    }
-    ArrayList localArrayList = localf.b;
-    if (localArrayList != null)
-    {
-      int i = localArrayList.size();
-      for (int j = 0; j < i; j++)
+      Class localClass = (Class)paramType2;
+      if ((paramType1 != null) || (localClass.getEnclosingClass() == null))
       {
-        e locale = (e)localArrayList.get(j);
-        float f2 = locale.b + f1 * locale.c;
-        c.a(this.a, locale.a, f2);
+        bool2 = bool1;
+        a.a(bool2);
+        if ((paramType1 != null) && (localClass.getEnclosingClass() == null))
+          break label153;
+        label56: a.a(bool1);
       }
     }
-    View localView1 = (View)c.d(this.a).get();
-    if (localView1 != null)
-      localView1.invalidate();
+    else
+    {
+      if (paramType1 != null)
+        break label159;
+    }
+    label153: label159: for (Type localType = null; ; localType = b.a(paramType1))
+    {
+      this.a = localType;
+      this.b = b.a(paramType2);
+      this.c = ((Type[])paramArrayOfType.clone());
+      while (i < this.c.length)
+      {
+        a.a(this.c[i]);
+        b.e(this.c[i]);
+        this.c[i] = b.a(this.c[i]);
+        i++;
+      }
+      bool2 = false;
+      break;
+      bool1 = false;
+      break label56;
+    }
   }
 
-  public final void b(a parama)
+  public final boolean equals(Object paramObject)
   {
-    if (c.b(this.a) != null)
-      c.b(this.a).b(parama);
-    c.c(this.a).remove(parama);
-    if (c.c(this.a).isEmpty())
-      c.a(this.a, null);
+    return ((paramObject instanceof ParameterizedType)) && (b.a(this, (ParameterizedType)paramObject));
   }
 
-  public final void c(a parama)
+  public final Type[] getActualTypeArguments()
   {
-    if (c.b(this.a) != null)
-      c.b(this.a).c(parama);
+    return (Type[])this.c.clone();
   }
 
-  public final void d(a parama)
+  public final Type getOwnerType()
   {
-    if (c.b(this.a) != null)
-      c.b(this.a).d(parama);
+    return this.a;
+  }
+
+  public final Type getRawType()
+  {
+    return this.b;
+  }
+
+  public final int hashCode()
+  {
+    return Arrays.hashCode(this.c) ^ this.b.hashCode() ^ b.a(this.a);
+  }
+
+  public final String toString()
+  {
+    StringBuilder localStringBuilder = new StringBuilder(30 * (1 + this.c.length));
+    localStringBuilder.append(b.c(this.b));
+    if (this.c.length == 0)
+      return localStringBuilder.toString();
+    localStringBuilder.append("<").append(b.c(this.c[0]));
+    for (int i = 1; i < this.c.length; i++)
+      localStringBuilder.append(", ").append(b.c(this.c[i]));
+    return ">";
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.ao.d
  * JD-Core Version:    0.6.2
  */

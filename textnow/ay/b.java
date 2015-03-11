@@ -1,214 +1,149 @@
 package textnow.ay;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.Window;
-import android.webkit.WebView;
-import com.tremorvideo.sdk.android.videoad.ba;
-import com.tremorvideo.sdk.android.videoad.du;
-import com.tremorvideo.sdk.android.videoad.dx;
-import com.tremorvideo.sdk.android.videoad.i;
-import com.tremorvideo.sdk.android.videoad.j;
-import com.tremorvideo.sdk.android.videoad.r;
-import java.util.List;
-import java.util.Timer;
-import org.apache.http.NameValuePair;
+import android.text.TextUtils;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 
 public final class b
-  implements du, j
 {
-  public static dx a;
-  public static j b;
-  boolean c = true;
-  int d = -1;
-  Timer e;
-  BroadcastReceiver f = new BroadcastReceiver()
+  protected static String a = "https://m.facebook.com/dialog/";
+  protected static String b = "https://graph.facebook.com/";
+  protected static String c = "https://api.facebook.com/restserver.php";
+  private String d = null;
+  private long e = 0L;
+  private String f;
+  private c g;
+
+  public b(String paramString)
   {
-    public final void onReceive(Context paramAnonymousContext, Intent paramAnonymousIntent)
+    if (paramString == null)
+      throw new IllegalArgumentException("You must specify your application ID when instantiating a Facebook object. See README for details.");
+    this.f = paramString;
+  }
+
+  public final String a(Context paramContext)
+  {
+    CookieSyncManager.createInstance(paramContext);
+    CookieManager.getInstance().removeAllCookie();
+    Bundle localBundle = new Bundle();
+    localBundle.putString("method", "auth.expireSession");
+    if (!localBundle.containsKey("method"))
+      throw new IllegalArgumentException("API method must be specified. (parameters must contain key \"method\" and value). See http://developers.facebook.com/docs/reference/rest/");
+    String str = a(null, localBundle, "GET");
+    this.d = null;
+    this.e = 0L;
+    return str;
+  }
+
+  public final String a(String paramString1, Bundle paramBundle, String paramString2)
+  {
+    paramBundle.putString("format", "json");
+    if (a())
+      paramBundle.putString("access_token", this.d);
+    if (paramString1 != null);
+    for (String str = b + paramString1; ; str = c)
+      return j.a(str, paramString2, paramBundle);
+  }
+
+  public final void a(Activity paramActivity, String[] paramArrayOfString, int paramInt, c paramc)
+  {
+    this.g = paramc;
+    Bundle localBundle = new Bundle();
+    if (paramArrayOfString.length > 0)
+      localBundle.putString("scope", TextUtils.join(",", paramArrayOfString));
+    CookieSyncManager.createInstance(paramActivity);
+    c local1 = new c()
     {
-      b.this.c = false;
-      b.a(b.this).j();
-    }
-  };
-  BroadcastReceiver g = new BroadcastReceiver()
-  {
-    public final void onReceive(Context paramAnonymousContext, Intent paramAnonymousIntent)
-    {
-      b.this.c = true;
-      b.a(b.this);
-    }
-  };
-  BroadcastReceiver h = new BroadcastReceiver()
-  {
-    public final void onReceive(Context paramAnonymousContext, Intent paramAnonymousIntent)
-    {
-      if (b.this.c)
-        b.a(b.this).d();
-    }
-  };
-  private a i;
-  private Activity j;
-  private WebView k;
-  private j l;
-
-  public final int a(ba paramba)
-  {
-    return this.l.a(paramba, -1);
-  }
-
-  public final int a(ba paramba, int paramInt)
-  {
-    return this.l.a(paramba, paramInt);
-  }
-
-  public final int a(ba paramba, int paramInt, List<NameValuePair> paramList)
-  {
-    return this.l.a(paramba, paramInt, paramList);
-  }
-
-  public final void a()
-  {
-    this.i.a();
-  }
-
-  public final void a(float paramFloat1, float paramFloat2, int paramInt)
-  {
-  }
-
-  public final void a(int paramInt)
-  {
-    this.l.a(paramInt);
-  }
-
-  public final void a(int paramInt1, int paramInt2, Intent paramIntent)
-  {
-  }
-
-  public final void a(Activity paramActivity)
-  {
-    Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler()
-    {
-      public final void uncaughtException(Thread paramAnonymousThread, Throwable paramAnonymousThrowable)
+      public final void a()
       {
-        r.a(paramAnonymousThrowable.getStackTrace());
-        r.d(paramAnonymousThrowable.getMessage());
-        b.b(b.this).finish();
+        b.a(b.this).a();
       }
-    });
-    this.j = paramActivity;
-    this.j.requestWindowFeature(1);
-    this.j.getWindow().setFlags(1024, 1024);
-    this.i = new a(this, this.j, a);
-    String str1 = this.j.getIntent().getExtras().getString("path");
-    String str2 = this.j.getIntent().getExtras().getString("params");
-    this.k = new d(this.j, this);
-    ((d)this.k).a(str2);
-    String str3 = a.t();
-    this.k.setPadding(0, 0, 0, 0);
-    this.e = new Timer();
-    this.e.schedule(new c(this, "file://" + str3 + "/" + str1), 1000L);
-    this.j.setContentView(this.k);
-    this.l = b;
-    this.j.registerReceiver(this.f, new IntentFilter("android.intent.action.SCREEN_OFF"));
-    this.j.registerReceiver(this.g, new IntentFilter("android.intent.action.SCREEN_ON"));
-    this.j.registerReceiver(this.h, new IntentFilter("android.intent.action.USER_PRESENT"));
-    if (r.p() >= 9)
+
+      public final void a(Bundle paramAnonymousBundle)
+      {
+        CookieSyncManager.getInstance().sync();
+        b.this.a(paramAnonymousBundle.getString("access_token"));
+        b.this.b(paramAnonymousBundle.getString("expires_in"));
+        if (b.this.a())
+        {
+          new StringBuilder().append("Login Success! access_token=").append(b.this.b()).append(" expires=").append(b.this.c()).toString();
+          b.a(b.this).a(paramAnonymousBundle);
+          return;
+        }
+        b.a(b.this).a(new d("Failed to receive access token."));
+      }
+
+      public final void a(a paramAnonymousa)
+      {
+        new StringBuilder().append("Login failed: ").append(paramAnonymousa).toString();
+        b.a(b.this).a(paramAnonymousa);
+      }
+
+      public final void a(d paramAnonymousd)
+      {
+        new StringBuilder().append("Login failed: ").append(paramAnonymousd).toString();
+        b.a(b.this).a(paramAnonymousd);
+      }
+    };
+    String str1 = a + "oauth";
+    localBundle.putString("display", "touch");
+    localBundle.putString("redirect_uri", "fbconnect://success");
+    if ("oauth".equals("oauth"))
     {
-      this.j.setRequestedOrientation(6);
+      localBundle.putString("type", "user_agent");
+      localBundle.putString("client_id", this.f);
+    }
+    String str2;
+    while (true)
+    {
+      if (a())
+        localBundle.putString("access_token", this.d);
+      str2 = str1 + "?" + j.a(localBundle);
+      if (paramActivity.checkCallingOrSelfPermission("android.permission.INTERNET") == 0)
+        break;
+      AlertDialog.Builder localBuilder = new AlertDialog.Builder(paramActivity);
+      localBuilder.setTitle("Error");
+      localBuilder.setMessage("Application requires permission to access the Internet");
+      localBuilder.create().show();
       return;
+      localBundle.putString("app_id", this.f);
     }
-    this.j.setRequestedOrientation(0);
+    e.a(paramActivity, str2, local1).a();
   }
 
-  public final void a(Configuration paramConfiguration)
+  public final void a(String paramString)
   {
+    this.d = paramString;
   }
 
-  public final void a(i parami)
+  public final boolean a()
   {
-    this.j.setResult(100, new Intent());
-    this.j.finish();
+    return (this.d != null) && ((this.e == 0L) || (System.currentTimeMillis() < this.e));
   }
 
-  public final boolean a(int paramInt, KeyEvent paramKeyEvent)
-  {
-    return false;
-  }
-
-  public final void b()
-  {
-    this.i.b();
-  }
-
-  public final void b(int paramInt)
-  {
-    this.d = paramInt;
-  }
-
-  public final void c()
-  {
-    this.i.c();
-  }
-
-  public final void d()
-  {
-  }
-
-  public final void e()
-  {
-    r.d("WebView - onDestroy");
-    if (this.i != null)
-      this.i = null;
-    try
-    {
-      this.j.unregisterReceiver(this.f);
-      this.j.unregisterReceiver(this.g);
-      this.j.unregisterReceiver(this.h);
-      label55: System.gc();
-      return;
-    }
-    catch (IllegalArgumentException localIllegalArgumentException)
-    {
-      break label55;
-    }
-  }
-
-  public final dx f()
-  {
-    return a;
-  }
-
-  public final Context g()
-  {
-    return this.j;
-  }
-
-  public final int h()
-  {
-    if (Resources.getSystem().getConfiguration().orientation == 2)
-      return 0;
-    return 1;
-  }
-
-  public final int i()
+  public final String b()
   {
     return this.d;
   }
 
-  public final a j()
+  public final void b(String paramString)
   {
-    return this.i;
+    if ((paramString != null) && (!paramString.equals("0")))
+      this.e = (System.currentTimeMillis() + 1000 * Integer.parseInt(paramString));
+  }
+
+  public final long c()
+  {
+    return this.e;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.ay.b
  * JD-Core Version:    0.6.2
  */

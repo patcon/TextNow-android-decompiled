@@ -4,8 +4,8 @@ import android.text.TextUtils;
 import com.enflick.android.TextNow.api.SessionPut;
 import com.enflick.android.TextNow.api.j;
 import com.google.android.gcm.a;
-import textnow.q.b;
-import textnow.u.r;
+import textnow.v.b;
+import textnow.z.u;
 
 public class SetRegistrationIdTask extends c
 {
@@ -18,27 +18,27 @@ public class SetRegistrationIdTask extends c
 
   public void run()
   {
-    String str = b.j(this.a);
+    String str = b.i(this.a);
     j localj = new j(this.d, str);
     if (a(new SessionPut(this.a).runSync(localj)))
       return;
-    r localr = new r(this.a);
+    u localu = new u(this.a);
     if (TextUtils.isEmpty(this.d))
     {
       a.a(this.a, false);
-      localr.i(false);
+      localu.i(false);
     }
     while (true)
     {
-      localr.n();
+      localu.B();
       return;
       a.a(this.a, true);
-      localr.i(true);
+      localu.i(true);
     }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.SetRegistrationIdTask
  * JD-Core Version:    0.6.2
  */

@@ -1,95 +1,92 @@
 package textnow.ai;
 
-import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.Arrays;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
+import textnow.af.f;
+import textnow.af.u;
+import textnow.af.y;
+import textnow.af.z;
+import textnow.aj.a;
+import textnow.ak.c;
 
-final class d
-  implements Serializable, ParameterizedType
+public final class d extends y<Date>
 {
-  private final Type a;
-  private final Type b;
-  private final Type[] c;
-
-  public d(Type paramType1, Type paramType2, Type[] paramArrayOfType)
+  public static final z a = new z()
   {
-    boolean bool2;
-    if ((paramType2 instanceof Class))
+    public final <T> y<T> a(f paramAnonymousf, a<T> paramAnonymousa)
     {
-      Class localClass = (Class)paramType2;
-      if ((paramType1 != null) || (localClass.getEnclosingClass() == null))
+      if (paramAnonymousa.a() == Date.class)
+        return new d();
+      return null;
+    }
+  };
+  private final DateFormat b = DateFormat.getDateTimeInstance(2, 2, Locale.US);
+  private final DateFormat c = DateFormat.getDateTimeInstance(2, 2);
+  private final DateFormat d;
+
+  public d()
+  {
+    SimpleDateFormat localSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US);
+    localSimpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+    this.d = localSimpleDateFormat;
+  }
+
+  private Date a(String paramString)
+  {
+    try
+    {
+      Date localDate3 = this.c.parse(paramString);
+      localObject2 = localDate3;
+      return localObject2;
+    }
+    catch (ParseException localParseException1)
+    {
+      try
       {
-        bool2 = bool1;
-        a.a(bool2);
-        if ((paramType1 != null) && (localClass.getEnclosingClass() == null))
-          break label153;
-        label56: a.a(bool1);
+        Date localDate2 = this.b.parse(paramString);
+        localObject2 = localDate2;
+      }
+      catch (ParseException localParseException2)
+      {
+        try
+        {
+          Date localDate1 = this.d.parse(paramString);
+          Object localObject2 = localDate1;
+        }
+        catch (ParseException localParseException3)
+        {
+          throw new u(paramString, localParseException3);
+        }
       }
     }
-    else
+    finally
     {
-      if (paramType1 != null)
-        break label159;
     }
-    label153: label159: for (Type localType = null; ; localType = b.a(paramType1))
+  }
+
+  private void a(c paramc, Date paramDate)
+  {
+    if (paramDate == null);
+    try
     {
-      this.a = localType;
-      this.b = b.a(paramType2);
-      this.c = ((Type[])paramArrayOfType.clone());
-      while (i < this.c.length)
+      paramc.f();
+      while (true)
       {
-        a.a(this.c[i]);
-        b.e(this.c[i]);
-        this.c[i] = b.a(this.c[i]);
-        i++;
+        return;
+        paramc.b(this.b.format(paramDate));
       }
-      bool2 = false;
-      break;
-      bool1 = false;
-      break label56;
     }
-  }
-
-  public final boolean equals(Object paramObject)
-  {
-    return ((paramObject instanceof ParameterizedType)) && (b.a(this, (ParameterizedType)paramObject));
-  }
-
-  public final Type[] getActualTypeArguments()
-  {
-    return (Type[])this.c.clone();
-  }
-
-  public final Type getOwnerType()
-  {
-    return this.a;
-  }
-
-  public final Type getRawType()
-  {
-    return this.b;
-  }
-
-  public final int hashCode()
-  {
-    return Arrays.hashCode(this.c) ^ this.b.hashCode() ^ b.a(this.a);
-  }
-
-  public final String toString()
-  {
-    StringBuilder localStringBuilder = new StringBuilder(30 * (1 + this.c.length));
-    localStringBuilder.append(b.c(this.b));
-    if (this.c.length == 0)
-      return localStringBuilder.toString();
-    localStringBuilder.append("<").append(b.c(this.c[0]));
-    for (int i = 1; i < this.c.length; i++)
-      localStringBuilder.append(", ").append(b.c(this.c[i]));
-    return ">";
+    finally
+    {
+    }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.ai.d
  * JD-Core Version:    0.6.2
  */

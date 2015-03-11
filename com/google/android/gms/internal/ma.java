@@ -1,61 +1,106 @@
 package com.google.android.gms.internal;
 
-import java.util.ArrayList;
+import android.os.Parcel;
+import com.google.android.gms.common.internal.n;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
+import com.google.android.gms.location.LocationRequest;
+import java.util.Collections;
 import java.util.List;
 
-public abstract class ma<M extends ma<M>> extends me
+public class ma
+  implements SafeParcelable
 {
-  protected List<mg> amX;
+  public static final mb CREATOR = new mb();
+  static final List<ls> afh = Collections.emptyList();
+  private final int BR;
+  LocationRequest UI;
+  boolean afi;
+  boolean afj;
+  boolean afk;
+  List<ls> afl;
+  final String mTag;
 
-  public final <T> T a(mb<M, T> parammb)
+  ma(int paramInt, LocationRequest paramLocationRequest, boolean paramBoolean1, boolean paramBoolean2, boolean paramBoolean3, List<ls> paramList, String paramString)
   {
-    return parammb.i(this.amX);
+    this.BR = paramInt;
+    this.UI = paramLocationRequest;
+    this.afi = paramBoolean1;
+    this.afj = paramBoolean2;
+    this.afk = paramBoolean3;
+    this.afl = paramList;
+    this.mTag = paramString;
   }
 
-  public void a(lz paramlz)
+  private ma(String paramString, LocationRequest paramLocationRequest)
   {
-    if (this.amX == null);
-    for (int i = 0; ; i = this.amX.size())
-      for (int j = 0; j < i; j++)
-      {
-        mg localmg = (mg)this.amX.get(j);
-        paramlz.eI(localmg.tag);
-        paramlz.t(localmg.anc);
-      }
+    this(1, paramLocationRequest, false, true, true, afh, paramString);
   }
 
-  protected final boolean a(ly paramly, int paramInt)
+  public static ma a(String paramString, LocationRequest paramLocationRequest)
   {
-    int i = paramly.getPosition();
-    if (!paramly.ev(paramInt))
+    return new ma(paramString, paramLocationRequest);
+  }
+
+  public static ma b(LocationRequest paramLocationRequest)
+  {
+    return a(null, paramLocationRequest);
+  }
+
+  public int describeContents()
+  {
+    return 0;
+  }
+
+  public boolean equals(Object paramObject)
+  {
+    if (!(paramObject instanceof ma));
+    ma localma;
+    do
+    {
       return false;
-    if (this.amX == null)
-      this.amX = new ArrayList();
-    byte[] arrayOfByte = paramly.o(i, paramly.getPosition() - i);
-    this.amX.add(new mg(paramInt, arrayOfByte));
+      localma = (ma)paramObject;
+    }
+    while ((!n.equal(this.UI, localma.UI)) || (this.afi != localma.afi) || (this.afj != localma.afj) || (this.afk != localma.afk) || (!n.equal(this.afl, localma.afl)));
     return true;
   }
 
-  protected int c()
+  int getVersionCode()
   {
-    if (this.amX == null);
-    int k;
-    for (int i = 0; ; i = this.amX.size())
+    return this.BR;
+  }
+
+  public int hashCode()
+  {
+    return this.UI.hashCode();
+  }
+
+  public String toString()
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append(this.UI.toString());
+    localStringBuilder.append(" requestNlpDebugInfo=");
+    localStringBuilder.append(this.afi);
+    localStringBuilder.append(" restorePendingIntentListeners=");
+    localStringBuilder.append(this.afj);
+    localStringBuilder.append(" triggerUpdate=");
+    localStringBuilder.append(this.afk);
+    localStringBuilder.append(" clients=");
+    localStringBuilder.append(this.afl);
+    if (this.mTag != null)
     {
-      int j = 0;
-      k = 0;
-      while (j < i)
-      {
-        mg localmg = (mg)this.amX.get(j);
-        k = k + lz.eJ(localmg.tag) + localmg.anc.length;
-        j++;
-      }
+      localStringBuilder.append(" tag=");
+      localStringBuilder.append(this.mTag);
     }
-    return k;
+    return localStringBuilder.toString();
+  }
+
+  public void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    mb.a(this, paramParcel, paramInt);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ma
  * JD-Core Version:    0.6.2
  */

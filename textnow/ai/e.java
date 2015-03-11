@@ -1,91 +1,227 @@
 package textnow.ai;
 
-import java.io.Serializable;
-import java.lang.reflect.Type;
-import java.lang.reflect.WildcardType;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.Set;
+import textnow.af.j;
+import textnow.af.m;
+import textnow.af.o;
+import textnow.af.p;
+import textnow.af.r;
+import textnow.ak.a;
+import textnow.ak.b;
 
-final class e
-  implements Serializable, WildcardType
+public final class e extends a
 {
-  private final Type a;
-  private final Type b;
-
-  public e(Type[] paramArrayOfType1, Type[] paramArrayOfType2)
+  private static final Reader a = new Reader()
   {
-    if (paramArrayOfType2.length <= i)
+    public final void close()
     {
-      int k = i;
-      a.a(k);
-      if (paramArrayOfType1.length != i)
-        break label88;
-      int n = i;
-      label29: a.a(n);
-      if (paramArrayOfType2.length != i)
-        break label99;
-      a.a(paramArrayOfType2[0]);
-      b.e(paramArrayOfType2[0]);
-      if (paramArrayOfType1[0] != Object.class)
-        break label94;
+      throw new AssertionError();
     }
+
+    public final int read(char[] paramAnonymousArrayOfChar, int paramAnonymousInt1, int paramAnonymousInt2)
+    {
+      throw new AssertionError();
+    }
+  };
+  private static final Object b = new Object();
+  private final List<Object> c = new ArrayList();
+
+  public e(m paramm)
+  {
+    super(a);
+    this.c.add(paramm);
+  }
+
+  private void a(b paramb)
+  {
+    if (f() != paramb)
+      throw new IllegalStateException("Expected " + paramb + " but was " + f());
+  }
+
+  private Object q()
+  {
+    return this.c.get(-1 + this.c.size());
+  }
+
+  private Object r()
+  {
+    return this.c.remove(-1 + this.c.size());
+  }
+
+  public final void a()
+  {
+    a(b.a);
+    j localj = (j)q();
+    this.c.add(localj.iterator());
+  }
+
+  public final void b()
+  {
+    a(b.b);
+    r();
+    r();
+  }
+
+  public final void c()
+  {
+    a(b.c);
+    p localp = (p)q();
+    this.c.add(localp.a().iterator());
+  }
+
+  public final void close()
+  {
+    this.c.clear();
+    this.c.add(b);
+  }
+
+  public final void d()
+  {
+    a(b.d);
+    r();
+    r();
+  }
+
+  public final boolean e()
+  {
+    b localb = f();
+    return (localb != b.d) && (localb != b.b);
+  }
+
+  public final b f()
+  {
+    Object localObject;
+    boolean bool;
     while (true)
     {
-      a.a(i);
-      this.b = b.a(paramArrayOfType2[0]);
-      this.a = Object.class;
-      return;
-      int m = 0;
-      break;
-      label88: int i1 = 0;
-      break label29;
-      label94: int j = 0;
+      if (this.c.isEmpty())
+        return b.j;
+      localObject = q();
+      if (!(localObject instanceof Iterator))
+        break label109;
+      bool = this.c.get(-2 + this.c.size()) instanceof p;
+      Iterator localIterator = (Iterator)localObject;
+      if (!localIterator.hasNext())
+        break;
+      if (bool)
+        return b.e;
+      this.c.add(localIterator.next());
     }
-    label99: a.a(paramArrayOfType1[0]);
-    b.e(paramArrayOfType1[0]);
-    this.b = null;
-    this.a = b.a(paramArrayOfType1[0]);
-  }
-
-  public final boolean equals(Object paramObject)
-  {
-    return ((paramObject instanceof WildcardType)) && (b.a(this, (WildcardType)paramObject));
-  }
-
-  public final Type[] getLowerBounds()
-  {
-    if (this.b != null)
+    if (bool)
+      return b.d;
+    return b.b;
+    label109: if ((localObject instanceof p))
+      return b.c;
+    if ((localObject instanceof j))
+      return b.a;
+    if ((localObject instanceof r))
     {
-      Type[] arrayOfType = new Type[1];
-      arrayOfType[0] = this.b;
-      return arrayOfType;
+      r localr = (r)localObject;
+      if (localr.p())
+        return b.f;
+      if (localr.a())
+        return b.h;
+      if (localr.o())
+        return b.g;
+      throw new AssertionError();
     }
-    return b.a;
+    if ((localObject instanceof o))
+      return b.i;
+    if (localObject == b)
+      throw new IllegalStateException("JsonReader is closed");
+    throw new AssertionError();
   }
 
-  public final Type[] getUpperBounds()
+  public final String g()
   {
-    Type[] arrayOfType = new Type[1];
-    arrayOfType[0] = this.a;
-    return arrayOfType;
+    a(b.e);
+    Map.Entry localEntry = (Map.Entry)((Iterator)q()).next();
+    this.c.add(localEntry.getValue());
+    return (String)localEntry.getKey();
   }
 
-  public final int hashCode()
+  public final String h()
   {
-    if (this.b != null);
-    for (int i = 31 + this.b.hashCode(); ; i = 1)
-      return i ^ 31 + this.a.hashCode();
+    b localb = f();
+    if ((localb != b.f) && (localb != b.g))
+      throw new IllegalStateException("Expected " + b.f + " but was " + localb);
+    return ((r)r()).c();
+  }
+
+  public final boolean i()
+  {
+    a(b.h);
+    return ((r)r()).g();
+  }
+
+  public final void j()
+  {
+    a(b.i);
+    r();
+  }
+
+  public final double k()
+  {
+    b localb = f();
+    if ((localb != b.g) && (localb != b.f))
+      throw new IllegalStateException("Expected " + b.g + " but was " + localb);
+    double d = ((r)q()).d();
+    if ((!p()) && ((Double.isNaN(d)) || (Double.isInfinite(d))))
+      throw new NumberFormatException("JSON forbids NaN and infinities: " + d);
+    r();
+    return d;
+  }
+
+  public final long l()
+  {
+    b localb = f();
+    if ((localb != b.g) && (localb != b.f))
+      throw new IllegalStateException("Expected " + b.g + " but was " + localb);
+    long l = ((r)q()).e();
+    r();
+    return l;
+  }
+
+  public final int m()
+  {
+    b localb = f();
+    if ((localb != b.g) && (localb != b.f))
+      throw new IllegalStateException("Expected " + b.g + " but was " + localb);
+    int i = ((r)q()).f();
+    r();
+    return i;
+  }
+
+  public final void n()
+  {
+    if (f() == b.e)
+    {
+      g();
+      return;
+    }
+    r();
+  }
+
+  public final void o()
+  {
+    a(b.e);
+    Map.Entry localEntry = (Map.Entry)((Iterator)q()).next();
+    this.c.add(localEntry.getValue());
+    this.c.add(new r((String)localEntry.getKey()));
   }
 
   public final String toString()
   {
-    if (this.b != null)
-      return "? super " + b.c(this.b);
-    if (this.a == Object.class)
-      return "?";
-    return "? extends " + b.c(this.a);
+    return getClass().getSimpleName();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.ai.e
  * JD-Core Version:    0.6.2
  */

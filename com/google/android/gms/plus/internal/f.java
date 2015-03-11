@@ -11,23 +11,23 @@ public class f
 {
   static void a(PlusCommonExtras paramPlusCommonExtras, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
-    b.a(paramParcel, 1, paramPlusCommonExtras.jX(), false);
+    int i = b.D(paramParcel);
+    b.a(paramParcel, 1, paramPlusCommonExtras.ne(), false);
     b.c(paramParcel, 1000, paramPlusCommonExtras.getVersionCode());
-    b.a(paramParcel, 2, paramPlusCommonExtras.jY(), false);
-    b.G(paramParcel, i);
+    b.a(paramParcel, 2, paramPlusCommonExtras.nf(), false);
+    b.H(paramParcel, i);
   }
 
-  public PlusCommonExtras bC(Parcel paramParcel)
+  public PlusCommonExtras cZ(Parcel paramParcel)
   {
     String str1 = null;
-    int i = a.B(paramParcel);
+    int i = a.C(paramParcel);
     int j = 0;
     String str2 = null;
     while (paramParcel.dataPosition() < i)
     {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
       {
       default:
         a.b(paramParcel, k);
@@ -47,13 +47,13 @@ public class f
     return new PlusCommonExtras(j, str2, str1);
   }
 
-  public PlusCommonExtras[] cZ(int paramInt)
+  public PlusCommonExtras[] eR(int paramInt)
   {
     return new PlusCommonExtras[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.plus.internal.f
  * JD-Core Version:    0.6.2
  */

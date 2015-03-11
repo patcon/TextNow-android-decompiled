@@ -1,61 +1,69 @@
 package com.google.android.gms.internal;
 
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff.Mode;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import com.google.android.gms.common.internal.safeparcel.a;
+import com.google.android.gms.common.internal.safeparcel.a.a;
+import com.google.android.gms.common.internal.safeparcel.b;
 
-public final class gu
+public class gu
+  implements Parcelable.Creator<gt>
 {
-  public static Bitmap a(Bitmap paramBitmap)
+  static void a(gt paramgt, Parcel paramParcel, int paramInt)
   {
-    int i = 0;
-    if (paramBitmap == null)
-      return null;
-    int j = paramBitmap.getWidth();
-    int k = paramBitmap.getHeight();
-    if (j >= k);
-    for (int n = j / 2 - k / 2; ; n = 0)
+    int i = b.D(paramParcel);
+    b.c(paramParcel, 1, paramgt.versionCode);
+    b.a(paramParcel, 2, paramgt.wD, false);
+    b.c(paramParcel, 3, paramgt.wE);
+    b.c(paramParcel, 4, paramgt.wF);
+    b.a(paramParcel, 5, paramgt.wG);
+    b.H(paramParcel, i);
+  }
+
+  public gt j(Parcel paramParcel)
+  {
+    boolean bool = false;
+    int i = a.C(paramParcel);
+    String str = null;
+    int j = 0;
+    int k = 0;
+    int m = 0;
+    while (paramParcel.dataPosition() < i)
     {
-      Bitmap localBitmap = Bitmap.createBitmap(k, k, Bitmap.Config.ARGB_8888);
-      Canvas localCanvas = new Canvas(localBitmap);
-      Paint localPaint = new Paint(1);
-      localPaint.setColor(-16777216);
-      localCanvas.drawCircle(k / 2, k / 2, k / 2, localPaint);
-      localPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-      localCanvas.drawBitmap(paramBitmap, n, i, localPaint);
-      return localBitmap;
-      int m = k / 2 - j / 2;
-      k = j;
-      i = m;
+      int n = a.B(paramParcel);
+      switch (a.aD(n))
+      {
+      default:
+        a.b(paramParcel, n);
+        break;
+      case 1:
+        m = a.g(paramParcel, n);
+        break;
+      case 2:
+        str = a.o(paramParcel, n);
+        break;
+      case 3:
+        k = a.g(paramParcel, n);
+        break;
+      case 4:
+        j = a.g(paramParcel, n);
+        break;
+      case 5:
+        bool = a.c(paramParcel, n);
+      }
     }
+    if (paramParcel.dataPosition() != i)
+      throw new a.a("Overread allowed size end=" + i, paramParcel);
+    return new gt(m, str, k, j, bool);
   }
 
-  private static Bitmap a(Drawable paramDrawable)
+  public gt[] v(int paramInt)
   {
-    if (paramDrawable == null)
-      return null;
-    if ((paramDrawable instanceof BitmapDrawable))
-      return ((BitmapDrawable)paramDrawable).getBitmap();
-    Bitmap localBitmap = Bitmap.createBitmap(paramDrawable.getIntrinsicWidth(), paramDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-    Canvas localCanvas = new Canvas(localBitmap);
-    paramDrawable.setBounds(0, 0, localCanvas.getWidth(), localCanvas.getHeight());
-    paramDrawable.draw(localCanvas);
-    return localBitmap;
-  }
-
-  public static Drawable a(Resources paramResources, Drawable paramDrawable)
-  {
-    return new BitmapDrawable(paramResources, a(a(paramDrawable)));
+    return new gt[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.gu
  * JD-Core Version:    0.6.2
  */

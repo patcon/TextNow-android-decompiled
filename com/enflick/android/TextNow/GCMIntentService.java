@@ -9,7 +9,7 @@ import com.enflick.android.TextNow.push.PushMessageHandler;
 import com.enflick.android.TextNow.tasks.GetNewMessagesTask;
 import com.google.android.gcm.GCMBaseIntentService;
 import com.google.android.gcm.a;
-import textnow.u.r;
+import textnow.z.u;
 
 public class GCMIntentService extends GCMBaseIntentService
 {
@@ -41,7 +41,7 @@ public class GCMIntentService extends GCMBaseIntentService
       {
         throw new UnsupportedOperationException("Device does not have package com.google.android.gsf");
       }
-      if ((!a.f(paramContext)) || (!new r(paramContext).Z()))
+      if ((!a.f(paramContext)) || (!new u(paramContext).Y()))
       {
         PushMessageHandler.registerWithServer(paramContext, str);
         return;
@@ -86,7 +86,7 @@ public class GCMIntentService extends GCMBaseIntentService
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.GCMIntentService
  * JD-Core Version:    0.6.2
  */

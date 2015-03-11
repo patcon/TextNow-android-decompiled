@@ -1,0 +1,11 @@
+package com.google.android.gms.internal;
+
+public abstract interface fd$a
+{
+  public abstract void a(fz paramfz);
+}
+
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
+ * Qualified Name:     com.google.android.gms.internal.fd.a
+ * JD-Core Version:    0.6.2
+ */

@@ -1,71 +1,40 @@
 package com.google.android.gms.internal;
 
-import android.os.Parcel;
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-import java.util.Locale;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 
 public class ka
-  implements SafeParcelable
 {
-  public static final kb CREATOR = new kb();
-  public final String YV;
-  public final String YW;
-  public final int versionCode;
-
-  public ka(int paramInt, String paramString1, String paramString2)
+  public static void a(StringBuilder paramStringBuilder, HashMap<String, String> paramHashMap)
   {
-    this.versionCode = paramInt;
-    this.YV = paramString1;
-    this.YW = paramString2;
-  }
-
-  public ka(String paramString, Locale paramLocale)
-  {
-    this.versionCode = 0;
-    this.YV = paramString;
-    this.YW = paramLocale.toString();
-  }
-
-  public int describeContents()
-  {
-    return 0;
-  }
-
-  public boolean equals(Object paramObject)
-  {
-    if (this == paramObject);
-    ka localka;
-    do
+    paramStringBuilder.append("{");
+    Iterator localIterator = paramHashMap.keySet().iterator();
+    int i = 1;
+    while (localIterator.hasNext())
     {
-      return true;
-      if ((paramObject == null) || (!(paramObject instanceof ka)))
-        return false;
-      localka = (ka)paramObject;
+      String str1 = (String)localIterator.next();
+      if (i == 0)
+        paramStringBuilder.append(",");
+      String str2;
+      for (int j = i; ; j = 0)
+      {
+        str2 = (String)paramHashMap.get(str1);
+        paramStringBuilder.append("\"").append(str1).append("\":");
+        if (str2 != null)
+          break label109;
+        paramStringBuilder.append("null");
+        i = j;
+        break;
+      }
+      label109: paramStringBuilder.append("\"").append(str2).append("\"");
+      i = j;
     }
-    while ((this.YW.equals(localka.YW)) && (this.YV.equals(localka.YV)));
-    return false;
-  }
-
-  public int hashCode()
-  {
-    Object[] arrayOfObject = new Object[2];
-    arrayOfObject[0] = this.YV;
-    arrayOfObject[1] = this.YW;
-    return hk.hashCode(arrayOfObject);
-  }
-
-  public String toString()
-  {
-    return hk.e(this).a("clientPackageName", this.YV).a("locale", this.YW).toString();
-  }
-
-  public void writeToParcel(Parcel paramParcel, int paramInt)
-  {
-    kb.a(this, paramParcel, paramInt);
+    paramStringBuilder.append("}");
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ka
  * JD-Core Version:    0.6.2
  */

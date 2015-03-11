@@ -10,77 +10,77 @@ public final class MaskedWallet$Builder
 
   public final MaskedWallet build()
   {
-    return this.ajE;
+    return this.ato;
   }
 
   public final Builder setBillingAddress(Address paramAddress)
   {
-    this.ajE.aiU = paramAddress;
+    this.ato.asF = paramAddress;
     return this;
   }
 
   public final Builder setBuyerBillingAddress(UserAddress paramUserAddress)
   {
-    this.ajE.aiX = paramUserAddress;
+    this.ato.asI = paramUserAddress;
     return this;
   }
 
   public final Builder setBuyerShippingAddress(UserAddress paramUserAddress)
   {
-    this.ajE.aiY = paramUserAddress;
+    this.ato.asJ = paramUserAddress;
     return this;
   }
 
   public final Builder setEmail(String paramString)
   {
-    this.ajE.aiT = paramString;
+    this.ato.asE = paramString;
     return this;
   }
 
   public final Builder setGoogleTransactionId(String paramString)
   {
-    this.ajE.aiQ = paramString;
+    this.ato.asB = paramString;
     return this;
   }
 
   public final Builder setInstrumentInfos(InstrumentInfo[] paramArrayOfInstrumentInfo)
   {
-    this.ajE.aiZ = paramArrayOfInstrumentInfo;
+    this.ato.asK = paramArrayOfInstrumentInfo;
     return this;
   }
 
   public final Builder setLoyaltyWalletObjects(LoyaltyWalletObject[] paramArrayOfLoyaltyWalletObject)
   {
-    this.ajE.ajC = paramArrayOfLoyaltyWalletObject;
+    this.ato.atm = paramArrayOfLoyaltyWalletObject;
     return this;
   }
 
   public final Builder setMerchantTransactionId(String paramString)
   {
-    this.ajE.aiR = paramString;
+    this.ato.asC = paramString;
     return this;
   }
 
   public final Builder setOfferWalletObjects(OfferWalletObject[] paramArrayOfOfferWalletObject)
   {
-    this.ajE.ajD = paramArrayOfOfferWalletObject;
+    this.ato.atn = paramArrayOfOfferWalletObject;
     return this;
   }
 
   public final Builder setPaymentDescriptions(String[] paramArrayOfString)
   {
-    this.ajE.aiW = paramArrayOfString;
+    this.ato.asH = paramArrayOfString;
     return this;
   }
 
   public final Builder setShippingAddress(Address paramAddress)
   {
-    this.ajE.aiV = paramAddress;
+    this.ato.asG = paramAddress;
     return this;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.MaskedWallet.Builder
  * JD-Core Version:    0.6.2
  */

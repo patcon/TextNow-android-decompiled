@@ -1,80 +1,85 @@
 package com.google.android.gms.internal;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 
-class eb
+@ez
+public final class eb extends ek.a
+  implements ServiceConnection
 {
-  private final List<String> qS;
-  private final List<String> qT;
-  private final String qU;
-  private final String qV;
-  private final String qW;
-  private final String qX;
-  private final String qY;
-  private final boolean qZ;
-  private final int ra;
+  private Context mContext;
+  private boolean sD = false;
+  private int sE;
+  private Intent sF;
+  private dw sn;
+  private String su;
+  private ea sy;
 
-  public eb(Map<String, String> paramMap)
+  public eb(Context paramContext, String paramString, boolean paramBoolean, int paramInt, Intent paramIntent, ea paramea)
   {
-    this.qY = ((String)paramMap.get("url"));
-    this.qV = ((String)paramMap.get("base_uri"));
-    this.qW = ((String)paramMap.get("post_parameters"));
-    this.qZ = parseBoolean((String)paramMap.get("drt_include"));
-    this.qU = ((String)paramMap.get("activation_overlay_url"));
-    this.qT = t((String)paramMap.get("check_packages"));
-    this.ra = parseInt((String)paramMap.get("request_id"));
-    this.qX = ((String)paramMap.get("type"));
-    this.qS = t((String)paramMap.get("errors"));
+    this.su = paramString;
+    this.sE = paramInt;
+    this.sF = paramIntent;
+    this.sD = paramBoolean;
+    this.mContext = paramContext;
+    this.sy = paramea;
   }
 
-  private static boolean parseBoolean(String paramString)
+  public final void finishPurchase()
   {
-    return (paramString != null) && ((paramString.equals("1")) || (paramString.equals("true")));
+    int i = ed.d(this.sF);
+    if ((this.sE != -1) || (i != 0))
+      return;
+    this.sn = new dw(this.mContext);
+    Context localContext = this.mContext;
+    Intent localIntent = new Intent("com.android.vending.billing.InAppBillingService.BIND");
+    localContext.bindService(localIntent, this, 1);
   }
 
-  private int parseInt(String paramString)
+  public final String getProductId()
   {
-    if (paramString == null)
-      return 0;
-    return Integer.parseInt(paramString);
+    return this.su;
   }
 
-  private List<String> t(String paramString)
+  public final Intent getPurchaseData()
   {
-    if (paramString == null)
-      return null;
-    return Arrays.asList(paramString.split(","));
+    return this.sF;
   }
 
-  public boolean bA()
+  public final int getResultCode()
   {
-    return this.qZ;
+    return this.sE;
   }
 
-  public List<String> by()
+  public final boolean isVerified()
   {
-    return this.qS;
+    return this.sD;
   }
 
-  public String bz()
+  public final void onServiceConnected(ComponentName paramComponentName, IBinder paramIBinder)
   {
-    return this.qW;
+    gs.U("In-app billing service connected.");
+    this.sn.r(paramIBinder);
+    String str = ed.E(ed.e(this.sF));
+    if (str == null)
+      return;
+    if (this.sn.c(this.mContext.getPackageName(), str) == 0)
+      ec.j(this.mContext).a(this.sy);
+    this.mContext.unbindService(this);
+    this.sn.destroy();
   }
 
-  public String getType()
+  public final void onServiceDisconnected(ComponentName paramComponentName)
   {
-    return this.qX;
-  }
-
-  public String getUrl()
-  {
-    return this.qY;
+    gs.U("In-app billing service disconnected.");
+    this.sn.destroy();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.eb
  * JD-Core Version:    0.6.2
  */

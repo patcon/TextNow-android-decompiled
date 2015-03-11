@@ -10,21 +10,21 @@ public class a
 {
   static void a(CountrySpecification paramCountrySpecification, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
+    int i = b.D(paramParcel);
     b.c(paramParcel, 1, paramCountrySpecification.getVersionCode());
-    b.a(paramParcel, 2, paramCountrySpecification.rf, false);
-    b.G(paramParcel, i);
+    b.a(paramParcel, 2, paramCountrySpecification.uW, false);
+    b.H(paramParcel, i);
   }
 
-  public CountrySpecification bq(Parcel paramParcel)
+  public CountrySpecification cq(Parcel paramParcel)
   {
-    int i = com.google.android.gms.common.internal.safeparcel.a.B(paramParcel);
+    int i = com.google.android.gms.common.internal.safeparcel.a.C(paramParcel);
     int j = 0;
     String str = null;
     while (paramParcel.dataPosition() < i)
     {
-      int k = com.google.android.gms.common.internal.safeparcel.a.A(paramParcel);
-      switch (com.google.android.gms.common.internal.safeparcel.a.ar(k))
+      int k = com.google.android.gms.common.internal.safeparcel.a.B(paramParcel);
+      switch (com.google.android.gms.common.internal.safeparcel.a.aD(k))
       {
       default:
         com.google.android.gms.common.internal.safeparcel.a.b(paramParcel, k);
@@ -41,13 +41,13 @@ public class a
     return new CountrySpecification(j, str);
   }
 
-  public CountrySpecification[] cD(int paramInt)
+  public CountrySpecification[] dY(int paramInt)
   {
     return new CountrySpecification[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.identity.intents.model.a
  * JD-Core Version:    0.6.2
  */

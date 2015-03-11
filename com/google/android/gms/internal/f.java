@@ -2,14 +2,6 @@ package com.google.android.gms.internal;
 
 public class f
 {
-  int fY;
-  int fZ;
-  int gA;
-  int gB;
-  int gC;
-  int gD;
-  int gE;
-  int gF;
   int gG;
   int gH;
   int gI;
@@ -30,32 +22,6 @@ public class f
   int gX;
   int gY;
   int gZ;
-  int ga;
-  int gb;
-  int gc;
-  int gd;
-  int ge;
-  int gf;
-  int gg;
-  int gh;
-  int gi;
-  int gj;
-  int gk;
-  int gl;
-  int gm;
-  int gn;
-  int go;
-  int gp;
-  int gq;
-  int gr;
-  int gs;
-  int gt;
-  int gu;
-  int gv;
-  int gw;
-  int gx;
-  int gy;
-  int gz;
   int hA;
   int hB;
   int hC;
@@ -171,7 +137,20 @@ public class f
   int jJ;
   int jK;
   int jL;
-  f.a[] jM;
+  int jM;
+  int jN;
+  int jO;
+  int jP;
+  int jQ;
+  int jR;
+  int jS;
+  int jT;
+  int jU;
+  int jV;
+  int jW;
+  int jX;
+  int jY;
+  int jZ;
   int ja;
   int jb;
   int jc;
@@ -198,6 +177,27 @@ public class f
   int jx;
   int jy;
   int jz;
+  int ka;
+  int kb;
+  int kc;
+  int kd;
+  int ke;
+  int kf;
+  int kg;
+  int kh;
+  int ki;
+  int kj;
+  int kk;
+  int kl;
+  int km;
+  int kn;
+  int ko;
+  int kp;
+  int kq;
+  int kr;
+  int ks;
+  int kt;
+  f.a[] ku;
 
   public f()
   {
@@ -214,19 +214,19 @@ public class f
     arrayOfa[9] = new f.m(this, null);
     arrayOfa[10] = new f.d(this, null);
     arrayOfa[11] = new f.e(this, null);
-    this.jM = arrayOfa;
+    this.ku = arrayOfa;
   }
 
   void a(byte[] paramArrayOfByte1, byte[] paramArrayOfByte2)
   {
-    f.a[] arrayOfa = this.jM;
+    f.a[] arrayOfa = this.ku;
     int i = arrayOfa.length;
     for (int j = 0; j < i; j++)
       arrayOfa[j].b(paramArrayOfByte1, paramArrayOfByte2);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.f
  * JD-Core Version:    0.6.2
  */

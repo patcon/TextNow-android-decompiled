@@ -1,84 +1,59 @@
 package com.google.android.gms.internal;
 
-import java.lang.ref.WeakReference;
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import com.google.android.gms.common.internal.safeparcel.a;
+import com.google.android.gms.common.internal.safeparcel.a.a;
+import com.google.android.gms.common.internal.safeparcel.b;
 
-public final class y
+public class y
+  implements Parcelable.Creator<x>
 {
-  private final y.a lf;
-  private final Runnable lg;
-  private ai lh;
-  private boolean li = false;
-  private boolean lj = false;
-  private long lk = 0L;
-
-  public y(u paramu)
+  static void a(x paramx, Parcel paramParcel, int paramInt)
   {
-    this(paramu, new y.a(et.sv));
+    int i = b.D(paramParcel);
+    b.c(paramParcel, 1, paramx.versionCode);
+    b.a(paramParcel, 2, paramx.lX);
+    b.a(paramParcel, 3, paramx.mh);
+    b.H(paramParcel, i);
   }
 
-  y(final u paramu, y.a parama)
+  public x a(Parcel paramParcel)
   {
-    this.lf = parama;
-    this.lg = new Runnable()
+    boolean bool1 = false;
+    int i = a.C(paramParcel);
+    boolean bool2 = false;
+    int j = 0;
+    while (paramParcel.dataPosition() < i)
     {
-      private final WeakReference<u> ll = new WeakReference(paramu);
-
-      public void run()
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
       {
-        y.a(y.this, false);
-        u localu = (u)this.ll.get();
-        if (localu != null)
-          localu.b(y.a(y.this));
+      default:
+        a.b(paramParcel, k);
+        break;
+      case 1:
+        j = a.g(paramParcel, k);
+        break;
+      case 2:
+        bool2 = a.c(paramParcel, k);
+        break;
+      case 3:
+        bool1 = a.c(paramParcel, k);
       }
-    };
-  }
-
-  public final void a(ai paramai, long paramLong)
-  {
-    if (this.li)
-      eu.D("An ad refresh is already scheduled.");
-    do
-    {
-      return;
-      this.lh = paramai;
-      this.li = true;
-      this.lk = paramLong;
     }
-    while (this.lj);
-    eu.B("Scheduling ad refresh " + paramLong + " milliseconds from now.");
-    this.lf.postDelayed(this.lg, paramLong);
+    if (paramParcel.dataPosition() != i)
+      throw new a.a("Overread allowed size end=" + i, paramParcel);
+    return new x(j, bool2, bool1);
   }
 
-  public final void cancel()
+  public x[] b(int paramInt)
   {
-    this.li = false;
-    this.lf.removeCallbacks(this.lg);
-  }
-
-  public final void d(ai paramai)
-  {
-    a(paramai, 60000L);
-  }
-
-  public final void pause()
-  {
-    this.lj = true;
-    if (this.li)
-      this.lf.removeCallbacks(this.lg);
-  }
-
-  public final void resume()
-  {
-    this.lj = false;
-    if (this.li)
-    {
-      this.li = false;
-      a(this.lh, this.lk);
-    }
+    return new x[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.y
  * JD-Core Version:    0.6.2
  */

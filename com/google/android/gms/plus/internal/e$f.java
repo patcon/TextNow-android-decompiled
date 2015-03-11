@@ -1,62 +1,62 @@
 package com.google.android.gms.plus.internal;
 
+import com.google.android.gms.common.api.BaseImplementation.b;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.common.api.a.d;
 import com.google.android.gms.common.data.DataHolder;
-import com.google.android.gms.internal.hb;
-import com.google.android.gms.internal.hb.d;
+import com.google.android.gms.common.internal.e;
+import com.google.android.gms.common.internal.e.d;
 import com.google.android.gms.plus.People.LoadPeopleResult;
 import com.google.android.gms.plus.model.people.PersonBuffer;
 
-final class e$f extends hb<d>.d<a.d<People.LoadPeopleResult>>
+final class e$f extends e<d>.d<BaseImplementation.b<People.LoadPeopleResult>>
   implements People.LoadPeopleResult
 {
-  private final String HS;
-  private PersonBuffer abP;
-  private final Status yz;
+  private final Status CM;
+  private final String Nq;
+  private PersonBuffer alz;
 
-  public e$f(a.d<People.LoadPeopleResult> paramd, Status paramStatus, DataHolder paramDataHolder, String paramString)
+  public e$f(BaseImplementation.b<People.LoadPeopleResult> paramb, Status paramStatus, DataHolder paramDataHolder, String paramString)
   {
-    super(paramd, paramStatus, paramString);
-    this.yz = paramDataHolder;
+    super(paramb, paramStatus, paramString);
+    this.CM = paramDataHolder;
     Object localObject;
-    this.HS = localObject;
+    this.Nq = localObject;
   }
 
-  protected final void a(a.d<People.LoadPeopleResult> paramd, DataHolder paramDataHolder)
+  protected final void a(BaseImplementation.b<People.LoadPeopleResult> paramb, DataHolder paramDataHolder)
   {
     if (paramDataHolder != null);
     for (PersonBuffer localPersonBuffer = new PersonBuffer(paramDataHolder); ; localPersonBuffer = null)
     {
-      this.abP = localPersonBuffer;
-      paramd.a(this);
+      this.alz = localPersonBuffer;
+      paramb.b(this);
       return;
     }
   }
 
   public final String getNextPageToken()
   {
-    return this.HS;
+    return this.Nq;
   }
 
   public final PersonBuffer getPersonBuffer()
   {
-    return this.abP;
+    return this.alz;
   }
 
   public final Status getStatus()
   {
-    return this.yz;
+    return this.CM;
   }
 
   public final void release()
   {
-    if (this.abP != null)
-      this.abP.close();
+    if (this.alz != null)
+      this.alz.close();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.plus.internal.e.f
  * JD-Core Version:    0.6.2
  */

@@ -26,7 +26,7 @@ abstract class PickerFragment$SelectionStrategy
   abstract void toggleSelection(String paramString);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.widget.PickerFragment.SelectionStrategy
  * JD-Core Version:    0.6.2
  */

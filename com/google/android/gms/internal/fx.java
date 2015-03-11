@@ -1,45 +1,11 @@
 package com.google.android.gms.internal;
 
-import android.content.Context;
-import android.os.IBinder;
-import android.os.Looper;
-import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
-import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
-
-public class fx extends hb<fu>
+public abstract interface fx
 {
-  public fx(Context paramContext, Looper paramLooper, GoogleApiClient.ConnectionCallbacks paramConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener paramOnConnectionFailedListener)
-  {
-    super(paramContext, paramLooper, paramConnectionCallbacks, paramOnConnectionFailedListener, new String[0]);
-  }
-
-  protected fu C(IBinder paramIBinder)
-  {
-    return fu.a.A(paramIBinder);
-  }
-
-  protected void a(hi paramhi, hb.e parame)
-  {
-    paramhi.b(parame, 5089000, getContext().getPackageName());
-  }
-
-  protected String bu()
-  {
-    return "com.google.android.gms.icing.LIGHTWEIGHT_INDEX_SERVICE";
-  }
-
-  protected String bv()
-  {
-    return "com.google.android.gms.appdatasearch.internal.ILightweightAppDataSearch";
-  }
-
-  public fu dR()
-  {
-    return (fu)ft();
-  }
+  public abstract String K(String paramString);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.fx
  * JD-Core Version:    0.6.2
  */

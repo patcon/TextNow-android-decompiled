@@ -5,10 +5,10 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.accessibility.CaptioningManager;
 import android.view.accessibility.CaptioningManager.CaptionStyle;
-import com.google.android.gms.internal.gi;
-import com.google.android.gms.internal.hk;
-import com.google.android.gms.internal.in;
-import com.google.android.gms.internal.ip;
+import com.google.android.gms.common.internal.n;
+import com.google.android.gms.internal.ik;
+import com.google.android.gms.internal.jz;
+import com.google.android.gms.internal.kc;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -39,25 +39,25 @@ public final class TextTrackStyle
   public static final int WINDOW_TYPE_NORMAL = 1;
   public static final int WINDOW_TYPE_ROUNDED = 2;
   public static final int WINDOW_TYPE_UNSPECIFIED = -1;
-  private JSONObject AA;
-  private int BA;
-  private int BB;
-  private float Bs;
-  private int Bt;
-  private int Bu;
-  private int Bv;
-  private int Bw;
-  private int Bx;
-  private int By;
-  private String Bz;
-  private int td;
+  private JSONObject Fl;
+  private float Gd;
+  private int Ge;
+  private int Gf;
+  private int Gg;
+  private int Gh;
+  private int Gi;
+  private int Gj;
+  private String Gk;
+  private int Gl;
+  private int Gm;
+  private int xm;
 
   public TextTrackStyle()
   {
     clear();
   }
 
-  private int ah(String paramString)
+  private int aC(String paramString)
   {
     int i = 0;
     if (paramString != null)
@@ -88,30 +88,30 @@ public final class TextTrackStyle
 
   private void clear()
   {
-    this.Bs = 1.0F;
-    this.Bt = 0;
-    this.td = 0;
-    this.Bu = -1;
-    this.Bv = 0;
-    this.Bw = -1;
-    this.Bx = 0;
-    this.By = 0;
-    this.Bz = null;
-    this.BA = -1;
-    this.BB = -1;
-    this.AA = null;
+    this.Gd = 1.0F;
+    this.Ge = 0;
+    this.xm = 0;
+    this.Gf = -1;
+    this.Gg = 0;
+    this.Gh = -1;
+    this.Gi = 0;
+    this.Gj = 0;
+    this.Gk = null;
+    this.Gl = -1;
+    this.Gm = -1;
+    this.Fl = null;
   }
 
   public static TextTrackStyle fromSystemSettings(Context paramContext)
   {
     TextTrackStyle localTextTrackStyle = new TextTrackStyle();
-    if (!ip.gi())
+    if (!kc.hH())
       return localTextTrackStyle;
     CaptioningManager localCaptioningManager = (CaptioningManager)paramContext.getSystemService("captioning");
-    localTextTrackStyle.Bs = localCaptioningManager.getFontScale();
+    localTextTrackStyle.Gd = localCaptioningManager.getFontScale();
     CaptioningManager.CaptionStyle localCaptionStyle = localCaptioningManager.getUserStyle();
-    localTextTrackStyle.td = localCaptionStyle.backgroundColor;
-    localTextTrackStyle.Bt = localCaptionStyle.foregroundColor;
+    localTextTrackStyle.xm = localCaptionStyle.backgroundColor;
+    localTextTrackStyle.Ge = localCaptionStyle.foregroundColor;
     Typeface localTypeface;
     label120: boolean bool1;
     boolean bool2;
@@ -119,7 +119,7 @@ public final class TextTrackStyle
     {
     default:
       localTextTrackStyle.setEdgeType(0);
-      localTextTrackStyle.Bv = localCaptionStyle.edgeColor;
+      localTextTrackStyle.Gg = localCaptionStyle.edgeColor;
       localTypeface = localCaptionStyle.getTypeface();
       if (localTypeface != null)
       {
@@ -159,7 +159,7 @@ public final class TextTrackStyle
     }
   }
 
-  private String o(int paramInt)
+  private String t(int paramInt)
   {
     Object[] arrayOfObject = new Object[4];
     arrayOfObject[0] = Integer.valueOf(Color.red(paramInt));
@@ -169,149 +169,34 @@ public final class TextTrackStyle
     return String.format("#%02X%02X%02X%02X", arrayOfObject);
   }
 
-  public final void b(JSONObject paramJSONObject)
-  {
-    clear();
-    this.Bs = ((float)paramJSONObject.optDouble("fontScale", 1.0D));
-    this.Bt = ah(paramJSONObject.optString("foregroundColor"));
-    this.td = ah(paramJSONObject.optString("backgroundColor"));
-    String str4;
-    String str3;
-    label122: String str2;
-    label200: String str1;
-    if (paramJSONObject.has("edgeType"))
-    {
-      str4 = paramJSONObject.getString("edgeType");
-      if ("NONE".equals(str4))
-        this.Bu = 0;
-    }
-    else
-    {
-      this.Bv = ah(paramJSONObject.optString("edgeColor"));
-      if (paramJSONObject.has("windowType"))
-      {
-        str3 = paramJSONObject.getString("windowType");
-        if (!"NONE".equals(str3))
-          break label321;
-        this.Bw = 0;
-      }
-      this.Bx = ah(paramJSONObject.optString("windowColor"));
-      if (this.Bw == 2)
-        this.By = paramJSONObject.optInt("windowRoundedCornerRadius", 0);
-      this.Bz = paramJSONObject.optString("fontFamily", null);
-      if (paramJSONObject.has("fontGenericFamily"))
-      {
-        str2 = paramJSONObject.getString("fontGenericFamily");
-        if (!"SANS_SERIF".equals(str2))
-          break label359;
-        this.BA = 0;
-      }
-      if (paramJSONObject.has("fontStyle"))
-      {
-        str1 = paramJSONObject.getString("fontStyle");
-        if (!"NORMAL".equals(str1))
-          break label468;
-        this.BB = 0;
-      }
-    }
-    while (true)
-    {
-      this.AA = paramJSONObject.optJSONObject("customData");
-      return;
-      if ("OUTLINE".equals(str4))
-      {
-        this.Bu = 1;
-        break;
-      }
-      if ("DROP_SHADOW".equals(str4))
-      {
-        this.Bu = 2;
-        break;
-      }
-      if ("RAISED".equals(str4))
-      {
-        this.Bu = 3;
-        break;
-      }
-      if (!"DEPRESSED".equals(str4))
-        break;
-      this.Bu = 4;
-      break;
-      label321: if ("NORMAL".equals(str3))
-      {
-        this.Bw = 1;
-        break label122;
-      }
-      if (!"ROUNDED_CORNERS".equals(str3))
-        break label122;
-      this.Bw = 2;
-      break label122;
-      label359: if ("MONOSPACED_SANS_SERIF".equals(str2))
-      {
-        this.BA = 1;
-        break label200;
-      }
-      if ("SERIF".equals(str2))
-      {
-        this.BA = 2;
-        break label200;
-      }
-      if ("MONOSPACED_SERIF".equals(str2))
-      {
-        this.BA = 3;
-        break label200;
-      }
-      if ("CASUAL".equals(str2))
-      {
-        this.BA = 4;
-        break label200;
-      }
-      if ("CURSIVE".equals(str2))
-      {
-        this.BA = 5;
-        break label200;
-      }
-      if (!"SMALL_CAPITALS".equals(str2))
-        break label200;
-      this.BA = 6;
-      break label200;
-      label468: if ("BOLD".equals(str1))
-        this.BB = 1;
-      else if ("ITALIC".equals(str1))
-        this.BB = 2;
-      else if ("BOLD_ITALIC".equals(str1))
-        this.BB = 3;
-    }
-  }
-
-  public final JSONObject dZ()
+  public final JSONObject bK()
   {
     JSONObject localJSONObject = new JSONObject();
     try
     {
-      localJSONObject.put("fontScale", this.Bs);
-      if (this.Bt != 0)
-        localJSONObject.put("foregroundColor", o(this.Bt));
-      if (this.td != 0)
-        localJSONObject.put("backgroundColor", o(this.td));
-      switch (this.Bu)
+      localJSONObject.put("fontScale", this.Gd);
+      if (this.Ge != 0)
+        localJSONObject.put("foregroundColor", t(this.Ge));
+      if (this.xm != 0)
+        localJSONObject.put("backgroundColor", t(this.xm));
+      switch (this.Gf)
       {
       default:
-        if (this.Bv != 0)
-          localJSONObject.put("edgeColor", o(this.Bv));
-        switch (this.Bw)
+        if (this.Gg != 0)
+          localJSONObject.put("edgeColor", t(this.Gg));
+        switch (this.Gh)
         {
         default:
-          label156: if (this.Bx != 0)
-            localJSONObject.put("windowColor", o(this.Bx));
-          if (this.Bw == 2)
-            localJSONObject.put("windowRoundedCornerRadius", this.By);
-          if (this.Bz != null)
-            localJSONObject.put("fontFamily", this.Bz);
-          switch (this.BA)
+          label156: if (this.Gi != 0)
+            localJSONObject.put("windowColor", t(this.Gi));
+          if (this.Gh == 2)
+            localJSONObject.put("windowRoundedCornerRadius", this.Gj);
+          if (this.Gk != null)
+            localJSONObject.put("fontFamily", this.Gk);
+          switch (this.Gl)
           {
           default:
-            label264: switch (this.BB)
+            label260: switch (this.Gm)
             {
             default:
             case 0:
@@ -342,9 +227,9 @@ public final class TextTrackStyle
       }
       while (true)
       {
-        if (this.AA == null)
-          break label577;
-        localJSONObject.put("customData", this.AA);
+        if (this.Fl == null)
+          break label574;
+        localJSONObject.put("customData", this.Fl);
         return localJSONObject;
         localJSONObject.put("edgeType", "NONE");
         break;
@@ -363,19 +248,19 @@ public final class TextTrackStyle
         localJSONObject.put("windowType", "ROUNDED_CORNERS");
         break label156;
         localJSONObject.put("fontGenericFamily", "SANS_SERIF");
-        break label264;
+        break label260;
         localJSONObject.put("fontGenericFamily", "MONOSPACED_SANS_SERIF");
-        break label264;
+        break label260;
         localJSONObject.put("fontGenericFamily", "SERIF");
-        break label264;
+        break label260;
         localJSONObject.put("fontGenericFamily", "MONOSPACED_SERIF");
-        break label264;
+        break label260;
         localJSONObject.put("fontGenericFamily", "CASUAL");
-        break label264;
+        break label260;
         localJSONObject.put("fontGenericFamily", "CURSIVE");
-        break label264;
+        break label260;
         localJSONObject.put("fontGenericFamily", "SMALL_CAPITALS");
-        break label264;
+        break label260;
         localJSONObject.put("fontStyle", "NORMAL");
         continue;
         localJSONObject.put("fontStyle", "BOLD");
@@ -384,12 +269,127 @@ public final class TextTrackStyle
         continue;
         localJSONObject.put("fontStyle", "BOLD_ITALIC");
       }
-      label577: return localJSONObject;
+      label574: return localJSONObject;
     }
     catch (JSONException localJSONException)
     {
     }
     return localJSONObject;
+  }
+
+  public final void c(JSONObject paramJSONObject)
+  {
+    clear();
+    this.Gd = ((float)paramJSONObject.optDouble("fontScale", 1.0D));
+    this.Ge = aC(paramJSONObject.optString("foregroundColor"));
+    this.xm = aC(paramJSONObject.optString("backgroundColor"));
+    String str4;
+    String str3;
+    label124: String str2;
+    label201: String str1;
+    if (paramJSONObject.has("edgeType"))
+    {
+      str4 = paramJSONObject.getString("edgeType");
+      if ("NONE".equals(str4))
+        this.Gf = 0;
+    }
+    else
+    {
+      this.Gg = aC(paramJSONObject.optString("edgeColor"));
+      if (paramJSONObject.has("windowType"))
+      {
+        str3 = paramJSONObject.getString("windowType");
+        if (!"NONE".equals(str3))
+          break label320;
+        this.Gh = 0;
+      }
+      this.Gi = aC(paramJSONObject.optString("windowColor"));
+      if (this.Gh == 2)
+        this.Gj = paramJSONObject.optInt("windowRoundedCornerRadius", 0);
+      this.Gk = paramJSONObject.optString("fontFamily", null);
+      if (paramJSONObject.has("fontGenericFamily"))
+      {
+        str2 = paramJSONObject.getString("fontGenericFamily");
+        if (!"SANS_SERIF".equals(str2))
+          break label358;
+        this.Gl = 0;
+      }
+      if (paramJSONObject.has("fontStyle"))
+      {
+        str1 = paramJSONObject.getString("fontStyle");
+        if (!"NORMAL".equals(str1))
+          break label467;
+        this.Gm = 0;
+      }
+    }
+    while (true)
+    {
+      this.Fl = paramJSONObject.optJSONObject("customData");
+      return;
+      if ("OUTLINE".equals(str4))
+      {
+        this.Gf = 1;
+        break;
+      }
+      if ("DROP_SHADOW".equals(str4))
+      {
+        this.Gf = 2;
+        break;
+      }
+      if ("RAISED".equals(str4))
+      {
+        this.Gf = 3;
+        break;
+      }
+      if (!"DEPRESSED".equals(str4))
+        break;
+      this.Gf = 4;
+      break;
+      label320: if ("NORMAL".equals(str3))
+      {
+        this.Gh = 1;
+        break label124;
+      }
+      if (!"ROUNDED_CORNERS".equals(str3))
+        break label124;
+      this.Gh = 2;
+      break label124;
+      label358: if ("MONOSPACED_SANS_SERIF".equals(str2))
+      {
+        this.Gl = 1;
+        break label201;
+      }
+      if ("SERIF".equals(str2))
+      {
+        this.Gl = 2;
+        break label201;
+      }
+      if ("MONOSPACED_SERIF".equals(str2))
+      {
+        this.Gl = 3;
+        break label201;
+      }
+      if ("CASUAL".equals(str2))
+      {
+        this.Gl = 4;
+        break label201;
+      }
+      if ("CURSIVE".equals(str2))
+      {
+        this.Gl = 5;
+        break label201;
+      }
+      if (!"SMALL_CAPITALS".equals(str2))
+        break label201;
+      this.Gl = 6;
+      break label201;
+      label467: if ("BOLD".equals(str1))
+        this.Gm = 1;
+      else if ("ITALIC".equals(str1))
+        this.Gm = 2;
+      else if ("BOLD_ITALIC".equals(str1))
+        this.Gm = 3;
+    }
   }
 
   public final boolean equals(Object paramObject)
@@ -407,10 +407,10 @@ public final class TextTrackStyle
     while (!bool1);
     TextTrackStyle localTextTrackStyle = (TextTrackStyle)paramObject;
     int i;
-    if (this.AA == null)
+    if (this.Fl == null)
     {
       i = 1;
-      label36: if (localTextTrackStyle.AA != null)
+      label36: if (localTextTrackStyle.Fl != null)
         break label316;
     }
     label316: for (int j = 1; ; j = 0)
@@ -418,58 +418,58 @@ public final class TextTrackStyle
       bool2 = false;
       if (i != j)
         break;
-      if ((this.AA != null) && (localTextTrackStyle.AA != null))
+      if ((this.Fl != null) && (localTextTrackStyle.Fl != null))
       {
-        boolean bool5 = in.d(this.AA, localTextTrackStyle.AA);
+        boolean bool5 = jz.d(this.Fl, localTextTrackStyle.Fl);
         bool2 = false;
         if (!bool5)
           break;
       }
-      boolean bool3 = this.Bs < localTextTrackStyle.Bs;
+      boolean bool3 = this.Gd < localTextTrackStyle.Gd;
       bool2 = false;
       if (bool3)
         break;
-      int k = this.Bt;
-      int m = localTextTrackStyle.Bt;
+      int k = this.Ge;
+      int m = localTextTrackStyle.Ge;
       bool2 = false;
       if (k != m)
         break;
-      int n = this.td;
-      int i1 = localTextTrackStyle.td;
+      int n = this.xm;
+      int i1 = localTextTrackStyle.xm;
       bool2 = false;
       if (n != i1)
         break;
-      int i2 = this.Bu;
-      int i3 = localTextTrackStyle.Bu;
+      int i2 = this.Gf;
+      int i3 = localTextTrackStyle.Gf;
       bool2 = false;
       if (i2 != i3)
         break;
-      int i4 = this.Bv;
-      int i5 = localTextTrackStyle.Bv;
+      int i4 = this.Gg;
+      int i5 = localTextTrackStyle.Gg;
       bool2 = false;
       if (i4 != i5)
         break;
-      int i6 = this.Bw;
-      int i7 = localTextTrackStyle.Bw;
+      int i6 = this.Gh;
+      int i7 = localTextTrackStyle.Gh;
       bool2 = false;
       if (i6 != i7)
         break;
-      int i8 = this.By;
-      int i9 = localTextTrackStyle.By;
+      int i8 = this.Gj;
+      int i9 = localTextTrackStyle.Gj;
       bool2 = false;
       if (i8 != i9)
         break;
-      boolean bool4 = gi.a(this.Bz, localTextTrackStyle.Bz);
+      boolean bool4 = ik.a(this.Gk, localTextTrackStyle.Gk);
       bool2 = false;
       if (!bool4)
         break;
-      int i10 = this.BA;
-      int i11 = localTextTrackStyle.BA;
+      int i10 = this.Gl;
+      int i11 = localTextTrackStyle.Gl;
       bool2 = false;
       if (i10 != i11)
         break;
-      int i12 = this.BB;
-      int i13 = localTextTrackStyle.BB;
+      int i12 = this.Gm;
+      int i13 = localTextTrackStyle.Gm;
       bool2 = false;
       if (i12 != i13)
         break;
@@ -481,154 +481,154 @@ public final class TextTrackStyle
 
   public final int getBackgroundColor()
   {
-    return this.td;
+    return this.xm;
   }
 
   public final JSONObject getCustomData()
   {
-    return this.AA;
+    return this.Fl;
   }
 
   public final int getEdgeColor()
   {
-    return this.Bv;
+    return this.Gg;
   }
 
   public final int getEdgeType()
   {
-    return this.Bu;
+    return this.Gf;
   }
 
   public final String getFontFamily()
   {
-    return this.Bz;
+    return this.Gk;
   }
 
   public final int getFontGenericFamily()
   {
-    return this.BA;
+    return this.Gl;
   }
 
   public final float getFontScale()
   {
-    return this.Bs;
+    return this.Gd;
   }
 
   public final int getFontStyle()
   {
-    return this.BB;
+    return this.Gm;
   }
 
   public final int getForegroundColor()
   {
-    return this.Bt;
+    return this.Ge;
   }
 
   public final int getWindowColor()
   {
-    return this.Bx;
+    return this.Gi;
   }
 
   public final int getWindowCornerRadius()
   {
-    return this.By;
+    return this.Gj;
   }
 
   public final int getWindowType()
   {
-    return this.Bw;
+    return this.Gh;
   }
 
   public final int hashCode()
   {
     Object[] arrayOfObject = new Object[12];
-    arrayOfObject[0] = Float.valueOf(this.Bs);
-    arrayOfObject[1] = Integer.valueOf(this.Bt);
-    arrayOfObject[2] = Integer.valueOf(this.td);
-    arrayOfObject[3] = Integer.valueOf(this.Bu);
-    arrayOfObject[4] = Integer.valueOf(this.Bv);
-    arrayOfObject[5] = Integer.valueOf(this.Bw);
-    arrayOfObject[6] = Integer.valueOf(this.Bx);
-    arrayOfObject[7] = Integer.valueOf(this.By);
-    arrayOfObject[8] = this.Bz;
-    arrayOfObject[9] = Integer.valueOf(this.BA);
-    arrayOfObject[10] = Integer.valueOf(this.BB);
-    arrayOfObject[11] = this.AA;
-    return hk.hashCode(arrayOfObject);
+    arrayOfObject[0] = Float.valueOf(this.Gd);
+    arrayOfObject[1] = Integer.valueOf(this.Ge);
+    arrayOfObject[2] = Integer.valueOf(this.xm);
+    arrayOfObject[3] = Integer.valueOf(this.Gf);
+    arrayOfObject[4] = Integer.valueOf(this.Gg);
+    arrayOfObject[5] = Integer.valueOf(this.Gh);
+    arrayOfObject[6] = Integer.valueOf(this.Gi);
+    arrayOfObject[7] = Integer.valueOf(this.Gj);
+    arrayOfObject[8] = this.Gk;
+    arrayOfObject[9] = Integer.valueOf(this.Gl);
+    arrayOfObject[10] = Integer.valueOf(this.Gm);
+    arrayOfObject[11] = this.Fl;
+    return n.hashCode(arrayOfObject);
   }
 
   public final void setBackgroundColor(int paramInt)
   {
-    this.td = paramInt;
+    this.xm = paramInt;
   }
 
   public final void setCustomData(JSONObject paramJSONObject)
   {
-    this.AA = paramJSONObject;
+    this.Fl = paramJSONObject;
   }
 
   public final void setEdgeColor(int paramInt)
   {
-    this.Bv = paramInt;
+    this.Gg = paramInt;
   }
 
   public final void setEdgeType(int paramInt)
   {
     if ((paramInt < 0) || (paramInt > 4))
       throw new IllegalArgumentException("invalid edgeType");
-    this.Bu = paramInt;
+    this.Gf = paramInt;
   }
 
   public final void setFontFamily(String paramString)
   {
-    this.Bz = paramString;
+    this.Gk = paramString;
   }
 
   public final void setFontGenericFamily(int paramInt)
   {
     if ((paramInt < 0) || (paramInt > 6))
       throw new IllegalArgumentException("invalid fontGenericFamily");
-    this.BA = paramInt;
+    this.Gl = paramInt;
   }
 
   public final void setFontScale(float paramFloat)
   {
-    this.Bs = paramFloat;
+    this.Gd = paramFloat;
   }
 
   public final void setFontStyle(int paramInt)
   {
     if ((paramInt < 0) || (paramInt > 3))
       throw new IllegalArgumentException("invalid fontStyle");
-    this.BB = paramInt;
+    this.Gm = paramInt;
   }
 
   public final void setForegroundColor(int paramInt)
   {
-    this.Bt = paramInt;
+    this.Ge = paramInt;
   }
 
   public final void setWindowColor(int paramInt)
   {
-    this.Bx = paramInt;
+    this.Gi = paramInt;
   }
 
   public final void setWindowCornerRadius(int paramInt)
   {
     if (paramInt < 0)
       throw new IllegalArgumentException("invalid windowCornerRadius");
-    this.By = paramInt;
+    this.Gj = paramInt;
   }
 
   public final void setWindowType(int paramInt)
   {
     if ((paramInt < 0) || (paramInt > 2))
       throw new IllegalArgumentException("invalid windowType");
-    this.Bw = paramInt;
+    this.Gh = paramInt;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.cast.TextTrackStyle
  * JD-Core Version:    0.6.2
  */

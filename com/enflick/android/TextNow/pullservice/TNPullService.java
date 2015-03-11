@@ -8,7 +8,7 @@ import android.os.PowerManager.WakeLock;
 import android.text.TextUtils;
 import com.enflick.android.TextNow.TextNowApp;
 import com.enflick.android.TextNow.tasks.GetNewMessagesTask;
-import textnow.u.r;
+import textnow.z.u;
 
 public class TNPullService extends IntentService
 {
@@ -46,8 +46,8 @@ public class TNPullService extends IntentService
   {
     try
     {
-      r localr = new r(this);
-      if ((localr.l()) && (!TextUtils.isEmpty(localr.m())))
+      u localu = new u(this);
+      if ((localu.l()) && (!TextUtils.isEmpty(localu.m())))
       {
         new GetNewMessagesTask(true, false).b(this);
         TextNowApp.a().d();
@@ -69,7 +69,7 @@ public class TNPullService extends IntentService
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.pullservice.TNPullService
  * JD-Core Version:    0.6.2
  */

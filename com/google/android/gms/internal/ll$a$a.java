@@ -1,55 +1,160 @@
 package com.google.android.gms.internal;
 
-import android.os.Bundle;
-import android.os.IBinder;
-import android.os.Parcel;
-
-class ll$a$a
-  implements ll
+public final class ll$a$a extends ph<a>
 {
-  private IBinder kq;
+  private static volatile a[] adF;
+  public String adG;
+  public String adH;
+  public int viewId;
 
-  ll$a$a(IBinder paramIBinder)
+  public ll$a$a()
   {
-    this.kq = paramIBinder;
+    lR();
   }
 
-  public void a(int paramInt1, int paramInt2, Bundle paramBundle)
+  public static a[] lQ()
   {
-    Parcel localParcel1 = Parcel.obtain();
-    Parcel localParcel2 = Parcel.obtain();
-    try
+    if (adF == null);
+    synchronized (pl.awT)
     {
-      localParcel1.writeInterfaceToken("com.google.android.gms.wallet.fragment.internal.IWalletFragmentStateListener");
-      localParcel1.writeInt(paramInt1);
-      localParcel1.writeInt(paramInt2);
-      if (paramBundle != null)
-      {
-        localParcel1.writeInt(1);
-        paramBundle.writeToParcel(localParcel1, 0);
-      }
-      while (true)
-      {
-        this.kq.transact(2, localParcel1, localParcel2, 0);
-        localParcel2.readException();
-        return;
-        localParcel1.writeInt(0);
-      }
-    }
-    finally
-    {
-      localParcel2.recycle();
-      localParcel1.recycle();
+      if (adF == null)
+        adF = new a[0];
+      return adF;
     }
   }
 
-  public IBinder asBinder()
+  public final void a(pg parampg)
   {
-    return this.kq;
+    if (!this.adG.equals(""))
+      parampg.b(1, this.adG);
+    if (!this.adH.equals(""))
+      parampg.b(2, this.adH);
+    if (this.viewId != 0)
+      parampg.s(3, this.viewId);
+    super.a(parampg);
+  }
+
+  protected final int c()
+  {
+    int i = super.c();
+    if (!this.adG.equals(""))
+      i += pg.j(1, this.adG);
+    if (!this.adH.equals(""))
+      i += pg.j(2, this.adH);
+    if (this.viewId != 0)
+      i += pg.u(3, this.viewId);
+    return i;
+  }
+
+  public final boolean equals(Object paramObject)
+  {
+    boolean bool2;
+    if (paramObject == this)
+      bool2 = true;
+    a locala;
+    label47: 
+    do
+    {
+      String str2;
+      do
+      {
+        boolean bool1;
+        do
+        {
+          return bool2;
+          bool1 = paramObject instanceof a;
+          bool2 = false;
+        }
+        while (!bool1);
+        locala = (a)paramObject;
+        if (this.adG != null)
+          break;
+        str2 = locala.adG;
+        bool2 = false;
+      }
+      while (str2 != null);
+      if (this.adH != null)
+        break label114;
+      str1 = locala.adH;
+      bool2 = false;
+    }
+    while (str1 != null);
+    label114: 
+    while (this.adH.equals(locala.adH))
+    {
+      String str1;
+      int i = this.viewId;
+      int j = locala.viewId;
+      bool2 = false;
+      if (i != j)
+        break;
+      return a(locala);
+      if (this.adG.equals(locala.adG))
+        break label47;
+      return false;
+    }
+    return false;
+  }
+
+  public final int hashCode()
+  {
+    int i;
+    int j;
+    int k;
+    if (this.adG == null)
+    {
+      i = 0;
+      j = 31 * (i + 527);
+      String str = this.adH;
+      k = 0;
+      if (str != null)
+        break label62;
+    }
+    while (true)
+    {
+      return 31 * (31 * (j + k) + this.viewId) + qz();
+      i = this.adG.hashCode();
+      break;
+      label62: k = this.adH.hashCode();
+    }
+  }
+
+  public final a lR()
+  {
+    this.adG = "";
+    this.adH = "";
+    this.viewId = 0;
+    this.awJ = null;
+    this.awU = -1;
+    return this;
+  }
+
+  public final a o(pf parampf)
+  {
+    while (true)
+    {
+      int i = parampf.qi();
+      switch (i)
+      {
+      default:
+        if (a(parampf, i))
+          continue;
+      case 0:
+        return this;
+      case 10:
+        this.adG = parampf.readString();
+        break;
+      case 18:
+        this.adH = parampf.readString();
+        break;
+      case 24:
+      }
+      this.viewId = parampf.ql();
+    }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ll.a.a
  * JD-Core Version:    0.6.2
  */

@@ -7,16 +7,16 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
 import android.os.Parcelable.Creator;
-import com.google.android.gms.internal.hg;
-import com.google.android.gms.internal.hr;
-import com.google.android.gms.internal.hs;
-import com.google.android.gms.internal.ie;
-import com.google.android.gms.internal.if;
+import com.google.android.gms.common.internal.j;
+import com.google.android.gms.internal.jb;
+import com.google.android.gms.internal.jc;
+import com.google.android.gms.internal.jp;
+import com.google.android.gms.internal.jq;
 
 public abstract class d$a extends Binder
   implements d
 {
-  public static d bm(IBinder paramIBinder)
+  public static d bG(IBinder paramIBinder)
   {
     if (paramIBinder == null)
       return null;
@@ -37,25 +37,25 @@ public abstract class d$a extends Binder
       return true;
     case 1:
       paramParcel1.enforceInterface("com.google.android.gms.plus.internal.IPlusService");
-      a(b.a.bk(paramParcel1.readStrongBinder()), paramParcel1.readString());
+      a(b.a.bE(paramParcel1.readStrongBinder()), paramParcel1.readString());
       paramParcel2.writeNoException();
       return true;
     case 2:
       paramParcel1.enforceInterface("com.google.android.gms.plus.internal.IPlusService");
-      a(b.a.bk(paramParcel1.readStrongBinder()), paramParcel1.readString(), paramParcel1.readString());
+      a(b.a.bE(paramParcel1.readStrongBinder()), paramParcel1.readString(), paramParcel1.readString());
       paramParcel2.writeNoException();
       return true;
     case 3:
       paramParcel1.enforceInterface("com.google.android.gms.plus.internal.IPlusService");
-      b(b.a.bk(paramParcel1.readStrongBinder()), paramParcel1.readString());
+      b(b.a.bE(paramParcel1.readStrongBinder()), paramParcel1.readString());
       paramParcel2.writeNoException();
       return true;
     case 4:
       paramParcel1.enforceInterface("com.google.android.gms.plus.internal.IPlusService");
       if (paramParcel1.readInt() != 0);
-      for (ie localie2 = ie.CREATOR.L(paramParcel1); ; localie2 = null)
+      for (jp localjp2 = jp.CREATOR.M(paramParcel1); ; localjp2 = null)
       {
-        a(localie2);
+        a(localjp2);
         paramParcel2.writeNoException();
         return true;
       }
@@ -72,12 +72,12 @@ public abstract class d$a extends Binder
       return true;
     case 8:
       paramParcel1.enforceInterface("com.google.android.gms.plus.internal.IPlusService");
-      a(b.a.bk(paramParcel1.readStrongBinder()));
+      a(b.a.bE(paramParcel1.readStrongBinder()));
       paramParcel2.writeNoException();
       return true;
     case 9:
       paramParcel1.enforceInterface("com.google.android.gms.plus.internal.IPlusService");
-      b localb3 = b.a.bk(paramParcel1.readStrongBinder());
+      b localb3 = b.a.bE(paramParcel1.readStrongBinder());
       Uri localUri2;
       if (paramParcel1.readInt() != 0)
       {
@@ -95,7 +95,7 @@ public abstract class d$a extends Binder
       }
     case 14:
       paramParcel1.enforceInterface("com.google.android.gms.plus.internal.IPlusService");
-      b localb2 = b.a.bk(paramParcel1.readStrongBinder());
+      b localb2 = b.a.bE(paramParcel1.readStrongBinder());
       int m = paramParcel1.readInt();
       String str4 = paramParcel1.readString();
       if (paramParcel1.readInt() != 0);
@@ -107,11 +107,11 @@ public abstract class d$a extends Binder
       }
     case 16:
       paramParcel1.enforceInterface("com.google.android.gms.plus.internal.IPlusService");
-      hg localhg = a(b.a.bk(paramParcel1.readStrongBinder()), paramParcel1.readInt(), paramParcel1.readInt(), paramParcel1.readInt(), paramParcel1.readString());
+      j localj = a(b.a.bE(paramParcel1.readStrongBinder()), paramParcel1.readInt(), paramParcel1.readInt(), paramParcel1.readInt(), paramParcel1.readString());
       paramParcel2.writeNoException();
       IBinder localIBinder = null;
-      if (localhg != null)
-        localIBinder = localhg.asBinder();
+      if (localj != null)
+        localIBinder = localj.asBinder();
       paramParcel2.writeStrongBinder(localIBinder);
       return true;
     case 17:
@@ -121,33 +121,33 @@ public abstract class d$a extends Binder
       return true;
     case 18:
       paramParcel1.enforceInterface("com.google.android.gms.plus.internal.IPlusService");
-      c(b.a.bk(paramParcel1.readStrongBinder()), paramParcel1.readString());
+      c(b.a.bE(paramParcel1.readStrongBinder()), paramParcel1.readString());
       paramParcel2.writeNoException();
       return true;
     case 19:
       paramParcel1.enforceInterface("com.google.android.gms.plus.internal.IPlusService");
-      b(b.a.bk(paramParcel1.readStrongBinder()));
+      b(b.a.bE(paramParcel1.readStrongBinder()));
       paramParcel2.writeNoException();
       return true;
     case 34:
       paramParcel1.enforceInterface("com.google.android.gms.plus.internal.IPlusService");
-      a(b.a.bk(paramParcel1.readStrongBinder()), paramParcel1.createStringArrayList());
+      a(b.a.bE(paramParcel1.readStrongBinder()), paramParcel1.createStringArrayList());
       paramParcel2.writeNoException();
       return true;
     case 40:
       paramParcel1.enforceInterface("com.google.android.gms.plus.internal.IPlusService");
-      d(b.a.bk(paramParcel1.readStrongBinder()), paramParcel1.readString());
+      d(b.a.bE(paramParcel1.readStrongBinder()), paramParcel1.readString());
       paramParcel2.writeNoException();
       return true;
     case 41:
       paramParcel1.enforceInterface("com.google.android.gms.plus.internal.IPlusService");
-      String str3 = jU();
+      String str3 = nb();
       paramParcel2.writeNoException();
       paramParcel2.writeString(str3);
       return true;
     case 42:
       paramParcel1.enforceInterface("com.google.android.gms.plus.internal.IPlusService");
-      boolean bool = jV();
+      boolean bool = nc();
       paramParcel2.writeNoException();
       if (bool);
       for (int k = 1; ; k = 0)
@@ -157,23 +157,23 @@ public abstract class d$a extends Binder
       }
     case 43:
       paramParcel1.enforceInterface("com.google.android.gms.plus.internal.IPlusService");
-      String str2 = jW();
+      String str2 = nd();
       paramParcel2.writeNoException();
       paramParcel2.writeString(str2);
       return true;
     case 44:
       paramParcel1.enforceInterface("com.google.android.gms.plus.internal.IPlusService");
-      e(b.a.bk(paramParcel1.readStrongBinder()), paramParcel1.readString());
+      e(b.a.bE(paramParcel1.readStrongBinder()), paramParcel1.readString());
       paramParcel2.writeNoException();
       return true;
     case 45:
       label473: paramParcel1.enforceInterface("com.google.android.gms.plus.internal.IPlusService");
-      b localb1 = b.a.bk(paramParcel1.readStrongBinder());
+      b localb1 = b.a.bE(paramParcel1.readStrongBinder());
       int j = paramParcel1.readInt();
-      ie localie1 = null;
+      jp localjp1 = null;
       if (j != 0)
-        localie1 = ie.CREATOR.L(paramParcel1);
-      a(localb1, localie1);
+        localjp1 = jp.CREATOR.M(paramParcel1);
+      a(localb1, localjp1);
       paramParcel2.writeNoException();
       return true;
     case 46:
@@ -181,20 +181,20 @@ public abstract class d$a extends Binder
     paramParcel1.enforceInterface("com.google.android.gms.plus.internal.IPlusService");
     String str1 = paramParcel1.readString();
     if (paramParcel1.readInt() != 0);
-    for (hr localhr1 = hr.CREATOR.D(paramParcel1); ; localhr1 = null)
+    for (jb localjb1 = jb.CREATOR.E(paramParcel1); ; localjb1 = null)
     {
       int i = paramParcel1.readInt();
-      hr localhr2 = null;
+      jb localjb2 = null;
       if (i != 0)
-        localhr2 = hr.CREATOR.D(paramParcel1);
-      a(str1, localhr1, localhr2);
+        localjb2 = jb.CREATOR.E(paramParcel1);
+      a(str1, localjb1, localjb2);
       paramParcel2.writeNoException();
       return true;
     }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.plus.internal.d.a
  * JD-Core Version:    0.6.2
  */

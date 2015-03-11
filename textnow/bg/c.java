@@ -1,106 +1,26 @@
 package textnow.bg;
 
-import java.io.Serializable;
+import android.widget.RelativeLayout.LayoutParams;
+import com.tremorvideo.sdk.android.videoad.bc;
 
-public final class c
-  implements Serializable
+public abstract interface c
 {
-  private String a;
-  private String b;
-  private String c;
-  private String d;
-  private String e;
-  private String f;
-  private int g;
-  private String h;
-  private int i;
-  private String j;
-  private String k;
-  private String l;
-  private String m;
+  public abstract void a();
 
-  public final String a()
-  {
-    return this.b;
-  }
+  public abstract void a(float paramFloat);
 
-  public final void a(int paramInt)
-  {
-    this.g = paramInt;
-  }
+  public abstract void a(RelativeLayout.LayoutParams paramLayoutParams);
 
-  public final void a(String paramString)
-  {
-    this.a = paramString;
-  }
+  public abstract void a(bc parambc, String paramString);
 
-  public final String b()
-  {
-    return this.f;
-  }
+  public abstract void a(String paramString);
 
-  public final void b(int paramInt)
-  {
-    this.i = paramInt;
-  }
+  public abstract void a(String paramString1, String paramString2);
 
-  public final void b(String paramString)
-  {
-    this.b = paramString;
-  }
-
-  public final String c()
-  {
-    return this.l;
-  }
-
-  public final void c(String paramString)
-  {
-    this.c = paramString;
-  }
-
-  public final void d(String paramString)
-  {
-    this.d = paramString;
-  }
-
-  public final void e(String paramString)
-  {
-    this.e = paramString;
-  }
-
-  public final void f(String paramString)
-  {
-    this.f = paramString;
-  }
-
-  public final void g(String paramString)
-  {
-    this.h = paramString;
-  }
-
-  public final void h(String paramString)
-  {
-    this.j = paramString;
-  }
-
-  public final void i(String paramString)
-  {
-    this.k = paramString;
-  }
-
-  public final void j(String paramString)
-  {
-    this.l = paramString;
-  }
-
-  public final void k(String paramString)
-  {
-    this.m = paramString;
-  }
+  public abstract void b();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.bg.c
  * JD-Core Version:    0.6.2
  */

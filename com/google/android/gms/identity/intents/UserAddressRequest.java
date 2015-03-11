@@ -10,18 +10,18 @@ public final class UserAddressRequest
   implements SafeParcelable
 {
   public static final Parcelable.Creator<UserAddressRequest> CREATOR = new a();
-  List<CountrySpecification> UE;
-  private final int xM;
+  private final int BR;
+  List<CountrySpecification> adK;
 
   UserAddressRequest()
   {
-    this.xM = 1;
+    this.BR = 1;
   }
 
   UserAddressRequest(int paramInt, List<CountrySpecification> paramList)
   {
-    this.xM = paramInt;
-    this.UE = paramList;
+    this.BR = paramInt;
+    this.adK = paramList;
   }
 
   public static UserAddressRequest.Builder newBuilder()
@@ -38,7 +38,7 @@ public final class UserAddressRequest
 
   public final int getVersionCode()
   {
-    return this.xM;
+    return this.BR;
   }
 
   public final void writeToParcel(Parcel paramParcel, int paramInt)
@@ -47,7 +47,7 @@ public final class UserAddressRequest
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.identity.intents.UserAddressRequest
  * JD-Core Version:    0.6.2
  */

@@ -1,38 +1,46 @@
 package com.google.android.gms.internal;
 
-import android.os.IInterface;
-import com.google.android.gms.cast.LaunchOptions;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
-public abstract interface gl extends IInterface
+@ez
+public class gl<T>
+  implements Future<T>
 {
-  public abstract void a(double paramDouble1, double paramDouble2, boolean paramBoolean);
+  private final T wq;
 
-  public abstract void a(String paramString, LaunchOptions paramLaunchOptions);
+  public gl(T paramT)
+  {
+    this.wq = paramT;
+  }
 
-  public abstract void a(String paramString1, String paramString2, long paramLong);
+  public boolean cancel(boolean paramBoolean)
+  {
+    return false;
+  }
 
-  public abstract void a(String paramString, byte[] paramArrayOfByte, long paramLong);
+  public T get()
+  {
+    return this.wq;
+  }
 
-  public abstract void a(boolean paramBoolean1, double paramDouble, boolean paramBoolean2);
+  public T get(long paramLong, TimeUnit paramTimeUnit)
+  {
+    return this.wq;
+  }
 
-  public abstract void am(String paramString);
+  public boolean isCancelled()
+  {
+    return false;
+  }
 
-  public abstract void an(String paramString);
-
-  public abstract void ao(String paramString);
-
-  public abstract void disconnect();
-
-  public abstract void e(String paramString, boolean paramBoolean);
-
-  public abstract void eg();
-
-  public abstract void ep();
-
-  public abstract void h(String paramString1, String paramString2);
+  public boolean isDone()
+  {
+    return true;
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.gl
  * JD-Core Version:    0.6.2
  */

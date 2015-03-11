@@ -8,7 +8,6 @@ import android.content.IntentFilter;
 import android.location.Location;
 import android.util.AttributeSet;
 import android.view.View;
-import android.webkit.WebViewDatabase;
 import android.widget.FrameLayout;
 import com.mopub.common.LocationService.LocationAwareness;
 import com.mopub.common.MoPub;
@@ -53,11 +52,6 @@ public class MoPubView extends FrameLayout
     this.mScreenVisibility = getVisibility();
     setHorizontalScrollBarEnabled(false);
     setVerticalScrollBarEnabled(false);
-    if (WebViewDatabase.getInstance(paramContext) == null)
-    {
-      MoPubLog.e("Disabling MoPub. Local cache file is inaccessible so MoPub will fail if we try to create a WebView. Details of this Android bug found at:http://code.google.com/p/android/issues/detail?id=10789");
-      return;
-    }
     this.mAdViewController = AdViewControllerFactory.create(paramContext, this);
     registerScreenStateBroadcastReceiver();
   }
@@ -500,7 +494,7 @@ public class MoPubView extends FrameLayout
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.mopub.mobileads.MoPubView
  * JD-Core Version:    0.6.2
  */

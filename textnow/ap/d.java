@@ -1,0 +1,92 @@
+package textnow.ap;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
+import textnow.am.e;
+import textnow.am.q;
+import textnow.am.s;
+import textnow.am.t;
+import textnow.aq.a;
+import textnow.ar.c;
+
+public final class d extends s<Date>
+{
+  public static final t a = new t()
+  {
+    public final <T> s<T> a(e paramAnonymouse, a<T> paramAnonymousa)
+    {
+      if (paramAnonymousa.a() == Date.class)
+        return new d();
+      return null;
+    }
+  };
+  private final DateFormat b = DateFormat.getDateTimeInstance(2, 2, Locale.US);
+  private final DateFormat c = DateFormat.getDateTimeInstance(2, 2);
+  private final DateFormat d;
+
+  public d()
+  {
+    SimpleDateFormat localSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US);
+    localSimpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+    this.d = localSimpleDateFormat;
+  }
+
+  private Date a(String paramString)
+  {
+    try
+    {
+      Date localDate3 = this.c.parse(paramString);
+      localObject2 = localDate3;
+      return localObject2;
+    }
+    catch (ParseException localParseException1)
+    {
+      try
+      {
+        Date localDate2 = this.b.parse(paramString);
+        localObject2 = localDate2;
+      }
+      catch (ParseException localParseException2)
+      {
+        try
+        {
+          Date localDate1 = this.d.parse(paramString);
+          Object localObject2 = localDate1;
+        }
+        catch (ParseException localParseException3)
+        {
+          throw new q(paramString, localParseException3);
+        }
+      }
+    }
+    finally
+    {
+    }
+  }
+
+  private void a(c paramc, Date paramDate)
+  {
+    if (paramDate == null);
+    try
+    {
+      paramc.f();
+      while (true)
+      {
+        return;
+        paramc.b(this.b.format(paramDate));
+      }
+    }
+    finally
+    {
+    }
+  }
+}
+
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
+ * Qualified Name:     textnow.ap.d
+ * JD-Core Version:    0.6.2
+ */

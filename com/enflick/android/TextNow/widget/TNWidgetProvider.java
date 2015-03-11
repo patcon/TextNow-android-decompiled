@@ -62,7 +62,7 @@ public abstract class TNWidgetProvider extends AppWidgetProvider
   protected abstract void processWidget(Context paramContext, int paramInt, AppWidgetManager paramAppWidgetManager);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.widget.TNWidgetProvider
  * JD-Core Version:    0.6.2
  */

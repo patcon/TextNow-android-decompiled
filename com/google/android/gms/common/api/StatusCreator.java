@@ -14,25 +14,25 @@ public class StatusCreator
 
   static void a(Status paramStatus, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
+    int i = b.D(paramParcel);
     b.c(paramParcel, 1, paramStatus.getStatusCode());
     b.c(paramParcel, 1000, paramStatus.getVersionCode());
     b.a(paramParcel, 2, paramStatus.getStatusMessage(), false);
-    b.a(paramParcel, 3, paramStatus.eQ(), paramInt, false);
-    b.G(paramParcel, i);
+    b.a(paramParcel, 3, paramStatus.getPendingIntent(), paramInt, false);
+    b.H(paramParcel, i);
   }
 
   public Status createFromParcel(Parcel paramParcel)
   {
     PendingIntent localPendingIntent = null;
-    int i = a.B(paramParcel);
+    int i = a.C(paramParcel);
     int j = 0;
     int k = 0;
     String str = null;
     while (paramParcel.dataPosition() < i)
     {
-      int m = a.A(paramParcel);
-      switch (a.ar(m))
+      int m = a.B(paramParcel);
+      switch (a.aD(m))
       {
       default:
         a.b(paramParcel, m);
@@ -61,7 +61,7 @@ public class StatusCreator
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.common.api.StatusCreator
  * JD-Core Version:    0.6.2
  */

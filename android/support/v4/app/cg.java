@@ -1,10 +1,10 @@
 package android.support.v4.app;
 
-abstract interface cg
+final class cg
 {
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.app.cg
  * JD-Core Version:    0.6.2
  */

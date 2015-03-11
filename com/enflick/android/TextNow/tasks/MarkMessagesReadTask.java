@@ -6,9 +6,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import com.enflick.android.TextNow.api.users.ConversationsPatch;
-import textnow.q.o;
-import textnow.s.i;
-import textnow.u.r;
+import com.enflick.android.TextNow.api.users.f;
+import com.enflick.android.TextNow.persistence.contentproviders.g;
+import textnow.aa.a;
+import textnow.x.i;
+import textnow.z.u;
 
 public class MarkMessagesReadTask extends c
 {
@@ -21,10 +23,11 @@ public class MarkMessagesReadTask extends c
 
   public void run()
   {
-    r localr = new r(this.a);
+    u localu = new u(this.a);
     ContentValues localContentValues = new ContentValues();
     localContentValues.put("read", Integer.valueOf(1));
-    Uri localUri = com.enflick.android.TextNow.persistence.contentproviders.f.d;
+    localContentValues.put("not_notify", Integer.valueOf(1));
+    Uri localUri = g.d;
     String[] arrayOfString = new String[1];
     arrayOfString[0] = this.d;
     Cursor localCursor = this.a.getContentResolver().query(localUri, new String[] { "count(*) AS count" }, "contact_value = ? AND read = 0", arrayOfString, null);
@@ -32,9 +35,9 @@ public class MarkMessagesReadTask extends c
     if ((localCursor != null) && (localCursor.moveToFirst()))
     {
       if (localCursor.getInt(0) <= 0)
-        break label210;
+        break label230;
       this.a.getContentResolver().update(localUri, localContentValues, "contact_value = ? AND read = 0", arrayOfString);
-      com.enflick.android.TextNow.api.users.f localf = new com.enflick.android.TextNow.api.users.f(localr.b(), this.d);
+      f localf = new f(localu.b(), this.d);
       locali = new ConversationsPatch(this.a).runSync(localf);
       if (!a(locali));
     }
@@ -44,12 +47,13 @@ public class MarkMessagesReadTask extends c
     }
     int i = Integer.valueOf((String)locali.c()).intValue();
     new StringBuilder().append(i).append(" msgs were marked read on the server").toString();
-    o.a(this.a).d();
-    label210: localCursor.close();
+    a.a(this.a).e();
+    a.a(this.a).d();
+    label230: localCursor.close();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.MarkMessagesReadTask
  * JD-Core Version:    0.6.2
  */

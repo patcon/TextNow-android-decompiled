@@ -8,16 +8,14 @@ import com.enflick.android.TextNow.api.responsemodel.Message;
 import com.enflick.android.TextNow.api.responsemodel.Messages;
 import com.enflick.android.TextNow.api.users.MessagesGet;
 import com.enflick.android.TextNow.api.users.n;
-import com.enflick.android.TextNow.persistence.contentproviders.f;
+import com.enflick.android.TextNow.persistence.contentproviders.g;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import textnow.q.b;
-import textnow.q.k;
-import textnow.q.o;
-import textnow.s.i;
-import textnow.u.g;
-import textnow.u.r;
+import textnow.aa.a;
+import textnow.v.b;
+import textnow.v.k;
+import textnow.z.u;
 
 public class GetHistoryForConversationTask extends c
 {
@@ -32,19 +30,19 @@ public class GetHistoryForConversationTask extends c
 
   public void run()
   {
-    g localg = new g(this.a, this.d);
-    n localn = new n(new r(this.a).b());
-    long l1 = localg.b();
+    textnow.z.i locali = new textnow.z.i(this.a, this.d);
+    n localn = new n(new u(this.a).b());
+    long l1 = locali.b();
     localn.a = l1;
     localn.b = "past";
     localn.d = this.d;
     localn.f = 1;
     localn.g = 1;
     localn.c = 10;
-    i locali = new MessagesGet(this.a).runSync(localn);
-    if (a(locali))
+    textnow.x.i locali1 = new MessagesGet(this.a).runSync(localn);
+    if (a(locali1))
       return;
-    Messages localMessages = (Messages)locali.c();
+    Messages localMessages = (Messages)locali1.c();
     if (localMessages == null)
     {
       new StringBuilder().append("Error fetching msgs for conversation with :").append(this.d).append(", null returned").toString();
@@ -64,9 +62,9 @@ public class GetHistoryForConversationTask extends c
       localMessage = arrayOfMessage[i];
       localContentValues = new ContentValues();
       if (localMessage.id >= l2)
-        break label720;
+        break label730;
     }
-    label720: for (long l3 = localMessage.id; ; l3 = l2)
+    label730: for (long l3 = localMessage.id; ; l3 = l2)
     {
       String str1 = localMessage.contactName;
       if (localMessage.contactType == 5)
@@ -99,7 +97,7 @@ public class GetHistoryForConversationTask extends c
       }
       if (!localHashMap.isEmpty())
       {
-        Cursor localCursor = this.a.getContentResolver().query(f.d, arrayOfString, "message_id IN " + "(" + localStringBuilder.toString() + ")", null, null);
+        Cursor localCursor = this.a.getContentResolver().query(g.d, arrayOfString, "message_id IN " + "(" + localStringBuilder.toString() + ")", null, null);
         if (localCursor != null)
         {
           while (localCursor.moveToNext())
@@ -110,16 +108,17 @@ public class GetHistoryForConversationTask extends c
       if (!localHashMap.isEmpty())
         localArrayList.addAll(localHashMap.values());
       new StringBuilder().append("Bulk inserting ").append(arrayOfMessage.length).append(" messages into database").toString();
-      this.a.getContentResolver().bulkInsert(f.d, (ContentValues[])localArrayList.toArray(new ContentValues[0]));
-      localg.b(l2);
-      localg.n();
-      o.a(this.a).d();
+      this.a.getContentResolver().bulkInsert(g.d, (ContentValues[])localArrayList.toArray(new ContentValues[0]));
+      locali.b(l2);
+      locali.B();
+      a.a(this.a).e();
+      a.a(this.a).d();
       return;
     }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.GetHistoryForConversationTask
  * JD-Core Version:    0.6.2
  */

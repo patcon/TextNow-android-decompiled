@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.c;
 import android.support.v4.view.j;
 import android.view.ActionProvider;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -12,7 +13,7 @@ import android.view.MenuItem.OnActionExpandListener;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.SubMenu;
 import android.view.View;
-import textnow.c.b;
+import textnow.b.b;
 
 public final class a
   implements b
@@ -124,7 +125,9 @@ public final class a
 
   public final CharSequence getTitleCondensed()
   {
-    return this.f;
+    if (this.f != null)
+      return this.f;
+    return this.e;
   }
 
   public final boolean hasSubMenu()
@@ -204,7 +207,7 @@ public final class a
   public final MenuItem setIcon(int paramInt)
   {
     this.k = paramInt;
-    this.j = this.l.getResources().getDrawable(paramInt);
+    this.j = c.a(this.l, paramInt);
     return this;
   }
 
@@ -279,7 +282,7 @@ public final class a
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v7.internal.view.menu.a
  * JD-Core Version:    0.6.2
  */

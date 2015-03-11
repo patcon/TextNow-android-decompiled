@@ -4,24 +4,24 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.graphics.Bitmap;
-import com.google.android.gms.internal.hq;
-import com.google.android.gms.internal.ip;
+import com.google.android.gms.internal.ja;
+import com.google.android.gms.internal.kc;
 
-final class ImageManager$b extends hq<a.a, Bitmap>
+final class ImageManager$b extends ja<a.a, Bitmap>
 {
   public ImageManager$b(Context paramContext)
   {
-    super(D(paramContext));
+    super(I(paramContext));
   }
 
-  private static int D(Context paramContext)
+  private static int I(Context paramContext)
   {
     ActivityManager localActivityManager = (ActivityManager)paramContext.getSystemService("activity");
     int i;
     if ((0x100000 & paramContext.getApplicationInfo().flags) != 0)
     {
       i = 1;
-      if ((i == 0) || (!ip.gc()))
+      if ((i == 0) || (!kc.hB()))
         break label55;
     }
     label55: for (int j = ImageManager.a.a(localActivityManager); ; j = localActivityManager.getMemoryClass())
@@ -43,7 +43,7 @@ final class ImageManager$b extends hq<a.a, Bitmap>
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.common.images.ImageManager.b
  * JD-Core Version:    0.6.2
  */

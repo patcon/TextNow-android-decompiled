@@ -6,17 +6,9 @@ import android.os.IInterface;
 
 public abstract interface c extends IInterface
 {
-  public abstract void c(d paramd);
-
   public abstract void d(d paramd);
 
-  public abstract d gI();
-
-  public abstract c gJ();
-
-  public abstract d gK();
-
-  public abstract c gL();
+  public abstract void e(d paramd);
 
   public abstract Bundle getArguments();
 
@@ -46,6 +38,14 @@ public abstract interface c extends IInterface
 
   public abstract boolean isVisible();
 
+  public abstract d iu();
+
+  public abstract c iv();
+
+  public abstract d iw();
+
+  public abstract c ix();
+
   public abstract void setHasOptionsMenu(boolean paramBoolean);
 
   public abstract void setMenuVisibility(boolean paramBoolean);
@@ -59,7 +59,7 @@ public abstract interface c extends IInterface
   public abstract void startActivityForResult(Intent paramIntent, int paramInt);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.dynamic.c
  * JD-Core Version:    0.6.2
  */

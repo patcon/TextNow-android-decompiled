@@ -1,57 +1,72 @@
 package com.google.android.gms.internal;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build.VERSION;
+import android.os.Environment;
+import com.google.android.gms.common.internal.o;
 import java.util.List;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
-public final class bl
+@ez
+public class bl
 {
-  public final String nk;
-  public final String nl;
-  public final List<String> nm;
-  public final String nn;
-  public final String no;
-  public final List<String> np;
-  public final String nq;
+  private final Context mContext;
 
-  public bl(JSONObject paramJSONObject)
+  public bl(Context paramContext)
   {
-    this.nl = paramJSONObject.getString("id");
-    JSONArray localJSONArray = paramJSONObject.getJSONArray("adapters");
-    ArrayList localArrayList = new ArrayList(localJSONArray.length());
-    for (int i = 0; i < localJSONArray.length(); i++)
-      localArrayList.add(localJSONArray.getString(i));
-    this.nm = Collections.unmodifiableList(localArrayList);
-    this.nn = paramJSONObject.optString("allocation_id", null);
-    this.np = br.a(paramJSONObject, "imp_urls");
-    JSONObject localJSONObject1 = paramJSONObject.optJSONObject("ad");
-    String str1;
-    JSONObject localJSONObject2;
-    if (localJSONObject1 != null)
-    {
-      str1 = localJSONObject1.toString();
-      this.nk = str1;
-      localJSONObject2 = paramJSONObject.optJSONObject("data");
-      if (localJSONObject2 == null)
-        break label175;
-    }
-    label175: for (String str2 = localJSONObject2.toString(); ; str2 = null)
-    {
-      this.nq = str2;
-      String str3 = null;
-      if (localJSONObject2 != null)
-        str3 = localJSONObject2.optString("class_name");
-      this.no = str3;
-      return;
-      str1 = null;
-      break;
-    }
+    o.b(paramContext, "Context can not be null");
+    this.mContext = paramContext;
+  }
+
+  public static boolean bn()
+  {
+    return "mounted".equals(Environment.getExternalStorageState());
+  }
+
+  public boolean a(Intent paramIntent)
+  {
+    o.b(paramIntent, "Intent can not be null");
+    boolean bool1 = this.mContext.getPackageManager().queryIntentActivities(paramIntent, 0).isEmpty();
+    boolean bool2 = false;
+    if (!bool1)
+      bool2 = true;
+    return bool2;
+  }
+
+  public boolean bj()
+  {
+    Intent localIntent = new Intent("android.intent.action.DIAL");
+    localIntent.setData(Uri.parse("tel:"));
+    return a(localIntent);
+  }
+
+  public boolean bk()
+  {
+    Intent localIntent = new Intent("android.intent.action.VIEW");
+    localIntent.setData(Uri.parse("sms:"));
+    return a(localIntent);
+  }
+
+  public boolean bl()
+  {
+    return (bn()) && (this.mContext.checkCallingOrSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") == 0);
+  }
+
+  public boolean bm()
+  {
+    return false;
+  }
+
+  public boolean bo()
+  {
+    Intent localIntent = new Intent("android.intent.action.INSERT").setType("vnd.android.cursor.dir/event");
+    return (Build.VERSION.SDK_INT >= 14) && (a(localIntent));
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.bl
  * JD-Core Version:    0.6.2
  */

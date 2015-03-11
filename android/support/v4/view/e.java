@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
-import textnow.f.i;
+import textnow.f.o;
 
 class e
   implements c
@@ -19,7 +19,7 @@ class e
     return null;
   }
 
-  public i a(Object paramObject, View paramView)
+  public o a(Object paramObject, View paramView)
   {
     return null;
   }
@@ -28,7 +28,7 @@ class e
   {
   }
 
-  public void a(Object paramObject, View paramView, textnow.f.a parama)
+  public void a(Object paramObject, View paramView, textnow.f.e parame)
   {
   }
 
@@ -60,7 +60,7 @@ class e
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.view.e
  * JD-Core Version:    0.6.2
  */

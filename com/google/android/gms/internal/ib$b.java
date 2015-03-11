@@ -1,42 +1,32 @@
 package com.google.android.gms.internal;
 
-import android.os.Parcel;
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
+import com.google.android.gms.appstate.AppStateManager.StateDeletedResult;
+import com.google.android.gms.common.api.Status;
 
-public class ib$b
-  implements SafeParcelable
+final class ib$b
+  implements AppStateManager.StateDeletedResult
 {
-  public static final ia CREATOR = new ia();
-  final hy.a<?, ?> Hp;
-  final String eM;
-  final int versionCode;
+  private final Status CM;
+  private final int Df;
 
-  ib$b(int paramInt, String paramString, hy.a<?, ?> parama)
+  public ib$b(Status paramStatus, int paramInt)
   {
-    this.versionCode = paramInt;
-    this.eM = paramString;
-    this.Hp = parama;
+    this.CM = paramStatus;
+    this.Df = paramInt;
   }
 
-  ib$b(String paramString, hy.a<?, ?> parama)
+  public final int getStateKey()
   {
-    this.versionCode = 1;
-    this.eM = paramString;
-    this.Hp = parama;
+    return this.Df;
   }
 
-  public int describeContents()
+  public final Status getStatus()
   {
-    return 0;
-  }
-
-  public void writeToParcel(Parcel paramParcel, int paramInt)
-  {
-    ia.a(this, paramParcel, paramInt);
+    return this.CM;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ib.b
  * JD-Core Version:    0.6.2
  */

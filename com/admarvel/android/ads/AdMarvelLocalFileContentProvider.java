@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
+import android.util.Log;
 import com.admarvel.android.util.Logging;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -43,39 +44,60 @@ public class AdMarvelLocalFileContentProvider extends ContentProvider
   {
     int i = 0;
     String str1 = paramUri.getPath().replace("content://" + getContext().getPackageName() + ".AdMarvelLocalFileContentProvider", "");
-    if (str1 != null)
-      if ((!str1.equals("/mraid.js")) && (!str1.equals("mraid.js")));
-    while (true)
+    File localFile1;
+    if ((str1 != null) && ((str1.equals("/mraid.js")) || (str1.equals("mraid.js"))))
     {
-      InputStream localInputStream;
-      ArrayList localArrayList;
-      int m;
-      try
+      localFile1 = getContext().getDir("adm_mraid_file", 0);
+      if ((localFile1 == null) || (!localFile1.isDirectory()))
+        break label640;
+    }
+    label640: for (File localFile2 = new File(localFile1.getAbsolutePath() + "/mraid.js"); ; localFile2 = null)
+    {
+      if ((localFile2 != null) && (localFile2.exists()))
       {
-        HttpURLConnection localHttpURLConnection = (HttpURLConnection)new URL("http://admarvel.s3.amazonaws.com/js/admarvel_mraid_v2_complete.js").openConnection();
-        localHttpURLConnection.setRequestMethod("GET");
-        localHttpURLConnection.setDoOutput(false);
-        localHttpURLConnection.setDoInput(true);
-        localHttpURLConnection.setUseCaches(false);
-        localHttpURLConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-        localHttpURLConnection.setRequestProperty("Content-Length", "0");
-        localHttpURLConnection.setConnectTimeout(2000);
-        localHttpURLConnection.setReadTimeout(10000);
-        int j = localHttpURLConnection.getResponseCode();
-        int k = localHttpURLConnection.getContentLength();
-        Logging.log("Mraid Connection Status Code: " + j);
-        Logging.log("Mraid Content Length: " + k);
-        if (j == 200)
+        try
         {
+          Logging.log("Mraid loading from client");
+          ParcelFileDescriptor localParcelFileDescriptor = ParcelFileDescriptor.open(localFile2, 268435456);
+          return localParcelFileDescriptor;
+        }
+        catch (Exception localException)
+        {
+          Logging.log(Log.getStackTraceString(localException));
+        }
+        return null;
+      }
+      while (true)
+      {
+        InputStream localInputStream;
+        ArrayList localArrayList;
+        int m;
+        try
+        {
+          HttpURLConnection localHttpURLConnection = (HttpURLConnection)new URL("http://admarvel.s3.amazonaws.com/js/admarvel_mraid_v2_complete.js").openConnection();
+          localHttpURLConnection.setRequestMethod("GET");
+          localHttpURLConnection.setDoOutput(false);
+          localHttpURLConnection.setDoInput(true);
+          localHttpURLConnection.setUseCaches(false);
+          localHttpURLConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+          localHttpURLConnection.setRequestProperty("Content-Length", "0");
+          localHttpURLConnection.setConnectTimeout(2000);
+          localHttpURLConnection.setReadTimeout(10000);
+          int j = localHttpURLConnection.getResponseCode();
+          int k = localHttpURLConnection.getContentLength();
+          Logging.log("Mraid Connection Status Code: " + j);
+          Logging.log("Mraid Content Length: " + k);
+          if (j != 200)
+            break;
           localInputStream = (InputStream)localHttpURLConnection.getContent();
-          if ((!"gzip".equals(localHttpURLConnection.getContentEncoding())) || (ac.a() >= 9))
-            break label626;
+          if ((!"gzip".equals(localHttpURLConnection.getContentEncoding())) || (Version.getAndroidSDKVersion() >= 9))
+            break label633;
           localObject = new GZIPInputStream(localInputStream);
           localArrayList = new ArrayList();
           m = 0;
           int n = 8192;
           if (n == -1)
-            break label448;
+            break label455;
           byte[] arrayOfByte1 = new byte[8192];
           n = ((InputStream)localObject).read(arrayOfByte1, 0, 8192);
           if (n <= 0)
@@ -87,23 +109,15 @@ public class AdMarvelLocalFileContentProvider extends ContentProvider
           localArrayList.add(locala1);
           continue;
         }
-      }
-      catch (IOException localIOException1)
-      {
-        localIOException1.printStackTrace();
-      }
-      File localFile = new File(new File(AdMarvelView.a), "/data/com.admarvel.android.admarvelcachedads" + str1);
-      label448: byte[] arrayOfByte2;
-      if (localFile.exists())
-      {
-        Logging.log("AdMarvelLocalFileContentProvider::openFile: " + localFile.getAbsolutePath());
-        ParcelFileDescriptor localParcelFileDescriptor = ParcelFileDescriptor.open(localFile, 268435456);
-        if (localParcelFileDescriptor.getStatSize() > 0L)
+        catch (IOException localIOException1)
         {
-          return localParcelFileDescriptor;
-          ((InputStream)localObject).close();
-          if (m <= 0)
-            break label619;
+          localIOException1.printStackTrace();
+        }
+        break;
+        label455: ((InputStream)localObject).close();
+        byte[] arrayOfByte2;
+        if (m > 0)
+        {
           arrayOfByte2 = new byte[m];
           for (int i1 = 0; i1 < localArrayList.size(); i1++)
           {
@@ -112,24 +126,23 @@ public class AdMarvelLocalFileContentProvider extends ContentProvider
             i += locala2.b;
           }
         }
-      }
-      label619: for (String str2 = new String(arrayOfByte2); ; str2 = "")
-      {
-        FileOutputStream localFileOutputStream = getContext().openFileOutput("admarvel_mraid.js", 0);
-        try
+        for (String str2 = new String(arrayOfByte2); ; str2 = "")
         {
-          localFileOutputStream.write(str2.getBytes());
-          localFileOutputStream.close();
-          return ParcelFileDescriptor.open(new File("/data/data/" + getContext().getPackageName() + "/files", "admarvel_mraid.js"), 268435456);
+          FileOutputStream localFileOutputStream = getContext().openFileOutput("admarvel_mraid.js", 0);
+          try
+          {
+            localFileOutputStream.write(str2.getBytes());
+            localFileOutputStream.close();
+            return ParcelFileDescriptor.open(new File("/data/data/" + getContext().getPackageName() + "/files", "admarvel_mraid.js"), 268435456);
+          }
+          catch (IOException localIOException2)
+          {
+            while (true)
+              localIOException2.printStackTrace();
+          }
         }
-        catch (IOException localIOException2)
-        {
-          while (true)
-            localIOException2.printStackTrace();
-        }
-        return null;
+        label633: Object localObject = localInputStream;
       }
-      label626: Object localObject = localInputStream;
     }
   }
 
@@ -144,7 +157,7 @@ public class AdMarvelLocalFileContentProvider extends ContentProvider
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.AdMarvelLocalFileContentProvider
  * JD-Core Version:    0.6.2
  */

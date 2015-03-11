@@ -7,19 +7,19 @@ import java.util.Set;
 public final class Plus$PlusOptions
   implements Api.ApiOptions.Optional
 {
-  final String abr;
-  final Set<String> abs;
+  final String alb;
+  final Set<String> alc;
 
   private Plus$PlusOptions()
   {
-    this.abr = null;
-    this.abs = new HashSet();
+    this.alb = null;
+    this.alc = new HashSet();
   }
 
   private Plus$PlusOptions(Plus.PlusOptions.Builder paramBuilder)
   {
-    this.abr = paramBuilder.abr;
-    this.abs = paramBuilder.abs;
+    this.alb = paramBuilder.alb;
+    this.alc = paramBuilder.alc;
   }
 
   public static Plus.PlusOptions.Builder builder()
@@ -28,7 +28,7 @@ public final class Plus$PlusOptions
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.plus.Plus.PlusOptions
  * JD-Core Version:    0.6.2
  */

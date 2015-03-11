@@ -115,8 +115,8 @@ public class ProfilePictureView extends FrameLayout
   private void parseAttributes(AttributeSet paramAttributeSet)
   {
     TypedArray localTypedArray = getContext().obtainStyledAttributes(paramAttributeSet, R.styleable.com_facebook_profile_picture_view);
-    setPresetSize(localTypedArray.getInt(0, -1));
-    this.isCropped = localTypedArray.getBoolean(1, true);
+    setPresetSize(localTypedArray.getInt(R.styleable.com_facebook_profile_picture_view_preset_size, -1));
+    this.isCropped = localTypedArray.getBoolean(R.styleable.com_facebook_profile_picture_view_is_cropped, true);
     localTypedArray.recycle();
   }
 
@@ -415,7 +415,7 @@ public class ProfilePictureView extends FrameLayout
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.widget.ProfilePictureView
  * JD-Core Version:    0.6.2
  */

@@ -1,51 +1,76 @@
 package com.google.android.gms.internal;
 
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.os.Bundle;
 import android.os.Parcel;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
+import java.util.List;
 
-public class fi
+@ez
+public final class fi
   implements SafeParcelable
 {
   public static final fj CREATOR = new fj();
-  final int xM;
-  final String xQ;
-  final String xR;
-  final String xS;
+  public final ApplicationInfo applicationInfo;
+  public final String lA;
+  public final gt lD;
+  public final ay lH;
+  public final List<String> lS;
+  public final String tA;
+  public final String tB;
+  public final Bundle tC;
+  public final int tD;
+  public final Bundle tE;
+  public final boolean tF;
+  public final Bundle tw;
+  public final av tx;
+  public final PackageInfo ty;
+  public final String tz;
+  public final int versionCode;
 
-  fi(int paramInt, String paramString1, String paramString2, String paramString3)
+  fi(int paramInt1, Bundle paramBundle1, av paramav, ay paramay, String paramString1, ApplicationInfo paramApplicationInfo, PackageInfo paramPackageInfo, String paramString2, String paramString3, String paramString4, gt paramgt, Bundle paramBundle2, int paramInt2, List<String> paramList, Bundle paramBundle3, boolean paramBoolean)
   {
-    this.xM = paramInt;
-    this.xQ = paramString1;
-    this.xR = paramString2;
-    this.xS = paramString3;
+    this.versionCode = paramInt1;
+    this.tw = paramBundle1;
+    this.tx = paramav;
+    this.lH = paramay;
+    this.lA = paramString1;
+    this.applicationInfo = paramApplicationInfo;
+    this.ty = paramPackageInfo;
+    this.tz = paramString2;
+    this.tA = paramString3;
+    this.tB = paramString4;
+    this.lD = paramgt;
+    this.tC = paramBundle2;
+    this.tD = paramInt2;
+    this.lS = paramList;
+    this.tE = paramBundle3;
+    this.tF = paramBoolean;
   }
 
-  public fi(String paramString1, String paramString2, String paramString3)
+  public fi(Bundle paramBundle1, av paramav, ay paramay, String paramString1, ApplicationInfo paramApplicationInfo, PackageInfo paramPackageInfo, String paramString2, String paramString3, String paramString4, gt paramgt, Bundle paramBundle2, int paramInt, List<String> paramList, Bundle paramBundle3, boolean paramBoolean)
   {
-    this(1, paramString1, paramString2, paramString3);
+    this(4, paramBundle1, paramav, paramay, paramString1, paramApplicationInfo, paramPackageInfo, paramString2, paramString3, paramString4, paramgt, paramBundle2, paramInt, paramList, paramBundle3, paramBoolean);
   }
 
-  public int describeContents()
+  public fi(fi.a parama, String paramString)
+  {
+    this(parama.tw, parama.tx, parama.lH, parama.lA, parama.applicationInfo, parama.ty, paramString, parama.tA, parama.tB, parama.lD, parama.tC, parama.tD, parama.lS, parama.tE, parama.tF);
+  }
+
+  public final int describeContents()
   {
     return 0;
   }
 
-  public String toString()
-  {
-    Object[] arrayOfObject = new Object[3];
-    arrayOfObject[0] = this.xQ;
-    arrayOfObject[1] = this.xR;
-    arrayOfObject[2] = this.xS;
-    return String.format("DocumentId[packageName=%s, corpusName=%s, uri=%s]", arrayOfObject);
-  }
-
-  public void writeToParcel(Parcel paramParcel, int paramInt)
+  public final void writeToParcel(Parcel paramParcel, int paramInt)
   {
     fj.a(this, paramParcel, paramInt);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.fi
  * JD-Core Version:    0.6.2
  */

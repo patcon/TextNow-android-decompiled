@@ -6,15 +6,15 @@ import java.util.Map;
 
 public class AppVisibleCustomProperties$a
 {
-  private final Map<CustomPropertyKey, CustomProperty> JP = new HashMap();
+  private final Map<CustomPropertyKey, CustomProperty> PI = new HashMap();
 
-  public AppVisibleCustomProperties gD()
+  public AppVisibleCustomProperties im()
   {
-    return new AppVisibleCustomProperties(this.JP.values(), null);
+    return new AppVisibleCustomProperties(this.PI.values(), null);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.drive.metadata.internal.AppVisibleCustomProperties.a
  * JD-Core Version:    0.6.2
  */

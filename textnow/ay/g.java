@@ -1,44 +1,24 @@
 package textnow.ay;
 
-import java.util.ArrayList;
-import java.util.Map;
+import android.content.Context;
+import android.view.KeyEvent;
 
-public final class g
-  implements Runnable
+public final class g extends e
 {
-  Map<String, String> a;
-  d b;
-
-  public g(Map<String, String> paramMap, d paramd)
+  protected g(Context paramContext, String paramString, c paramc)
   {
-    this.a = paramd;
-    Object localObject;
-    this.b = localObject;
+    super(paramContext, paramString, paramc);
   }
 
-  public final void run()
+  public final boolean onKeyLongPress(int paramInt, KeyEvent paramKeyEvent)
   {
-    k localk = new k(this.b);
-    d.a(this.c).add(localk);
-    if (this.a.containsKey("data"))
-    {
-      String[] arrayOfString2 = new String[4];
-      arrayOfString2[0] = ((String)this.a.get("url"));
-      arrayOfString2[1] = ((String)this.a.get("type"));
-      arrayOfString2[2] = ((String)this.a.get("header"));
-      arrayOfString2[3] = ((String)this.a.get("data"));
-      localk.execute(arrayOfString2);
-      return;
-    }
-    String[] arrayOfString1 = new String[3];
-    arrayOfString1[0] = ((String)this.a.get("url"));
-    arrayOfString1[1] = ((String)this.a.get("type"));
-    arrayOfString1[2] = ((String)this.a.get("header"));
-    localk.execute(arrayOfString1);
+    if (paramInt == 84)
+      return true;
+    return super.onKeyLongPress(paramInt, paramKeyEvent);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.ay.g
  * JD-Core Version:    0.6.2
  */

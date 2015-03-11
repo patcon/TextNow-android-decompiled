@@ -1,14 +1,29 @@
 package textnow.bd;
 
-final class ad
+final class ad extends n
 {
-  public static boolean a(String paramString)
+  private final boolean a;
+
+  private ad(boolean paramBoolean)
   {
-    return (paramString == null) || (paramString.length() == 0);
+    this.a = paramBoolean;
+  }
+
+  public static ad a(boolean paramBoolean)
+  {
+    return new ad(paramBoolean);
+  }
+
+  public final String a()
+  {
+    StringBuilder localStringBuilder = new StringBuilder().append("viewable: ");
+    if (this.a);
+    for (String str = "true"; ; str = "false")
+      return str;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.bd.ad
  * JD-Core Version:    0.6.2
  */

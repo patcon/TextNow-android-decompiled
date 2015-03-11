@@ -11,20 +11,20 @@ public class q
 {
   static void a(p paramp, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
+    int i = b.D(paramParcel);
     b.c(paramParcel, 1, paramp.getVersionCode());
-    b.a(paramParcel, 2, paramp.akZ, false);
-    b.a(paramParcel, 3, paramp.qe, false);
-    b.a(paramParcel, 4, paramp.ald, paramInt, false);
-    b.a(paramParcel, 5, paramp.ale, paramInt, false);
-    b.a(paramParcel, 6, paramp.alf, paramInt, false);
-    b.G(paramParcel, i);
+    b.a(paramParcel, 2, paramp.auJ, false);
+    b.a(paramParcel, 3, paramp.tG, false);
+    b.a(paramParcel, 4, paramp.auN, paramInt, false);
+    b.a(paramParcel, 5, paramp.auO, paramInt, false);
+    b.a(paramParcel, 6, paramp.auP, paramInt, false);
+    b.H(paramParcel, i);
   }
 
-  public p cr(Parcel paramParcel)
+  public p dO(Parcel paramParcel)
   {
     n localn1 = null;
-    int i = a.B(paramParcel);
+    int i = a.C(paramParcel);
     int j = 0;
     n localn2 = null;
     l locall = null;
@@ -32,8 +32,8 @@ public class q
     String str2 = null;
     while (paramParcel.dataPosition() < i)
     {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
       {
       default:
         a.b(paramParcel, k);
@@ -62,13 +62,13 @@ public class q
     return new p(j, str2, str1, locall, localn2, localn1);
   }
 
-  public p[] dZ(int paramInt)
+  public p[] fR(int paramInt)
   {
     return new p[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.wobs.q
  * JD-Core Version:    0.6.2
  */

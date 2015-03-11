@@ -1,60 +1,46 @@
 package com.google.android.gms.internal;
 
-import android.content.ActivityNotFoundException;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.text.TextUtils;
+import java.util.HashMap;
+import java.util.Map;
 
-public final class cc
+@ez
+public class cc
+  implements by
 {
-  public static boolean a(Context paramContext, ce paramce, cl paramcl)
+  static final Map<String, Integer> pK;
+
+  static
   {
-    if (paramce == null)
+    HashMap localHashMap = new HashMap();
+    pK = localHashMap;
+    localHashMap.put("resize", Integer.valueOf(1));
+    pK.put("playVideo", Integer.valueOf(2));
+    pK.put("storePicture", Integer.valueOf(3));
+    pK.put("createCalendarEvent", Integer.valueOf(4));
+  }
+
+  public void a(gv paramgv, Map<String, String> paramMap)
+  {
+    String str = (String)paramMap.get("a");
+    switch (((Integer)pK.get(str)).intValue())
     {
-      eu.D("No intent data for launcher overlay.");
-      return false;
+    case 2:
+    default:
+      gs.U("Unknown MRAID command called.");
+      return;
+    case 1:
+      new dd(paramgv, paramMap).execute();
+      return;
+    case 4:
+      new dc(paramgv, paramMap).execute();
+      return;
+    case 3:
     }
-    Intent localIntent = new Intent();
-    if (TextUtils.isEmpty(paramce.ob))
-    {
-      eu.D("Open GMSG did not contain a URL.");
-      return false;
-    }
-    if (!TextUtils.isEmpty(paramce.mimeType))
-      localIntent.setDataAndType(Uri.parse(paramce.ob), paramce.mimeType);
-    String[] arrayOfString;
-    while (true)
-    {
-      localIntent.setAction("android.intent.action.VIEW");
-      if (!TextUtils.isEmpty(paramce.packageName))
-        localIntent.setPackage(paramce.packageName);
-      if (TextUtils.isEmpty(paramce.oc))
-        break label172;
-      arrayOfString = paramce.oc.split("/", 2);
-      if (arrayOfString.length >= 2)
-        break;
-      eu.D("Could not parse component name from open GMSG: " + paramce.oc);
-      return false;
-      localIntent.setData(Uri.parse(paramce.ob));
-    }
-    localIntent.setClassName(arrayOfString[0], arrayOfString[1]);
-    try
-    {
-      label172: eu.C("Launching an intent: " + localIntent);
-      paramContext.startActivity(localIntent);
-      paramcl.Y();
-      return true;
-    }
-    catch (ActivityNotFoundException localActivityNotFoundException)
-    {
-      eu.D(localActivityNotFoundException.getMessage());
-    }
-    return false;
+    new de(paramgv, paramMap).execute();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.cc
  * JD-Core Version:    0.6.2
  */

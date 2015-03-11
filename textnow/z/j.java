@@ -1,85 +1,44 @@
 package textnow.z;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import textnow.v.b;
 
-public final class j extends m
-  implements Iterable<m>
+public final class j
 {
-  private final List<m> a = new ArrayList();
+  private String a;
+  private String b;
+  private List<k> c;
 
-  public final int a()
+  public final String a()
   {
-    return this.a.size();
+    return this.a;
   }
 
-  public final void a(m paramm)
+  public final void a(String paramString)
   {
-    if (paramm == null)
-      paramm = o.a;
-    this.a.add(paramm);
+    this.a = paramString;
   }
 
-  public final Number b()
+  public final void a(List<k> paramList)
   {
-    if (this.a.size() == 1)
-      return ((m)this.a.get(0)).b();
-    throw new IllegalStateException();
+    this.c = paramList;
   }
 
-  public final String c()
+  public final void b(String paramString)
   {
-    if (this.a.size() == 1)
-      return ((m)this.a.get(0)).c();
-    throw new IllegalStateException();
+    this.b = paramString;
   }
 
-  public final double d()
+  public final String toString()
   {
-    if (this.a.size() == 1)
-      return ((m)this.a.get(0)).d();
-    throw new IllegalStateException();
-  }
-
-  public final long e()
-  {
-    if (this.a.size() == 1)
-      return ((m)this.a.get(0)).e();
-    throw new IllegalStateException();
-  }
-
-  public final boolean equals(Object paramObject)
-  {
-    return (paramObject == this) || (((paramObject instanceof j)) && (((j)paramObject).a.equals(this.a)));
-  }
-
-  public final int f()
-  {
-    if (this.a.size() == 1)
-      return ((m)this.a.get(0)).f();
-    throw new IllegalStateException();
-  }
-
-  public final boolean g()
-  {
-    if (this.a.size() == 1)
-      return ((m)this.a.get(0)).g();
-    throw new IllegalStateException();
-  }
-
-  public final int hashCode()
-  {
-    return this.a.hashCode();
-  }
-
-  public final Iterator<m> iterator()
-  {
-    return this.a.iterator();
+    String str = "null";
+    if (this.c != null)
+      str = "{" + b.a(this.c, ",") + "}";
+    return "title=[" + this.a + "] contact_value=[" + this.b + "] members=[" + str + "]";
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.z.j
  * JD-Core Version:    0.6.2
  */

@@ -1,51 +1,94 @@
 package com.google.android.gms.internal;
 
-import android.os.Build.VERSION;
+import android.text.TextUtils;
 
-public final class ip
+public class ip
 {
-  private static boolean aF(int paramInt)
+  private static boolean GX = false;
+  private boolean GY;
+  private boolean GZ;
+  private String Ha;
+  private final String mTag;
+
+  public ip(String paramString)
   {
-    return Build.VERSION.SDK_INT >= paramInt;
+    this(paramString, fS());
   }
 
-  public static boolean gc()
+  public ip(String paramString, boolean paramBoolean)
   {
-    return aF(11);
+    this.mTag = paramString;
+    this.GY = paramBoolean;
+    this.GZ = false;
   }
 
-  public static boolean gd()
+  private String e(String paramString, Object[] paramArrayOfObject)
   {
-    return aF(12);
+    if (paramArrayOfObject.length == 0);
+    while (true)
+    {
+      if (!TextUtils.isEmpty(this.Ha))
+        paramString = this.Ha + paramString;
+      return paramString;
+      paramString = String.format(paramString, paramArrayOfObject);
+    }
   }
 
-  public static boolean ge()
+  public static boolean fS()
   {
-    return aF(13);
+    return GX;
   }
 
-  public static boolean gf()
+  public void a(String paramString, Object[] paramArrayOfObject)
   {
-    return aF(14);
+    if (fR())
+      e(paramString, paramArrayOfObject);
   }
 
-  public static boolean gg()
+  public void a(Throwable paramThrowable, String paramString, Object[] paramArrayOfObject)
   {
-    return aF(16);
+    if ((fQ()) || (GX))
+      e(paramString, paramArrayOfObject);
   }
 
-  public static boolean gh()
+  public void aK(String paramString)
   {
-    return aF(17);
+    if (TextUtils.isEmpty(paramString));
+    for (String str = null; ; str = String.format("[%s] ", new Object[] { paramString }))
+    {
+      this.Ha = str;
+      return;
+    }
   }
 
-  public static boolean gi()
+  public void b(String paramString, Object[] paramArrayOfObject)
   {
-    return aF(19);
+    if ((fQ()) || (GX))
+      e(paramString, paramArrayOfObject);
+  }
+
+  public void c(String paramString, Object[] paramArrayOfObject)
+  {
+    e(paramString, paramArrayOfObject);
+  }
+
+  public void d(String paramString, Object[] paramArrayOfObject)
+  {
+    e(paramString, paramArrayOfObject);
+  }
+
+  public boolean fQ()
+  {
+    return this.GY;
+  }
+
+  public boolean fR()
+  {
+    return this.GZ;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ip
  * JD-Core Version:    0.6.2
  */

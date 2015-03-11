@@ -1,30 +1,36 @@
 package com.enflick.android.TextNow.activities;
 
-import android.database.ContentObserver;
-import android.net.Uri;
-import android.os.Handler;
-import textnow.q.q;
+import com.enflick.android.TextNow.tasks.c;
 
-final class k extends ContentObserver
+public final class k extends av
 {
-  public k(MainActivity paramMainActivity)
+  public final boolean a(c paramc, boolean paramBoolean)
   {
-    super(new Handler());
+    return false;
   }
 
-  public final void onChange(boolean paramBoolean)
+  public final String l()
   {
-    onChange(paramBoolean, null);
+    return null;
   }
 
-  public final void onChange(boolean paramBoolean, Uri paramUri)
+  public final String m()
   {
-    q.a(this.a).e();
-    MainActivity.d(this.a);
+    return null;
+  }
+
+  public final boolean o()
+  {
+    return false;
+  }
+
+  public final void onResume()
+  {
+    super.onResume();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.activities.k
  * JD-Core Version:    0.6.2
  */

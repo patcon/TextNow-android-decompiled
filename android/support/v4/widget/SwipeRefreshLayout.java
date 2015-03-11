@@ -5,8 +5,7 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Build.VERSION;
-import android.support.v4.view.ab;
-import android.support.v4.view.aq;
+import android.support.v4.view.af;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
@@ -85,7 +84,7 @@ public class SwipeRefreshLayout extends ViewGroup
   protected int a;
   protected int b;
   private View d;
-  private an e;
+  private av e;
   private boolean f = false;
   private int g;
   private float h = -1.0F;
@@ -98,10 +97,10 @@ public class SwipeRefreshLayout extends ViewGroup
   private boolean o;
   private boolean p;
   private final DecelerateInterpolator q;
-  private a s;
+  private d s;
   private int t = -1;
   private float u;
-  private v v;
+  private z v;
   private Animation w;
   private Animation x;
   private Animation y;
@@ -125,23 +124,23 @@ public class SwipeRefreshLayout extends ViewGroup
     DisplayMetrics localDisplayMetrics = getResources().getDisplayMetrics();
     this.C = ((int)(40.0F * localDisplayMetrics.density));
     this.D = ((int)(40.0F * localDisplayMetrics.density));
-    this.s = new a(getContext(), -328966, 20.0F);
-    this.v = new v(getContext(), this);
+    this.s = new d(getContext(), -328966, 20.0F);
+    this.v = new z(getContext(), this);
     this.v.a(-328966);
     this.s.setImageDrawable(this.v);
     this.s.setVisibility(8);
     addView(this.s);
-    aq.a(this, true);
+    android.support.v4.view.av.a(this, true);
     this.A = (64.0F * localDisplayMetrics.density);
     this.h = this.A;
   }
 
   private static float a(MotionEvent paramMotionEvent, int paramInt)
   {
-    int i1 = ab.a(paramMotionEvent, paramInt);
+    int i1 = af.a(paramMotionEvent, paramInt);
     if (i1 < 0)
       return -1.0F;
-    return ab.d(paramMotionEvent, i1);
+    return af.d(paramMotionEvent, i1);
   }
 
   private Animation a(final int paramInt1, final int paramInt2)
@@ -169,8 +168,8 @@ public class SwipeRefreshLayout extends ViewGroup
       a((int)(255.0F * paramFloat));
       return;
     }
-    aq.a(this.s, paramFloat);
-    aq.b(this.s, paramFloat);
+    android.support.v4.view.av.d(this.s, paramFloat);
+    android.support.v4.view.av.e(this.s, paramFloat);
   }
 
   private void a(int paramInt)
@@ -190,13 +189,13 @@ public class SwipeRefreshLayout extends ViewGroup
 
   private void a(MotionEvent paramMotionEvent)
   {
-    int i1 = ab.b(paramMotionEvent);
-    if (ab.b(paramMotionEvent, i1) == this.n)
+    int i1 = af.b(paramMotionEvent);
+    if (af.b(paramMotionEvent, i1) == this.n)
       if (i1 != 0)
         break label33;
     label33: for (int i2 = 1; ; i2 = 0)
     {
-      this.n = ab.b(paramMotionEvent, i2);
+      this.n = af.b(paramMotionEvent, i2);
       return;
     }
   }
@@ -281,12 +280,12 @@ public class SwipeRefreshLayout extends ViewGroup
       }
       return this.d.getScrollY() > 0;
     }
-    return aq.b(this.d, -1);
+    return android.support.v4.view.av.b(this.d, -1);
   }
 
-  public final void a(an paraman)
+  public final void a(av paramav)
   {
-    this.e = paraman;
+    this.e = paramav;
   }
 
   public final void a(boolean paramBoolean)
@@ -320,7 +319,7 @@ public class SwipeRefreshLayout extends ViewGroup
   public boolean onInterceptTouchEvent(MotionEvent paramMotionEvent)
   {
     b();
-    int i1 = ab.a(paramMotionEvent);
+    int i1 = af.a(paramMotionEvent);
     if ((this.p) && (i1 == 0))
       this.p = false;
     if ((!isEnabled()) || (this.p) || (c()) || (this.f))
@@ -340,7 +339,7 @@ public class SwipeRefreshLayout extends ViewGroup
     {
       return this.m;
       a(this.b - this.s.getTop(), true);
-      this.n = ab.b(paramMotionEvent, 0);
+      this.n = af.b(paramMotionEvent, 0);
       this.m = false;
       float f2 = a(paramMotionEvent, this.n);
       if (f2 == -1.0F)
@@ -417,7 +416,7 @@ public class SwipeRefreshLayout extends ViewGroup
 
   public boolean onTouchEvent(MotionEvent paramMotionEvent)
   {
-    int i1 = ab.a(paramMotionEvent);
+    int i1 = af.a(paramMotionEvent);
     if ((this.p) && (i1 == 0))
       this.p = false;
     if ((!isEnabled()) || (this.p) || (c()))
@@ -433,13 +432,13 @@ public class SwipeRefreshLayout extends ViewGroup
       while (true)
       {
         return true;
-        this.n = ab.b(paramMotionEvent, 0);
+        this.n = af.b(paramMotionEvent, 0);
         this.m = false;
         continue;
-        int i3 = ab.a(paramMotionEvent, this.n);
+        int i3 = af.a(paramMotionEvent, this.n);
         if (i3 < 0)
           return false;
-        float f2 = 0.5F * (ab.d(paramMotionEvent, i3) - this.l);
+        float f2 = 0.5F * (af.d(paramMotionEvent, i3) - this.l);
         if (this.m)
         {
           this.v.a(true);
@@ -463,8 +462,8 @@ public class SwipeRefreshLayout extends ViewGroup
               this.s.setVisibility(0);
             if (!this.o)
             {
-              aq.a(this.s, 1.0F);
-              aq.b(this.s, 1.0F);
+              android.support.v4.view.av.d(this.s, 1.0F);
+              android.support.v4.view.av.e(this.s, 1.0F);
             }
             if (f2 >= this.h)
               break label510;
@@ -487,7 +486,7 @@ public class SwipeRefreshLayout extends ViewGroup
             label510: if ((this.v.getAlpha() < 255) && (!a(this.y)))
               this.y = a(this.v.getAlpha(), 255);
           }
-          this.n = ab.b(paramMotionEvent, ab.b(paramMotionEvent));
+          this.n = af.b(paramMotionEvent, af.b(paramMotionEvent));
           continue;
           a(paramMotionEvent);
         }
@@ -500,7 +499,7 @@ public class SwipeRefreshLayout extends ViewGroup
       if (i1 == 1);
       return false;
     }
-    float f1 = 0.5F * (ab.d(paramMotionEvent, ab.a(paramMotionEvent, this.n)) - this.l);
+    float f1 = 0.5F * (af.d(paramMotionEvent, af.a(paramMotionEvent, this.n)) - this.l);
     this.m = false;
     if (f1 > this.h)
     {
@@ -556,7 +555,7 @@ public class SwipeRefreshLayout extends ViewGroup
     {
       this.v.a(false);
       break;
-      this.u = aq.h(this.s);
+      this.u = android.support.v4.view.av.r(this.s);
       break label720;
       this.a = i2;
       this.H.reset();
@@ -574,7 +573,7 @@ public class SwipeRefreshLayout extends ViewGroup
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.widget.SwipeRefreshLayout
  * JD-Core Version:    0.6.2
  */

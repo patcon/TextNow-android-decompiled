@@ -1,92 +1,205 @@
 package com.google.android.gms.internal;
 
-import android.content.Intent;
-import android.os.Bundle;
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.os.RemoteException;
+import com.google.android.gms.ads.mediation.MediationBannerAdapter;
+import com.google.android.gms.ads.mediation.MediationBannerListener;
+import com.google.android.gms.ads.mediation.MediationInterstitialAdapter;
+import com.google.android.gms.ads.mediation.MediationInterstitialListener;
+import com.google.android.gms.common.internal.o;
 
+@ez
 public final class cy
+  implements MediationBannerListener, MediationInterstitialListener
 {
-  public static int a(Bundle paramBundle)
+  private final cv qF;
+
+  public cy(cv paramcv)
   {
-    Object localObject = paramBundle.get("RESPONSE_CODE");
-    if (localObject == null)
-    {
-      eu.D("Bundle with null response code, assuming OK (known issue)");
-      return 0;
-    }
-    if ((localObject instanceof Integer))
-      return ((Integer)localObject).intValue();
-    if ((localObject instanceof Long))
-      return (int)((Long)localObject).longValue();
-    eu.D("Unexpected type for intent response code. " + localObject.getClass().getName());
-    return 5;
+    this.qF = paramcv;
   }
 
-  public static int c(Intent paramIntent)
+  public final void onAdClicked(MediationBannerAdapter paramMediationBannerAdapter)
   {
-    Object localObject = paramIntent.getExtras().get("RESPONSE_CODE");
-    if (localObject == null)
-    {
-      eu.D("Intent with no response code, assuming OK (known issue)");
-      return 0;
-    }
-    if ((localObject instanceof Integer))
-      return ((Integer)localObject).intValue();
-    if ((localObject instanceof Long))
-      return (int)((Long)localObject).longValue();
-    eu.D("Unexpected type for intent response code. " + localObject.getClass().getName());
-    return 5;
-  }
-
-  public static String d(Intent paramIntent)
-  {
-    if (paramIntent == null)
-      return null;
-    return paramIntent.getStringExtra("INAPP_PURCHASE_DATA");
-  }
-
-  public static String e(Intent paramIntent)
-  {
-    if (paramIntent == null)
-      return null;
-    return paramIntent.getStringExtra("INAPP_DATA_SIGNATURE");
-  }
-
-  public static String p(String paramString)
-  {
-    if (paramString == null)
-      return null;
+    o.aT("onAdClicked must be called on the main UI thread.");
+    gs.S("Adapter called onAdClicked.");
     try
     {
-      String str = new JSONObject(paramString).getString("developerPayload");
-      return str;
+      this.qF.onAdClicked();
+      return;
     }
-    catch (JSONException localJSONException)
+    catch (RemoteException localRemoteException)
     {
-      eu.D("Fail to parse purchase data");
+      gs.d("Could not call onAdClicked.", localRemoteException);
     }
-    return null;
   }
 
-  public static String q(String paramString)
+  public final void onAdClicked(MediationInterstitialAdapter paramMediationInterstitialAdapter)
   {
-    if (paramString == null)
-      return null;
+    o.aT("onAdClicked must be called on the main UI thread.");
+    gs.S("Adapter called onAdClicked.");
     try
     {
-      String str = new JSONObject(paramString).getString("purchaseToken");
-      return str;
+      this.qF.onAdClicked();
+      return;
     }
-    catch (JSONException localJSONException)
+    catch (RemoteException localRemoteException)
     {
-      eu.D("Fail to parse purchase data");
+      gs.d("Could not call onAdClicked.", localRemoteException);
     }
-    return null;
+  }
+
+  public final void onAdClosed(MediationBannerAdapter paramMediationBannerAdapter)
+  {
+    o.aT("onAdClosed must be called on the main UI thread.");
+    gs.S("Adapter called onAdClosed.");
+    try
+    {
+      this.qF.onAdClosed();
+      return;
+    }
+    catch (RemoteException localRemoteException)
+    {
+      gs.d("Could not call onAdClosed.", localRemoteException);
+    }
+  }
+
+  public final void onAdClosed(MediationInterstitialAdapter paramMediationInterstitialAdapter)
+  {
+    o.aT("onAdClosed must be called on the main UI thread.");
+    gs.S("Adapter called onAdClosed.");
+    try
+    {
+      this.qF.onAdClosed();
+      return;
+    }
+    catch (RemoteException localRemoteException)
+    {
+      gs.d("Could not call onAdClosed.", localRemoteException);
+    }
+  }
+
+  public final void onAdFailedToLoad(MediationBannerAdapter paramMediationBannerAdapter, int paramInt)
+  {
+    o.aT("onAdFailedToLoad must be called on the main UI thread.");
+    gs.S("Adapter called onAdFailedToLoad with error. " + paramInt);
+    try
+    {
+      this.qF.onAdFailedToLoad(paramInt);
+      return;
+    }
+    catch (RemoteException localRemoteException)
+    {
+      gs.d("Could not call onAdFailedToLoad.", localRemoteException);
+    }
+  }
+
+  public final void onAdFailedToLoad(MediationInterstitialAdapter paramMediationInterstitialAdapter, int paramInt)
+  {
+    o.aT("onAdFailedToLoad must be called on the main UI thread.");
+    gs.S("Adapter called onAdFailedToLoad with error " + paramInt + ".");
+    try
+    {
+      this.qF.onAdFailedToLoad(paramInt);
+      return;
+    }
+    catch (RemoteException localRemoteException)
+    {
+      gs.d("Could not call onAdFailedToLoad.", localRemoteException);
+    }
+  }
+
+  public final void onAdLeftApplication(MediationBannerAdapter paramMediationBannerAdapter)
+  {
+    o.aT("onAdLeftApplication must be called on the main UI thread.");
+    gs.S("Adapter called onAdLeftApplication.");
+    try
+    {
+      this.qF.onAdLeftApplication();
+      return;
+    }
+    catch (RemoteException localRemoteException)
+    {
+      gs.d("Could not call onAdLeftApplication.", localRemoteException);
+    }
+  }
+
+  public final void onAdLeftApplication(MediationInterstitialAdapter paramMediationInterstitialAdapter)
+  {
+    o.aT("onAdLeftApplication must be called on the main UI thread.");
+    gs.S("Adapter called onAdLeftApplication.");
+    try
+    {
+      this.qF.onAdLeftApplication();
+      return;
+    }
+    catch (RemoteException localRemoteException)
+    {
+      gs.d("Could not call onAdLeftApplication.", localRemoteException);
+    }
+  }
+
+  public final void onAdLoaded(MediationBannerAdapter paramMediationBannerAdapter)
+  {
+    o.aT("onAdLoaded must be called on the main UI thread.");
+    gs.S("Adapter called onAdLoaded.");
+    try
+    {
+      this.qF.onAdLoaded();
+      return;
+    }
+    catch (RemoteException localRemoteException)
+    {
+      gs.d("Could not call onAdLoaded.", localRemoteException);
+    }
+  }
+
+  public final void onAdLoaded(MediationInterstitialAdapter paramMediationInterstitialAdapter)
+  {
+    o.aT("onAdLoaded must be called on the main UI thread.");
+    gs.S("Adapter called onAdLoaded.");
+    try
+    {
+      this.qF.onAdLoaded();
+      return;
+    }
+    catch (RemoteException localRemoteException)
+    {
+      gs.d("Could not call onAdLoaded.", localRemoteException);
+    }
+  }
+
+  public final void onAdOpened(MediationBannerAdapter paramMediationBannerAdapter)
+  {
+    o.aT("onAdOpened must be called on the main UI thread.");
+    gs.S("Adapter called onAdOpened.");
+    try
+    {
+      this.qF.onAdOpened();
+      return;
+    }
+    catch (RemoteException localRemoteException)
+    {
+      gs.d("Could not call onAdOpened.", localRemoteException);
+    }
+  }
+
+  public final void onAdOpened(MediationInterstitialAdapter paramMediationInterstitialAdapter)
+  {
+    o.aT("onAdOpened must be called on the main UI thread.");
+    gs.S("Adapter called onAdOpened.");
+    try
+    {
+      this.qF.onAdOpened();
+      return;
+    }
+    catch (RemoteException localRemoteException)
+    {
+      gs.d("Could not call onAdOpened.", localRemoteException);
+    }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.cy
  * JD-Core Version:    0.6.2
  */

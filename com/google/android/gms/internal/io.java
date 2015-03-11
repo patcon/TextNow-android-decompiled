@@ -1,40 +1,38 @@
 package com.google.android.gms.internal;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Set;
+import android.os.IInterface;
+import com.google.android.gms.cast.ApplicationMetadata;
 
-public class io
+public abstract interface io extends IInterface
 {
-  public static void a(StringBuilder paramStringBuilder, HashMap<String, String> paramHashMap)
-  {
-    paramStringBuilder.append("{");
-    Iterator localIterator = paramHashMap.keySet().iterator();
-    int i = 1;
-    while (localIterator.hasNext())
-    {
-      String str1 = (String)localIterator.next();
-      if (i == 0)
-        paramStringBuilder.append(",");
-      String str2;
-      for (int j = i; ; j = 0)
-      {
-        str2 = (String)paramHashMap.get(str1);
-        paramStringBuilder.append("\"").append(str1).append("\":");
-        if (str2 != null)
-          break label109;
-        paramStringBuilder.append("null");
-        i = j;
-        break;
-      }
-      label109: paramStringBuilder.append("\"").append(str2).append("\"");
-      i = j;
-    }
-    paramStringBuilder.append("}");
-  }
+  public abstract void a(ApplicationMetadata paramApplicationMetadata, String paramString1, String paramString2, boolean paramBoolean);
+
+  public abstract void a(String paramString, double paramDouble, boolean paramBoolean);
+
+  public abstract void a(String paramString, long paramLong);
+
+  public abstract void a(String paramString, long paramLong, int paramInt);
+
+  public abstract void ac(int paramInt);
+
+  public abstract void ad(int paramInt);
+
+  public abstract void ae(int paramInt);
+
+  public abstract void af(int paramInt);
+
+  public abstract void b(ig paramig);
+
+  public abstract void b(il paramil);
+
+  public abstract void b(String paramString, byte[] paramArrayOfByte);
+
+  public abstract void k(String paramString1, String paramString2);
+
+  public abstract void onApplicationDisconnected(int paramInt);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.io
  * JD-Core Version:    0.6.2
  */

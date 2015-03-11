@@ -78,7 +78,7 @@ public class EmoticonPanel extends IndicatedViewFlipper
         c().c();
         i++;
       }
-      c().b(0);
+      c().e(0);
       return;
     }
     c().setVisibility(8);
@@ -91,12 +91,12 @@ public class EmoticonPanel extends IndicatedViewFlipper
     ImageView localImageView = (ImageView)c().findViewWithTag("page0");
     c().b();
     c().a(localImageView);
-    c().a(0);
+    c().d(0);
     a(a());
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.views.emoticons.EmoticonPanel
  * JD-Core Version:    0.6.2
  */

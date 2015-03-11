@@ -1,135 +1,44 @@
 package com.google.android.gms.internal;
 
-import android.content.Context;
-import android.location.Location;
-import android.os.Bundle;
-import com.google.android.gms.ads.mediation.MediationAdapter;
-import com.google.android.gms.ads.mediation.NetworkExtras;
-import com.google.android.gms.ads.mediation.customevent.CustomEvent;
-import com.google.android.gms.ads.search.SearchAdRequest;
-import java.util.Collections;
-import java.util.Date;
-import java.util.Map;
-import java.util.Set;
+import com.google.android.gms.ads.AdListener;
 
-public final class at
+@ez
+public final class at extends bc.a
 {
-  public static final String DEVICE_ID_EMULATOR = et.y("emulator");
-  private final Date d;
-  private final Set<String> f;
-  private final Location h;
-  private final String mk;
-  private final int ml;
-  private final boolean mm;
-  private final Bundle mn;
-  private final Map<Class<? extends NetworkExtras>, NetworkExtras> mo;
-  private final String mp;
-  private final SearchAdRequest mq;
-  private final int mr;
-  private final Set<String> ms;
+  private final AdListener nR;
 
-  public at(at.a parama)
+  public at(AdListener paramAdListener)
   {
-    this(parama, null);
+    this.nR = paramAdListener;
   }
 
-  public at(at.a parama, SearchAdRequest paramSearchAdRequest)
+  public final void onAdClosed()
   {
-    this.d = at.a.a(parama);
-    this.mk = at.a.b(parama);
-    this.ml = at.a.c(parama);
-    this.f = Collections.unmodifiableSet(at.a.d(parama));
-    this.h = at.a.e(parama);
-    this.mm = at.a.f(parama);
-    this.mn = at.a.g(parama);
-    this.mo = Collections.unmodifiableMap(at.a.h(parama));
-    this.mp = at.a.i(parama);
-    this.mq = paramSearchAdRequest;
-    this.mr = at.a.j(parama);
-    this.ms = Collections.unmodifiableSet(at.a.k(parama));
+    this.nR.onAdClosed();
   }
 
-  public final SearchAdRequest aH()
+  public final void onAdFailedToLoad(int paramInt)
   {
-    return this.mq;
+    this.nR.onAdFailedToLoad(paramInt);
   }
 
-  public final Map<Class<? extends NetworkExtras>, NetworkExtras> aI()
+  public final void onAdLeftApplication()
   {
-    return this.mo;
+    this.nR.onAdLeftApplication();
   }
 
-  public final Bundle aJ()
+  public final void onAdLoaded()
   {
-    return this.mn;
+    this.nR.onAdLoaded();
   }
 
-  public final int aK()
+  public final void onAdOpened()
   {
-    return this.mr;
-  }
-
-  public final Date getBirthday()
-  {
-    return this.d;
-  }
-
-  public final String getContentUrl()
-  {
-    return this.mk;
-  }
-
-  public final Bundle getCustomEventExtrasBundle(Class<? extends CustomEvent> paramClass)
-  {
-    Bundle localBundle = this.mn.getBundle("com.google.android.gms.ads.mediation.customevent.CustomEventAdapter");
-    if (localBundle != null)
-      return localBundle.getBundle(paramClass.getClass().getName());
-    return null;
-  }
-
-  public final int getGender()
-  {
-    return this.ml;
-  }
-
-  public final Set<String> getKeywords()
-  {
-    return this.f;
-  }
-
-  public final Location getLocation()
-  {
-    return this.h;
-  }
-
-  public final boolean getManualImpressionsEnabled()
-  {
-    return this.mm;
-  }
-
-  @Deprecated
-  public final <T extends NetworkExtras> T getNetworkExtras(Class<T> paramClass)
-  {
-    return (NetworkExtras)this.mo.get(paramClass);
-  }
-
-  public final Bundle getNetworkExtrasBundle(Class<? extends MediationAdapter> paramClass)
-  {
-    return this.mn.getBundle(paramClass.getName());
-  }
-
-  public final String getPublisherProvidedId()
-  {
-    return this.mp;
-  }
-
-  public final boolean isTestDevice(Context paramContext)
-  {
-    return this.ms.contains(et.r(paramContext));
+    this.nR.onAdOpened();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.at
  * JD-Core Version:    0.6.2
  */

@@ -1,7 +1,6 @@
 package com.admarvel.android.ads;
 
 import android.content.Context;
-import android.os.Handler;
 import java.lang.ref.WeakReference;
 import java.util.Map;
 
@@ -18,9 +17,8 @@ class AdMarvelInterstitialAds$a
   private final int h;
   private final String i;
   private final WeakReference<Context> j;
-  private final Handler k;
 
-  public AdMarvelInterstitialAds$a(Map<String, Object> paramMap, String paramString1, String paramString2, String paramString3, int paramInt1, String paramString4, AdMarvelInterstitialAds paramAdMarvelInterstitialAds, int paramInt2, String paramString5, Context paramContext, Handler paramHandler)
+  public AdMarvelInterstitialAds$a(Map<String, Object> paramMap, String paramString1, String paramString2, String paramString3, int paramInt1, String paramString4, AdMarvelInterstitialAds paramAdMarvelInterstitialAds, int paramInt2, String paramString5, Context paramContext)
   {
     this.a = paramMap;
     this.b = paramString1;
@@ -32,7 +30,6 @@ class AdMarvelInterstitialAds$a
     this.h = paramInt2;
     this.i = paramString5;
     this.j = new WeakReference(paramContext);
-    this.k = paramHandler;
   }
 
   public void run()
@@ -41,8 +38,8 @@ class AdMarvelInterstitialAds$a
     Context localContext = (Context)this.j.get();
     if ((localAdMarvelInterstitialAds != null) && (localContext != null))
     {
-      j localj = new j(localContext);
-      Object[] arrayOfObject = new Object[10];
+      f localf = new f(localContext);
+      Object[] arrayOfObject = new Object[9];
       arrayOfObject[0] = this.a;
       arrayOfObject[1] = this.b;
       arrayOfObject[2] = this.c;
@@ -52,13 +49,12 @@ class AdMarvelInterstitialAds$a
       arrayOfObject[6] = localAdMarvelInterstitialAds;
       arrayOfObject[7] = Integer.valueOf(this.h);
       arrayOfObject[8] = this.i;
-      arrayOfObject[9] = this.k;
-      localj.execute(arrayOfObject);
+      localf.execute(arrayOfObject);
     }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.AdMarvelInterstitialAds.a
  * JD-Core Version:    0.6.2
  */

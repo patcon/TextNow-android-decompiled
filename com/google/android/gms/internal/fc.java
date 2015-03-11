@@ -1,115 +1,108 @@
 package com.google.android.gms.internal;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import java.net.URI;
-import java.net.URISyntaxException;
 
-public class fc extends WebViewClient
+@ez
+public class fc
+  implements Runnable
 {
-  private final ex lN;
-  private final String sT = G(paramString);
-  private boolean sU = false;
-  private final do sV;
+  private final int lf;
+  private final int lg;
+  protected final gv md;
+  private final Handler td;
+  private final long te;
+  private long tf;
+  private gw.a tg;
+  protected boolean th;
+  protected boolean ti;
 
-  public fc(do paramdo, ex paramex, String paramString)
+  public fc(gw.a parama, gv paramgv, int paramInt1, int paramInt2)
   {
-    this.lN = paramex;
-    this.sV = paramdo;
+    this(parama, paramgv, paramInt1, paramInt2, 200L, 50L);
   }
 
-  private String G(String paramString)
+  public fc(gw.a parama, gv paramgv, int paramInt1, int paramInt2, long paramLong1, long paramLong2)
   {
-    if (TextUtils.isEmpty(paramString));
-    while (true)
+    this.te = paramLong1;
+    this.tf = paramLong2;
+    this.td = new Handler(Looper.getMainLooper());
+    this.md = paramgv;
+    this.tg = parama;
+    this.th = false;
+    this.ti = false;
+    this.lg = paramInt2;
+    this.lf = paramInt1;
+  }
+
+  public void a(fk paramfk, ha paramha)
+  {
+    this.md.setWebViewClient(paramha);
+    gv localgv = this.md;
+    if (TextUtils.isEmpty(paramfk.rP));
+    for (String str = null; ; str = gj.L(paramfk.rP))
     {
-      return paramString;
-      try
-      {
-        if (paramString.endsWith("/"))
-        {
-          String str = paramString.substring(0, -1 + paramString.length());
-          return str;
-        }
-      }
-      catch (IndexOutOfBoundsException localIndexOutOfBoundsException)
-      {
-        eu.A(localIndexOutOfBoundsException.getMessage());
-      }
-    }
-    return paramString;
-  }
-
-  protected boolean F(String paramString)
-  {
-    String str1 = G(paramString);
-    if (TextUtils.isEmpty(str1));
-    while (true)
-    {
-      return false;
-      try
-      {
-        URI localURI1 = new URI(str1);
-        if ("passback".equals(localURI1.getScheme()))
-        {
-          eu.z("Passback received");
-          this.sV.bp();
-          return true;
-        }
-        if (!TextUtils.isEmpty(this.sT))
-        {
-          URI localURI2 = new URI(this.sT);
-          String str2 = localURI2.getHost();
-          String str3 = localURI1.getHost();
-          String str4 = localURI2.getPath();
-          String str5 = localURI1.getPath();
-          if ((hk.equal(str2, str3)) && (hk.equal(str4, str5)))
-          {
-            eu.z("Passback received");
-            this.sV.bp();
-            return true;
-          }
-        }
-      }
-      catch (URISyntaxException localURISyntaxException)
-      {
-        eu.A(localURISyntaxException.getMessage());
-      }
-    }
-    return false;
-  }
-
-  public void onLoadResource(WebView paramWebView, String paramString)
-  {
-    eu.z("JavascriptAdWebViewClient::onLoadResource: " + paramString);
-    if (!F(paramString))
-      this.lN.cb().onLoadResource(this.lN, paramString);
-  }
-
-  public void onPageFinished(WebView paramWebView, String paramString)
-  {
-    eu.z("JavascriptAdWebViewClient::onPageFinished: " + paramString);
-    if (!this.sU)
-    {
-      this.sV.bo();
-      this.sU = true;
+      localgv.loadDataWithBaseURL(str, paramfk.tG, "text/html", "UTF-8", null);
+      return;
     }
   }
 
-  public boolean shouldOverrideUrlLoading(WebView paramWebView, String paramString)
+  public void b(fk paramfk)
   {
-    eu.z("JavascriptAdWebViewClient::shouldOverrideUrlLoading: " + paramString);
-    if (F(paramString))
+    a(paramfk, new ha(this, this.md, paramfk.tP));
+  }
+
+  public boolean cA()
+  {
+    try
     {
-      eu.z("shouldOverrideUrlLoading: received passback url");
-      return true;
+      boolean bool = this.th;
+      return bool;
     }
-    return this.lN.cb().shouldOverrideUrlLoading(this.lN, paramString);
+    finally
+    {
+      localObject = finally;
+      throw localObject;
+    }
+  }
+
+  public boolean cB()
+  {
+    return this.ti;
+  }
+
+  public void cy()
+  {
+    this.td.postDelayed(this, this.te);
+  }
+
+  public void cz()
+  {
+    try
+    {
+      this.th = true;
+      return;
+    }
+    finally
+    {
+      localObject = finally;
+      throw localObject;
+    }
+  }
+
+  public void run()
+  {
+    if ((this.md == null) || (cA()))
+    {
+      this.tg.a(this.md);
+      return;
+    }
+    new fc.a(this, this.md).execute(new Void[0]);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.fc
  * JD-Core Version:    0.6.2
  */

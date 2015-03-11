@@ -12,27 +12,27 @@ public class a
 {
   static void a(Asset paramAsset, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
-    b.c(paramParcel, 1, paramAsset.xM);
+    int i = b.D(paramParcel);
+    b.c(paramParcel, 1, paramAsset.BR);
     b.a(paramParcel, 2, paramAsset.getData(), false);
     b.a(paramParcel, 3, paramAsset.getDigest(), false);
-    b.a(paramParcel, 4, paramAsset.alh, paramInt, false);
+    b.a(paramParcel, 4, paramAsset.auR, paramInt, false);
     b.a(paramParcel, 5, paramAsset.uri, paramInt, false);
-    b.G(paramParcel, i);
+    b.H(paramParcel, i);
   }
 
-  public Asset cs(Parcel paramParcel)
+  public Asset dP(Parcel paramParcel)
   {
     Uri localUri = null;
-    int i = com.google.android.gms.common.internal.safeparcel.a.B(paramParcel);
+    int i = com.google.android.gms.common.internal.safeparcel.a.C(paramParcel);
     int j = 0;
     ParcelFileDescriptor localParcelFileDescriptor = null;
     String str = null;
     byte[] arrayOfByte = null;
     while (paramParcel.dataPosition() < i)
     {
-      int k = com.google.android.gms.common.internal.safeparcel.a.A(paramParcel);
-      switch (com.google.android.gms.common.internal.safeparcel.a.ar(k))
+      int k = com.google.android.gms.common.internal.safeparcel.a.B(paramParcel);
+      switch (com.google.android.gms.common.internal.safeparcel.a.aD(k))
       {
       default:
         com.google.android.gms.common.internal.safeparcel.a.b(paramParcel, k);
@@ -58,13 +58,13 @@ public class a
     return new Asset(j, arrayOfByte, str, localParcelFileDescriptor, localUri);
   }
 
-  public Asset[] ea(int paramInt)
+  public Asset[] fS(int paramInt)
   {
     return new Asset[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wearable.a
  * JD-Core Version:    0.6.2
  */

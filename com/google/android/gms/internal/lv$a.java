@@ -1,21 +1,17 @@
 package com.google.android.gms.internal;
 
-import com.google.android.gms.wearable.Asset;
-import java.util.List;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.LocationServices.a;
 
-public class lv$a
+abstract class lv$a extends LocationServices.a<Status>
 {
-  public final lw amp;
-  public final List<Asset> amq;
-
-  public lv$a(lw paramlw, List<Asset> paramList)
+  public Status d(Status paramStatus)
   {
-    this.amp = paramlw;
-    this.amq = paramList;
+    return paramStatus;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.lv.a
  * JD-Core Version:    0.6.2
  */

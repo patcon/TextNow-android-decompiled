@@ -1,81 +1,81 @@
 package com.google.android.gms.internal;
 
-import java.util.Collections;
-import java.util.List;
-import org.json.JSONObject;
+import android.text.TextUtils;
+import android.util.Base64;
+import java.security.InvalidKeyException;
+import java.security.KeyFactory;
+import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
+import java.security.Signature;
+import java.security.SignatureException;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.X509EncodedKeySpec;
 
-public final class ef
+@ez
+public class ef
 {
-  public final int errorCode;
-  public final bl nM;
-  public final bu nN;
-  public final String nO;
-  public final bo nP;
-  public final List<String> nt;
-  public final List<String> nu;
-  public final long nx;
-  public final int orientation;
-  public final ex oy;
-  public final ai pX;
-  public final String qa;
-  public final long qf;
-  public final boolean qg;
-  public final long qh;
-  public final List<String> qi;
-  public final String ql;
-  public final al rA;
-  public final long rB;
-  public final long rC;
-  public final JSONObject ry;
-  public final bm rz;
-
-  public ef(ai paramai, ex paramex, List<String> paramList1, int paramInt1, List<String> paramList2, List<String> paramList3, int paramInt2, long paramLong1, String paramString1, boolean paramBoolean, bl parambl, bu parambu, String paramString2, bm parambm, bo parambo, long paramLong2, al paramal, long paramLong3, long paramLong4, long paramLong5, String paramString3, JSONObject paramJSONObject)
+  public static PublicKey F(String paramString)
   {
-    this.pX = paramai;
-    this.oy = paramex;
-    List localList1;
-    List localList2;
-    if (paramList1 != null)
+    try
     {
-      localList1 = Collections.unmodifiableList(paramList1);
-      this.nt = localList1;
-      this.errorCode = paramInt1;
-      if (paramList2 == null)
-        break label175;
-      localList2 = Collections.unmodifiableList(paramList2);
-      label48: this.nu = localList2;
-      if (paramList3 == null)
-        break label181;
+      byte[] arrayOfByte = Base64.decode(paramString, 0);
+      PublicKey localPublicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(arrayOfByte));
+      return localPublicKey;
     }
-    label175: label181: for (List localList3 = Collections.unmodifiableList(paramList3); ; localList3 = null)
+    catch (NoSuchAlgorithmException localNoSuchAlgorithmException)
     {
-      this.qi = localList3;
-      this.orientation = paramInt2;
-      this.nx = paramLong1;
-      this.qa = paramString1;
-      this.qg = paramBoolean;
-      this.nM = parambl;
-      this.nN = parambu;
-      this.nO = paramString2;
-      this.rz = parambm;
-      this.nP = parambo;
-      this.qh = paramLong2;
-      this.rA = paramal;
-      this.qf = paramLong3;
-      this.rB = paramLong4;
-      this.rC = paramLong5;
-      this.ql = paramString3;
-      this.ry = paramJSONObject;
-      return;
-      localList1 = null;
-      break;
-      localList2 = null;
-      break label48;
+      throw new RuntimeException(localNoSuchAlgorithmException);
     }
+    catch (InvalidKeySpecException localInvalidKeySpecException)
+    {
+      gs.T("Invalid key specification.");
+      throw new IllegalArgumentException(localInvalidKeySpecException);
+    }
+  }
+
+  public static boolean a(PublicKey paramPublicKey, String paramString1, String paramString2)
+  {
+    try
+    {
+      Signature localSignature = Signature.getInstance("SHA1withRSA");
+      localSignature.initVerify(paramPublicKey);
+      localSignature.update(paramString1.getBytes());
+      if (!localSignature.verify(Base64.decode(paramString2, 0)))
+      {
+        gs.T("Signature verification failed.");
+        return false;
+      }
+      return true;
+    }
+    catch (NoSuchAlgorithmException localNoSuchAlgorithmException)
+    {
+      gs.T("NoSuchAlgorithmException.");
+      return false;
+    }
+    catch (InvalidKeyException localInvalidKeyException)
+    {
+      gs.T("Invalid key specification.");
+      return false;
+    }
+    catch (SignatureException localSignatureException)
+    {
+      gs.T("Signature exception.");
+    }
+    return false;
+  }
+
+  public static boolean b(String paramString1, String paramString2, String paramString3)
+  {
+    if ((TextUtils.isEmpty(paramString2)) || (TextUtils.isEmpty(paramString1)) || (TextUtils.isEmpty(paramString3)))
+    {
+      gs.T("Purchase verification failed: missing data.");
+      return false;
+    }
+    return a(F(paramString1), paramString2, paramString3);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ef
  * JD-Core Version:    0.6.2
  */

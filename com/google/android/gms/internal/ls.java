@@ -1,59 +1,67 @@
 package com.google.android.gms.internal;
 
-import android.app.Activity;
-import android.os.IBinder;
-import android.os.RemoteException;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.dynamic.c;
-import com.google.android.gms.dynamic.e;
-import com.google.android.gms.dynamic.g;
-import com.google.android.gms.dynamic.g.a;
-import com.google.android.gms.wallet.fragment.WalletFragmentOptions;
+import android.os.Parcel;
+import com.google.android.gms.common.internal.n;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
-public class ls extends g<ln>
+public class ls
+  implements SafeParcelable
 {
-  private static ls akN;
+  public static final lt CREATOR = new lt();
+  private final int BR;
+  public final String packageName;
+  public final int uid;
 
-  protected ls()
+  ls(int paramInt1, int paramInt2, String paramString)
   {
-    super("com.google.android.gms.wallet.dynamite.WalletDynamiteCreatorImpl");
+    this.BR = paramInt1;
+    this.uid = paramInt2;
+    this.packageName = paramString;
   }
 
-  public static lk a(Activity paramActivity, c paramc, WalletFragmentOptions paramWalletFragmentOptions, ll paramll)
+  public int describeContents()
   {
-    int i = GooglePlayServicesUtil.isGooglePlayServicesAvailable(paramActivity);
-    if (i != 0)
-      throw new GooglePlayServicesNotAvailableException(i);
-    try
-    {
-      lk locallk = ((ln)nj().G(paramActivity)).a(e.h(paramActivity), paramc, paramWalletFragmentOptions, paramll);
-      return locallk;
-    }
-    catch (RemoteException localRemoteException)
-    {
-      throw new RuntimeException(localRemoteException);
-    }
-    catch (g.a locala)
-    {
-      throw new RuntimeException(locala);
-    }
+    return 0;
   }
 
-  private static ls nj()
+  public boolean equals(Object paramObject)
   {
-    if (akN == null)
-      akN = new ls();
-    return akN;
+    if (!(paramObject instanceof ls));
+    ls localls;
+    do
+    {
+      return false;
+      localls = (ls)paramObject;
+    }
+    while ((localls.uid != this.uid) || (!n.equal(localls.packageName, this.packageName)));
+    return true;
   }
 
-  protected ln bv(IBinder paramIBinder)
+  int getVersionCode()
   {
-    return ln.a.br(paramIBinder);
+    return this.BR;
+  }
+
+  public int hashCode()
+  {
+    return this.uid;
+  }
+
+  public String toString()
+  {
+    Object[] arrayOfObject = new Object[2];
+    arrayOfObject[0] = Integer.valueOf(this.uid);
+    arrayOfObject[1] = this.packageName;
+    return String.format("%d:%s", arrayOfObject);
+  }
+
+  public void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    lt.a(this, paramParcel, paramInt);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ls
  * JD-Core Version:    0.6.2
  */

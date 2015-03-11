@@ -11,25 +11,25 @@ public class g
 {
   static void a(FullWalletRequest paramFullWalletRequest, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
+    int i = b.D(paramParcel);
     b.c(paramParcel, 1, paramFullWalletRequest.getVersionCode());
-    b.a(paramParcel, 2, paramFullWalletRequest.aiQ, false);
-    b.a(paramParcel, 3, paramFullWalletRequest.aiR, false);
-    b.a(paramParcel, 4, paramFullWalletRequest.aja, paramInt, false);
-    b.G(paramParcel, i);
+    b.a(paramParcel, 2, paramFullWalletRequest.asB, false);
+    b.a(paramParcel, 3, paramFullWalletRequest.asC, false);
+    b.a(paramParcel, 4, paramFullWalletRequest.asL, paramInt, false);
+    b.H(paramParcel, i);
   }
 
-  public FullWalletRequest bV(Parcel paramParcel)
+  public FullWalletRequest ds(Parcel paramParcel)
   {
     Cart localCart = null;
-    int i = a.B(paramParcel);
+    int i = a.C(paramParcel);
     String str1 = null;
     int j = 0;
     String str2 = null;
     while (paramParcel.dataPosition() < i)
     {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
       {
       default:
         a.b(paramParcel, k);
@@ -52,13 +52,13 @@ public class g
     return new FullWalletRequest(j, str1, str2, localCart);
   }
 
-  public FullWalletRequest[] dB(int paramInt)
+  public FullWalletRequest[] ft(int paramInt)
   {
     return new FullWalletRequest[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.g
  * JD-Core Version:    0.6.2
  */

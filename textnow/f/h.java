@@ -3,199 +3,102 @@ package textnow.f;
 import android.graphics.Rect;
 import android.view.View;
 
-class h
-  implements d
+abstract interface h
 {
-  public Object a(Object paramObject)
-  {
-    return null;
-  }
+  public abstract Object a(int paramInt1, int paramInt2, int paramInt3, int paramInt4, boolean paramBoolean1, boolean paramBoolean2);
 
-  public void a(Object paramObject, int paramInt)
-  {
-  }
+  public abstract Object a(int paramInt1, int paramInt2, boolean paramBoolean, int paramInt3);
 
-  public void a(Object paramObject, Rect paramRect)
-  {
-  }
+  public abstract Object a(Object paramObject);
 
-  public void a(Object paramObject, View paramView)
-  {
-  }
+  public abstract void a(Object paramObject, int paramInt);
 
-  public void a(Object paramObject, CharSequence paramCharSequence)
-  {
-  }
+  public abstract void a(Object paramObject, Rect paramRect);
 
-  public void a(Object paramObject, boolean paramBoolean)
-  {
-  }
+  public abstract void a(Object paramObject, View paramView);
 
-  public int b(Object paramObject)
-  {
-    return 0;
-  }
+  public abstract void a(Object paramObject, CharSequence paramCharSequence);
 
-  public void b(Object paramObject, int paramInt)
-  {
-  }
+  public abstract void a(Object paramObject1, Object paramObject2);
 
-  public void b(Object paramObject, Rect paramRect)
-  {
-  }
+  public abstract void a(Object paramObject, boolean paramBoolean);
 
-  public void b(Object paramObject, View paramView)
-  {
-  }
+  public abstract int b(Object paramObject);
 
-  public void b(Object paramObject, CharSequence paramCharSequence)
-  {
-  }
+  public abstract void b(Object paramObject, int paramInt);
 
-  public void b(Object paramObject, boolean paramBoolean)
-  {
-  }
+  public abstract void b(Object paramObject, Rect paramRect);
 
-  public CharSequence c(Object paramObject)
-  {
-    return null;
-  }
+  public abstract void b(Object paramObject, View paramView);
 
-  public void c(Object paramObject, Rect paramRect)
-  {
-  }
+  public abstract void b(Object paramObject, CharSequence paramCharSequence);
 
-  public void c(Object paramObject, View paramView)
-  {
-  }
+  public abstract void b(Object paramObject1, Object paramObject2);
 
-  public void c(Object paramObject, CharSequence paramCharSequence)
-  {
-  }
+  public abstract void b(Object paramObject, boolean paramBoolean);
 
-  public void c(Object paramObject, boolean paramBoolean)
-  {
-  }
+  public abstract CharSequence c(Object paramObject);
 
-  public CharSequence d(Object paramObject)
-  {
-    return null;
-  }
+  public abstract void c(Object paramObject, Rect paramRect);
 
-  public void d(Object paramObject, Rect paramRect)
-  {
-  }
+  public abstract void c(Object paramObject, View paramView);
 
-  public void d(Object paramObject, boolean paramBoolean)
-  {
-  }
+  public abstract void c(Object paramObject, CharSequence paramCharSequence);
 
-  public CharSequence e(Object paramObject)
-  {
-    return null;
-  }
+  public abstract void c(Object paramObject, boolean paramBoolean);
 
-  public void e(Object paramObject, boolean paramBoolean)
-  {
-  }
+  public abstract CharSequence d(Object paramObject);
 
-  public CharSequence f(Object paramObject)
-  {
-    return null;
-  }
+  public abstract void d(Object paramObject, Rect paramRect);
 
-  public void f(Object paramObject, boolean paramBoolean)
-  {
-  }
+  public abstract void d(Object paramObject, boolean paramBoolean);
 
-  public void g(Object paramObject, boolean paramBoolean)
-  {
-  }
+  public abstract CharSequence e(Object paramObject);
 
-  public boolean g(Object paramObject)
-  {
-    return false;
-  }
+  public abstract void e(Object paramObject, boolean paramBoolean);
 
-  public void h(Object paramObject, boolean paramBoolean)
-  {
-  }
+  public abstract CharSequence f(Object paramObject);
 
-  public boolean h(Object paramObject)
-  {
-    return false;
-  }
+  public abstract void f(Object paramObject, boolean paramBoolean);
 
-  public void i(Object paramObject, boolean paramBoolean)
-  {
-  }
+  public abstract void g(Object paramObject, boolean paramBoolean);
 
-  public boolean i(Object paramObject)
-  {
-    return false;
-  }
+  public abstract boolean g(Object paramObject);
 
-  public boolean j(Object paramObject)
-  {
-    return false;
-  }
+  public abstract void h(Object paramObject, boolean paramBoolean);
 
-  public boolean k(Object paramObject)
-  {
-    return false;
-  }
+  public abstract boolean h(Object paramObject);
 
-  public boolean l(Object paramObject)
-  {
-    return false;
-  }
+  public abstract void i(Object paramObject, boolean paramBoolean);
 
-  public boolean m(Object paramObject)
-  {
-    return false;
-  }
+  public abstract boolean i(Object paramObject);
 
-  public boolean n(Object paramObject)
-  {
-    return false;
-  }
+  public abstract boolean j(Object paramObject);
 
-  public boolean o(Object paramObject)
-  {
-    return false;
-  }
+  public abstract boolean k(Object paramObject);
 
-  public boolean p(Object paramObject)
-  {
-    return false;
-  }
+  public abstract boolean l(Object paramObject);
 
-  public void q(Object paramObject)
-  {
-  }
+  public abstract boolean m(Object paramObject);
 
-  public int r(Object paramObject)
-  {
-    return 0;
-  }
+  public abstract boolean n(Object paramObject);
 
-  public boolean s(Object paramObject)
-  {
-    return false;
-  }
+  public abstract boolean o(Object paramObject);
 
-  public boolean t(Object paramObject)
-  {
-    return false;
-  }
+  public abstract boolean p(Object paramObject);
 
-  public String u(Object paramObject)
-  {
-    return null;
-  }
+  public abstract void q(Object paramObject);
+
+  public abstract int r(Object paramObject);
+
+  public abstract boolean s(Object paramObject);
+
+  public abstract boolean t(Object paramObject);
+
+  public abstract String u(Object paramObject);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.f.h
  * JD-Core Version:    0.6.2
  */

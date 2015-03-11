@@ -12,21 +12,20 @@ import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListe
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.internal.ga;
-import com.google.android.gms.internal.gy;
-import com.google.android.gms.internal.hm;
+import com.google.android.gms.common.internal.ClientSettings;
+import com.google.android.gms.common.internal.o;
+import com.google.android.gms.internal.ib;
 import java.util.List;
 
 public final class AppStateManager
 {
   public static final Api<Api.ApiOptions.NoOptions> API = new Api(localb, localc, arrayOfScope);
-  public static final Scope SCOPE_APP_STATE;
-  static final Api.c<ga> yH = new Api.c();
-  private static final Api.b<ga, Api.ApiOptions.NoOptions> yI = new Api.b()
+  static final Api.c<ib> CU = new Api.c();
+  private static final Api.b<ib, Api.ApiOptions.NoOptions> CV = new Api.b()
   {
-    public final ga b(Context paramAnonymousContext, Looper paramAnonymousLooper, gy paramAnonymousgy, Api.ApiOptions.NoOptions paramAnonymousNoOptions, GoogleApiClient.ConnectionCallbacks paramAnonymousConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener paramAnonymousOnConnectionFailedListener)
+    public final ib b(Context paramAnonymousContext, Looper paramAnonymousLooper, ClientSettings paramAnonymousClientSettings, Api.ApiOptions.NoOptions paramAnonymousNoOptions, GoogleApiClient.ConnectionCallbacks paramAnonymousConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener paramAnonymousOnConnectionFailedListener)
     {
-      return new ga(paramAnonymousContext, paramAnonymousLooper, paramAnonymousConnectionCallbacks, paramAnonymousOnConnectionFailedListener, paramAnonymousgy.fj(), (String[])paramAnonymousgy.fl().toArray(new String[0]));
+      return new ib(paramAnonymousContext, paramAnonymousLooper, paramAnonymousConnectionCallbacks, paramAnonymousOnConnectionFailedListener, paramAnonymousClientSettings.getAccountNameOrDefault(), (String[])paramAnonymousClientSettings.getScopes().toArray(new String[0]));
     }
 
     public final int getPriority()
@@ -34,34 +33,34 @@ public final class AppStateManager
       return 2147483647;
     }
   };
+  public static final Scope SCOPE_APP_STATE = new Scope("https://www.googleapis.com/auth/appstate");
 
   static
   {
-    SCOPE_APP_STATE = new Scope("https://www.googleapis.com/auth/appstate");
-    Api.b localb = yI;
-    Api.c localc = yH;
+    Api.b localb = CV;
+    Api.c localc = CU;
     Scope[] arrayOfScope = new Scope[1];
     arrayOfScope[0] = SCOPE_APP_STATE;
   }
 
-  public static ga a(GoogleApiClient paramGoogleApiClient)
+  public static ib a(GoogleApiClient paramGoogleApiClient)
   {
     boolean bool1 = true;
     boolean bool2;
-    ga localga;
+    ib localib;
     if (paramGoogleApiClient != null)
     {
       bool2 = bool1;
-      hm.b(bool2, "GoogleApiClient parameter is required.");
-      hm.a(paramGoogleApiClient.isConnected(), "GoogleApiClient must be connected.");
-      localga = (ga)paramGoogleApiClient.a(yH);
-      if (localga == null)
+      o.b(bool2, "GoogleApiClient parameter is required.");
+      o.a(paramGoogleApiClient.isConnected(), "GoogleApiClient must be connected.");
+      localib = (ib)paramGoogleApiClient.a(CU);
+      if (localib == null)
         break label55;
     }
     while (true)
     {
-      hm.a(bool1, "GoogleApiClient is not configured to use the AppState API. Pass AppStateManager.API into GoogleApiClient.Builder#addApi() to use this feature.");
-      return localga;
+      o.a(bool1, "GoogleApiClient is not configured to use the AppState API. Pass AppStateManager.API into GoogleApiClient.Builder#addApi() to use this feature.");
+      return localib;
       bool2 = false;
       break;
       label55: bool1 = false;
@@ -72,9 +71,9 @@ public final class AppStateManager
   {
     return paramGoogleApiClient.b(new AppStateManager.b(paramInt)
     {
-      protected final void a(ga paramAnonymousga)
+      protected final void a(ib paramAnonymousib)
       {
-        paramAnonymousga.a(this, this.yK);
+        paramAnonymousib.a(this, this.CX);
       }
 
       public final AppStateManager.StateDeletedResult g(final Status paramAnonymousStatus)
@@ -83,7 +82,7 @@ public final class AppStateManager
         {
           public int getStateKey()
           {
-            return AppStateManager.5.this.yK;
+            return AppStateManager.5.this.CX;
           }
 
           public Status getStatus()
@@ -122,12 +121,12 @@ public final class AppStateManager
 
   public static int getMaxNumKeys(GoogleApiClient paramGoogleApiClient)
   {
-    return a(paramGoogleApiClient).dV();
+    return a(paramGoogleApiClient).fr();
   }
 
   public static int getMaxStateSize(GoogleApiClient paramGoogleApiClient)
   {
-    return a(paramGoogleApiClient).dU();
+    return a(paramGoogleApiClient).fq();
   }
 
   public static PendingResult<AppStateManager.StateListResult> list(GoogleApiClient paramGoogleApiClient)
@@ -145,9 +144,9 @@ public final class AppStateManager
   {
     return paramGoogleApiClient.a(new AppStateManager.e(paramInt)
     {
-      protected final void a(ga paramAnonymousga)
+      protected final void a(ib paramAnonymousib)
       {
-        paramAnonymousga.b(this, this.yK);
+        paramAnonymousib.b(this, this.CX);
       }
     });
   }
@@ -156,9 +155,9 @@ public final class AppStateManager
   {
     return paramGoogleApiClient.b(new AppStateManager.e(paramInt)
     {
-      protected final void a(ga paramAnonymousga)
+      protected final void a(ib paramAnonymousib)
       {
-        paramAnonymousga.a(this, this.yK, paramString, paramArrayOfByte);
+        paramAnonymousib.a(this, this.CX, paramString, paramArrayOfByte);
       }
     });
   }
@@ -178,9 +177,9 @@ public final class AppStateManager
   {
     paramGoogleApiClient.b(new AppStateManager.e(paramInt)
     {
-      protected final void a(ga paramAnonymousga)
+      protected final void a(ib paramAnonymousib)
       {
-        paramAnonymousga.a(null, this.yK, paramArrayOfByte);
+        paramAnonymousib.a(null, this.CX, paramArrayOfByte);
       }
     });
   }
@@ -189,15 +188,15 @@ public final class AppStateManager
   {
     return paramGoogleApiClient.b(new AppStateManager.e(paramInt)
     {
-      protected final void a(ga paramAnonymousga)
+      protected final void a(ib paramAnonymousib)
       {
-        paramAnonymousga.a(this, this.yK, paramArrayOfByte);
+        paramAnonymousib.a(this, this.CX, paramArrayOfByte);
       }
     });
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.appstate.AppStateManager
  * JD-Core Version:    0.6.2
  */

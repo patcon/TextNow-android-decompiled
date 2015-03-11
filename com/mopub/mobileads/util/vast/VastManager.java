@@ -102,8 +102,8 @@ public class VastManager
     double d1 = (1.0D / 0.0D);
     Iterator localIterator = localArrayList.iterator();
     Object localObject1 = null;
+    double d2;
     Object localObject3;
-    double d3;
     while (localIterator.hasNext())
     {
       VastXmlManager.ImageCompanionAdXmlManager localImageCompanionAdXmlManager = (VastXmlManager.ImageCompanionAdXmlManager)localIterator.next();
@@ -119,15 +119,14 @@ public class VastManager
         Integer localInteger2 = localImageCompanionAdXmlManager.getHeight();
         if ((localInteger1 != null) && (localInteger1.intValue() > 0) && (localInteger2 != null) && (localInteger2.intValue() > 0))
         {
-          double d2 = calculateFitness(localInteger1.intValue(), localInteger2.intValue());
+          d2 = calculateFitness(localInteger1.intValue(), localInteger2.intValue());
           if (d2 >= d1)
             break label249;
           localObject3 = localImageCompanionAdXmlManager;
-          d3 = d2;
         }
       }
     }
-    while (true)
+    for (double d3 = d2; ; d3 = d1)
     {
       d1 = d3;
       localObject1 = localObject3;
@@ -139,8 +138,7 @@ public class VastManager
           return new VastCompanionAd(((VastXmlManager.ImageCompanionAdXmlManager)localObject2).getWidth(), ((VastXmlManager.ImageCompanionAdXmlManager)localObject2).getHeight(), ((VastXmlManager.ImageCompanionAdXmlManager)localObject2).getImageUrl(), ((VastXmlManager.ImageCompanionAdXmlManager)localObject2).getClickThroughUrl(), new ArrayList(((VastXmlManager.ImageCompanionAdXmlManager)localObject2).getClickTrackers()));
         return null;
       }
-      label249: d3 = d1;
-      localObject3 = localObject1;
+      label249: localObject3 = localObject1;
     }
   }
 
@@ -266,7 +264,7 @@ public class VastManager
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.mopub.mobileads.util.vast.VastManager
  * JD-Core Version:    0.6.2
  */

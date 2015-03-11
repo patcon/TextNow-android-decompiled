@@ -5,14 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import com.enflick.android.TextNow.api.responsemodel.ContactProxy;
 import com.enflick.android.TextNow.api.users.ContactProxyNumberGet;
-import com.enflick.android.TextNow.api.users.d;
-import com.enflick.android.TextNow.persistence.contentproviders.g;
+import com.enflick.android.TextNow.persistence.contentproviders.h;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import textnow.q.b;
-import textnow.s.i;
-import textnow.u.l;
+import textnow.v.b;
+import textnow.x.i;
+import textnow.z.n;
 
 public class RefreshContactProxyTask extends c
 {
@@ -25,7 +24,7 @@ public class RefreshContactProxyTask extends c
 
   public void run()
   {
-    Cursor localCursor1 = this.a.getContentResolver().query(g.d, new String[] { "contact_value", "update_date" }, null, null, null);
+    Cursor localCursor1 = this.a.getContentResolver().query(h.d, new String[] { "contact_value", "update_date" }, null, null, null);
     HashMap localHashMap = new HashMap();
     ArrayList localArrayList = new ArrayList();
     if (localCursor1 != null)
@@ -38,7 +37,7 @@ public class RefreshContactProxyTask extends c
       {
         localCursor1.close();
       }
-    Cursor localCursor2 = this.a.getContentResolver().query(com.enflick.android.TextNow.persistence.contentproviders.c.d, new String[] { "contact_value", "contact_type" }, "contact_type=2 OR contact_type=1 OR contact_type=3", null, "latest_message_date DESC LIMIT 50");
+    Cursor localCursor2 = this.a.getContentResolver().query(com.enflick.android.TextNow.persistence.contentproviders.d.d, new String[] { "contact_value", "contact_type" }, "contact_type=2 OR contact_type=1 OR contact_type=3", null, "latest_message_date DESC LIMIT 50");
     if (localCursor2 != null);
     while (true)
     {
@@ -73,7 +72,7 @@ public class RefreshContactProxyTask extends c
       while (localIterator.hasNext())
       {
         String str1 = (String)localIterator.next();
-        d locald = new d(this.d, str1);
+        com.enflick.android.TextNow.api.users.d locald = new com.enflick.android.TextNow.api.users.d(this.d, str1);
         i locali = new ContactProxyNumberGet(this.a).runSync(locald);
         if (a(locali))
         {
@@ -83,7 +82,7 @@ public class RefreshContactProxyTask extends c
         {
           ContactProxy localContactProxy = (ContactProxy)locali.c();
           if (localContactProxy != null)
-            l.a(this.a.getContentResolver(), str1, localContactProxy.proxyNumber);
+            n.a(this.a.getContentResolver(), str1, localContactProxy.proxyNumber);
         }
       }
       return;
@@ -92,7 +91,7 @@ public class RefreshContactProxyTask extends c
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.RefreshContactProxyTask
  * JD-Core Version:    0.6.2
  */

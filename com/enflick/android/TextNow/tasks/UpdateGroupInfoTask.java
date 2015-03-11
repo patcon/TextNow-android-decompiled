@@ -4,9 +4,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import com.enflick.android.TextNow.api.users.GroupsPatchContactValue;
 import com.enflick.android.TextNow.api.users.j;
-import textnow.u.r;
-import textnow.w.a;
-import textnow.w.b;
+import textnow.ac.a;
+import textnow.ac.b;
+import textnow.z.u;
 
 public class UpdateGroupInfoTask extends c
 {
@@ -21,7 +21,7 @@ public class UpdateGroupInfoTask extends c
 
   public void run()
   {
-    j localj = new j(new r(this.a).b(), this.d, this.e);
+    j localj = new j(new u(this.a).b(), this.d, this.e);
     if (a(new GroupsPatchContactValue(this.a).runSync(localj)))
       return;
     ContentValues localContentValues = new ContentValues();
@@ -31,7 +31,7 @@ public class UpdateGroupInfoTask extends c
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.UpdateGroupInfoTask
  * JD-Core Version:    0.6.2
  */

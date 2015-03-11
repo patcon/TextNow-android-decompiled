@@ -44,7 +44,7 @@ public class CreateGroupWithMessageInfoTask extends c
   {
     CreateGroupTask localCreateGroupTask = new CreateGroupTask(this.d, this.e);
     localCreateGroupTask.c(g());
-    if ((!localCreateGroupTask.c_()) && (a(localCreateGroupTask.a())))
+    if ((!localCreateGroupTask.d_()) && (a(localCreateGroupTask.a())))
       return;
     Group localGroup = localCreateGroupTask.b();
     if (localGroup == null)
@@ -56,7 +56,7 @@ public class CreateGroupWithMessageInfoTask extends c
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.CreateGroupWithMessageInfoTask
  * JD-Core Version:    0.6.2
  */

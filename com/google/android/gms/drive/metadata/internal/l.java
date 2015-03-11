@@ -16,18 +16,18 @@ public class l extends a<String>
     paramBundle.putString(getName(), paramString);
   }
 
-  protected String h(DataHolder paramDataHolder, int paramInt1, int paramInt2)
+  protected String i(DataHolder paramDataHolder, int paramInt1, int paramInt2)
   {
     return paramDataHolder.c(getName(), paramInt1, paramInt2);
   }
 
-  protected String m(Bundle paramBundle)
+  protected String n(Bundle paramBundle)
   {
     return paramBundle.getString(getName());
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.drive.metadata.internal.l
  * JD-Core Version:    0.6.2
  */

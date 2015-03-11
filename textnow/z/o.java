@@ -1,21 +1,37 @@
 package textnow.z;
 
-public final class o extends m
-{
-  public static final o a = new o();
+import java.util.Date;
 
-  public final boolean equals(Object paramObject)
+public final class o
+{
+  private String a;
+  private Date b;
+  private int c;
+
+  public o(String paramString, int paramInt)
   {
-    return (this == paramObject) || ((paramObject instanceof o));
+    this.a = paramString;
+    this.b = new Date();
+    this.c = paramInt;
   }
 
-  public final int hashCode()
+  public final String a()
   {
-    return o.class.hashCode();
+    return this.a;
+  }
+
+  public final Date b()
+  {
+    return this.b;
+  }
+
+  public final int c()
+  {
+    return this.c;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.z.o
  * JD-Core Version:    0.6.2
  */

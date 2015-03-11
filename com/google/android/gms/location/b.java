@@ -1,101 +1,88 @@
 package com.google.android.gms.location;
 
 import android.os.Parcel;
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-import com.google.android.gms.internal.hk;
+import android.os.Parcelable.Creator;
+import com.google.android.gms.common.internal.safeparcel.a;
+import com.google.android.gms.common.internal.safeparcel.a.a;
 
 public class b
-  implements SafeParcelable
+  implements Parcelable.Creator<LocationRequest>
 {
-  public static final c CREATOR = new c();
-  int Vq;
-  int Vr;
-  long Vs;
-  private final int xM;
-
-  b(int paramInt1, int paramInt2, int paramInt3, long paramLong)
+  static void a(LocationRequest paramLocationRequest, Parcel paramParcel, int paramInt)
   {
-    this.xM = paramInt1;
-    this.Vq = paramInt2;
-    this.Vr = paramInt3;
-    this.Vs = paramLong;
+    int i = com.google.android.gms.common.internal.safeparcel.b.D(paramParcel);
+    com.google.android.gms.common.internal.safeparcel.b.c(paramParcel, 1, paramLocationRequest.mPriority);
+    com.google.android.gms.common.internal.safeparcel.b.c(paramParcel, 1000, paramLocationRequest.getVersionCode());
+    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 2, paramLocationRequest.aes);
+    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 3, paramLocationRequest.aet);
+    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 4, paramLocationRequest.UK);
+    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 5, paramLocationRequest.aei);
+    com.google.android.gms.common.internal.safeparcel.b.c(paramParcel, 6, paramLocationRequest.aeu);
+    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 7, paramLocationRequest.aev);
+    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 8, paramLocationRequest.aew);
+    com.google.android.gms.common.internal.safeparcel.b.H(paramParcel, i);
   }
 
-  private String cI(int paramInt)
+  public LocationRequest cs(Parcel paramParcel)
   {
-    switch (paramInt)
+    int i = a.C(paramParcel);
+    int j = 0;
+    int k = 102;
+    long l1 = 3600000L;
+    long l2 = 600000L;
+    boolean bool = false;
+    long l3 = 9223372036854775807L;
+    int m = 2147483647;
+    float f = 0.0F;
+    long l4 = 0L;
+    while (paramParcel.dataPosition() < i)
     {
-    case 1:
-    default:
-      return "STATUS_UNKNOWN";
-    case 0:
-      return "STATUS_SUCCESSFUL";
-    case 2:
-      return "STATUS_TIMED_OUT_ON_SCAN";
-    case 3:
-      return "STATUS_NO_INFO_IN_DATABASE";
-    case 4:
-      return "STATUS_INVALID_SCAN";
-    case 5:
-      return "STATUS_UNABLE_TO_QUERY_DATABASE";
-    case 6:
-      return "STATUS_SCANS_DISABLED_IN_SETTINGS";
-    case 7:
-      return "STATUS_LOCATION_DISABLED_IN_SETTINGS";
-    case 8:
+      int n = a.B(paramParcel);
+      switch (a.aD(n))
+      {
+      default:
+        a.b(paramParcel, n);
+        break;
+      case 1:
+        k = a.g(paramParcel, n);
+        break;
+      case 1000:
+        j = a.g(paramParcel, n);
+        break;
+      case 2:
+        l1 = a.i(paramParcel, n);
+        break;
+      case 3:
+        l2 = a.i(paramParcel, n);
+        break;
+      case 4:
+        bool = a.c(paramParcel, n);
+        break;
+      case 5:
+        l3 = a.i(paramParcel, n);
+        break;
+      case 6:
+        m = a.g(paramParcel, n);
+        break;
+      case 7:
+        f = a.l(paramParcel, n);
+        break;
+      case 8:
+        l4 = a.i(paramParcel, n);
+      }
     }
-    return "STATUS_IN_PROGRESS";
+    if (paramParcel.dataPosition() != i)
+      throw new a.a("Overread allowed size end=" + i, paramParcel);
+    return new LocationRequest(j, k, l1, l2, bool, l3, m, f, l4);
   }
 
-  public int describeContents()
+  public LocationRequest[] ed(int paramInt)
   {
-    return 0;
-  }
-
-  public boolean equals(Object paramObject)
-  {
-    if (!(paramObject instanceof b));
-    b localb;
-    do
-    {
-      return false;
-      localb = (b)paramObject;
-    }
-    while ((this.Vq != localb.Vq) || (this.Vr != localb.Vr) || (this.Vs != localb.Vs));
-    return true;
-  }
-
-  int getVersionCode()
-  {
-    return this.xM;
-  }
-
-  public int hashCode()
-  {
-    Object[] arrayOfObject = new Object[3];
-    arrayOfObject[0] = Integer.valueOf(this.Vq);
-    arrayOfObject[1] = Integer.valueOf(this.Vr);
-    arrayOfObject[2] = Long.valueOf(this.Vs);
-    return hk.hashCode(arrayOfObject);
-  }
-
-  public String toString()
-  {
-    StringBuilder localStringBuilder = new StringBuilder();
-    localStringBuilder.append("LocationStatus[cell status: ").append(cI(this.Vq));
-    localStringBuilder.append(", wifi status: ").append(cI(this.Vr));
-    localStringBuilder.append(", elapsed realtime ns: ").append(this.Vs);
-    localStringBuilder.append(']');
-    return localStringBuilder.toString();
-  }
-
-  public void writeToParcel(Parcel paramParcel, int paramInt)
-  {
-    c.a(this, paramParcel, paramInt);
+    return new LocationRequest[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.location.b
  * JD-Core Version:    0.6.2
  */

@@ -3,7 +3,6 @@ package com.enflick.android.TextNow.activities.account;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
-import android.text.Editable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
@@ -16,8 +15,8 @@ import android.widget.Spinner;
 import com.enflick.android.TextNow.tasks.UpdateBillingAddressTask;
 import java.util.ArrayList;
 import java.util.Arrays;
-import textnow.u.q;
-import textnow.u.r;
+import textnow.z.s;
+import textnow.z.u;
 
 public class BillingAddressDialogView extends LinearLayout
 {
@@ -61,7 +60,7 @@ public class BillingAddressDialogView extends LinearLayout
   {
     if ((paramString1.equalsIgnoreCase("US")) || (paramString1.equalsIgnoreCase("United States")) || (paramString1.equalsIgnoreCase("USA")))
     {
-      a(getResources().getStringArray(2131623953), paramString2);
+      a(getResources().getStringArray(2131623956), paramString2);
       this.h.setVisibility(0);
       this.e.setVisibility(8);
     }
@@ -70,7 +69,7 @@ public class BillingAddressDialogView extends LinearLayout
       return;
       if (paramString1.equalsIgnoreCase("Canada"))
       {
-        a(getResources().getStringArray(2131623954), paramString2);
+        a(getResources().getStringArray(2131623957), paramString2);
         this.h.setVisibility(0);
         this.e.setVisibility(8);
         return;
@@ -133,7 +132,7 @@ public class BillingAddressDialogView extends LinearLayout
     int i = new d(null, null, null, null, a(this.a), a(this.c), a(this.d), a(this.f), a(), a(this.g), this.b.getSelectedItem().toString()).b();
     if (i > 0)
       return i;
-    new UpdateBillingAddressTask(new r(getContext()).b(), a(this.a), a(this.c), a(this.d), a(this.f), a(), a(this.g), this.b.getSelectedItem().toString()).b(paramActivity);
+    new UpdateBillingAddressTask(new u(getContext()).b(), a(this.a), a(this.c), a(this.d), a(this.f), a(), a(this.g), this.b.getSelectedItem().toString()).b(paramActivity);
     return 0;
   }
 
@@ -158,53 +157,40 @@ public class BillingAddressDialogView extends LinearLayout
     int i = 0;
     super.onFinishInflate();
     b localb = new b(this, (byte)0);
-    this.a = ((EditText)findViewById(2131165445));
+    this.a = ((EditText)findViewById(2131558716));
     this.a.setOnFocusChangeListener(localb);
-    this.c = ((EditText)findViewById(2131165447));
+    this.c = ((EditText)findViewById(2131558720));
     this.c.setOnFocusChangeListener(localb);
-    this.d = ((EditText)findViewById(2131165448));
+    this.d = ((EditText)findViewById(2131558721));
     this.d.setOnFocusChangeListener(localb);
-    this.f = ((EditText)findViewById(2131165449));
+    this.f = ((EditText)findViewById(2131558722));
     this.f.setOnFocusChangeListener(localb);
-    this.e = ((EditText)findViewById(2131165451));
+    this.e = ((EditText)findViewById(2131558719));
     this.e.setOnFocusChangeListener(localb);
-    this.g = ((EditText)findViewById(2131165452));
+    this.g = ((EditText)findViewById(2131558723));
     this.g.setOnFocusChangeListener(localb);
-    this.b = ((Spinner)findViewById(2131165446));
+    this.b = ((Spinner)findViewById(2131558717));
     this.b.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
     {
       public final void onItemSelected(AdapterView<?> paramAnonymousAdapterView, View paramAnonymousView, int paramAnonymousInt, long paramAnonymousLong)
       {
         BillingAddressDialogView.a(BillingAddressDialogView.this, (String)BillingAddressDialogView.a(BillingAddressDialogView.this).getItemAtPosition(paramAnonymousInt), null);
-        if (BillingAddressDialogView.b(BillingAddressDialogView.this).getText().length() == 0)
-        {
-          BillingAddressDialogView.b(BillingAddressDialogView.this).requestFocus();
-          return;
-        }
-        BillingAddressDialogView.c(BillingAddressDialogView.this).requestFocus();
       }
 
       public final void onNothingSelected(AdapterView<?> paramAnonymousAdapterView)
       {
-        if (BillingAddressDialogView.b(BillingAddressDialogView.this).getText().length() == 0)
-          BillingAddressDialogView.b(BillingAddressDialogView.this).requestFocus();
-        while (true)
-        {
-          BillingAddressDialogView.a(BillingAddressDialogView.this, null, null);
-          return;
-          BillingAddressDialogView.c(BillingAddressDialogView.this).requestFocus();
-        }
+        BillingAddressDialogView.a(BillingAddressDialogView.this, null, null);
       }
     });
-    this.h = ((Spinner)findViewById(2131165450));
-    q localq = new q(getContext());
-    String str1 = localq.f();
-    String str2 = localq.g();
-    String str3 = localq.h();
-    String str4 = localq.i();
-    String str5 = localq.j();
-    String str6 = localq.l();
-    String str7 = localq.k();
+    this.h = ((Spinner)findViewById(2131558718));
+    s locals = new s(getContext());
+    String str1 = locals.h();
+    String str2 = locals.i();
+    String str3 = locals.j();
+    String str4 = locals.k();
+    String str5 = locals.l();
+    String str6 = locals.n();
+    String str7 = locals.m();
     if (!TextUtils.isEmpty(str1))
       this.a.setText(str1);
     if (!TextUtils.isEmpty(str2))
@@ -215,7 +201,7 @@ public class BillingAddressDialogView extends LinearLayout
       this.f.setText(str4);
     if (!TextUtils.isEmpty(str7))
       this.g.setText(str7);
-    String[] arrayOfString1 = getResources().getStringArray(2131623952);
+    String[] arrayOfString1 = getResources().getStringArray(2131623955);
     int j;
     int k;
     label357: ArrayList localArrayList;
@@ -253,7 +239,7 @@ public class BillingAddressDialogView extends LinearLayout
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.activities.account.BillingAddressDialogView
  * JD-Core Version:    0.6.2
  */

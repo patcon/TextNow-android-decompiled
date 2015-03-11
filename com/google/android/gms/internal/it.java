@@ -1,31 +1,139 @@
 package com.google.android.gms.internal;
 
-import android.os.Bundle;
-import com.google.android.gms.common.data.DataHolder;
-import com.google.android.gms.drive.DriveId;
-import com.google.android.gms.drive.metadata.internal.j;
-import java.util.Arrays;
+import android.os.SystemClock;
+import org.json.JSONObject;
 
-public class it extends j<DriveId>
+public final class it
 {
-  public static final it KB = new it();
+  private static final ip Gr = new ip("RequestTracker");
+  public static final Object Hz = new Object();
+  private long Hv;
+  private long Hw;
+  private long Hx;
+  private is Hy;
 
-  private it()
+  public it(long paramLong)
   {
-    super("driveId", Arrays.asList(new String[] { "sqlId", "resourceId" }), Arrays.asList(new String[] { "dbInstanceId" }), 4100000);
+    this.Hv = paramLong;
+    this.Hw = -1L;
+    this.Hx = 0L;
   }
 
-  protected DriveId k(DataHolder paramDataHolder, int paramInt1, int paramInt2)
+  private void fU()
   {
-    long l = paramDataHolder.eU().getLong("dbInstanceId");
-    String str = paramDataHolder.c("resourceId", paramInt1, paramInt2);
-    if ((str != null) && (str.startsWith("generated-android-")))
-      str = null;
-    return new DriveId(str, Long.valueOf(paramDataHolder.a("sqlId", paramInt1, paramInt2)).longValue(), l);
+    this.Hw = -1L;
+    this.Hy = null;
+    this.Hx = 0L;
+  }
+
+  public final void a(long paramLong, is paramis)
+  {
+    synchronized (Hz)
+    {
+      is localis = this.Hy;
+      long l = this.Hw;
+      this.Hw = paramLong;
+      this.Hy = paramis;
+      this.Hx = SystemClock.elapsedRealtime();
+      if (localis != null)
+        localis.n(l);
+      return;
+    }
+  }
+
+  public final boolean b(long paramLong, int paramInt, JSONObject paramJSONObject)
+  {
+    for (boolean bool = true; ; bool = false)
+    {
+      synchronized (Hz)
+      {
+        if ((this.Hw != -1L) && (this.Hw == paramLong))
+        {
+          ip localip = Gr;
+          Object[] arrayOfObject = new Object[1];
+          arrayOfObject[0] = Long.valueOf(this.Hw);
+          localip.b("request %d completed", arrayOfObject);
+          localis = this.Hy;
+          fU();
+          if (localis != null)
+            localis.a(paramLong, paramInt, paramJSONObject);
+          return bool;
+        }
+      }
+      is localis = null;
+    }
+  }
+
+  public final void clear()
+  {
+    synchronized (Hz)
+    {
+      if (this.Hw != -1L)
+        fU();
+      return;
+    }
+  }
+
+  public final boolean d(long paramLong, int paramInt)
+  {
+    return b(paramLong, paramInt, null);
+  }
+
+  public final boolean e(long paramLong, int paramInt)
+  {
+    boolean bool = true;
+    long l = 0L;
+    while (true)
+    {
+      synchronized (Hz)
+      {
+        if ((this.Hw != -1L) && (paramLong - this.Hx >= this.Hv))
+        {
+          ip localip = Gr;
+          Object[] arrayOfObject = new Object[1];
+          arrayOfObject[0] = Long.valueOf(this.Hw);
+          localip.b("request %d timed out", arrayOfObject);
+          l = this.Hw;
+          localis = this.Hy;
+          fU();
+          if (localis != null)
+            localis.a(l, paramInt, null);
+          return bool;
+        }
+      }
+      is localis = null;
+      bool = false;
+    }
+  }
+
+  public final boolean fV()
+  {
+    synchronized (Hz)
+    {
+      if (this.Hw != -1L)
+      {
+        bool = true;
+        return bool;
+      }
+      boolean bool = false;
+    }
+  }
+
+  public final boolean p(long paramLong)
+  {
+    synchronized (Hz)
+    {
+      if ((this.Hw != -1L) && (this.Hw == paramLong))
+      {
+        bool = true;
+        return bool;
+      }
+      boolean bool = false;
+    }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.it
  * JD-Core Version:    0.6.2
  */

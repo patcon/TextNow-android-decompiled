@@ -1,84 +1,97 @@
 package com.google.android.gms.internal;
 
-import android.os.Parcel;
-import android.os.Parcelable.Creator;
-import com.google.android.gms.common.internal.safeparcel.a;
-import com.google.android.gms.common.internal.safeparcel.a.a;
-import com.google.android.gms.common.internal.safeparcel.b;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Map;
 
-public class cd
-  implements Parcelable.Creator<ce>
+@ez
+public final class cd
+  implements by
 {
-  static void a(ce paramce, Parcel paramParcel, int paramInt)
+  private final bz pL;
+  private final v pM;
+
+  public cd(bz parambz, v paramv)
   {
-    int i = b.C(paramParcel);
-    b.c(paramParcel, 1, paramce.versionCode);
-    b.a(paramParcel, 2, paramce.oa, false);
-    b.a(paramParcel, 3, paramce.ob, false);
-    b.a(paramParcel, 4, paramce.mimeType, false);
-    b.a(paramParcel, 5, paramce.packageName, false);
-    b.a(paramParcel, 6, paramce.oc, false);
-    b.a(paramParcel, 7, paramce.od, false);
-    b.a(paramParcel, 8, paramce.oe, false);
-    b.G(paramParcel, i);
+    this.pL = parambz;
+    this.pM = paramv;
   }
 
-  public ce e(Parcel paramParcel)
+  private static boolean b(Map<String, String> paramMap)
   {
-    String str1 = null;
-    int i = a.B(paramParcel);
-    int j = 0;
-    String str2 = null;
-    String str3 = null;
-    String str4 = null;
-    String str5 = null;
-    String str6 = null;
-    String str7 = null;
-    while (paramParcel.dataPosition() < i)
+    return "1".equals(paramMap.get("custom_close"));
+  }
+
+  private static int c(Map<String, String> paramMap)
+  {
+    String str = (String)paramMap.get("o");
+    if (str != null)
     {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
-      {
-      default:
-        a.b(paramParcel, k);
-        break;
-      case 1:
-        j = a.g(paramParcel, k);
-        break;
-      case 2:
-        str7 = a.o(paramParcel, k);
-        break;
-      case 3:
-        str6 = a.o(paramParcel, k);
-        break;
-      case 4:
-        str5 = a.o(paramParcel, k);
-        break;
-      case 5:
-        str4 = a.o(paramParcel, k);
-        break;
-      case 6:
-        str3 = a.o(paramParcel, k);
-        break;
-      case 7:
-        str2 = a.o(paramParcel, k);
-        break;
-      case 8:
-        str1 = a.o(paramParcel, k);
-      }
+      if ("p".equalsIgnoreCase(str))
+        return gj.dm();
+      if ("l".equalsIgnoreCase(str))
+        return gj.dl();
     }
-    if (paramParcel.dataPosition() != i)
-      throw new a.a("Overread allowed size end=" + i, paramParcel);
-    return new ce(j, str7, str6, str5, str4, str3, str2, str1);
+    return -1;
   }
 
-  public ce[] i(int paramInt)
+  public final void a(gv paramgv, Map<String, String> paramMap)
   {
-    return new ce[paramInt];
+    String str1 = (String)paramMap.get("a");
+    if (str1 == null)
+      gs.W("Action missing from an open GMSG.");
+    gw localgw;
+    String str2;
+    String str3;
+    do
+    {
+      return;
+      if ((this.pM != null) && (!this.pM.av()))
+      {
+        this.pM.d((String)paramMap.get("u"));
+        return;
+      }
+      localgw = paramgv.du();
+      if ("expand".equalsIgnoreCase(str1))
+      {
+        if (paramgv.dy())
+        {
+          gs.W("Cannot expand WebView that is already expanded.");
+          return;
+        }
+        localgw.a(b(paramMap), c(paramMap));
+        return;
+      }
+      if ("webapp".equalsIgnoreCase(str1))
+      {
+        String str4 = (String)paramMap.get("u");
+        if (str4 != null)
+        {
+          localgw.a(b(paramMap), c(paramMap), str4);
+          return;
+        }
+        localgw.a(b(paramMap), c(paramMap), (String)paramMap.get("html"), (String)paramMap.get("baseurl"));
+        return;
+      }
+      if (!"in_app_purchase".equalsIgnoreCase(str1))
+        break;
+      str2 = (String)paramMap.get("product_id");
+      str3 = (String)paramMap.get("report_urls");
+    }
+    while (this.pL == null);
+    if ((str3 != null) && (!str3.isEmpty()))
+    {
+      String[] arrayOfString = str3.split(" ");
+      this.pL.a(str2, new ArrayList(Arrays.asList(arrayOfString)));
+      return;
+    }
+    this.pL.a(str2, new ArrayList());
+    return;
+    localgw.a(new dj((String)paramMap.get("i"), (String)paramMap.get("u"), (String)paramMap.get("m"), (String)paramMap.get("p"), (String)paramMap.get("c"), (String)paramMap.get("f"), (String)paramMap.get("e")));
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.cd
  * JD-Core Version:    0.6.2
  */

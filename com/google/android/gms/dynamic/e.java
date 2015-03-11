@@ -5,17 +5,17 @@ import java.lang.reflect.Field;
 
 public final class e<T> extends d.a
 {
-  private final T Mk;
+  private final T Sk;
 
   private e(T paramT)
   {
-    this.Mk = paramT;
+    this.Sk = paramT;
   }
 
-  public static <T> T e(d paramd)
+  public static <T> T f(d paramd)
   {
     if ((paramd instanceof e))
-      return ((e)paramd).Mk;
+      return ((e)paramd).Sk;
     IBinder localIBinder = paramd.asBinder();
     Field[] arrayOfField = localIBinder.getClass().getDeclaredFields();
     if (arrayOfField.length == 1)
@@ -47,13 +47,13 @@ public final class e<T> extends d.a
     throw new IllegalArgumentException("The concrete class implementing IObjectWrapper must have exactly *one* declared private field for the wrapped object.  Preferably, this is an instance of the ObjectWrapper<T> class.");
   }
 
-  public static <T> d h(T paramT)
+  public static <T> d k(T paramT)
   {
     return new e(paramT);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.dynamic.e
  * JD-Core Version:    0.6.2
  */

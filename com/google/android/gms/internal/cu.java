@@ -1,148 +1,30 @@
 package com.google.android.gms.internal;
 
-import android.app.Activity;
-import android.app.PendingIntent;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentSender.SendIntentException;
-import android.content.ServiceConnection;
-import android.os.Bundle;
-import android.os.IBinder;
-import android.os.RemoteException;
+import android.os.IInterface;
+import com.google.android.gms.dynamic.d;
 
-public class cu extends dd.a
-  implements ServiceConnection
+public abstract interface cu extends IInterface
 {
-  private dg oX;
-  private cr oY;
-  private final cx oZ;
-  private final Activity og;
-  private cz pb;
-  private Context ph;
-  private db pi;
-  private cv pj;
-  private String pk = null;
+  public abstract void a(d paramd, av paramav, String paramString, cv paramcv);
 
-  public cu(Activity paramActivity)
-  {
-    this.og = paramActivity;
-    this.oZ = cx.k(this.og.getApplicationContext());
-  }
+  public abstract void a(d paramd, av paramav, String paramString1, String paramString2, cv paramcv);
 
-  public static void a(Context paramContext, boolean paramBoolean, cq paramcq)
-  {
-    Intent localIntent = new Intent();
-    localIntent.setClassName(paramContext, "com.google.android.gms.ads.purchase.InAppPurchaseActivity");
-    localIntent.putExtra("com.google.android.gms.ads.internal.purchase.useClientJar", paramBoolean);
-    cq.a(localIntent, paramcq);
-    paramContext.startActivity(localIntent);
-  }
+  public abstract void a(d paramd, ay paramay, av paramav, String paramString, cv paramcv);
 
-  private void a(String paramString, boolean paramBoolean, int paramInt, Intent paramIntent)
-  {
-    try
-    {
-      this.oX.a(new cw(this.ph, paramString, paramBoolean, paramInt, paramIntent, this.pj));
-      return;
-    }
-    catch (RemoteException localRemoteException)
-    {
-      eu.D("Fail to invoke PlayStorePurchaseListener.");
-    }
-  }
+  public abstract void a(d paramd, ay paramay, av paramav, String paramString1, String paramString2, cv paramcv);
 
-  public void onActivityResult(int paramInt1, int paramInt2, Intent paramIntent)
-  {
-    if (paramInt1 == 1001);
-    try
-    {
-      int i = cy.c(paramIntent);
-      if ((paramInt2 == -1) && (i == 0))
-      {
-        if (this.pb.a(this.pk, paramInt2, paramIntent))
-          a(this.pi.getProductId(), true, paramInt2, paramIntent);
-        while (true)
-        {
-          this.pi.recordPlayBillingResolution(i);
-          return;
-          a(this.pi.getProductId(), false, paramInt2, paramIntent);
-        }
-      }
-    }
-    catch (RemoteException localRemoteException)
-    {
-      while (true)
-      {
-        eu.D("Fail to process purchase result.");
-        return;
-        this.oZ.a(this.pj);
-        a(this.pi.getProductId(), false, paramInt2, paramIntent);
-      }
-    }
-    finally
-    {
-      this.pk = null;
-      this.og.finish();
-    }
-  }
+  public abstract void destroy();
 
-  public void onCreate()
-  {
-    cq localcq = cq.b(this.og.getIntent());
-    this.oX = localcq.kX;
-    this.pb = localcq.kZ;
-    this.pi = localcq.oT;
-    this.oY = new cr(this.og.getApplicationContext());
-    this.ph = localcq.oU;
-    Activity localActivity = this.og;
-    Intent localIntent = new Intent("com.android.vending.billing.InAppBillingService.BIND");
-    this.og.getApplicationContext();
-    localActivity.bindService(localIntent, this, 1);
-  }
+  public abstract d getView();
 
-  public void onDestroy()
-  {
-    this.og.unbindService(this);
-    this.oY.destroy();
-  }
+  public abstract void pause();
 
-  public void onServiceConnected(ComponentName paramComponentName, IBinder paramIBinder)
-  {
-    this.oY.o(paramIBinder);
-    try
-    {
-      this.pk = this.pb.bm();
-      Bundle localBundle = this.oY.a(this.og.getPackageName(), this.pi.getProductId(), this.pk);
-      PendingIntent localPendingIntent = (PendingIntent)localBundle.getParcelable("BUY_INTENT");
-      if (localPendingIntent == null)
-      {
-        int i = cy.a(localBundle);
-        this.pi.recordPlayBillingResolution(i);
-        a(this.pi.getProductId(), false, i, null);
-        this.og.finish();
-        return;
-      }
-      this.pj = new cv(this.pi.getProductId(), this.pk);
-      this.oZ.b(this.pj);
-      this.og.startIntentSenderForResult(localPendingIntent.getIntentSender(), 1001, new Intent(), Integer.valueOf(0).intValue(), Integer.valueOf(0).intValue(), Integer.valueOf(0).intValue());
-      return;
-    }
-    catch (RemoteException|IntentSender.SendIntentException localRemoteException)
-    {
-      eu.c("Error when connecting in-app billing service", localRemoteException);
-      this.og.finish();
-    }
-  }
+  public abstract void resume();
 
-  public void onServiceDisconnected(ComponentName paramComponentName)
-  {
-    eu.B("In-app billing service disconnected.");
-    this.oY.destroy();
-  }
+  public abstract void showInterstitial();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.cu
  * JD-Core Version:    0.6.2
  */

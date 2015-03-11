@@ -1,72 +1,27 @@
 package com.google.android.gms.internal;
 
-import android.os.Parcel;
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Set;
+import com.google.android.gms.appstate.AppStateManager.StateDeletedResult;
+import com.google.android.gms.common.api.BaseImplementation.b;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.internal.o;
 
-public class ib$a
-  implements SafeParcelable
+final class ib$a extends ia
 {
-  public static final id CREATOR = new id();
-  final ArrayList<ib.b> Ho;
-  final String className;
-  final int versionCode;
+  private final BaseImplementation.b<AppStateManager.StateDeletedResult> De;
 
-  ib$a(int paramInt, String paramString, ArrayList<ib.b> paramArrayList)
+  public ib$a(BaseImplementation.b<AppStateManager.StateDeletedResult> paramb)
   {
-    this.versionCode = paramInt;
-    this.className = paramString;
-    this.Ho = paramArrayList;
+    this.De = ((BaseImplementation.b)o.b(paramb, "Result holder must not be null"));
   }
 
-  ib$a(String paramString, HashMap<String, hy.a<?, ?>> paramHashMap)
+  public final void e(int paramInt1, int paramInt2)
   {
-    this.versionCode = 1;
-    this.className = paramString;
-    this.Ho = a(paramHashMap);
-  }
-
-  private static ArrayList<ib.b> a(HashMap<String, hy.a<?, ?>> paramHashMap)
-  {
-    if (paramHashMap == null)
-      return null;
-    ArrayList localArrayList = new ArrayList();
-    Iterator localIterator = paramHashMap.keySet().iterator();
-    while (localIterator.hasNext())
-    {
-      String str = (String)localIterator.next();
-      localArrayList.add(new ib.b(str, (hy.a)paramHashMap.get(str)));
-    }
-    return localArrayList;
-  }
-
-  public int describeContents()
-  {
-    return 0;
-  }
-
-  HashMap<String, hy.a<?, ?>> fX()
-  {
-    HashMap localHashMap = new HashMap();
-    int i = this.Ho.size();
-    for (int j = 0; j < i; j++)
-    {
-      ib.b localb = (ib.b)this.Ho.get(j);
-      localHashMap.put(localb.eM, localb.Hp);
-    }
-    return localHashMap;
-  }
-
-  public void writeToParcel(Parcel paramParcel, int paramInt)
-  {
-    id.a(this, paramParcel, paramInt);
+    Status localStatus = new Status(paramInt1);
+    this.De.b(new ib.b(localStatus, paramInt2));
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ib.a
  * JD-Core Version:    0.6.2
  */

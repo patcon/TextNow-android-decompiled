@@ -1,44 +1,49 @@
 package android.support.v7.app;
 
-import android.view.Menu;
-import android.view.MenuItem;
-import textnow.i.a;
-import textnow.i.b;
+import android.annotation.TargetApi;
+import android.support.v7.internal.widget.NativeActionModeAwareLayout;
+import android.support.v7.internal.widget.z;
+import android.view.ActionMode;
+import android.view.ActionMode.Callback;
+import android.view.KeyEvent;
+import android.view.View;
+import textnow.k.c;
+import textnow.k.d;
+import textnow.l.a;
 
-final class h
-  implements b
+@TargetApi(11)
+final class h extends ActionBarActivityDelegateBase
+  implements z
 {
-  private b b;
+  private NativeActionModeAwareLayout k;
 
-  public h(f paramf, b paramb)
+  h(b paramb)
   {
-    this.b = paramb;
+    super(paramb);
   }
 
-  public final void a(a parama)
+  public final ActionMode a(View paramView, ActionMode.Callback paramCallback)
   {
-    this.b.a(parama);
-    d.e();
-    f.a(this.a, null);
+    a locala = a(new d(paramView.getContext(), paramCallback));
+    if (locala != null)
+      return new c(this.a, locala);
+    return null;
   }
 
-  public final boolean a(a parama, Menu paramMenu)
+  final boolean a(int paramInt, KeyEvent paramKeyEvent)
   {
-    return this.b.a(parama, paramMenu);
+    return false;
   }
 
-  public final boolean a(a parama, MenuItem paramMenuItem)
+  final void m()
   {
-    return this.b.a(parama, paramMenuItem);
-  }
-
-  public final boolean b(a parama, Menu paramMenu)
-  {
-    return this.b.b(parama, paramMenu);
+    this.k = ((NativeActionModeAwareLayout)this.a.findViewById(16908290));
+    if (this.k != null)
+      this.k.a(this);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v7.app.h
  * JD-Core Version:    0.6.2
  */

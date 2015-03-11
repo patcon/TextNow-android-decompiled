@@ -2,7 +2,7 @@ package com.enflick.android.TextNow.tasks;
 
 import com.enflick.android.TextNow.api.users.UsersCreditsPost;
 import com.enflick.android.TextNow.api.users.s;
-import textnow.u.r;
+import textnow.z.u;
 
 public class PurchaseCreditsTask extends c
 {
@@ -21,12 +21,12 @@ public class PurchaseCreditsTask extends c
 
   public void run()
   {
-    s locals = new s(new r(this.a).b(), this.d, this.e, this.f, this.g);
+    s locals = new s(new u(this.a).b(), this.d, this.e, this.f, this.g);
     if (a(new UsersCreditsPost(this.a).runSync(locals)));
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.PurchaseCreditsTask
  * JD-Core Version:    0.6.2
  */

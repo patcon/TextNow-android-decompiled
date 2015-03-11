@@ -3,7 +3,7 @@ package com.enflick.android.TextNow.activities.account;
 import android.content.res.Resources;
 import android.text.Editable;
 import android.text.TextWatcher;
-import textnow.q.ad;
+import textnow.v.z;
 
 final class f
   implements TextWatcher
@@ -41,8 +41,8 @@ final class f
       return;
       if (!CreditCardNumberEditText.a(this.a).validateNumber())
       {
-        this.a.setTextColor(this.a.getResources().getColor(2131296297));
-        ad.a(this.a);
+        this.a.setTextColor(this.a.getResources().getColor(2131230817));
+        z.a(this.a);
         return;
       }
     }
@@ -59,7 +59,7 @@ final class f
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.activities.account.f
  * JD-Core Version:    0.6.2
  */

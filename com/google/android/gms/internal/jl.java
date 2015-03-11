@@ -7,58 +7,53 @@ import com.google.android.gms.common.internal.safeparcel.a.a;
 import com.google.android.gms.common.internal.safeparcel.b;
 
 public class jl
-  implements Parcelable.Creator<jk>
+  implements Parcelable.Creator<jm.b>
 {
-  static void a(jk paramjk, Parcel paramParcel, int paramInt)
+  static void a(jm.b paramb, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
-    b.c(paramParcel, 1, paramjk.jc());
-    b.c(paramParcel, 1000, paramjk.getVersionCode());
-    b.c(paramParcel, 2, paramjk.je());
-    b.a(paramParcel, 3, paramjk.jf(), paramInt, false);
-    b.G(paramParcel, i);
+    int i = b.D(paramParcel);
+    b.c(paramParcel, 1, paramb.versionCode);
+    b.a(paramParcel, 2, paramb.fv, false);
+    b.a(paramParcel, 3, paramb.MM, paramInt, false);
+    b.H(paramParcel, i);
   }
 
-  public jk bu(Parcel paramParcel)
+  public jm.b J(Parcel paramParcel)
   {
-    int i = 0;
-    int j = a.B(paramParcel);
-    int k = -1;
-    jm localjm = null;
-    int m = 0;
-    while (paramParcel.dataPosition() < j)
+    ji.a locala = null;
+    int i = a.C(paramParcel);
+    int j = 0;
+    String str = null;
+    while (paramParcel.dataPosition() < i)
     {
-      int n = a.A(paramParcel);
-      switch (a.ar(n))
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
       {
       default:
-        a.b(paramParcel, n);
+        a.b(paramParcel, k);
         break;
       case 1:
-        i = a.g(paramParcel, n);
-        break;
-      case 1000:
-        m = a.g(paramParcel, n);
+        j = a.g(paramParcel, k);
         break;
       case 2:
-        k = a.g(paramParcel, n);
+        str = a.o(paramParcel, k);
         break;
       case 3:
-        localjm = (jm)a.a(paramParcel, n, jm.CREATOR);
+        locala = (ji.a)a.a(paramParcel, k, ji.a.CREATOR);
       }
     }
-    if (paramParcel.dataPosition() != j)
-      throw new a.a("Overread allowed size end=" + j, paramParcel);
-    return new jk(m, i, k, localjm);
+    if (paramParcel.dataPosition() != i)
+      throw new a.a("Overread allowed size end=" + i, paramParcel);
+    return new jm.b(j, str, locala);
   }
 
-  public jk[] cP(int paramInt)
+  public jm.b[] aJ(int paramInt)
   {
-    return new jk[paramInt];
+    return new jm.b[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.jl
  * JD-Core Version:    0.6.2
  */

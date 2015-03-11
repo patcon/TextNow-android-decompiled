@@ -1,26 +1,26 @@
 package com.google.android.gms.appstate;
 
-import com.google.android.gms.internal.hk;
-import com.google.android.gms.internal.hk.a;
+import com.google.android.gms.common.internal.n;
+import com.google.android.gms.common.internal.n.a;
 
 public final class a
   implements AppState
 {
-  private final int yB;
-  private final String yC;
-  private final byte[] yD;
-  private final boolean yE;
-  private final String yF;
-  private final byte[] yG;
+  private final int CO;
+  private final String CP;
+  private final byte[] CQ;
+  private final boolean CR;
+  private final String CS;
+  private final byte[] CT;
 
   public a(AppState paramAppState)
   {
-    this.yB = paramAppState.getKey();
-    this.yC = paramAppState.getLocalVersion();
-    this.yD = paramAppState.getLocalData();
-    this.yE = paramAppState.hasConflict();
-    this.yF = paramAppState.getConflictVersion();
-    this.yG = paramAppState.getConflictData();
+    this.CO = paramAppState.getKey();
+    this.CP = paramAppState.getLocalVersion();
+    this.CQ = paramAppState.getLocalData();
+    this.CR = paramAppState.hasConflict();
+    this.CS = paramAppState.getConflictVersion();
+    this.CT = paramAppState.getConflictData();
   }
 
   static int a(AppState paramAppState)
@@ -32,7 +32,7 @@ public final class a
     arrayOfObject[3] = Boolean.valueOf(paramAppState.hasConflict());
     arrayOfObject[4] = paramAppState.getConflictVersion();
     arrayOfObject[5] = paramAppState.getConflictData();
-    return hk.hashCode(arrayOfObject);
+    return n.hashCode(arrayOfObject);
   }
 
   static boolean a(AppState paramAppState, Object paramObject)
@@ -46,18 +46,13 @@ public final class a
         return true;
       localAppState = (AppState)paramObject;
     }
-    while ((!hk.equal(Integer.valueOf(localAppState.getKey()), Integer.valueOf(paramAppState.getKey()))) || (!hk.equal(localAppState.getLocalVersion(), paramAppState.getLocalVersion())) || (!hk.equal(localAppState.getLocalData(), paramAppState.getLocalData())) || (!hk.equal(Boolean.valueOf(localAppState.hasConflict()), Boolean.valueOf(paramAppState.hasConflict()))) || (!hk.equal(localAppState.getConflictVersion(), paramAppState.getConflictVersion())) || (!hk.equal(localAppState.getConflictData(), paramAppState.getConflictData())));
+    while ((!n.equal(Integer.valueOf(localAppState.getKey()), Integer.valueOf(paramAppState.getKey()))) || (!n.equal(localAppState.getLocalVersion(), paramAppState.getLocalVersion())) || (!n.equal(localAppState.getLocalData(), paramAppState.getLocalData())) || (!n.equal(Boolean.valueOf(localAppState.hasConflict()), Boolean.valueOf(paramAppState.hasConflict()))) || (!n.equal(localAppState.getConflictVersion(), paramAppState.getConflictVersion())) || (!n.equal(localAppState.getConflictData(), paramAppState.getConflictData())));
     return true;
   }
 
   static String b(AppState paramAppState)
   {
-    return hk.e(paramAppState).a("Key", Integer.valueOf(paramAppState.getKey())).a("LocalVersion", paramAppState.getLocalVersion()).a("LocalData", paramAppState.getLocalData()).a("HasConflict", Boolean.valueOf(paramAppState.hasConflict())).a("ConflictVersion", paramAppState.getConflictVersion()).a("ConflictData", paramAppState.getConflictData()).toString();
-  }
-
-  public final AppState dS()
-  {
-    return this;
+    return n.h(paramAppState).a("Key", Integer.valueOf(paramAppState.getKey())).a("LocalVersion", paramAppState.getLocalVersion()).a("LocalData", paramAppState.getLocalData()).a("HasConflict", Boolean.valueOf(paramAppState.hasConflict())).a("ConflictVersion", paramAppState.getConflictVersion()).a("ConflictData", paramAppState.getConflictData()).toString();
   }
 
   public final boolean equals(Object paramObject)
@@ -65,34 +60,39 @@ public final class a
     return a(this, paramObject);
   }
 
+  public final AppState fo()
+  {
+    return this;
+  }
+
   public final byte[] getConflictData()
   {
-    return this.yG;
+    return this.CT;
   }
 
   public final String getConflictVersion()
   {
-    return this.yF;
+    return this.CS;
   }
 
   public final int getKey()
   {
-    return this.yB;
+    return this.CO;
   }
 
   public final byte[] getLocalData()
   {
-    return this.yD;
+    return this.CQ;
   }
 
   public final String getLocalVersion()
   {
-    return this.yC;
+    return this.CP;
   }
 
   public final boolean hasConflict()
   {
-    return this.yE;
+    return this.CR;
   }
 
   public final int hashCode()
@@ -111,7 +111,7 @@ public final class a
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.appstate.a
  * JD-Core Version:    0.6.2
  */

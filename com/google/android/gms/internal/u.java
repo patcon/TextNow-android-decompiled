@@ -10,34 +10,43 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Rect;
+import android.net.Uri;
+import android.net.Uri.Builder;
 import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.util.DisplayMetrics;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewParent;
 import android.view.Window;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.internal.o;
 import com.google.android.gms.dynamic.d;
 import com.google.android.gms.dynamic.e;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
-public class u extends aq.a
-  implements ba, bd, bf, bn, ci, cl, dm.a, ej, t
+@ez
+public class u extends bd.a
+  implements aa, bw, bz, cb, cn, dn, dq, fa.a, fd.a, gd, t
 {
-  private final bt kB;
-  private final u.c kC;
-  private final y kD;
-  private final ab kE;
-  private boolean kF;
-  private final ComponentCallbacks kG = new ComponentCallbacks()
+  private av lp;
+  private final ct lq;
+  private final u.b lr;
+  private final ab ls;
+  private final ae lt;
+  private boolean lu;
+  private final ComponentCallbacks lv = new ComponentCallbacks()
   {
     public void onConfigurationChanged(Configuration paramAnonymousConfiguration)
     {
-      if ((u.a(u.this) != null) && (u.a(u.this).kU != null) && (u.a(u.this).kU.oy != null))
-        u.a(u.this).kU.oy.bX();
+      if ((u.a(u.this) != null) && (u.a(u.this).lI != null) && (u.a(u.this).lI.rN != null))
+        u.a(u.this).lI.rN.bS();
     }
 
     public void onLowMemory()
@@ -45,284 +54,378 @@ public class u extends aq.a
     }
   };
 
-  public u(Context paramContext, al paramal, String paramString, bt parambt, ev paramev)
+  public u(Context paramContext, ay paramay, String paramString, ct paramct, gt paramgt)
   {
-    this.kC = new u.c(paramContext, paramal, paramString, paramev);
-    this.kB = parambt;
-    this.kD = new y(this);
-    this.kE = new ab();
-    eo.n(paramContext);
-    W();
+    this(new u.b(paramContext, paramay, paramString, paramgt), paramct, null);
   }
 
-  private void W()
+  u(u.b paramb, ct paramct, ab paramab)
   {
-    if ((Build.VERSION.SDK_INT >= 14) && (this.kC != null) && (this.kC.kO != null))
-      this.kC.kO.registerComponentCallbacks(this.kG);
+    this.lr = paramb;
+    this.lq = paramct;
+    if (paramab != null);
+    while (true)
+    {
+      this.ls = paramab;
+      this.lt = new ae();
+      gj.q(this.lr.lB);
+      gb.a(this.lr.lB, this.lr.lD);
+      Z();
+      return;
+      paramab = new ab(this);
+    }
   }
 
-  private void X()
+  private void Z()
   {
-    if ((Build.VERSION.SDK_INT >= 14) && (this.kC != null) && (this.kC.kO != null))
-      this.kC.kO.unregisterComponentCallbacks(this.kG);
+    if ((Build.VERSION.SDK_INT >= 14) && (this.lr != null) && (this.lr.lB != null))
+      this.lr.lB.registerComponentCallbacks(this.lv);
+  }
+
+  private fi.a a(av paramav, Bundle paramBundle)
+  {
+    ApplicationInfo localApplicationInfo = this.lr.lB.getApplicationInfo();
+    try
+    {
+      PackageInfo localPackageInfo2 = this.lr.lB.getPackageManager().getPackageInfo(localApplicationInfo.packageName, 0);
+      localPackageInfo1 = localPackageInfo2;
+      boolean bool1 = this.lr.lH.og;
+      Bundle localBundle1 = null;
+      if (!bool1)
+      {
+        ViewParent localViewParent = this.lr.lz.getParent();
+        localBundle1 = null;
+        if (localViewParent != null)
+        {
+          int[] arrayOfInt = new int[2];
+          this.lr.lz.getLocationOnScreen(arrayOfInt);
+          int i = arrayOfInt[0];
+          int j = arrayOfInt[1];
+          DisplayMetrics localDisplayMetrics = this.lr.lB.getResources().getDisplayMetrics();
+          int k = this.lr.lz.getWidth();
+          int m = this.lr.lz.getHeight();
+          boolean bool2 = this.lr.lz.isShown();
+          int n = 0;
+          if (bool2)
+          {
+            int i1 = i + k;
+            n = 0;
+            if (i1 > 0)
+            {
+              int i2 = j + m;
+              n = 0;
+              if (i2 > 0)
+              {
+                int i3 = localDisplayMetrics.widthPixels;
+                n = 0;
+                if (i <= i3)
+                {
+                  int i4 = localDisplayMetrics.heightPixels;
+                  n = 0;
+                  if (j <= i4)
+                    n = 1;
+                }
+              }
+            }
+          }
+          localBundle1 = new Bundle(5);
+          localBundle1.putInt("x", i);
+          localBundle1.putInt("y", j);
+          localBundle1.putInt("width", k);
+          localBundle1.putInt("height", m);
+          localBundle1.putInt("visible", n);
+        }
+      }
+      String str = gb.cW();
+      this.lr.lK = new ga(str, this.lr.lA);
+      this.lr.lK.e(paramav);
+      Bundle localBundle2 = gb.a(this.lr.lB, this, str);
+      return new fi.a(localBundle1, paramav, this.lr.lH, this.lr.lA, localApplicationInfo, localPackageInfo1, str, gb.vK, this.lr.lD, localBundle2, this.lr.lS, paramBundle, gb.dc());
+    }
+    catch (PackageManager.NameNotFoundException localNameNotFoundException)
+    {
+      while (true)
+        PackageInfo localPackageInfo1 = null;
+    }
+  }
+
+  private gv a(v paramv)
+  {
+    if (this.lr.lH.og)
+    {
+      gv localgv2 = gv.a(this.lr.lB, this.lr.lH, false, false, this.lr.lC, this.lr.lD);
+      localgv2.du().a(this, null, this, this, true, this, this, paramv);
+      return localgv2;
+    }
+    View localView = this.lr.lz.getNextView();
+    gv localgv1;
+    if ((localView instanceof gv))
+    {
+      localgv1 = (gv)localView;
+      localgv1.a(this.lr.lB, this.lr.lH);
+    }
+    while (true)
+    {
+      localgv1.du().a(this, this, this, this, false, this, paramv);
+      return localgv1;
+      if (localView != null)
+        this.lr.lz.removeView(localView);
+      localgv1 = gv.a(this.lr.lB, this.lr.lH, false, false, this.lr.lC, this.lr.lD);
+      if (this.lr.lH.oh == null)
+        c(localgv1);
+    }
   }
 
   private void a(int paramInt)
   {
-    eu.D("Failed to load ad: " + paramInt);
-    if (this.kC.kR != null);
+    gs.W("Failed to load ad: " + paramInt);
+    if (this.lr.lE != null);
     try
     {
-      this.kC.kR.onAdFailedToLoad(paramInt);
+      this.lr.lE.onAdFailedToLoad(paramInt);
       return;
     }
     catch (RemoteException localRemoteException)
     {
-      eu.c("Could not call AdListener.onAdFailedToLoad().", localRemoteException);
+      gs.d("Could not call AdListener.onAdFailedToLoad().", localRemoteException);
     }
   }
 
-  private void ah()
+  private void aa()
   {
-    eu.B("Ad closing.");
-    if (this.kC.kR != null);
-    try
-    {
-      this.kC.kR.onAdClosed();
-      return;
-    }
-    catch (RemoteException localRemoteException)
-    {
-      eu.c("Could not call AdListener.onAdClosed().", localRemoteException);
-    }
-  }
-
-  private void ai()
-  {
-    eu.B("Ad leaving application.");
-    if (this.kC.kR != null);
-    try
-    {
-      this.kC.kR.onAdLeftApplication();
-      return;
-    }
-    catch (RemoteException localRemoteException)
-    {
-      eu.c("Could not call AdListener.onAdLeftApplication().", localRemoteException);
-    }
-  }
-
-  private void aj()
-  {
-    eu.B("Ad opening.");
-    if (this.kC.kR != null);
-    try
-    {
-      this.kC.kR.onAdOpened();
-      return;
-    }
-    catch (RemoteException localRemoteException)
-    {
-      eu.c("Could not call AdListener.onAdOpened().", localRemoteException);
-    }
+    if ((Build.VERSION.SDK_INT >= 14) && (this.lr != null) && (this.lr.lB != null))
+      this.lr.lB.unregisterComponentCallbacks(this.lv);
   }
 
   private void ak()
   {
-    eu.B("Ad finished loading.");
-    if (this.kC.kR != null);
+    gs.U("Ad closing.");
+    if (this.lr.lE != null);
     try
     {
-      this.kC.kR.onAdLoaded();
+      this.lr.lE.onAdClosed();
       return;
     }
     catch (RemoteException localRemoteException)
     {
-      eu.c("Could not call AdListener.onAdLoaded().", localRemoteException);
+      gs.d("Could not call AdListener.onAdClosed().", localRemoteException);
     }
   }
 
-  private boolean al()
+  private void al()
   {
-    boolean bool = true;
-    if (!eo.a(this.kC.kO.getPackageManager(), this.kC.kO.getPackageName(), "android.permission.INTERNET"))
+    gs.U("Ad leaving application.");
+    if (this.lr.lE != null);
+    try
     {
-      if (!this.kC.kT.mf)
-        et.a(this.kC.kM, this.kC.kT, "Missing internet permission in AndroidManifest.xml.", "Missing internet permission in AndroidManifest.xml. You must have the following declaration: <uses-permission android:name=\"android.permission.INTERNET\" />");
-      bool = false;
+      this.lr.lE.onAdLeftApplication();
+      return;
     }
-    if (!eo.m(this.kC.kO))
+    catch (RemoteException localRemoteException)
     {
-      if (!this.kC.kT.mf)
-        et.a(this.kC.kM, this.kC.kT, "Missing AdActivity with android:configChanges in AndroidManifest.xml.", "Missing AdActivity with android:configChanges in AndroidManifest.xml. You must have the following declaration within the <application> element: <activity android:name=\"com.google.android.gms.ads.AdActivity\" android:configChanges=\"keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize\" />");
-      bool = false;
+      gs.d("Could not call AdListener.onAdLeftApplication().", localRemoteException);
     }
-    if ((!bool) && (!this.kC.kT.mf))
-      this.kC.kM.setVisibility(0);
-    return bool;
   }
 
   private void am()
   {
-    if (this.kC.kU == null)
-      eu.D("Ad state was null when trying to ping click URLs.");
-    do
+    gs.U("Ad opening.");
+    if (this.lr.lE != null);
+    try
     {
+      this.lr.lE.onAdOpened();
       return;
-      eu.z("Pinging click URLs.");
-      this.kC.kV.bC();
-      if (this.kC.kU.nt != null)
-        eo.a(this.kC.kO, this.kC.kQ.sw, this.kC.kU.nt);
     }
-    while ((this.kC.kU.rz == null) || (this.kC.kU.rz.nt == null));
-    br.a(this.kC.kO, this.kC.kQ.sw, this.kC.kU, this.kC.kN, false, this.kC.kU.rz.nt);
+    catch (RemoteException localRemoteException)
+    {
+      gs.d("Could not call AdListener.onAdOpened().", localRemoteException);
+    }
   }
 
   private void an()
   {
-    if (this.kC.kU != null)
+    gs.U("Ad finished loading.");
+    if (this.lr.lE != null);
+    try
     {
-      this.kC.kU.oy.destroy();
-      this.kC.kU = null;
+      this.lr.lE.onAdLoaded();
+      return;
+    }
+    catch (RemoteException localRemoteException)
+    {
+      gs.d("Could not call AdListener.onAdLoaded().", localRemoteException);
     }
   }
 
-  private void b(View paramView)
+  private void ao()
   {
-    ViewGroup.LayoutParams localLayoutParams = new ViewGroup.LayoutParams(-2, -2);
-    this.kC.kM.addView(paramView, localLayoutParams);
+    try
+    {
+      if (((this.lr.lI.vu instanceof bo)) && (this.lr.lQ != null))
+        this.lr.lQ.a((bo)this.lr.lI.vu);
+      return;
+    }
+    catch (RemoteException localRemoteException)
+    {
+      gs.d("Could not call OnAppInstallAdLoadedListener.onAppInstallAdLoaded().", localRemoteException);
+    }
+  }
+
+  private void ap()
+  {
+    try
+    {
+      if (((this.lr.lI.vu instanceof bp)) && (this.lr.lR != null))
+        this.lr.lR.a((bp)this.lr.lI.vu);
+      return;
+    }
+    catch (RemoteException localRemoteException)
+    {
+      gs.d("Could not call OnContentAdLoadedListener.onContentAdLoaded().", localRemoteException);
+    }
+  }
+
+  private void at()
+  {
+    if (this.lr.lI != null)
+    {
+      if (this.lr.lW == 0)
+        this.lr.lI.rN.destroy();
+      this.lr.lI = null;
+      this.lr.lX = false;
+    }
   }
 
   // ERROR //
-  private boolean b(ef paramef)
+  private boolean b(fz paramfz)
   {
     // Byte code:
     //   0: aload_1
-    //   1: getfield 302	com/google/android/gms/internal/ef:qg	Z
+    //   1: getfield 418	com/google/android/gms/internal/fz:tI	Z
     //   4: ifeq +193 -> 197
     //   7: aload_1
-    //   8: getfield 306	com/google/android/gms/internal/ef:nN	Lcom/google/android/gms/internal/bu;
-    //   11: invokeinterface 312 1 0
-    //   16: invokestatic 318	com/google/android/gms/dynamic/e:e	(Lcom/google/android/gms/dynamic/d;)Ljava/lang/Object;
-    //   19: checkcast 320	android/view/View
+    //   8: getfield 422	com/google/android/gms/internal/fz:qz	Lcom/google/android/gms/internal/cu;
+    //   11: invokeinterface 428 1 0
+    //   16: invokestatic 434	com/google/android/gms/dynamic/e:f	(Lcom/google/android/gms/dynamic/d;)Ljava/lang/Object;
+    //   19: checkcast 436	android/view/View
     //   22: astore 5
     //   24: aload_0
-    //   25: getfield 53	com/google/android/gms/internal/u:kC	Lcom/google/android/gms/internal/u$c;
-    //   28: getfield 198	com/google/android/gms/internal/u$c:kM	Lcom/google/android/gms/internal/u$a;
-    //   31: invokevirtual 324	com/google/android/gms/internal/u$a:getNextView	()Landroid/view/View;
+    //   25: getfield 63	com/google/android/gms/internal/u:lr	Lcom/google/android/gms/internal/u$b;
+    //   28: getfield 145	com/google/android/gms/internal/u$b:lz	Lcom/google/android/gms/internal/u$a;
+    //   31: invokevirtual 264	com/google/android/gms/internal/u$a:getNextView	()Landroid/view/View;
     //   34: astore 6
     //   36: aload 6
     //   38: ifnull +15 -> 53
     //   41: aload_0
-    //   42: getfield 53	com/google/android/gms/internal/u:kC	Lcom/google/android/gms/internal/u$c;
-    //   45: getfield 198	com/google/android/gms/internal/u$c:kM	Lcom/google/android/gms/internal/u$a;
+    //   42: getfield 63	com/google/android/gms/internal/u:lr	Lcom/google/android/gms/internal/u$b;
+    //   45: getfield 145	com/google/android/gms/internal/u$b:lz	Lcom/google/android/gms/internal/u$a;
     //   48: aload 6
-    //   50: invokevirtual 327	com/google/android/gms/internal/u$a:removeView	(Landroid/view/View;)V
+    //   50: invokevirtual 274	com/google/android/gms/internal/u$a:removeView	(Landroid/view/View;)V
     //   53: aload_0
     //   54: aload 5
-    //   56: invokespecial 329	com/google/android/gms/internal/u:b	(Landroid/view/View;)V
+    //   56: invokespecial 281	com/google/android/gms/internal/u:c	(Landroid/view/View;)V
     //   59: aload_0
-    //   60: getfield 53	com/google/android/gms/internal/u:kC	Lcom/google/android/gms/internal/u$c;
-    //   63: getfield 198	com/google/android/gms/internal/u$c:kM	Lcom/google/android/gms/internal/u$a;
-    //   66: invokevirtual 333	com/google/android/gms/internal/u$a:getChildCount	()I
+    //   60: getfield 63	com/google/android/gms/internal/u:lr	Lcom/google/android/gms/internal/u$b;
+    //   63: getfield 145	com/google/android/gms/internal/u$b:lz	Lcom/google/android/gms/internal/u$a;
+    //   66: invokevirtual 439	com/google/android/gms/internal/u$a:getChildCount	()I
     //   69: iconst_1
     //   70: if_icmple +13 -> 83
     //   73: aload_0
-    //   74: getfield 53	com/google/android/gms/internal/u:kC	Lcom/google/android/gms/internal/u$c;
-    //   77: getfield 198	com/google/android/gms/internal/u$c:kM	Lcom/google/android/gms/internal/u$a;
-    //   80: invokevirtual 336	com/google/android/gms/internal/u$a:showNext	()V
+    //   74: getfield 63	com/google/android/gms/internal/u:lr	Lcom/google/android/gms/internal/u$b;
+    //   77: getfield 145	com/google/android/gms/internal/u$b:lz	Lcom/google/android/gms/internal/u$a;
+    //   80: invokevirtual 442	com/google/android/gms/internal/u$a:showNext	()V
     //   83: aload_0
-    //   84: getfield 53	com/google/android/gms/internal/u:kC	Lcom/google/android/gms/internal/u$c;
-    //   87: getfield 225	com/google/android/gms/internal/u$c:kU	Lcom/google/android/gms/internal/ef;
+    //   84: getfield 63	com/google/android/gms/internal/u:lr	Lcom/google/android/gms/internal/u$b;
+    //   87: getfield 364	com/google/android/gms/internal/u$b:lI	Lcom/google/android/gms/internal/fz;
     //   90: ifnull +70 -> 160
     //   93: aload_0
-    //   94: getfield 53	com/google/android/gms/internal/u:kC	Lcom/google/android/gms/internal/u$c;
-    //   97: getfield 198	com/google/android/gms/internal/u$c:kM	Lcom/google/android/gms/internal/u$a;
-    //   100: invokevirtual 324	com/google/android/gms/internal/u$a:getNextView	()Landroid/view/View;
+    //   94: getfield 63	com/google/android/gms/internal/u:lr	Lcom/google/android/gms/internal/u$b;
+    //   97: getfield 145	com/google/android/gms/internal/u$b:lz	Lcom/google/android/gms/internal/u$a;
+    //   100: invokevirtual 264	com/google/android/gms/internal/u$a:getNextView	()Landroid/view/View;
     //   103: astore_2
     //   104: aload_2
-    //   105: instanceof 282
+    //   105: instanceof 248
     //   108: ifeq +162 -> 270
     //   111: aload_2
-    //   112: checkcast 282	com/google/android/gms/internal/ex
+    //   112: checkcast 248	com/google/android/gms/internal/gv
     //   115: aload_0
-    //   116: getfield 53	com/google/android/gms/internal/u:kC	Lcom/google/android/gms/internal/u$c;
-    //   119: getfield 84	com/google/android/gms/internal/u$c:kO	Landroid/content/Context;
+    //   116: getfield 63	com/google/android/gms/internal/u:lr	Lcom/google/android/gms/internal/u$b;
+    //   119: getfield 76	com/google/android/gms/internal/u$b:lB	Landroid/content/Context;
     //   122: aload_0
-    //   123: getfield 53	com/google/android/gms/internal/u:kC	Lcom/google/android/gms/internal/u$c;
-    //   126: getfield 189	com/google/android/gms/internal/u$c:kT	Lcom/google/android/gms/internal/al;
-    //   129: invokevirtual 339	com/google/android/gms/internal/ex:a	(Landroid/content/Context;Lcom/google/android/gms/internal/al;)V
+    //   123: getfield 63	com/google/android/gms/internal/u:lr	Lcom/google/android/gms/internal/u$b;
+    //   126: getfield 136	com/google/android/gms/internal/u$b:lH	Lcom/google/android/gms/internal/ay;
+    //   129: invokevirtual 267	com/google/android/gms/internal/gv:a	(Landroid/content/Context;Lcom/google/android/gms/internal/ay;)V
     //   132: aload_0
-    //   133: getfield 53	com/google/android/gms/internal/u:kC	Lcom/google/android/gms/internal/u$c;
-    //   136: getfield 225	com/google/android/gms/internal/u$c:kU	Lcom/google/android/gms/internal/ef;
-    //   139: getfield 306	com/google/android/gms/internal/ef:nN	Lcom/google/android/gms/internal/bu;
+    //   133: getfield 63	com/google/android/gms/internal/u:lr	Lcom/google/android/gms/internal/u$b;
+    //   136: getfield 364	com/google/android/gms/internal/u$b:lI	Lcom/google/android/gms/internal/fz;
+    //   139: getfield 422	com/google/android/gms/internal/fz:qz	Lcom/google/android/gms/internal/cu;
     //   142: ifnull +18 -> 160
     //   145: aload_0
-    //   146: getfield 53	com/google/android/gms/internal/u:kC	Lcom/google/android/gms/internal/u$c;
-    //   149: getfield 225	com/google/android/gms/internal/u$c:kU	Lcom/google/android/gms/internal/ef;
-    //   152: getfield 306	com/google/android/gms/internal/ef:nN	Lcom/google/android/gms/internal/bu;
-    //   155: invokeinterface 340 1 0
+    //   146: getfield 63	com/google/android/gms/internal/u:lr	Lcom/google/android/gms/internal/u$b;
+    //   149: getfield 364	com/google/android/gms/internal/u$b:lI	Lcom/google/android/gms/internal/fz;
+    //   152: getfield 422	com/google/android/gms/internal/fz:qz	Lcom/google/android/gms/internal/cu;
+    //   155: invokeinterface 443 1 0
     //   160: aload_0
-    //   161: getfield 53	com/google/android/gms/internal/u:kC	Lcom/google/android/gms/internal/u$c;
-    //   164: getfield 198	com/google/android/gms/internal/u$c:kM	Lcom/google/android/gms/internal/u$a;
+    //   161: getfield 63	com/google/android/gms/internal/u:lr	Lcom/google/android/gms/internal/u$b;
+    //   164: getfield 145	com/google/android/gms/internal/u$b:lz	Lcom/google/android/gms/internal/u$a;
     //   167: iconst_0
-    //   168: invokevirtual 220	com/google/android/gms/internal/u$a:setVisibility	(I)V
+    //   168: invokevirtual 446	com/google/android/gms/internal/u$a:setVisibility	(I)V
     //   171: iconst_1
     //   172: ireturn
     //   173: astore 4
-    //   175: ldc_w 342
+    //   175: ldc_w 448
     //   178: aload 4
-    //   180: invokestatic 136	com/google/android/gms/internal/eu:c	(Ljava/lang/String;Ljava/lang/Throwable;)V
+    //   180: invokestatic 320	com/google/android/gms/internal/gs:d	(Ljava/lang/String;Ljava/lang/Throwable;)V
     //   183: iconst_0
     //   184: ireturn
     //   185: astore 7
-    //   187: ldc_w 344
+    //   187: ldc_w 450
     //   190: aload 7
-    //   192: invokestatic 136	com/google/android/gms/internal/eu:c	(Ljava/lang/String;Ljava/lang/Throwable;)V
+    //   192: invokestatic 320	com/google/android/gms/internal/gs:d	(Ljava/lang/String;Ljava/lang/Throwable;)V
     //   195: iconst_0
     //   196: ireturn
     //   197: aload_1
-    //   198: getfield 347	com/google/android/gms/internal/ef:rA	Lcom/google/android/gms/internal/al;
+    //   198: getfield 453	com/google/android/gms/internal/fz:vr	Lcom/google/android/gms/internal/ay;
     //   201: ifnull -142 -> 59
     //   204: aload_1
-    //   205: getfield 280	com/google/android/gms/internal/ef:oy	Lcom/google/android/gms/internal/ex;
+    //   205: getfield 405	com/google/android/gms/internal/fz:rN	Lcom/google/android/gms/internal/gv;
     //   208: aload_1
-    //   209: getfield 347	com/google/android/gms/internal/ef:rA	Lcom/google/android/gms/internal/al;
-    //   212: invokevirtual 350	com/google/android/gms/internal/ex:a	(Lcom/google/android/gms/internal/al;)V
+    //   209: getfield 453	com/google/android/gms/internal/fz:vr	Lcom/google/android/gms/internal/ay;
+    //   212: invokevirtual 456	com/google/android/gms/internal/gv:a	(Lcom/google/android/gms/internal/ay;)V
     //   215: aload_0
-    //   216: getfield 53	com/google/android/gms/internal/u:kC	Lcom/google/android/gms/internal/u$c;
-    //   219: getfield 198	com/google/android/gms/internal/u$c:kM	Lcom/google/android/gms/internal/u$a;
-    //   222: invokevirtual 353	com/google/android/gms/internal/u$a:removeAllViews	()V
+    //   216: getfield 63	com/google/android/gms/internal/u:lr	Lcom/google/android/gms/internal/u$b;
+    //   219: getfield 145	com/google/android/gms/internal/u$b:lz	Lcom/google/android/gms/internal/u$a;
+    //   222: invokevirtual 459	com/google/android/gms/internal/u$a:removeAllViews	()V
     //   225: aload_0
-    //   226: getfield 53	com/google/android/gms/internal/u:kC	Lcom/google/android/gms/internal/u$c;
-    //   229: getfield 198	com/google/android/gms/internal/u$c:kM	Lcom/google/android/gms/internal/u$a;
+    //   226: getfield 63	com/google/android/gms/internal/u:lr	Lcom/google/android/gms/internal/u$b;
+    //   229: getfield 145	com/google/android/gms/internal/u$b:lz	Lcom/google/android/gms/internal/u$a;
     //   232: aload_1
-    //   233: getfield 347	com/google/android/gms/internal/ef:rA	Lcom/google/android/gms/internal/al;
-    //   236: getfield 356	com/google/android/gms/internal/al:widthPixels	I
-    //   239: invokevirtual 359	com/google/android/gms/internal/u$a:setMinimumWidth	(I)V
+    //   233: getfield 453	com/google/android/gms/internal/fz:vr	Lcom/google/android/gms/internal/ay;
+    //   236: getfield 460	com/google/android/gms/internal/ay:widthPixels	I
+    //   239: invokevirtual 463	com/google/android/gms/internal/u$a:setMinimumWidth	(I)V
     //   242: aload_0
-    //   243: getfield 53	com/google/android/gms/internal/u:kC	Lcom/google/android/gms/internal/u$c;
-    //   246: getfield 198	com/google/android/gms/internal/u$c:kM	Lcom/google/android/gms/internal/u$a;
+    //   243: getfield 63	com/google/android/gms/internal/u:lr	Lcom/google/android/gms/internal/u$b;
+    //   246: getfield 145	com/google/android/gms/internal/u$b:lz	Lcom/google/android/gms/internal/u$a;
     //   249: aload_1
-    //   250: getfield 347	com/google/android/gms/internal/ef:rA	Lcom/google/android/gms/internal/al;
-    //   253: getfield 362	com/google/android/gms/internal/al:heightPixels	I
-    //   256: invokevirtual 365	com/google/android/gms/internal/u$a:setMinimumHeight	(I)V
+    //   250: getfield 453	com/google/android/gms/internal/fz:vr	Lcom/google/android/gms/internal/ay;
+    //   253: getfield 464	com/google/android/gms/internal/ay:heightPixels	I
+    //   256: invokevirtual 467	com/google/android/gms/internal/u$a:setMinimumHeight	(I)V
     //   259: aload_0
     //   260: aload_1
-    //   261: getfield 280	com/google/android/gms/internal/ef:oy	Lcom/google/android/gms/internal/ex;
-    //   264: invokespecial 329	com/google/android/gms/internal/u:b	(Landroid/view/View;)V
+    //   261: getfield 405	com/google/android/gms/internal/fz:rN	Lcom/google/android/gms/internal/gv;
+    //   264: invokespecial 281	com/google/android/gms/internal/u:c	(Landroid/view/View;)V
     //   267: goto -208 -> 59
     //   270: aload_2
     //   271: ifnull -139 -> 132
     //   274: aload_0
-    //   275: getfield 53	com/google/android/gms/internal/u:kC	Lcom/google/android/gms/internal/u$c;
-    //   278: getfield 198	com/google/android/gms/internal/u$c:kM	Lcom/google/android/gms/internal/u$a;
+    //   275: getfield 63	com/google/android/gms/internal/u:lr	Lcom/google/android/gms/internal/u$b;
+    //   278: getfield 145	com/google/android/gms/internal/u$b:lz	Lcom/google/android/gms/internal/u$a;
     //   281: aload_2
-    //   282: invokevirtual 327	com/google/android/gms/internal/u$a:removeView	(Landroid/view/View;)V
+    //   282: invokevirtual 274	com/google/android/gms/internal/u$a:removeView	(Landroid/view/View;)V
     //   285: goto -153 -> 132
     //   288: astore_3
-    //   289: ldc_w 367
-    //   292: invokestatic 121	com/google/android/gms/internal/eu:D	(Ljava/lang/String;)V
+    //   289: ldc_w 469
+    //   292: invokestatic 305	com/google/android/gms/internal/gs:W	(Ljava/lang/String;)V
     //   295: goto -135 -> 160
     //
     // Exception table:
@@ -332,554 +435,736 @@ public class u extends aq.a
     //   145	160	288	android/os/RemoteException
   }
 
-  private ds.a c(ai paramai)
+  private void c(View paramView)
   {
-    ApplicationInfo localApplicationInfo = this.kC.kO.getApplicationInfo();
-    try
-    {
-      PackageInfo localPackageInfo2 = this.kC.kO.getPackageManager().getPackageInfo(localApplicationInfo.packageName, 0);
-      localPackageInfo1 = localPackageInfo2;
-      if ((!this.kC.kT.mf) && (this.kC.kM.getParent() != null))
-      {
-        int[] arrayOfInt = new int[2];
-        this.kC.kM.getLocationOnScreen(arrayOfInt);
-        int i = arrayOfInt[0];
-        int j = arrayOfInt[1];
-        DisplayMetrics localDisplayMetrics = this.kC.kO.getResources().getDisplayMetrics();
-        int k = this.kC.kM.getWidth();
-        int m = this.kC.kM.getHeight();
-        if ((this.kC.kM.isShown()) && (i + k > 0) && (j + m > 0) && (i <= localDisplayMetrics.widthPixels) && (j <= localDisplayMetrics.heightPixels))
-        {
-          n = 1;
-          localBundle1 = new Bundle(5);
-          localBundle1.putInt("x", i);
-          localBundle1.putInt("y", j);
-          localBundle1.putInt("width", k);
-          localBundle1.putInt("height", m);
-          localBundle1.putInt("visible", n);
-          String str = eh.bI();
-          this.kC.kV = new eg(str, this.kC.kN);
-          this.kC.kV.f(paramai);
-          Bundle localBundle2 = eh.a(this.kC.kO, this, str);
-          return new ds.a(localBundle1, paramai, this.kC.kT, this.kC.kN, localApplicationInfo, localPackageInfo1, str, eh.rQ, this.kC.kQ, localBundle2);
-        }
-      }
-    }
-    catch (PackageManager.NameNotFoundException localNameNotFoundException)
-    {
-      while (true)
-      {
-        PackageInfo localPackageInfo1 = null;
-        continue;
-        int n = 0;
-        continue;
-        Bundle localBundle1 = null;
-      }
-    }
+    ViewGroup.LayoutParams localLayoutParams = new ViewGroup.LayoutParams(-2, -2);
+    this.lr.lz.addView(paramView, localLayoutParams);
   }
 
   private void c(boolean paramBoolean)
   {
-    if (this.kC.kU == null)
-      eu.D("Ad state was null when trying to ping impression URLs.");
+    if (this.lr.lI == null)
+      gs.W("Ad state was null when trying to ping impression URLs.");
     do
     {
       return;
-      eu.z("Pinging Impression URLs.");
-      this.kC.kV.bB();
-      if (this.kC.kU.nu != null)
-        eo.a(this.kC.kO, this.kC.kQ.sw, this.kC.kU.nu);
-      if ((this.kC.kU.rz != null) && (this.kC.kU.rz.nu != null))
-        br.a(this.kC.kO, this.kC.kQ.sw, this.kC.kU, this.kC.kN, paramBoolean, this.kC.kU.rz.nu);
+      gs.S("Pinging Impression URLs.");
+      this.lr.lK.cO();
+      if (this.lr.lI.qg != null)
+        gj.a(this.lr.lB, this.lr.lD.wD, this.lr.lI.qg);
+      if ((this.lr.lI.vq != null) && (this.lr.lI.vq.qg != null))
+        cr.a(this.lr.lB, this.lr.lD.wD, this.lr.lI, this.lr.lA, paramBoolean, this.lr.lI.vq.qg);
     }
-    while ((this.kC.kU.nM == null) || (this.kC.kU.nM.np == null));
-    br.a(this.kC.kO, this.kC.kQ.sw, this.kC.kU, this.kC.kN, paramBoolean, this.kC.kU.nM.np);
+    while ((this.lr.lI.qy == null) || (this.lr.lI.qy.qb == null));
+    cr.a(this.lr.lB, this.lr.lD.wD, this.lr.lI, this.lr.lA, paramBoolean, this.lr.lI.qy.qb);
   }
 
-  public d U()
+  public d X()
   {
-    hm.ay("getAdFrame must be called on the main UI thread.");
-    return e.h(this.kC.kM);
+    o.aT("getAdFrame must be called on the main UI thread.");
+    return e.k(this.lr.lz);
   }
 
-  public al V()
+  public ay Y()
   {
-    hm.ay("getAdSize must be called on the main UI thread.");
-    return this.kC.kT;
+    o.aT("getAdSize must be called on the main UI thread.");
+    return this.lr.lH;
   }
 
-  public void Y()
+  Bundle a(an paraman)
   {
-    ai();
-  }
-
-  public void Z()
-  {
-    this.kE.d(this.kC.kU);
-    if (this.kC.kT.mf)
-      an();
-    this.kF = false;
-    ah();
-    this.kC.kV.bD();
-  }
-
-  public void a(al paramal)
-  {
-    hm.ay("setAdSize must be called on the main UI thread.");
-    this.kC.kT = paramal;
-    if (this.kC.kU != null)
-      this.kC.kU.oy.a(paramal);
-    if (this.kC.kM.getChildCount() > 1)
-      this.kC.kM.removeView(this.kC.kM.getNextView());
-    this.kC.kM.setMinimumWidth(paramal.widthPixels);
-    this.kC.kM.setMinimumHeight(paramal.heightPixels);
-    this.kC.kM.requestLayout();
-  }
-
-  public void a(ap paramap)
-  {
-    hm.ay("setAdListener must be called on the main UI thread.");
-    this.kC.kR = paramap;
-  }
-
-  public void a(as paramas)
-  {
-    hm.ay("setAppEventListener must be called on the main UI thread.");
-    this.kC.kW = paramas;
-  }
-
-  public void a(dc paramdc)
-  {
-    hm.ay("setInAppPurchaseListener must be called on the main UI thread.");
-    this.kC.kY = paramdc;
-  }
-
-  public void a(dg paramdg, String paramString)
-  {
-    hm.ay("setPlayStorePurchaseParams must be called on the main UI thread.");
-    this.kC.kZ = new cz(paramString);
-    this.kC.kX = paramdg;
-    if ((!eh.bM()) && (paramdg != null))
-      new cs(this.kC.kO, this.kC.kX, this.kC.kZ).start();
-  }
-
-  public void a(ef paramef)
-  {
-    this.kC.kS = null;
-    if ((paramef.errorCode != -2) && (paramef.errorCode != 3))
-      eh.b(this.kC.aq());
-    if (paramef.errorCode == -1)
-      return;
-    boolean bool;
-    if (paramef.pX.extras != null)
+    if (paraman == null);
+    while (true)
     {
-      bool = paramef.pX.extras.getBoolean("_noRefresh", false);
-      if (!this.kC.kT.mf)
-        break label179;
-      eo.a(paramef.oy);
+      return null;
+      if (paraman.aZ())
+        paraman.wakeup();
+      ak localak = paraman.aX();
+      String str;
+      if (localak != null)
+      {
+        str = localak.aO();
+        gs.S("In AdManger: loadAd, " + localak.toString());
+      }
+      while (str != null)
+      {
+        Bundle localBundle = new Bundle(1);
+        localBundle.putString("fingerprint", str);
+        return localBundle;
+        str = null;
+      }
+    }
+  }
+
+  public void a(ay paramay)
+  {
+    o.aT("setAdSize must be called on the main UI thread.");
+    this.lr.lH = paramay;
+    if ((this.lr.lI != null) && (this.lr.lW == 0))
+      this.lr.lI.rN.a(paramay);
+    if (this.lr.lz.getChildCount() > 1)
+      this.lr.lz.removeView(this.lr.lz.getNextView());
+    this.lr.lz.setMinimumWidth(paramay.widthPixels);
+    this.lr.lz.setMinimumHeight(paramay.heightPixels);
+    this.lr.lz.requestLayout();
+  }
+
+  public void a(bc parambc)
+  {
+    o.aT("setAdListener must be called on the main UI thread.");
+    this.lr.lE = parambc;
+  }
+
+  public void a(bf parambf)
+  {
+    o.aT("setAppEventListener must be called on the main UI thread.");
+    this.lr.lL = parambf;
+  }
+
+  public void a(eh parameh)
+  {
+    o.aT("setInAppPurchaseListener must be called on the main UI thread.");
+    this.lr.lN = parameh;
+  }
+
+  public void a(el paramel, String paramString)
+  {
+    o.aT("setPlayStorePurchaseParams must be called on the main UI thread.");
+    this.lr.lT = new ee(paramString);
+    this.lr.lM = paramel;
+    if ((!gb.da()) && (paramel != null))
+      new dx(this.lr.lB, this.lr.lM, this.lr.lT).start();
+  }
+
+  public void a(et paramet)
+  {
+    o.aT("setRawHtmlPublisherAdViewListener must be called on the main UI thread.");
+    this.lr.lO = paramet;
+  }
+
+  public void a(eu parameu)
+  {
+    o.aT("setRawHtmlPublisherInterstitialAdListener must be called on the main UI thread.");
+    this.lr.lP = parameu;
+  }
+
+  public void a(fz.a parama)
+  {
+    this.lr.lF = null;
+    this.lr.lJ = parama;
+    a(null);
+    gv localgv;
+    if (!parama.vw.tS)
+    {
+      final v localv = new v();
+      localgv = a(localv);
+      localv.a(new v.b(parama, localgv));
+      localgv.setOnTouchListener(new View.OnTouchListener()
+      {
+        public boolean onTouch(View paramAnonymousView, MotionEvent paramAnonymousMotionEvent)
+        {
+          localv.ar();
+          return false;
+        }
+      });
+      localgv.setOnClickListener(new View.OnClickListener()
+      {
+        public void onClick(View paramAnonymousView)
+        {
+          localv.ar();
+        }
+      });
     }
     while (true)
     {
-      if ((paramef.errorCode == 3) && (paramef.rz != null) && (paramef.rz.nv != null))
+      if (parama.lH != null)
+        this.lr.lH = parama.lH;
+      if (parama.errorCode != -2)
       {
-        eu.z("Pinging no fill URLs.");
-        br.a(this.kC.kO, this.kC.kQ.sw, paramef, this.kC.kN, false, paramef.rz.nv);
+        a(new fz(parama, localgv, null, null, null, null, null));
+        return;
       }
-      if (paramef.errorCode == -2)
-        break label279;
-      a(paramef.errorCode);
+      if ((!parama.vw.tI) && (parama.vw.tR))
+      {
+        String str1 = parama.vw.rP;
+        String str2 = null;
+        if (str1 != null)
+          str2 = Uri.parse(parama.vw.rP).buildUpon().query(null).build().toString();
+        er localer = new er(this, str2, parama.vw.tG);
+        try
+        {
+          if ((this.lr.lO != null) && (!this.lr.lH.og) && (this.lr.lO.e(str2, parama.vw.tG)))
+          {
+            this.lr.lW = 1;
+            this.lr.lO.a(localer);
+            return;
+          }
+        }
+        catch (RemoteException localRemoteException1)
+        {
+          gs.d("Could not call the rawHtmlPublisherAdViewListener.", localRemoteException1);
+          try
+          {
+            if ((this.lr.lP != null) && (this.lr.lH.og) && (this.lr.lP.e(str2, parama.vw.tG)))
+            {
+              this.lr.lW = 1;
+              this.lr.lP.a(localer);
+              return;
+            }
+          }
+          catch (RemoteException localRemoteException2)
+          {
+            gs.d("Could not call the RawHtmlPublisherInterstitialAdListener.", localRemoteException2);
+          }
+        }
+      }
+      this.lr.lW = 0;
+      u.b localb = this.lr;
+      Context localContext = this.lr.lB;
+      ct localct = this.lq;
+      localb.lG = fd.a(localContext, this, parama, localgv, localct, this);
       return;
-      bool = false;
-      break;
-      label179: if (!bool)
-        if (paramef.nx > 0L)
-          this.kD.a(paramef.pX, paramef.nx);
-        else if ((paramef.rz != null) && (paramef.rz.nx > 0L))
-          this.kD.a(paramef.pX, paramef.rz.nx);
-        else if ((!paramef.qg) && (paramef.errorCode == 2))
-          this.kD.d(paramef.pX);
+      localgv = null;
     }
-    label279: if (!this.kC.kT.mf)
+  }
+
+  public void a(fz paramfz)
+  {
+    this.lr.lG = null;
+    if (paramfz.vu != null);
+    for (boolean bool = true; ; bool = false)
     {
-      if (!b(paramef))
+      if ((paramfz.errorCode != -2) && (paramfz.errorCode != 3))
+        gb.b(this.lr.au());
+      if (paramfz.errorCode != -1)
+        break;
+      return;
+    }
+    if (a(paramfz, bool))
+      gs.S("Ad refresh scheduled.");
+    if ((paramfz.errorCode == 3) && (paramfz.vq != null) && (paramfz.vq.qh != null))
+    {
+      gs.S("Pinging no fill URLs.");
+      cr.a(this.lr.lB, this.lr.lD.wD, paramfz, this.lr.lA, false, paramfz.vq.qh);
+    }
+    if (paramfz.errorCode != -2)
+    {
+      a(paramfz.errorCode);
+      return;
+    }
+    if ((!this.lr.lH.og) && (!bool) && (this.lr.lW == 0))
+    {
+      if (!b(paramfz))
       {
         a(0);
         return;
       }
-      if (this.kC.kM != null)
-        u.a.a(this.kC.kM).x(paramef.ql);
+      if (this.lr.lz != null)
+        u.a.a(this.lr.lz).Q(paramfz.tN);
     }
-    if ((this.kC.kU != null) && (this.kC.kU.nP != null))
-      this.kC.kU.nP.a(null);
-    if (paramef.nP != null)
-      paramef.nP.a(this);
-    this.kE.d(this.kC.kU);
-    this.kC.kU = paramef;
-    if (paramef.rA != null)
-      this.kC.kT = paramef.rA;
-    this.kC.kV.j(paramef.rB);
-    this.kC.kV.k(paramef.rC);
-    this.kC.kV.n(this.kC.kT.mf);
-    this.kC.kV.o(paramef.qg);
-    if (!this.kC.kT.mf)
+    if ((this.lr.lI != null) && (this.lr.lI.qB != null))
+      this.lr.lI.qB.a(null);
+    if (paramfz.qB != null)
+      paramfz.qB.a(this);
+    this.lt.d(this.lr.lI);
+    this.lr.lI = paramfz;
+    this.lr.lK.j(paramfz.vs);
+    this.lr.lK.k(paramfz.vt);
+    this.lr.lK.t(this.lr.lH.og);
+    this.lr.lK.u(paramfz.tI);
+    if ((!this.lr.lH.og) && (!bool) && (this.lr.lW == 0))
       c(false);
-    if (this.kC.la == null)
-      this.kC.la = new ek(this.kC.kN);
+    if (this.lr.lU == null)
+      this.lr.lU = new ge(this.lr.lA);
+    int j;
     int i;
-    if (paramef.rz != null)
-      i = paramef.rz.ny;
-    for (int j = paramef.rz.nz; ; j = 0)
+    if (paramfz.vq != null)
     {
-      this.kC.la.a(i, j);
-      if ((!this.kC.kT.mf) && (paramef.oy != null) && ((paramef.oy.cb().cj()) || (paramef.ry != null)))
+      j = paramfz.vq.qk;
+      i = paramfz.vq.ql;
+    }
+    while (true)
+    {
+      this.lr.lU.d(j, i);
+      if (this.lr.lW == 0)
       {
-        ac localac = this.kE.a(this.kC.kT, this.kC.kU);
-        if ((paramef.oy.cb().cj()) && (localac != null))
-          localac.a(new x(paramef.oy));
+        if ((!this.lr.lH.og) && (paramfz.rN != null) && ((paramfz.rN.du().dE()) || (paramfz.vp != null)))
+        {
+          af localaf = this.lt.a(this.lr.lH, this.lr.lI);
+          if ((paramfz.rN.du().dE()) && (localaf != null))
+            localaf.a(new z(paramfz.rN));
+        }
+        if (this.lr.lI.rN != null)
+        {
+          this.lr.lI.rN.bS();
+          this.lr.lI.rN.du().dF();
+        }
+        bq.a locala;
+        if (bool)
+        {
+          locala = paramfz.vu;
+          if ((!(locala instanceof bp)) || (this.lr.lR == null))
+            break label648;
+          ap();
+        }
+        while (true)
+        {
+          an();
+          return;
+          label648: if ((!(locala instanceof bo)) || (this.lr.lQ == null))
+            break;
+          ao();
+        }
+        gs.W("No matching listener for retrieved native ad template.");
+        a(0);
+        return;
       }
-      this.kC.kU.oy.bX();
-      ak();
+      if ((this.lr.lV == null) || (paramfz.vp == null))
+        break;
+      this.lt.a(this.lr.lB, this.lr.lH, this.lr.lI, this.lr.lV, this.lr.lD);
       return;
       i = 0;
+      j = 0;
     }
   }
 
   public void a(String paramString, ArrayList<String> paramArrayList)
   {
-    ct localct = new ct(paramString, paramArrayList, this.kC.kO, this.kC.kQ.sw);
-    if (this.kC.kY == null)
+    dy localdy = new dy(paramString, paramArrayList, this.lr.lB, this.lr.lD.wD);
+    if (this.lr.lN == null)
     {
-      eu.D("InAppPurchaseListener is not set. Try to launch default purchase flow.");
-      if (GooglePlayServicesUtil.isGooglePlayServicesAvailable(this.kC.kO) != 0)
-        eu.D("Google Play Service unavailable, cannot launch default purchase flow.");
+      gs.W("InAppPurchaseListener is not set. Try to launch default purchase flow.");
+      if (GooglePlayServicesUtil.isGooglePlayServicesAvailable(this.lr.lB) != 0)
+        gs.W("Google Play Service unavailable, cannot launch default purchase flow.");
       while (true)
       {
         return;
-        if (this.kC.kX == null)
+        if (this.lr.lM == null)
         {
-          eu.D("PlayStorePurchaseListener is not set.");
+          gs.W("PlayStorePurchaseListener is not set.");
           return;
         }
-        if (this.kC.kZ == null)
+        if (this.lr.lT == null)
         {
-          eu.D("PlayStorePurchaseVerifier is not initialized.");
+          gs.W("PlayStorePurchaseVerifier is not initialized.");
           return;
         }
         try
         {
-          boolean bool = this.kC.kX.isValidPurchase(paramString);
+          boolean bool = this.lr.lM.isValidPurchase(paramString);
           if (bool)
           {
-            cu.a(this.kC.kO, this.kC.kQ.sz, new cq(localct, this.kC.kX, this.kC.kZ, this.kC.kO));
+            dz.a(this.lr.lB, this.lr.lD.wG, new dv(localdy, this.lr.lM, this.lr.lT, this.lr.lB));
             return;
           }
         }
         catch (RemoteException localRemoteException2)
         {
           while (true)
-            eu.D("Could not start In-App purchase.");
+            gs.W("Could not start In-App purchase.");
         }
       }
     }
     try
     {
-      this.kC.kY.a(localct);
+      this.lr.lN.a(localdy);
       return;
     }
     catch (RemoteException localRemoteException1)
     {
-      eu.D("Could not start In-App purchase.");
+      gs.W("Could not start In-App purchase.");
     }
   }
 
-  public void a(HashSet<eg> paramHashSet)
+  public void a(HashSet<ga> paramHashSet)
   {
-    this.kC.a(paramHashSet);
+    this.lr.a(paramHashSet);
   }
 
-  public boolean a(ai paramai)
+  public void a(List<String> paramList)
   {
-    hm.ay("loadAd must be called on the main UI thread.");
-    if (this.kC.kS != null)
-      eu.D("An ad request is already in progress. Aborting.");
+    o.aT("setNativeTemplates must be called on the main UI thread.");
+    this.lr.lS = paramList;
+  }
+
+  public boolean a(av paramav)
+  {
+    o.aT("loadAd must be called on the main UI thread.");
+    if ((this.lr.lF != null) || (this.lr.lG != null))
+    {
+      if (this.lp != null)
+        gs.W("Aborting last ad request since another ad request is already in progress. The current request object will still be cached for future refreshes.");
+      this.lp = paramav;
+    }
     do
     {
       return false;
-      if ((this.kC.kT.mf) && (this.kC.kU != null))
+      if ((this.lr.lH.og) && (this.lr.lI != null))
       {
-        eu.D("An interstitial is already loading. Aborting.");
+        gs.W("An interstitial is already loading. Aborting.");
         return false;
       }
     }
-    while (!al());
-    eu.B("Starting ad request.");
-    if (!paramai.lV)
-      eu.B("Use AdRequest.Builder.addTestDevice(\"" + et.r(this.kC.kO) + "\") to get test ads on this device.");
-    this.kD.cancel();
-    this.kC.lb = false;
-    ds.a locala = c(paramai);
+    while (!aq());
+    gs.U("Starting ad request.");
+    if (!paramav.nW)
+      gs.U("Use AdRequest.Builder.addTestDevice(\"" + gr.v(this.lr.lB) + "\") to get test ads on this device.");
+    Bundle localBundle = a(gb.cU().l(this.lr.lB));
+    this.ls.cancel();
+    this.lr.lW = 0;
+    fi.a locala = a(paramav, localBundle);
+    this.lr.lF = fa.a(this.lr.lB, locala, this.lr.lC, this);
+    return true;
+  }
+
+  boolean a(fz paramfz, boolean paramBoolean)
+  {
+    boolean bool2;
     Object localObject;
-    if (this.kC.kT.mf)
+    boolean bool3;
+    if (this.lp != null)
     {
-      ex localex2 = ex.a(this.kC.kO, this.kC.kT, false, false, this.kC.kP, this.kC.kQ);
-      localex2.cb().a(this, null, this, this, true, this, this);
-      localObject = localex2;
-      this.kC.kS = dm.a(this.kC.kO, locala, this.kC.kP, (ex)localObject, this.kB, this);
-      return true;
-    }
-    View localView = this.kC.kM.getNextView();
-    ex localex1;
-    if ((localView instanceof ex))
-    {
-      localex1 = (ex)localView;
-      localex1.a(this.kC.kO, this.kC.kT);
+      av localav2 = this.lp;
+      this.lp = null;
+      bool2 = false;
+      localObject = localav2;
+      bool3 = bool2 | paramBoolean;
+      if (!this.lr.lH.og)
+        break label111;
+      if (this.lr.lW == 0)
+        gj.a(paramfz.rN);
     }
     while (true)
     {
-      localex1.cb().a(this, this, this, this, false, this);
-      localObject = localex1;
+      return this.ls.ay();
+      av localav1 = paramfz.tx;
+      Bundle localBundle = localav1.extras;
+      boolean bool1 = false;
+      if (localBundle != null)
+        bool1 = localav1.extras.getBoolean("_noRefresh", false);
+      bool2 = bool1;
+      localObject = localav1;
       break;
-      if (localView != null)
-        this.kC.kM.removeView(localView);
-      localex1 = ex.a(this.kC.kO, this.kC.kT, false, false, this.kC.kP, this.kC.kQ);
-      if (this.kC.kT.mg == null)
-        b(localex1);
+      label111: if ((!bool3) && (this.lr.lW == 0))
+        if (paramfz.qj > 0L)
+          this.ls.a((av)localObject, paramfz.qj);
+        else if ((paramfz.vq != null) && (paramfz.vq.qj > 0L))
+          this.ls.a((av)localObject, paramfz.vq.qj);
+        else if ((!paramfz.tI) && (paramfz.errorCode == 2))
+          this.ls.c((av)localObject);
     }
-  }
-
-  public void aa()
-  {
-    if (this.kC.kT.mf)
-      c(false);
-    this.kF = true;
-    aj();
   }
 
   public void ab()
   {
-    onAdClicked();
+    al();
   }
 
   public void ac()
   {
-    Z();
+    this.lt.d(this.lr.lI);
+    if (this.lr.lH.og)
+      at();
+    this.lu = false;
+    ak();
+    this.lr.lK.cQ();
   }
 
   public void ad()
   {
-    Y();
+    if (this.lr.lH.og)
+      c(false);
+    this.lu = true;
+    am();
   }
 
   public void ae()
   {
-    aa();
+    onAdClicked();
   }
 
   public void af()
   {
-    if (this.kC.kU != null)
-      eu.D("Mediation adapter " + this.kC.kU.nO + " refreshed, but mediation adapters should never refresh.");
-    c(true);
-    ak();
+    ac();
   }
 
   public void ag()
   {
-    hm.ay("recordManualImpression must be called on the main UI thread.");
-    if (this.kC.kU == null)
-      eu.D("Ad state was null when trying to ping manual tracking URLs.");
+    ab();
+  }
+
+  public void ah()
+  {
+    ad();
+  }
+
+  public void ai()
+  {
+    if (this.lr.lI != null)
+      gs.W("Mediation adapter " + this.lr.lI.qA + " refreshed, but mediation adapters should never refresh.");
+    c(true);
+    an();
+  }
+
+  public void aj()
+  {
+    o.aT("recordManualImpression must be called on the main UI thread.");
+    if (this.lr.lI == null)
+      gs.W("Ad state was null when trying to ping manual tracking URLs.");
     do
     {
       return;
-      eu.z("Pinging manual tracking URLs.");
+      gs.S("Pinging manual tracking URLs.");
     }
-    while (this.kC.kU.qi == null);
-    eo.a(this.kC.kO, this.kC.kQ.sw, this.kC.kU.qi);
+    while (this.lr.lI.tK == null);
+    gj.a(this.lr.lB, this.lr.lD.wD, this.lr.lI.tK);
   }
 
-  public void b(ai paramai)
+  public boolean aq()
   {
-    ViewParent localViewParent = this.kC.kM.getParent();
-    if (((localViewParent instanceof View)) && (((View)localViewParent).isShown()) && (eo.bQ()) && (!this.kF))
+    boolean bool = true;
+    if (!gj.a(this.lr.lB.getPackageManager(), this.lr.lB.getPackageName(), "android.permission.INTERNET"))
     {
-      a(paramai);
+      if (!this.lr.lH.og)
+        gr.a(this.lr.lz, this.lr.lH, "Missing internet permission in AndroidManifest.xml.", "Missing internet permission in AndroidManifest.xml. You must have the following declaration: <uses-permission android:name=\"android.permission.INTERNET\" />");
+      bool = false;
+    }
+    if (!gj.p(this.lr.lB))
+    {
+      if (!this.lr.lH.og)
+        gr.a(this.lr.lz, this.lr.lH, "Missing AdActivity with android:configChanges in AndroidManifest.xml.", "Missing AdActivity with android:configChanges in AndroidManifest.xml. You must have the following declaration within the <application> element: <activity android:name=\"com.google.android.gms.ads.AdActivity\" android:configChanges=\"keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize\" />");
+      bool = false;
+    }
+    if ((!bool) && (!this.lr.lH.og))
+      this.lr.lz.setVisibility(0);
+    return bool;
+  }
+
+  public void ar()
+  {
+    if (this.lr.lI == null)
+      gs.W("Ad state was null when trying to ping click URLs.");
+    do
+    {
+      return;
+      gs.S("Pinging click URLs.");
+      this.lr.lK.cP();
+      if (this.lr.lI.qf != null)
+        gj.a(this.lr.lB, this.lr.lD.wD, this.lr.lI.qf);
+    }
+    while ((this.lr.lI.vq == null) || (this.lr.lI.vq.qf == null));
+    cr.a(this.lr.lB, this.lr.lD.wD, this.lr.lI, this.lr.lA, false, this.lr.lI.vq.qf);
+  }
+
+  public void as()
+  {
+    c(false);
+  }
+
+  public void b(View paramView)
+  {
+    this.lr.lV = paramView;
+    a(new fz(this.lr.lJ, null, null, null, null, null, null));
+  }
+
+  public void b(av paramav)
+  {
+    ViewParent localViewParent = this.lr.lz.getParent();
+    if (((localViewParent instanceof View)) && (((View)localViewParent).isShown()) && (gj.dk()) && (!this.lu))
+    {
+      a(paramav);
       return;
     }
-    eu.B("Ad is not visible. Not refreshing ad.");
-    this.kD.d(paramai);
+    gs.U("Ad is not visible. Not refreshing ad.");
+    this.ls.c(paramav);
   }
 
   public void b(boolean paramBoolean)
   {
-    this.kC.lb = paramBoolean;
+    this.lr.lX = paramBoolean;
   }
 
   public void destroy()
   {
-    hm.ay("destroy must be called on the main UI thread.");
-    X();
-    this.kC.kR = null;
-    this.kC.kW = null;
-    this.kD.cancel();
-    this.kE.stop();
+    o.aT("destroy must be called on the main UI thread.");
+    aa();
+    this.lr.lE = null;
+    this.lr.lL = null;
+    this.lr.lM = null;
+    this.lr.lN = null;
+    this.lr.lO = null;
+    this.lr.lP = null;
+    this.ls.cancel();
+    this.lt.stop();
     stopLoading();
-    if (this.kC.kM != null)
-      this.kC.kM.removeAllViews();
-    if ((this.kC.kU != null) && (this.kC.kU.oy != null))
-      this.kC.kU.oy.destroy();
-    if ((this.kC.kU != null) && (this.kC.kU.nN != null));
+    if (this.lr.lz != null)
+      this.lr.lz.removeAllViews();
+    if ((this.lr.lI != null) && (this.lr.lI.rN != null))
+      this.lr.lI.rN.destroy();
+    if ((this.lr.lI != null) && (this.lr.lI.qz != null));
     try
     {
-      this.kC.kU.nN.destroy();
+      this.lr.lI.qz.destroy();
       return;
     }
     catch (RemoteException localRemoteException)
     {
-      eu.D("Could not destroy mediation adapter.");
+      gs.W("Could not destroy mediation adapter.");
     }
+  }
+
+  public String getMediationAdapterClassName()
+  {
+    if (this.lr.lI != null)
+      return this.lr.lI.qA;
+    return null;
   }
 
   public boolean isReady()
   {
-    hm.ay("isLoaded must be called on the main UI thread.");
-    return (this.kC.kS == null) && (this.kC.kU != null);
+    o.aT("isLoaded must be called on the main UI thread.");
+    return (this.lr.lF == null) && (this.lr.lG == null) && (this.lr.lI != null);
   }
 
   public void onAdClicked()
   {
-    am();
+    ar();
   }
 
   public void onAppEvent(String paramString1, String paramString2)
   {
-    if (this.kC.kW != null);
+    if (this.lr.lL != null);
     try
     {
-      this.kC.kW.onAppEvent(paramString1, paramString2);
+      this.lr.lL.onAppEvent(paramString1, paramString2);
       return;
     }
     catch (RemoteException localRemoteException)
     {
-      eu.c("Could not call the AppEventListener.", localRemoteException);
+      gs.d("Could not call the AppEventListener.", localRemoteException);
     }
   }
 
   public void pause()
   {
-    hm.ay("pause must be called on the main UI thread.");
-    if (this.kC.kU != null)
-      eo.a(this.kC.kU.oy);
-    if ((this.kC.kU != null) && (this.kC.kU.nN != null));
+    o.aT("pause must be called on the main UI thread.");
+    if ((this.lr.lI != null) && (this.lr.lW == 0))
+      gj.a(this.lr.lI.rN);
+    if ((this.lr.lI != null) && (this.lr.lI.qz != null));
     try
     {
-      this.kC.kU.nN.pause();
-      this.kE.pause();
-      this.kD.pause();
+      this.lr.lI.qz.pause();
+      this.lt.pause();
+      this.ls.pause();
       return;
     }
     catch (RemoteException localRemoteException)
     {
       while (true)
-        eu.D("Could not pause mediation adapter.");
+        gs.W("Could not pause mediation adapter.");
     }
   }
 
   public void resume()
   {
-    hm.ay("resume must be called on the main UI thread.");
-    if (this.kC.kU != null)
-      eo.b(this.kC.kU.oy);
-    if ((this.kC.kU != null) && (this.kC.kU.nN != null));
+    o.aT("resume must be called on the main UI thread.");
+    if ((this.lr.lI != null) && (this.lr.lW == 0))
+      gj.b(this.lr.lI.rN);
+    if ((this.lr.lI != null) && (this.lr.lI.qz != null));
     try
     {
-      this.kC.kU.nN.resume();
-      this.kD.resume();
-      this.kE.resume();
+      this.lr.lI.qz.resume();
+      this.ls.resume();
+      this.lt.resume();
       return;
     }
     catch (RemoteException localRemoteException)
     {
       while (true)
-        eu.D("Could not resume mediation adapter.");
+        gs.W("Could not resume mediation adapter.");
     }
   }
 
   public void showInterstitial()
   {
-    hm.ay("showInterstitial must be called on the main UI thread.");
-    if (!this.kC.kT.mf)
+    o.aT("showInterstitial must be called on the main UI thread.");
+    if (!this.lr.lH.og)
+      gs.W("Cannot call showInterstitial on a banner ad.");
+    do
     {
-      eu.D("Cannot call showInterstitial on a banner ad.");
+      return;
+      if (this.lr.lI == null)
+      {
+        gs.W("The interstitial has not loaded.");
+        return;
+      }
+    }
+    while (this.lr.lW == 1);
+    if (this.lr.lI.rN.dy())
+    {
+      gs.W("The interstitial is already showing.");
       return;
     }
-    if (this.kC.kU == null)
+    this.lr.lI.rN.x(true);
+    if ((this.lr.lI.rN.du().dE()) || (this.lr.lI.vp != null))
     {
-      eu.D("The interstitial has not loaded.");
-      return;
+      af localaf = this.lt.a(this.lr.lH, this.lr.lI);
+      if ((this.lr.lI.rN.du().dE()) && (localaf != null))
+        localaf.a(new z(this.lr.lI.rN));
     }
-    if (this.kC.kU.oy.ce())
-    {
-      eu.D("The interstitial is already showing.");
-      return;
-    }
-    this.kC.kU.oy.q(true);
-    if ((this.kC.kU.oy.cb().cj()) || (this.kC.kU.ry != null))
-    {
-      ac localac = this.kE.a(this.kC.kT, this.kC.kU);
-      if ((this.kC.kU.oy.cb().cj()) && (localac != null))
-        localac.a(new x(this.kC.kU.oy));
-    }
-    if (this.kC.kU.qg)
+    if (this.lr.lI.tI)
       try
       {
-        this.kC.kU.nN.showInterstitial();
+        this.lr.lI.qz.showInterstitial();
         return;
       }
       catch (RemoteException localRemoteException)
       {
-        eu.c("Could not show interstitial.", localRemoteException);
-        an();
+        gs.d("Could not show interstitial.", localRemoteException);
+        at();
         return;
       }
-    v localv = new v(this.kC.lb, false);
+    x localx = new x(this.lr.lX, false);
     boolean bool1;
-    if ((this.kC.kO instanceof Activity))
+    if ((this.lr.lB instanceof Activity))
     {
-      Window localWindow = ((Activity)this.kC.kO).getWindow();
+      Window localWindow = ((Activity)this.lr.lB).getWindow();
       Rect localRect1 = new Rect();
       Rect localRect2 = new Rect();
       localWindow.getDecorView().getGlobalVisibleRect(localRect1);
       localWindow.getDecorView().getWindowVisibleDisplayFrame(localRect2);
       if ((localRect1.bottom != 0) && (localRect2.bottom != 0))
       {
-        bool1 = this.kC.lb;
+        bool1 = this.lr.lX;
         if (localRect1.top != localRect2.top)
-          break label419;
+          break label430;
       }
     }
-    label419: for (boolean bool2 = true; ; bool2 = false)
+    label430: for (boolean bool2 = true; ; bool2 = false)
     {
-      localv = new v(bool1, bool2);
-      ch localch = new ch(this, this, this, this.kC.kU.oy, this.kC.kU.orientation, this.kC.kQ, this.kC.kU.ql, localv);
-      cf.a(this.kC.kO, localch);
+      localx = new x(bool1, bool2);
+      dm localdm = new dm(this, this, this, this.lr.lI.rN, this.lr.lI.orientation, this.lr.lD, this.lr.lI.tN, localx);
+      dk.a(this.lr.lB, localdm);
       return;
     }
   }
 
   public void stopLoading()
   {
-    hm.ay("stopLoading must be called on the main UI thread.");
-    if (this.kC.kU != null)
+    o.aT("stopLoading must be called on the main UI thread.");
+    if ((this.lr.lI != null) && (this.lr.lW == 0))
     {
-      this.kC.kU.oy.stopLoading();
-      this.kC.kU = null;
+      this.lr.lI.rN.stopLoading();
+      this.lr.lI = null;
     }
-    if (this.kC.kS != null)
-      this.kC.kS.cancel();
+    if (this.lr.lF != null)
+      this.lr.lF.cancel();
+    if (this.lr.lG != null)
+      this.lr.lG.cancel();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.u
  * JD-Core Version:    0.6.2
  */

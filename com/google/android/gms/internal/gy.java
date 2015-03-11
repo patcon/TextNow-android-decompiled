@@ -1,57 +1,76 @@
 package com.google.android.gms.internal;
 
-import android.view.View;
-import java.util.Collection;
-import java.util.List;
+import android.content.Context;
+import android.webkit.WebResourceResponse;
+import android.webkit.WebView;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
-public final class gy
+@ez
+public class gy extends gw
 {
-  private final View DJ;
-  private final gy.a FU;
-
-  public gy(String paramString1, Collection<String> paramCollection, int paramInt, View paramView, String paramString2)
+  public gy(gv paramgv, boolean paramBoolean)
   {
-    this.FU = new gy.a(paramString1, paramCollection, paramInt, paramString2);
-    this.DJ = paramView;
+    super(paramgv, paramBoolean);
   }
 
-  public final String fj()
+  protected WebResourceResponse d(Context paramContext, String paramString1, String paramString2)
   {
-    return this.FU.fj();
+    HttpURLConnection localHttpURLConnection = (HttpURLConnection)new URL(paramString2).openConnection();
+    try
+    {
+      gj.a(paramContext, paramString1, true, localHttpURLConnection, true);
+      localHttpURLConnection.addRequestProperty("Cache-Control", "max-stale=3600");
+      localHttpURLConnection.connect();
+      WebResourceResponse localWebResourceResponse = new WebResourceResponse("application/javascript", "UTF-8", new ByteArrayInputStream(gj.a(new InputStreamReader(localHttpURLConnection.getInputStream())).getBytes("UTF-8")));
+      return localWebResourceResponse;
+    }
+    finally
+    {
+      localHttpURLConnection.disconnect();
+    }
   }
 
-  public final int fk()
+  public WebResourceResponse shouldInterceptRequest(WebView paramWebView, String paramString)
   {
-    return this.FU.fk();
-  }
-
-  public final List<String> fl()
-  {
-    return this.FU.fl();
-  }
-
-  public final String[] fm()
-  {
-    return (String[])this.FU.fl().toArray(new String[0]);
-  }
-
-  public final String fn()
-  {
-    return this.FU.fn();
-  }
-
-  public final View fo()
-  {
-    return this.DJ;
-  }
-
-  public final String getAccountName()
-  {
-    return this.FU.getAccountName();
+    try
+    {
+      if (!"mraid.js".equalsIgnoreCase(new File(paramString).getName()))
+        return super.shouldInterceptRequest(paramWebView, paramString);
+      if (!(paramWebView instanceof gv))
+      {
+        gs.W("Tried to intercept request from a WebView that wasn't an AdWebView.");
+        return super.shouldInterceptRequest(paramWebView, paramString);
+      }
+      gv localgv = (gv)paramWebView;
+      localgv.du().bX();
+      if (localgv.Y().og)
+      {
+        gs.V("shouldInterceptRequest(https://googleads.g.doubleclick.net/mads/static/mad/sdk/native/mraid/v2/mraid_app_interstitial.js)");
+        return d(localgv.getContext(), this.md.dx().wD, "https://googleads.g.doubleclick.net/mads/static/mad/sdk/native/mraid/v2/mraid_app_interstitial.js");
+      }
+      if (localgv.dy())
+      {
+        gs.V("shouldInterceptRequest(https://googleads.g.doubleclick.net/mads/static/mad/sdk/native/mraid/v2/mraid_app_expanded_banner.js)");
+        return d(localgv.getContext(), this.md.dx().wD, "https://googleads.g.doubleclick.net/mads/static/mad/sdk/native/mraid/v2/mraid_app_expanded_banner.js");
+      }
+      gs.V("shouldInterceptRequest(https://googleads.g.doubleclick.net/mads/static/mad/sdk/native/mraid/v2/mraid_app_banner.js)");
+      WebResourceResponse localWebResourceResponse = d(localgv.getContext(), this.md.dx().wD, "https://googleads.g.doubleclick.net/mads/static/mad/sdk/native/mraid/v2/mraid_app_banner.js");
+      return localWebResourceResponse;
+    }
+    catch (IOException localIOException)
+    {
+      gs.W("Could not fetch MRAID JS. " + localIOException.getMessage());
+    }
+    return super.shouldInterceptRequest(paramWebView, paramString);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.gy
  * JD-Core Version:    0.6.2
  */

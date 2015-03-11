@@ -1,89 +1,95 @@
 package textnow.ai;
 
-final class k<K, V>
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map;
+import textnow.af.u;
+import textnow.af.y;
+import textnow.ah.o;
+import textnow.ak.a;
+import textnow.ak.b;
+import textnow.ak.c;
+
+public final class k<T> extends y<T>
 {
-  private p<K, V> a;
-  private int b;
-  private int c;
-  private int d;
+  private final o<T> a;
+  private final Map<String, l> b;
 
-  final p<K, V> a()
+  private k(o<T> paramo, Map<String, l> paramMap)
   {
-    p localp = this.a;
-    if (localp.a != null)
-      throw new IllegalStateException();
-    return localp;
+    this.a = paramo;
+    this.b = paramMap;
   }
 
-  final void a(int paramInt)
+  public final T a(a parama)
   {
-    this.b = (-1 + 2 * Integer.highestOneBit(paramInt) - paramInt);
-    this.d = 0;
-    this.c = 0;
-    this.a = null;
-  }
-
-  final void a(p<K, V> paramp)
-  {
-    paramp.c = null;
-    paramp.a = null;
-    paramp.b = null;
-    paramp.i = 1;
-    if ((this.b > 0) && ((0x1 & this.d) == 0))
+    if (parama.f() == b.i)
     {
-      this.d = (1 + this.d);
-      this.b = (-1 + this.b);
-      this.c = (1 + this.c);
+      parama.j();
+      return null;
     }
-    paramp.a = this.a;
-    this.a = paramp;
-    this.d = (1 + this.d);
-    if ((this.b > 0) && ((0x1 & this.d) == 0))
+    Object localObject = this.a.a();
+    try
     {
-      this.d = (1 + this.d);
-      this.b = (-1 + this.b);
-      this.c = (1 + this.c);
-    }
-    int i = 4;
-    if ((this.d & i - 1) == i - 1)
-    {
-      if (this.c == 0)
-      {
-        p localp3 = this.a;
-        p localp4 = localp3.a;
-        p localp5 = localp4.a;
-        localp4.a = localp5.a;
-        this.a = localp4;
-        localp4.b = localp5;
-        localp4.c = localp3;
-        localp4.i = (1 + localp3.i);
-        localp5.a = localp4;
-        localp3.a = localp4;
-      }
+      parama.c();
       while (true)
       {
-        i *= 2;
-        break;
-        if (this.c == 1)
+        if (!parama.e())
+          break label111;
+        String str = parama.g();
+        locall = (l)this.b.get(str);
+        if ((locall != null) && (locall.i))
+          break;
+        parama.n();
+      }
+    }
+    catch (IllegalStateException localIllegalStateException)
+    {
+      while (true)
+      {
+        l locall;
+        throw new u(localIllegalStateException);
+        locall.a(parama, localObject);
+      }
+    }
+    catch (IllegalAccessException localIllegalAccessException)
+    {
+      throw new AssertionError(localIllegalAccessException);
+    }
+    label111: parama.d();
+    return localObject;
+  }
+
+  public final void a(c paramc, T paramT)
+  {
+    if (paramT == null)
+    {
+      paramc.f();
+      return;
+    }
+    paramc.d();
+    try
+    {
+      Iterator localIterator = this.b.values().iterator();
+      while (localIterator.hasNext())
+      {
+        l locall = (l)localIterator.next();
+        if (locall.h)
         {
-          p localp1 = this.a;
-          p localp2 = localp1.a;
-          this.a = localp2;
-          localp2.c = localp1;
-          localp2.i = (1 + localp1.i);
-          localp1.a = localp2;
-          this.c = 0;
-        }
-        else if (this.c == 2)
-        {
-          this.c = 0;
+          paramc.a(locall.g);
+          locall.a(paramc, paramT);
         }
       }
     }
+    catch (IllegalAccessException localIllegalAccessException)
+    {
+      throw new AssertionError();
+    }
+    paramc.e();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.ai.k
  * JD-Core Version:    0.6.2
  */

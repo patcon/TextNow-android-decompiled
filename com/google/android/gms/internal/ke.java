@@ -1,15 +1,27 @@
 package com.google.android.gms.internal;
 
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.IInterface;
+import android.util.SparseArray;
+import com.google.android.gms.common.data.DataHolder;
+import com.google.android.gms.drive.metadata.internal.AppVisibleCustomProperties;
+import com.google.android.gms.drive.metadata.internal.j;
+import java.util.Arrays;
+import java.util.Collections;
 
-public abstract interface ke extends IInterface
+public class ke extends j<AppVisibleCustomProperties>
 {
-  public abstract void a(kd paramkd, Uri paramUri, Bundle paramBundle, boolean paramBoolean);
+  public ke(int paramInt)
+  {
+    super("customProperties", Collections.singleton("customProperties"), Arrays.asList(new String[] { "customPropertiesExtra" }), paramInt);
+  }
+
+  protected AppVisibleCustomProperties l(DataHolder paramDataHolder, int paramInt1, int paramInt2)
+  {
+    return (AppVisibleCustomProperties)paramDataHolder.gy().getSparseParcelableArray("customPropertiesExtra").get(paramInt1, AppVisibleCustomProperties.PG);
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ke
  * JD-Core Version:    0.6.2
  */

@@ -1,31 +1,15 @@
 package com.enflick.android.TextNow.activities;
 
-import java.util.List;
-import textnow.u.d;
+import textnow.z.h;
 
-public final class v
+public abstract interface v
 {
-  private List<d> a;
-  private List<String> b;
+  public abstract void a(h paramh);
 
-  public v(List<d> paramList, List<String> paramList1)
-  {
-    this.a = paramList;
-    this.b = paramList1;
-  }
-
-  public final List<d> a()
-  {
-    return this.a;
-  }
-
-  public final List<String> b()
-  {
-    return this.b;
-  }
+  public abstract void k();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.activities.v
  * JD-Core Version:    0.6.2
  */

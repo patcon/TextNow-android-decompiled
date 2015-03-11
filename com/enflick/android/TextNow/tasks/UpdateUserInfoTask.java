@@ -3,7 +3,7 @@ package com.enflick.android.TextNow.tasks;
 import com.enflick.android.TextNow.api.users.UsersPatch;
 import com.enflick.android.TextNow.api.users.x;
 import java.util.HashMap;
-import textnow.u.r;
+import textnow.z.u;
 
 public class UpdateUserInfoTask extends c
 {
@@ -16,8 +16,8 @@ public class UpdateUserInfoTask extends c
 
   public void run()
   {
-    r localr = new r(this.a);
-    x localx = new x(localr.b());
+    u localu = new u(this.a);
+    x localx = new x(localu.b());
     localx.b = ((String)this.d.get("userinfo_firstname"));
     localx.c = ((String)this.d.get("userinfo_lastname"));
     localx.d = ((String)this.d.get("userinfo_email"));
@@ -32,12 +32,12 @@ public class UpdateUserInfoTask extends c
         break;
       return;
     }
-    localr.a(this.d);
-    localr.n();
+    localu.a(this.d);
+    localu.B();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.UpdateUserInfoTask
  * JD-Core Version:    0.6.2
  */

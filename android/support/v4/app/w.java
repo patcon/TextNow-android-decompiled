@@ -1,18 +1,18 @@
 package android.support.v4.app;
 
-import java.util.ArrayList;
-import textnow.e.l;
+import android.app.Notification;
+import android.os.IInterface;
 
-final class w
+public abstract interface w extends IInterface
 {
-  Object a;
-  Object b;
-  l<String, Object> c;
-  ArrayList<Fragment> d;
-  l<String, ai> e;
+  public abstract void a(String paramString);
+
+  public abstract void a(String paramString1, int paramInt, String paramString2);
+
+  public abstract void a(String paramString1, int paramInt, String paramString2, Notification paramNotification);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.app.w
  * JD-Core Version:    0.6.2
  */

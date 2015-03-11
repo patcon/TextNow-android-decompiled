@@ -22,13 +22,13 @@ public class ViewPager$LayoutParams extends ViewGroup.LayoutParams
   public ViewPager$LayoutParams(Context paramContext, AttributeSet paramAttributeSet)
   {
     super(paramContext, paramAttributeSet);
-    TypedArray localTypedArray = paramContext.obtainStyledAttributes(paramAttributeSet, ViewPager.d());
+    TypedArray localTypedArray = paramContext.obtainStyledAttributes(paramAttributeSet, ViewPager.e());
     this.b = localTypedArray.getInteger(0, 48);
     localTypedArray.recycle();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.view.ViewPager.LayoutParams
  * JD-Core Version:    0.6.2
  */

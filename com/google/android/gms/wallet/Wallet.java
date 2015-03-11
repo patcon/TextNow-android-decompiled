@@ -10,32 +10,29 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 import com.google.android.gms.common.api.Scope;
-import com.google.android.gms.internal.gy;
-import com.google.android.gms.internal.hm;
-import com.google.android.gms.internal.lf;
-import com.google.android.gms.internal.lq;
-import com.google.android.gms.internal.lr;
-import com.google.android.gms.internal.lt;
-import com.google.android.gms.internal.lu;
+import com.google.android.gms.common.internal.ClientSettings;
+import com.google.android.gms.common.internal.o;
+import com.google.android.gms.internal.om;
+import com.google.android.gms.internal.ox;
+import com.google.android.gms.internal.oy;
+import com.google.android.gms.internal.pa;
+import com.google.android.gms.internal.pb;
 import com.google.android.gms.wallet.wobs.r;
 
 public final class Wallet
 {
-  public static final Api<Wallet.WalletOptions> API = new Api(yI, yH, new Scope[0]);
-  public static final Payments Payments = new lq();
-  public static final r ajZ = new lu();
-  public static final lf aka = new lt();
-  private static final Api.c<lr> yH = new Api.c();
-  private static final Api.b<lr, Wallet.WalletOptions> yI = new Api.b()
+  public static final Api<Wallet.WalletOptions> API = new Api(CV, CU, new Scope[0]);
+  private static final Api.c<oy> CU = new Api.c();
+  private static final Api.b<oy, Wallet.WalletOptions> CV = new Api.b()
   {
-    public final lr a(Context paramAnonymousContext, Looper paramAnonymousLooper, gy paramAnonymousgy, Wallet.WalletOptions paramAnonymousWalletOptions, GoogleApiClient.ConnectionCallbacks paramAnonymousConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener paramAnonymousOnConnectionFailedListener)
+    public final oy a(Context paramAnonymousContext, Looper paramAnonymousLooper, ClientSettings paramAnonymousClientSettings, Wallet.WalletOptions paramAnonymousWalletOptions, GoogleApiClient.ConnectionCallbacks paramAnonymousConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener paramAnonymousOnConnectionFailedListener)
     {
-      hm.b(paramAnonymousContext instanceof Activity, "An Activity must be used for Wallet APIs");
+      o.b(paramAnonymousContext instanceof Activity, "An Activity must be used for Wallet APIs");
       Activity localActivity = (Activity)paramAnonymousContext;
       if (paramAnonymousWalletOptions != null);
       while (true)
       {
-        return new lr(localActivity, paramAnonymousLooper, paramAnonymousConnectionCallbacks, paramAnonymousOnConnectionFailedListener, paramAnonymousWalletOptions.environment, paramAnonymousgy.getAccountName(), paramAnonymousWalletOptions.theme);
+        return new oy(localActivity, paramAnonymousLooper, paramAnonymousConnectionCallbacks, paramAnonymousOnConnectionFailedListener, paramAnonymousWalletOptions.environment, paramAnonymousClientSettings.getAccountName(), paramAnonymousWalletOptions.theme);
         paramAnonymousWalletOptions = new Wallet.WalletOptions(null);
       }
     }
@@ -45,6 +42,9 @@ public final class Wallet
       return 2147483647;
     }
   };
+  public static final Payments Payments = new ox();
+  public static final r atJ = new pb();
+  public static final om atK = new pa();
 
   @Deprecated
   public static void changeMaskedWallet(GoogleApiClient paramGoogleApiClient, String paramString1, String paramString2, int paramInt)
@@ -77,7 +77,7 @@ public final class Wallet
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.Wallet
  * JD-Core Version:    0.6.2
  */

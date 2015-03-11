@@ -1,8 +1,8 @@
 package com.facebook.widget;
 
 import android.os.Bundle;
-import android.support.v4.app.ag;
-import android.support.v4.app.ah;
+import android.support.v4.app.aa;
+import android.support.v4.app.z;
 import android.support.v4.content.j;
 import com.facebook.FacebookException;
 import com.facebook.Request;
@@ -19,7 +19,7 @@ abstract class PickerFragment$LoadingStrategy
 
   public void attach(GraphObjectAdapter<T> paramGraphObjectAdapter)
   {
-    this.loader = ((GraphObjectPagingLoader)this.this$0.getLoaderManager().a(0, null, new ah()
+    this.loader = ((GraphObjectPagingLoader)this.this$0.getLoaderManager().a(0, null, new aa()
     {
       public j<SimpleGraphObjectCursor<T>> onCreateLoader(int paramAnonymousInt, Bundle paramAnonymousBundle)
       {
@@ -59,6 +59,11 @@ abstract class PickerFragment$LoadingStrategy
           PickerFragment.access$500(PickerFragment.LoadingStrategy.this.this$0).onError(PickerFragment.LoadingStrategy.this.this$0, paramAnonymousFacebookException);
       }
     });
+  }
+
+  protected boolean canSkipRoundTripIfCached()
+  {
+    return true;
   }
 
   public void clearResults()
@@ -105,13 +110,13 @@ abstract class PickerFragment$LoadingStrategy
   {
     if (this.loader != null)
     {
-      this.loader.startLoading(paramRequest, true);
+      this.loader.startLoading(paramRequest, canSkipRoundTripIfCached());
       onStartLoading(this.loader, paramRequest);
     }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.widget.PickerFragment.LoadingStrategy
  * JD-Core Version:    0.6.2
  */

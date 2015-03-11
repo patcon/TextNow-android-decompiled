@@ -1,32 +1,32 @@
 package com.google.android.gms.maps.model;
 
 import android.os.Parcel;
+import com.google.android.gms.common.internal.n;
+import com.google.android.gms.common.internal.n.a;
+import com.google.android.gms.common.internal.o;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-import com.google.android.gms.internal.hk;
-import com.google.android.gms.internal.hk.a;
-import com.google.android.gms.internal.hm;
 import com.google.android.gms.maps.internal.v;
 
 public final class LatLngBounds
   implements SafeParcelable
 {
-  public static final LatLngBoundsCreator CREATOR = new LatLngBoundsCreator();
+  public static final g CREATOR = new g();
+  private final int BR;
   public final LatLng northeast;
   public final LatLng southwest;
-  private final int xM;
 
   LatLngBounds(int paramInt, LatLng paramLatLng1, LatLng paramLatLng2)
   {
-    hm.b(paramLatLng1, "null southwest");
-    hm.b(paramLatLng2, "null northeast");
+    o.b(paramLatLng1, "null southwest");
+    o.b(paramLatLng2, "null northeast");
     if (paramLatLng2.latitude >= paramLatLng1.latitude);
     for (boolean bool = true; ; bool = false)
     {
       Object[] arrayOfObject = new Object[2];
       arrayOfObject[0] = Double.valueOf(paramLatLng1.latitude);
       arrayOfObject[1] = Double.valueOf(paramLatLng2.latitude);
-      hm.b(bool, "southern latitude exceeds northern latitude (%s > %s)", arrayOfObject);
-      this.xM = paramInt;
+      o.b(bool, "southern latitude exceeds northern latitude (%s > %s)", arrayOfObject);
+      this.BR = paramInt;
       this.southwest = paramLatLng1;
       this.northeast = paramLatLng2;
       return;
@@ -107,7 +107,7 @@ public final class LatLngBounds
 
   final int getVersionCode()
   {
-    return this.xM;
+    return this.BR;
   }
 
   public final int hashCode()
@@ -115,7 +115,7 @@ public final class LatLngBounds
     Object[] arrayOfObject = new Object[2];
     arrayOfObject[0] = this.southwest;
     arrayOfObject[1] = this.northeast;
-    return hk.hashCode(arrayOfObject);
+    return n.hashCode(arrayOfObject);
   }
 
   public final LatLngBounds including(LatLng paramLatLng)
@@ -142,21 +142,21 @@ public final class LatLngBounds
 
   public final String toString()
   {
-    return hk.e(this).a("southwest", this.southwest).a("northeast", this.northeast).toString();
+    return n.h(this).a("southwest", this.southwest).a("northeast", this.northeast).toString();
   }
 
   public final void writeToParcel(Parcel paramParcel, int paramInt)
   {
-    if (v.jL())
+    if (v.mM())
     {
-      d.a(this, paramParcel, paramInt);
+      h.a(this, paramParcel, paramInt);
       return;
     }
-    LatLngBoundsCreator.a(this, paramParcel, paramInt);
+    g.a(this, paramParcel, paramInt);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.maps.model.LatLngBounds
  * JD-Core Version:    0.6.2
  */

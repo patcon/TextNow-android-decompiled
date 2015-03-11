@@ -1,22 +1,22 @@
 package android.support.v4.view;
 
-import android.graphics.Paint;
 import android.view.View;
+import android.view.ViewGroup;
 
 class ay extends ax
 {
-  public final void a(View paramView, Paint paramPaint)
+  public final void a(ViewGroup paramViewGroup, boolean paramBoolean)
   {
-    paramView.setLayerPaint(paramPaint);
+    bh.a(paramViewGroup, paramBoolean);
   }
 
-  public final int e(View paramView)
+  public final boolean k(View paramView)
   {
-    return paramView.getLayoutDirection();
+    return paramView.isOpaque();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.view.ay
  * JD-Core Version:    0.6.2
  */

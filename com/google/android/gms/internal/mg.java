@@ -1,40 +1,60 @@
 package com.google.android.gms.internal;
 
-import java.util.Arrays;
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import com.google.android.gms.common.internal.safeparcel.a;
+import com.google.android.gms.common.internal.safeparcel.a.a;
+import com.google.android.gms.common.internal.safeparcel.b;
+import java.util.ArrayList;
 
-public final class mg
+public class mg
+  implements Parcelable.Creator<mf>
 {
-  final byte[] anc;
-  final int tag;
-
-  mg(int paramInt, byte[] paramArrayOfByte)
+  static void a(mf parammf, Parcel paramParcel, int paramInt)
   {
-    this.tag = paramInt;
-    this.anc = paramArrayOfByte;
+    int i = b.D(paramParcel);
+    b.a(paramParcel, 1, parammf.me());
+    b.c(paramParcel, 1000, parammf.BR);
+    b.c(paramParcel, 2, parammf.mf(), false);
+    b.H(paramParcel, i);
   }
 
-  public final boolean equals(Object paramObject)
+  public mf cx(Parcel paramParcel)
   {
-    if (paramObject == this);
-    mg localmg;
-    do
+    boolean bool = false;
+    int i = a.C(paramParcel);
+    ArrayList localArrayList = null;
+    int j = 0;
+    while (paramParcel.dataPosition() < i)
     {
-      return true;
-      if (!(paramObject instanceof mg))
-        return false;
-      localmg = (mg)paramObject;
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
+      {
+      default:
+        a.b(paramParcel, k);
+        break;
+      case 1:
+        bool = a.c(paramParcel, k);
+        break;
+      case 1000:
+        j = a.g(paramParcel, k);
+        break;
+      case 2:
+        localArrayList = a.c(paramParcel, k, mp.CREATOR);
+      }
     }
-    while ((this.tag == localmg.tag) && (Arrays.equals(this.anc, localmg.anc)));
-    return false;
+    if (paramParcel.dataPosition() != i)
+      throw new a.a("Overread allowed size end=" + i, paramParcel);
+    return new mf(j, bool, localArrayList);
   }
 
-  public final int hashCode()
+  public mf[] en(int paramInt)
   {
-    return 31 * (527 + this.tag) + Arrays.hashCode(this.anc);
+    return new mf[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.mg
  * JD-Core Version:    0.6.2
  */

@@ -1,84 +1,54 @@
 package com.google.android.gms.internal;
 
-import android.app.PendingIntent;
-import android.location.Location;
-import android.os.IBinder;
-import android.os.IInterface;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.a;
-import com.google.android.gms.location.b;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
-import java.util.List;
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import com.google.android.gms.common.internal.safeparcel.a;
+import com.google.android.gms.common.internal.safeparcel.a.a;
+import com.google.android.gms.common.internal.safeparcel.b;
 
-public abstract interface je extends IInterface
+public class je
+  implements Parcelable.Creator<jd>
 {
-  public abstract void a(long paramLong, boolean paramBoolean, PendingIntent paramPendingIntent);
+  static void a(jd paramjd, Parcel paramParcel, int paramInt)
+  {
+    int i = b.D(paramParcel);
+    b.c(paramParcel, 1, paramjd.getVersionCode());
+    b.a(paramParcel, 2, paramjd.ha(), paramInt, false);
+    b.H(paramParcel, i);
+  }
 
-  public abstract void a(PendingIntent paramPendingIntent);
+  public jd F(Parcel paramParcel)
+  {
+    int i = a.C(paramParcel);
+    int j = 0;
+    jf localjf = null;
+    while (paramParcel.dataPosition() < i)
+    {
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
+      {
+      default:
+        a.b(paramParcel, k);
+        break;
+      case 1:
+        j = a.g(paramParcel, k);
+        break;
+      case 2:
+        localjf = (jf)a.a(paramParcel, k, jf.CREATOR);
+      }
+    }
+    if (paramParcel.dataPosition() != i)
+      throw new a.a("Overread allowed size end=" + i, paramParcel);
+    return new jd(j, localjf);
+  }
 
-  public abstract void a(PendingIntent paramPendingIntent, jd paramjd, String paramString);
-
-  public abstract void a(Location paramLocation, int paramInt);
-
-  public abstract void a(jd paramjd, String paramString);
-
-  public abstract void a(jk paramjk, ka paramka, PendingIntent paramPendingIntent);
-
-  public abstract void a(jm paramjm, ka paramka, jy paramjy);
-
-  public abstract void a(jo paramjo, ka paramka);
-
-  public abstract void a(jq paramjq, ka paramka, PendingIntent paramPendingIntent);
-
-  public abstract void a(ju paramju, ka paramka, jy paramjy);
-
-  public abstract void a(ka paramka, PendingIntent paramPendingIntent);
-
-  public abstract void a(LocationRequest paramLocationRequest, PendingIntent paramPendingIntent);
-
-  public abstract void a(LocationRequest paramLocationRequest, a parama);
-
-  public abstract void a(LocationRequest paramLocationRequest, a parama, String paramString);
-
-  public abstract void a(a parama);
-
-  public abstract void a(LatLng paramLatLng, jm paramjm, ka paramka, jy paramjy);
-
-  public abstract void a(LatLngBounds paramLatLngBounds, int paramInt, jm paramjm, ka paramka, jy paramjy);
-
-  public abstract void a(LatLngBounds paramLatLngBounds, int paramInt, String paramString, jm paramjm, ka paramka, jy paramjy);
-
-  public abstract void a(String paramString, ka paramka, jy paramjy);
-
-  public abstract void a(String paramString, LatLngBounds paramLatLngBounds, jm paramjm, ka paramka, jy paramjy);
-
-  public abstract void a(String paramString, List<String> paramList, List<jw> paramList1, ka paramka, jy paramjy);
-
-  public abstract void a(List<jh> paramList, PendingIntent paramPendingIntent, jd paramjd, String paramString);
-
-  public abstract void a(String[] paramArrayOfString, jd paramjd, String paramString);
-
-  public abstract void b(ka paramka, PendingIntent paramPendingIntent);
-
-  public abstract void b(String paramString, ka paramka, jy paramjy);
-
-  public abstract Location bo(String paramString);
-
-  public abstract b bp(String paramString);
-
-  public abstract Location iW();
-
-  public abstract IBinder iX();
-
-  public abstract void removeActivityUpdates(PendingIntent paramPendingIntent);
-
-  public abstract void setMockLocation(Location paramLocation);
-
-  public abstract void setMockMode(boolean paramBoolean);
+  public jd[] aF(int paramInt)
+  {
+    return new jd[paramInt];
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.je
  * JD-Core Version:    0.6.2
  */

@@ -1,29 +1,26 @@
 package android.support.v4.view;
 
 import android.view.View;
-import android.view.View.AccessibilityDelegate;
 
-class aw extends av
+final class aw extends be
 {
-  static boolean b = false;
-
-  public final void a(View paramView, a parama)
+  public final void a(View paramView)
   {
-    paramView.setAccessibilityDelegate((View.AccessibilityDelegate)parama.a());
+    paramView.requestApplyInsets();
   }
 
-  public final boolean a(View paramView, int paramInt)
+  public final void a(View paramView, float paramFloat)
   {
-    return paramView.canScrollHorizontally(paramInt);
+    paramView.setElevation(paramFloat);
   }
 
-  public final boolean b(View paramView, int paramInt)
+  public final void a(View paramView, aj paramaj)
   {
-    return paramView.canScrollVertically(paramInt);
+    paramView.setOnApplyWindowInsetsListener(new bg.1(paramaj));
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.view.aw
  * JD-Core Version:    0.6.2
  */

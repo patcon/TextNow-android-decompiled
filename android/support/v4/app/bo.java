@@ -1,120 +1,117 @@
 package android.support.v4.app;
 
 import android.app.Notification;
-import android.app.Notification.BigPictureStyle;
-import android.app.Notification.BigTextStyle;
-import android.app.Notification.Builder;
-import android.app.Notification.InboxStyle;
-import android.graphics.Bitmap;
+import android.app.NotificationManager;
+import android.content.ComponentName;
+import android.content.Context;
+import android.os.Build.VERSION;
 import android.os.Bundle;
-import android.util.SparseArray;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import android.provider.Settings.Secure;
+import java.util.HashSet;
+import java.util.Set;
 
-final class bo
+public final class bo
 {
-  private static final Object a = new Object();
-  private static Field b;
-  private static boolean c;
-  private static final Object d = new Object();
+  private static final int a;
+  private static final Object b = new Object();
+  private static String c;
+  private static Set<String> d = new HashSet();
+  private static final Object g = new Object();
+  private static bw h;
+  private static final bq i;
+  private final Context e;
+  private final NotificationManager f;
 
-  public static Bundle a(Notification.Builder paramBuilder, bm parambm)
+  static
   {
-    paramBuilder.addAction(parambm.a(), parambm.b(), parambm.c());
-    Bundle localBundle = new Bundle(parambm.d());
-    if (parambm.e() != null)
-      localBundle.putParcelableArray("android.support.remoteInputs", cb.a(parambm.e()));
-    return localBundle;
-  }
-
-  public static Bundle a(Notification paramNotification)
-  {
-    synchronized (a)
+    if (Build.VERSION.SDK_INT >= 14)
+      i = new bt();
+    while (true)
     {
-      if (c)
-        return null;
-    }
-    try
-    {
-      if (b == null)
-      {
-        Field localField = Notification.class.getDeclaredField("extras");
-        if (!Bundle.class.isAssignableFrom(localField.getType()))
-        {
-          c = true;
-          return null;
-        }
-        localField.setAccessible(true);
-        b = localField;
-      }
-      Bundle localBundle = (Bundle)b.get(paramNotification);
-      if (localBundle == null)
-      {
-        localBundle = new Bundle();
-        b.set(paramNotification, localBundle);
-      }
-      return localBundle;
-      localObject2 = finally;
-      throw localObject2;
-    }
-    catch (NoSuchFieldException localNoSuchFieldException)
-    {
-      c = true;
-      return null;
-    }
-    catch (IllegalAccessException localIllegalAccessException)
-    {
-      label110: break label110;
+      a = i.a();
+      return;
+      if (Build.VERSION.SDK_INT >= 5)
+        i = new bs();
+      else
+        i = new br();
     }
   }
 
-  public static SparseArray<Bundle> a(List<Bundle> paramList)
+  private bo(Context paramContext)
   {
-    SparseArray localSparseArray = null;
-    int i = paramList.size();
-    for (int j = 0; j < i; j++)
+    this.e = paramContext;
+    this.f = ((NotificationManager)this.e.getSystemService("notification"));
+  }
+
+  public static bo a(Context paramContext)
+  {
+    return new bo(paramContext);
+  }
+
+  private void a(by paramby)
+  {
+    synchronized (g)
     {
-      Bundle localBundle = (Bundle)paramList.get(j);
-      if (localBundle != null)
+      if (h == null)
+        h = new bw(this.e.getApplicationContext());
+      h.a(paramby);
+      return;
+    }
+  }
+
+  public static Set<String> b(Context paramContext)
+  {
+    String str = Settings.Secure.getString(paramContext.getContentResolver(), "enabled_notification_listeners");
+    HashSet localHashSet;
+    if ((str != null) && (!str.equals(c)))
+    {
+      String[] arrayOfString = str.split(":");
+      localHashSet = new HashSet(arrayOfString.length);
+      int j = arrayOfString.length;
+      for (int k = 0; k < j; k++)
       {
-        if (localSparseArray == null)
-          localSparseArray = new SparseArray();
-        localSparseArray.put(j, localBundle);
+        ComponentName localComponentName = ComponentName.unflattenFromString(arrayOfString[k]);
+        if (localComponentName != null)
+          localHashSet.add(localComponentName.getPackageName());
       }
     }
-    return localSparseArray;
+    synchronized (b)
+    {
+      d = localHashSet;
+      c = str;
+      return d;
+    }
   }
 
-  public static void a(aq paramaq, CharSequence paramCharSequence1, boolean paramBoolean1, CharSequence paramCharSequence2, Bitmap paramBitmap1, Bitmap paramBitmap2, boolean paramBoolean2)
+  public final void a()
   {
-    Notification.BigPictureStyle localBigPictureStyle = new Notification.BigPictureStyle(paramaq.a()).setBigContentTitle(paramCharSequence1).bigPicture(paramBitmap1);
-    if (paramBoolean2)
-      localBigPictureStyle.bigLargeIcon(paramBitmap2);
-    if (paramBoolean1)
-      localBigPictureStyle.setSummaryText(paramCharSequence2);
+    this.f.cancelAll();
+    if (Build.VERSION.SDK_INT <= 19)
+      a(new bp(this.e.getPackageName()));
   }
 
-  public static void a(aq paramaq, CharSequence paramCharSequence1, boolean paramBoolean, CharSequence paramCharSequence2, CharSequence paramCharSequence3)
+  public final void a(int paramInt)
   {
-    Notification.BigTextStyle localBigTextStyle = new Notification.BigTextStyle(paramaq.a()).setBigContentTitle(paramCharSequence1).bigText(paramCharSequence3);
-    if (paramBoolean)
-      localBigTextStyle.setSummaryText(paramCharSequence2);
+    i.a(this.f, null, paramInt);
+    if (Build.VERSION.SDK_INT <= 19)
+      a(new bp(this.e.getPackageName(), paramInt, null));
   }
 
-  public static void a(aq paramaq, CharSequence paramCharSequence1, boolean paramBoolean, CharSequence paramCharSequence2, ArrayList<CharSequence> paramArrayList)
+  public final void a(int paramInt, Notification paramNotification)
   {
-    Notification.InboxStyle localInboxStyle = new Notification.InboxStyle(paramaq.a()).setBigContentTitle(paramCharSequence1);
-    if (paramBoolean)
-      localInboxStyle.setSummaryText(paramCharSequence2);
-    Iterator localIterator = paramArrayList.iterator();
-    while (localIterator.hasNext())
-      localInboxStyle.addLine((CharSequence)localIterator.next());
+    Bundle localBundle = ak.a(paramNotification);
+    if ((localBundle != null) && (localBundle.getBoolean("android.support.useSideChannel")));
+    for (int j = 1; j != 0; j = 0)
+    {
+      a(new bu(this.e.getPackageName(), paramInt, null, paramNotification));
+      i.a(this.f, null, paramInt);
+      return;
+    }
+    i.a(this.f, null, paramInt, paramNotification);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.app.bo
  * JD-Core Version:    0.6.2
  */

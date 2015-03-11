@@ -1,24 +1,13 @@
 package android.support.v7.internal.view.menu;
 
-import android.content.DialogInterface;
+import android.support.v7.widget.ListPopupWindow;
 
-final class c extends q
+public abstract class c
 {
-  public c(ActionMenuPresenter paramActionMenuPresenter, ag paramag)
-  {
-    super(paramag);
-    paramActionMenuPresenter.a(paramActionMenuPresenter.a);
-  }
-
-  public final void onDismiss(DialogInterface paramDialogInterface)
-  {
-    super.onDismiss(paramDialogInterface);
-    ActionMenuPresenter.a(this.a, null);
-    this.a.b = 0;
-  }
+  public abstract ListPopupWindow a();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v7.internal.view.menu.c
  * JD-Core Version:    0.6.2
  */

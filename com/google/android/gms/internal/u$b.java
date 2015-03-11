@@ -1,141 +1,71 @@
 package com.google.android.gms.internal;
 
 import android.content.Context;
-import android.view.MotionEvent;
-import java.util.Iterator;
+import android.view.View;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Vector;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicReference;
 
-final class u$b
-  implements g, Runnable
+@ez
+class u$b
 {
-  private u.c kC;
-  private final List<Object[]> kJ = new Vector();
-  private final CountDownLatch kK = new CountDownLatch(1);
-  private final AtomicReference<g> kL = new AtomicReference();
+  public final String lA;
+  public final Context lB;
+  public final k lC;
+  public final gt lD;
+  public bc lE;
+  public gg lF;
+  public gg lG;
+  public ay lH;
+  public fz lI;
+  public fz.a lJ;
+  public ga lK;
+  public bf lL;
+  public el lM;
+  public eh lN;
+  public et lO;
+  public eu lP;
+  public bt lQ;
+  public bu lR;
+  public List<String> lS;
+  public ee lT;
+  public ge lU = null;
+  public View lV = null;
+  public int lW = 0;
+  public boolean lX = false;
+  private HashSet<ga> lY = null;
+  public final u.a lz;
 
-  public u$b(u.c paramc)
+  public u$b(Context paramContext, ay paramay, String paramString, gt paramgt)
   {
-    this.kC = paramc;
-    if (et.bW())
-    {
-      en.execute(this);
-      return;
-    }
-    run();
-  }
-
-  private void ao()
-  {
-    try
-    {
-      this.kK.await();
-      return;
-    }
-    catch (InterruptedException localInterruptedException)
-    {
-      eu.c("Interrupted during GADSignals creation.", localInterruptedException);
-    }
-  }
-
-  private void ap()
-  {
-    if (this.kJ.isEmpty());
+    if (paramay.og)
+      this.lz = null;
     while (true)
     {
+      this.lH = paramay;
+      this.lA = paramString;
+      this.lB = paramContext;
+      this.lD = paramgt;
+      this.lC = new k(new w(this));
       return;
-      Iterator localIterator = this.kJ.iterator();
-      while (localIterator.hasNext())
-      {
-        Object[] arrayOfObject = (Object[])localIterator.next();
-        if (arrayOfObject.length == 1)
-          ((Runnable)this.kL.get()).a((MotionEvent)arrayOfObject[0]);
-        else if (arrayOfObject.length == 3)
-          ((Runnable)this.kL.get()).a(((Integer)arrayOfObject[0]).intValue(), ((Integer)arrayOfObject[1]).intValue(), ((Integer)arrayOfObject[2]).intValue());
-      }
+      this.lz = new u.a(paramContext);
+      this.lz.setMinimumWidth(paramay.widthPixels);
+      this.lz.setMinimumHeight(paramay.heightPixels);
+      this.lz.setVisibility(4);
     }
   }
 
-  public final String a(Context paramContext)
+  public void a(HashSet<ga> paramHashSet)
   {
-    ao();
-    if (this.kL.get() != null)
-    {
-      ap();
-      return ((Runnable)this.kL.get()).a(paramContext);
-    }
-    return "";
+    this.lY = paramHashSet;
   }
 
-  public final String a(Context paramContext, String paramString)
+  public HashSet<ga> au()
   {
-    ao();
-    if (this.kL.get() != null)
-    {
-      ap();
-      return ((Runnable)this.kL.get()).a(paramContext, paramString);
-    }
-    return "";
-  }
-
-  public final void a(int paramInt1, int paramInt2, int paramInt3)
-  {
-    g localg = (Runnable)this.kL.get();
-    if (localg != null)
-    {
-      ap();
-      localg.a(paramInt1, paramInt2, paramInt3);
-      return;
-    }
-    List localList = this.kJ;
-    Object[] arrayOfObject = new Object[3];
-    arrayOfObject[0] = Integer.valueOf(paramInt1);
-    arrayOfObject[1] = Integer.valueOf(paramInt2);
-    arrayOfObject[2] = Integer.valueOf(paramInt3);
-    localList.add(arrayOfObject);
-  }
-
-  public final void a(MotionEvent paramMotionEvent)
-  {
-    g localg = (Runnable)this.kL.get();
-    if (localg != null)
-    {
-      ap();
-      localg.a(paramMotionEvent);
-      return;
-    }
-    this.kJ.add(new Object[] { paramMotionEvent });
-  }
-
-  public final String b(Context paramContext)
-  {
-    ao();
-    if (this.kL.get() != null)
-    {
-      ap();
-      return ((Runnable)this.kL.get()).b(paramContext);
-    }
-    return "";
-  }
-
-  public final void run()
-  {
-    try
-    {
-      this.kL.set(j.a(this.kC.kQ.sw, this.kC.kO));
-      return;
-    }
-    finally
-    {
-      this.kK.countDown();
-      this.kC = null;
-    }
+    return this.lY;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.u.b
  * JD-Core Version:    0.6.2
  */

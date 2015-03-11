@@ -1,37 +1,48 @@
 package android.support.v7.app;
 
-import android.support.v7.internal.widget.NativeActionModeAwareLayout;
-import android.support.v7.internal.widget.y;
-import android.view.ActionMode;
-import android.view.ActionMode.Callback;
-import textnow.g.f;
+import android.app.ActionBar;
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 
-final class o extends m
-  implements y
+final class o
+  implements j
 {
-  final NativeActionModeAwareLayout e;
-  private ActionMode f;
+  final Activity a;
+  s b;
 
-  public o(d paramd, a parama)
+  private o(Activity paramActivity)
   {
-    super(paramd, parama);
-    this.e = ((NativeActionModeAwareLayout)paramd.findViewById(f.e));
-    if (this.e != null)
-      this.e.a(this);
+    this.a = paramActivity;
   }
 
-  public final ActionMode.Callback a(ActionMode.Callback paramCallback)
+  public final Drawable a()
   {
-    return new p(this, paramCallback);
+    return r.a(this.a);
   }
 
-  final boolean g()
+  public final void a(int paramInt)
   {
-    return (this.f == null) && (super.g());
+    this.b = r.a(this.b, this.a, paramInt);
+  }
+
+  public final void a(Drawable paramDrawable, int paramInt)
+  {
+    this.a.getActionBar().setDisplayShowHomeEnabled(true);
+    this.b = r.a(this.a, paramDrawable, paramInt);
+    this.a.getActionBar().setDisplayShowHomeEnabled(false);
+  }
+
+  public final Context b()
+  {
+    ActionBar localActionBar = this.a.getActionBar();
+    if (localActionBar != null)
+      return localActionBar.getThemedContext();
+    return this.a;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v7.app.o
  * JD-Core Version:    0.6.2
  */

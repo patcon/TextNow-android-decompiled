@@ -8,29 +8,29 @@ public final class LineItem
   implements SafeParcelable
 {
   public static final Parcelable.Creator<LineItem> CREATOR = new i();
-  String aiK;
-  String aiL;
-  String aje;
-  String ajf;
-  int ajg;
+  private final int BR;
+  String asP;
+  String asQ;
+  int asR;
+  String asv;
+  String asw;
   String description;
-  private final int xM;
 
   LineItem()
   {
-    this.xM = 1;
-    this.ajg = 0;
+    this.BR = 1;
+    this.asR = 0;
   }
 
   LineItem(int paramInt1, String paramString1, String paramString2, String paramString3, String paramString4, int paramInt2, String paramString5)
   {
-    this.xM = paramInt1;
+    this.BR = paramInt1;
     this.description = paramString1;
-    this.aje = paramString2;
-    this.ajf = paramString3;
-    this.aiK = paramString4;
-    this.ajg = paramInt2;
-    this.aiL = paramString5;
+    this.asP = paramString2;
+    this.asQ = paramString3;
+    this.asv = paramString4;
+    this.asR = paramInt2;
+    this.asw = paramString5;
   }
 
   public static LineItem.Builder newBuilder()
@@ -47,7 +47,7 @@ public final class LineItem
 
   public final String getCurrencyCode()
   {
-    return this.aiL;
+    return this.asw;
   }
 
   public final String getDescription()
@@ -57,27 +57,27 @@ public final class LineItem
 
   public final String getQuantity()
   {
-    return this.aje;
+    return this.asP;
   }
 
   public final int getRole()
   {
-    return this.ajg;
+    return this.asR;
   }
 
   public final String getTotalPrice()
   {
-    return this.aiK;
+    return this.asv;
   }
 
   public final String getUnitPrice()
   {
-    return this.ajf;
+    return this.asQ;
   }
 
   public final int getVersionCode()
   {
-    return this.xM;
+    return this.BR;
   }
 
   public final void writeToParcel(Parcel paramParcel, int paramInt)
@@ -86,7 +86,7 @@ public final class LineItem
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.LineItem
  * JD-Core Version:    0.6.2
  */

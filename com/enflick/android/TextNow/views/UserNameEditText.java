@@ -9,7 +9,7 @@ import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.widget.EditText;
 import com.enflick.android.TextNow.tasks.CheckUsernameAvailabilityTask;
-import textnow.q.b;
+import textnow.v.b;
 
 public class UserNameEditText extends CompoundEditText
 {
@@ -36,22 +36,22 @@ public class UserNameEditText extends CompoundEditText
     boolean bool1 = true;
     int i;
     boolean bool2;
-    if (!a(2131493075))
+    if (!a(2131296482))
     {
       String str1 = toString();
       if ((str1.length() > 0) && (b.b(str1.charAt(0))))
       {
         i = bool1;
-        String str2 = getContext().getString(2131493076);
+        String str2 = getContext().getString(2131296483);
         if (i != 0)
           break label135;
         bool2 = bool1;
         label56: a(bool2, str2);
-        if ((i == 0) || (a(toString(), 2131493077, 20)))
+        if ((i == 0) || (a(toString(), 2131296484, 20)))
           break label141;
         label84: if ((!bool1) || ((this.g) && (!e())))
           break label146;
-        a(c.b);
+        a(d.b);
         new CheckUsernameAvailabilityTask(toString()).b(getContext());
       }
     }
@@ -66,14 +66,14 @@ public class UserNameEditText extends CompoundEditText
       bool1 = false;
       break label84;
     }
-    a(c.c);
+    a(d.c);
     a(false);
   }
 
   public void onFinishInflate()
   {
     super.onFinishInflate();
-    this.e.setHint(2131493058);
+    this.e.setHint(2131296465);
     this.e.setInputType(1);
     this.e.setInputType(524432);
     this.e.addTextChangedListener(new TextWatcher()
@@ -120,7 +120,7 @@ public class UserNameEditText extends CompoundEditText
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.views.UserNameEditText
  * JD-Core Version:    0.6.2
  */

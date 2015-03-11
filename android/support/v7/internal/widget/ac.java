@@ -1,274 +1,186 @@
 package android.support.v7.internal.widget;
 
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
-import android.content.res.TypedArray;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.util.AttributeSet;
+import android.content.res.Configuration;
+import android.os.Build.VERSION;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.support.v7.widget.LinearLayoutCompat.LayoutParams;
 import android.view.View;
 import android.view.View.MeasureSpec;
-import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.SpinnerAdapter;
-import textnow.g.k;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
+import android.widget.HorizontalScrollView;
+import textnow.g.b;
 
-final class ac extends AbsSpinnerICS
-  implements DialogInterface.OnClickListener
+public final class ac extends HorizontalScrollView
+  implements q
 {
-  int E;
-  private ag F;
-  private ae G;
-  private int H;
-  private Rect I = new Rect();
+  private static final Interpolator j = new DecelerateInterpolator();
+  Runnable a;
+  int b;
+  int c;
+  private ae d;
+  private LinearLayoutCompat e;
+  private SpinnerCompat f;
+  private boolean g;
+  private int h;
+  private int i;
 
-  ac(Context paramContext, AttributeSet paramAttributeSet, int paramInt)
+  private void a(int paramInt)
   {
-    this(paramContext, null, paramInt, -1);
-  }
-
-  private ac(Context paramContext, AttributeSet paramAttributeSet, int paramInt1, int paramInt2)
-  {
-    super(paramContext, paramAttributeSet, paramInt1);
-    TypedArray localTypedArray = paramContext.obtainStyledAttributes(paramAttributeSet, k.n, paramInt1, 0);
-    switch (localTypedArray.getInt(7, 0))
+    this.i = paramInt;
+    int k = this.e.getChildCount();
+    int m = 0;
+    if (m < k)
     {
-    default:
-    case 0:
-    case 1:
-    }
-    while (true)
-    {
-      this.H = localTypedArray.getInt(0, 17);
-      this.F.a(localTypedArray.getString(6));
-      localTypedArray.recycle();
-      if (this.G != null)
+      View localView1 = this.e.getChildAt(m);
+      if (m == paramInt);
+      for (boolean bool = true; ; bool = false)
       {
-        this.F.a(this.G);
-        this.G = null;
-      }
-      return;
-      this.F = new ad(this, (byte)0);
-      continue;
-      af localaf = new af(this, paramContext, paramAttributeSet, paramInt1);
-      this.E = localTypedArray.getLayoutDimension(3, -2);
-      localaf.a(localTypedArray.getDrawable(2));
-      int i = localTypedArray.getDimensionPixelOffset(5, 0);
-      if (i != 0)
-        localaf.c(i);
-      int j = localTypedArray.getDimensionPixelOffset(4, 0);
-      if (j != 0)
-        localaf.b(j);
-      this.F = localaf;
-    }
-  }
-
-  private void a(View paramView)
-  {
-    ViewGroup.LayoutParams localLayoutParams = paramView.getLayoutParams();
-    if (localLayoutParams == null)
-      localLayoutParams = generateDefaultLayoutParams();
-    addViewInLayout(paramView, 0, localLayoutParams);
-    paramView.setSelected(hasFocus());
-    int i = ViewGroup.getChildMeasureSpec(this.b, this.i.top + this.i.bottom, localLayoutParams.height);
-    paramView.measure(ViewGroup.getChildMeasureSpec(this.c, this.i.left + this.i.right, localLayoutParams.width), i);
-    int j = this.i.top + (getMeasuredHeight() - this.i.bottom - this.i.top - paramView.getMeasuredHeight()) / 2;
-    int k = j + paramView.getMeasuredHeight();
-    paramView.layout(0, j, 0 + paramView.getMeasuredWidth(), k);
-  }
-
-  private View d(int paramInt)
-  {
-    if (!this.u)
-    {
-      View localView2 = this.j.a(paramInt);
-      if (localView2 != null)
-      {
-        a(localView2);
-        return localView2;
-      }
-    }
-    View localView1 = this.a.getView(paramInt, null, this);
-    a(localView1);
-    return localView1;
-  }
-
-  final int a(SpinnerAdapter paramSpinnerAdapter, Drawable paramDrawable)
-  {
-    if (paramSpinnerAdapter == null)
-      return 0;
-    int i = View.MeasureSpec.makeMeasureSpec(0, 0);
-    int j = View.MeasureSpec.makeMeasureSpec(0, 0);
-    int k = Math.max(0, this.v);
-    int m = Math.min(paramSpinnerAdapter.getCount(), k + 15);
-    int n = Math.max(0, k - (15 - (m - k)));
-    View localView1 = null;
-    int i1 = 0;
-    int i2 = 0;
-    int i3;
-    if (n < m)
-    {
-      i3 = paramSpinnerAdapter.getItemViewType(n);
-      if (i3 == i2)
-        break label200;
-    }
-    for (View localView2 = null; ; localView2 = localView1)
-    {
-      localView1 = paramSpinnerAdapter.getView(n, localView2, this);
-      if (localView1.getLayoutParams() == null)
-        localView1.setLayoutParams(new ViewGroup.LayoutParams(-2, -2));
-      localView1.measure(i, j);
-      i1 = Math.max(i1, localView1.getMeasuredWidth());
-      n++;
-      i2 = i3;
-      break;
-      if (paramDrawable != null)
-      {
-        paramDrawable.getPadding(this.I);
-        return i1 + (this.I.left + this.I.right);
-      }
-      return i1;
-      label200: i3 = i2;
-    }
-  }
-
-  public final void a(n paramn)
-  {
-    throw new RuntimeException("setOnItemClickListener cannot be used with a spinner.");
-  }
-
-  public final void a(SpinnerAdapter paramSpinnerAdapter)
-  {
-    super.a(paramSpinnerAdapter);
-    if (this.F != null)
-    {
-      this.F.a(new ae(paramSpinnerAdapter));
-      return;
-    }
-    this.G = new ae(paramSpinnerAdapter);
-  }
-
-  final void b(n paramn)
-  {
-    super.a(paramn);
-  }
-
-  public final int getBaseline()
-  {
-    int i = -1;
-    View localView;
-    if (getChildCount() > 0)
-      localView = getChildAt(0);
-    while (true)
-    {
-      if (localView != null)
-      {
-        int k = localView.getBaseline();
-        if (k >= 0)
-          i = k + localView.getTop();
-      }
-      return i;
-      SpinnerAdapter localSpinnerAdapter = this.a;
-      localView = null;
-      if (localSpinnerAdapter != null)
-      {
-        int j = this.a.getCount();
-        localView = null;
-        if (j > 0)
+        localView1.setSelected(bool);
+        if (bool)
         {
-          localView = d(0);
-          this.j.a(0, localView);
-          removeAllViewsInLayout();
+          final View localView2 = this.e.getChildAt(paramInt);
+          if (this.a != null)
+            removeCallbacks(this.a);
+          this.a = new Runnable()
+          {
+            public final void run()
+            {
+              int i = localView2.getLeft() - (ac.this.getWidth() - localView2.getWidth()) / 2;
+              ac.this.smoothScrollTo(i, 0);
+              ac.this.a = null;
+            }
+          };
+          post(this.a);
         }
+        m++;
+        break;
       }
     }
+    if ((this.f != null) && (paramInt >= 0))
+      this.f.a(paramInt);
   }
 
-  public final void onClick(DialogInterface paramDialogInterface, int paramInt)
+  private boolean a()
   {
-    a(paramInt);
-    paramDialogInterface.dismiss();
+    return (this.f != null) && (this.f.getParent() == this);
   }
 
-  protected final void onDetachedFromWindow()
+  private boolean b()
+  {
+    if (!a())
+      return false;
+    removeView(this.f);
+    addView(this.e, new ViewGroup.LayoutParams(-2, -1));
+    a(this.f.u);
+    return false;
+  }
+
+  public final void a(View paramView)
+  {
+    ((af)paramView).a().d();
+  }
+
+  public final void a(boolean paramBoolean)
+  {
+    this.g = paramBoolean;
+  }
+
+  public final void onAttachedToWindow()
+  {
+    super.onAttachedToWindow();
+    if (this.a != null)
+      post(this.a);
+  }
+
+  protected final void onConfigurationChanged(Configuration paramConfiguration)
+  {
+    if (Build.VERSION.SDK_INT >= 8)
+      super.onConfigurationChanged(paramConfiguration);
+    textnow.k.a locala = textnow.k.a.a(getContext());
+    this.h = locala.e();
+    requestLayout();
+    this.c = locala.g();
+  }
+
+  public final void onDetachedFromWindow()
   {
     super.onDetachedFromWindow();
-    if ((this.F != null) && (this.F.f()))
-      this.F.d();
+    if (this.a != null)
+      removeCallbacks(this.a);
   }
 
-  protected final void onLayout(boolean paramBoolean, int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+  public final void onMeasure(int paramInt1, int paramInt2)
   {
-    super.onLayout(paramBoolean, paramInt1, paramInt2, paramInt3, paramInt4);
-    this.r = true;
-    int i = this.i.left;
-    int j = getRight() - getLeft() - this.i.left - this.i.right;
-    if (this.u)
-      f();
-    if (this.z == 0)
+    int k = 1;
+    int m = View.MeasureSpec.getMode(paramInt1);
+    boolean bool;
+    label72: label87: int i1;
+    if (m == 1073741824)
     {
-      a();
-      this.r = false;
-      return;
-    }
-    if (this.v >= 0)
-      b(this.v);
-    int k = getChildCount();
-    b localb = this.j;
-    int m = this.k;
-    for (int n = 0; n < k; n++)
-    {
-      View localView2 = getChildAt(n);
-      localb.a(m + n, localView2);
-    }
-    removeAllViewsInLayout();
-    this.k = this.x;
-    View localView1 = d(this.x);
-    int i1 = localView1.getMeasuredWidth();
-    switch (0x7 & this.H)
-    {
-    default:
-    case 1:
-    case 5:
+      bool = k;
+      setFillViewport(bool);
+      int n = this.e.getChildCount();
+      if ((n <= k) || ((m != 1073741824) && (m != -2147483648)))
+        break label339;
+      if (n <= 2)
+        break label326;
+      this.b = ((int)(0.4F * View.MeasureSpec.getSize(paramInt1)));
+      this.b = Math.min(this.b, this.c);
+      i1 = View.MeasureSpec.makeMeasureSpec(this.h, 1073741824);
+      if ((bool) || (!this.g))
+        break label347;
+      label110: if (k == 0)
+        break label360;
+      this.e.measure(0, i1);
+      if (this.e.getMeasuredWidth() <= View.MeasureSpec.getSize(paramInt1))
+        break label352;
+      if (!a())
+      {
+        if (this.f == null)
+        {
+          SpinnerCompat localSpinnerCompat = new SpinnerCompat(getContext(), null, b.h);
+          localSpinnerCompat.setLayoutParams(new LinearLayoutCompat.LayoutParams(-2, -1));
+          localSpinnerCompat.b(this);
+          this.f = localSpinnerCompat;
+        }
+        removeView(this.e);
+        addView(this.f, new ViewGroup.LayoutParams(-2, -1));
+        if (this.f.a == null)
+          this.f.a(new ad(this, (byte)0));
+        if (this.a != null)
+        {
+          removeCallbacks(this.a);
+          this.a = null;
+        }
+        this.f.a(this.i);
+      }
     }
     while (true)
     {
-      localView1.offsetLeftAndRight(i);
-      this.j.a();
-      invalidate();
-      g();
-      this.u = false;
-      this.p = false;
-      c(this.x);
+      int i2 = getMeasuredWidth();
+      super.onMeasure(paramInt1, i1);
+      int i3 = getMeasuredWidth();
+      if ((bool) && (i2 != i3))
+        a(this.i);
+      return;
+      bool = false;
       break;
-      i = i + j / 2 - i1 / 2;
+      label326: this.b = (View.MeasureSpec.getSize(paramInt1) / 2);
+      break label72;
+      label339: this.b = -1;
+      break label87;
+      label347: k = 0;
+      break label110;
+      label352: b();
       continue;
-      i = i + j - i1;
+      label360: b();
     }
-  }
-
-  protected final void onMeasure(int paramInt1, int paramInt2)
-  {
-    super.onMeasure(paramInt1, paramInt2);
-    if ((this.F != null) && (View.MeasureSpec.getMode(paramInt1) == -2147483648))
-      setMeasuredDimension(Math.min(Math.max(getMeasuredWidth(), a(this.a, getBackground())), View.MeasureSpec.getSize(paramInt1)), getMeasuredHeight());
-  }
-
-  public final boolean performClick()
-  {
-    boolean bool = super.performClick();
-    if (!bool)
-    {
-      bool = true;
-      if (!this.F.f())
-        this.F.c();
-    }
-    return bool;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v7.internal.widget.ac
  * JD-Core Version:    0.6.2
  */

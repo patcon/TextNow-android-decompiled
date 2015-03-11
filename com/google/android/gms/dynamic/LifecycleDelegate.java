@@ -31,7 +31,7 @@ public abstract interface LifecycleDelegate
   public abstract void onStop();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.dynamic.LifecycleDelegate
  * JD-Core Version:    0.6.2
  */

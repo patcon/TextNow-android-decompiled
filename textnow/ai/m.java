@@ -1,56 +1,78 @@
 package textnow.ai;
 
-import java.util.AbstractSet;
-import java.util.Iterator;
-import java.util.Map.Entry;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import textnow.af.f;
+import textnow.af.u;
+import textnow.af.y;
+import textnow.af.z;
+import textnow.ak.b;
+import textnow.ak.c;
 
-final class m extends AbstractSet<Map.Entry<K, V>>
+public final class m extends y<java.sql.Date>
 {
-  m(j paramj)
+  public static final z a = new z()
   {
-  }
-
-  public final void clear()
-  {
-    this.a.clear();
-  }
-
-  public final boolean contains(Object paramObject)
-  {
-    return ((paramObject instanceof Map.Entry)) && (this.a.a((Map.Entry)paramObject) != null);
-  }
-
-  public final Iterator<Map.Entry<K, V>> iterator()
-  {
-    // Byte code:
-    //   0: new 30	textnow/ai/m$1
-    //   3: dup
-    //   4: aload_0
-    //   5: invokespecial 33	textnow/ai/m$1:<init>	(Ltextnow/ai/m;)V
-    //   8: areturn
-  }
-
-  public final boolean remove(Object paramObject)
-  {
-    if (!(paramObject instanceof Map.Entry));
-    p localp;
-    do
+    public final <T> y<T> a(f paramAnonymousf, textnow.aj.a<T> paramAnonymousa)
     {
-      return false;
-      localp = this.a.a((Map.Entry)paramObject);
+      if (paramAnonymousa.a() == java.sql.Date.class)
+        return new m();
+      return null;
     }
-    while (localp == null);
-    this.a.a(localp, true);
-    return true;
+  };
+  private final DateFormat b = new SimpleDateFormat("MMM d, yyyy");
+
+  private void a(c paramc, java.sql.Date paramDate)
+  {
+    Object localObject2;
+    if (paramDate == null)
+      localObject2 = null;
+    try
+    {
+      while (true)
+      {
+        paramc.b((String)localObject2);
+        return;
+        String str = this.b.format(paramDate);
+        localObject2 = str;
+      }
+    }
+    finally
+    {
+    }
   }
 
-  public final int size()
+  private java.sql.Date b(textnow.ak.a parama)
   {
-    return this.a.d;
+    try
+    {
+      java.sql.Date localDate;
+      if (parama.f() == b.i)
+      {
+        parama.j();
+        localDate = null;
+      }
+      while (true)
+      {
+        return localDate;
+        try
+        {
+          localDate = new java.sql.Date(this.b.parse(parama.h()).getTime());
+        }
+        catch (ParseException localParseException)
+        {
+          throw new u(localParseException);
+        }
+      }
+    }
+    finally
+    {
+    }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.ai.m
  * JD-Core Version:    0.6.2
  */

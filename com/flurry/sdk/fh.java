@@ -518,57 +518,59 @@ public final class fh
 
   public final fh.c a(String paramString)
   {
-    while (true)
+    try
     {
-      try
+      g();
+      e(paramString);
+      fh.b localb = (fh.b)this.l.get(paramString);
+      fh.c localc = null;
+      if (localb == null);
+      while (true)
       {
-        g();
-        e(paramString);
-        fh.b localb = (fh.b)this.l.get(paramString);
-        if (localb == null)
+        return localc;
+        boolean bool = fh.b.d(localb);
+        localc = null;
+        if (bool)
         {
-          localc = null;
-          return localc;
-        }
-        if (!fh.b.d(localb))
-        {
-          localc = null;
-          continue;
-        }
-        InputStream[] arrayOfInputStream = new InputStream[this.i];
-        int i1 = 0;
-        int i2;
-        try
-        {
-          if (i1 >= this.i)
-            continue;
-          arrayOfInputStream[i1] = new FileInputStream(localb.a(i1));
-          i1++;
-          continue;
-        }
-        catch (FileNotFoundException localFileNotFoundException)
-        {
-          i2 = 0;
-          if (i2 >= this.i)
-            break label221;
-        }
-        if (arrayOfInputStream[i2] != null)
-        {
-          fj.a(arrayOfInputStream[i2]);
-          i2++;
-          continue;
-          this.m = (1 + this.m);
+          InputStream[] arrayOfInputStream = new InputStream[this.i];
+          int i1 = 0;
+          while (true)
+          {
+            int i2;
+            int i3;
+            try
+            {
+              if (i1 >= this.i)
+                break label144;
+              arrayOfInputStream[i1] = new FileInputStream(localb.a(i1));
+              i1++;
+              continue;
+            }
+            catch (FileNotFoundException localFileNotFoundException)
+            {
+              i2 = 0;
+              i3 = this.i;
+              localc = null;
+            }
+            if (i2 >= i3)
+              break;
+            InputStream localInputStream = arrayOfInputStream[i2];
+            localc = null;
+            if (localInputStream == null)
+              break;
+            fj.a(arrayOfInputStream[i2]);
+            i2++;
+          }
+          label144: this.m = (1 + this.m);
           this.k.append("READ " + paramString + '\n');
           if (f())
             this.b.submit(this.o);
           localc = new fh.c(this, paramString, fh.b.e(localb), arrayOfInputStream, fh.b.b(localb), null);
-          continue;
         }
       }
-      finally
-      {
-      }
-      label221: fh.c localc = null;
+    }
+    finally
+    {
     }
   }
 
@@ -656,7 +658,7 @@ public final class fh
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.flurry.sdk.fh
  * JD-Core Version:    0.6.2
  */

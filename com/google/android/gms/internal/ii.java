@@ -1,35 +1,59 @@
 package com.google.android.gms.internal;
 
-import android.content.Context;
-import android.content.pm.PackageManager;
-import java.util.regex.Pattern;
+import android.text.TextUtils;
 
-public final class ii
+public abstract class ii
 {
-  private static Pattern Hu = null;
+  protected final ip Go;
+  private final String Gp;
+  private ir Gq;
 
-  public static boolean F(Context paramContext)
+  protected ii(String paramString1, String paramString2, String paramString3)
   {
-    return paramContext.getPackageManager().hasSystemFeature("android.hardware.type.watch");
+    ik.aF(paramString1);
+    this.Gp = paramString1;
+    this.Go = new ip(paramString2);
+    if (!TextUtils.isEmpty(paramString3))
+      this.Go.aK(paramString3);
   }
 
-  public static int aB(int paramInt)
+  public final void a(ir paramir)
   {
-    return paramInt / 1000;
+    this.Gq = paramir;
+    if (this.Gq == null)
+      fA();
   }
 
-  public static int aC(int paramInt)
+  protected final void a(String paramString1, long paramLong, String paramString2)
   {
-    return paramInt % 1000 / 100;
+    this.Go.a("Sending text message: %s to: %s", new Object[] { paramString1, paramString2 });
+    this.Gq.a(this.Gp, paramString1, paramLong, paramString2);
   }
 
-  public static boolean aD(int paramInt)
+  public void aD(String paramString)
   {
-    return aC(paramInt) == 3;
+  }
+
+  public void b(long paramLong, int paramInt)
+  {
+  }
+
+  public void fA()
+  {
+  }
+
+  protected final long fz()
+  {
+    return this.Gq.fx();
+  }
+
+  public final String getNamespace()
+  {
+    return this.Gp;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ii
  * JD-Core Version:    0.6.2
  */

@@ -1,38 +1,74 @@
 package android.support.v4.view;
 
-import android.os.Build.VERSION;
-import android.view.ViewConfiguration;
+import android.view.View;
+import android.view.ViewParent;
 
-public final class bc
+class bc extends bb
 {
-  static final bh a = new bd();
-
-  static
+  public void a(View paramView)
   {
-    if (Build.VERSION.SDK_INT >= 14)
-    {
-      a = new bg();
-      return;
-    }
-    if (Build.VERSION.SDK_INT >= 11)
-    {
-      a = new bf();
-      return;
-    }
-    if (Build.VERSION.SDK_INT >= 8)
-    {
-      a = new be();
-      return;
-    }
+    paramView.requestFitSystemWindows();
   }
 
-  public static int a(ViewConfiguration paramViewConfiguration)
+  public final void a(View paramView, int paramInt1, int paramInt2, int paramInt3, int paramInt4)
   {
-    return a.a(paramViewConfiguration);
+    paramView.postInvalidate(paramInt1, paramInt2, paramInt3, paramInt4);
+  }
+
+  public final void a(View paramView, Runnable paramRunnable)
+  {
+    paramView.postOnAnimation(paramRunnable);
+  }
+
+  public final void a(View paramView, Runnable paramRunnable, long paramLong)
+  {
+    paramView.postOnAnimationDelayed(paramRunnable, paramLong);
+  }
+
+  public void c(View paramView, int paramInt)
+  {
+    if (paramInt == 4)
+      paramInt = 2;
+    paramView.setImportantForAccessibility(paramInt);
+  }
+
+  public final boolean d(View paramView)
+  {
+    return paramView.hasTransientState();
+  }
+
+  public final void e(View paramView)
+  {
+    paramView.postInvalidateOnAnimation();
+  }
+
+  public final int f(View paramView)
+  {
+    return paramView.getImportantForAccessibility();
+  }
+
+  public final ViewParent j(View paramView)
+  {
+    return paramView.getParentForAccessibility();
+  }
+
+  public final int q(View paramView)
+  {
+    return paramView.getMinimumWidth();
+  }
+
+  public final int r(View paramView)
+  {
+    return paramView.getMinimumHeight();
+  }
+
+  public final boolean u(View paramView)
+  {
+    return paramView.getFitsSystemWindows();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.view.bc
  * JD-Core Version:    0.6.2
  */

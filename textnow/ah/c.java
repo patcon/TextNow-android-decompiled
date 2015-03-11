@@ -1,18 +1,41 @@
 package textnow.ah;
 
-import java.lang.annotation.Annotation;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.io.Serializable;
+import java.lang.reflect.GenericArrayType;
+import java.lang.reflect.Type;
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target({java.lang.annotation.ElementType.FIELD, java.lang.annotation.ElementType.TYPE})
-public @interface c
+final class c
+  implements Serializable, GenericArrayType
 {
-  public abstract double a();
+  private final Type a;
+
+  public c(Type paramType)
+  {
+    this.a = b.a(paramType);
+  }
+
+  public final boolean equals(Object paramObject)
+  {
+    return ((paramObject instanceof GenericArrayType)) && (b.a(this, (GenericArrayType)paramObject));
+  }
+
+  public final Type getGenericComponentType()
+  {
+    return this.a;
+  }
+
+  public final int hashCode()
+  {
+    return this.a.hashCode();
+  }
+
+  public final String toString()
+  {
+    return b.c(this.a) + "[]";
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.ah.c
  * JD-Core Version:    0.6.2
  */

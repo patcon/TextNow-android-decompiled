@@ -22,11 +22,11 @@ import android.widget.TextView.OnEditorActionListener;
 import com.enflick.android.TextNow.activities.MainActivity;
 import com.enflick.android.TextNow.tasks.SendMessageTask;
 import com.enflick.android.TextNow.tasks.SendSMSTask;
+import com.enflick.android.TextNow.views.emoticons.d;
 import java.util.Set;
-import textnow.k.u;
-import textnow.q.q;
-import textnow.u.e;
-import textnow.u.m;
+import textnow.p.ab;
+import textnow.z.g;
+import textnow.z.i;
 
 public class QuickReplyConversationView extends LinearLayout
   implements View.OnClickListener
@@ -37,10 +37,10 @@ public class QuickReplyConversationView extends LinearLayout
   private ImageButton d;
   private ImageView e;
   private TextView f;
-  private textnow.u.d g;
-  private u h;
-  private g i;
-  private textnow.u.g j;
+  private textnow.z.f g;
+  private ab h;
+  private h i;
+  private i j;
 
   public QuickReplyConversationView(Context paramContext)
   {
@@ -55,19 +55,19 @@ public class QuickReplyConversationView extends LinearLayout
   private void d()
   {
     String str1 = this.b.getText().toString().trim();
-    e locale;
+    g localg;
     int k;
     if (!TextUtils.isEmpty(str1))
     {
-      Set localSet = textnow.u.f.b(getContext());
-      locale = textnow.u.d.a(getContext(), localSet, this.g.a(), this.g.b());
-      if (locale == null)
+      Set localSet = textnow.z.h.b(getContext());
+      localg = textnow.z.f.a(getContext(), localSet, this.g.a(), this.g.b());
+      if (localg == null)
         break label138;
-      k = locale.b;
-      if (locale == null)
+      k = localg.b;
+      if (localg == null)
         break label150;
     }
-    label138: label150: for (String str2 = locale.a; ; str2 = this.g.a())
+    label138: label150: for (String str2 = localg.a; ; str2 = this.g.a())
     {
       new SendMessageTask(getContext(), k, str2, this.g.c(), this.g.d(), 1, 2, true, str1, null).b(getContext());
       if (this.i != null)
@@ -78,26 +78,26 @@ public class QuickReplyConversationView extends LinearLayout
     }
   }
 
-  public final textnow.u.d a()
+  public final textnow.z.f a()
   {
     return this.g;
   }
 
-  public final void a(g paramg)
+  public final void a(h paramh)
   {
-    this.i = paramg;
+    this.i = paramh;
   }
 
-  public final void a(textnow.u.d paramd)
+  public final void a(textnow.z.f paramf)
   {
-    this.g = paramd;
-    if (textnow.u.f.c(this.g.d()))
+    this.g = paramf;
+    if (textnow.z.h.c(this.g.d()))
     {
-      this.e.setImageResource(2130837594);
-      this.j = new textnow.u.g(getContext(), this.g.a());
+      this.e.setImageResource(2130837558);
+      this.j = new i(getContext(), this.g.a());
       if (this.j.c() != 1)
         break label161;
-      this.c.setImageResource(2130837963);
+      this.c.setImageResource(2130837924);
       label69: this.c.setAlpha(155);
       KeyguardManager localKeyguardManager = (KeyguardManager)getContext().getSystemService("keyguard");
       if ((!this.g.j()) || (localKeyguardManager.inKeyguardRestrictedInputMode()))
@@ -109,17 +109,17 @@ public class QuickReplyConversationView extends LinearLayout
       this.f.setText(this.g.c());
       return;
       Uri localUri = Uri.parse(this.g.d());
-      q.a(getContext()).a(this.e, localUri);
+      textnow.v.o.a(getContext()).a(this.e, localUri);
       break;
-      label161: this.c.setImageResource(2130837961);
+      label161: this.c.setImageResource(2130837922);
       break label69;
       label173: this.d.setVisibility(8);
     }
   }
 
-  public final void a(m paramm)
+  public final void a(textnow.z.o paramo)
   {
-    if (paramm == null);
+    if (paramo == null);
     do
     {
       do
@@ -127,10 +127,10 @@ public class QuickReplyConversationView extends LinearLayout
       while (this.h == null);
       if (this.h.getCount() >= 10)
       {
-        m localm = (m)this.h.getItem(0);
-        this.h.remove(localm);
+        textnow.z.o localo = (textnow.z.o)this.h.getItem(0);
+        this.h.remove(localo);
       }
-      this.h.add(paramm);
+      this.h.add(paramo);
     }
     while (this.h.getCount() < 3);
     View localView = this.h.getView(0, null, this.a);
@@ -159,8 +159,8 @@ public class QuickReplyConversationView extends LinearLayout
     switch (paramView.getId())
     {
     default:
-    case 2131165579:
-    case 2131165636:
+    case 2131558878:
+    case 2131558938:
     }
     do
     {
@@ -196,10 +196,10 @@ public class QuickReplyConversationView extends LinearLayout
   protected void onFinishInflate()
   {
     super.onFinishInflate();
-    this.e = ((ImageView)findViewById(2131165361));
-    this.f = ((TextView)findViewById(2131165362));
-    this.a = ((ListView)findViewById(2131165637));
-    this.b = ((EditText)findViewById(2131165638));
+    this.e = ((ImageView)findViewById(2131558557));
+    this.f = ((TextView)findViewById(2131558628));
+    this.a = ((ListView)findViewById(2131558939));
+    this.b = ((EditText)findViewById(2131558940));
     this.b.setImeOptions(4);
     this.b.setOnEditorActionListener(new TextView.OnEditorActionListener()
     {
@@ -213,7 +213,7 @@ public class QuickReplyConversationView extends LinearLayout
         return false;
       }
     });
-    this.b.addTextChangedListener(new com.enflick.android.TextNow.views.emoticons.f(com.enflick.android.TextNow.views.emoticons.d.a(getContext()), this.b));
+    this.b.addTextChangedListener(new com.enflick.android.TextNow.views.emoticons.f(d.a(getContext()), this.b));
     this.b.addTextChangedListener(new TextWatcher()
     {
       public final void afterTextChanged(Editable paramAnonymousEditable)
@@ -234,16 +234,16 @@ public class QuickReplyConversationView extends LinearLayout
       {
       }
     });
-    this.c = ((ImageButton)findViewById(2131165579));
+    this.c = ((ImageButton)findViewById(2131558878));
     this.c.setOnClickListener(this);
-    this.d = ((ImageButton)findViewById(2131165636));
+    this.d = ((ImageButton)findViewById(2131558938));
     this.d.setOnClickListener(this);
-    this.h = new u(getContext());
+    this.h = new ab(getContext());
     this.a.setAdapter(this.h);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.views.QuickReplyConversationView
  * JD-Core Version:    0.6.2
  */

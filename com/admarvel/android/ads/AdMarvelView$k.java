@@ -1,112 +1,73 @@
 package com.admarvel.android.ads;
 
 import android.os.Handler;
-import com.admarvel.android.util.Logging;
-import java.io.File;
+import android.view.View;
+import android.view.animation.DecelerateInterpolator;
+import com.admarvel.android.util.n;
 import java.lang.ref.WeakReference;
 
 class AdMarvelView$k
-  implements AdMarvelAdapterListener
+  implements Runnable
 {
-  private final WeakReference<AdMarvelView> a;
-  private AdMarvelAd b;
+  private final WeakReference<View> a;
+  private final WeakReference<AdMarvelView> b;
+  private final AdMarvelAd c;
 
-  public AdMarvelView$k(AdMarvelView paramAdMarvelView)
+  public AdMarvelView$k(View paramView, AdMarvelView paramAdMarvelView, AdMarvelAd paramAdMarvelAd)
   {
-    this.a = new WeakReference(paramAdMarvelView);
-    if (this.a.get() != null);
-    for (AdMarvelAd localAdMarvelAd = AdMarvelView.g((AdMarvelView)this.a.get()); ; localAdMarvelAd = null)
+    this.a = new WeakReference(paramView);
+    this.b = new WeakReference(paramAdMarvelView);
+    this.c = paramAdMarvelAd;
+  }
+
+  public void run()
+  {
+    label7: if (this.a == null)
     {
-      this.b = localAdMarvelAd;
-      return;
+      break label7;
+      break label7;
     }
-  }
-
-  public void onClickAd(String paramString)
-  {
-    AdMarvelView localAdMarvelView = (AdMarvelView)this.a.get();
-    if (localAdMarvelView == null);
-    AdMarvelAd localAdMarvelAd;
-    do
+    while (true)
     {
       return;
-      localAdMarvelAd = AdMarvelView.g(localAdMarvelView);
-    }
-    while (localAdMarvelAd == null);
-    AdMarvelView.d(localAdMarvelView).a(localAdMarvelView.getContext(), localAdMarvelView, paramString, localAdMarvelAd.getSiteId(), localAdMarvelAd.getId(), localAdMarvelAd.getTargetParams(), localAdMarvelAd.getIpAddress());
-  }
-
-  public void onClose()
-  {
-    AdMarvelView localAdMarvelView = (AdMarvelView)this.a.get();
-    if (localAdMarvelView == null)
-      return;
-    AdMarvelView.a(localAdMarvelView, false);
-    AdMarvelView.d(localAdMarvelView).b();
-  }
-
-  public void onExpand()
-  {
-    AdMarvelView localAdMarvelView = (AdMarvelView)this.a.get();
-    if (localAdMarvelView == null)
-      return;
-    AdMarvelView.a(localAdMarvelView, true);
-    AdMarvelView.d(localAdMarvelView).a();
-  }
-
-  public void onFailedToReceiveAd(int paramInt, AdMarvelUtils.ErrorReason paramErrorReason)
-  {
-    AdMarvelView localAdMarvelView = (AdMarvelView)this.a.get();
-    if (localAdMarvelView == null)
-      return;
-    AdMarvelAd localAdMarvelAd = AdMarvelView.g(localAdMarvelView);
-    AdMarvelView.e(localAdMarvelView).post(new AdMarvelView.m(localAdMarvelView));
-    boolean bool = localAdMarvelAd.getRetry().equals(Boolean.valueOf(true));
-    int i = 0;
-    int m;
-    String str1;
-    if (bool)
-    {
-      int j = localAdMarvelAd.getRetrynum();
-      int k = localAdMarvelAd.getMaxretries();
-      i = 0;
-      if (j <= k)
+      if (this.b != null)
       {
-        m = 1 + localAdMarvelAd.getRetrynum();
-        str1 = localAdMarvelAd.getExcluded();
-        if ((localAdMarvelAd.getExcluded() == null) || (localAdMarvelAd.getExcluded().length() <= 0))
-          break label289;
+        View localView1 = (View)this.a.get();
+        AdMarvelView localAdMarvelView = (AdMarvelView)this.b.get();
+        if (localAdMarvelView == null)
+          break;
+        View localView2 = localAdMarvelView.findViewWithTag("CURRENT");
+        if (localView2 == null)
+          break;
+        AdMarvelView.a(localAdMarvelView, localView2);
+        AdMarvelView.c(localAdMarvelView);
+        localView1.setVisibility(0);
+        localView1.setTag("CURRENT");
+        localAdMarvelView.removeAllViews();
+        localAdMarvelView.addView(localView1);
+        if (!AdMarvelView.a(localAdMarvelView))
+          AdMarvelView.b(localAdMarvelView, localView2);
+        n localn = new n(90.0F, 0.0F, localAdMarvelView.getWidth() / 2.0F, localAdMarvelView.getHeight() / 2.0F, -0.3F * localAdMarvelView.getWidth(), false);
+        localn.setDuration(700L);
+        localn.setFillAfter(true);
+        localn.setInterpolator(new DecelerateInterpolator());
+        localAdMarvelView.startAnimation(localn);
+        if (this.c == null)
+          break;
+        if (localAdMarvelView.b())
+          AdMarvelView.d(localAdMarvelView).b(localAdMarvelView.getContext(), localAdMarvelView, this.c.getSiteId(), this.c.getId(), this.c.getTargetParams(), this.c.getIpAddress());
+        while (AdMarvelUtils.isLogDumpEnabled())
+        {
+          new Handler().postDelayed(new AdMarvelView.e(this.c, localAdMarvelView.getContext()), 1000L);
+          return;
+          AdMarvelView.d(localAdMarvelView).a(localAdMarvelView.getContext(), localAdMarvelView, this.c.getSiteId(), this.c.getId(), this.c.getTargetParams(), this.c.getIpAddress());
+        }
       }
     }
-    label289: for (String str2 = str1 + "," + localAdMarvelAd.getBannerid(); ; str2 = localAdMarvelAd.getBannerid())
-    {
-      String str3 = AdMarvelView.a;
-      File localFile = null;
-      if (str3 != null)
-        localFile = new File(AdMarvelView.a);
-      if (localAdMarvelView.getContext() != null)
-      {
-        Logging.log("Retry : onRequestAd");
-        AdMarvelView.e(localAdMarvelView).post(new AdMarvelView.b(localFile, localAdMarvelView.getContext(), localAdMarvelAd.getTargetParams(), localAdMarvelAd.getPartnerId(), localAdMarvelAd.getSiteId(), localAdMarvelAd.getAndroidId(), localAdMarvelAd.getOrientation(), localAdMarvelAd.getDeviceConnectivity(), localAdMarvelView, m, str2, AdMarvelView.e(localAdMarvelView)));
-      }
-      i = 1;
-      if (i != 0)
-        break;
-      AdMarvelView.d(localAdMarvelView).a(localAdMarvelView.getContext(), localAdMarvelView, paramInt, paramErrorReason, localAdMarvelAd.getSiteId(), localAdMarvelAd.getId(), localAdMarvelAd.getTargetParams(), localAdMarvelAd.getIpAddress());
-      return;
-    }
-  }
-
-  public void onReceiveAd()
-  {
-    AdMarvelView localAdMarvelView = (AdMarvelView)this.a.get();
-    if (localAdMarvelView == null)
-      return;
-    AdMarvelView.e(localAdMarvelView).post(new AdMarvelView.e(localAdMarvelView, AdMarvelView.g(localAdMarvelView)));
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.AdMarvelView.k
  * JD-Core Version:    0.6.2
  */

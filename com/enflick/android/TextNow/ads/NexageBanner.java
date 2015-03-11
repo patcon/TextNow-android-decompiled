@@ -17,7 +17,7 @@ public class NexageBanner extends CustomEventBanner
 
   protected void loadBanner(Context paramContext, CustomEventBanner.CustomEventBannerListener paramCustomEventBannerListener, Map<String, Object> paramMap, Map<String, String> paramMap1)
   {
-    this.b = paramCustomEventBannerListener;
+    this.b = new a(paramCustomEventBannerListener);
     if (!(paramContext instanceof Activity))
       this.b.onBannerFailed(MoPubErrorCode.ADAPTER_CONFIGURATION_ERROR);
     while (true)
@@ -27,7 +27,7 @@ public class NexageBanner extends CustomEventBanner
       try
       {
         this.a = ((INexage)CustomLoader.newBannerLoader(paramContext, "com.enflick.android.TextNow.customloader.wrappers.banner.NexageWrapper").loadWrapper(INexage.class, "com.enflick.android.TextNow.customloader.wrappers.banner.NexageWrapper"));
-        label52: if (this.a == null)
+        label59: if (this.a == null)
           continue;
         this.a.setIsMediation(true);
         Object localObject = paramMap.get("location");
@@ -41,7 +41,7 @@ public class NexageBanner extends CustomEventBanner
       }
       catch (Throwable localThrowable)
       {
-        break label52;
+        break label59;
       }
     }
   }
@@ -53,7 +53,7 @@ public class NexageBanner extends CustomEventBanner
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.ads.NexageBanner
  * JD-Core Version:    0.6.2
  */

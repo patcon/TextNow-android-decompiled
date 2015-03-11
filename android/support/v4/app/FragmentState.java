@@ -70,16 +70,16 @@ final class FragmentState
     this.i = paramFragment.mArguments;
   }
 
-  public final Fragment a(v paramv, Fragment paramFragment)
+  public final Fragment a(k paramk, Fragment paramFragment)
   {
     if (this.k != null)
       return this.k;
     if (this.i != null)
-      this.i.setClassLoader(paramv.getClassLoader());
-    this.k = Fragment.instantiate(paramv, this.a, this.i);
+      this.i.setClassLoader(paramk.getClassLoader());
+    this.k = Fragment.instantiate(paramk, this.a, this.i);
     if (this.j != null)
     {
-      this.j.setClassLoader(paramv.getClassLoader());
+      this.j.setClassLoader(paramk.getClassLoader());
       this.k.mSavedFragmentState = this.j;
     }
     this.k.setIndex(this.b, paramFragment);
@@ -90,8 +90,8 @@ final class FragmentState
     this.k.mTag = this.f;
     this.k.mRetainInstance = this.g;
     this.k.mDetached = this.h;
-    this.k.mFragmentManager = paramv.mFragments;
-    if (z.a)
+    this.k.mFragmentManager = paramk.mFragments;
+    if (o.a)
       new StringBuilder().append("Instantiated fragment ").append(this.k).toString();
     return this.k;
   }
@@ -137,7 +137,7 @@ final class FragmentState
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.app.FragmentState
  * JD-Core Version:    0.6.2
  */

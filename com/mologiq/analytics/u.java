@@ -1,51 +1,27 @@
 package com.mologiq.analytics;
 
-import android.util.Base64;
-import java.security.KeyFactory;
-import java.security.PublicKey;
-import java.security.spec.X509EncodedKeySpec;
-import javax.crypto.Cipher;
+import android.content.Context;
+import java.lang.ref.WeakReference;
 
-public final class u
+final class u
+  implements Runnable
 {
-  private PublicKey a;
-  private Cipher b;
+  private final WeakReference<Context> a;
 
-  public u()
+  public u(Context paramContext)
   {
-    try
-    {
-      X509EncodedKeySpec localX509EncodedKeySpec = new X509EncodedKeySpec(Base64.decode("MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJHz5rYyjP4OdTotQP4QUKHHk0YP+YM/axTmaG2FO+AS0WG9vtLijYptdMACMeIvPANrey0HmQBqYmsCCFY7HO8CAwEAAQ==", 0));
-      this.a = KeyFactory.getInstance("RSA").generatePublic(localX509EncodedKeySpec);
-      this.b = Cipher.getInstance("RSA/ECB/PKCS1Padding");
-      return;
-    }
-    catch (Exception localException)
-    {
-      localException.printStackTrace();
-    }
+    this.a = new WeakReference(paramContext);
   }
 
-  public final String a(String paramString)
+  public final void run()
   {
-    try
-    {
-      if ((this.b != null) && (this.a != null))
-      {
-        this.b.init(1, this.a);
-        String str = Base64.encodeToString(this.b.doFinal(paramString.getBytes()), 0);
-        return str;
-      }
-    }
-    catch (Exception localException)
-    {
-      localException.printStackTrace();
-    }
-    return null;
+    Context localContext = (Context)this.a.get();
+    if (localContext != null)
+      new t(localContext).execute(new Object[0]);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.mologiq.analytics.u
  * JD-Core Version:    0.6.2
  */

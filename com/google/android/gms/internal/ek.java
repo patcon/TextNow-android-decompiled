@@ -1,50 +1,22 @@
 package com.google.android.gms.internal;
 
-import android.os.Bundle;
+import android.content.Intent;
+import android.os.IInterface;
 
-public class ek
+public abstract interface ek extends IInterface
 {
-  private final Object ls = new Object();
-  private final eh rD;
-  private final String rG;
-  private int sc;
-  private int sd;
+  public abstract void finishPurchase();
 
-  ek(eh parameh, String paramString)
-  {
-    this.rD = parameh;
-    this.rG = paramString;
-  }
+  public abstract String getProductId();
 
-  public ek(String paramString)
-  {
-    this(eh.bH(), paramString);
-  }
+  public abstract Intent getPurchaseData();
 
-  public void a(int paramInt1, int paramInt2)
-  {
-    synchronized (this.ls)
-    {
-      this.sc = paramInt1;
-      this.sd = paramInt2;
-      this.rD.a(this.rG, this);
-      return;
-    }
-  }
+  public abstract int getResultCode();
 
-  public Bundle toBundle()
-  {
-    synchronized (this.ls)
-    {
-      Bundle localBundle = new Bundle();
-      localBundle.putInt("pmnli", this.sc);
-      localBundle.putInt("pmnll", this.sd);
-      return localBundle;
-    }
-  }
+  public abstract boolean isVerified();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ek
  * JD-Core Version:    0.6.2
  */

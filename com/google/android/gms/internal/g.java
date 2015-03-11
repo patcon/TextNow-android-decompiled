@@ -12,11 +12,9 @@ public abstract interface g
   public abstract void a(int paramInt1, int paramInt2, int paramInt3);
 
   public abstract void a(MotionEvent paramMotionEvent);
-
-  public abstract String b(Context paramContext);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.g
  * JD-Core Version:    0.6.2
  */

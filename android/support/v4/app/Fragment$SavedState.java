@@ -13,6 +13,11 @@ public class Fragment$SavedState
   };
   final Bundle a;
 
+  Fragment$SavedState(Bundle paramBundle)
+  {
+    this.a = paramBundle;
+  }
+
   Fragment$SavedState(Parcel paramParcel, ClassLoader paramClassLoader)
   {
     this.a = paramParcel.readBundle();
@@ -29,7 +34,7 @@ public class Fragment$SavedState
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.app.Fragment.SavedState
  * JD-Core Version:    0.6.2
  */

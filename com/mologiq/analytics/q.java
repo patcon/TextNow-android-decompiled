@@ -1,49 +1,25 @@
 package com.mologiq.analytics;
 
-import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 final class q
 {
-  private String b;
-  private int c;
-  private List<p> d;
+  private static final q a = new q();
+  private static final AtomicBoolean c = new AtomicBoolean(false);
+  private s b;
 
-  q(o paramo)
+  static q a()
   {
+    return a;
   }
 
-  public final String a()
+  final s b()
   {
     return this.b;
   }
-
-  public final void a(int paramInt)
-  {
-    this.c = paramInt;
-  }
-
-  public final void a(String paramString)
-  {
-    this.b = paramString;
-  }
-
-  public final void a(List<p> paramList)
-  {
-    this.d = paramList;
-  }
-
-  public final int b()
-  {
-    return this.c;
-  }
-
-  public final List<p> c()
-  {
-    return this.d;
-  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.mologiq.analytics.q
  * JD-Core Version:    0.6.2
  */

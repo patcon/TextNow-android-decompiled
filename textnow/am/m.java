@@ -1,41 +1,36 @@
 package textnow.am;
 
-final class m extends k
+import java.util.Map.Entry;
+import java.util.Set;
+
+public final class m extends j
 {
-  f h;
-  int i;
+  private final textnow.ao.j<String, j> a = new textnow.ao.j();
 
-  public m(String paramString, int[] paramArrayOfInt)
+  public final void a(String paramString, j paramj)
   {
-    super(paramString, (byte)0);
-    a(paramArrayOfInt);
+    if (paramj == null)
+      paramj = l.a;
+    this.a.put(paramString, paramj);
   }
 
-  private m e()
+  public final boolean equals(Object paramObject)
   {
-    m localm = (m)super.a();
-    localm.h = ((f)localm.e);
-    return localm;
+    return (paramObject == this) || (((paramObject instanceof m)) && (((m)paramObject).a.equals(this.a)));
   }
 
-  final void a(float paramFloat)
+  public final int hashCode()
   {
-    this.i = this.h.b(paramFloat);
+    return this.a.hashCode();
   }
 
-  public final void a(int[] paramArrayOfInt)
+  public final Set<Map.Entry<String, j>> n()
   {
-    super.a(paramArrayOfInt);
-    this.h = ((f)this.e);
-  }
-
-  final Object d()
-  {
-    return Integer.valueOf(this.i);
+    return this.a.entrySet();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.am.m
  * JD-Core Version:    0.6.2
  */

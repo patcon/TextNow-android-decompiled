@@ -1,18 +1,18 @@
 package com.google.android.gms.location;
 
+import com.google.android.gms.common.api.BaseImplementation.a;
 import com.google.android.gms.common.api.Result;
-import com.google.android.gms.common.api.a.b;
-import com.google.android.gms.internal.jg;
+import com.google.android.gms.internal.lz;
 
-public abstract class ActivityRecognition$a<R extends Result> extends a.b<R, jg>
+public abstract class ActivityRecognition$a<R extends Result> extends BaseImplementation.a<R, lz>
 {
   public ActivityRecognition$a()
   {
-    super(ActivityRecognition.iV());
+    super(ActivityRecognition.lU());
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.location.ActivityRecognition.a
  * JD-Core Version:    0.6.2
  */

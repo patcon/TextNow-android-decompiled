@@ -6,17 +6,20 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
 import android.net.Uri;
-import com.enflick.android.TextNow.activities.phone.t;
+import com.enflick.android.TextNow.activities.phone.x;
 import com.enflick.android.TextNow.broadcast.sms.SmsBroadcast;
+import com.enflick.android.TextNow.persistence.contentproviders.d;
+import com.enflick.android.TextNow.persistence.contentproviders.g;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
-import textnow.q.b;
-import textnow.q.k;
-import textnow.q.o;
-import textnow.u.r;
+import textnow.aa.a;
+import textnow.v.b;
+import textnow.v.k;
+import textnow.z.h;
+import textnow.z.u;
 
 public class ReceiveSMSTask extends c
 {
@@ -34,7 +37,7 @@ public class ReceiveSMSTask extends c
     try
     {
       String[] arrayOfString = { "view_conversations.contact_value" };
-      Uri localUri = com.enflick.android.TextNow.persistence.contentproviders.c.d;
+      Uri localUri = d.d;
       Cursor localCursor = this.a.getContentResolver().query(localUri, arrayOfString, null, null, null);
       if (localCursor != null)
       {
@@ -56,7 +59,7 @@ public class ReceiveSMSTask extends c
     return localHashSet;
   }
 
-  protected final boolean d_()
+  protected final boolean e_()
   {
     return true;
   }
@@ -64,7 +67,7 @@ public class ReceiveSMSTask extends c
   public void run()
   {
     Set localSet = a();
-    r localr = new r(this.a);
+    u localu = new u(this.a);
     while (true)
     {
       int i;
@@ -81,9 +84,9 @@ public class ReceiveSMSTask extends c
           {
             ContentValues localContentValues = new ContentValues();
             localContentValues.put("message_id", Long.valueOf(UUID.randomUUID().getMostSignificantBits()));
-            str1 = t.a(this.a, localSet, localSmsBroadcast.getSender());
+            str1 = x.a(this.a, localSet, localSmsBroadcast.getSender());
             if (str1 != null)
-              break label410;
+              break label420;
             str2 = localSmsBroadcast.getSender();
             localContentValues.put("contact_value", str2);
             localContentValues.put("contact_type", Integer.valueOf(2));
@@ -101,7 +104,7 @@ public class ReceiveSMSTask extends c
               localArrayList.add(localContentValues);
               if (str1 == null)
               {
-                Uri localUri = textnow.u.f.a(this.a.getContentResolver(), 2, localSmsBroadcast.getSender(), b.f(localSmsBroadcast.getSender()));
+                Uri localUri = h.a(this.a.getContentResolver(), 2, localSmsBroadcast.getSender(), b.f(localSmsBroadcast.getSender()));
                 k.a(this.a.getContentResolver(), localUri, localSmsBroadcast.getSender(), 2);
                 localSet.add(localSmsBroadcast.getSender());
               }
@@ -116,22 +119,23 @@ public class ReceiveSMSTask extends c
         else
         {
           new StringBuilder().append("Bulk inserting ").append(localArrayList.size()).append(" messages into database").toString();
-          this.a.getContentResolver().bulkInsert(com.enflick.android.TextNow.persistence.contentproviders.f.d, (ContentValues[])localArrayList.toArray(new ContentValues[0]));
-          localr.n();
-          localr.d(true);
-          localr.n();
-          o.a(this.a).d();
+          this.a.getContentResolver().bulkInsert(g.d, (ContentValues[])localArrayList.toArray(new ContentValues[0]));
+          localu.B();
+          localu.d(true);
+          localu.B();
+          a.a(this.a).e();
+          a.a(this.a).d();
           return;
         }
       }
       i++;
       continue;
-      label410: String str2 = str1;
+      label420: String str2 = str1;
     }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.ReceiveSMSTask
  * JD-Core Version:    0.6.2
  */

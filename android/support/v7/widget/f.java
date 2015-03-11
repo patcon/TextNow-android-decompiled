@@ -1,28 +1,39 @@
 package android.support.v7.widget;
 
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.support.v7.internal.view.menu.ab;
+import android.support.v7.internal.view.menu.i;
+import android.support.v7.internal.view.menu.w;
+import android.view.MenuItem;
 
 final class f
+  implements w
 {
-  public final TextView a;
-  public final TextView b;
-  public final ImageView c;
-  public final ImageView d;
-  public final ImageView e;
-
-  public f(View paramView)
+  private f(ActionMenuPresenter paramActionMenuPresenter)
   {
-    this.a = ((TextView)paramView.findViewById(16908308));
-    this.b = ((TextView)paramView.findViewById(16908309));
-    this.c = ((ImageView)paramView.findViewById(16908295));
-    this.d = ((ImageView)paramView.findViewById(16908296));
-    this.e = ((ImageView)paramView.findViewById(textnow.g.f.m));
+  }
+
+  public final void a(i parami, boolean paramBoolean)
+  {
+    if ((parami instanceof ab))
+      ((ab)parami).q().a(false);
+    w localw = this.a.a();
+    if (localw != null)
+      localw.a(parami, paramBoolean);
+  }
+
+  public final boolean a(i parami)
+  {
+    if (parami == null)
+      return false;
+    this.a.h = ((ab)parami).getItem().getItemId();
+    w localw = this.a.a();
+    if (localw != null)
+      return localw.a(parami);
+    return false;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v7.widget.f
  * JD-Core Version:    0.6.2
  */

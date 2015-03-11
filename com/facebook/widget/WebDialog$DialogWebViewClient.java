@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import com.facebook.FacebookDialogException;
 import com.facebook.FacebookRequestError;
 import com.facebook.FacebookServiceException;
-import com.facebook.android.Util;
 import com.facebook.internal.Utility;
 
 class WebDialog$DialogWebViewClient extends WebViewClient
@@ -27,34 +26,32 @@ class WebDialog$DialogWebViewClient extends WebViewClient
   public void onPageFinished(WebView paramWebView, String paramString)
   {
     super.onPageFinished(paramWebView, paramString);
-    if (!WebDialog.access$400(this.this$0))
-      WebDialog.access$500(this.this$0).dismiss();
-    WebDialog.access$600(this.this$0).setBackgroundColor(0);
-    WebDialog.access$700(this.this$0).setVisibility(0);
-    WebDialog.access$800(this.this$0).setVisibility(0);
+    if (!WebDialog.access$200(this.this$0))
+      WebDialog.access$300(this.this$0).dismiss();
+    WebDialog.access$400(this.this$0).setBackgroundColor(0);
+    WebDialog.access$500(this.this$0).setVisibility(0);
+    WebDialog.access$600(this.this$0).setVisibility(0);
   }
 
   public void onPageStarted(WebView paramWebView, String paramString, Bitmap paramBitmap)
   {
     Utility.logd("FacebookSDK.WebDialog", "Webview loading URL: " + paramString);
     super.onPageStarted(paramWebView, paramString, paramBitmap);
-    if (!WebDialog.access$400(this.this$0))
-      WebDialog.access$500(this.this$0).show();
+    if (!WebDialog.access$200(this.this$0))
+      WebDialog.access$300(this.this$0).show();
   }
 
   public void onReceivedError(WebView paramWebView, int paramInt, String paramString1, String paramString2)
   {
     super.onReceivedError(paramWebView, paramInt, paramString1, paramString2);
-    WebDialog.access$300(this.this$0, new FacebookDialogException(paramString1, paramInt, paramString2));
-    this.this$0.dismiss();
+    this.this$0.sendErrorToListener(new FacebookDialogException(paramString1, paramInt, paramString2));
   }
 
   public void onReceivedSslError(WebView paramWebView, SslErrorHandler paramSslErrorHandler, SslError paramSslError)
   {
     super.onReceivedSslError(paramWebView, paramSslErrorHandler, paramSslError);
-    WebDialog.access$300(this.this$0, new FacebookDialogException(null, -11, null));
     paramSslErrorHandler.cancel();
-    this.this$0.dismiss();
+    this.this$0.sendErrorToListener(new FacebookDialogException(null, -11, null));
   }
 
   public boolean shouldOverrideUrlLoading(WebView paramWebView, String paramString)
@@ -64,9 +61,9 @@ class WebDialog$DialogWebViewClient extends WebViewClient
     String str1;
     String str2;
     String str3;
-    if (paramString.startsWith("fbconnect://success"))
+    if (paramString.startsWith(WebDialog.access$100(this.this$0)))
     {
-      localBundle = Util.parseUrl(paramString);
+      localBundle = this.this$0.parseResponseUri(paramString);
       str1 = localBundle.getString("error");
       if (str1 == null)
         str1 = localBundle.getString("error_type");
@@ -75,7 +72,7 @@ class WebDialog$DialogWebViewClient extends WebViewClient
         str2 = localBundle.getString("error_description");
       str3 = localBundle.getString("error_code");
       if (Utility.isNullOrEmpty(str3))
-        break label286;
+        break label299;
     }
     while (true)
     {
@@ -85,8 +82,7 @@ class WebDialog$DialogWebViewClient extends WebViewClient
         i = j;
         if ((Utility.isNullOrEmpty(str1)) && (Utility.isNullOrEmpty(str2)) && (i == -1))
         {
-          WebDialog.access$200(this.this$0, localBundle);
-          this.this$0.dismiss();
+          this.this$0.sendSuccessToListener(localBundle);
           return true;
         }
       }
@@ -96,29 +92,33 @@ class WebDialog$DialogWebViewClient extends WebViewClient
         continue;
         if ((str1 != null) && ((str1.equals("access_denied")) || (str1.equals("OAuthAccessDeniedException"))))
         {
-          WebDialog.access$000(this.this$0);
+          this.this$0.sendCancelToListener();
+          continue;
+        }
+        if (i == 4201)
+        {
+          this.this$0.sendCancelToListener();
           continue;
         }
         FacebookRequestError localFacebookRequestError = new FacebookRequestError(i, str1, str2);
-        WebDialog.access$300(this.this$0, new FacebookServiceException(localFacebookRequestError, str2));
+        this.this$0.sendErrorToListener(new FacebookServiceException(localFacebookRequestError, str2));
         continue;
       }
       if (paramString.startsWith("fbconnect://cancel"))
       {
-        WebDialog.access$000(this.this$0);
-        this.this$0.dismiss();
+        this.this$0.sendCancelToListener();
         return true;
       }
       if (paramString.contains("touch"))
         return false;
       this.this$0.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse(paramString)));
       return true;
-      label286: int i = -1;
+      label299: int i = -1;
     }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.widget.WebDialog.DialogWebViewClient
  * JD-Core Version:    0.6.2
  */

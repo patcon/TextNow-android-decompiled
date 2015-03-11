@@ -1,98 +1,80 @@
 package textnow.s;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public final class i
 {
-  private Object a;
-  private Object b;
-  private Object c;
-  private int d;
-  private boolean e;
-  private int f = -2147483648;
-  private Date g = new Date();
+  private static final Map<String, Integer> a = new HashMap();
+  private static final Map<String, String> b = new HashMap();
+  private static final Map<String, String> c = new HashMap();
+  private static final Set<String> d = new HashSet();
 
-  public final Object a()
+  static
   {
-    return this.a;
+    a.put("100credits", Integer.valueOf(100));
+    a.put("200credits", Integer.valueOf(200));
+    a.put("500credits", Integer.valueOf(500));
+    b.put("callforwarding1month", "month");
+    b.put("callforwarding1year", "year");
+    c.put("adremoval1month", "month");
+    c.put("adremoval1year", "year");
+    d.addAll(a.keySet());
+    d.addAll(b.keySet());
+    d.addAll(c.keySet());
   }
 
-  public final void a(int paramInt)
+  public static List<String> a()
   {
-    this.d = paramInt;
+    return Arrays.asList(d.toArray(new String[0]));
   }
 
-  public final void a(Object paramObject)
+  public static boolean a(String paramString)
   {
-    this.a = paramObject;
+    return a.containsKey(paramString);
   }
 
-  public final void a(String paramString)
+  public static int b(String paramString)
   {
-    try
+    if (!a(paramString))
     {
-      this.g = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz").parse(paramString);
-      return;
+      new StringBuilder().append("not a valid credit sku: ").append(paramString).toString();
+      return 0;
     }
-    catch (ParseException localParseException)
-    {
-    }
+    return ((Integer)a.get(paramString)).intValue();
   }
 
-  public final void a(boolean paramBoolean)
+  public static boolean c(String paramString)
   {
-    this.e = paramBoolean;
+    return d.contains(paramString);
   }
 
-  public final Object b()
+  public static boolean d(String paramString)
   {
-    return this.b;
+    return b.containsKey(paramString);
   }
 
-  public final void b(int paramInt)
+  public static boolean e(String paramString)
   {
-    this.f = paramInt;
+    return c.containsKey(paramString);
   }
 
-  public final void b(Object paramObject)
+  public static String f(String paramString)
   {
-    this.b = paramObject;
-  }
-
-  public final Object c()
-  {
-    return this.c;
-  }
-
-  public final void c(Object paramObject)
-  {
-    this.c = paramObject;
-  }
-
-  public final int d()
-  {
-    return this.d;
-  }
-
-  public final boolean e()
-  {
-    return this.e;
-  }
-
-  public final Date f()
-  {
-    return this.g;
-  }
-
-  public final String toString()
-  {
-    return "Response statusCode:" + this.d + " isError:" + this.e + " result:" + this.c;
+    if (d(paramString))
+      return (String)b.get(paramString);
+    if (e(paramString))
+      return (String)c.get(paramString);
+    new StringBuilder().append("not a valid purchase sku: ").append(paramString).toString();
+    return "";
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.s.i
  * JD-Core Version:    0.6.2
  */

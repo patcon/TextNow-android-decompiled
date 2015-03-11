@@ -452,7 +452,7 @@ public class SharedPreferencesTokenCachingStrategy extends TokenCachingStrategy
 
   public void clear()
   {
-    this.cache.edit().clear().commit();
+    this.cache.edit().clear().apply();
   }
 
   public Bundle load()
@@ -480,29 +480,24 @@ public class SharedPreferencesTokenCachingStrategy extends TokenCachingStrategy
     Validate.notNull(paramBundle, "bundle");
     SharedPreferences.Editor localEditor = this.cache.edit();
     Iterator localIterator = paramBundle.keySet().iterator();
-    while (true)
-      if (localIterator.hasNext())
-      {
-        str = (String)localIterator.next();
-        try
-        {
-          serializeKey(str, paramBundle, localEditor);
-        }
-        catch (JSONException localJSONException)
-        {
-          Logger.log(LoggingBehavior.CACHE, 5, TAG, "Error processing value for key: '" + str + "' -- " + localJSONException);
-        }
-      }
-    while (localEditor.commit())
+    while (localIterator.hasNext())
     {
-      String str;
-      return;
+      String str = (String)localIterator.next();
+      try
+      {
+        serializeKey(str, paramBundle, localEditor);
+      }
+      catch (JSONException localJSONException)
+      {
+        Logger.log(LoggingBehavior.CACHE, 5, TAG, "Error processing value for key: '" + str + "' -- " + localJSONException);
+        return;
+      }
     }
-    Logger.log(LoggingBehavior.CACHE, 5, TAG, "SharedPreferences.Editor.commit() was not successful");
+    localEditor.apply();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.SharedPreferencesTokenCachingStrategy
  * JD-Core Version:    0.6.2
  */

@@ -10,6 +10,7 @@ class AuthorizationClient$AuthDialogBuilder extends WebDialog.Builder
   private static final String OAUTH_DIALOG = "oauth";
   static final String REDIRECT_URI = "fbconnect://success";
   private String e2e;
+  private boolean isRerequest;
 
   public AuthorizationClient$AuthDialogBuilder(Context paramContext, String paramString, Bundle paramBundle)
   {
@@ -22,6 +23,10 @@ class AuthorizationClient$AuthDialogBuilder extends WebDialog.Builder
     localBundle.putString("redirect_uri", "fbconnect://success");
     localBundle.putString("client_id", getApplicationId());
     localBundle.putString("e2e", this.e2e);
+    localBundle.putString("response_type", "token");
+    localBundle.putString("return_scopes", "true");
+    if ((this.isRerequest) && (!Settings.getPlatformCompatibilityEnabled()))
+      localBundle.putString("auth_type", "rerequest");
     return new WebDialog(getContext(), "oauth", localBundle, getTheme(), getListener());
   }
 
@@ -30,9 +35,15 @@ class AuthorizationClient$AuthDialogBuilder extends WebDialog.Builder
     this.e2e = paramString;
     return this;
   }
+
+  public AuthDialogBuilder setIsRerequest(boolean paramBoolean)
+  {
+    this.isRerequest = paramBoolean;
+    return this;
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.AuthorizationClient.AuthDialogBuilder
  * JD-Core Version:    0.6.2
  */

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import com.facebook.FacebookException;
 import com.facebook.Session;
+import com.facebook.internal.Utility;
 import com.facebook.internal.Validate;
 
 class WebDialog$BuilderBase<CONCRETE extends BuilderBase<?>>
@@ -25,8 +26,27 @@ class WebDialog$BuilderBase<CONCRETE extends BuilderBase<?>>
     finishInit(paramContext, paramString, paramBundle);
   }
 
+  protected WebDialog$BuilderBase(Context paramContext, String paramString)
+  {
+    Session localSession = Session.getActiveSession();
+    if ((localSession != null) && (localSession.isOpened()))
+      this.session = localSession;
+    while (true)
+    {
+      finishInit(paramContext, paramString, null);
+      return;
+      String str = Utility.getMetadataApplicationId(paramContext);
+      if (str == null)
+        break;
+      this.applicationId = str;
+    }
+    throw new FacebookException("Attempted to create a builder without an open Active Session or a valid default Application ID.");
+  }
+
   protected WebDialog$BuilderBase(Context paramContext, String paramString1, String paramString2, Bundle paramBundle)
   {
+    if (paramString1 == null)
+      paramString1 = Utility.getMetadataApplicationId(paramContext);
     Validate.notNullOrEmpty(paramString1, "applicationId");
     this.applicationId = paramString1;
     finishInit(paramContext, paramString2, paramBundle);
@@ -53,8 +73,6 @@ class WebDialog$BuilderBase<CONCRETE extends BuilderBase<?>>
     }
     while (true)
     {
-      if (!this.parameters.containsKey("redirect_uri"))
-        this.parameters.putString("redirect_uri", "fbconnect://success");
       return new WebDialog(this.context, this.action, this.parameters, this.theme, this.listener);
       this.parameters.putString("app_id", this.applicationId);
     }
@@ -98,7 +116,7 @@ class WebDialog$BuilderBase<CONCRETE extends BuilderBase<?>>
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.widget.WebDialog.BuilderBase
  * JD-Core Version:    0.6.2
  */

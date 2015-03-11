@@ -1,28 +1,30 @@
 package android.support.v4.app;
 
 import android.app.Activity;
-import android.graphics.drawable.Drawable;
+import android.app.SharedElementCallback;
 
 final class c
-  implements b
 {
-  public final Drawable a(Activity paramActivity)
+  private static SharedElementCallback a(d paramd)
   {
-    return null;
+    e locale = null;
+    if (paramd != null)
+      locale = new e(paramd);
+    return locale;
   }
 
-  public final Object a(Object paramObject, Activity paramActivity, int paramInt)
+  public static void a(Activity paramActivity, d paramd)
   {
-    return paramObject;
+    paramActivity.setEnterSharedElementCallback(a(paramd));
   }
 
-  public final Object a(Object paramObject, Activity paramActivity, Drawable paramDrawable, int paramInt)
+  public static void b(Activity paramActivity, d paramd)
   {
-    return paramObject;
+    paramActivity.setExitSharedElementCallback(a(paramd));
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.app.c
  * JD-Core Version:    0.6.2
  */

@@ -1,6 +1,7 @@
 package com.google.ads.mediation.admob;
 
 import android.content.Context;
+import android.location.Location;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,7 +15,7 @@ import com.google.android.gms.ads.mediation.MediationBannerAdapter;
 import com.google.android.gms.ads.mediation.MediationBannerListener;
 import com.google.android.gms.ads.mediation.MediationInterstitialAdapter;
 import com.google.android.gms.ads.mediation.MediationInterstitialListener;
-import com.google.android.gms.internal.et;
+import com.google.android.gms.internal.gr;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
@@ -25,7 +26,7 @@ public final class AdMobAdapter
   private AdView i;
   private InterstitialAd j;
 
-  private static AdRequest a(Context paramContext, MediationAdRequest paramMediationAdRequest, Bundle paramBundle1, Bundle paramBundle2)
+  static AdRequest a(Context paramContext, MediationAdRequest paramMediationAdRequest, Bundle paramBundle1, Bundle paramBundle2)
   {
     AdRequest.Builder localBuilder = new AdRequest.Builder();
     Date localDate = paramMediationAdRequest.getBirthday();
@@ -41,8 +42,11 @@ public final class AdMobAdapter
       while (localIterator.hasNext())
         localBuilder.addKeyword((String)localIterator.next());
     }
+    Location localLocation = paramMediationAdRequest.getLocation();
+    if (localLocation != null)
+      localBuilder.setLocation(localLocation);
     if (paramMediationAdRequest.isTesting())
-      localBuilder.addTestDevice(et.r(paramContext));
+      localBuilder.addTestDevice(gr.v(paramContext));
     boolean bool;
     if (paramBundle2.getInt("tagForChildDirectedTreatment") != -1)
     {
@@ -54,7 +58,7 @@ public final class AdMobAdapter
     }
     else
       if (paramBundle1 == null)
-        break label227;
+        break label248;
     while (true)
     {
       paramBundle1.putInt("gw", 1);
@@ -66,7 +70,7 @@ public final class AdMobAdapter
       return localBuilder.build();
       bool = false;
       break;
-      label227: paramBundle1 = new Bundle();
+      label248: paramBundle1 = new Bundle();
     }
   }
 
@@ -121,7 +125,7 @@ public final class AdMobAdapter
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.ads.mediation.admob.AdMobAdapter
  * JD-Core Version:    0.6.2
  */

@@ -7,10 +7,10 @@ import com.google.android.gms.maps.internal.v;
 public final class LatLng
   implements SafeParcelable
 {
-  public static final LatLngCreator CREATOR = new LatLngCreator();
+  public static final i CREATOR = new i();
+  private final int BR;
   public final double latitude;
   public final double longitude;
-  private final int xM;
 
   public LatLng(double paramDouble1, double paramDouble2)
   {
@@ -19,7 +19,7 @@ public final class LatLng
 
   LatLng(int paramInt, double paramDouble1, double paramDouble2)
   {
-    this.xM = paramInt;
+    this.BR = paramInt;
     if ((-180.0D <= paramDouble2) && (paramDouble2 < 180.0D));
     for (this.longitude = paramDouble2; ; this.longitude = ((360.0D + (paramDouble2 - 180.0D) % 360.0D) % 360.0D - 180.0D))
     {
@@ -50,7 +50,7 @@ public final class LatLng
 
   final int getVersionCode()
   {
-    return this.xM;
+    return this.BR;
   }
 
   public final int hashCode()
@@ -68,16 +68,16 @@ public final class LatLng
 
   public final void writeToParcel(Parcel paramParcel, int paramInt)
   {
-    if (v.jL())
+    if (v.mM())
     {
-      e.a(this, paramParcel, paramInt);
+      j.a(this, paramParcel, paramInt);
       return;
     }
-    LatLngCreator.a(this, paramParcel, paramInt);
+    i.a(this, paramParcel, paramInt);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.maps.model.LatLng
  * JD-Core Version:    0.6.2
  */

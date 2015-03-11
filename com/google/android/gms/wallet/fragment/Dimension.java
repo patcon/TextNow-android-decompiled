@@ -63,7 +63,7 @@ public class Dimension
     case 4:
     case 5:
     }
-    return l(paramInt, Float.floatToIntBits(paramFloat));
+    return o(paramInt, Float.floatToIntBits(paramFloat));
   }
 
   public static long a(TypedValue paramTypedValue)
@@ -73,30 +73,30 @@ public class Dimension
     default:
       throw new IllegalArgumentException("Unexpected dimension type: " + paramTypedValue.type);
     case 16:
-      return dM(paramTypedValue.data);
+      return fE(paramTypedValue.data);
     case 5:
     }
-    return l(128, paramTypedValue.data);
+    return o(128, paramTypedValue.data);
   }
 
-  public static long dM(int paramInt)
+  public static long fE(int paramInt)
   {
     if (paramInt < 0)
     {
       if ((paramInt == -1) || (paramInt == -2))
-        return l(129, paramInt);
+        return o(129, paramInt);
       throw new IllegalArgumentException("Unexpected dimension value: " + paramInt);
     }
     return a(0, paramInt);
   }
 
-  private static long l(int paramInt1, int paramInt2)
+  private static long o(int paramInt1, int paramInt2)
   {
     return paramInt1 << 32 | 0xFFFFFFFF & paramInt2;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.fragment.Dimension
  * JD-Core Version:    0.6.2
  */

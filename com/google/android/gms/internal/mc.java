@@ -1,135 +1,206 @@
 package com.google.android.gms.internal;
 
-import java.util.Arrays;
+import android.os.Parcel;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
+import com.google.android.gms.location.Geofence;
+import java.util.Locale;
 
-public final class mc
+public class mc
+  implements SafeParcelable, Geofence
 {
-  public static final Object ana = new Object();
+  public static final md CREATOR = new md();
+  private final int BR;
+  private final String XC;
+  private final int aeh;
+  private final short aej;
+  private final double aek;
+  private final double ael;
+  private final float aem;
+  private final int aen;
+  private final int aeo;
+  private final long afm;
 
-  public static boolean equals(float[] paramArrayOfFloat1, float[] paramArrayOfFloat2)
+  public mc(int paramInt1, String paramString, int paramInt2, short paramShort, double paramDouble1, double paramDouble2, float paramFloat, long paramLong, int paramInt3, int paramInt4)
   {
-    if ((paramArrayOfFloat1 == null) || (paramArrayOfFloat1.length == 0))
-      return (paramArrayOfFloat2 == null) || (paramArrayOfFloat2.length == 0);
-    return Arrays.equals(paramArrayOfFloat1, paramArrayOfFloat2);
+    bY(paramString);
+    b(paramFloat);
+    a(paramDouble1, paramDouble2);
+    int i = ek(paramInt2);
+    this.BR = paramInt1;
+    this.aej = paramShort;
+    this.XC = paramString;
+    this.aek = paramDouble1;
+    this.ael = paramDouble2;
+    this.aem = paramFloat;
+    this.afm = paramLong;
+    this.aeh = i;
+    this.aen = paramInt3;
+    this.aeo = paramInt4;
   }
 
-  public static boolean equals(int[] paramArrayOfInt1, int[] paramArrayOfInt2)
+  public mc(String paramString, int paramInt1, short paramShort, double paramDouble1, double paramDouble2, float paramFloat, long paramLong, int paramInt2, int paramInt3)
   {
-    if ((paramArrayOfInt1 == null) || (paramArrayOfInt1.length == 0))
-      return (paramArrayOfInt2 == null) || (paramArrayOfInt2.length == 0);
-    return Arrays.equals(paramArrayOfInt1, paramArrayOfInt2);
+    this(1, paramString, paramInt1, paramShort, paramDouble1, paramDouble2, paramFloat, paramLong, paramInt2, paramInt3);
   }
 
-  public static boolean equals(long[] paramArrayOfLong1, long[] paramArrayOfLong2)
+  private static void a(double paramDouble1, double paramDouble2)
   {
-    if ((paramArrayOfLong1 == null) || (paramArrayOfLong1.length == 0))
-      return (paramArrayOfLong2 == null) || (paramArrayOfLong2.length == 0);
-    return Arrays.equals(paramArrayOfLong1, paramArrayOfLong2);
+    if ((paramDouble1 > 90.0D) || (paramDouble1 < -90.0D))
+      throw new IllegalArgumentException("invalid latitude: " + paramDouble1);
+    if ((paramDouble2 > 180.0D) || (paramDouble2 < -180.0D))
+      throw new IllegalArgumentException("invalid longitude: " + paramDouble2);
   }
 
-  public static boolean equals(Object[] paramArrayOfObject1, Object[] paramArrayOfObject2)
+  private static void b(float paramFloat)
   {
-    int i;
-    if (paramArrayOfObject1 == null)
-    {
-      i = 0;
-      if (paramArrayOfObject2 != null)
-        break label43;
-    }
-    int k;
-    int m;
-    label43: for (int j = 0; ; j = paramArrayOfObject2.length)
-    {
-      k = 0;
-      for (m = 0; (m < i) && (paramArrayOfObject1[m] == null); m++);
-      i = paramArrayOfObject1.length;
-      break;
-    }
-    while (true)
-    {
-      int n;
-      if ((n < j) && (paramArrayOfObject2[n] == null))
-      {
-        n++;
-      }
-      else
-      {
-        int i1;
-        int i2;
-        label86: boolean bool1;
-        if (m >= i)
-        {
-          i1 = 1;
-          if (n < j)
-            break label108;
-          i2 = 1;
-          if ((i1 == 0) || (i2 == 0))
-            break label114;
-          bool1 = true;
-        }
-        label108: label114: boolean bool2;
-        do
-        {
-          do
-          {
-            return bool1;
-            i1 = 0;
-            break;
-            i2 = 0;
-            break label86;
-            bool1 = false;
-          }
-          while (i1 != i2);
-          bool2 = paramArrayOfObject1[m].equals(paramArrayOfObject2[n]);
-          bool1 = false;
-        }
-        while (!bool2);
-        int i3 = m + 1;
-        k = n + 1;
-        m = i3;
-        break;
-        n = k;
-      }
-    }
+    if (paramFloat <= 0.0F)
+      throw new IllegalArgumentException("invalid radius: " + paramFloat);
   }
 
-  public static int hashCode(float[] paramArrayOfFloat)
+  private static void bY(String paramString)
   {
-    if ((paramArrayOfFloat == null) || (paramArrayOfFloat.length == 0))
-      return 0;
-    return Arrays.hashCode(paramArrayOfFloat);
+    if ((paramString == null) || (paramString.length() > 100))
+      throw new IllegalArgumentException("requestId is null or too long: " + paramString);
   }
 
-  public static int hashCode(int[] paramArrayOfInt)
+  private static int ek(int paramInt)
   {
-    if ((paramArrayOfInt == null) || (paramArrayOfInt.length == 0))
-      return 0;
-    return Arrays.hashCode(paramArrayOfInt);
-  }
-
-  public static int hashCode(long[] paramArrayOfLong)
-  {
-    if ((paramArrayOfLong == null) || (paramArrayOfLong.length == 0))
-      return 0;
-    return Arrays.hashCode(paramArrayOfLong);
-  }
-
-  public static int hashCode(Object[] paramArrayOfObject)
-  {
-    int i = 0;
-    if (paramArrayOfObject == null);
-    for (int j = 0; ; j = paramArrayOfObject.length)
-      for (int k = 0; k < j; k++)
-      {
-        Object localObject = paramArrayOfObject[k];
-        if (localObject != null)
-          i = i * 31 + localObject.hashCode();
-      }
+    int i = paramInt & 0x7;
+    if (i == 0)
+      throw new IllegalArgumentException("No supported transition specified: " + paramInt);
     return i;
+  }
+
+  private static String el(int paramInt)
+  {
+    switch (paramInt)
+    {
+    default:
+      return null;
+    case 1:
+    }
+    return "CIRCLE";
+  }
+
+  public static mc h(byte[] paramArrayOfByte)
+  {
+    Parcel localParcel = Parcel.obtain();
+    localParcel.unmarshall(paramArrayOfByte, 0, paramArrayOfByte.length);
+    localParcel.setDataPosition(0);
+    mc localmc = CREATOR.cw(localParcel);
+    localParcel.recycle();
+    return localmc;
+  }
+
+  public int describeContents()
+  {
+    return 0;
+  }
+
+  public boolean equals(Object paramObject)
+  {
+    if (this == paramObject);
+    mc localmc;
+    do
+    {
+      return true;
+      if (paramObject == null)
+        return false;
+      if (!(paramObject instanceof mc))
+        return false;
+      localmc = (mc)paramObject;
+      if (this.aem != localmc.aem)
+        return false;
+      if (this.aek != localmc.aek)
+        return false;
+      if (this.ael != localmc.ael)
+        return false;
+    }
+    while (this.aej == localmc.aej);
+    return false;
+  }
+
+  public long getExpirationTime()
+  {
+    return this.afm;
+  }
+
+  public double getLatitude()
+  {
+    return this.aek;
+  }
+
+  public double getLongitude()
+  {
+    return this.ael;
+  }
+
+  public int getNotificationResponsiveness()
+  {
+    return this.aen;
+  }
+
+  public String getRequestId()
+  {
+    return this.XC;
+  }
+
+  public int getVersionCode()
+  {
+    return this.BR;
+  }
+
+  public int hashCode()
+  {
+    long l1 = Double.doubleToLongBits(this.aek);
+    int i = 31 + (int)(l1 ^ l1 >>> 32);
+    long l2 = Double.doubleToLongBits(this.ael);
+    return 31 * (31 * (31 * (i * 31 + (int)(l2 ^ l2 >>> 32)) + Float.floatToIntBits(this.aem)) + this.aej) + this.aeh;
+  }
+
+  public short ma()
+  {
+    return this.aej;
+  }
+
+  public float mb()
+  {
+    return this.aem;
+  }
+
+  public int mc()
+  {
+    return this.aeh;
+  }
+
+  public int md()
+  {
+    return this.aeo;
+  }
+
+  public String toString()
+  {
+    Locale localLocale = Locale.US;
+    Object[] arrayOfObject = new Object[9];
+    arrayOfObject[0] = el(this.aej);
+    arrayOfObject[1] = this.XC;
+    arrayOfObject[2] = Integer.valueOf(this.aeh);
+    arrayOfObject[3] = Double.valueOf(this.aek);
+    arrayOfObject[4] = Double.valueOf(this.ael);
+    arrayOfObject[5] = Float.valueOf(this.aem);
+    arrayOfObject[6] = Integer.valueOf(this.aen / 1000);
+    arrayOfObject[7] = Integer.valueOf(this.aeo);
+    arrayOfObject[8] = Long.valueOf(this.afm);
+    return String.format(localLocale, "Geofence[%s id:%s transitions:%d %.6f, %.6f %.0fm, resp=%ds, dwell=%dms, @%d]", arrayOfObject);
+  }
+
+  public void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    md.a(this, paramParcel, paramInt);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.mc
  * JD-Core Version:    0.6.2
  */

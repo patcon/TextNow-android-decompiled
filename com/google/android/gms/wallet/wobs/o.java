@@ -11,23 +11,23 @@ public class o
 {
   static void a(n paramn, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
+    int i = b.D(paramParcel);
     b.c(paramParcel, 1, paramn.getVersionCode());
-    b.a(paramParcel, 2, paramn.alc, false);
+    b.a(paramParcel, 2, paramn.auM, false);
     b.a(paramParcel, 3, paramn.description, false);
-    b.G(paramParcel, i);
+    b.H(paramParcel, i);
   }
 
-  public n cq(Parcel paramParcel)
+  public n dN(Parcel paramParcel)
   {
     String str1 = null;
-    int i = a.B(paramParcel);
+    int i = a.C(paramParcel);
     int j = 0;
     String str2 = null;
     while (paramParcel.dataPosition() < i)
     {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
       {
       default:
         a.b(paramParcel, k);
@@ -47,13 +47,13 @@ public class o
     return new n(j, str2, str1);
   }
 
-  public n[] dY(int paramInt)
+  public n[] fQ(int paramInt)
   {
     return new n[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.wobs.o
  * JD-Core Version:    0.6.2
  */

@@ -2,11 +2,11 @@ package com.google.android.gms;
 
 public final class R$styleable
 {
-  public static final int[] AdsAttrs = { 2130772092, 2130772093, 2130772094 };
+  public static final int[] AdsAttrs = { 2130772160, 2130772161, 2130772162 };
   public static final int AdsAttrs_adSize = 0;
   public static final int AdsAttrs_adSizes = 1;
   public static final int AdsAttrs_adUnitId = 2;
-  public static final int[] MapAttrs = { 2130772095, 2130772096, 2130772097, 2130772098, 2130772099, 2130772100, 2130772101, 2130772102, 2130772103, 2130772104, 2130772105, 2130772106, 2130772107, 2130772108 };
+  public static final int[] MapAttrs = { 2130772163, 2130772164, 2130772165, 2130772166, 2130772167, 2130772168, 2130772169, 2130772170, 2130772171, 2130772172, 2130772173, 2130772174, 2130772175, 2130772176 };
   public static final int MapAttrs_cameraBearing = 1;
   public static final int MapAttrs_cameraTargetLat = 2;
   public static final int MapAttrs_cameraTargetLng = 3;
@@ -21,12 +21,12 @@ public final class R$styleable
   public static final int MapAttrs_uiZoomGestures = 11;
   public static final int MapAttrs_useViewLifecycle = 12;
   public static final int MapAttrs_zOrderOnTop = 13;
-  public static final int[] WalletFragmentOptions = { 2130772109, 2130772110, 2130772111, 2130772112 };
+  public static final int[] WalletFragmentOptions = { 2130772177, 2130772178, 2130772179, 2130772180 };
+  public static final int WalletFragmentOptions_appTheme = 0;
   public static final int WalletFragmentOptions_environment = 1;
   public static final int WalletFragmentOptions_fragmentMode = 3;
   public static final int WalletFragmentOptions_fragmentStyle = 2;
-  public static final int WalletFragmentOptions_theme = 0;
-  public static final int[] WalletFragmentStyle = { 2130772113, 2130772114, 2130772115, 2130772116, 2130772117, 2130772118, 2130772119, 2130772120, 2130772121, 2130772122, 2130772123 };
+  public static final int[] WalletFragmentStyle = { 2130772181, 2130772182, 2130772183, 2130772184, 2130772185, 2130772186, 2130772187, 2130772188, 2130772189, 2130772190, 2130772191 };
   public static final int WalletFragmentStyle_buyButtonAppearance = 3;
   public static final int WalletFragmentStyle_buyButtonHeight = 0;
   public static final int WalletFragmentStyle_buyButtonText = 2;
@@ -40,7 +40,7 @@ public final class R$styleable
   public static final int WalletFragmentStyle_maskedWalletDetailsTextAppearance = 4;
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.R.styleable
  * JD-Core Version:    0.6.2
  */

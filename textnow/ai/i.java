@@ -1,67 +1,85 @@
 package textnow.ai;
 
-import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import textnow.af.f;
+import textnow.af.y;
+import textnow.af.z;
+import textnow.ah.j;
+import textnow.ak.b;
+import textnow.ak.c;
 
-public final class i extends Number
+public final class i extends y<Object>
 {
-  private final String a;
-
-  public i(String paramString)
+  public static final z a = new z()
   {
-    this.a = paramString;
-  }
-
-  public final double doubleValue()
-  {
-    return Double.parseDouble(this.a);
-  }
-
-  public final float floatValue()
-  {
-    return Float.parseFloat(this.a);
-  }
-
-  public final int intValue()
-  {
-    try
+    public final <T> y<T> a(f paramAnonymousf, textnow.aj.a<T> paramAnonymousa)
     {
-      int i = Integer.parseInt(this.a);
-      return i;
+      if (paramAnonymousa.a() == Object.class)
+        return new i(paramAnonymousf, (byte)0);
+      return null;
     }
-    catch (NumberFormatException localNumberFormatException1)
-    {
-      try
-      {
-        long l = Long.parseLong(this.a);
-        return (int)l;
-      }
-      catch (NumberFormatException localNumberFormatException2)
-      {
-      }
-    }
-    return new BigInteger(this.a).intValue();
+  };
+  private final f b;
+
+  private i(f paramf)
+  {
+    this.b = paramf;
   }
 
-  public final long longValue()
+  public final Object a(textnow.ak.a parama)
   {
-    try
+    b localb = parama.f();
+    switch (2.a[localb.ordinal()])
     {
-      long l = Long.parseLong(this.a);
-      return l;
+    default:
+      throw new IllegalStateException();
+    case 1:
+      ArrayList localArrayList = new ArrayList();
+      parama.a();
+      while (parama.e())
+        localArrayList.add(a(parama));
+      parama.b();
+      return localArrayList;
+    case 2:
+      j localj = new j();
+      parama.c();
+      while (parama.e())
+        localj.put(parama.g(), a(parama));
+      parama.d();
+      return localj;
+    case 3:
+      return parama.h();
+    case 4:
+      return Double.valueOf(parama.k());
+    case 5:
+      return Boolean.valueOf(parama.i());
+    case 6:
     }
-    catch (NumberFormatException localNumberFormatException)
-    {
-    }
-    return new BigInteger(this.a).longValue();
+    parama.j();
+    return null;
   }
 
-  public final String toString()
+  public final void a(c paramc, Object paramObject)
   {
-    return this.a;
+    if (paramObject == null)
+    {
+      paramc.f();
+      return;
+    }
+    y localy = this.b.a(paramObject.getClass());
+    if ((localy instanceof i))
+    {
+      paramc.d();
+      paramc.e();
+      return;
+    }
+    localy.a(paramc, paramObject);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.ai.i
  * JD-Core Version:    0.6.2
  */

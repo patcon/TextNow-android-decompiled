@@ -5,6 +5,9 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.database.DataSetObserver;
 import android.graphics.drawable.Drawable;
+import android.support.v4.view.j;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.support.v7.widget.ListPopupWindow;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -15,18 +18,17 @@ import android.view.ViewTreeObserver;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow.OnDismissListener;
 import textnow.g.e;
-import textnow.g.f;
-import textnow.g.h;
+import textnow.g.i;
+import textnow.g.l;
 
 public class ActivityChooserView extends ViewGroup
 {
-  android.support.v4.view.j a;
-  private final j b;
-  private final k c;
-  private final LinearLayout d;
+  j a;
+  private final m b;
+  private final n c;
+  private final LinearLayoutCompat d;
   private final Drawable e;
   private final FrameLayout f;
   private final ImageView g;
@@ -55,7 +57,7 @@ public class ActivityChooserView extends ViewGroup
       {
         if (ActivityChooserView.this.isShown())
           break label31;
-        ActivityChooserView.b(ActivityChooserView.this).d();
+        ActivityChooserView.b(ActivityChooserView.this).a();
       }
       label31: 
       do
@@ -82,23 +84,23 @@ public class ActivityChooserView extends ViewGroup
   public ActivityChooserView(Context paramContext, AttributeSet paramAttributeSet, int paramInt)
   {
     super(paramContext, paramAttributeSet, paramInt);
-    TypedArray localTypedArray = paramContext.obtainStyledAttributes(paramAttributeSet, textnow.g.k.g, paramInt, 0);
-    this.p = localTypedArray.getInt(0, 4);
-    Drawable localDrawable = localTypedArray.getDrawable(1);
+    TypedArray localTypedArray = paramContext.obtainStyledAttributes(paramAttributeSet, l.F, paramInt, 0);
+    this.p = localTypedArray.getInt(l.H, 4);
+    Drawable localDrawable = localTypedArray.getDrawable(l.G);
     localTypedArray.recycle();
-    LayoutInflater.from(getContext()).inflate(h.i, this, true);
-    this.c = new k(this, (byte)0);
-    this.d = ((LinearLayout)findViewById(f.k));
+    LayoutInflater.from(getContext()).inflate(i.e, this, true);
+    this.c = new n(this, (byte)0);
+    this.d = ((LinearLayoutCompat)findViewById(textnow.g.g.j));
     this.e = this.d.getBackground();
-    this.h = ((FrameLayout)findViewById(f.l));
+    this.h = ((FrameLayout)findViewById(textnow.g.g.l));
     this.h.setOnClickListener(this.c);
     this.h.setOnLongClickListener(this.c);
-    this.i = ((ImageView)this.h.findViewById(f.q));
-    this.f = ((FrameLayout)findViewById(f.n));
+    this.i = ((ImageView)this.h.findViewById(textnow.g.g.p));
+    this.f = ((FrameLayout)findViewById(textnow.g.g.n));
     this.f.setOnClickListener(this.c);
-    this.g = ((ImageView)this.f.findViewById(f.q));
+    this.g = ((ImageView)this.f.findViewById(textnow.g.g.p));
     this.g.setImageDrawable(localDrawable);
-    this.b = new j(this, (byte)0);
+    this.b = new m(this, (byte)0);
     this.b.registerDataSetObserver(new DataSetObserver()
     {
       public final void onChanged()
@@ -127,9 +129,9 @@ public class ActivityChooserView extends ViewGroup
 
   public final boolean a()
   {
-    if (c().f())
+    if (c().b())
     {
-      c().d();
+      c().a();
       ViewTreeObserver localViewTreeObserver = getViewTreeObserver();
       if (localViewTreeObserver.isAlive())
         localViewTreeObserver.removeGlobalOnLayoutListener(this.l);
@@ -139,28 +141,28 @@ public class ActivityChooserView extends ViewGroup
 
   public final boolean b()
   {
-    return c().f();
+    return c().b();
   }
 
   protected void onAttachedToWindow()
   {
     super.onAttachedToWindow();
-    d locald = this.b.e();
-    if (locald != null)
-      locald.registerObserver(this.k);
+    g localg = this.b.e();
+    if (localg != null)
+      localg.registerObserver(this.k);
     this.q = true;
   }
 
   protected void onDetachedFromWindow()
   {
     super.onDetachedFromWindow();
-    d locald = this.b.e();
-    if (locald != null)
-      locald.unregisterObserver(this.k);
+    g localg = this.b.e();
+    if (localg != null)
+      localg.unregisterObserver(this.k);
     ViewTreeObserver localViewTreeObserver = getViewTreeObserver();
     if (localViewTreeObserver.isAlive())
       localViewTreeObserver.removeGlobalOnLayoutListener(this.l);
-    if (c().f())
+    if (c().b())
       a();
     this.q = false;
   }
@@ -168,21 +170,21 @@ public class ActivityChooserView extends ViewGroup
   protected void onLayout(boolean paramBoolean, int paramInt1, int paramInt2, int paramInt3, int paramInt4)
   {
     this.d.layout(0, 0, paramInt3 - paramInt1, paramInt4 - paramInt2);
-    if (!c().f())
+    if (!c().b())
       a();
   }
 
   protected void onMeasure(int paramInt1, int paramInt2)
   {
-    LinearLayout localLinearLayout = this.d;
+    LinearLayoutCompat localLinearLayoutCompat = this.d;
     if (this.h.getVisibility() != 0)
       paramInt2 = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(paramInt2), 1073741824);
-    measureChild(localLinearLayout, paramInt1, paramInt2);
-    setMeasuredDimension(localLinearLayout.getMeasuredWidth(), localLinearLayout.getMeasuredHeight());
+    measureChild(localLinearLayoutCompat, paramInt1, paramInt2);
+    setMeasuredDimension(localLinearLayoutCompat.getMeasuredWidth(), localLinearLayoutCompat.getMeasuredHeight());
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v7.internal.widget.ActivityChooserView
  * JD-Core Version:    0.6.2
  */

@@ -1,38 +1,32 @@
 package com.mologiq.analytics;
 
-import java.util.List;
-
 public final class ae
 {
-  private List<ah> b;
-  private ah c;
+  private String a;
+  private String b;
 
-  public ae(ac paramac)
+  public final String a()
   {
+    return this.a;
   }
 
-  public final List<ah> a()
+  public final void a(String paramString)
+  {
+    this.a = paramString;
+  }
+
+  public final String b()
   {
     return this.b;
   }
 
-  public final void a(ah paramah)
+  public final void b(String paramString)
   {
-    this.c = paramah;
-  }
-
-  public final void a(List<ah> paramList)
-  {
-    this.b = paramList;
-  }
-
-  public final ah b()
-  {
-    return this.c;
+    this.b = paramString;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.mologiq.analytics.ae
  * JD-Core Version:    0.6.2
  */

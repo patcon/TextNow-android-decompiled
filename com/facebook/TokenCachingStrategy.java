@@ -8,6 +8,7 @@ import java.util.List;
 
 public abstract class TokenCachingStrategy
 {
+  public static final String DECLINED_PERMISSIONS_KEY = "com.facebook.TokenCachingStrategy.DeclinedPermissions";
   public static final String EXPIRATION_DATE_KEY = "com.facebook.TokenCachingStrategy.ExpirationDate";
   private static final long INVALID_BUNDLE_MILLISECONDS = -9223372036854775808L;
   private static final String IS_SSO_KEY = "com.facebook.TokenCachingStrategy.IsSSO";
@@ -94,6 +95,18 @@ public abstract class TokenCachingStrategy
     paramBundle.putLong(paramString, paramDate.getTime());
   }
 
+  public static void putDeclinedPermissions(Bundle paramBundle, List<String> paramList)
+  {
+    Validate.notNull(paramBundle, "bundle");
+    Validate.notNull(paramList, "value");
+    if ((paramList instanceof ArrayList));
+    for (ArrayList localArrayList = (ArrayList)paramList; ; localArrayList = new ArrayList(paramList))
+    {
+      paramBundle.putStringArrayList("com.facebook.TokenCachingStrategy.DeclinedPermissions", localArrayList);
+      return;
+    }
+  }
+
   public static void putExpirationDate(Bundle paramBundle, Date paramDate)
   {
     Validate.notNull(paramBundle, "bundle");
@@ -152,7 +165,7 @@ public abstract class TokenCachingStrategy
   public abstract void save(Bundle paramBundle);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.TokenCachingStrategy
  * JD-Core Version:    0.6.2
  */

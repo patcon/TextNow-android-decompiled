@@ -1,122 +1,104 @@
 package com.google.android.gms.ads.identifier;
 
 import android.content.Context;
-import com.google.android.gms.internal.hm;
+import android.os.RemoteException;
+import com.google.android.gms.common.a;
+import com.google.android.gms.common.internal.o;
+import com.google.android.gms.internal.s;
+import com.google.android.gms.internal.s.a;
+import java.io.IOException;
 
 public final class AdvertisingIdClient
 {
-  // ERROR //
-  static AdvertisingIdClient.Info a(Context paramContext, com.google.android.gms.common.a parama)
+  a lk;
+  s ll;
+  boolean lm;
+  final Context mContext;
+
+  public AdvertisingIdClient(Context paramContext)
   {
-    // Byte code:
-    //   0: aload_1
-    //   1: invokevirtual 22	com/google/android/gms/common/a:ew	()Landroid/os/IBinder;
-    //   4: invokestatic 28	com/google/android/gms/internal/s$a:b	(Landroid/os/IBinder;)Lcom/google/android/gms/internal/s;
-    //   7: astore 6
-    //   9: new 30	com/google/android/gms/ads/identifier/AdvertisingIdClient$Info
-    //   12: dup
-    //   13: aload 6
-    //   15: invokeinterface 36 1 0
-    //   20: aload 6
-    //   22: iconst_1
-    //   23: invokeinterface 39 2 0
-    //   28: invokespecial 42	com/google/android/gms/ads/identifier/AdvertisingIdClient$Info:<init>	(Ljava/lang/String;Z)V
-    //   31: astore 7
-    //   33: aload_0
-    //   34: aload_1
-    //   35: invokevirtual 48	android/content/Context:unbindService	(Landroid/content/ServiceConnection;)V
-    //   38: aload 7
-    //   40: areturn
-    //   41: astore 5
-    //   43: new 50	java/io/IOException
-    //   46: dup
-    //   47: ldc 52
-    //   49: invokespecial 55	java/io/IOException:<init>	(Ljava/lang/String;)V
-    //   52: athrow
-    //   53: astore_3
-    //   54: aload_0
-    //   55: aload_1
-    //   56: invokevirtual 48	android/content/Context:unbindService	(Landroid/content/ServiceConnection;)V
-    //   59: aload_3
-    //   60: athrow
-    //   61: astore_2
-    //   62: new 50	java/io/IOException
-    //   65: dup
-    //   66: ldc 57
-    //   68: invokespecial 55	java/io/IOException:<init>	(Ljava/lang/String;)V
-    //   71: athrow
-    //   72: astore 8
-    //   74: aload 7
-    //   76: areturn
-    //   77: astore 4
-    //   79: goto -20 -> 59
-    //
-    // Exception table:
-    //   from	to	target	type
-    //   0	33	41	android/os/RemoteException
-    //   0	33	53	finally
-    //   43	53	53	finally
-    //   62	72	53	finally
-    //   0	33	61	java/lang/InterruptedException
-    //   33	38	72	java/lang/IllegalArgumentException
-    //   54	59	77	java/lang/IllegalArgumentException
+    o.i(paramContext);
+    this.mContext = paramContext;
+    this.lm = false;
+  }
+
+  static s a(Context paramContext, a parama)
+  {
+    try
+    {
+      s locals = s.a.b(parama.fW());
+      return locals;
+    }
+    catch (InterruptedException localInterruptedException)
+    {
+    }
+    throw new IOException("Interrupted exception");
   }
 
   public static AdvertisingIdClient.Info getAdvertisingIdInfo(Context paramContext)
   {
-    hm.az("Calling this from your main thread can lead to deadlock");
-    return a(paramContext, j(paramContext));
+    AdvertisingIdClient localAdvertisingIdClient = new AdvertisingIdClient(paramContext);
+    try
+    {
+      localAdvertisingIdClient.start();
+      AdvertisingIdClient.Info localInfo = localAdvertisingIdClient.W();
+      return localInfo;
+    }
+    finally
+    {
+      localAdvertisingIdClient.finish();
+    }
   }
 
   // ERROR //
-  static com.google.android.gms.common.a j(Context paramContext)
+  static a i(Context paramContext)
   {
     // Byte code:
     //   0: aload_0
-    //   1: invokevirtual 80	android/content/Context:getPackageManager	()Landroid/content/pm/PackageManager;
-    //   4: ldc 82
+    //   1: invokevirtual 75	android/content/Context:getPackageManager	()Landroid/content/pm/PackageManager;
+    //   4: ldc 77
     //   6: iconst_0
-    //   7: invokevirtual 88	android/content/pm/PackageManager:getPackageInfo	(Ljava/lang/String;I)Landroid/content/pm/PackageInfo;
+    //   7: invokevirtual 83	android/content/pm/PackageManager:getPackageInfo	(Ljava/lang/String;I)Landroid/content/pm/PackageInfo;
     //   10: pop
     //   11: aload_0
-    //   12: invokestatic 94	com/google/android/gms/common/GooglePlayServicesUtil:z	(Landroid/content/Context;)V
-    //   15: new 18	com/google/android/gms/common/a
+    //   12: invokestatic 88	com/google/android/gms/common/GooglePlayServicesUtil:D	(Landroid/content/Context;)V
+    //   15: new 33	com/google/android/gms/common/a
     //   18: dup
-    //   19: invokespecial 95	com/google/android/gms/common/a:<init>	()V
+    //   19: invokespecial 89	com/google/android/gms/common/a:<init>	()V
     //   22: astore 4
-    //   24: new 97	android/content/Intent
+    //   24: new 91	android/content/Intent
     //   27: dup
-    //   28: ldc 99
-    //   30: invokespecial 100	android/content/Intent:<init>	(Ljava/lang/String;)V
+    //   28: ldc 93
+    //   30: invokespecial 94	android/content/Intent:<init>	(Ljava/lang/String;)V
     //   33: astore 5
     //   35: aload 5
-    //   37: ldc 102
-    //   39: invokevirtual 106	android/content/Intent:setPackage	(Ljava/lang/String;)Landroid/content/Intent;
+    //   37: ldc 96
+    //   39: invokevirtual 100	android/content/Intent:setPackage	(Ljava/lang/String;)Landroid/content/Intent;
     //   42: pop
     //   43: aload_0
     //   44: aload 5
     //   46: aload 4
     //   48: iconst_1
-    //   49: invokevirtual 110	android/content/Context:bindService	(Landroid/content/Intent;Landroid/content/ServiceConnection;I)Z
+    //   49: invokevirtual 104	android/content/Context:bindService	(Landroid/content/Intent;Landroid/content/ServiceConnection;I)Z
     //   52: ifeq +27 -> 79
     //   55: aload 4
     //   57: areturn
     //   58: astore_1
-    //   59: new 76	com/google/android/gms/common/GooglePlayServicesNotAvailableException
+    //   59: new 69	com/google/android/gms/common/GooglePlayServicesNotAvailableException
     //   62: dup
     //   63: bipush 9
-    //   65: invokespecial 113	com/google/android/gms/common/GooglePlayServicesNotAvailableException:<init>	(I)V
+    //   65: invokespecial 107	com/google/android/gms/common/GooglePlayServicesNotAvailableException:<init>	(I)V
     //   68: athrow
     //   69: astore_3
-    //   70: new 50	java/io/IOException
+    //   70: new 45	java/io/IOException
     //   73: dup
     //   74: aload_3
-    //   75: invokespecial 116	java/io/IOException:<init>	(Ljava/lang/Throwable;)V
+    //   75: invokespecial 110	java/io/IOException:<init>	(Ljava/lang/Throwable;)V
     //   78: athrow
-    //   79: new 50	java/io/IOException
+    //   79: new 45	java/io/IOException
     //   82: dup
-    //   83: ldc 118
-    //   85: invokespecial 55	java/io/IOException:<init>	(Ljava/lang/String;)V
+    //   83: ldc 112
+    //   85: invokespecial 50	java/io/IOException:<init>	(Ljava/lang/String;)V
     //   88: athrow
     //
     // Exception table:
@@ -124,9 +106,57 @@ public final class AdvertisingIdClient
     //   0	11	58	android/content/pm/PackageManager$NameNotFoundException
     //   11	15	69	com/google/android/gms/common/GooglePlayServicesNotAvailableException
   }
+
+  public final AdvertisingIdClient.Info W()
+  {
+    o.aU("Calling this from your main thread can lead to deadlock");
+    o.i(this.lk);
+    o.i(this.ll);
+    if (!this.lm)
+      throw new IOException("AdvertisingIdService is not connected.");
+    try
+    {
+      AdvertisingIdClient.Info localInfo = new AdvertisingIdClient.Info(this.ll.getId(), this.ll.a(true));
+      return localInfo;
+    }
+    catch (RemoteException localRemoteException)
+    {
+    }
+    throw new IOException("Remote exception");
+  }
+
+  public final void finish()
+  {
+    o.aU("Calling this from your main thread can lead to deadlock");
+    if ((this.mContext == null) || (this.lk == null))
+      return;
+    try
+    {
+      if (this.lm)
+        this.mContext.unbindService(this.lk);
+      label38: this.lm = false;
+      this.ll = null;
+      this.lk = null;
+      return;
+    }
+    catch (IllegalArgumentException localIllegalArgumentException)
+    {
+      break label38;
+    }
+  }
+
+  public final void start()
+  {
+    o.aU("Calling this from your main thread can lead to deadlock");
+    if (this.lm)
+      finish();
+    this.lk = i(this.mContext);
+    this.ll = a(this.mContext, this.lk);
+    this.lm = true;
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.ads.identifier.AdvertisingIdClient
  * JD-Core Version:    0.6.2
  */

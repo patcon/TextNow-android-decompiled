@@ -1,25 +1,13 @@
 package android.support.v7.internal.widget;
 
-import android.widget.PopupWindow;
+import android.graphics.Rect;
 
-final class x
-  implements Runnable
+public abstract interface x
 {
-  private x(ListPopupWindow paramListPopupWindow)
-  {
-  }
-
-  public final void run()
-  {
-    if ((ListPopupWindow.a(this.a) != null) && (ListPopupWindow.a(this.a).getCount() > ListPopupWindow.a(this.a).getChildCount()) && (ListPopupWindow.a(this.a).getChildCount() <= this.a.a))
-    {
-      ListPopupWindow.b(this.a).setInputMethodMode(2);
-      this.a.c();
-    }
-  }
+  public abstract void a(Rect paramRect);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v7.internal.widget.x
  * JD-Core Version:    0.6.2
  */

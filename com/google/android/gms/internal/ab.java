@@ -1,100 +1,90 @@
 package com.google.android.gms.internal;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.WeakHashMap;
+import java.lang.ref.WeakReference;
 
-public final class ab
-  implements ad
+@ez
+public class ab
 {
-  private final Object ls = new Object();
-  private WeakHashMap<ef, ac> lt = new WeakHashMap();
-  private ArrayList<ac> lu = new ArrayList();
+  private final ab.a mj;
+  private final Runnable mk;
+  private av ml;
+  private boolean mm = false;
+  private boolean mn = false;
+  private long mo = 0L;
 
-  public final ac a(al paramal, ef paramef)
+  public ab(u paramu)
   {
-    synchronized (this.ls)
+    this(paramu, new ab.a(gr.wC));
+  }
+
+  ab(final u paramu, ab.a parama)
+  {
+    this.mj = parama;
+    this.mk = new Runnable()
     {
-      if (c(paramef))
+      private final WeakReference<u> mp = new WeakReference(paramu);
+
+      public void run()
       {
-        ac localac2 = (ac)this.lt.get(paramef);
-        return localac2;
+        ab.a(ab.this, false);
+        u localu = (u)this.mp.get();
+        if (localu != null)
+          localu.b(ab.a(ab.this));
       }
-      ac localac1 = new ac(paramal, paramef);
-      localac1.a(this);
-      this.lt.put(paramef, localac1);
-      this.lu.add(localac1);
-      return localac1;
-    }
+    };
   }
 
-  public final void a(ac paramac)
+  public void a(av paramav, long paramLong)
   {
-    synchronized (this.ls)
+    if (this.mm)
+      gs.W("An ad refresh is already scheduled.");
+    do
     {
-      if (!paramac.az())
-        this.lu.remove(paramac);
       return;
+      this.ml = paramav;
+      this.mm = true;
+      this.mo = paramLong;
     }
+    while (this.mn);
+    gs.U("Scheduling ad refresh " + paramLong + " milliseconds from now.");
+    this.mj.postDelayed(this.mk, paramLong);
   }
 
-  public final boolean c(ef paramef)
+  public boolean ay()
   {
-    synchronized (this.ls)
-    {
-      ac localac = (ac)this.lt.get(paramef);
-      if ((localac != null) && (localac.az()))
-      {
-        bool = true;
-        return bool;
-      }
-      boolean bool = false;
-    }
+    return this.mm;
   }
 
-  public final void d(ef paramef)
+  public void c(av paramav)
   {
-    synchronized (this.ls)
-    {
-      ac localac = (ac)this.lt.get(paramef);
-      if (localac != null)
-        localac.ax();
-      return;
-    }
+    a(paramav, 60000L);
   }
 
-  public final void pause()
+  public void cancel()
   {
-    synchronized (this.ls)
-    {
-      Iterator localIterator = this.lu.iterator();
-      if (localIterator.hasNext())
-        ((ac)localIterator.next()).pause();
-    }
+    this.mm = false;
+    this.mj.removeCallbacks(this.mk);
   }
 
-  public final void resume()
+  public void pause()
   {
-    synchronized (this.ls)
-    {
-      Iterator localIterator = this.lu.iterator();
-      if (localIterator.hasNext())
-        ((ac)localIterator.next()).resume();
-    }
+    this.mn = true;
+    if (this.mm)
+      this.mj.removeCallbacks(this.mk);
   }
 
-  public final void stop()
+  public void resume()
   {
-    synchronized (this.ls)
+    this.mn = false;
+    if (this.mm)
     {
-      Iterator localIterator = this.lu.iterator();
-      if (localIterator.hasNext())
-        ((ac)localIterator.next()).stop();
+      this.mm = false;
+      a(this.ml, this.mo);
     }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ab
  * JD-Core Version:    0.6.2
  */

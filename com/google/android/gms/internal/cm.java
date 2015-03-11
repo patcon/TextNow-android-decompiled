@@ -1,77 +1,77 @@
 package com.google.android.gms.internal;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.IBinder;
-import android.os.RemoteException;
-import com.google.android.gms.dynamic.d;
-import com.google.android.gms.dynamic.e;
-import com.google.android.gms.dynamic.g;
-import com.google.android.gms.dynamic.g.a;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-public final class cm extends g<co>
+@ez
+public final class cm
 {
-  private static final cm oS = new cm();
+  public final List<cl> qd;
+  public final long qe;
+  public final List<String> qf;
+  public final List<String> qg;
+  public final List<String> qh;
+  public final String qi;
+  public final long qj;
+  public int qk;
+  public int ql;
 
-  private cm()
+  public cm(String paramString)
   {
-    super("com.google.android.gms.ads.AdOverlayCreatorImpl");
-  }
-
-  public static cn a(Activity paramActivity)
-  {
-    try
+    JSONObject localJSONObject1 = new JSONObject(paramString);
+    if (gs.u(2))
+      gs.V("Mediation Response JSON: " + localJSONObject1.toString(2));
+    JSONArray localJSONArray = localJSONObject1.getJSONArray("ad_networks");
+    ArrayList localArrayList = new ArrayList(localJSONArray.length());
+    int i = -1;
+    for (int j = 0; j < localJSONArray.length(); j++)
     {
-      if (b(paramActivity))
+      cl localcl = new cl(localJSONArray.getJSONObject(j));
+      localArrayList.add(localcl);
+      if ((i < 0) && (a(localcl)))
+        i = j;
+    }
+    this.qk = i;
+    this.ql = localJSONArray.length();
+    this.qd = Collections.unmodifiableList(localArrayList);
+    this.qi = localJSONObject1.getString("qdata");
+    JSONObject localJSONObject2 = localJSONObject1.optJSONObject("settings");
+    if (localJSONObject2 != null)
+    {
+      this.qe = localJSONObject2.optLong("ad_network_timeout_millis", -1L);
+      this.qf = cr.a(localJSONObject2, "click_urls");
+      this.qg = cr.a(localJSONObject2, "imp_urls");
+      this.qh = cr.a(localJSONObject2, "nofill_urls");
+      long l1 = localJSONObject2.optLong("refresh", -1L);
+      if (l1 > 0L);
+      for (long l2 = l1 * 1000L; ; l2 = -1L)
       {
-        eu.z("Using AdOverlay from the client jar.");
-        return new cf(paramActivity);
+        this.qj = l2;
+        return;
       }
-      cn localcn = oS.c(paramActivity);
-      return localcn;
     }
-    catch (cm.a locala)
-    {
-      eu.D(locala.getMessage());
-    }
-    return null;
+    this.qe = -1L;
+    this.qf = null;
+    this.qg = null;
+    this.qh = null;
+    this.qj = -1L;
   }
 
-  private static boolean b(Activity paramActivity)
+  private boolean a(cl paramcl)
   {
-    Intent localIntent = paramActivity.getIntent();
-    if (!localIntent.hasExtra("com.google.android.gms.ads.internal.overlay.useClientJar"))
-      throw new cm.a("Ad overlay requires the useClientJar flag in intent extras.");
-    return localIntent.getBooleanExtra("com.google.android.gms.ads.internal.overlay.useClientJar", false);
-  }
-
-  private cn c(Activity paramActivity)
-  {
-    try
-    {
-      d locald = e.h(paramActivity);
-      cn localcn = cn.a.m(((co)G(paramActivity)).a(locald));
-      return localcn;
-    }
-    catch (RemoteException localRemoteException)
-    {
-      eu.c("Could not create remote AdOverlay.", localRemoteException);
-      return null;
-    }
-    catch (g.a locala)
-    {
-      eu.c("Could not create remote AdOverlay.", locala);
-    }
-    return null;
-  }
-
-  protected final co l(IBinder paramIBinder)
-  {
-    return co.a.n(paramIBinder);
+    Iterator localIterator = paramcl.pY.iterator();
+    while (localIterator.hasNext())
+      if (((String)localIterator.next()).equals("com.google.ads.mediation.admob.AdMobAdapter"))
+        return true;
+    return false;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.cm
  * JD-Core Version:    0.6.2
  */

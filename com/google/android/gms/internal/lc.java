@@ -1,84 +1,108 @@
 package com.google.android.gms.internal;
 
-import android.os.Parcel;
-import android.os.Parcelable.Creator;
-import com.google.android.gms.common.internal.safeparcel.a;
-import com.google.android.gms.common.internal.safeparcel.a.a;
-import com.google.android.gms.common.internal.safeparcel.b;
-import java.util.HashSet;
-import java.util.Set;
+import android.app.PendingIntent;
+import android.content.Context;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.fitness.SensorsApi;
+import com.google.android.gms.fitness.data.l;
+import com.google.android.gms.fitness.data.l.a;
+import com.google.android.gms.fitness.request.DataSourcesRequest;
+import com.google.android.gms.fitness.request.OnDataPointListener;
+import com.google.android.gms.fitness.request.SensorRequest;
+import com.google.android.gms.fitness.request.o;
+import com.google.android.gms.fitness.request.q;
+import com.google.android.gms.fitness.result.DataSourcesResult;
 
 public class lc
-  implements Parcelable.Creator<ks.h>
+  implements SensorsApi
 {
-  static void a(ks.h paramh, Parcel paramParcel, int paramInt)
+  private PendingResult<Status> a(GoogleApiClient paramGoogleApiClient, final o paramo)
   {
-    int i = b.C(paramParcel);
-    Set localSet = paramh.kk();
-    if (localSet.contains(Integer.valueOf(1)))
-      b.c(paramParcel, 1, paramh.getVersionCode());
-    if (localSet.contains(Integer.valueOf(3)))
-      b.c(paramParcel, 3, paramh.kX());
-    if (localSet.contains(Integer.valueOf(4)))
-      b.a(paramParcel, 4, paramh.getValue(), true);
-    if (localSet.contains(Integer.valueOf(5)))
-      b.a(paramParcel, 5, paramh.getLabel(), true);
-    if (localSet.contains(Integer.valueOf(6)))
-      b.c(paramParcel, 6, paramh.getType());
-    b.G(paramParcel, i);
-  }
-
-  public ks.h bP(Parcel paramParcel)
-  {
-    String str1 = null;
-    int i = 0;
-    int j = a.B(paramParcel);
-    HashSet localHashSet = new HashSet();
-    int k = 0;
-    String str2 = null;
-    int m = 0;
-    while (paramParcel.dataPosition() < j)
+    return paramGoogleApiClient.a(new lc.a()
     {
-      int n = a.A(paramParcel);
-      switch (a.ar(n))
+      protected void a(kk paramAnonymouskk)
       {
-      case 2:
-      default:
-        a.b(paramParcel, n);
-        break;
-      case 1:
-        m = a.g(paramParcel, n);
-        localHashSet.add(Integer.valueOf(1));
-        break;
-      case 3:
-        i = a.g(paramParcel, n);
-        localHashSet.add(Integer.valueOf(3));
-        break;
-      case 4:
-        str1 = a.o(paramParcel, n);
-        localHashSet.add(Integer.valueOf(4));
-        break;
-      case 5:
-        str2 = a.o(paramParcel, n);
-        localHashSet.add(Integer.valueOf(5));
-        break;
-      case 6:
-        k = a.g(paramParcel, n);
-        localHashSet.add(Integer.valueOf(6));
+        kk.b localb = new kk.b(this);
+        String str = paramAnonymouskk.getContext().getPackageName();
+        paramAnonymouskk.jb().a(paramo, localb, str);
       }
-    }
-    if (paramParcel.dataPosition() != j)
-      throw new a.a("Overread allowed size end=" + j, paramParcel);
-    return new ks.h(localHashSet, m, str2, k, str1, i);
+
+      protected Status d(Status paramAnonymousStatus)
+      {
+        return paramAnonymousStatus;
+      }
+    });
   }
 
-  public ks.h[] dm(int paramInt)
+  private PendingResult<Status> a(GoogleApiClient paramGoogleApiClient, final q paramq, final lc.b paramb)
   {
-    return new ks.h[paramInt];
+    return paramGoogleApiClient.b(new lc.a()
+    {
+      protected void a(kk paramAnonymouskk)
+      {
+        lc.d locald = new lc.d(this, paramb, null);
+        String str = paramAnonymouskk.getContext().getPackageName();
+        paramAnonymouskk.jb().a(paramq, locald, str);
+      }
+
+      protected Status d(Status paramAnonymousStatus)
+      {
+        return paramAnonymousStatus;
+      }
+    });
+  }
+
+  public PendingResult<Status> add(GoogleApiClient paramGoogleApiClient, SensorRequest paramSensorRequest, PendingIntent paramPendingIntent)
+  {
+    return a(paramGoogleApiClient, new o(paramSensorRequest, null, paramPendingIntent));
+  }
+
+  public PendingResult<Status> add(GoogleApiClient paramGoogleApiClient, SensorRequest paramSensorRequest, OnDataPointListener paramOnDataPointListener)
+  {
+    return a(paramGoogleApiClient, new o(paramSensorRequest, l.a.iV().a(paramOnDataPointListener), null));
+  }
+
+  public PendingResult<DataSourcesResult> findDataSources(GoogleApiClient paramGoogleApiClient, final DataSourcesRequest paramDataSourcesRequest)
+  {
+    return paramGoogleApiClient.a(new lc.a()
+    {
+      protected DataSourcesResult A(Status paramAnonymousStatus)
+      {
+        return DataSourcesResult.E(paramAnonymousStatus);
+      }
+
+      protected void a(kk paramAnonymouskk)
+      {
+        lc.c localc = new lc.c(this, null);
+        String str = paramAnonymouskk.getContext().getPackageName();
+        paramAnonymouskk.jb().a(paramDataSourcesRequest, localc, str);
+      }
+    });
+  }
+
+  public PendingResult<Status> remove(GoogleApiClient paramGoogleApiClient, PendingIntent paramPendingIntent)
+  {
+    return a(paramGoogleApiClient, new q(null, paramPendingIntent), null);
+  }
+
+  public PendingResult<Status> remove(GoogleApiClient paramGoogleApiClient, final OnDataPointListener paramOnDataPointListener)
+  {
+    l locall = l.a.iV().b(paramOnDataPointListener);
+    if (locall == null)
+      return new ku(Status.Jv);
+    return a(paramGoogleApiClient, new q(locall, null), new lc.b()
+    {
+      public void jd()
+      {
+        l.a.iV().c(paramOnDataPointListener);
+      }
+    });
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.lc
  * JD-Core Version:    0.6.2
  */

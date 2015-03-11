@@ -1,168 +1,179 @@
 package com.google.android.gms.internal;
 
-import android.content.Context;
-import android.os.IBinder;
-import android.os.Looper;
-import android.os.RemoteException;
-import com.google.android.gms.appstate.AppStateManager.StateDeletedResult;
-import com.google.android.gms.appstate.AppStateManager.StateListResult;
-import com.google.android.gms.appstate.AppStateManager.StateResult;
-import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
-import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.common.api.a.d;
+import android.os.Bundle;
+import android.os.SystemClock;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 
-public final class ga extends hb<gc>
+@ez
+public class ga
 {
-  private final String yQ;
+  private final Object mw = new Object();
+  private boolean uC = false;
+  private final String vA;
+  private long vB = -1L;
+  private long vC = -1L;
+  private long vD = -1L;
+  private long vE = 0L;
+  private long vF = -1L;
+  private long vG = -1L;
+  private final gb vx;
+  private final LinkedList<ga.a> vy;
+  private final String vz;
 
-  public ga(Context paramContext, Looper paramLooper, GoogleApiClient.ConnectionCallbacks paramConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener paramOnConnectionFailedListener, String paramString, String[] paramArrayOfString)
+  public ga(gb paramgb, String paramString1, String paramString2)
   {
-    super(paramContext, paramLooper, paramConnectionCallbacks, paramOnConnectionFailedListener, paramArrayOfString);
-    this.yQ = ((String)hm.f(paramString));
+    this.vx = paramgb;
+    this.vz = paramString1;
+    this.vA = paramString2;
+    this.vy = new LinkedList();
   }
 
-  protected final gc D(IBinder paramIBinder)
+  public ga(String paramString1, String paramString2)
   {
-    return gc.a.F(paramIBinder);
+    this(gb.cU(), paramString1, paramString2);
   }
 
-  public final void a(a.d<AppStateManager.StateListResult> paramd)
+  public void cO()
   {
-    try
+    synchronized (this.mw)
     {
-      ((gc)ft()).a(new ga.c(paramd));
-      return;
-    }
-    catch (RemoteException localRemoteException)
-    {
-    }
-  }
-
-  public final void a(a.d<AppStateManager.StateDeletedResult> paramd, int paramInt)
-  {
-    try
-    {
-      ((gc)ft()).b(new ga.a(paramd), paramInt);
-      return;
-    }
-    catch (RemoteException localRemoteException)
-    {
-    }
-  }
-
-  public final void a(a.d<AppStateManager.StateResult> paramd, int paramInt, String paramString, byte[] paramArrayOfByte)
-  {
-    try
-    {
-      ((gc)ft()).a(new ga.e(paramd), paramInt, paramString, paramArrayOfByte);
-      return;
-    }
-    catch (RemoteException localRemoteException)
-    {
-    }
-  }
-
-  public final void a(a.d<AppStateManager.StateResult> paramd, int paramInt, byte[] paramArrayOfByte)
-  {
-    Object localObject;
-    if (paramd == null)
-      localObject = null;
-    try
-    {
-      while (true)
+      if ((this.vG != -1L) && (this.vC == -1L))
       {
-        ((gc)ft()).a((gb)localObject, paramInt, paramArrayOfByte);
-        return;
-        ga.e locale = new ga.e(paramd);
-        localObject = locale;
+        this.vC = SystemClock.elapsedRealtime();
+        this.vx.a(this);
       }
-    }
-    catch (RemoteException localRemoteException)
-    {
-    }
-  }
-
-  protected final void a(hi paramhi, hb.e parame)
-  {
-    paramhi.a(parame, 5089000, getContext().getPackageName(), this.yQ, fs());
-  }
-
-  public final void b(a.d<Status> paramd)
-  {
-    try
-    {
-      ((gc)ft()).b(new ga.g(paramd));
+      gb.cY().cO();
       return;
     }
-    catch (RemoteException localRemoteException)
-    {
-    }
   }
 
-  public final void b(a.d<AppStateManager.StateResult> paramd, int paramInt)
+  public void cP()
   {
-    try
+    synchronized (this.mw)
     {
-      ((gc)ft()).a(new ga.e(paramd), paramInt);
+      if (this.vG != -1L)
+      {
+        ga.a locala = new ga.a();
+        locala.cT();
+        this.vy.add(locala);
+        this.vE = (1L + this.vE);
+        gb.cY().cP();
+        this.vx.a(this);
+      }
       return;
     }
-    catch (RemoteException localRemoteException)
+  }
+
+  public void cQ()
+  {
+    synchronized (this.mw)
     {
+      if ((this.vG != -1L) && (!this.vy.isEmpty()))
+      {
+        ga.a locala = (ga.a)this.vy.getLast();
+        if (locala.cR() == -1L)
+        {
+          locala.cS();
+          this.vx.a(this);
+        }
+      }
+      return;
     }
   }
 
-  protected final void b(String[] paramArrayOfString)
+  public void e(av paramav)
   {
-    int i = 0;
-    boolean bool = false;
-    while (i < paramArrayOfString.length)
+    synchronized (this.mw)
     {
-      if (paramArrayOfString[i].equals("https://www.googleapis.com/auth/appstate"))
-        bool = true;
-      i++;
+      this.vF = SystemClock.elapsedRealtime();
+      gb.cY().b(paramav, this.vF);
+      return;
     }
-    hm.a(bool, String.format("App State APIs requires %s to function.", new Object[] { "https://www.googleapis.com/auth/appstate" }));
   }
 
-  protected final String bu()
+  public void j(long paramLong)
   {
-    return "com.google.android.gms.appstate.service.START";
+    synchronized (this.mw)
+    {
+      this.vG = paramLong;
+      if (this.vG != -1L)
+        this.vx.a(this);
+      return;
+    }
   }
 
-  protected final String bv()
+  public void k(long paramLong)
   {
-    return "com.google.android.gms.appstate.internal.IAppStateService";
+    synchronized (this.mw)
+    {
+      if (this.vG != -1L)
+      {
+        this.vB = paramLong;
+        this.vx.a(this);
+      }
+      return;
+    }
   }
 
-  public final int dU()
+  public void t(boolean paramBoolean)
   {
-    try
+    synchronized (this.mw)
     {
-      int i = ((gc)ft()).dU();
-      return i;
+      if (this.vG != -1L)
+      {
+        this.vD = SystemClock.elapsedRealtime();
+        if (!paramBoolean)
+        {
+          this.vC = this.vD;
+          this.vx.a(this);
+        }
+      }
+      return;
     }
-    catch (RemoteException localRemoteException)
-    {
-    }
-    return 2;
   }
 
-  public final int dV()
+  public Bundle toBundle()
   {
-    try
+    Bundle localBundle;
+    ArrayList localArrayList;
+    synchronized (this.mw)
     {
-      int i = ((gc)ft()).dV();
-      return i;
+      localBundle = new Bundle();
+      localBundle.putString("seq_num", this.vz);
+      localBundle.putString("slotid", this.vA);
+      localBundle.putBoolean("ismediation", this.uC);
+      localBundle.putLong("treq", this.vF);
+      localBundle.putLong("tresponse", this.vG);
+      localBundle.putLong("timp", this.vC);
+      localBundle.putLong("tload", this.vD);
+      localBundle.putLong("pcc", this.vE);
+      localBundle.putLong("tfetch", this.vB);
+      localArrayList = new ArrayList();
+      Iterator localIterator = this.vy.iterator();
+      if (localIterator.hasNext())
+        localArrayList.add(((ga.a)localIterator.next()).toBundle());
     }
-    catch (RemoteException localRemoteException)
+    localBundle.putParcelableArrayList("tclick", localArrayList);
+    return localBundle;
+  }
+
+  public void u(boolean paramBoolean)
+  {
+    synchronized (this.mw)
     {
+      if (this.vG != -1L)
+      {
+        this.uC = paramBoolean;
+        this.vx.a(this);
+      }
+      return;
     }
-    return 2;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ga
  * JD-Core Version:    0.6.2
  */

@@ -1,145 +1,379 @@
 package com.google.android.gms.internal;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.os.SystemClock;
-import android.util.DisplayMetrics;
-import android.view.MotionEvent;
-import java.util.Map;
+import android.os.RemoteException;
+import android.util.AttributeSet;
+import android.view.View;
+import android.view.ViewGroup;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.doubleclick.AppEventListener;
+import com.google.android.gms.ads.doubleclick.PublisherAdView;
+import com.google.android.gms.ads.doubleclick.b;
+import com.google.android.gms.ads.purchase.InAppPurchaseListener;
+import com.google.android.gms.ads.purchase.PlayStorePurchaseListener;
+import com.google.android.gms.dynamic.d;
+import com.google.android.gms.dynamic.e;
 
 public final class bh
-  implements bc
 {
-  private static int a(DisplayMetrics paramDisplayMetrics, Map<String, String> paramMap, String paramString, int paramInt)
+  private AdListener nR;
+  private String oA;
+  private ViewGroup oB;
+  private InAppPurchaseListener oC;
+  private PlayStorePurchaseListener oD;
+  private b oE;
+  private AppEventListener oi;
+  private AdSize[] oj;
+  private String ok;
+  private final cs ox = new cs();
+  private final ax oy;
+  private bd oz;
+
+  public bh(ViewGroup paramViewGroup)
   {
-    String str = (String)paramMap.get(paramString);
-    if (str != null);
-    try
-    {
-      int i = et.a(paramDisplayMetrics, Integer.parseInt(str));
-      paramInt = i;
-      return paramInt;
-    }
-    catch (NumberFormatException localNumberFormatException)
-    {
-      eu.D("Could not parse " + paramString + " in a video GMSG: " + str);
-    }
-    return paramInt;
+    this(paramViewGroup, null, false, ax.bb());
   }
 
-  public final void b(ex paramex, Map<String, String> paramMap)
+  public bh(ViewGroup paramViewGroup, AttributeSet paramAttributeSet, boolean paramBoolean)
   {
-    String str1 = (String)paramMap.get("action");
-    if (str1 == null)
+    this(paramViewGroup, paramAttributeSet, paramBoolean, ax.bb());
+  }
+
+  bh(ViewGroup paramViewGroup, AttributeSet paramAttributeSet, boolean paramBoolean, ax paramax)
+  {
+    this(paramViewGroup, paramAttributeSet, paramBoolean, paramax, null);
+  }
+
+  bh(ViewGroup paramViewGroup, AttributeSet paramAttributeSet, boolean paramBoolean, ax paramax, bd parambd)
+  {
+    this.oB = paramViewGroup;
+    this.oy = paramax;
+    if (paramAttributeSet != null)
     {
-      eu.D("Action missing from video GMSG.");
-      return;
-    }
-    cf localcf = paramex.ca();
-    if (localcf == null)
-    {
-      eu.D("Could not get ad overlay for a video GMSG.");
-      return;
-    }
-    boolean bool1 = "new".equalsIgnoreCase(str1);
-    boolean bool2 = "position".equalsIgnoreCase(str1);
-    if ((bool1) || (bool2))
-    {
-      DisplayMetrics localDisplayMetrics1 = paramex.getContext().getResources().getDisplayMetrics();
-      int i = a(localDisplayMetrics1, paramMap, "x", 0);
-      int j = a(localDisplayMetrics1, paramMap, "y", 0);
-      int k = a(localDisplayMetrics1, paramMap, "w", -1);
-      int m = a(localDisplayMetrics1, paramMap, "h", -1);
-      if ((bool1) && (localcf.aQ() == null))
-      {
-        localcf.c(i, j, k, m);
-        return;
-      }
-      localcf.b(i, j, k, m);
-      return;
-    }
-    cj localcj = localcf.aQ();
-    if (localcj == null)
-    {
-      cj.a(paramex, "no_video_view", null);
-      return;
-    }
-    if ("click".equalsIgnoreCase(str1))
-    {
-      DisplayMetrics localDisplayMetrics2 = paramex.getContext().getResources().getDisplayMetrics();
-      int n = a(localDisplayMetrics2, paramMap, "x", 0);
-      int i1 = a(localDisplayMetrics2, paramMap, "y", 0);
-      long l = SystemClock.uptimeMillis();
-      MotionEvent localMotionEvent = MotionEvent.obtain(l, l, 0, n, i1, 0);
-      localcj.b(localMotionEvent);
-      localMotionEvent.recycle();
-      return;
-    }
-    if ("controls".equalsIgnoreCase(str1))
-    {
-      String str3 = (String)paramMap.get("enabled");
-      if (str3 == null)
-      {
-        eu.D("Enabled parameter missing from controls video GMSG.");
-        return;
-      }
-      localcj.l(Boolean.parseBoolean(str3));
-      return;
-    }
-    if ("currentTime".equalsIgnoreCase(str1))
-    {
-      String str2 = (String)paramMap.get("time");
-      if (str2 == null)
-      {
-        eu.D("Time parameter missing from currentTime video GMSG.");
-        return;
-      }
+      Context localContext = paramViewGroup.getContext();
       try
       {
-        localcj.seekTo((int)(1000.0F * Float.parseFloat(str2)));
-        return;
+        bb localbb = new bb(localContext, paramAttributeSet);
+        this.oj = localbb.f(paramBoolean);
+        this.ok = localbb.getAdUnitId();
+        if (paramViewGroup.isInEditMode())
+        {
+          gr.a(paramViewGroup, new ay(localContext, this.oj[0]), "Ads by Google");
+          return;
+        }
       }
-      catch (NumberFormatException localNumberFormatException)
+      catch (IllegalArgumentException localIllegalArgumentException)
       {
-        eu.D("Could not parse time parameter from currentTime video GMSG: " + str2);
+        gr.a(paramViewGroup, new ay(localContext, AdSize.BANNER), localIllegalArgumentException.getMessage(), localIllegalArgumentException.getMessage());
         return;
       }
     }
-    if ("hide".equalsIgnoreCase(str1))
+    this.oz = parambd;
+  }
+
+  private void bh()
+  {
+    try
     {
-      localcj.setVisibility(4);
+      d locald = this.oz.X();
+      if (locald == null)
+        return;
+      this.oB.addView((View)e.f(locald));
       return;
     }
-    if ("load".equalsIgnoreCase(str1))
+    catch (RemoteException localRemoteException)
     {
-      localcj.ba();
+      gs.d("Failed to get an ad frame.", localRemoteException);
+    }
+  }
+
+  private void bi()
+  {
+    if (((this.oj == null) || (this.ok == null)) && (this.oz == null))
+      throw new IllegalStateException("The ad size and ad unit ID must be set before loadAd is called.");
+    Context localContext = this.oB.getContext();
+    this.oz = au.a(localContext, new ay(localContext, this.oj), this.ok, this.ox);
+    if (this.nR != null)
+      this.oz.a(new at(this.nR));
+    if (this.oi != null)
+      this.oz.a(new ba(this.oi));
+    if (this.oC != null)
+      this.oz.a(new em(this.oC));
+    if (this.oD != null)
+      this.oz.a(new eq(this.oD), this.oA);
+    if (this.oE != null)
+      this.oz.a(new ew(this.oE, (PublisherAdView)this.oB));
+    bh();
+  }
+
+  public final void a(bg parambg)
+  {
+    try
+    {
+      if (this.oz == null)
+        bi();
+      if (this.oz.a(this.oy.a(this.oB.getContext(), parambg)))
+        this.ox.d(parambg.be());
       return;
     }
-    if ("pause".equalsIgnoreCase(str1))
+    catch (RemoteException localRemoteException)
     {
-      localcj.pause();
+      gs.d("Failed to load ad.", localRemoteException);
+    }
+  }
+
+  public final void a(AdSize[] paramArrayOfAdSize)
+  {
+    this.oj = paramArrayOfAdSize;
+    try
+    {
+      if (this.oz != null)
+        this.oz.a(new ay(this.oB.getContext(), this.oj));
+      this.oB.requestLayout();
       return;
     }
-    if ("play".equalsIgnoreCase(str1))
+    catch (RemoteException localRemoteException)
     {
-      localcj.play();
+      while (true)
+        gs.d("Failed to set the ad size.", localRemoteException);
+    }
+  }
+
+  public final void destroy()
+  {
+    try
+    {
+      if (this.oz != null)
+        this.oz.destroy();
       return;
     }
-    if ("show".equalsIgnoreCase(str1))
+    catch (RemoteException localRemoteException)
     {
-      localcj.setVisibility(0);
+      gs.d("Failed to destroy AdView.", localRemoteException);
+    }
+  }
+
+  public final AdListener getAdListener()
+  {
+    return this.nR;
+  }
+
+  public final AdSize getAdSize()
+  {
+    try
+    {
+      if (this.oz != null)
+      {
+        AdSize localAdSize = this.oz.Y().bc();
+        return localAdSize;
+      }
+    }
+    catch (RemoteException localRemoteException)
+    {
+      gs.d("Failed to get the current AdSize.", localRemoteException);
+      if (this.oj != null)
+        return this.oj[0];
+    }
+    return null;
+  }
+
+  public final AdSize[] getAdSizes()
+  {
+    return this.oj;
+  }
+
+  public final String getAdUnitId()
+  {
+    return this.ok;
+  }
+
+  public final AppEventListener getAppEventListener()
+  {
+    return this.oi;
+  }
+
+  public final InAppPurchaseListener getInAppPurchaseListener()
+  {
+    return this.oC;
+  }
+
+  public final String getMediationAdapterClassName()
+  {
+    try
+    {
+      if (this.oz != null)
+      {
+        String str = this.oz.getMediationAdapterClassName();
+        return str;
+      }
+    }
+    catch (RemoteException localRemoteException)
+    {
+      gs.d("Failed to get the mediation adapter class name.", localRemoteException);
+    }
+    return null;
+  }
+
+  public final void pause()
+  {
+    try
+    {
+      if (this.oz != null)
+        this.oz.pause();
       return;
     }
-    if ("src".equalsIgnoreCase(str1))
+    catch (RemoteException localRemoteException)
     {
-      localcj.o((String)paramMap.get("src"));
+      gs.d("Failed to call pause.", localRemoteException);
+    }
+  }
+
+  public final void recordManualImpression()
+  {
+    try
+    {
+      if (this.oz != null)
+        this.oz.aj();
       return;
     }
-    eu.D("Unknown video action: " + str1);
+    catch (RemoteException localRemoteException)
+    {
+      gs.d("Failed to record impression.", localRemoteException);
+    }
+  }
+
+  public final void resume()
+  {
+    try
+    {
+      if (this.oz != null)
+        this.oz.resume();
+      return;
+    }
+    catch (RemoteException localRemoteException)
+    {
+      gs.d("Failed to call resume.", localRemoteException);
+    }
+  }
+
+  public final void setAdListener(AdListener paramAdListener)
+  {
+    try
+    {
+      this.nR = paramAdListener;
+      bd localbd;
+      if (this.oz != null)
+      {
+        localbd = this.oz;
+        if (paramAdListener == null)
+          break label40;
+      }
+      label40: for (at localat = new at(paramAdListener); ; localat = null)
+      {
+        localbd.a(localat);
+        return;
+      }
+    }
+    catch (RemoteException localRemoteException)
+    {
+      gs.d("Failed to set the AdListener.", localRemoteException);
+    }
+  }
+
+  public final void setAdSizes(AdSize[] paramArrayOfAdSize)
+  {
+    if (this.oj != null)
+      throw new IllegalStateException("The ad size can only be set once on AdView.");
+    a(paramArrayOfAdSize);
+  }
+
+  public final void setAdUnitId(String paramString)
+  {
+    if (this.ok != null)
+      throw new IllegalStateException("The ad unit ID can only be set once on AdView.");
+    this.ok = paramString;
+  }
+
+  public final void setAppEventListener(AppEventListener paramAppEventListener)
+  {
+    try
+    {
+      this.oi = paramAppEventListener;
+      bd localbd;
+      if (this.oz != null)
+      {
+        localbd = this.oz;
+        if (paramAppEventListener == null)
+          break label40;
+      }
+      label40: for (ba localba = new ba(paramAppEventListener); ; localba = null)
+      {
+        localbd.a(localba);
+        return;
+      }
+    }
+    catch (RemoteException localRemoteException)
+    {
+      gs.d("Failed to set the AppEventListener.", localRemoteException);
+    }
+  }
+
+  public final void setInAppPurchaseListener(InAppPurchaseListener paramInAppPurchaseListener)
+  {
+    if (this.oD != null)
+      throw new IllegalStateException("Play store purchase parameter has already been set.");
+    try
+    {
+      this.oC = paramInAppPurchaseListener;
+      bd localbd;
+      if (this.oz != null)
+      {
+        localbd = this.oz;
+        if (paramInAppPurchaseListener == null)
+          break label58;
+      }
+      label58: for (em localem = new em(paramInAppPurchaseListener); ; localem = null)
+      {
+        localbd.a(localem);
+        return;
+      }
+    }
+    catch (RemoteException localRemoteException)
+    {
+      gs.d("Failed to set the InAppPurchaseListener.", localRemoteException);
+    }
+  }
+
+  public final void setPlayStorePurchaseParams(PlayStorePurchaseListener paramPlayStorePurchaseListener, String paramString)
+  {
+    if (this.oC != null)
+      throw new IllegalStateException("InAppPurchaseListener has already been set.");
+    try
+    {
+      this.oD = paramPlayStorePurchaseListener;
+      this.oA = paramString;
+      bd localbd;
+      if (this.oz != null)
+      {
+        localbd = this.oz;
+        if (paramPlayStorePurchaseListener == null)
+          break label66;
+      }
+      label66: for (eq localeq = new eq(paramPlayStorePurchaseListener); ; localeq = null)
+      {
+        localbd.a(localeq, paramString);
+        return;
+      }
+    }
+    catch (RemoteException localRemoteException)
+    {
+      gs.d("Failed to set the play store purchase parameter.", localRemoteException);
+    }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.bh
  * JD-Core Version:    0.6.2
  */

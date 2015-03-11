@@ -1,51 +1,94 @@
 package com.google.android.gms.internal;
 
-import java.io.IOException;
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import com.google.android.gms.common.internal.safeparcel.a;
+import com.google.android.gms.common.internal.safeparcel.a.a;
+import com.google.android.gms.common.internal.safeparcel.b;
 
-public class md extends IOException
+public class md
+  implements Parcelable.Creator<mc>
 {
-  public md(String paramString)
+  static void a(mc parammc, Parcel paramParcel, int paramInt)
   {
-    super(paramString);
+    int i = b.D(paramParcel);
+    b.a(paramParcel, 1, parammc.getRequestId(), false);
+    b.c(paramParcel, 1000, parammc.getVersionCode());
+    b.a(paramParcel, 2, parammc.getExpirationTime());
+    b.a(paramParcel, 3, parammc.ma());
+    b.a(paramParcel, 4, parammc.getLatitude());
+    b.a(paramParcel, 5, parammc.getLongitude());
+    b.a(paramParcel, 6, parammc.mb());
+    b.c(paramParcel, 7, parammc.mc());
+    b.c(paramParcel, 8, parammc.getNotificationResponsiveness());
+    b.c(paramParcel, 9, parammc.md());
+    b.H(paramParcel, i);
   }
 
-  static md nS()
+  public mc cw(Parcel paramParcel)
   {
-    return new md("While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either than the input has been truncated or that an embedded message misreported its own length.");
+    int i = a.C(paramParcel);
+    int j = 0;
+    String str = null;
+    int k = 0;
+    short s = 0;
+    double d1 = 0.0D;
+    double d2 = 0.0D;
+    float f = 0.0F;
+    long l = 0L;
+    int m = 0;
+    int n = -1;
+    while (paramParcel.dataPosition() < i)
+    {
+      int i1 = a.B(paramParcel);
+      switch (a.aD(i1))
+      {
+      default:
+        a.b(paramParcel, i1);
+        break;
+      case 1:
+        str = a.o(paramParcel, i1);
+        break;
+      case 1000:
+        j = a.g(paramParcel, i1);
+        break;
+      case 2:
+        l = a.i(paramParcel, i1);
+        break;
+      case 3:
+        s = a.f(paramParcel, i1);
+        break;
+      case 4:
+        d1 = a.m(paramParcel, i1);
+        break;
+      case 5:
+        d2 = a.m(paramParcel, i1);
+        break;
+      case 6:
+        f = a.l(paramParcel, i1);
+        break;
+      case 7:
+        k = a.g(paramParcel, i1);
+        break;
+      case 8:
+        m = a.g(paramParcel, i1);
+        break;
+      case 9:
+        n = a.g(paramParcel, i1);
+      }
+    }
+    if (paramParcel.dataPosition() != i)
+      throw new a.a("Overread allowed size end=" + i, paramParcel);
+    return new mc(j, str, k, s, d1, d2, f, l, m, n);
   }
 
-  static md nT()
+  public mc[] em(int paramInt)
   {
-    return new md("CodedInputStream encountered an embedded string or message which claimed to have negative size.");
-  }
-
-  static md nU()
-  {
-    return new md("CodedInputStream encountered a malformed varint.");
-  }
-
-  static md nV()
-  {
-    return new md("Protocol message contained an invalid tag (zero).");
-  }
-
-  static md nW()
-  {
-    return new md("Protocol message end-group tag did not match expected tag.");
-  }
-
-  static md nX()
-  {
-    return new md("Protocol message tag had invalid wire type.");
-  }
-
-  static md nY()
-  {
-    return new md("Protocol message had too many levels of nesting.  May be malicious.  Use CodedInputStream.setRecursionLimit() to increase the depth limit.");
+    return new mc[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.md
  * JD-Core Version:    0.6.2
  */

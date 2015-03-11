@@ -9,46 +9,46 @@ public final class UserAddress
   implements SafeParcelable
 {
   public static final Parcelable.Creator<UserAddress> CREATOR = new b();
-  String UH;
-  String UI;
-  String UJ;
-  String UK;
-  String UL;
-  String UM;
-  String UN;
-  String UO;
-  String UP;
-  String UQ;
-  boolean UR;
-  String US;
-  String UT;
+  private final int BR;
+  String adN;
+  String adO;
+  String adP;
+  String adQ;
+  String adR;
+  String adS;
+  String adT;
+  String adU;
+  String adV;
+  String adW;
+  boolean adX;
+  String adY;
+  String adZ;
   String name;
-  String rf;
-  private final int xM;
+  String uW;
 
   UserAddress()
   {
-    this.xM = 1;
+    this.BR = 1;
   }
 
   UserAddress(int paramInt, String paramString1, String paramString2, String paramString3, String paramString4, String paramString5, String paramString6, String paramString7, String paramString8, String paramString9, String paramString10, String paramString11, String paramString12, boolean paramBoolean, String paramString13, String paramString14)
   {
-    this.xM = paramInt;
+    this.BR = paramInt;
     this.name = paramString1;
-    this.UH = paramString2;
-    this.UI = paramString3;
-    this.UJ = paramString4;
-    this.UK = paramString5;
-    this.UL = paramString6;
-    this.UM = paramString7;
-    this.UN = paramString8;
-    this.rf = paramString9;
-    this.UO = paramString10;
-    this.UP = paramString11;
-    this.UQ = paramString12;
-    this.UR = paramBoolean;
-    this.US = paramString13;
-    this.UT = paramString14;
+    this.adN = paramString2;
+    this.adO = paramString3;
+    this.adP = paramString4;
+    this.adQ = paramString5;
+    this.adR = paramString6;
+    this.adS = paramString7;
+    this.adT = paramString8;
+    this.uW = paramString9;
+    this.adU = paramString10;
+    this.adV = paramString11;
+    this.adW = paramString12;
+    this.adX = paramBoolean;
+    this.adY = paramString13;
+    this.adZ = paramString14;
   }
 
   public static UserAddress fromIntent(Intent paramIntent)
@@ -65,52 +65,52 @@ public final class UserAddress
 
   public final String getAddress1()
   {
-    return this.UH;
+    return this.adN;
   }
 
   public final String getAddress2()
   {
-    return this.UI;
+    return this.adO;
   }
 
   public final String getAddress3()
   {
-    return this.UJ;
+    return this.adP;
   }
 
   public final String getAddress4()
   {
-    return this.UK;
+    return this.adQ;
   }
 
   public final String getAddress5()
   {
-    return this.UL;
+    return this.adR;
   }
 
   public final String getAdministrativeArea()
   {
-    return this.UM;
+    return this.adS;
   }
 
   public final String getCompanyName()
   {
-    return this.US;
+    return this.adY;
   }
 
   public final String getCountryCode()
   {
-    return this.rf;
+    return this.uW;
   }
 
   public final String getEmailAddress()
   {
-    return this.UT;
+    return this.adZ;
   }
 
   public final String getLocality()
   {
-    return this.UN;
+    return this.adT;
   }
 
   public final String getName()
@@ -120,27 +120,27 @@ public final class UserAddress
 
   public final String getPhoneNumber()
   {
-    return this.UQ;
+    return this.adW;
   }
 
   public final String getPostalCode()
   {
-    return this.UO;
+    return this.adU;
   }
 
   public final String getSortingCode()
   {
-    return this.UP;
+    return this.adV;
   }
 
   public final int getVersionCode()
   {
-    return this.xM;
+    return this.BR;
   }
 
   public final boolean isPostBox()
   {
-    return this.UR;
+    return this.adX;
   }
 
   public final void writeToParcel(Parcel paramParcel, int paramInt)
@@ -149,7 +149,7 @@ public final class UserAddress
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.identity.intents.model.UserAddress
  * JD-Core Version:    0.6.2
  */

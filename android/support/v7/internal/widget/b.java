@@ -1,44 +1,53 @@
 package android.support.v7.internal.widget;
 
-import android.util.SparseArray;
+import android.support.v4.view.cd;
+import android.support.v4.view.cp;
+import android.support.v7.widget.ActionMenuView;
 import android.view.View;
 
-final class b
+public final class b
+  implements cp
 {
-  private final SparseArray<View> b = new SparseArray();
+  int a;
+  private boolean c = false;
 
-  b(AbsSpinnerICS paramAbsSpinnerICS)
+  protected b(a parama)
   {
   }
 
-  final View a(int paramInt)
+  public final b a(cd paramcd, int paramInt)
   {
-    View localView = (View)this.b.get(paramInt);
-    if (localView != null)
-      this.b.delete(paramInt);
-    return localView;
+    this.b.h = paramcd;
+    this.a = paramInt;
+    return this;
   }
 
-  final void a()
+  public final void a(View paramView)
   {
-    SparseArray localSparseArray = this.b;
-    int i = localSparseArray.size();
-    for (int j = 0; j < i; j++)
+    this.b.setVisibility(0);
+    this.c = false;
+  }
+
+  public final void b(View paramView)
+  {
+    if (this.c);
+    do
     {
-      View localView = (View)localSparseArray.valueAt(j);
-      if (localView != null)
-        AbsSpinnerICS.a(this.a, localView, true);
+      return;
+      this.b.h = null;
+      this.b.setVisibility(this.a);
     }
-    localSparseArray.clear();
+    while ((this.b.e == null) || (this.b.c == null));
+    this.b.c.setVisibility(this.a);
   }
 
-  public final void a(int paramInt, View paramView)
+  public final void c(View paramView)
   {
-    this.b.put(paramInt, paramView);
+    this.c = true;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v7.internal.widget.b
  * JD-Core Version:    0.6.2
  */

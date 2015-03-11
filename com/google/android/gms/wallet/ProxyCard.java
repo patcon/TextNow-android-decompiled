@@ -8,19 +8,19 @@ public final class ProxyCard
   implements SafeParcelable
 {
   public static final Parcelable.Creator<ProxyCard> CREATOR = new o();
-  String ajV;
-  String ajW;
-  int ajX;
-  int ajY;
-  private final int xM;
+  private final int BR;
+  String atF;
+  String atG;
+  int atH;
+  int atI;
 
   ProxyCard(int paramInt1, String paramString1, String paramString2, int paramInt2, int paramInt3)
   {
-    this.xM = paramInt1;
-    this.ajV = paramString1;
-    this.ajW = paramString2;
-    this.ajX = paramInt2;
-    this.ajY = paramInt3;
+    this.BR = paramInt1;
+    this.atF = paramString1;
+    this.atG = paramString2;
+    this.atH = paramInt2;
+    this.atI = paramInt3;
   }
 
   public final int describeContents()
@@ -30,27 +30,27 @@ public final class ProxyCard
 
   public final String getCvn()
   {
-    return this.ajW;
+    return this.atG;
   }
 
   public final int getExpirationMonth()
   {
-    return this.ajX;
+    return this.atH;
   }
 
   public final int getExpirationYear()
   {
-    return this.ajY;
+    return this.atI;
   }
 
   public final String getPan()
   {
-    return this.ajV;
+    return this.atF;
   }
 
   public final int getVersionCode()
   {
-    return this.xM;
+    return this.BR;
   }
 
   public final void writeToParcel(Parcel paramParcel, int paramInt)
@@ -59,7 +59,7 @@ public final class ProxyCard
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.ProxyCard
  * JD-Core Version:    0.6.2
  */

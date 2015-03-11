@@ -1,54 +1,83 @@
 package com.google.android.gms.internal;
 
-import android.os.Parcel;
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-import java.util.BitSet;
+import android.os.RemoteException;
 
-public class fg
-  implements SafeParcelable
+@ez
+public abstract class fg extends gg
 {
-  public static final fh CREATOR = new fh();
-  final int xM;
-  final fk[] xN;
-  public final String xO;
-  public final boolean xP;
+  private final fi pQ;
+  private final ff.a tu;
 
-  fg(int paramInt, fk[] paramArrayOffk, String paramString, boolean paramBoolean)
+  public fg(fi paramfi, ff.a parama)
   {
-    this.xM = paramInt;
-    this.xN = paramArrayOffk;
-    this.xO = paramString;
-    this.xP = paramBoolean;
+    this.pQ = paramfi;
+    this.tu = parama;
   }
 
-  public fg(String paramString, boolean paramBoolean, fk[] paramArrayOffk)
+  private static fk a(fm paramfm, fi paramfi)
   {
-    this(1, paramArrayOffk, paramString, paramBoolean);
-    BitSet localBitSet = new BitSet(fo.dP());
-    for (int i = 0; i < paramArrayOffk.length; i++)
+    try
     {
-      int j = paramArrayOffk[i].xW;
-      if (j != -1)
+      fk localfk = paramfm.b(paramfi);
+      return localfk;
+    }
+    catch (RemoteException localRemoteException)
+    {
+      gs.d("Could not fetch ad response from ad request service.", localRemoteException);
+      return null;
+    }
+    catch (NullPointerException localNullPointerException)
+    {
+      gs.d("Could not fetch ad response from ad request service due to an Exception.", localNullPointerException);
+      return null;
+    }
+    catch (SecurityException localSecurityException)
+    {
+      gs.d("Could not fetch ad response from ad request service due to an Exception.", localSecurityException);
+      return null;
+    }
+    catch (Throwable localThrowable)
+    {
+      gb.e(localThrowable);
+    }
+    return null;
+  }
+
+  public abstract void cC();
+
+  public abstract fm cD();
+
+  public final void co()
+  {
+    try
+    {
+      fm localfm = cD();
+      fk localfk;
+      if (localfm == null)
+        localfk = new fk(0);
+      while (true)
       {
-        if (localBitSet.get(j))
-          throw new IllegalArgumentException("Duplicate global search section type " + fo.H(j));
-        localBitSet.set(j);
+        cC();
+        this.tu.a(localfk);
+        return;
+        localfk = a(localfm, this.pQ);
+        if (localfk == null)
+          localfk = new fk(0);
       }
+    }
+    finally
+    {
+      cC();
     }
   }
 
-  public int describeContents()
+  public final void onStop()
   {
-    return 0;
-  }
-
-  public void writeToParcel(Parcel paramParcel, int paramInt)
-  {
-    fh.a(this, paramParcel, paramInt);
+    cC();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.fg
  * JD-Core Version:    0.6.2
  */

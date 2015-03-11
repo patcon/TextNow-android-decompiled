@@ -1,211 +1,312 @@
 package textnow.aw;
 
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.os.Environment;
-import com.tremorvideo.sdk.android.videoad.bd;
-import com.tremorvideo.sdk.android.videoad.r;
-import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import textnow.ax.m;
+import android.graphics.Camera;
+import android.graphics.Matrix;
+import android.graphics.RectF;
+import android.os.Build.VERSION;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.Transformation;
+import java.lang.ref.WeakReference;
+import java.util.WeakHashMap;
 
-public final class a
+public final class a extends Animation
 {
-  public String a;
-  private bd b;
-  private Context c;
-  private boolean d = false;
-  private boolean e = false;
+  public static final boolean a;
+  private static final WeakHashMap<View, a> b;
+  private final WeakReference<View> c;
+  private final Camera d = new Camera();
+  private boolean e;
+  private float f = 1.0F;
+  private float g;
+  private float h;
+  private float i;
+  private float j;
+  private float k;
+  private float l = 1.0F;
+  private float m = 1.0F;
+  private float n;
+  private float o;
+  private final RectF p = new RectF();
+  private final RectF q = new RectF();
+  private final Matrix r = new Matrix();
 
-  public a(Context paramContext)
+  static
   {
-    this.c = paramContext;
-    if (this.c.getPackageManager().checkPermission("android.permission.WRITE_EXTERNAL_STORAGE", this.c.getApplicationContext().getPackageName()) == 0);
-    for (this.e = true; ; this.e = false)
+    if (Integer.valueOf(Build.VERSION.SDK).intValue() < 11);
+    for (boolean bool = true; ; bool = false)
     {
-      File localFile1 = Environment.getExternalStorageDirectory();
-      this.a = (localFile1.getAbsolutePath() + "/tremor/mraid/");
-      File localFile2 = new File(this.a);
-      if (!localFile2.exists())
-        localFile2.mkdirs();
+      a = bool;
+      b = new WeakHashMap();
       return;
     }
   }
 
-  private void a(File paramFile)
+  private a(View paramView)
   {
-    if (paramFile.isDirectory())
-    {
-      File[] arrayOfFile = paramFile.listFiles();
-      int i = arrayOfFile.length;
-      for (int j = 0; j < i; j++)
-        a(arrayOfFile[j]);
-    }
-    paramFile.delete();
+    setDuration(0L);
+    setFillAfter(true);
+    paramView.setAnimation(this);
+    this.c = new WeakReference(paramView);
   }
 
-  private String d(String paramString)
+  public static a a(View paramView)
   {
-    String str1;
-    if ("mounted".equals(Environment.getExternalStorageState()))
+    a locala = (a)b.get(paramView);
+    if ((locala == null) || (locala != paramView.getAnimation()))
     {
-      this.d = true;
-      if ((!this.d) || (!this.e));
+      locala = new a(paramView);
+      b.put(paramView, locala);
     }
-    else
+    return locala;
+  }
+
+  private void a(Matrix paramMatrix, View paramView)
+  {
+    float f1 = paramView.getWidth();
+    float f2 = paramView.getHeight();
+    boolean bool = this.e;
+    float f3;
+    if (bool)
     {
-      FileInputStream localFileInputStream;
-      ZipInputStream localZipInputStream;
-      while (true)
+      f3 = this.g;
+      if (!bool)
+        break label233;
+    }
+    label233: for (float f4 = this.h; ; f4 = f2 / 2.0F)
+    {
+      float f5 = this.i;
+      float f6 = this.j;
+      float f7 = this.k;
+      if ((f5 != 0.0F) || (f6 != 0.0F) || (f7 != 0.0F))
       {
-        String str2;
-        try
-        {
-          localFileInputStream = new FileInputStream(paramString);
-          localZipInputStream = new ZipInputStream(new BufferedInputStream(localFileInputStream));
-          str1 = null;
-          ZipEntry localZipEntry = localZipInputStream.getNextEntry();
-          if (localZipEntry == null)
-            break label320;
-          str2 = localZipEntry.getName();
-          if (!str2.equals("main.js"))
-            break label172;
-          str1 = "main.html";
-          if (!localZipEntry.isDirectory())
-            break label188;
-          String str3 = this.a;
-          File localFile = new File(str3 + str2);
-          if (localFile.isDirectory())
-            continue;
-          localFile.mkdirs();
-          continue;
-        }
-        catch (IOException localIOException)
-        {
-          r.a(localIOException);
-          this.d = false;
-          return null;
-        }
-        this.d = false;
-        break;
-        label172: if (str2.equals("main.html"))
-        {
-          str1 = "main.html";
-          continue;
-          label188: ByteArrayOutputStream localByteArrayOutputStream = new ByteArrayOutputStream();
-          byte[] arrayOfByte = new byte[1024];
-          StringBuilder localStringBuilder = new StringBuilder().append(this.a);
-          if (str2.equals("main.js"))
-            str2 = "main.html";
-          FileOutputStream localFileOutputStream = new FileOutputStream(str2);
-          while (true)
-          {
-            int i = localZipInputStream.read(arrayOfByte);
-            if (i == -1)
-              break;
-            localByteArrayOutputStream.write(arrayOfByte, 0, i);
-            localByteArrayOutputStream.toByteArray();
-            localFileOutputStream.write(localByteArrayOutputStream.toByteArray());
-            localByteArrayOutputStream.reset();
-          }
-          localFileOutputStream.close();
-          localZipInputStream.closeEntry();
-          localByteArrayOutputStream.close();
-        }
+        Camera localCamera = this.d;
+        localCamera.save();
+        localCamera.rotateX(f5);
+        localCamera.rotateY(f6);
+        localCamera.rotateZ(-f7);
+        localCamera.getMatrix(paramMatrix);
+        localCamera.restore();
+        paramMatrix.preTranslate(-f3, -f4);
+        paramMatrix.postTranslate(f3, f4);
       }
-      label320: localZipInputStream.close();
-      localFileInputStream.close();
-    }
-    while (true)
-    {
-      return str1;
-      str1 = null;
-    }
-  }
-
-  public final String a(String paramString)
-  {
-    return d(paramString);
-  }
-
-  public final void a()
-  {
-    a(new File(this.a));
-  }
-
-  public final void a(bd parambd)
-  {
-    this.b = parambd;
-  }
-
-  public final String b(String paramString)
-  {
-    String str = paramString.substring(1 + paramString.lastIndexOf("/"));
-    if (str.endsWith(".js"))
-      str = str.replace(".js", ".html");
-    File localFile = new File(this.a + str);
-    if (localFile.exists())
-      localFile.delete();
-    DefaultHttpClient localDefaultHttpClient = new DefaultHttpClient();
-    ByteArrayOutputStream localByteArrayOutputStream;
-    FileOutputStream localFileOutputStream;
-    try
-    {
-      localByteArrayOutputStream = new ByteArrayOutputStream();
-      localFileOutputStream = new FileOutputStream(localFile);
-      HttpGet localHttpGet = new HttpGet(paramString);
-      m.a(localHttpGet, paramString);
-      HttpEntity localHttpEntity = localDefaultHttpClient.execute(localHttpGet).getEntity();
-      if (localHttpEntity != null)
+      float f8 = this.l;
+      float f9 = this.m;
+      if ((f8 != 1.0F) || (f9 != 1.0F))
       {
-        InputStream localInputStream = localHttpEntity.getContent();
-        byte[] arrayOfByte = new byte[4096];
-        while (true)
-        {
-          int i = localInputStream.read(arrayOfByte);
-          if (i == -1)
-            break;
-          localByteArrayOutputStream.write(arrayOfByte, 0, i);
-          localByteArrayOutputStream.toByteArray();
-          localFileOutputStream.write(localByteArrayOutputStream.toByteArray());
-          localByteArrayOutputStream.reset();
-        }
+        paramMatrix.postScale(f8, f9);
+        paramMatrix.postTranslate(-(f3 / f1) * (f8 * f1 - f1), -(f4 / f2) * (f9 * f2 - f2));
       }
+      paramMatrix.postTranslate(this.n, this.o);
+      return;
+      f3 = f1 / 2.0F;
+      break;
     }
-    catch (Exception localException)
+  }
+
+  private void a(RectF paramRectF, View paramView)
+  {
+    paramRectF.set(0.0F, 0.0F, paramView.getWidth(), paramView.getHeight());
+    Matrix localMatrix = this.r;
+    localMatrix.reset();
+    a(localMatrix, paramView);
+    this.r.mapRect(paramRectF);
+    paramRectF.offset(paramView.getLeft(), paramView.getTop());
+    if (paramRectF.right < paramRectF.left)
     {
-      r.a(localException);
-      return str;
+      float f2 = paramRectF.right;
+      paramRectF.right = paramRectF.left;
+      paramRectF.left = f2;
     }
-    localFileOutputStream.close();
-    localByteArrayOutputStream.close();
-    return str;
+    if (paramRectF.bottom < paramRectF.top)
+    {
+      float f1 = paramRectF.top;
+      paramRectF.top = paramRectF.bottom;
+      paramRectF.bottom = f1;
+    }
   }
 
-  public final boolean b()
+  private void k()
   {
-    return (this.d) && (this.e);
+    View localView = (View)this.c.get();
+    if (localView != null)
+      a(this.p, localView);
   }
 
-  public final void c(String paramString)
+  private void l()
   {
-    d(paramString);
+    View localView = (View)this.c.get();
+    if ((localView == null) || (localView.getParent() == null))
+      return;
+    RectF localRectF = this.q;
+    a(localRectF, localView);
+    localRectF.union(this.p);
+    ((View)localView.getParent()).invalidate((int)Math.floor(localRectF.left), (int)Math.floor(localRectF.top), (int)Math.ceil(localRectF.right), (int)Math.ceil(localRectF.bottom));
+  }
+
+  public final float a()
+  {
+    return this.f;
+  }
+
+  public final void a(float paramFloat)
+  {
+    if (this.f != paramFloat)
+    {
+      this.f = paramFloat;
+      View localView = (View)this.c.get();
+      if (localView != null)
+        localView.invalidate();
+    }
+  }
+
+  protected final void applyTransformation(float paramFloat, Transformation paramTransformation)
+  {
+    View localView = (View)this.c.get();
+    if (localView != null)
+    {
+      paramTransformation.setAlpha(this.f);
+      a(paramTransformation.getMatrix(), localView);
+    }
+  }
+
+  public final float b()
+  {
+    return this.k;
+  }
+
+  public final void b(float paramFloat)
+  {
+    if (this.k != paramFloat)
+    {
+      k();
+      this.k = paramFloat;
+      l();
+    }
+  }
+
+  public final float c()
+  {
+    return this.i;
+  }
+
+  public final void c(float paramFloat)
+  {
+    if (this.i != paramFloat)
+    {
+      k();
+      this.i = paramFloat;
+      l();
+    }
+  }
+
+  public final float d()
+  {
+    return this.j;
+  }
+
+  public final void d(float paramFloat)
+  {
+    if (this.j != paramFloat)
+    {
+      k();
+      this.j = paramFloat;
+      l();
+    }
+  }
+
+  public final float e()
+  {
+    return this.l;
+  }
+
+  public final void e(float paramFloat)
+  {
+    if (this.l != paramFloat)
+    {
+      k();
+      this.l = paramFloat;
+      l();
+    }
+  }
+
+  public final float f()
+  {
+    return this.m;
+  }
+
+  public final void f(float paramFloat)
+  {
+    if (this.m != paramFloat)
+    {
+      k();
+      this.m = paramFloat;
+      l();
+    }
+  }
+
+  public final float g()
+  {
+    return this.n;
+  }
+
+  public final void g(float paramFloat)
+  {
+    if (this.n != paramFloat)
+    {
+      k();
+      this.n = paramFloat;
+      l();
+    }
+  }
+
+  public final float h()
+  {
+    return this.o;
+  }
+
+  public final void h(float paramFloat)
+  {
+    if (this.o != paramFloat)
+    {
+      k();
+      this.o = paramFloat;
+      l();
+    }
+  }
+
+  public final float i()
+  {
+    View localView = (View)this.c.get();
+    if (localView == null)
+      return 0.0F;
+    return localView.getLeft() + this.n;
+  }
+
+  public final void i(float paramFloat)
+  {
+    View localView = (View)this.c.get();
+    if (localView != null)
+      g(paramFloat - localView.getLeft());
+  }
+
+  public final float j()
+  {
+    View localView = (View)this.c.get();
+    if (localView == null)
+      return 0.0F;
+    return localView.getTop() + this.o;
+  }
+
+  public final void j(float paramFloat)
+  {
+    View localView = (View)this.c.get();
+    if (localView != null)
+      h(paramFloat - localView.getTop());
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.aw.a
  * JD-Core Version:    0.6.2
  */

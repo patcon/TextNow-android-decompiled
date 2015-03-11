@@ -3,6 +3,7 @@ package com.enflick.android.TextNow.views;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.res.Resources;
+import android.os.Parcelable;
 import android.text.Editable;
 import android.text.Layout;
 import android.text.Selection;
@@ -12,9 +13,10 @@ import android.text.style.ClickableSpan;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View.BaseSavedState;
 import android.widget.TextView;
 import android.widget.Toast;
-import textnow.q.b;
+import textnow.v.b;
 
 public class LinkifiedTextView extends TextView
 {
@@ -53,6 +55,19 @@ public class LinkifiedTextView extends TextView
     }
   }
 
+  public Parcelable onSaveInstanceState()
+  {
+    try
+    {
+      Parcelable localParcelable = super.onSaveInstanceState();
+      return localParcelable;
+    }
+    catch (Exception localException)
+    {
+    }
+    return View.BaseSavedState.EMPTY_STATE;
+  }
+
   public boolean onTouchEvent(MotionEvent paramMotionEvent)
   {
     CharSequence localCharSequence = getText();
@@ -88,7 +103,7 @@ public class LinkifiedTextView extends TextView
               new StringBuilder().append("No activity could respond to this intent: ").append(localCharSequence.toString()).toString();
               if (!b.a(localCharSequence.toString()));
             }
-            for (String str = localContext.getResources().getString(2131493161); ; str = localContext.getResources().getString(2131493025))
+            for (String str = localContext.getResources().getString(2131296573); ; str = localContext.getResources().getString(2131296432))
             {
               Toast.makeText(localContext, str, 0).show();
               break;
@@ -103,7 +118,7 @@ public class LinkifiedTextView extends TextView
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.views.LinkifiedTextView
  * JD-Core Version:    0.6.2
  */

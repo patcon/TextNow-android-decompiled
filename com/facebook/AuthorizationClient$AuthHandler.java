@@ -52,7 +52,7 @@ abstract class AuthorizationClient$AuthHandler
   abstract boolean tryAuthorize(AuthorizationClient.AuthorizationRequest paramAuthorizationRequest);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.AuthorizationClient.AuthHandler
  * JD-Core Version:    0.6.2
  */

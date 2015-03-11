@@ -1,65 +1,53 @@
 package com.google.android.gms.internal;
 
-import android.net.Uri;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.plus.Moments;
-import com.google.android.gms.plus.Moments.LoadMomentsResult;
-import com.google.android.gms.plus.internal.e;
-import com.google.android.gms.plus.model.moments.Moment;
+import android.content.Context;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.os.Looper;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.common.internal.e;
+import com.google.android.gms.common.internal.e.e;
+import com.google.android.gms.common.internal.l;
 
-public final class kl
-  implements Moments
+public class kl extends e<kp>
+  implements kk
 {
-  public final PendingResult<Moments.LoadMomentsResult> load(GoogleApiClient paramGoogleApiClient)
+  private final String Dd;
+
+  public kl(Context paramContext, Looper paramLooper, GoogleApiClient.ConnectionCallbacks paramConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener paramOnConnectionFailedListener, String paramString, String[] paramArrayOfString)
   {
-    // Byte code:
-    //   0: aload_1
-    //   1: new 14	com/google/android/gms/internal/kl$1
-    //   4: dup
-    //   5: aload_0
-    //   6: invokespecial 17	com/google/android/gms/internal/kl$1:<init>	(Lcom/google/android/gms/internal/kl;)V
-    //   9: invokeinterface 23 2 0
-    //   14: areturn
+    super(paramContext, paramLooper, paramConnectionCallbacks, paramOnConnectionFailedListener, paramArrayOfString);
+    this.Dd = paramString;
   }
 
-  public final PendingResult<Moments.LoadMomentsResult> load(GoogleApiClient paramGoogleApiClient, final int paramInt, final String paramString1, final Uri paramUri, final String paramString2, final String paramString3)
+  protected void a(l paraml, e.e parame)
   {
-    return paramGoogleApiClient.a(new kl.a(paramInt)
-    {
-      protected void a(e paramAnonymouse)
-      {
-        paramAnonymouse.a(this, paramInt, paramString1, paramUri, paramString2, paramString3);
-      }
-    });
+    paraml.a(parame, 6171000, getContext().getPackageName(), this.Dd, gR(), new Bundle());
   }
 
-  public final PendingResult<Status> remove(GoogleApiClient paramGoogleApiClient, final String paramString)
+  protected kp ao(IBinder paramIBinder)
   {
-    return paramGoogleApiClient.b(new kl.b(paramString)
-    {
-      protected void a(e paramAnonymouse)
-      {
-        paramAnonymouse.removeMoment(paramString);
-        b(Status.En);
-      }
-    });
+    return kp.a.as(paramIBinder);
   }
 
-  public final PendingResult<Status> write(GoogleApiClient paramGoogleApiClient, final Moment paramMoment)
+  protected String getServiceDescriptor()
   {
-    return paramGoogleApiClient.b(new kl.c(paramMoment)
-    {
-      protected void a(e paramAnonymouse)
-      {
-        paramAnonymouse.a(this, paramMoment);
-      }
-    });
+    return "com.google.android.gms.fitness.internal.IGoogleFitnessService";
+  }
+
+  protected String getStartServiceAction()
+  {
+    return "com.google.android.gms.fitness.GoogleFitnessService.START";
+  }
+
+  public kp jb()
+  {
+    return (kp)gS();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.kl
  * JD-Core Version:    0.6.2
  */

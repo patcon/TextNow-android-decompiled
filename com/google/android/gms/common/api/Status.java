@@ -4,35 +4,40 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.os.Parcel;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.internal.n;
+import com.google.android.gms.common.internal.n.a;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-import com.google.android.gms.internal.hk;
-import com.google.android.gms.internal.hk.a;
 
 public final class Status
   implements Result, SafeParcelable
 {
   public static final StatusCreator CREATOR = new StatusCreator();
-  public static final Status En = new Status(0);
-  public static final Status Eo = new Status(14);
-  public static final Status Ep = new Status(8);
-  public static final Status Eq = new Status(15);
-  public static final Status Er = new Status(16);
-  private final int CT;
-  private final String Es;
+  public static final Status Jv = new Status(0);
+  public static final Status Jw = new Status(14);
+  public static final Status Jx = new Status(8);
+  public static final Status Jy = new Status(15);
+  public static final Status Jz = new Status(16);
+  private final int BR;
+  private final int HF;
+  private final String JA;
   private final PendingIntent mPendingIntent;
-  private final int xM;
 
   public Status(int paramInt)
   {
-    this(1, paramInt, null, null);
+    this(paramInt, null);
   }
 
   Status(int paramInt1, int paramInt2, String paramString, PendingIntent paramPendingIntent)
   {
-    this.xM = paramInt1;
-    this.CT = paramInt2;
-    this.Es = paramString;
+    this.BR = paramInt1;
+    this.HF = paramInt2;
+    this.JA = paramString;
     this.mPendingIntent = paramPendingIntent;
+  }
+
+  public Status(int paramInt, String paramString)
+  {
+    this(1, paramInt, paramString, null);
   }
 
   public Status(int paramInt, String paramString, PendingIntent paramPendingIntent)
@@ -40,27 +45,16 @@ public final class Status
     this(1, paramInt, paramString, paramPendingIntent);
   }
 
-  private String ex()
+  private String fX()
   {
-    if (this.Es != null)
-      return this.Es;
-    return CommonStatusCodes.getStatusCodeString(this.CT);
+    if (this.JA != null)
+      return this.JA;
+    return CommonStatusCodes.getStatusCodeString(this.HF);
   }
 
   public final int describeContents()
   {
     return 0;
-  }
-
-  final PendingIntent eQ()
-  {
-    return this.mPendingIntent;
-  }
-
-  @Deprecated
-  public final ConnectionResult eR()
-  {
-    return new ConnectionResult(this.CT, this.mPendingIntent);
   }
 
   public final boolean equals(Object paramObject)
@@ -72,8 +66,13 @@ public final class Status
       return false;
       localStatus = (Status)paramObject;
     }
-    while ((this.xM != localStatus.xM) || (this.CT != localStatus.CT) || (!hk.equal(this.Es, localStatus.Es)) || (!hk.equal(this.mPendingIntent, localStatus.mPendingIntent)));
+    while ((this.BR != localStatus.BR) || (this.HF != localStatus.HF) || (!n.equal(this.JA, localStatus.JA)) || (!n.equal(this.mPendingIntent, localStatus.mPendingIntent)));
     return true;
+  }
+
+  final PendingIntent getPendingIntent()
+  {
+    return this.mPendingIntent;
   }
 
   public final PendingIntent getResolution()
@@ -88,17 +87,23 @@ public final class Status
 
   public final int getStatusCode()
   {
-    return this.CT;
+    return this.HF;
   }
 
   public final String getStatusMessage()
   {
-    return this.Es;
+    return this.JA;
   }
 
   final int getVersionCode()
   {
-    return this.xM;
+    return this.BR;
+  }
+
+  @Deprecated
+  public final ConnectionResult gt()
+  {
+    return new ConnectionResult(this.HF, this.mPendingIntent);
   }
 
   public final boolean hasResolution()
@@ -109,26 +114,26 @@ public final class Status
   public final int hashCode()
   {
     Object[] arrayOfObject = new Object[4];
-    arrayOfObject[0] = Integer.valueOf(this.xM);
-    arrayOfObject[1] = Integer.valueOf(this.CT);
-    arrayOfObject[2] = this.Es;
+    arrayOfObject[0] = Integer.valueOf(this.BR);
+    arrayOfObject[1] = Integer.valueOf(this.HF);
+    arrayOfObject[2] = this.JA;
     arrayOfObject[3] = this.mPendingIntent;
-    return hk.hashCode(arrayOfObject);
+    return n.hashCode(arrayOfObject);
   }
 
   public final boolean isCanceled()
   {
-    return this.CT == 16;
+    return this.HF == 16;
   }
 
   public final boolean isInterrupted()
   {
-    return this.CT == 14;
+    return this.HF == 14;
   }
 
   public final boolean isSuccess()
   {
-    return this.CT <= 0;
+    return this.HF <= 0;
   }
 
   public final void startResolutionForResult(Activity paramActivity, int paramInt)
@@ -140,7 +145,7 @@ public final class Status
 
   public final String toString()
   {
-    return hk.e(this).a("statusCode", ex()).a("resolution", this.mPendingIntent).toString();
+    return n.h(this).a("statusCode", fX()).a("resolution", this.mPendingIntent).toString();
   }
 
   public final void writeToParcel(Parcel paramParcel, int paramInt)
@@ -149,7 +154,7 @@ public final class Status
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.common.api.Status
  * JD-Core Version:    0.6.2
  */

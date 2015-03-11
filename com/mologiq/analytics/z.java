@@ -1,32 +1,17 @@
 package com.mologiq.analytics;
 
-public final class z
+ enum z
 {
-  private String a;
-  private String b;
-
-  public final String a()
+  static
   {
-    return this.a;
-  }
-
-  public final void a(String paramString)
-  {
-    this.a = paramString;
-  }
-
-  public final String b()
-  {
-    return this.b;
-  }
-
-  public final void b(String paramString)
-  {
-    this.b = paramString;
+    z[] arrayOfz = new z[3];
+    arrayOfz[0] = a;
+    arrayOfz[1] = b;
+    arrayOfz[2] = c;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.mologiq.analytics.z
  * JD-Core Version:    0.6.2
  */

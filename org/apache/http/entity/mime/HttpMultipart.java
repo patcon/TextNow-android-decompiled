@@ -169,7 +169,7 @@ public class HttpMultipart
     {
       long l2 = ((FormBodyPart)localIterator.next()).getBody().getContentLength();
       if (l2 >= 0L)
-        l1 += l2;
+        l1 = l2 + l1;
       else
         return -1L;
     }
@@ -192,7 +192,7 @@ public class HttpMultipart
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     org.apache.http.entity.mime.HttpMultipart
  * JD-Core Version:    0.6.2
  */

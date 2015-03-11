@@ -13,26 +13,26 @@ public class a
 {
   static void a(ApplicationMetadata paramApplicationMetadata, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
+    int i = b.D(paramParcel);
     b.c(paramParcel, 1, paramApplicationMetadata.getVersionCode());
     b.a(paramParcel, 2, paramApplicationMetadata.getApplicationId(), false);
     b.a(paramParcel, 3, paramApplicationMetadata.getName(), false);
-    b.b(paramParcel, 4, paramApplicationMetadata.getImages(), false);
-    b.a(paramParcel, 5, paramApplicationMetadata.zR, false);
+    b.c(paramParcel, 4, paramApplicationMetadata.getImages(), false);
+    b.b(paramParcel, 5, paramApplicationMetadata.EB, false);
     b.a(paramParcel, 6, paramApplicationMetadata.getSenderAppIdentifier(), false);
-    b.a(paramParcel, 7, paramApplicationMetadata.dX(), paramInt, false);
-    b.G(paramParcel, i);
+    b.a(paramParcel, 7, paramApplicationMetadata.fu(), paramInt, false);
+    b.H(paramParcel, i);
   }
 
-  public ApplicationMetadata[] M(int paramInt)
+  public ApplicationMetadata[] U(int paramInt)
   {
     return new ApplicationMetadata[paramInt];
   }
 
-  public ApplicationMetadata r(Parcel paramParcel)
+  public ApplicationMetadata t(Parcel paramParcel)
   {
     Uri localUri = null;
-    int i = com.google.android.gms.common.internal.safeparcel.a.B(paramParcel);
+    int i = com.google.android.gms.common.internal.safeparcel.a.C(paramParcel);
     int j = 0;
     String str1 = null;
     ArrayList localArrayList1 = null;
@@ -41,8 +41,8 @@ public class a
     String str3 = null;
     while (paramParcel.dataPosition() < i)
     {
-      int k = com.google.android.gms.common.internal.safeparcel.a.A(paramParcel);
-      switch (com.google.android.gms.common.internal.safeparcel.a.ar(k))
+      int k = com.google.android.gms.common.internal.safeparcel.a.B(paramParcel);
+      switch (com.google.android.gms.common.internal.safeparcel.a.aD(k))
       {
       default:
         com.google.android.gms.common.internal.safeparcel.a.b(paramParcel, k);
@@ -60,7 +60,7 @@ public class a
         localArrayList2 = com.google.android.gms.common.internal.safeparcel.a.c(paramParcel, k, WebImage.CREATOR);
         break;
       case 5:
-        localArrayList1 = com.google.android.gms.common.internal.safeparcel.a.B(paramParcel, k);
+        localArrayList1 = com.google.android.gms.common.internal.safeparcel.a.C(paramParcel, k);
         break;
       case 6:
         str1 = com.google.android.gms.common.internal.safeparcel.a.o(paramParcel, k);
@@ -75,7 +75,7 @@ public class a
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.cast.a
  * JD-Core Version:    0.6.2
  */

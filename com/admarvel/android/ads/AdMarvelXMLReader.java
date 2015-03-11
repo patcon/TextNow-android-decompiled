@@ -104,7 +104,7 @@ public class AdMarvelXMLReader extends DefaultHandler
   public void characters(char[] paramArrayOfChar, int paramInt1, int paramInt2)
   {
     String str = new String(paramArrayOfChar).substring(paramInt1, paramInt1 + paramInt2);
-    ((AdMarvelXMLElement)this.b.peek()).a(str);
+    ((AdMarvelXMLElement)this.b.peek()).appendData(str);
   }
 
   public void endElement(String paramString1, String paramString2, String paramString3)
@@ -142,18 +142,18 @@ public class AdMarvelXMLReader extends DefaultHandler
       this.b.push(localAdMarvelXMLElement1);
       return;
       AdMarvelXMLElement localAdMarvelXMLElement2 = (AdMarvelXMLElement)this.b.peek();
-      ArrayList localArrayList = (ArrayList)localAdMarvelXMLElement2.c().get(paramString2);
+      ArrayList localArrayList = (ArrayList)localAdMarvelXMLElement2.getChildren().get(paramString2);
       if (localArrayList == null)
       {
         localArrayList = new ArrayList();
-        localAdMarvelXMLElement2.c().put(paramString2, localArrayList);
+        localAdMarvelXMLElement2.getChildren().put(paramString2, localArrayList);
       }
       localArrayList.add(localAdMarvelXMLElement1);
     }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.AdMarvelXMLReader
  * JD-Core Version:    0.6.2
  */

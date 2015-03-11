@@ -14,7 +14,7 @@ public final class lz$i extends lz.k<Long>
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.flurry.sdk.lz.i
  * JD-Core Version:    0.6.2
  */

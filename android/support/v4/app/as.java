@@ -1,61 +1,20 @@
 package android.support.v4.app;
 
-import android.app.PendingIntent;
+import android.app.Notification;
 import android.os.Bundle;
+import android.os.Parcelable;
+import java.util.ArrayList;
 
-public final class as extends bm
+abstract interface as
 {
-  public static final bn d = new bn()
-  {
-  };
-  public int a;
-  public CharSequence b;
-  public PendingIntent c;
-  private final Bundle e;
-  private final bs[] f;
+  public abstract Notification a(ap paramap);
 
-  public as(int paramInt, CharSequence paramCharSequence, PendingIntent paramPendingIntent)
-  {
-    this(paramInt, paramCharSequence, paramPendingIntent, new Bundle(), null);
-  }
+  public abstract Bundle a(Notification paramNotification);
 
-  private as(int paramInt, CharSequence paramCharSequence, PendingIntent paramPendingIntent, Bundle paramBundle, bs[] paramArrayOfbs)
-  {
-    this.a = paramInt;
-    this.b = av.e(paramCharSequence);
-    this.c = paramPendingIntent;
-    if (paramBundle != null);
-    while (true)
-    {
-      this.e = paramBundle;
-      this.f = null;
-      return;
-      paramBundle = new Bundle();
-    }
-  }
-
-  protected final int a()
-  {
-    return this.a;
-  }
-
-  protected final CharSequence b()
-  {
-    return this.b;
-  }
-
-  protected final PendingIntent c()
-  {
-    return this.c;
-  }
-
-  public final Bundle d()
-  {
-    return this.e;
-  }
+  public abstract ArrayList<Parcelable> a(al[] paramArrayOfal);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.app.as
  * JD-Core Version:    0.6.2
  */

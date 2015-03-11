@@ -32,12 +32,9 @@ public class ao
   {
     this.e = new av(new ew(), paramString, paramLong1, paramBoolean);
     this.f = paramLong2;
-    if (Runtime.getRuntime().availableProcessors() > 1);
-    for (int j = 2; ; j = 1)
-    {
-      this.g = j;
-      return;
-    }
+    if (Runtime.getRuntime().availableProcessors() > j)
+      j = 2;
+    this.g = j;
   }
 
   private void a(aq paramaq)
@@ -571,7 +568,7 @@ public class ao
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.flurry.sdk.ao
  * JD-Core Version:    0.6.2
  */

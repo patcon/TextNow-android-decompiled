@@ -24,8 +24,8 @@ class Session$TokenRefreshRequest
 
   private void cleanup()
   {
-    if (Session.access$1200(this.this$0) == this)
-      Session.access$1202(this.this$0, null);
+    if (Session.access$1600(this.this$0) == this)
+      Session.access$1602(this.this$0, null);
   }
 
   private void refreshToken()
@@ -49,7 +49,7 @@ class Session$TokenRefreshRequest
   public void bind()
   {
     Intent localIntent = NativeProtocol.createTokenRefreshIntent(Session.getStaticContext());
-    if ((localIntent != null) && (Session.access$1100().bindService(localIntent, this, 1)))
+    if ((localIntent != null) && (Session.access$1500().bindService(localIntent, this, 1)))
     {
       this.this$0.setLastAttemptedTokenExtendDate(new Date());
       return;
@@ -66,11 +66,18 @@ class Session$TokenRefreshRequest
   public void onServiceDisconnected(ComponentName paramComponentName)
   {
     cleanup();
-    Session.access$1100().unbindService(this);
+    try
+    {
+      Session.access$1500().unbindService(this);
+      return;
+    }
+    catch (IllegalArgumentException localIllegalArgumentException)
+    {
+    }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.Session.TokenRefreshRequest
  * JD-Core Version:    0.6.2
  */

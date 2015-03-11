@@ -1,27 +1,33 @@
 package com.google.android.gms.internal;
 
 import android.os.Binder;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
 import android.os.Parcelable.Creator;
-import com.google.android.gms.dynamic.c;
-import com.google.android.gms.dynamic.c.a;
-import com.google.android.gms.dynamic.d;
-import com.google.android.gms.dynamic.d.a;
-import com.google.android.gms.wallet.fragment.WalletFragmentOptions;
 
 public abstract class ln$a extends Binder
   implements ln
 {
-  public static ln br(IBinder paramIBinder)
+  public ln$a()
+  {
+    attachInterface(this, "com.google.android.gms.identity.intents.internal.IAddressCallbacks");
+  }
+
+  public static ln aG(IBinder paramIBinder)
   {
     if (paramIBinder == null)
       return null;
-    IInterface localIInterface = paramIBinder.queryLocalInterface("com.google.android.gms.wallet.internal.IWalletDynamiteCreator");
+    IInterface localIInterface = paramIBinder.queryLocalInterface("com.google.android.gms.identity.intents.internal.IAddressCallbacks");
     if ((localIInterface != null) && ((localIInterface instanceof ln)))
       return (ln)localIInterface;
     return new ln.a.a(paramIBinder);
+  }
+
+  public IBinder asBinder()
+  {
+    return this;
   }
 
   public boolean onTransact(int paramInt1, Parcel paramParcel1, Parcel paramParcel2, int paramInt2)
@@ -31,28 +37,23 @@ public abstract class ln$a extends Binder
     default:
       return super.onTransact(paramInt1, paramParcel1, paramParcel2, paramInt2);
     case 1598968902:
-      paramParcel2.writeString("com.google.android.gms.wallet.internal.IWalletDynamiteCreator");
+      paramParcel2.writeString("com.google.android.gms.identity.intents.internal.IAddressCallbacks");
       return true;
-    case 1:
+    case 2:
     }
-    paramParcel1.enforceInterface("com.google.android.gms.wallet.internal.IWalletDynamiteCreator");
-    d locald = d.a.ag(paramParcel1.readStrongBinder());
-    c localc = c.a.af(paramParcel1.readStrongBinder());
+    paramParcel1.enforceInterface("com.google.android.gms.identity.intents.internal.IAddressCallbacks");
+    int i = paramParcel1.readInt();
     if (paramParcel1.readInt() != 0);
-    for (WalletFragmentOptions localWalletFragmentOptions = (WalletFragmentOptions)WalletFragmentOptions.CREATOR.createFromParcel(paramParcel1); ; localWalletFragmentOptions = null)
+    for (Bundle localBundle = (Bundle)Bundle.CREATOR.createFromParcel(paramParcel1); ; localBundle = null)
     {
-      lk locallk = a(locald, localc, localWalletFragmentOptions, ll.a.bp(paramParcel1.readStrongBinder()));
+      g(i, localBundle);
       paramParcel2.writeNoException();
-      IBinder localIBinder = null;
-      if (locallk != null)
-        localIBinder = locallk.asBinder();
-      paramParcel2.writeStrongBinder(localIBinder);
       return true;
     }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ln.a
  * JD-Core Version:    0.6.2
  */

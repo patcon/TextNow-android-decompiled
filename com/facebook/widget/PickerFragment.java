@@ -37,6 +37,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public abstract class PickerFragment<T extends GraphObject> extends Fragment
@@ -76,6 +77,7 @@ public abstract class PickerFragment<T extends GraphObject> extends Fragment
     }
   };
   private PickerFragment.OnSelectionChangedListener onSelectionChangedListener;
+  private Set<String> selectionHint;
   private PickerFragment<T>.SelectionStrategy selectionStrategy;
   private SessionTracker sessionTracker;
   private boolean showPictures = true;
@@ -338,8 +340,14 @@ public abstract class PickerFragment<T extends GraphObject> extends Fragment
 
   public void loadData(boolean paramBoolean)
   {
+    loadData(paramBoolean, null);
+  }
+
+  public void loadData(boolean paramBoolean, Set<String> paramSet)
+  {
     if ((!paramBoolean) && (this.loadingStrategy.isDataPresentOrLoading()))
       return;
+    this.selectionHint = paramSet;
     loadDataSkippingRoundTripIfCached();
   }
 
@@ -426,15 +434,15 @@ public abstract class PickerFragment<T extends GraphObject> extends Fragment
   {
     super.onInflate(paramActivity, paramAttributeSet, paramBundle);
     TypedArray localTypedArray = paramActivity.obtainStyledAttributes(paramAttributeSet, R.styleable.com_facebook_picker_fragment);
-    setShowPictures(localTypedArray.getBoolean(0, this.showPictures));
-    String str = localTypedArray.getString(1);
+    setShowPictures(localTypedArray.getBoolean(R.styleable.com_facebook_picker_fragment_show_pictures, this.showPictures));
+    String str = localTypedArray.getString(R.styleable.com_facebook_picker_fragment_extra_fields);
     if (str != null)
       setExtraFields(Arrays.asList(str.split(",")));
-    this.showTitleBar = localTypedArray.getBoolean(2, this.showTitleBar);
-    this.titleText = localTypedArray.getString(3);
-    this.doneButtonText = localTypedArray.getString(4);
-    this.titleBarBackground = localTypedArray.getDrawable(5);
-    this.doneButtonBackground = localTypedArray.getDrawable(6);
+    this.showTitleBar = localTypedArray.getBoolean(R.styleable.com_facebook_picker_fragment_show_title_bar, this.showTitleBar);
+    this.titleText = localTypedArray.getString(R.styleable.com_facebook_picker_fragment_title_text);
+    this.doneButtonText = localTypedArray.getString(R.styleable.com_facebook_picker_fragment_done_button_text);
+    this.titleBarBackground = localTypedArray.getDrawable(R.styleable.com_facebook_picker_fragment_title_bar_background);
+    this.doneButtonBackground = localTypedArray.getDrawable(R.styleable.com_facebook_picker_fragment_done_button_background);
     localTypedArray.recycle();
   }
 
@@ -569,35 +577,69 @@ public abstract class PickerFragment<T extends GraphObject> extends Fragment
 
   void updateAdapter(SimpleGraphObjectCursor<T> paramSimpleGraphObjectCursor)
   {
-    View localView;
-    GraphObjectAdapter.SectionAndItem localSectionAndItem;
+    int i = 0;
+    int k;
+    int m;
     if (this.adapter != null)
     {
-      localView = this.listView.getChildAt(1);
-      int i = this.listView.getFirstVisiblePosition();
-      if (i > 0)
-        i++;
-      localSectionAndItem = this.adapter.getSectionAndItem(i);
-      if ((localView == null) || (localSectionAndItem.getType() == GraphObjectAdapter.SectionAndItem.Type.ACTIVITY_CIRCLE))
-        break label140;
-    }
-    label140: for (int j = localView.getTop(); ; j = 0)
-    {
-      boolean bool = this.adapter.changeCursor(paramSimpleGraphObjectCursor);
-      if ((localView != null) && (localSectionAndItem != null))
+      View localView = this.listView.getChildAt(1);
+      int j = this.listView.getFirstVisiblePosition();
+      if (j > 0)
+        j++;
+      GraphObjectAdapter.SectionAndItem localSectionAndItem = this.adapter.getSectionAndItem(j);
+      if ((localView != null) && (localSectionAndItem.getType() != GraphObjectAdapter.SectionAndItem.Type.ACTIVITY_CIRCLE))
       {
-        int k = this.adapter.getPosition(localSectionAndItem.sectionKey, localSectionAndItem.graphObject);
-        if (k != -1)
-          this.listView.setSelectionFromTop(k, j);
+        k = localView.getTop();
+        boolean bool = this.adapter.changeCursor(paramSimpleGraphObjectCursor);
+        if ((localView != null) && (localSectionAndItem != null))
+        {
+          int i1 = this.adapter.getPosition(localSectionAndItem.sectionKey, localSectionAndItem.graphObject);
+          if (i1 != -1)
+            this.listView.setSelectionFromTop(i1, k);
+        }
+        if ((bool) && (this.onDataChangedListener != null))
+          this.onDataChangedListener.onDataChanged(this);
+        if ((this.selectionHint == null) || (this.selectionHint.isEmpty()) || (paramSimpleGraphObjectCursor == null))
+          break label332;
+        paramSimpleGraphObjectCursor.moveToFirst();
+        m = 0;
+        label175: if (m >= paramSimpleGraphObjectCursor.getCount())
+          break label307;
+        paramSimpleGraphObjectCursor.moveToPosition(m);
+        GraphObject localGraphObject = paramSimpleGraphObjectCursor.getGraphObject();
+        if (localGraphObject.asMap().containsKey("id"))
+        {
+          Object localObject = localGraphObject.getProperty("id");
+          if ((localObject instanceof String))
+          {
+            String str = (String)localObject;
+            if (!this.selectionHint.contains(str))
+              break label333;
+            this.selectionStrategy.toggleSelection(str);
+            this.selectionHint.remove(str);
+          }
+        }
       }
-      if ((bool) && (this.onDataChangedListener != null))
-        this.onDataChangedListener.onDataChanged(this);
+    }
+    label307: label332: label333: for (int n = 1; ; n = i)
+    {
+      if (!this.selectionHint.isEmpty())
+      {
+        i = n;
+        m++;
+        break label175;
+        k = 0;
+        break;
+        n = i;
+      }
+      if ((this.onSelectionChangedListener != null) && (n != 0))
+        this.onSelectionChangedListener.onSelectionChanged(this);
       return;
     }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.widget.PickerFragment
  * JD-Core Version:    0.6.2
  */

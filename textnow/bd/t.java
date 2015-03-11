@@ -1,107 +1,153 @@
 package textnow.bd;
 
-final class t
-  implements bh
+import android.app.Activity;
+import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnCompletionListener;
+import android.media.MediaPlayer.OnErrorListener;
+import android.view.View;
+import android.webkit.JsResult;
+import android.webkit.WebChromeClient;
+import android.webkit.WebChromeClient.CustomViewCallback;
+import android.webkit.WebView;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
+import android.widget.VideoView;
+import com.tremorvideo.sdk.android.videoad.r;
+
+final class t extends WebChromeClient
+  implements MediaPlayer.OnCompletionListener, MediaPlayer.OnErrorListener
 {
-  // ERROR //
-  public final void a(java.lang.String paramString, bi parambi)
+  private q b;
+  private VideoView c;
+  private WebChromeClient.CustomViewCallback d;
+  private int e = 0;
+
+  public t(q paramq1, q paramq2)
   {
-    // Byte code:
-    //   0: aconst_null
-    //   1: astore_3
-    //   2: new 20	org/apache/http/impl/client/DefaultHttpClient
-    //   5: dup
-    //   6: invokespecial 21	org/apache/http/impl/client/DefaultHttpClient:<init>	()V
-    //   9: astore 4
-    //   11: aload 4
-    //   13: invokeinterface 27 1 0
-    //   18: invokeinterface 32 1 0
-    //   23: new 34	org/apache/http/client/methods/HttpGet
-    //   26: dup
-    //   27: aload_1
-    //   28: invokespecial 37	org/apache/http/client/methods/HttpGet:<init>	(Ljava/lang/String;)V
-    //   31: astore 5
-    //   33: aload 4
-    //   35: aload 5
-    //   37: invokeinterface 41 2 0
-    //   42: invokeinterface 47 1 0
-    //   47: astore_3
-    //   48: aload_3
-    //   49: ifnonnull +60 -> 109
-    //   52: aload_2
-    //   53: ldc 49
-    //   55: invokeinterface 53 2 0
-    //   60: return
-    //   61: astore 8
-    //   63: new 34	org/apache/http/client/methods/HttpGet
-    //   66: dup
-    //   67: aload_1
-    //   68: ldc 55
-    //   70: invokestatic 61	java/net/URLEncoder:encode	(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-    //   73: invokespecial 37	org/apache/http/client/methods/HttpGet:<init>	(Ljava/lang/String;)V
-    //   76: astore 5
-    //   78: goto -45 -> 33
-    //   81: astore 9
-    //   83: aload_2
-    //   84: new 63	java/lang/StringBuilder
-    //   87: dup
-    //   88: invokespecial 64	java/lang/StringBuilder:<init>	()V
-    //   91: ldc 66
-    //   93: invokevirtual 70	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   96: aload_1
-    //   97: invokevirtual 70	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   100: invokevirtual 74	java/lang/StringBuilder:toString	()Ljava/lang/String;
-    //   103: invokeinterface 53 2 0
-    //   108: return
-    //   109: aload_2
-    //   110: new 76	java/io/BufferedInputStream
-    //   113: dup
-    //   114: aload_3
-    //   115: invokeinterface 82 1 0
-    //   120: invokespecial 85	java/io/BufferedInputStream:<init>	(Ljava/io/InputStream;)V
-    //   123: invokeinterface 87 2 0
-    //   128: aload_3
-    //   129: ifnull +9 -> 138
-    //   132: aload_3
-    //   133: invokeinterface 90 1 0
-    //   138: aload 4
-    //   140: invokeinterface 27 1 0
-    //   145: invokeinterface 32 1 0
-    //   150: return
-    //   151: astore 6
-    //   153: aload_2
-    //   154: new 63	java/lang/StringBuilder
-    //   157: dup
-    //   158: invokespecial 64	java/lang/StringBuilder:<init>	()V
-    //   161: ldc 92
-    //   163: invokevirtual 70	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   166: aload_1
-    //   167: invokevirtual 70	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   170: ldc 94
-    //   172: invokevirtual 70	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   175: aload 6
-    //   177: invokevirtual 97	java/io/IOException:getMessage	()Ljava/lang/String;
-    //   180: invokevirtual 70	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   183: invokevirtual 74	java/lang/StringBuilder:toString	()Ljava/lang/String;
-    //   186: invokeinterface 53 2 0
-    //   191: aload 6
-    //   193: invokevirtual 100	java/io/IOException:printStackTrace	()V
-    //   196: goto -68 -> 128
-    //   199: astore 7
-    //   201: goto -63 -> 138
-    //
-    // Exception table:
-    //   from	to	target	type
-    //   23	33	61	java/lang/IllegalArgumentException
-    //   63	78	81	java/io/UnsupportedEncodingException
-    //   33	48	151	java/io/IOException
-    //   52	60	151	java/io/IOException
-    //   109	128	151	java/io/IOException
-    //   132	138	199	java/io/IOException
+    this.b = paramq2;
+  }
+
+  public final void a()
+  {
+    if (this.c != null)
+    {
+      this.c.stopPlayback();
+      if (this.d != null)
+        this.d.onCustomViewHidden();
+      this.c = null;
+      this.d = null;
+    }
+  }
+
+  public final boolean b()
+  {
+    if (this.c != null)
+    {
+      this.c.stopPlayback();
+      this.d.onCustomViewHidden();
+      onHideCustomView();
+      this.b.a();
+      this.b.d();
+      this.c = null;
+      this.d = null;
+      this.b.m();
+      return true;
+    }
+    return false;
+  }
+
+  public final void c()
+  {
+    if (this.c != null)
+    {
+      this.e = this.c.getCurrentPosition();
+      this.c.pause();
+    }
+  }
+
+  public final void d()
+  {
+    if (this.c != null)
+    {
+      this.c.forceLayout();
+      this.c.requestLayout();
+      if (!this.c.isPlaying())
+      {
+        this.c.start();
+        if ((this.c.isPlaying()) && (this.e > 0))
+          this.c.seekTo(this.e);
+      }
+      this.e = 0;
+    }
+  }
+
+  public final void onCompletion(MediaPlayer paramMediaPlayer)
+  {
+    this.c.stopPlayback();
+    this.d.onCustomViewHidden();
+    onHideCustomView();
+    this.b.a();
+    this.b.d();
+    this.c = null;
+    this.d = null;
+    this.b.m();
+  }
+
+  public final boolean onError(MediaPlayer paramMediaPlayer, int paramInt1, int paramInt2)
+  {
+    this.c.stopPlayback();
+    this.d.onCustomViewHidden();
+    onHideCustomView();
+    this.b.a();
+    this.b.d();
+    this.c = null;
+    this.d = null;
+    return true;
+  }
+
+  public final boolean onJsAlert(WebView paramWebView, String paramString1, String paramString2, JsResult paramJsResult)
+  {
+    return false;
+  }
+
+  public final void onShowCustomView(View paramView, WebChromeClient.CustomViewCallback paramCustomViewCallback)
+  {
+    super.onShowCustomView(paramView, paramCustomViewCallback);
+    FrameLayout localFrameLayout;
+    if ((paramView instanceof FrameLayout))
+    {
+      localFrameLayout = (FrameLayout)paramView;
+      if (!(localFrameLayout.getFocusedChild() instanceof VideoView));
+    }
+    try
+    {
+      VideoView localVideoView = (VideoView)localFrameLayout.getFocusedChild();
+      this.c = localVideoView;
+      this.d = paramCustomViewCallback;
+      localFrameLayout.removeView(localVideoView);
+      Activity localActivity = (Activity)this.a.getContext();
+      RelativeLayout localRelativeLayout = new RelativeLayout(this.a.getContext());
+      RelativeLayout.LayoutParams localLayoutParams = new RelativeLayout.LayoutParams(-1, -1);
+      localLayoutParams.addRule(14);
+      localLayoutParams.addRule(15);
+      localVideoView.setLayoutParams(localLayoutParams);
+      localRelativeLayout.addView(localVideoView);
+      localActivity.setContentView(localRelativeLayout);
+      localVideoView.setOnCompletionListener(this);
+      localVideoView.setOnErrorListener(this);
+      localVideoView.start();
+      this.b.c();
+      return;
+    }
+    catch (Exception localException)
+    {
+      r.a(localException);
+    }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.bd.t
  * JD-Core Version:    0.6.2
  */

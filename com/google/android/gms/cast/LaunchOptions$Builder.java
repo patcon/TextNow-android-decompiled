@@ -1,31 +1,31 @@
 package com.google.android.gms.cast;
 
-import com.google.android.gms.internal.gi;
+import com.google.android.gms.internal.ik;
 import java.util.Locale;
 
 public final class LaunchOptions$Builder
 {
-  private LaunchOptions As = new LaunchOptions();
+  private LaunchOptions Fd = new LaunchOptions();
 
   public final LaunchOptions build()
   {
-    return this.As;
+    return this.Fd;
   }
 
   public final Builder setLocale(Locale paramLocale)
   {
-    this.As.setLanguage(gi.b(paramLocale));
+    this.Fd.setLanguage(ik.b(paramLocale));
     return this;
   }
 
   public final Builder setRelaunchIfRunning(boolean paramBoolean)
   {
-    this.As.setRelaunchIfRunning(paramBoolean);
+    this.Fd.setRelaunchIfRunning(paramBoolean);
     return this;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.cast.LaunchOptions.Builder
  * JD-Core Version:    0.6.2
  */

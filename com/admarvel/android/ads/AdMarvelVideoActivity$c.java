@@ -1,44 +1,36 @@
 package com.admarvel.android.ads;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.ImageView;
-import com.admarvel.android.util.Logging;
-import java.net.URL;
+import java.lang.ref.WeakReference;
+import java.util.concurrent.Executor;
 
-class AdMarvelVideoActivity$c extends AsyncTask<String, Void, Bitmap>
+class AdMarvelVideoActivity$c
+  implements Runnable
 {
-  ImageView a;
+  private final WeakReference<String> b;
+  private final WeakReference<ImageView> c;
 
-  public AdMarvelVideoActivity$c(AdMarvelVideoActivity paramAdMarvelVideoActivity, ImageView paramImageView)
+  public AdMarvelVideoActivity$c(AdMarvelVideoActivity paramAdMarvelVideoActivity, ImageView paramImageView, String paramString)
   {
-    this.a = paramImageView;
+    this.b = new WeakReference(paramString);
+    this.c = new WeakReference(paramImageView);
   }
 
-  protected Bitmap a(String[] paramArrayOfString)
+  public void run()
   {
-    String str = paramArrayOfString[0];
-    try
+    if ((this.c.get() != null) && (this.b.get() != null))
     {
-      Bitmap localBitmap = BitmapFactory.decodeStream(new URL(str).openStream());
-      return localBitmap;
+      AdMarvelVideoActivity.b localb = new AdMarvelVideoActivity.b(this.a, (ImageView)this.c.get());
+      Executor localExecutor = AsyncTask.THREAD_POOL_EXECUTOR;
+      String[] arrayOfString = new String[1];
+      arrayOfString[0] = ((String)this.b.get());
+      localb.executeOnExecutor(localExecutor, arrayOfString);
     }
-    catch (Exception localException)
-    {
-      Logging.log(Log.getStackTraceString(localException));
-    }
-    return null;
-  }
-
-  protected void a(Bitmap paramBitmap)
-  {
-    this.a.setImageBitmap(paramBitmap);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.AdMarvelVideoActivity.c
  * JD-Core Version:    0.6.2
  */

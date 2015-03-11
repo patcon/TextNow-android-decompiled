@@ -2,43 +2,53 @@ package com.google.android.gms.internal;
 
 import android.os.Parcel;
 import android.os.Parcelable.Creator;
+import com.google.android.gms.common.internal.n;
+import com.google.android.gms.common.internal.n.a;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
+import com.google.android.gms.fitness.data.DataType;
+import java.util.Collections;
+import java.util.List;
 
-public final class lg
+public class lg
   implements SafeParcelable
 {
   public static final Parcelable.Creator<lg> CREATOR = new lh();
-  int[] akd;
-  private final int xM;
+  private final int BR;
+  private final List<DataType> SB;
 
-  lg()
+  lg(int paramInt, List<DataType> paramList)
   {
-    this(1, null);
+    this.BR = paramInt;
+    this.SB = paramList;
   }
 
-  lg(int paramInt, int[] paramArrayOfInt)
-  {
-    this.xM = paramInt;
-    this.akd = paramArrayOfInt;
-  }
-
-  public final int describeContents()
+  public int describeContents()
   {
     return 0;
   }
 
-  public final int getVersionCode()
+  public List<DataType> getDataTypes()
   {
-    return this.xM;
+    return Collections.unmodifiableList(this.SB);
   }
 
-  public final void writeToParcel(Parcel paramParcel, int paramInt)
+  int getVersionCode()
+  {
+    return this.BR;
+  }
+
+  public String toString()
+  {
+    return n.h(this).a("dataTypes", this.SB).toString();
+  }
+
+  public void writeToParcel(Parcel paramParcel, int paramInt)
   {
     lh.a(this, paramParcel, paramInt);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.lg
  * JD-Core Version:    0.6.2
  */

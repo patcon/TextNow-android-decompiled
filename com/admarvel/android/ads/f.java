@@ -1,867 +1,401 @@
 package com.admarvel.android.ads;
 
 import android.content.Context;
-import android.media.MediaPlayer;
-import android.media.MediaPlayer.OnBufferingUpdateListener;
-import android.media.MediaPlayer.OnCompletionListener;
-import android.media.MediaPlayer.OnErrorListener;
-import android.media.MediaPlayer.OnPreparedListener;
-import android.media.MediaPlayer.OnSeekCompleteListener;
-import android.media.MediaPlayer.OnVideoSizeChangedListener;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.SurfaceHolder;
-import android.view.SurfaceHolder.Callback;
-import android.view.SurfaceView;
-import android.widget.MediaController.MediaPlayerControl;
 import com.admarvel.android.util.Logging;
-import java.io.File;
 import java.lang.ref.WeakReference;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
 
-class f extends SurfaceView
-  implements MediaController.MediaPlayerControl
+class f extends AsyncTask<Object, Object, AdMarvelAd>
 {
-  private Context A;
-  private int B = 0;
-  private final WeakReference<AdMarvelVideoActivity> C;
-  private final boolean D;
-  private f.c E;
-  private MediaPlayer.OnCompletionListener F = new MediaPlayer.OnCompletionListener()
-  {
-    public void onCompletion(MediaPlayer paramAnonymousMediaPlayer)
-    {
-      f.c(f.this, 5);
-      f.d(f.this, 5);
-      f.d(f.this, false);
-      if (f.i(f.this) != null)
-        f.i(f.this).onCompletion(f.d(f.this));
-    }
-  };
-  private MediaPlayer.OnSeekCompleteListener G = new MediaPlayer.OnSeekCompleteListener()
-  {
-    public void onSeekComplete(MediaPlayer paramAnonymousMediaPlayer)
-    {
-      if (f.this.a != null)
-        f.this.a.d();
-    }
-  };
-  private MediaPlayer.OnErrorListener H = new MediaPlayer.OnErrorListener()
-  {
-    public boolean onError(MediaPlayer paramAnonymousMediaPlayer, int paramAnonymousInt1, int paramAnonymousInt2)
-    {
-      f.c(f.this, -1);
-      f.d(f.this, -1);
-      f.d(f.this, false);
-      if (f.this.a != null)
-        f.this.a.d();
-      if (!f.j(f.this))
-        f.this.c();
-      if ((f.k(f.this) != null) && (f.k(f.this).onError(f.d(f.this), paramAnonymousInt1, paramAnonymousInt2)));
-      return true;
-    }
-  };
-  private MediaPlayer.OnBufferingUpdateListener I = new MediaPlayer.OnBufferingUpdateListener()
-  {
-    public void onBufferingUpdate(MediaPlayer paramAnonymousMediaPlayer, int paramAnonymousInt)
-    {
-      f.e(f.this, paramAnonymousInt);
-    }
-  };
-  public f.a a;
-  MediaPlayer.OnVideoSizeChangedListener b = new MediaPlayer.OnVideoSizeChangedListener()
-  {
-    public void onVideoSizeChanged(MediaPlayer paramAnonymousMediaPlayer, int paramAnonymousInt1, int paramAnonymousInt2)
-    {
-      f.a(f.this, paramAnonymousMediaPlayer.getVideoWidth());
-      f.b(f.this, paramAnonymousMediaPlayer.getVideoHeight());
-      if ((f.a(f.this) != 0) && (f.b(f.this) != 0))
-        f.this.getHolder().setFixedSize(f.a(f.this), f.b(f.this));
-    }
-  };
-  MediaPlayer.OnPreparedListener c = new MediaPlayer.OnPreparedListener()
-  {
-    public void onPrepared(MediaPlayer paramAnonymousMediaPlayer)
-    {
-      f.c(f.this, 2);
-      f.a(f.this, f.b(f.this, f.c(f.this, true)));
-      if (f.c(f.this) != null)
-        f.c(f.this).onPrepared(f.d(f.this));
-      if (f.this.a != null)
-        f.this.a.d();
-      f.a(f.this, paramAnonymousMediaPlayer.getVideoWidth());
-      f.b(f.this, paramAnonymousMediaPlayer.getVideoHeight());
-      int i = f.e(f.this);
-      if (i != 0)
-        f.this.seekTo(i);
-      if ((f.a(f.this) != 0) && (f.b(f.this) != 0))
-      {
-        f.this.getHolder().setFixedSize(f.a(f.this), f.b(f.this));
-        if ((f.f(f.this) == f.a(f.this)) && (f.g(f.this) == f.b(f.this)))
-        {
-          if (f.h(f.this) != 3)
-            break label229;
-          f.this.start();
-        }
-      }
-      label229: 
-      while (f.h(f.this) != 3)
-      {
-        do
-          return;
-        while ((f.this.isPlaying()) || (i != 0) || (f.this.getCurrentPosition() <= 0));
-        return;
-      }
-      f.this.start();
-    }
-  };
-  SurfaceHolder.Callback d = new SurfaceHolder.Callback()
-  {
-    public void surfaceChanged(SurfaceHolder paramAnonymousSurfaceHolder, int paramAnonymousInt1, int paramAnonymousInt2, int paramAnonymousInt3)
-    {
-      int i = 1;
-      f.f(f.this, paramAnonymousInt2);
-      f.g(f.this, paramAnonymousInt3);
-      int j;
-      if (f.h(f.this) == 3)
-      {
-        j = i;
-        if ((f.a(f.this) != paramAnonymousInt2) || (f.b(f.this) != paramAnonymousInt3))
-          break label118;
-      }
-      while (true)
-      {
-        if ((f.d(f.this) != null) && (j != 0) && (i != 0))
-        {
-          if (f.e(f.this) != 0)
-            f.this.seekTo(f.e(f.this));
-          f.this.start();
-        }
-        return;
-        j = 0;
-        break;
-        label118: i = 0;
-      }
-    }
+  private Map<String, Object> a = new HashMap();
+  private AdMarvelInterstitialAds b;
+  private final WeakReference<Context> c;
 
-    public void surfaceCreated(SurfaceHolder paramAnonymousSurfaceHolder)
-    {
-      f.a(f.this, paramAnonymousSurfaceHolder);
-      if (f.l(f.this) != null)
-      {
-        localAdMarvelVideoActivity = (AdMarvelVideoActivity)f.l(f.this).get();
-        if ((localAdMarvelVideoActivity != null) && (localAdMarvelVideoActivity.i != AdMarvelVideoActivity.k.d) && (localAdMarvelVideoActivity.i != AdMarvelVideoActivity.k.e) && (localAdMarvelVideoActivity.i != AdMarvelVideoActivity.k.f))
-          f.m(f.this);
-      }
-      while (f.n(f.this) == 0)
-      {
-        AdMarvelVideoActivity localAdMarvelVideoActivity;
-        return;
-      }
-      f.m(f.this);
-    }
-
-    public void surfaceDestroyed(SurfaceHolder paramAnonymousSurfaceHolder)
-    {
-      f.a(f.this, null);
-      f.this.a(true);
-    }
-  };
-  private int e = 0;
-  private Uri f;
-  private final Uri g;
-  private int h;
-  private boolean i = true;
-  private int j = 0;
-  private int k = 0;
-  private Map<String, f.b> l;
-  private SurfaceHolder m = null;
-  private MediaPlayer n = null;
-  private int o;
-  private int p;
-  private int q;
-  private int r;
-  private MediaPlayer.OnCompletionListener s;
-  private MediaPlayer.OnPreparedListener t;
-  private int u;
-  private MediaPlayer.OnErrorListener v;
-  private int w;
-  private boolean x;
-  private boolean y;
-  private boolean z;
-
-  public f(Context paramContext, boolean paramBoolean, String paramString)
+  public f(Context paramContext)
   {
-    super(paramContext);
-    this.A = paramContext;
-    this.C = null;
-    this.D = paramBoolean;
-    i();
-    this.g = Uri.parse(paramString);
-  }
-
-  private int a(long paramLong)
-  {
-    return (int)paramLong / 1000;
-  }
-
-  private void i()
-  {
-    this.o = 0;
-    this.p = 0;
-    getHolder().addCallback(this.d);
-    getHolder().setType(3);
-    this.j = 0;
-    this.k = 0;
+    this.c = new WeakReference(paramContext);
   }
 
   // ERROR //
-  private void j()
+  protected AdMarvelAd a(Object[] paramArrayOfObject)
   {
     // Byte code:
-    //   0: aload_0
-    //   1: getfield 182	com/admarvel/android/ads/f:f	Landroid/net/Uri;
-    //   4: ifnull +10 -> 14
-    //   7: aload_0
-    //   8: getfield 74	com/admarvel/android/ads/f:m	Landroid/view/SurfaceHolder;
-    //   11: ifnonnull +4 -> 15
-    //   14: return
-    //   15: aload_0
-    //   16: getfield 117	com/admarvel/android/ads/f:A	Landroid/content/Context;
-    //   19: invokestatic 187	com/admarvel/android/ads/ab:k	(Landroid/content/Context;)Z
-    //   22: ifne +20 -> 42
-    //   25: aload_0
-    //   26: getfield 189	com/admarvel/android/ads/f:a	Lcom/admarvel/android/ads/f$a;
-    //   29: ifnull -15 -> 14
-    //   32: aload_0
-    //   33: getfield 189	com/admarvel/android/ads/f:a	Lcom/admarvel/android/ads/f$a;
-    //   36: invokeinterface 193 1 0
-    //   41: return
-    //   42: aload_0
-    //   43: iconst_0
-    //   44: invokevirtual 196	com/admarvel/android/ads/f:a	(Z)V
-    //   47: aload_0
-    //   48: new 198	android/media/MediaPlayer
-    //   51: dup
-    //   52: invokespecial 200	android/media/MediaPlayer:<init>	()V
-    //   55: putfield 76	com/admarvel/android/ads/f:n	Landroid/media/MediaPlayer;
-    //   58: aload_0
-    //   59: getfield 76	com/admarvel/android/ads/f:n	Landroid/media/MediaPlayer;
-    //   62: aload_0
-    //   63: getfield 90	com/admarvel/android/ads/f:c	Landroid/media/MediaPlayer$OnPreparedListener;
-    //   66: invokevirtual 204	android/media/MediaPlayer:setOnPreparedListener	(Landroid/media/MediaPlayer$OnPreparedListener;)V
-    //   69: aload_0
-    //   70: getfield 76	com/admarvel/android/ads/f:n	Landroid/media/MediaPlayer;
-    //   73: aload_0
-    //   74: getfield 85	com/admarvel/android/ads/f:b	Landroid/media/MediaPlayer$OnVideoSizeChangedListener;
-    //   77: invokevirtual 208	android/media/MediaPlayer:setOnVideoSizeChangedListener	(Landroid/media/MediaPlayer$OnVideoSizeChangedListener;)V
-    //   80: aload_0
-    //   81: iconst_m1
-    //   82: putfield 210	com/admarvel/android/ads/f:h	I
-    //   85: aload_0
-    //   86: getfield 76	com/admarvel/android/ads/f:n	Landroid/media/MediaPlayer;
-    //   89: aload_0
-    //   90: getfield 95	com/admarvel/android/ads/f:F	Landroid/media/MediaPlayer$OnCompletionListener;
-    //   93: invokevirtual 214	android/media/MediaPlayer:setOnCompletionListener	(Landroid/media/MediaPlayer$OnCompletionListener;)V
-    //   96: aload_0
-    //   97: getfield 76	com/admarvel/android/ads/f:n	Landroid/media/MediaPlayer;
-    //   100: aload_0
-    //   101: getfield 105	com/admarvel/android/ads/f:H	Landroid/media/MediaPlayer$OnErrorListener;
-    //   104: invokevirtual 218	android/media/MediaPlayer:setOnErrorListener	(Landroid/media/MediaPlayer$OnErrorListener;)V
-    //   107: aload_0
-    //   108: getfield 76	com/admarvel/android/ads/f:n	Landroid/media/MediaPlayer;
-    //   111: aload_0
-    //   112: getfield 110	com/admarvel/android/ads/f:I	Landroid/media/MediaPlayer$OnBufferingUpdateListener;
-    //   115: invokevirtual 222	android/media/MediaPlayer:setOnBufferingUpdateListener	(Landroid/media/MediaPlayer$OnBufferingUpdateListener;)V
-    //   118: aload_0
-    //   119: getfield 76	com/admarvel/android/ads/f:n	Landroid/media/MediaPlayer;
-    //   122: aload_0
-    //   123: getfield 100	com/admarvel/android/ads/f:G	Landroid/media/MediaPlayer$OnSeekCompleteListener;
-    //   126: invokevirtual 226	android/media/MediaPlayer:setOnSeekCompleteListener	(Landroid/media/MediaPlayer$OnSeekCompleteListener;)V
-    //   129: aload_0
-    //   130: iconst_0
-    //   131: putfield 155	com/admarvel/android/ads/f:u	I
-    //   134: aload_0
-    //   135: getfield 182	com/admarvel/android/ads/f:f	Landroid/net/Uri;
-    //   138: invokevirtual 230	android/net/Uri:toString	()Ljava/lang/String;
-    //   141: ldc 232
-    //   143: invokevirtual 238	java/lang/String:startsWith	(Ljava/lang/String;)Z
-    //   146: istore 5
-    //   148: iload 5
-    //   150: ifeq +171 -> 321
-    //   153: new 240	java/io/FileInputStream
-    //   156: dup
-    //   157: new 242	java/io/File
-    //   160: dup
-    //   161: aload_0
-    //   162: getfield 182	com/admarvel/android/ads/f:f	Landroid/net/Uri;
-    //   165: invokevirtual 230	android/net/Uri:toString	()Ljava/lang/String;
-    //   168: invokespecial 245	java/io/File:<init>	(Ljava/lang/String;)V
-    //   171: invokespecial 248	java/io/FileInputStream:<init>	(Ljava/io/File;)V
-    //   174: astore 6
+    //   0: aload_1
+    //   1: iconst_0
+    //   2: aaload
+    //   3: checkcast 35	java/util/Map
+    //   6: astore_2
+    //   7: aload_1
+    //   8: iconst_1
+    //   9: aaload
+    //   10: checkcast 37	java/lang/String
+    //   13: astore_3
+    //   14: aload_1
+    //   15: iconst_2
+    //   16: aaload
+    //   17: checkcast 37	java/lang/String
+    //   20: astore 4
+    //   22: aload_1
+    //   23: iconst_3
+    //   24: aaload
+    //   25: checkcast 37	java/lang/String
+    //   28: astore 5
+    //   30: aload_1
+    //   31: iconst_4
+    //   32: aaload
+    //   33: checkcast 39	java/lang/Integer
+    //   36: invokevirtual 43	java/lang/Integer:intValue	()I
+    //   39: istore 6
+    //   41: aload_1
+    //   42: iconst_5
+    //   43: aaload
+    //   44: checkcast 37	java/lang/String
+    //   47: astore 7
+    //   49: aload_0
+    //   50: aload_1
+    //   51: bipush 6
+    //   53: aaload
+    //   54: checkcast 45	com/admarvel/android/ads/AdMarvelInterstitialAds
+    //   57: putfield 47	com/admarvel/android/ads/f:b	Lcom/admarvel/android/ads/AdMarvelInterstitialAds;
+    //   60: aload_1
+    //   61: bipush 7
+    //   63: aaload
+    //   64: checkcast 39	java/lang/Integer
+    //   67: invokevirtual 43	java/lang/Integer:intValue	()I
+    //   70: istore 8
+    //   72: aload_1
+    //   73: bipush 8
+    //   75: aaload
+    //   76: checkcast 37	java/lang/String
+    //   79: astore 9
+    //   81: aload_0
+    //   82: getfield 30	com/admarvel/android/ads/f:c	Ljava/lang/ref/WeakReference;
+    //   85: invokevirtual 51	java/lang/ref/WeakReference:get	()Ljava/lang/Object;
+    //   88: checkcast 53	android/content/Context
+    //   91: astore 10
+    //   93: new 55	com/admarvel/android/ads/AdFetcher
+    //   96: dup
+    //   97: invokespecial 56	com/admarvel/android/ads/AdFetcher:<init>	()V
+    //   100: astore 11
+    //   102: aload 10
+    //   104: ifnonnull +9 -> 113
+    //   107: aconst_null
+    //   108: astore 15
+    //   110: aload 15
+    //   112: areturn
+    //   113: aload_2
+    //   114: ifnull +17 -> 131
+    //   117: aload_2
+    //   118: monitorenter
+    //   119: aload_0
+    //   120: getfield 23	com/admarvel/android/ads/f:a	Ljava/util/Map;
+    //   123: aload_2
+    //   124: invokeinterface 60 2 0
+    //   129: aload_2
+    //   130: monitorexit
+    //   131: ldc 62
+    //   133: aload 10
+    //   135: invokestatic 68	com/admarvel/android/ads/AdMarvelAnalyticsAdapterInstances:getInstance	(Ljava/lang/String;Landroid/content/Context;)Lcom/admarvel/android/ads/AdMarvelAnalyticsAdapter;
+    //   138: aload 4
+    //   140: aload_0
+    //   141: getfield 23	com/admarvel/android/ads/f:a	Ljava/util/Map;
+    //   144: invokevirtual 74	com/admarvel/android/ads/AdMarvelAnalyticsAdapter:getEnhancedTargetParams	(Ljava/lang/String;Ljava/util/Map;)Ljava/util/Map;
+    //   147: astore 25
+    //   149: aload 25
+    //   151: astore 13
+    //   153: aload 13
+    //   155: ifnull +32 -> 187
+    //   158: aload_0
+    //   159: getfield 23	com/admarvel/android/ads/f:a	Ljava/util/Map;
+    //   162: ifnull +308 -> 470
+    //   165: aload 13
+    //   167: aload_0
+    //   168: getfield 23	com/admarvel/android/ads/f:a	Ljava/util/Map;
+    //   171: invokeinterface 60 2 0
     //   176: aload_0
-    //   177: getfield 76	com/admarvel/android/ads/f:n	Landroid/media/MediaPlayer;
-    //   180: aload 6
-    //   182: invokevirtual 252	java/io/FileInputStream:getFD	()Ljava/io/FileDescriptor;
-    //   185: invokevirtual 256	android/media/MediaPlayer:setDataSource	(Ljava/io/FileDescriptor;)V
-    //   188: aload 6
-    //   190: invokevirtual 259	java/io/FileInputStream:close	()V
-    //   193: aload_0
-    //   194: getfield 76	com/admarvel/android/ads/f:n	Landroid/media/MediaPlayer;
-    //   197: aload_0
-    //   198: getfield 74	com/admarvel/android/ads/f:m	Landroid/view/SurfaceHolder;
-    //   201: invokevirtual 263	android/media/MediaPlayer:setDisplay	(Landroid/view/SurfaceHolder;)V
-    //   204: aload_0
-    //   205: getfield 76	com/admarvel/android/ads/f:n	Landroid/media/MediaPlayer;
-    //   208: iconst_3
-    //   209: invokevirtual 266	android/media/MediaPlayer:setAudioStreamType	(I)V
-    //   212: aload_0
-    //   213: getfield 76	com/admarvel/android/ads/f:n	Landroid/media/MediaPlayer;
-    //   216: iconst_1
-    //   217: invokevirtual 269	android/media/MediaPlayer:setScreenOnWhilePlaying	(Z)V
-    //   220: aload_0
-    //   221: getfield 76	com/admarvel/android/ads/f:n	Landroid/media/MediaPlayer;
-    //   224: invokevirtual 272	android/media/MediaPlayer:prepareAsync	()V
-    //   227: aload_0
-    //   228: iconst_1
-    //   229: putfield 70	com/admarvel/android/ads/f:j	I
-    //   232: return
-    //   233: astore_3
-    //   234: aload_3
-    //   235: invokestatic 278	android/util/Log:getStackTraceString	(Ljava/lang/Throwable;)Ljava/lang/String;
-    //   238: invokestatic 283	com/admarvel/android/util/Logging:log	(Ljava/lang/String;)V
-    //   241: aload_0
-    //   242: iconst_m1
-    //   243: putfield 70	com/admarvel/android/ads/f:j	I
-    //   246: aload_0
-    //   247: iconst_m1
-    //   248: putfield 72	com/admarvel/android/ads/f:k	I
-    //   251: aload_0
-    //   252: getfield 105	com/admarvel/android/ads/f:H	Landroid/media/MediaPlayer$OnErrorListener;
-    //   255: aload_0
-    //   256: getfield 76	com/admarvel/android/ads/f:n	Landroid/media/MediaPlayer;
-    //   259: iconst_1
-    //   260: iconst_0
-    //   261: invokeinterface 289 4 0
-    //   266: pop
-    //   267: return
-    //   268: astore 7
-    //   270: aconst_null
-    //   271: astore 6
-    //   273: aload 6
-    //   275: ifnull +8 -> 283
-    //   278: aload 6
-    //   280: invokevirtual 259	java/io/FileInputStream:close	()V
-    //   283: aload 7
-    //   285: athrow
-    //   286: astore_1
-    //   287: aload_1
-    //   288: invokestatic 278	android/util/Log:getStackTraceString	(Ljava/lang/Throwable;)Ljava/lang/String;
-    //   291: invokestatic 283	com/admarvel/android/util/Logging:log	(Ljava/lang/String;)V
-    //   294: aload_0
-    //   295: iconst_m1
-    //   296: putfield 70	com/admarvel/android/ads/f:j	I
-    //   299: aload_0
-    //   300: iconst_m1
-    //   301: putfield 72	com/admarvel/android/ads/f:k	I
-    //   304: aload_0
-    //   305: getfield 105	com/admarvel/android/ads/f:H	Landroid/media/MediaPlayer$OnErrorListener;
-    //   308: aload_0
-    //   309: getfield 76	com/admarvel/android/ads/f:n	Landroid/media/MediaPlayer;
-    //   312: iconst_1
-    //   313: iconst_0
-    //   314: invokeinterface 289 4 0
-    //   319: pop
-    //   320: return
-    //   321: aload_0
-    //   322: getfield 76	com/admarvel/android/ads/f:n	Landroid/media/MediaPlayer;
-    //   325: aload_0
-    //   326: getfield 117	com/admarvel/android/ads/f:A	Landroid/content/Context;
-    //   329: aload_0
-    //   330: getfield 182	com/admarvel/android/ads/f:f	Landroid/net/Uri;
-    //   333: invokevirtual 292	android/media/MediaPlayer:setDataSource	(Landroid/content/Context;Landroid/net/Uri;)V
-    //   336: goto -143 -> 193
-    //   339: astore 7
-    //   341: goto -68 -> 273
+    //   177: getfield 23	com/admarvel/android/ads/f:a	Ljava/util/Map;
+    //   180: aload 13
+    //   182: invokeinterface 60 2 0
+    //   187: getstatic 78	com/admarvel/android/ads/AdMarvelInterstitialAds:enableOfflineSDK	Z
+    //   190: ifeq +302 -> 492
+    //   193: aload 11
+    //   195: getstatic 84	com/admarvel/android/ads/AdFetcher$Adtype:INTERSTITIAL	Lcom/admarvel/android/ads/AdFetcher$Adtype;
+    //   198: aload 10
+    //   200: aload 5
+    //   202: iload 6
+    //   204: aload 7
+    //   206: aload_0
+    //   207: getfield 23	com/admarvel/android/ads/f:a	Ljava/util/Map;
+    //   210: aload_3
+    //   211: aload 4
+    //   213: iload 8
+    //   215: aload 9
+    //   217: iconst_0
+    //   218: aload_0
+    //   219: getfield 47	com/admarvel/android/ads/f:b	Lcom/admarvel/android/ads/AdMarvelInterstitialAds;
+    //   222: invokevirtual 88	com/admarvel/android/ads/AdMarvelInterstitialAds:isAutoScalingEnabled	()Z
+    //   225: invokevirtual 92	com/admarvel/android/ads/AdFetcher:fetchOfflineAd	(Lcom/admarvel/android/ads/AdFetcher$Adtype;Landroid/content/Context;Ljava/lang/String;ILjava/lang/String;Ljava/util/Map;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;ZZ)Ljava/lang/String;
+    //   228: astore 14
+    //   230: new 94	com/admarvel/android/ads/AdMarvelAd
+    //   233: dup
+    //   234: aload 14
+    //   236: aload_0
+    //   237: getfield 23	com/admarvel/android/ads/f:a	Ljava/util/Map;
+    //   240: aload_3
+    //   241: aload 4
+    //   243: aload 5
+    //   245: iload 6
+    //   247: aload 7
+    //   249: aload 10
+    //   251: invokevirtual 98	android/content/Context:getPackageName	()Ljava/lang/String;
+    //   254: invokespecial 101	com/admarvel/android/ads/AdMarvelAd:<init>	(Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+    //   257: astore 15
+    //   259: aload 15
+    //   261: aload 11
+    //   263: invokevirtual 105	com/admarvel/android/ads/AdFetcher:getRequestJson	()Lorg/json/JSONObject;
+    //   266: invokevirtual 109	com/admarvel/android/ads/AdMarvelAd:setRequestJson	(Lorg/json/JSONObject;)V
+    //   269: getstatic 78	com/admarvel/android/ads/AdMarvelInterstitialAds:enableOfflineSDK	Z
+    //   272: ifeq +109 -> 381
+    //   275: aload 10
+    //   277: ldc 111
+    //   279: iconst_0
+    //   280: invokevirtual 115	android/content/Context:getSharedPreferences	(Ljava/lang/String;I)Landroid/content/SharedPreferences;
+    //   283: astore 22
+    //   285: aload 22
+    //   287: ldc 117
+    //   289: ldc 119
+    //   291: invokeinterface 125 3 0
+    //   296: astore 23
+    //   298: aload 15
+    //   300: new 127	java/lang/StringBuilder
+    //   303: dup
+    //   304: invokespecial 128	java/lang/StringBuilder:<init>	()V
+    //   307: ldc 130
+    //   309: invokevirtual 134	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   312: aload 22
+    //   314: ldc 136
+    //   316: ldc 119
+    //   318: invokeinterface 125 3 0
+    //   323: invokevirtual 134	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   326: ldc 138
+    //   328: invokevirtual 134	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   331: aload 23
+    //   333: invokevirtual 134	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   336: invokevirtual 141	java/lang/StringBuilder:toString	()Ljava/lang/String;
+    //   339: invokevirtual 145	com/admarvel/android/ads/AdMarvelAd:setOfflineBaseUrl	(Ljava/lang/String;)V
+    //   342: aload 15
+    //   344: new 127	java/lang/StringBuilder
+    //   347: dup
+    //   348: invokespecial 128	java/lang/StringBuilder:<init>	()V
+    //   351: aload 22
+    //   353: ldc 136
+    //   355: ldc 119
+    //   357: invokeinterface 125 3 0
+    //   362: invokevirtual 134	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   365: ldc 138
+    //   367: invokevirtual 134	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   370: aload 23
+    //   372: invokevirtual 134	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   375: invokevirtual 141	java/lang/StringBuilder:toString	()Ljava/lang/String;
+    //   378: invokevirtual 148	com/admarvel/android/ads/AdMarvelAd:setOfflinekeyUrl	(Ljava/lang/String;)V
+    //   381: aload 14
+    //   383: ifnull +249 -> 632
+    //   386: aload 15
+    //   388: aload 10
+    //   390: invokevirtual 152	com/admarvel/android/ads/AdMarvelAd:loadAd	(Landroid/content/Context;)Lcom/admarvel/android/ads/AdMarvelXMLReader;
+    //   393: astore 18
+    //   395: aload 18
+    //   397: ifnull +216 -> 613
+    //   400: aload 15
+    //   402: invokevirtual 155	com/admarvel/android/ads/AdMarvelAd:getSdkNetwork	()Ljava/lang/String;
+    //   405: ifnull -295 -> 110
+    //   408: aload 15
+    //   410: invokevirtual 155	com/admarvel/android/ads/AdMarvelAd:getSdkNetwork	()Ljava/lang/String;
+    //   413: invokevirtual 158	java/lang/String:length	()I
+    //   416: istore 19
+    //   418: iload 19
+    //   420: ifle -310 -> 110
+    //   423: ldc 160
+    //   425: aload 15
+    //   427: invokevirtual 155	com/admarvel/android/ads/AdMarvelAd:getSdkNetwork	()Ljava/lang/String;
+    //   430: invokestatic 165	com/admarvel/android/ads/AdMarvelAdapterInstances:getInstance	(Ljava/lang/String;Ljava/lang/String;)Lcom/admarvel/android/ads/AdMarvelAdapter;
+    //   433: aload 15
+    //   435: aload 18
+    //   437: invokevirtual 170	com/admarvel/android/ads/AdMarvelAdapter:loadAd	(Lcom/admarvel/android/ads/AdMarvelAd;Lcom/admarvel/android/ads/AdMarvelXMLReader;)Lcom/admarvel/android/ads/AdMarvelAd;
+    //   440: astore 21
+    //   442: aload 21
+    //   444: areturn
+    //   445: astore 27
+    //   447: aload_2
+    //   448: monitorexit
+    //   449: aload 27
+    //   451: athrow
+    //   452: astore 26
+    //   454: aload_0
+    //   455: aconst_null
+    //   456: putfield 23	com/admarvel/android/ads/f:a	Ljava/util/Map;
+    //   459: goto -328 -> 131
+    //   462: astore 12
+    //   464: aconst_null
+    //   465: astore 13
+    //   467: goto -314 -> 153
+    //   470: aload_0
+    //   471: aload 13
+    //   473: putfield 23	com/admarvel/android/ads/f:a	Ljava/util/Map;
+    //   476: goto -289 -> 187
+    //   479: astore 24
+    //   481: aload 24
+    //   483: invokestatic 176	android/util/Log:getStackTraceString	(Ljava/lang/Throwable;)Ljava/lang/String;
+    //   486: invokestatic 181	com/admarvel/android/util/Logging:log	(Ljava/lang/String;)V
+    //   489: goto -302 -> 187
+    //   492: aload 11
+    //   494: getstatic 84	com/admarvel/android/ads/AdFetcher$Adtype:INTERSTITIAL	Lcom/admarvel/android/ads/AdFetcher$Adtype;
+    //   497: aload 10
+    //   499: aload 5
+    //   501: iload 6
+    //   503: aload 7
+    //   505: aload_0
+    //   506: getfield 23	com/admarvel/android/ads/f:a	Ljava/util/Map;
+    //   509: aload_3
+    //   510: aload 4
+    //   512: iload 8
+    //   514: aload 9
+    //   516: iconst_0
+    //   517: aload_0
+    //   518: getfield 47	com/admarvel/android/ads/f:b	Lcom/admarvel/android/ads/AdMarvelInterstitialAds;
+    //   521: invokevirtual 88	com/admarvel/android/ads/AdMarvelInterstitialAds:isAutoScalingEnabled	()Z
+    //   524: iconst_0
+    //   525: aconst_null
+    //   526: invokevirtual 185	com/admarvel/android/ads/AdFetcher:fetchAd	(Lcom/admarvel/android/ads/AdFetcher$Adtype;Landroid/content/Context;Ljava/lang/String;ILjava/lang/String;Ljava/util/Map;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;ZZZLcom/admarvel/android/ads/AdMarvelNetworkHandler;)Ljava/lang/String;
+    //   529: astore 14
+    //   531: goto -301 -> 230
+    //   534: astore 20
+    //   536: aload 20
+    //   538: invokestatic 176	android/util/Log:getStackTraceString	(Ljava/lang/Throwable;)Ljava/lang/String;
+    //   541: invokestatic 181	com/admarvel/android/util/Logging:log	(Ljava/lang/String;)V
+    //   544: aload 15
+    //   546: getstatic 191	com/admarvel/android/ads/AdMarvelAd$AdType:ERROR	Lcom/admarvel/android/ads/AdMarvelAd$AdType;
+    //   549: invokevirtual 195	com/admarvel/android/ads/AdMarvelAd:setAdType	(Lcom/admarvel/android/ads/AdMarvelAd$AdType;)V
+    //   552: aload 15
+    //   554: sipush 303
+    //   557: invokevirtual 199	com/admarvel/android/ads/AdMarvelAd:setErrorCode	(I)V
+    //   560: aload 15
+    //   562: areturn
+    //   563: astore 17
+    //   565: aload 17
+    //   567: invokestatic 176	android/util/Log:getStackTraceString	(Ljava/lang/Throwable;)Ljava/lang/String;
+    //   570: invokestatic 181	com/admarvel/android/util/Logging:log	(Ljava/lang/String;)V
+    //   573: aload 15
+    //   575: getstatic 191	com/admarvel/android/ads/AdMarvelAd$AdType:ERROR	Lcom/admarvel/android/ads/AdMarvelAd$AdType;
+    //   578: invokevirtual 195	com/admarvel/android/ads/AdMarvelAd:setAdType	(Lcom/admarvel/android/ads/AdMarvelAd$AdType;)V
+    //   581: aload 15
+    //   583: sipush 303
+    //   586: invokevirtual 199	com/admarvel/android/ads/AdMarvelAd:setErrorCode	(I)V
+    //   589: aload 15
+    //   591: areturn
+    //   592: astore 16
+    //   594: aload 15
+    //   596: getstatic 191	com/admarvel/android/ads/AdMarvelAd$AdType:ERROR	Lcom/admarvel/android/ads/AdMarvelAd$AdType;
+    //   599: invokevirtual 195	com/admarvel/android/ads/AdMarvelAd:setAdType	(Lcom/admarvel/android/ads/AdMarvelAd$AdType;)V
+    //   602: aload 15
+    //   604: sipush 303
+    //   607: invokevirtual 199	com/admarvel/android/ads/AdMarvelAd:setErrorCode	(I)V
+    //   610: aload 15
+    //   612: areturn
+    //   613: aload 15
+    //   615: getstatic 191	com/admarvel/android/ads/AdMarvelAd$AdType:ERROR	Lcom/admarvel/android/ads/AdMarvelAd$AdType;
+    //   618: invokevirtual 195	com/admarvel/android/ads/AdMarvelAd:setAdType	(Lcom/admarvel/android/ads/AdMarvelAd$AdType;)V
+    //   621: aload 15
+    //   623: sipush 303
+    //   626: invokevirtual 199	com/admarvel/android/ads/AdMarvelAd:setErrorCode	(I)V
+    //   629: aload 15
+    //   631: areturn
+    //   632: aload 15
+    //   634: getstatic 191	com/admarvel/android/ads/AdMarvelAd$AdType:ERROR	Lcom/admarvel/android/ads/AdMarvelAd$AdType;
+    //   637: invokevirtual 195	com/admarvel/android/ads/AdMarvelAd:setAdType	(Lcom/admarvel/android/ads/AdMarvelAd$AdType;)V
+    //   640: aload 15
+    //   642: sipush 303
+    //   645: invokevirtual 199	com/admarvel/android/ads/AdMarvelAd:setErrorCode	(I)V
+    //   648: aload 15
+    //   650: areturn
     //
     // Exception table:
     //   from	to	target	type
-    //   47	148	233	java/io/IOException
-    //   188	193	233	java/io/IOException
-    //   193	232	233	java/io/IOException
-    //   278	283	233	java/io/IOException
-    //   283	286	233	java/io/IOException
-    //   321	336	233	java/io/IOException
-    //   153	176	268	finally
-    //   47	148	286	java/lang/IllegalArgumentException
-    //   188	193	286	java/lang/IllegalArgumentException
-    //   193	232	286	java/lang/IllegalArgumentException
-    //   278	283	286	java/lang/IllegalArgumentException
-    //   283	286	286	java/lang/IllegalArgumentException
-    //   321	336	286	java/lang/IllegalArgumentException
-    //   176	188	339	finally
+    //   119	131	445	finally
+    //   117	119	452	java/lang/Exception
+    //   447	452	452	java/lang/Exception
+    //   131	149	462	java/lang/Exception
+    //   158	187	479	java/lang/Exception
+    //   470	476	479	java/lang/Exception
+    //   423	442	534	java/lang/Exception
+    //   386	395	563	java/lang/Exception
+    //   400	418	563	java/lang/Exception
+    //   536	560	563	java/lang/Exception
+    //   613	629	563	java/lang/Exception
+    //   565	589	592	java/lang/Exception
+    //   632	648	592	java/lang/Exception
   }
 
-  private boolean k()
-  {
-    return (this.n != null) && (this.j != -1) && (this.j != 0) && (this.j != 1);
-  }
-
-  public Uri a()
-  {
-    return this.g;
-  }
-
-  String a(String paramString)
-  {
-    if ((this.l != null) && (this.l.containsKey(paramString)))
-    {
-      f.b localb = (f.b)this.l.get(paramString);
-      if (localb != null)
-        return localb.a;
-    }
-    return null;
-  }
-
-  public void a(int paramInt)
-  {
-    if (!ab.k(this.A))
-    {
-      if (this.a != null)
-        this.a.f();
-      return;
-    }
-    if (this.n == null)
-    {
-      this.w = paramInt;
-      j();
-      return;
-    }
-    this.n.seekTo(paramInt);
-  }
-
-  public void a(MediaPlayer.OnCompletionListener paramOnCompletionListener)
-  {
-    this.s = paramOnCompletionListener;
-  }
-
-  public void a(MediaPlayer.OnErrorListener paramOnErrorListener)
-  {
-    this.v = paramOnErrorListener;
-  }
-
-  public void a(MediaPlayer.OnPreparedListener paramOnPreparedListener)
-  {
-    this.t = paramOnPreparedListener;
-  }
-
-  public void a(Uri paramUri)
+  protected void a(AdMarvelAd paramAdMarvelAd)
   {
     try
     {
-      if (this.n != null)
+      super.onPostExecute(paramAdMarvelAd);
+      if (paramAdMarvelAd.getAdType() == AdMarvelAd.AdType.ERROR)
       {
-        this.n.reset();
-        this.n.release();
-        this.n = null;
+        AdMarvelUtils.ErrorReason localErrorReason2 = r.a(paramAdMarvelAd.getErrorCode());
+        int j = r.a(localErrorReason2);
+        Context localContext5 = (Context)this.c.get();
+        if (localContext5 != null)
+          AdMarvelInterstitialAds.getListener().a(localContext5, null, null, j, localErrorReason2, paramAdMarvelAd.getSiteId(), paramAdMarvelAd.getId(), paramAdMarvelAd.getTargetParams(), paramAdMarvelAd.getIpAddress());
       }
-      this.f = paramUri;
-      this.w = 0;
-      j();
-      requestLayout();
-      invalidate();
-      return;
-    }
-    catch (Exception localException)
-    {
-      if (this.a != null)
-        this.a.g();
-      Logging.log(Log.getStackTraceString(localException));
-    }
-  }
-
-  void a(String paramString1, String paramString2)
-  {
-    if (this.l == null)
-      this.l = new ConcurrentHashMap();
-    if (this.l.containsKey(paramString1))
-    {
-      f.b localb2 = (f.b)this.l.get(paramString1);
-      localb2.a = paramString2;
-      this.l.put(paramString1, localb2);
-      return;
-    }
-    f.b localb1 = new f.b(null);
-    localb1.a = paramString2;
-    this.l.put(paramString1, localb1);
-  }
-
-  public void a(boolean paramBoolean)
-  {
-    try
-    {
-      if (this.n != null)
+      else if (paramAdMarvelAd.getAdType() == AdMarvelAd.AdType.SDKCALL)
       {
-        this.n.reset();
-        this.n.release();
-        this.n = null;
-        this.j = 0;
-        if (paramBoolean)
-          this.k = 0;
-      }
-      return;
-    }
-    catch (Exception localException)
-    {
-      if (this.a != null)
-        this.a.g();
-      Logging.log(Log.getStackTraceString(localException));
-    }
-  }
-
-  void b()
-  {
-    if (this.E != null)
-      this.E.cancel(true);
-    try
-    {
-      if (b(this.g.toString()))
-      {
-        File localFile = new File(a(this.g.toString()));
-        if (localFile.exists())
-          localFile.delete();
-      }
-      if (this.E != null)
-        this.E = null;
-      return;
-    }
-    catch (Exception localException)
-    {
-      while (true)
-        Logging.log(Log.getStackTraceString(localException));
-    }
-  }
-
-  public void b(Uri paramUri)
-  {
-    try
-    {
-      this.f = paramUri;
-      this.w = 0;
-      j();
-      requestLayout();
-      invalidate();
-      return;
-    }
-    catch (Exception localException)
-    {
-      if (this.a != null)
-        this.a.g();
-      Logging.log(Log.getStackTraceString(localException));
-    }
-  }
-
-  public boolean b(String paramString)
-  {
-    return (this.l != null) && (this.l.containsKey(paramString)) && (new File(((f.b)this.l.get(paramString)).a).exists());
-  }
-
-  public void c()
-  {
-    try
-    {
-      if (this.n != null)
-      {
-        this.n.reset();
-        this.n.release();
-        this.n = null;
-        this.j = 0;
-        this.k = 0;
-        if (this.a != null)
-          this.a.b();
-      }
-      return;
-    }
-    catch (Exception localException)
-    {
-      if (this.a != null)
-        this.a.g();
-      Logging.log(Log.getStackTraceString(localException));
-    }
-  }
-
-  public void c(String paramString)
-  {
-    b(Uri.parse(paramString));
-  }
-
-  public boolean canPause()
-  {
-    return this.x;
-  }
-
-  public boolean canSeekBackward()
-  {
-    return this.y;
-  }
-
-  public boolean canSeekForward()
-  {
-    return this.z;
-  }
-
-  public void d()
-  {
-    if (k())
-      this.n.setVolume(0.0F, 0.0F);
-  }
-
-  public void d(String paramString)
-  {
-    String str;
-    if (!b(paramString))
-    {
-      File localFile = getContext().getDir("adm_cache_files", 0);
-      str = localFile.getAbsolutePath() + "/" + UUID.randomUUID().toString() + "_" + System.nanoTime();
-      a(paramString, str);
-      if (ac.a() >= 11)
-      {
-        this.E = new f.c(paramString, str, this);
-        this.E.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Void[0]);
-      }
-    }
-    else
-    {
-      return;
-    }
-    this.E = new f.c(paramString, str, this);
-    this.E.execute(new Void[0]);
-  }
-
-  public void e()
-  {
-    if (k())
-      this.n.setVolume(1.0F, 1.0F);
-  }
-
-  public void e(String paramString)
-  {
-    this.i = true;
-    if (b(paramString))
-    {
-      c(a(paramString));
-      start();
-      return;
-    }
-    c(paramString);
-    start();
-  }
-
-  public void f()
-  {
-    this.i = true;
-    if (b(this.g.toString()))
-    {
-      c(a(this.g.toString()));
-      start();
-      return;
-    }
-    b(this.g);
-    start();
-  }
-
-  public void g()
-  {
-    if (this.B > 0)
-    {
-      if (this.D)
-        if (a(this.B) == a(getCurrentPosition()))
+        if (paramAdMarvelAd.getSdkNetwork() != null)
         {
-          start();
-          if (this.a != null)
-            this.a.d();
+          Context localContext4 = (Context)this.c.get();
+          this.b.requestPendingAdapterAd(this.a, paramAdMarvelAd, paramAdMarvelAd.getSdkNetwork(), localContext4);
+          return;
         }
-      while (true)
+      }
+    }
+    catch (Exception localException)
+    {
+      Logging.log(Log.getStackTraceString(localException));
+      AdMarvelUtils.ErrorReason localErrorReason1 = r.a(303);
+      int i = r.a(localErrorReason1);
+      Context localContext1 = (Context)this.c.get();
+      if (localContext1 != null)
       {
-        if (this.a != null)
-          this.a.c();
+        AdMarvelInterstitialAds.getListener().a(localContext1, null, null, i, localErrorReason1, paramAdMarvelAd.getSiteId(), paramAdMarvelAd.getId(), paramAdMarvelAd.getTargetParams(), paramAdMarvelAd.getIpAddress());
         return;
-        a(this.B);
-        continue;
-        if ((b(this.g.toString())) && (this.i))
+        if (paramAdMarvelAd.isDisableAdrequest())
         {
-          c(a(this.g.toString()));
-          seekTo(this.B);
-          this.k = 3;
+          String str = paramAdMarvelAd.getDisableAdDuration();
+          if (str != null)
+          {
+            Context localContext3 = (Context)this.c.get();
+            if ((this.b == null) || (localContext3 == null))
+              return;
+            this.b.disableAdRequest(str, paramAdMarvelAd, localContext3);
+            return;
+          }
         }
-        else if (this.i)
+        if (this.c != null);
+        for (Context localContext2 = (Context)this.c.get(); ; localContext2 = null)
         {
-          b(this.g);
-          start();
+          this.b.requestPendingAdMarvelAd(paramAdMarvelAd, localContext2);
+          return;
         }
       }
-    }
-    if (b(this.g.toString()))
-      c(a(this.g.toString()));
-    while (true)
-    {
-      start();
-      return;
-      a(this.g);
-    }
-  }
-
-  public int getBufferPercentage()
-  {
-    if (this.n != null)
-      return this.u;
-    return 0;
-  }
-
-  public int getCurrentPosition()
-  {
-    if (k())
-    {
-      int i1 = this.n.getCurrentPosition();
-      this.e = i1;
-      return i1;
-    }
-    return 0;
-  }
-
-  public int getDuration()
-  {
-    if (k())
-    {
-      if (this.h > 0)
-        return this.h;
-      this.h = this.n.getDuration();
-      return this.h;
-    }
-    this.h = -1;
-    return this.h;
-  }
-
-  public int h()
-  {
-    if (k())
-    {
-      this.e = this.n.getCurrentPosition();
-      this.B = this.e;
-      return this.e;
-    }
-    return this.B;
-  }
-
-  public boolean isPlaying()
-  {
-    return (k()) && (this.n.isPlaying());
-  }
-
-  protected void onMeasure(int paramInt1, int paramInt2)
-  {
-    int i1 = getDefaultSize(this.o, paramInt1);
-    int i2 = getDefaultSize(this.p, paramInt2);
-    if ((this.o > 0) && (this.p > 0))
-    {
-      if (i2 * this.o <= i1 * this.p)
-        break label70;
-      i2 = i1 * this.p / this.o;
-    }
-    while (true)
-    {
-      setMeasuredDimension(i1, i2);
-      return;
-      label70: if (i2 * this.o < i1 * this.p)
-        i1 = i2 * this.o / this.p;
-    }
-  }
-
-  public boolean onTouchEvent(MotionEvent paramMotionEvent)
-  {
-    if (this.a != null)
-      this.a.e();
-    return false;
-  }
-
-  public boolean onTrackballEvent(MotionEvent paramMotionEvent)
-  {
-    return false;
-  }
-
-  public void pause()
-  {
-    try
-    {
-      this.j = 4;
-      this.B = getCurrentPosition();
-      if ((k()) && (this.n.isPlaying()))
-      {
-        if (!this.D)
-          break label66;
-        this.n.pause();
-      }
-      while (true)
-      {
-        if (this.a != null)
-          this.a.a();
-        this.k = 4;
-        return;
-        label66: c();
-      }
-    }
-    catch (IllegalStateException localIllegalStateException)
-    {
-      if (this.a != null)
-        this.a.g();
-      Logging.log(Log.getStackTraceString(localIllegalStateException));
-    }
-  }
-
-  public void seekTo(int paramInt)
-  {
-    if (!ab.k(this.A))
-    {
-      if (this.a != null)
-        this.a.f();
-      return;
-    }
-    if (k())
-    {
-      this.n.seekTo(paramInt);
-      this.w = 0;
-      return;
-    }
-    this.w = paramInt;
-  }
-
-  public void start()
-  {
-    try
-    {
-      if (k())
-      {
-        this.n.start();
-        this.j = 3;
-      }
-      this.k = 3;
-      this.B = 0;
-      return;
-    }
-    catch (IllegalStateException localIllegalStateException)
-    {
-      if (this.a != null)
-        this.a.g();
-      Logging.log(Log.getStackTraceString(localIllegalStateException));
     }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.f
  * JD-Core Version:    0.6.2
  */

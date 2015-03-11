@@ -1,49 +1,88 @@
 package com.enflick.android.TextNow.activities;
 
-import textnow.i.a;
+import android.database.Cursor;
+import android.net.Uri;
+import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
+import android.widget.MultiAutoCompleteTextView.Tokenizer;
+import com.enflick.android.TextNow.views.RecipientField;
+import java.util.Locale;
+import textnow.p.n;
+import textnow.v.k;
+import textnow.z.f;
 
 public final class b
+  implements AdapterView.OnItemClickListener
 {
-  private a a;
-  private android.support.v7.app.d b;
-  private int c;
-  private int d;
-  private c e;
+  private RecipientField a;
+  private MultiAutoCompleteTextView.Tokenizer b;
+  private ListView c;
 
-  public b(android.support.v7.app.d paramd, int paramInt1, int paramInt2, c paramc)
+  public b(ListView paramListView, RecipientField paramRecipientField, MultiAutoCompleteTextView.Tokenizer paramTokenizer)
   {
-    this.b = paramd;
-    this.c = paramInt1;
-    this.d = paramInt2;
-    this.e = paramc;
+    this.c = paramListView;
+    this.a = paramRecipientField;
+    this.b = paramTokenizer;
   }
 
-  public final int a()
-  {
-    if (this.a == null)
-      return 3;
-    return 2;
-  }
-
-  public final void b()
+  private void a(f paramf)
   {
     if (this.a != null)
-      this.a.b();
+    {
+      this.a.a(paramf, this.b);
+      this.a.requestFocus();
+      this.c.setVisibility(4);
+    }
   }
 
-  public final void c()
+  public final void onItemClick(AdapterView<?> paramAdapterView, View paramView, int paramInt, long paramLong)
   {
-    if (this.a != null)
-      this.a.c();
-  }
-
-  public final void d()
-  {
-    this.b.a(new d(this));
+    if ((paramView != null) && (paramView.getTag() != null))
+      a(((n)paramView.getTag()).a);
+    Object localObject;
+    do
+    {
+      do
+        return;
+      while ((paramAdapterView == null) || (paramAdapterView.getAdapter() == null));
+      localObject = paramAdapterView.getAdapter().getItem(paramInt);
+    }
+    while (!(localObject instanceof Cursor));
+    Cursor localCursor = (Cursor)localObject;
+    String str1;
+    String str2;
+    long l;
+    f localf;
+    if ((!localCursor.isBeforeFirst()) && (!localCursor.isAfterLast()))
+    {
+      str1 = localCursor.getString(2);
+      str2 = localCursor.getString(4);
+      l = localCursor.getLong(5);
+      if (str2 != null)
+      {
+        if (str2.indexOf("@") < 0)
+          break label217;
+        if (!str2.toLowerCase(Locale.US).endsWith("@textnow.me"))
+          break label192;
+        localf = new f(str2.substring(0, str2.indexOf("@")), 1, str1, k.a(l).toString());
+      }
+    }
+    while (true)
+    {
+      a(localf);
+      localCursor.close();
+      return;
+      label192: localf = new f(str2, 3, str1, k.a(l).toString());
+      continue;
+      label217: localf = new f(textnow.v.b.e(str2), 2, str1, k.a(l).toString());
+    }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.activities.b
  * JD-Core Version:    0.6.2
  */

@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.text.Editable;
 import android.text.SpanWatcher;
+import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.TextView;
 import java.lang.ref.WeakReference;
@@ -68,7 +69,7 @@ public final class d
       StringBuilder localStringBuilder2 = new StringBuilder(str1);
       if (str1.matches(".*[a-zA-Z].*"))
       {
-        if ((!paramBoolean) && (a(str1)))
+        if ((!paramBoolean) && (b(str1)))
         {
           String str2 = str1.toUpperCase();
           localStringBuilder1.append(Pattern.quote(str2)).append('|');
@@ -113,22 +114,6 @@ public final class d
     return Pattern.compile(localStringBuilder1.toString());
   }
 
-  private static boolean a(String paramString)
-  {
-    int m = 0;
-    int n = 0;
-    while (m < paramString.length())
-    {
-      if (Character.isLetter(paramString.charAt(m)))
-        n++;
-      m++;
-    }
-    boolean bool = false;
-    if (n > 2)
-      bool = true;
-    return bool;
-  }
-
   private void b()
   {
     this.j = this.c.getResources().getStringArray(2131623944);
@@ -157,6 +142,22 @@ public final class d
         locala = (a)localHashMap.get(Integer.valueOf(n));
       }
     }
+  }
+
+  private static boolean b(String paramString)
+  {
+    int m = 0;
+    int n = 0;
+    while (m < paramString.length())
+    {
+      if (Character.isLetter(paramString.charAt(m)))
+        n++;
+      m++;
+    }
+    boolean bool = false;
+    if (n > 2)
+      bool = true;
+    return bool;
   }
 
   public final ArrayList<a> a()
@@ -285,9 +286,16 @@ public final class d
       System.gc();
     }
   }
+
+  public final boolean a(String paramString)
+  {
+    if (TextUtils.isEmpty(paramString))
+      return false;
+    return this.d.matcher(paramString).find();
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.views.emoticons.d
  * JD-Core Version:    0.6.2
  */

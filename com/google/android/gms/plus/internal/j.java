@@ -11,24 +11,24 @@ public class j
 {
   static void a(h paramh, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
+    int i = b.D(paramParcel);
     b.a(paramParcel, 1, paramh.getAccountName(), false);
     b.c(paramParcel, 1000, paramh.getVersionCode());
-    b.a(paramParcel, 2, paramh.jZ(), false);
-    b.a(paramParcel, 3, paramh.ka(), false);
-    b.a(paramParcel, 4, paramh.kb(), false);
-    b.a(paramParcel, 5, paramh.kc(), false);
-    b.a(paramParcel, 6, paramh.kd(), false);
-    b.a(paramParcel, 7, paramh.ke(), false);
-    b.a(paramParcel, 8, paramh.kf(), false);
-    b.a(paramParcel, 9, paramh.kg(), paramInt, false);
-    b.G(paramParcel, i);
+    b.a(paramParcel, 2, paramh.ng(), false);
+    b.a(paramParcel, 3, paramh.nh(), false);
+    b.a(paramParcel, 4, paramh.ni(), false);
+    b.a(paramParcel, 5, paramh.nj(), false);
+    b.a(paramParcel, 6, paramh.nk(), false);
+    b.a(paramParcel, 7, paramh.nl(), false);
+    b.a(paramParcel, 8, paramh.nm(), false);
+    b.a(paramParcel, 9, paramh.nn(), paramInt, false);
+    b.H(paramParcel, i);
   }
 
-  public h bD(Parcel paramParcel)
+  public h da(Parcel paramParcel)
   {
     PlusCommonExtras localPlusCommonExtras = null;
-    int i = a.B(paramParcel);
+    int i = a.C(paramParcel);
     int j = 0;
     String str1 = null;
     String str2 = null;
@@ -40,8 +40,8 @@ public class j
     String str5 = null;
     while (paramParcel.dataPosition() < i)
     {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
       {
       default:
         a.b(paramParcel, k);
@@ -82,13 +82,13 @@ public class j
     return new h(j, str5, arrayOfString3, arrayOfString2, arrayOfString1, str4, str3, str2, str1, localPlusCommonExtras);
   }
 
-  public h[] da(int paramInt)
+  public h[] eS(int paramInt)
   {
     return new h[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.plus.internal.j
  * JD-Core Version:    0.6.2
  */

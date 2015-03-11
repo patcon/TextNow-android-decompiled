@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.data.DataHolder;
-import com.google.android.gms.internal.ie;
-import com.google.android.gms.internal.ks;
+import com.google.android.gms.internal.jp;
+import com.google.android.gms.internal.nz;
 
 public abstract class a extends b.a
 {
@@ -17,11 +17,11 @@ public abstract class a extends b.a
   {
   }
 
-  public final void a(int paramInt, Bundle paramBundle, ie paramie)
+  public final void a(int paramInt, Bundle paramBundle, jp paramjp)
   {
   }
 
-  public void a(int paramInt, ks paramks)
+  public void a(int paramInt, nz paramnz)
   {
   }
 
@@ -33,15 +33,15 @@ public abstract class a extends b.a
   {
   }
 
-  public void am(Status paramStatus)
+  public void aB(Status paramStatus)
   {
   }
 
-  public void bw(String paramString)
+  public void ce(String paramString)
   {
   }
 
-  public void bx(String paramString)
+  public void cf(String paramString)
   {
   }
 
@@ -50,7 +50,7 @@ public abstract class a extends b.a
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.plus.internal.a
  * JD-Core Version:    0.6.2
  */

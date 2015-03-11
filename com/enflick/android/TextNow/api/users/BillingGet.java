@@ -2,9 +2,9 @@ package com.enflick.android.TextNow.api.users;
 
 import android.content.Context;
 import com.enflick.android.TextNow.api.common.TNHttpCommand;
-import textnow.t.b;
-import textnow.t.d;
-import textnow.t.g;
+import textnow.y.b;
+import textnow.y.d;
+import textnow.y.g;
 
 @b(a="GET")
 @d(a="users/{0}/billing")
@@ -17,7 +17,7 @@ public class BillingGet extends TNHttpCommand
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.api.users.BillingGet
  * JD-Core Version:    0.6.2
  */

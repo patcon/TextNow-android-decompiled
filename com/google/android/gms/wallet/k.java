@@ -12,25 +12,25 @@ public class k
 {
   static void a(MaskedWallet paramMaskedWallet, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
+    int i = b.D(paramParcel);
     b.c(paramParcel, 1, paramMaskedWallet.getVersionCode());
-    b.a(paramParcel, 2, paramMaskedWallet.aiQ, false);
-    b.a(paramParcel, 3, paramMaskedWallet.aiR, false);
-    b.a(paramParcel, 4, paramMaskedWallet.aiW, false);
-    b.a(paramParcel, 5, paramMaskedWallet.aiT, false);
-    b.a(paramParcel, 6, paramMaskedWallet.aiU, paramInt, false);
-    b.a(paramParcel, 7, paramMaskedWallet.aiV, paramInt, false);
-    b.a(paramParcel, 8, paramMaskedWallet.ajC, paramInt, false);
-    b.a(paramParcel, 9, paramMaskedWallet.ajD, paramInt, false);
-    b.a(paramParcel, 10, paramMaskedWallet.aiX, paramInt, false);
-    b.a(paramParcel, 11, paramMaskedWallet.aiY, paramInt, false);
-    b.a(paramParcel, 12, paramMaskedWallet.aiZ, paramInt, false);
-    b.G(paramParcel, i);
+    b.a(paramParcel, 2, paramMaskedWallet.asB, false);
+    b.a(paramParcel, 3, paramMaskedWallet.asC, false);
+    b.a(paramParcel, 4, paramMaskedWallet.asH, false);
+    b.a(paramParcel, 5, paramMaskedWallet.asE, false);
+    b.a(paramParcel, 6, paramMaskedWallet.asF, paramInt, false);
+    b.a(paramParcel, 7, paramMaskedWallet.asG, paramInt, false);
+    b.a(paramParcel, 8, paramMaskedWallet.atm, paramInt, false);
+    b.a(paramParcel, 9, paramMaskedWallet.atn, paramInt, false);
+    b.a(paramParcel, 10, paramMaskedWallet.asI, paramInt, false);
+    b.a(paramParcel, 11, paramMaskedWallet.asJ, paramInt, false);
+    b.a(paramParcel, 12, paramMaskedWallet.asK, paramInt, false);
+    b.H(paramParcel, i);
   }
 
-  public MaskedWallet bZ(Parcel paramParcel)
+  public MaskedWallet dw(Parcel paramParcel)
   {
-    int i = a.B(paramParcel);
+    int i = a.C(paramParcel);
     int j = 0;
     String str1 = null;
     String str2 = null;
@@ -45,8 +45,8 @@ public class k
     InstrumentInfo[] arrayOfInstrumentInfo = null;
     while (paramParcel.dataPosition() < i)
     {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
       {
       default:
         a.b(paramParcel, k);
@@ -93,13 +93,13 @@ public class k
     return new MaskedWallet(j, str1, str2, arrayOfString, str3, localAddress1, localAddress2, arrayOfLoyaltyWalletObject, arrayOfOfferWalletObject, localUserAddress1, localUserAddress2, arrayOfInstrumentInfo);
   }
 
-  public MaskedWallet[] dF(int paramInt)
+  public MaskedWallet[] fx(int paramInt)
   {
     return new MaskedWallet[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.k
  * JD-Core Version:    0.6.2
  */

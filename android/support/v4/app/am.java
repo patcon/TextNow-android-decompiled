@@ -1,68 +1,47 @@
 package android.support.v4.app;
 
-import android.app.Activity;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager.NameNotFoundException;
+import android.app.PendingIntent;
 import android.os.Bundle;
-import android.support.v4.content.e;
+import java.util.ArrayList;
 
-class am
-  implements al
+public final class am
 {
-  public Intent a(Activity paramActivity)
+  private final int a;
+  private final CharSequence b;
+  private final PendingIntent c;
+  private final Bundle d;
+  private ArrayList<bz> e;
+
+  public am(int paramInt, CharSequence paramCharSequence, PendingIntent paramPendingIntent)
   {
-    String str = ak.b(paramActivity);
-    if (str == null)
-      return null;
-    ComponentName localComponentName = new ComponentName(paramActivity, str);
-    try
-    {
-      if (ak.b(paramActivity, localComponentName) == null)
-        return e.a(localComponentName);
-      Intent localIntent = new Intent().setComponent(localComponentName);
-      return localIntent;
-    }
-    catch (PackageManager.NameNotFoundException localNameNotFoundException)
-    {
-      new StringBuilder().append("getParentActivityIntent: bad parentActivityName '").append(str).append("' in manifest").toString();
-    }
-    return null;
+    this(paramInt, paramCharSequence, paramPendingIntent, new Bundle());
   }
 
-  public String a(Context paramContext, ActivityInfo paramActivityInfo)
+  private am(int paramInt, CharSequence paramCharSequence, PendingIntent paramPendingIntent, Bundle paramBundle)
   {
-    String str;
-    if (paramActivityInfo.metaData == null)
-      str = null;
-    do
-    {
-      return str;
-      str = paramActivityInfo.metaData.getString("android.support.PARENT_ACTIVITY");
-      if (str == null)
-        return null;
-    }
-    while (str.charAt(0) != '.');
-    return paramContext.getPackageName() + str;
+    this.a = paramInt;
+    this.b = ap.e(paramCharSequence);
+    this.c = paramPendingIntent;
+    this.d = paramBundle;
   }
 
-  public boolean a(Activity paramActivity, Intent paramIntent)
+  public final al a()
   {
-    String str = paramActivity.getIntent().getAction();
-    return (str != null) && (!str.equals("android.intent.action.MAIN"));
+    if (this.e != null);
+    for (bz[] arrayOfbz = (bz[])this.e.toArray(new bz[this.e.size()]); ; arrayOfbz = null)
+      return new al(this.a, this.b, this.c, this.d, arrayOfbz, (byte)0);
   }
 
-  public void b(Activity paramActivity, Intent paramIntent)
+  public final am a(bz parambz)
   {
-    paramIntent.addFlags(67108864);
-    paramActivity.startActivity(paramIntent);
-    paramActivity.finish();
+    if (this.e == null)
+      this.e = new ArrayList();
+    this.e.add(parambz);
+    return this;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.app.am
  * JD-Core Version:    0.6.2
  */

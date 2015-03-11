@@ -5,7 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable.Creator;
 import com.google.android.gms.common.images.WebImage;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-import com.google.android.gms.internal.gi;
+import com.google.android.gms.internal.ik;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -18,45 +18,47 @@ public class CastDevice
   implements SafeParcelable
 {
   public static final Parcelable.Creator<CastDevice> CREATOR = new b();
-  private String Ah;
-  String Ai;
-  private Inet4Address Aj;
-  private String Ak;
-  private String Al;
-  private String Am;
-  private int An;
-  private List<WebImage> Ao;
-  private int Ap;
-  private final int xM;
+  private final int BR;
+  private String ER;
+  String ES;
+  private Inet4Address ET;
+  private String EU;
+  private String EV;
+  private String EW;
+  private int EX;
+  private List<WebImage> EY;
+  private int EZ;
+  private int Fa;
 
   private CastDevice()
   {
-    this(2, null, null, null, null, null, -1, new ArrayList(), 0);
+    this(3, null, null, null, null, null, -1, new ArrayList(), 0, -1);
   }
 
-  CastDevice(int paramInt1, String paramString1, String paramString2, String paramString3, String paramString4, String paramString5, int paramInt2, List<WebImage> paramList, int paramInt3)
+  CastDevice(int paramInt1, String paramString1, String paramString2, String paramString3, String paramString4, String paramString5, int paramInt2, List<WebImage> paramList, int paramInt3, int paramInt4)
   {
-    this.xM = paramInt1;
-    this.Ah = paramString1;
-    this.Ai = paramString2;
-    if (this.Ai != null);
+    this.BR = paramInt1;
+    this.ER = paramString1;
+    this.ES = paramString2;
+    if (this.ES != null);
     try
     {
-      InetAddress localInetAddress = InetAddress.getByName(this.Ai);
+      InetAddress localInetAddress = InetAddress.getByName(this.ES);
       if ((localInetAddress instanceof Inet4Address))
-        this.Aj = ((Inet4Address)localInetAddress);
-      this.Ak = paramString3;
-      this.Al = paramString4;
-      this.Am = paramString5;
-      this.An = paramInt2;
-      this.Ao = paramList;
-      this.Ap = paramInt3;
+        this.ET = ((Inet4Address)localInetAddress);
+      this.EU = paramString3;
+      this.EV = paramString4;
+      this.EW = paramString5;
+      this.EX = paramInt2;
+      this.EY = paramList;
+      this.EZ = paramInt3;
+      this.Fa = paramInt4;
       return;
     }
     catch (UnknownHostException localUnknownHostException)
     {
       while (true)
-        this.Aj = null;
+        this.ET = null;
     }
   }
 
@@ -91,38 +93,38 @@ public class CastDevice
       while (localCastDevice.getDeviceId() == null);
       return false;
     }
-    while ((gi.a(this.Ah, localCastDevice.Ah)) && (gi.a(this.Aj, localCastDevice.Aj)) && (gi.a(this.Al, localCastDevice.Al)) && (gi.a(this.Ak, localCastDevice.Ak)) && (gi.a(this.Am, localCastDevice.Am)) && (this.An == localCastDevice.An) && (gi.a(this.Ao, localCastDevice.Ao)) && (this.Ap == localCastDevice.Ap));
+    while ((ik.a(this.ER, localCastDevice.ER)) && (ik.a(this.ET, localCastDevice.ET)) && (ik.a(this.EV, localCastDevice.EV)) && (ik.a(this.EU, localCastDevice.EU)) && (ik.a(this.EW, localCastDevice.EW)) && (this.EX == localCastDevice.EX) && (ik.a(this.EY, localCastDevice.EY)) && (this.EZ == localCastDevice.EZ) && (this.Fa == localCastDevice.Fa));
     return false;
   }
 
   public int getCapabilities()
   {
-    return this.Ap;
+    return this.EZ;
   }
 
   public String getDeviceId()
   {
-    return this.Ah;
+    return this.ER;
   }
 
   public String getDeviceVersion()
   {
-    return this.Am;
+    return this.EW;
   }
 
   public String getFriendlyName()
   {
-    return this.Ak;
+    return this.EU;
   }
 
   public WebImage getIcon(int paramInt1, int paramInt2)
   {
     Object localObject1 = null;
-    if (this.Ao.isEmpty())
+    if (this.EY.isEmpty())
       return null;
     if ((paramInt1 <= 0) || (paramInt2 <= 0))
-      return (WebImage)this.Ao.get(0);
-    Iterator localIterator = this.Ao.iterator();
+      return (WebImage)this.EY.get(0);
+    Iterator localIterator = this.EY.iterator();
     Object localObject2 = null;
     Object localObject3;
     while (localIterator.hasNext())
@@ -153,7 +155,7 @@ public class CastDevice
         if (localObject1 != null)
           localObject2 = localObject1;
         else
-          localObject2 = (WebImage)this.Ao.get(0);
+          localObject2 = (WebImage)this.EY.get(0);
       }
       label208: localObject3 = localObject1;
     }
@@ -161,39 +163,44 @@ public class CastDevice
 
   public List<WebImage> getIcons()
   {
-    return Collections.unmodifiableList(this.Ao);
+    return Collections.unmodifiableList(this.EY);
   }
 
   public Inet4Address getIpAddress()
   {
-    return this.Aj;
+    return this.ET;
   }
 
   public String getModelName()
   {
-    return this.Al;
+    return this.EV;
   }
 
   public int getServicePort()
   {
-    return this.An;
+    return this.EX;
+  }
+
+  public int getStatus()
+  {
+    return this.Fa;
   }
 
   int getVersionCode()
   {
-    return this.xM;
+    return this.BR;
   }
 
   public boolean hasIcons()
   {
-    return !this.Ao.isEmpty();
+    return !this.EY.isEmpty();
   }
 
   public int hashCode()
   {
-    if (this.Ah == null)
+    if (this.ER == null)
       return 0;
-    return this.Ah.hashCode();
+    return this.ER.hashCode();
   }
 
   public boolean isSameDevice(CastDevice paramCastDevice)
@@ -207,7 +214,7 @@ public class CastDevice
     }
     while (paramCastDevice.getDeviceId() != null);
     return true;
-    return gi.a(getDeviceId(), paramCastDevice.getDeviceId());
+    return ik.a(getDeviceId(), paramCastDevice.getDeviceId());
   }
 
   public void putInBundle(Bundle paramBundle)
@@ -220,8 +227,8 @@ public class CastDevice
   public String toString()
   {
     Object[] arrayOfObject = new Object[2];
-    arrayOfObject[0] = this.Ak;
-    arrayOfObject[1] = this.Ah;
+    arrayOfObject[0] = this.EU;
+    arrayOfObject[1] = this.ER;
     return String.format("\"%s\" (%s)", arrayOfObject);
   }
 
@@ -231,7 +238,7 @@ public class CastDevice
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.cast.CastDevice
  * JD-Core Version:    0.6.2
  */

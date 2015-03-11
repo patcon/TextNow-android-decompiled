@@ -1,12 +1,10 @@
 package com.google.android.gms.internal;
 
-import java.util.List;
-
-public final class c$i extends ma<i>
+public final class c$i extends ph<i>
 {
-  private static volatile i[] fG;
-  public d.a fH;
-  public c.d fI;
+  private static volatile i[] go;
+  public d.a gp;
+  public c.d gq;
   public String name;
 
   public c$i()
@@ -16,159 +14,165 @@ public final class c$i extends ma<i>
 
   public static i[] o()
   {
-    if (fG == null);
-    synchronized (mc.ana)
+    if (go == null);
+    synchronized (pl.awT)
     {
-      if (fG == null)
-        fG = new i[0];
-      return fG;
+      if (go == null)
+        go = new i[0];
+      return go;
     }
   }
 
-  public final void a(lz paramlz)
+  public final void a(pg parampg)
   {
     if (!this.name.equals(""))
-      paramlz.b(1, this.name);
-    if (this.fH != null)
-      paramlz.a(2, this.fH);
-    if (this.fI != null)
-      paramlz.a(3, this.fI);
-    super.a(paramlz);
+      parampg.b(1, this.name);
+    if (this.gp != null)
+      parampg.a(2, this.gp);
+    if (this.gq != null)
+      parampg.a(3, this.gq);
+    super.a(parampg);
   }
 
   protected final int c()
   {
     int i = super.c();
     if (!this.name.equals(""))
-      i += lz.h(1, this.name);
-    if (this.fH != null)
-      i += lz.b(2, this.fH);
-    if (this.fI != null)
-      i += lz.b(3, this.fI);
+      i += pg.j(1, this.name);
+    if (this.gp != null)
+      i += pg.c(2, this.gp);
+    if (this.gq != null)
+      i += pg.c(3, this.gq);
     return i;
   }
 
   public final boolean equals(Object paramObject)
   {
-    if (paramObject == this);
+    boolean bool2;
+    if (paramObject == this)
+      bool2 = true;
     i locali;
+    label68: 
     do
     {
-      return true;
-      if (!(paramObject instanceof i))
-        return false;
-      locali = (i)paramObject;
-      if (this.name == null)
+      d.a locala;
+      do
       {
-        if (locali.name != null)
-          return false;
+        String str;
+        do
+        {
+          boolean bool1;
+          do
+          {
+            return bool2;
+            bool1 = paramObject instanceof i;
+            bool2 = false;
+          }
+          while (!bool1);
+          locali = (i)paramObject;
+          if (this.name != null)
+            break;
+          str = locali.name;
+          bool2 = false;
+        }
+        while (str != null);
+        if (this.gp != null)
+          break label113;
+        locala = locali.gp;
+        bool2 = false;
       }
-      else if (!this.name.equals(locali.name))
-        return false;
-      if (this.fH == null)
-      {
-        if (locali.fH != null)
-          return false;
-      }
-      else if (!this.fH.equals(locali.fH))
-        return false;
-      if (this.fI == null)
-      {
-        if (locali.fI != null)
-          return false;
-      }
-      else if (!this.fI.equals(locali.fI))
-        return false;
-      if ((this.amX != null) && (!this.amX.isEmpty()))
-        break;
+      while (locala != null);
+      if (this.gq != null)
+        break label130;
+      locald = locali.gq;
+      bool2 = false;
     }
-    while ((locali.amX == null) || (locali.amX.isEmpty()));
-    return false;
-    return this.amX.equals(locali.amX);
+    while (locald != null);
+    label113: 
+    while (this.gq.equals(locali.gq))
+    {
+      c.d locald;
+      return a(locali);
+      if (this.name.equals(locali.name))
+        break;
+      return false;
+      if (this.gp.equals(locali.gp))
+        break label68;
+      return false;
+    }
+    label130: return false;
   }
 
   public final int hashCode()
   {
     int i;
     int k;
-    label27: int n;
-    label45: int i1;
-    int i2;
+    label27: int m;
+    int n;
     if (this.name == null)
     {
       i = 0;
       int j = 31 * (i + 527);
-      if (this.fH != null)
-        break label105;
+      if (this.gp != null)
+        break label74;
       k = 0;
-      int m = 31 * (k + j);
-      if (this.fI != null)
-        break label116;
+      m = 31 * (k + j);
+      c.d locald = this.gq;
       n = 0;
-      i1 = 31 * (n + m);
-      List localList = this.amX;
-      i2 = 0;
-      if (localList != null)
-      {
-        boolean bool = this.amX.isEmpty();
-        i2 = 0;
-        if (!bool)
-          break label128;
-      }
+      if (locald != null)
+        break label85;
     }
     while (true)
     {
-      return i1 + i2;
+      return 31 * (m + n) + qz();
       i = this.name.hashCode();
       break;
-      label105: k = this.fH.hashCode();
+      label74: k = this.gp.hashCode();
       break label27;
-      label116: n = this.fI.hashCode();
-      break label45;
-      label128: i2 = this.amX.hashCode();
+      label85: n = this.gq.hashCode();
     }
   }
 
-  public final i j(ly paramly)
+  public final i j(pf parampf)
   {
     while (true)
     {
-      int i = paramly.nB();
+      int i = parampf.qi();
       switch (i)
       {
       default:
-        if (a(paramly, i))
+        if (a(parampf, i))
           continue;
       case 0:
         return this;
       case 10:
-        this.name = paramly.readString();
+        this.name = parampf.readString();
         break;
       case 18:
-        if (this.fH == null)
-          this.fH = new d.a();
-        paramly.a(this.fH);
+        if (this.gp == null)
+          this.gp = new d.a();
+        parampf.a(this.gp);
         break;
       case 26:
       }
-      if (this.fI == null)
-        this.fI = new c.d();
-      paramly.a(this.fI);
+      if (this.gq == null)
+        this.gq = new c.d();
+      parampf.a(this.gq);
     }
   }
 
   public final i p()
   {
     this.name = "";
-    this.fH = null;
-    this.fI = null;
-    this.amX = null;
-    this.anb = -1;
+    this.gp = null;
+    this.gq = null;
+    this.awJ = null;
+    this.awU = -1;
     return this;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.c.i
  * JD-Core Version:    0.6.2
  */

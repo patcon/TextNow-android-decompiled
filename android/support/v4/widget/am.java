@@ -1,17 +1,16 @@
 package android.support.v4.widget;
 
-import android.support.v4.view.aq;
-import android.view.View;
+import android.widget.OverScroller;
 
-final class am extends ak
+final class am extends al
 {
-  public final void a(SlidingPaneLayout paramSlidingPaneLayout, View paramView)
+  public final float d(Object paramObject)
   {
-    aq.a(paramView, ((SlidingPaneLayout.LayoutParams)paramView.getLayoutParams()).d);
+    return ((OverScroller)paramObject).getCurrVelocity();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.widget.am
  * JD-Core Version:    0.6.2
  */

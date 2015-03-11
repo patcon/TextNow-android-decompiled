@@ -16,15 +16,15 @@ import android.widget.TextView;
 import net.hockeyapp.android.views.UpdateView;
 import org.json.JSONArray;
 import org.json.JSONException;
-import textnow.bf.a;
-import textnow.bh.b;
+import textnow.bm.a;
+import textnow.bo.b;
 
 public class g extends DialogFragment
   implements View.OnClickListener, h
 {
   private b downloadTask;
   private String urlString;
-  private textnow.bi.i versionHelper;
+  private textnow.bp.i versionHelper;
   private JSONArray versionInfo;
 
   public static g newInstance(JSONArray paramJSONArray, String paramString)
@@ -124,7 +124,7 @@ public class g extends DialogFragment
   public View onCreateView(LayoutInflater paramLayoutInflater, ViewGroup paramViewGroup, Bundle paramBundle)
   {
     View localView = getLayoutView();
-    this.versionHelper = new textnow.bi.i(this.versionInfo.toString(), this);
+    this.versionHelper = new textnow.bp.i(this.versionInfo.toString(), this);
     ((TextView)localView.findViewById(4098)).setText(getAppName());
     ((TextView)localView.findViewById(4099)).setText("Version " + this.versionHelper.a() + "\n" + this.versionHelper.b());
     ((Button)localView.findViewById(4100)).setOnClickListener(this);
@@ -136,7 +136,7 @@ public class g extends DialogFragment
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     net.hockeyapp.android.g
  * JD-Core Version:    0.6.2
  */

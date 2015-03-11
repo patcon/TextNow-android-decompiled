@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable.Creator;
 import com.google.android.gms.common.internal.safeparcel.a.a;
 import com.google.android.gms.common.internal.safeparcel.b;
-import com.google.android.gms.internal.ig;
+import com.google.android.gms.internal.jr;
 import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 
@@ -13,33 +13,33 @@ public class a
 {
   static void a(CommonWalletObject paramCommonWalletObject, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
+    int i = b.D(paramParcel);
     b.c(paramParcel, 1, paramCommonWalletObject.getVersionCode());
-    b.a(paramParcel, 2, paramCommonWalletObject.eC, false);
-    b.a(paramParcel, 3, paramCommonWalletObject.ajq, false);
+    b.a(paramParcel, 2, paramCommonWalletObject.fl, false);
+    b.a(paramParcel, 3, paramCommonWalletObject.ata, false);
     b.a(paramParcel, 4, paramCommonWalletObject.name, false);
-    b.a(paramParcel, 5, paramCommonWalletObject.ajj, false);
-    b.a(paramParcel, 6, paramCommonWalletObject.ajm, false);
-    b.a(paramParcel, 7, paramCommonWalletObject.ajn, false);
-    b.a(paramParcel, 8, paramCommonWalletObject.ajo, false);
-    b.a(paramParcel, 9, paramCommonWalletObject.ajp, false);
+    b.a(paramParcel, 5, paramCommonWalletObject.asU, false);
+    b.a(paramParcel, 6, paramCommonWalletObject.asW, false);
+    b.a(paramParcel, 7, paramCommonWalletObject.asX, false);
+    b.a(paramParcel, 8, paramCommonWalletObject.asY, false);
+    b.a(paramParcel, 9, paramCommonWalletObject.asZ, false);
     b.c(paramParcel, 10, paramCommonWalletObject.state);
-    b.b(paramParcel, 11, paramCommonWalletObject.ajr, false);
-    b.a(paramParcel, 12, paramCommonWalletObject.ajs, paramInt, false);
-    b.b(paramParcel, 13, paramCommonWalletObject.ajt, false);
-    b.a(paramParcel, 14, paramCommonWalletObject.aju, false);
-    b.a(paramParcel, 15, paramCommonWalletObject.ajv, false);
-    b.a(paramParcel, 17, paramCommonWalletObject.ajx);
-    b.b(paramParcel, 16, paramCommonWalletObject.ajw, false);
-    b.b(paramParcel, 19, paramCommonWalletObject.ajz, false);
-    b.b(paramParcel, 18, paramCommonWalletObject.ajy, false);
-    b.b(paramParcel, 20, paramCommonWalletObject.ajA, false);
-    b.G(paramParcel, i);
+    b.c(paramParcel, 11, paramCommonWalletObject.atb, false);
+    b.a(paramParcel, 12, paramCommonWalletObject.atc, paramInt, false);
+    b.c(paramParcel, 13, paramCommonWalletObject.atd, false);
+    b.a(paramParcel, 14, paramCommonWalletObject.ate, false);
+    b.a(paramParcel, 15, paramCommonWalletObject.atf, false);
+    b.a(paramParcel, 17, paramCommonWalletObject.ath);
+    b.c(paramParcel, 16, paramCommonWalletObject.atg, false);
+    b.c(paramParcel, 19, paramCommonWalletObject.atj, false);
+    b.c(paramParcel, 18, paramCommonWalletObject.ati, false);
+    b.c(paramParcel, 20, paramCommonWalletObject.atk, false);
+    b.H(paramParcel, i);
   }
 
-  public CommonWalletObject cj(Parcel paramParcel)
+  public CommonWalletObject dG(Parcel paramParcel)
   {
-    int i = com.google.android.gms.common.internal.safeparcel.a.B(paramParcel);
+    int i = com.google.android.gms.common.internal.safeparcel.a.C(paramParcel);
     int j = 0;
     String str1 = null;
     String str2 = null;
@@ -50,20 +50,20 @@ public class a
     String str7 = null;
     String str8 = null;
     int k = 0;
-    ArrayList localArrayList1 = ig.ga();
+    ArrayList localArrayList1 = jr.hz();
     l locall = null;
-    ArrayList localArrayList2 = ig.ga();
+    ArrayList localArrayList2 = jr.hz();
     String str9 = null;
     String str10 = null;
-    ArrayList localArrayList3 = ig.ga();
+    ArrayList localArrayList3 = jr.hz();
     boolean bool = false;
-    ArrayList localArrayList4 = ig.ga();
-    ArrayList localArrayList5 = ig.ga();
-    ArrayList localArrayList6 = ig.ga();
+    ArrayList localArrayList4 = jr.hz();
+    ArrayList localArrayList5 = jr.hz();
+    ArrayList localArrayList6 = jr.hz();
     while (paramParcel.dataPosition() < i)
     {
-      int m = com.google.android.gms.common.internal.safeparcel.a.A(paramParcel);
-      switch (com.google.android.gms.common.internal.safeparcel.a.ar(m))
+      int m = com.google.android.gms.common.internal.safeparcel.a.B(paramParcel);
+      switch (com.google.android.gms.common.internal.safeparcel.a.aD(m))
       {
       default:
         com.google.android.gms.common.internal.safeparcel.a.b(paramParcel, m);
@@ -134,13 +134,13 @@ public class a
     return new CommonWalletObject(j, str1, str2, str3, str4, str5, str6, str7, str8, k, localArrayList1, locall, localArrayList2, str9, str10, localArrayList3, bool, localArrayList4, localArrayList5, localArrayList6);
   }
 
-  public CommonWalletObject[] dR(int paramInt)
+  public CommonWalletObject[] fJ(int paramInt)
   {
     return new CommonWalletObject[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.wobs.a
  * JD-Core Version:    0.6.2
  */

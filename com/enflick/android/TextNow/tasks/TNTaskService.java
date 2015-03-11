@@ -58,7 +58,7 @@ public class TNTaskService extends Service
         localc = (c)localSerializable;
         localc.a(getApplicationContext());
         new StringBuilder().append("Queuing task (").append(localc.e()).append("):").append(localc.getClass().getSimpleName()).toString();
-        if (!localc.d_())
+        if (!localc.e_())
           break label101;
         this.b.execute(a(localc));
       }
@@ -71,7 +71,7 @@ public class TNTaskService extends Service
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.TNTaskService
  * JD-Core Version:    0.6.2
  */

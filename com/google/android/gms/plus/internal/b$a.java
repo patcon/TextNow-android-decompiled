@@ -11,10 +11,10 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.StatusCreator;
 import com.google.android.gms.common.data.DataHolder;
 import com.google.android.gms.common.data.f;
-import com.google.android.gms.internal.ie;
-import com.google.android.gms.internal.if;
-import com.google.android.gms.internal.ks;
-import com.google.android.gms.internal.kt;
+import com.google.android.gms.internal.jp;
+import com.google.android.gms.internal.jq;
+import com.google.android.gms.internal.nz;
+import com.google.android.gms.internal.oa;
 
 public abstract class b$a extends Binder
   implements b
@@ -24,7 +24,7 @@ public abstract class b$a extends Binder
     attachInterface(this, "com.google.android.gms.plus.internal.IPlusCallbacks");
   }
 
-  public static b bk(IBinder paramIBinder)
+  public static b bE(IBinder paramIBinder)
   {
     if (paramIBinder == null)
       return null;
@@ -86,7 +86,7 @@ public abstract class b$a extends Binder
       }
     case 3:
       paramParcel1.enforceInterface("com.google.android.gms.plus.internal.IPlusCallbacks");
-      bw(paramParcel1.readString());
+      ce(paramParcel1.readString());
       paramParcel2.writeNoException();
       return true;
     case 4:
@@ -94,7 +94,7 @@ public abstract class b$a extends Binder
       int i3 = paramParcel1.readInt();
       DataHolder localDataHolder2 = null;
       if (i3 != 0)
-        localDataHolder2 = DataHolder.CREATOR.x(paramParcel1);
+        localDataHolder2 = DataHolder.CREATOR.z(paramParcel1);
       a(localDataHolder2, paramParcel1.readString());
       paramParcel2.writeNoException();
       return true;
@@ -105,10 +105,10 @@ public abstract class b$a extends Binder
       for (Bundle localBundle2 = (Bundle)Bundle.CREATOR.createFromParcel(paramParcel1); ; localBundle2 = null)
       {
         int i2 = paramParcel1.readInt();
-        ie localie = null;
+        jp localjp = null;
         if (i2 != 0)
-          localie = ie.CREATOR.L(paramParcel1);
-        a(i1, localBundle2, localie);
+          localjp = jp.CREATOR.M(paramParcel1);
+        a(i1, localBundle2, localjp);
         paramParcel2.writeNoException();
         return true;
       }
@@ -117,7 +117,7 @@ public abstract class b$a extends Binder
       int n = paramParcel1.readInt();
       DataHolder localDataHolder1 = null;
       if (n != 0)
-        localDataHolder1 = DataHolder.CREATOR.x(paramParcel1);
+        localDataHolder1 = DataHolder.CREATOR.z(paramParcel1);
       a(localDataHolder1, paramParcel1.readString(), paramParcel1.readString());
       paramParcel2.writeNoException();
       return true;
@@ -133,17 +133,17 @@ public abstract class b$a extends Binder
       }
     case 8:
       paramParcel1.enforceInterface("com.google.android.gms.plus.internal.IPlusCallbacks");
-      bx(paramParcel1.readString());
+      cf(paramParcel1.readString());
       paramParcel2.writeNoException();
       return true;
     case 9:
       label194: paramParcel1.enforceInterface("com.google.android.gms.plus.internal.IPlusCallbacks");
       label276: int j = paramParcel1.readInt();
       int k = paramParcel1.readInt();
-      ks localks = null;
+      nz localnz = null;
       if (k != 0)
-        localks = ks.CREATOR.bG(paramParcel1);
-      a(j, localks);
+        localnz = nz.CREATOR.dd(paramParcel1);
+      a(j, localnz);
       paramParcel2.writeNoException();
       return true;
     case 10:
@@ -153,13 +153,13 @@ public abstract class b$a extends Binder
     Status localStatus = null;
     if (i != 0)
       localStatus = Status.CREATOR.createFromParcel(paramParcel1);
-    am(localStatus);
+    aB(localStatus);
     paramParcel2.writeNoException();
     return true;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.plus.internal.b.a
  * JD-Core Version:    0.6.2
  */

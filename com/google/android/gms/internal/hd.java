@@ -1,112 +1,36 @@
 package com.google.android.gms.internal;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Handler;
-import android.os.Handler.Callback;
-import android.os.Message;
-import java.util.HashMap;
+import android.os.Looper;
+import com.google.android.gms.common.api.Api;
+import com.google.android.gms.common.api.Api.ApiOptions.NoOptions;
+import com.google.android.gms.common.api.Api.b;
+import com.google.android.gms.common.api.Api.c;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.common.internal.ClientSettings;
 
 public final class hd
-  implements Handler.Callback
 {
-  private static final Object Gv = new Object();
-  private static hd Gw;
-  private final HashMap<String, hd.a> Gx = new HashMap();
-  private final Context lz;
-  private final Handler mHandler = new Handler(paramContext.getMainLooper(), this);
-
-  private hd(Context paramContext)
+  public static final Api.c<hy> BN = new Api.c();
+  private static final Api.b<hy, Api.ApiOptions.NoOptions> BO = new Api.b()
   {
-    this.lz = paramContext.getApplicationContext();
-  }
+    public final hy a(Context paramAnonymousContext, Looper paramAnonymousLooper, ClientSettings paramAnonymousClientSettings, Api.ApiOptions.NoOptions paramAnonymousNoOptions, GoogleApiClient.ConnectionCallbacks paramAnonymousConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener paramAnonymousOnConnectionFailedListener)
+    {
+      return new hy(paramAnonymousContext, paramAnonymousLooper, paramAnonymousConnectionCallbacks, paramAnonymousOnConnectionFailedListener);
+    }
 
-  public static hd E(Context paramContext)
-  {
-    synchronized (Gv)
+    public final int getPriority()
     {
-      if (Gw == null)
-        Gw = new hd(paramContext.getApplicationContext());
-      return Gw;
+      return 2147483647;
     }
-  }
-
-  public final boolean a(String paramString, hb<?>.f paramhb)
-  {
-    while (true)
-    {
-      hd.a locala;
-      synchronized (this.Gx)
-      {
-        locala = (hd.a)this.Gx.get(paramString);
-        if (locala == null)
-        {
-          locala = new hd.a(this, paramString);
-          locala.a(paramhb);
-          Intent localIntent1 = new Intent(paramString).setPackage("com.google.android.gms");
-          locala.B(this.lz.bindService(localIntent1, locala.fx(), 129));
-          this.Gx.put(paramString, locala);
-          boolean bool = locala.isBound();
-          return bool;
-        }
-        this.mHandler.removeMessages(0, locala);
-        if (locala.c(paramhb))
-          throw new IllegalStateException("Trying to bind a GmsServiceConnection that was already connected before.  startServiceAction=" + paramString);
-      }
-      locala.a(paramhb);
-      switch (locala.getState())
-      {
-      case 1:
-        paramhb.onServiceConnected(locala.getComponentName(), locala.getBinder());
-        break;
-      case 2:
-        Intent localIntent2 = new Intent(paramString).setPackage("com.google.android.gms");
-        locala.B(this.lz.bindService(localIntent2, locala.fx(), 129));
-      }
-    }
-  }
-
-  public final void b(String paramString, hb<?>.f paramhb)
-  {
-    hd.a locala;
-    synchronized (this.Gx)
-    {
-      locala = (hd.a)this.Gx.get(paramString);
-      if (locala == null)
-        throw new IllegalStateException("Nonexistent connection status for service action: " + paramString);
-    }
-    if (!locala.c(paramhb))
-      throw new IllegalStateException("Trying to unbind a GmsServiceConnection  that was not bound before.  startServiceAction=" + paramString);
-    locala.b(paramhb);
-    if (locala.fz())
-    {
-      Message localMessage = this.mHandler.obtainMessage(0, locala);
-      this.mHandler.sendMessageDelayed(localMessage, 5000L);
-    }
-  }
-
-  public final boolean handleMessage(Message paramMessage)
-  {
-    switch (paramMessage.what)
-    {
-    default:
-      return false;
-    case 0:
-    }
-    hd.a locala = (hd.a)paramMessage.obj;
-    synchronized (this.Gx)
-    {
-      if (locala.fz())
-      {
-        this.lz.unbindService(locala.fx());
-        this.Gx.remove(locala.fy());
-      }
-      return true;
-    }
-  }
+  };
+  public static final Api<Api.ApiOptions.NoOptions> BP = new Api(BO, BN, new Scope[0]);
+  public static final hu BQ = new hz();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.hd
  * JD-Core Version:    0.6.2
  */

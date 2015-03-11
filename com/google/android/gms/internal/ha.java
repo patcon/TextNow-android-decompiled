@@ -1,74 +1,117 @@
 package com.google.android.gms.internal;
 
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-import java.lang.reflect.Field;
+import android.text.TextUtils;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import com.google.android.gms.common.internal.n;
+import java.net.URI;
+import java.net.URISyntaxException;
 
-public abstract class ha
-  implements SafeParcelable
+@ez
+public class ha extends WebViewClient
 {
-  private static final Object FX = new Object();
-  private static ClassLoader FY = null;
-  private static Integer FZ = null;
-  private boolean Ga = false;
+  private final gv md;
+  private final String xc = Z(paramString);
+  private boolean xd = false;
+  private final fc xe;
 
-  private static boolean a(Class<?> paramClass)
+  public ha(fc paramfc, gv paramgv, String paramString)
   {
-    try
+    this.md = paramgv;
+    this.xe = paramfc;
+  }
+
+  private String Z(String paramString)
+  {
+    if (TextUtils.isEmpty(paramString));
+    while (true)
     {
-      boolean bool = "SAFE_PARCELABLE_NULL_STRING".equals(paramClass.getField("NULL").get(null));
-      return bool;
+      return paramString;
+      try
+      {
+        if (paramString.endsWith("/"))
+        {
+          String str = paramString.substring(0, -1 + paramString.length());
+          return str;
+        }
+      }
+      catch (IndexOutOfBoundsException localIndexOutOfBoundsException)
+      {
+        gs.T(localIndexOutOfBoundsException.getMessage());
+      }
     }
-    catch (IllegalAccessException localIllegalAccessException)
+    return paramString;
+  }
+
+  protected boolean Y(String paramString)
+  {
+    String str1 = Z(paramString);
+    if (TextUtils.isEmpty(str1));
+    while (true)
     {
       return false;
-    }
-    catch (NoSuchFieldException localNoSuchFieldException)
-    {
+      try
+      {
+        URI localURI1 = new URI(str1);
+        if ("passback".equals(localURI1.getScheme()))
+        {
+          gs.S("Passback received");
+          this.xe.cz();
+          return true;
+        }
+        if (!TextUtils.isEmpty(this.xc))
+        {
+          URI localURI2 = new URI(this.xc);
+          String str2 = localURI2.getHost();
+          String str3 = localURI1.getHost();
+          String str4 = localURI2.getPath();
+          String str5 = localURI1.getPath();
+          if ((n.equal(str2, str3)) && (n.equal(str4, str5)))
+          {
+            gs.S("Passback received");
+            this.xe.cz();
+            return true;
+          }
+        }
+      }
+      catch (URISyntaxException localURISyntaxException)
+      {
+        gs.T(localURISyntaxException.getMessage());
+      }
     }
     return false;
   }
 
-  protected static boolean aA(String paramString)
+  public void onLoadResource(WebView paramWebView, String paramString)
   {
-    ClassLoader localClassLoader = fp();
-    if (localClassLoader == null)
+    gs.S("JavascriptAdWebViewClient::onLoadResource: " + paramString);
+    if (!Y(paramString))
+      this.md.du().onLoadResource(this.md, paramString);
+  }
+
+  public void onPageFinished(WebView paramWebView, String paramString)
+  {
+    gs.S("JavascriptAdWebViewClient::onPageFinished: " + paramString);
+    if (!this.xd)
+    {
+      this.xe.cy();
+      this.xd = true;
+    }
+  }
+
+  public boolean shouldOverrideUrlLoading(WebView paramWebView, String paramString)
+  {
+    gs.S("JavascriptAdWebViewClient::shouldOverrideUrlLoading: " + paramString);
+    if (Y(paramString))
+    {
+      gs.S("shouldOverrideUrlLoading: received passback url");
       return true;
-    try
-    {
-      boolean bool = a(localClassLoader.loadClass(paramString));
-      return bool;
     }
-    catch (Exception localException)
-    {
-    }
-    return false;
-  }
-
-  protected static ClassLoader fp()
-  {
-    synchronized (FX)
-    {
-      ClassLoader localClassLoader = FY;
-      return localClassLoader;
-    }
-  }
-
-  protected static Integer fq()
-  {
-    synchronized (FX)
-    {
-      Integer localInteger = FZ;
-      return localInteger;
-    }
-  }
-
-  protected boolean fr()
-  {
-    return this.Ga;
+    return this.md.du().shouldOverrideUrlLoading(this.md, paramString);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ha
  * JD-Core Version:    0.6.2
  */

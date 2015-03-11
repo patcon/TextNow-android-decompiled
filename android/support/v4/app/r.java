@@ -1,21 +1,16 @@
 package android.support.v4.app;
 
-import java.util.ArrayList;
+import android.os.Bundle;
 
 final class r
 {
-  r a;
-  r b;
-  int c;
-  Fragment d;
-  int e;
-  int f;
-  int g;
-  int h;
-  ArrayList<Fragment> i;
+  private final String a;
+  private final Class<?> b;
+  private final Bundle c;
+  private Fragment d;
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.app.r
  * JD-Core Version:    0.6.2
  */

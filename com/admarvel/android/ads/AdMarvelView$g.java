@@ -1,34 +1,34 @@
 package com.admarvel.android.ads;
 
-import android.app.Activity;
-import android.os.AsyncTask;
-import com.admarvel.android.b.c;
+import android.view.View;
 import java.lang.ref.WeakReference;
 
 class AdMarvelView$g
   implements Runnable
 {
-  private WeakReference<Activity> a;
-  private String b;
+  private final WeakReference<AdMarvelView> a;
 
-  public AdMarvelView$g(Activity paramActivity, String paramString)
+  public AdMarvelView$g(AdMarvelView paramAdMarvelView)
   {
-    this.a = new WeakReference(paramActivity);
-    this.b = paramString;
+    this.a = new WeakReference(paramAdMarvelView);
   }
 
   public void run()
   {
-    if (AdMarvelView.c() != null)
-      AdMarvelView.c().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Void[0]);
-    while ((this.a.get() == null) || (this.b == null))
+    AdMarvelView localAdMarvelView = (AdMarvelView)this.a.get();
+    if (localAdMarvelView == null);
+    View localView;
+    do
+    {
       return;
-    AdMarvelView.a(new c(this.b, (Activity)this.a.get()));
-    AdMarvelView.c().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Void[0]);
+      localView = localAdMarvelView.findViewWithTag("CURRENT");
+    }
+    while ((localView == null) || (!(localView instanceof m)));
+    ((m)localView).f();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.AdMarvelView.g
  * JD-Core Version:    0.6.2
  */

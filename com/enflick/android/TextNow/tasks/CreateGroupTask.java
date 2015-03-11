@@ -7,9 +7,9 @@ import com.enflick.android.TextNow.api.responsemodel.Group.GroupMember;
 import com.enflick.android.TextNow.api.users.GroupsPost;
 import com.enflick.android.TextNow.api.users.l;
 import java.util.Map;
-import textnow.s.i;
-import textnow.u.r;
-import textnow.w.b;
+import textnow.ac.b;
+import textnow.x.i;
+import textnow.z.u;
 
 public class CreateGroupTask extends c
 {
@@ -36,7 +36,7 @@ public class CreateGroupTask extends c
     return this.f;
   }
 
-  public final boolean c_()
+  public final boolean d_()
   {
     return this.i;
   }
@@ -44,7 +44,7 @@ public class CreateGroupTask extends c
   public void run()
   {
     int j = 0;
-    l locall = new l(new r(this.a).b(), this.d, this.e);
+    l locall = new l(new u(this.a).b(), this.d, this.e);
     i locali = new GroupsPost(this.a).runSync(locall);
     this.g = locali;
     if (a(locali))
@@ -76,7 +76,7 @@ public class CreateGroupTask extends c
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.CreateGroupTask
  * JD-Core Version:    0.6.2
  */

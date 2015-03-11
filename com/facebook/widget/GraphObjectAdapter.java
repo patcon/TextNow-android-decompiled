@@ -36,6 +36,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import org.json.JSONObject;
@@ -391,7 +392,14 @@ class GraphObjectAdapter<T extends GraphObject> extends BaseAdapter
     {
       String str = getIdOfGraphObject(localSectionAndItem.graphObject);
       if (str != null)
-        return Long.parseLong(str);
+        try
+        {
+          long l = Long.parseLong(str);
+          return l;
+        }
+        catch (NumberFormatException localNumberFormatException)
+        {
+        }
     }
     return 0L;
   }
@@ -423,10 +431,11 @@ class GraphObjectAdapter<T extends GraphObject> extends BaseAdapter
     if (localImageView == null)
       return null;
     ViewGroup.LayoutParams localLayoutParams = localImageView.getLayoutParams();
+    Locale localLocale = Locale.US;
     Object[] arrayOfObject = new Object[2];
     arrayOfObject[0] = Integer.valueOf(localLayoutParams.height);
     arrayOfObject[1] = Integer.valueOf(localLayoutParams.width);
-    return String.format("picture.height(%d).width(%d)", arrayOfObject);
+    return String.format(localLocale, "picture.height(%d).width(%d)", arrayOfObject);
   }
 
   protected URI getPictureUriOfGraphObject(T paramT)
@@ -815,7 +824,7 @@ class GraphObjectAdapter<T extends GraphObject> extends BaseAdapter
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.widget.GraphObjectAdapter
  * JD-Core Version:    0.6.2
  */

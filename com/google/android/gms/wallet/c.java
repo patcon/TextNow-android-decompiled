@@ -11,21 +11,21 @@ public class c
 {
   static void a(CountrySpecification paramCountrySpecification, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
+    int i = b.D(paramParcel);
     b.c(paramParcel, 1, paramCountrySpecification.getVersionCode());
-    b.a(paramParcel, 2, paramCountrySpecification.rf, false);
-    b.G(paramParcel, i);
+    b.a(paramParcel, 2, paramCountrySpecification.uW, false);
+    b.H(paramParcel, i);
   }
 
-  public CountrySpecification bS(Parcel paramParcel)
+  public CountrySpecification dp(Parcel paramParcel)
   {
-    int i = a.B(paramParcel);
+    int i = a.C(paramParcel);
     int j = 0;
     String str = null;
     while (paramParcel.dataPosition() < i)
     {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
       {
       default:
         a.b(paramParcel, k);
@@ -42,13 +42,13 @@ public class c
     return new CountrySpecification(j, str);
   }
 
-  public CountrySpecification[] dy(int paramInt)
+  public CountrySpecification[] fq(int paramInt)
   {
     return new CountrySpecification[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.c
  * JD-Core Version:    0.6.2
  */

@@ -1,25 +1,18 @@
 package android.support.v7.internal.view.menu;
 
-import android.content.Context;
-import android.view.View;
-
-final class f extends y
+class f<T>
 {
-  public f(ActionMenuPresenter paramActionMenuPresenter, Context paramContext, n paramn, View paramView, boolean paramBoolean)
-  {
-    super(paramContext, paramn, paramView, true);
-    a(paramActionMenuPresenter.a);
-  }
+  final T a;
 
-  public final void onDismiss()
+  f(T paramT)
   {
-    super.onDismiss();
-    this.a.e.close();
-    ActionMenuPresenter.a(this.a, null);
+    if (paramT == null)
+      throw new IllegalArgumentException("Wrapped Object can not be null.");
+    this.a = paramT;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v7.internal.view.menu.f
  * JD-Core Version:    0.6.2
  */

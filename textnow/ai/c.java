@@ -1,41 +1,23 @@
 package textnow.ai;
 
-import java.io.Serializable;
-import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.Type;
+import java.util.Collection;
+import textnow.af.f;
+import textnow.af.y;
 
-final class c
-  implements Serializable, GenericArrayType
+final class c<E> extends y<Collection<E>>
 {
-  private final Type a;
+  private final y<E> a;
+  private final textnow.ah.o<? extends Collection<E>> b;
 
-  public c(Type paramType)
+  public c(f paramf, Type paramType, y<E> paramy, textnow.ah.o<? extends Collection<E>> paramo)
   {
-    this.a = b.a(paramType);
-  }
-
-  public final boolean equals(Object paramObject)
-  {
-    return ((paramObject instanceof GenericArrayType)) && (b.a(this, (GenericArrayType)paramObject));
-  }
-
-  public final Type getGenericComponentType()
-  {
-    return this.a;
-  }
-
-  public final int hashCode()
-  {
-    return this.a.hashCode();
-  }
-
-  public final String toString()
-  {
-    return b.c(this.a) + "[]";
+    this.a = new o(paramf, paramy, paramType);
+    this.b = paramo;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.ai.c
  * JD-Core Version:    0.6.2
  */

@@ -1,30 +1,19 @@
 package com.google.android.gms.internal;
 
-import android.os.Bundle;
-import android.os.IInterface;
-
-public abstract interface cn extends IInterface
+public abstract interface cn
 {
-  public abstract void S();
+  public abstract void ae();
 
-  public abstract void onCreate(Bundle paramBundle);
+  public abstract void af();
 
-  public abstract void onDestroy();
+  public abstract void ag();
 
-  public abstract void onPause();
+  public abstract void ah();
 
-  public abstract void onRestart();
-
-  public abstract void onResume();
-
-  public abstract void onSaveInstanceState(Bundle paramBundle);
-
-  public abstract void onStart();
-
-  public abstract void onStop();
+  public abstract void ai();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.cn
  * JD-Core Version:    0.6.2
  */

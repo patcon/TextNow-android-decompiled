@@ -1,24 +1,30 @@
 package textnow.z;
 
-public class q extends RuntimeException
+public enum q
 {
-  public q(String paramString)
+  private final int e;
+
+  static
   {
-    super(paramString);
+    q[] arrayOfq = new q[4];
+    arrayOfq[0] = a;
+    arrayOfq[1] = b;
+    arrayOfq[2] = c;
+    arrayOfq[3] = d;
   }
 
-  public q(String paramString, Throwable paramThrowable)
+  private q(int paramInt)
   {
-    super(paramString, paramThrowable);
+    this.e = paramInt;
   }
 
-  public q(Throwable paramThrowable)
+  public final int a()
   {
-    super(paramThrowable);
+    return this.e;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.z.q
  * JD-Core Version:    0.6.2
  */

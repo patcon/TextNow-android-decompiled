@@ -7,13 +7,13 @@ import java.util.Iterator;
 public abstract class DataBuffer<T>
   implements Releasable, Iterable<T>
 {
-  protected final DataHolder DG;
+  protected final DataHolder II;
 
   protected DataBuffer(DataHolder paramDataHolder)
   {
-    this.DG = paramDataHolder;
-    if (this.DG != null)
-      this.DG.b(this);
+    this.II = paramDataHolder;
+    if (this.II != null)
+      this.II.e(this);
   }
 
   @Deprecated
@@ -27,26 +27,26 @@ public abstract class DataBuffer<T>
     return 0;
   }
 
-  public Bundle eU()
-  {
-    return this.DG.eU();
-  }
-
   public abstract T get(int paramInt);
 
   public int getCount()
   {
-    if (this.DG == null)
+    if (this.II == null)
       return 0;
-    return this.DG.getCount();
+    return this.II.getCount();
+  }
+
+  public Bundle gy()
+  {
+    return this.II.gy();
   }
 
   @Deprecated
   public boolean isClosed()
   {
-    if (this.DG == null)
+    if (this.II == null)
       return true;
-    return this.DG.isClosed();
+    return this.II.isClosed();
   }
 
   public Iterator<T> iterator()
@@ -56,8 +56,8 @@ public abstract class DataBuffer<T>
 
   public void release()
   {
-    if (this.DG != null)
-      this.DG.close();
+    if (this.II != null)
+      this.II.close();
   }
 
   public Iterator<T> singleRefIterator()
@@ -66,7 +66,7 @@ public abstract class DataBuffer<T>
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.common.data.DataBuffer
  * JD-Core Version:    0.6.2
  */

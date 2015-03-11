@@ -46,7 +46,6 @@ public class FacebookDialog$PendingCall
   private void setRequestIntent(Intent paramIntent)
   {
     this.requestIntent = paramIntent;
-    this.requestIntent.putExtra("com.facebook.platform.protocol.CALL_ID", this.callId.toString());
   }
 
   public int describeContents()
@@ -77,7 +76,7 @@ public class FacebookDialog$PendingCall
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.widget.FacebookDialog.PendingCall
  * JD-Core Version:    0.6.2
  */

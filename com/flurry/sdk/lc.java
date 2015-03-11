@@ -111,7 +111,7 @@ public class lc
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.flurry.sdk.lc
  * JD-Core Version:    0.6.2
  */

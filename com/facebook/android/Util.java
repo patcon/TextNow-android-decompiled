@@ -1,5 +1,8 @@
 package com.facebook.android;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.Context;
 import android.os.Bundle;
 import com.facebook.internal.Utility;
 import java.io.BufferedOutputStream;
@@ -17,6 +20,7 @@ import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.Properties;
 import java.util.Set;
+import org.json.JSONObject;
 
 public final class Util
 {
@@ -171,6 +175,30 @@ public final class Util
   }
 
   @Deprecated
+  public static JSONObject parseJson(String paramString)
+  {
+    if (paramString.equals("false"))
+      throw new FacebookError("request failed");
+    if (paramString.equals("true"))
+      paramString = "{value : true}";
+    JSONObject localJSONObject1 = new JSONObject(paramString);
+    if (localJSONObject1.has("error"))
+    {
+      JSONObject localJSONObject2 = localJSONObject1.getJSONObject("error");
+      throw new FacebookError(localJSONObject2.getString("message"), localJSONObject2.getString("type"), 0);
+    }
+    if ((localJSONObject1.has("error_code")) && (localJSONObject1.has("error_msg")))
+      throw new FacebookError(localJSONObject1.getString("error_msg"), "", Integer.parseInt(localJSONObject1.getString("error_code")));
+    if (localJSONObject1.has("error_code"))
+      throw new FacebookError("request failed", "", Integer.parseInt(localJSONObject1.getString("error_code")));
+    if (localJSONObject1.has("error_msg"))
+      throw new FacebookError(localJSONObject1.getString("error_msg"));
+    if (localJSONObject1.has("error_reason"))
+      throw new FacebookError(localJSONObject1.getString("error_reason"));
+    return localJSONObject1;
+  }
+
+  @Deprecated
   public static Bundle parseUrl(String paramString)
   {
     String str = paramString.replace("fbconnect", "http");
@@ -197,9 +225,18 @@ public final class Util
     paramInputStream.close();
     return localStringBuilder.toString();
   }
+
+  @Deprecated
+  public static void showAlert(Context paramContext, String paramString1, String paramString2)
+  {
+    AlertDialog.Builder localBuilder = new AlertDialog.Builder(paramContext);
+    localBuilder.setTitle(paramString1);
+    localBuilder.setMessage(paramString2);
+    localBuilder.create().show();
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.android.Util
  * JD-Core Version:    0.6.2
  */

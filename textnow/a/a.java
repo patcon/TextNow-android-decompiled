@@ -1,61 +1,76 @@
 package textnow.a;
 
-import android.content.Context;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.os.Build;
-import org.json.JSONObject;
-import textnow.b.h;
+import android.content.res.ColorStateList;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.Drawable;
+import android.os.Build.VERSION;
 
 public final class a
 {
-  public static JSONObject a(Context paramContext)
+  static final c a = new b();
+
+  static
   {
-    JSONObject localJSONObject1 = new JSONObject();
-    if (paramContext != null);
-    while (true)
+    int i = Build.VERSION.SDK_INT;
+    if (i >= 21)
     {
-      try
-      {
-        Resources localResources = paramContext.getResources();
-        localJSONObject1.put("manufacturer", Build.MANUFACTURER);
-        localJSONObject1.put("model", Build.MODEL);
-        JSONObject localJSONObject2 = new JSONObject();
-        JSONObject localJSONObject3 = new JSONObject();
-        Configuration localConfiguration = localResources.getConfiguration();
-        str = "";
-        switch (0xF & localConfiguration.screenLayout)
-        {
-        default:
-          localJSONObject3.put("screen-size", str);
-          localJSONObject2.put("screen", localJSONObject3);
-          localJSONObject1.put("hardware", localJSONObject2);
-          localJSONObject1.put("software", h.a());
-          localJSONObject1.put("network_info", h.d(paramContext));
-          localJSONObject1.put("location", h.e(paramContext));
-          return localJSONObject1;
-        case 4:
-          str = "xlarge";
-          continue;
-        case 1:
-        case 2:
-        case 3:
-        }
-      }
-      catch (Exception localException)
-      {
-      }
-      return localJSONObject1;
-      String str = "small";
-      continue;
-      str = "normal";
-      continue;
-      str = "large";
+      a = new f();
+      return;
     }
+    if (i >= 19)
+    {
+      a = new e();
+      return;
+    }
+    if (i >= 11)
+    {
+      a = new d();
+      return;
+    }
+  }
+
+  public static void a(Drawable paramDrawable)
+  {
+    a.a(paramDrawable);
+  }
+
+  public static void a(Drawable paramDrawable, float paramFloat1, float paramFloat2)
+  {
+    a.a(paramDrawable, paramFloat1, paramFloat2);
+  }
+
+  public static void a(Drawable paramDrawable, int paramInt)
+  {
+    a.a(paramDrawable, paramInt);
+  }
+
+  public static void a(Drawable paramDrawable, int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+  {
+    a.a(paramDrawable, paramInt1, paramInt2, paramInt3, paramInt4);
+  }
+
+  public static void a(Drawable paramDrawable, ColorStateList paramColorStateList)
+  {
+    a.a(paramDrawable, paramColorStateList);
+  }
+
+  public static void a(Drawable paramDrawable, PorterDuff.Mode paramMode)
+  {
+    a.a(paramDrawable, paramMode);
+  }
+
+  public static void a(Drawable paramDrawable, boolean paramBoolean)
+  {
+    a.a(paramDrawable, paramBoolean);
+  }
+
+  public static boolean b(Drawable paramDrawable)
+  {
+    return a.b(paramDrawable);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.a.a
  * JD-Core Version:    0.6.2
  */

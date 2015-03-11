@@ -8,11 +8,14 @@ import android.net.Uri;
 import android.text.TextUtils;
 import com.enflick.android.TextNow.api.users.MessagesPost;
 import com.enflick.android.TextNow.api.users.o;
+import com.enflick.android.TextNow.persistence.contentproviders.d;
 import java.util.Date;
 import java.util.HashMap;
-import textnow.s.i;
-import textnow.u.f;
-import textnow.u.r;
+import textnow.v.k;
+import textnow.x.i;
+import textnow.z.h;
+import textnow.z.m;
+import textnow.z.u;
 
 public class SendMessageTask extends c
 {
@@ -21,11 +24,11 @@ public class SendMessageTask extends c
   private String f;
   private String g;
   private int h;
-  private textnow.u.c i;
+  private textnow.z.c i;
   private String j;
   private boolean k = false;
 
-  public SendMessageTask(Context paramContext, int paramInt1, String paramString1, String paramString2, String paramString3, int paramInt2, int paramInt3, boolean paramBoolean, String paramString4, textnow.u.c paramc)
+  public SendMessageTask(Context paramContext, int paramInt1, String paramString1, String paramString2, String paramString3, int paramInt2, int paramInt3, boolean paramBoolean, String paramString4, textnow.z.c paramc)
   {
     this.e = paramString1.toLowerCase();
     this.f = paramString2;
@@ -41,19 +44,19 @@ public class SendMessageTask extends c
     String str4;
     Cursor localCursor;
     int i1;
-    if (paramc != null)
+    if (this.i != null)
     {
-      str4 = paramc.a();
-      this.j = textnow.u.k.a(paramContext, m, str1, str2, n, paramInt3, paramBoolean, str3, str4, 0).toString();
+      str4 = this.i.a();
+      this.j = m.a(paramContext, m, str1, str2, n, paramInt3, paramBoolean, str3, str4, 0).toString();
       String[] arrayOfString1 = { "count (*)" };
       String[] arrayOfString2 = new String[1];
       arrayOfString2[0] = this.e;
-      Uri localUri1 = com.enflick.android.TextNow.persistence.contentproviders.c.d;
+      Uri localUri1 = d.d;
       localCursor = paramContext.getContentResolver().query(localUri1, arrayOfString1, "view_conversations.contact_value = ?", arrayOfString2, null);
       i1 = 0;
       if (localCursor == null);
     }
-    label376: 
+    label380: 
     do
     {
       Uri localUri2;
@@ -76,12 +79,12 @@ public class SendMessageTask extends c
               }
               localCursor.close();
               if (i1 != 0)
-                break label376;
+                break label380;
               new StringBuilder().append("New conversation with: ").append(this.e).toString();
-              localUri2 = f.a(paramContext.getContentResolver(), this.d, this.e, this.f, paramString3);
+              localUri2 = h.a(paramContext.getContentResolver(), this.d, this.e, this.f, paramString3);
               if (TextUtils.isEmpty(paramString3))
               {
-                textnow.q.k.a(paramContext.getContentResolver(), localUri2, paramString1, paramInt1);
+                k.a(paramContext.getContentResolver(), localUri2, paramString1, paramInt1);
                 return;
                 str4 = "";
                 break;
@@ -96,7 +99,7 @@ public class SendMessageTask extends c
           localUri3 = Uri.parse(paramString3);
         }
         while (localUri3 == null);
-        str5 = textnow.q.k.b(localContentResolver, localUri3);
+        str5 = k.b(localContentResolver, localUri3);
       }
       while (str5 == null);
       ContentValues localContentValues = new ContentValues();
@@ -108,17 +111,17 @@ public class SendMessageTask extends c
     new StringBuilder().append("Too many conversations matched contactValue:").append(this.e).toString();
   }
 
-  public SendMessageTask(Context paramContext, textnow.u.k paramk)
+  public SendMessageTask(Context paramContext, m paramm)
   {
-    this.e = paramk.b().toLowerCase();
-    this.f = paramk.c();
-    this.d = paramk.d();
-    this.h = paramk.g();
-    this.g = paramk.e();
-    this.i = textnow.u.c.a(paramContext, paramk.k());
-    this.j = paramk.a();
+    this.e = paramm.b().toLowerCase();
+    this.f = paramm.c();
+    this.d = paramm.d();
+    this.h = paramm.g();
+    this.g = paramm.e();
+    this.i = textnow.z.c.a(paramContext, paramm.k());
+    this.j = paramm.a();
     this.k = true;
-    String str = new r(paramContext).u();
+    String str = new u(paramContext).s();
     if ((!TextUtils.isEmpty(str)) && (this.g.endsWith("\n" + str)))
     {
       int m = ("\n" + str).length();
@@ -136,9 +139,9 @@ public class SendMessageTask extends c
 
   public void run()
   {
-    r localr = new r(this.a);
+    u localu = new u(this.a);
     Uri localUri = Uri.parse(this.j);
-    o localo = new o(localr.b(), localr.g(), this.d, this.e, this.g, this.i);
+    o localo = new o(localu.b(), localu.g(), this.d, this.e, this.g, this.i);
     localo.f = this.f;
     i locali = new MessagesPost(this.a).runSync(localo);
     if (a(locali))
@@ -163,7 +166,7 @@ public class SendMessageTask extends c
         localContentValues2.put("message_id", Long.valueOf(l1));
       localContentValues2.put("state", Integer.valueOf(0));
       if (this.k)
-        localContentValues2.put("date", Long.valueOf(new Date().getTime() + new r(this.a).t()));
+        localContentValues2.put("date", Long.valueOf(new Date().getTime() + new u(this.a).r()));
       if (localHashMap.containsKey("url"))
         localContentValues2.put("message_text", localHashMap.get("url").toString());
       int m = this.a.getContentResolver().update(localUri, localContentValues2, null, null);
@@ -186,7 +189,7 @@ public class SendMessageTask extends c
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.SendMessageTask
  * JD-Core Version:    0.6.2
  */

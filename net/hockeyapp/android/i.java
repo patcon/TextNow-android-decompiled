@@ -6,7 +6,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build.VERSION;
 import java.lang.ref.WeakReference;
-import textnow.bh.a;
+import textnow.bo.a;
 
 public final class i
 {
@@ -53,7 +53,7 @@ public final class i
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     net.hockeyapp.android.i
  * JD-Core Version:    0.6.2
  */

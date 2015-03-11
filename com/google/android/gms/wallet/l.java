@@ -12,28 +12,28 @@ public class l
 {
   static void a(MaskedWalletRequest paramMaskedWalletRequest, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
+    int i = b.D(paramParcel);
     b.c(paramParcel, 1, paramMaskedWalletRequest.getVersionCode());
-    b.a(paramParcel, 2, paramMaskedWalletRequest.aiR, false);
-    b.a(paramParcel, 3, paramMaskedWalletRequest.ajF);
-    b.a(paramParcel, 4, paramMaskedWalletRequest.ajG);
-    b.a(paramParcel, 5, paramMaskedWalletRequest.ajH);
-    b.a(paramParcel, 6, paramMaskedWalletRequest.ajI, false);
-    b.a(paramParcel, 7, paramMaskedWalletRequest.aiL, false);
-    b.a(paramParcel, 8, paramMaskedWalletRequest.ajJ, false);
-    b.a(paramParcel, 9, paramMaskedWalletRequest.aja, paramInt, false);
-    b.a(paramParcel, 10, paramMaskedWalletRequest.ajK);
-    b.a(paramParcel, 11, paramMaskedWalletRequest.ajL);
-    b.a(paramParcel, 12, paramMaskedWalletRequest.ajM, paramInt, false);
-    b.a(paramParcel, 13, paramMaskedWalletRequest.ajN);
-    b.a(paramParcel, 14, paramMaskedWalletRequest.ajO);
-    b.b(paramParcel, 15, paramMaskedWalletRequest.ajP, false);
-    b.G(paramParcel, i);
+    b.a(paramParcel, 2, paramMaskedWalletRequest.asC, false);
+    b.a(paramParcel, 3, paramMaskedWalletRequest.atp);
+    b.a(paramParcel, 4, paramMaskedWalletRequest.atq);
+    b.a(paramParcel, 5, paramMaskedWalletRequest.atr);
+    b.a(paramParcel, 6, paramMaskedWalletRequest.ats, false);
+    b.a(paramParcel, 7, paramMaskedWalletRequest.asw, false);
+    b.a(paramParcel, 8, paramMaskedWalletRequest.att, false);
+    b.a(paramParcel, 9, paramMaskedWalletRequest.asL, paramInt, false);
+    b.a(paramParcel, 10, paramMaskedWalletRequest.atu);
+    b.a(paramParcel, 11, paramMaskedWalletRequest.atv);
+    b.a(paramParcel, 12, paramMaskedWalletRequest.atw, paramInt, false);
+    b.a(paramParcel, 13, paramMaskedWalletRequest.atx);
+    b.a(paramParcel, 14, paramMaskedWalletRequest.aty);
+    b.c(paramParcel, 15, paramMaskedWalletRequest.atz, false);
+    b.H(paramParcel, i);
   }
 
-  public MaskedWalletRequest ca(Parcel paramParcel)
+  public MaskedWalletRequest dx(Parcel paramParcel)
   {
-    int i = a.B(paramParcel);
+    int i = a.C(paramParcel);
     int j = 0;
     String str1 = null;
     boolean bool1 = false;
@@ -51,8 +51,8 @@ public class l
     ArrayList localArrayList = null;
     while (paramParcel.dataPosition() < i)
     {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
       {
       default:
         a.b(paramParcel, k);
@@ -108,13 +108,13 @@ public class l
     return new MaskedWalletRequest(j, str1, bool1, bool2, bool3, str2, str3, str4, localCart, bool4, bool5, arrayOfCountrySpecification, bool6, bool7, localArrayList);
   }
 
-  public MaskedWalletRequest[] dG(int paramInt)
+  public MaskedWalletRequest[] fy(int paramInt)
   {
     return new MaskedWalletRequest[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.l
  * JD-Core Version:    0.6.2
  */

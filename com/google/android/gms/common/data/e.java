@@ -6,28 +6,28 @@ import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
 public class e<T extends SafeParcelable> extends DataBuffer<T>
 {
-  private static final String[] EE = { "data" };
-  private final Parcelable.Creator<T> EF;
+  private static final String[] JZ = { "data" };
+  private final Parcelable.Creator<T> Ka;
 
   public e(DataHolder paramDataHolder, Parcelable.Creator<T> paramCreator)
   {
     super(paramDataHolder);
-    this.EF = paramCreator;
+    this.Ka = paramCreator;
   }
 
-  public T ad(int paramInt)
+  public T aq(int paramInt)
   {
-    byte[] arrayOfByte = this.DG.f("data", paramInt, 0);
+    byte[] arrayOfByte = this.II.f("data", paramInt, 0);
     Parcel localParcel = Parcel.obtain();
     localParcel.unmarshall(arrayOfByte, 0, arrayOfByte.length);
     localParcel.setDataPosition(0);
-    SafeParcelable localSafeParcelable = (SafeParcelable)this.EF.createFromParcel(localParcel);
+    SafeParcelable localSafeParcelable = (SafeParcelable)this.Ka.createFromParcel(localParcel);
     localParcel.recycle();
     return localSafeParcelable;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.common.data.e
  * JD-Core Version:    0.6.2
  */

@@ -10,27 +10,27 @@ public class b
 {
   static void a(WalletFragmentOptions paramWalletFragmentOptions, Parcel paramParcel, int paramInt)
   {
-    int i = com.google.android.gms.common.internal.safeparcel.b.C(paramParcel);
-    com.google.android.gms.common.internal.safeparcel.b.c(paramParcel, 1, paramWalletFragmentOptions.xM);
+    int i = com.google.android.gms.common.internal.safeparcel.b.D(paramParcel);
+    com.google.android.gms.common.internal.safeparcel.b.c(paramParcel, 1, paramWalletFragmentOptions.BR);
     com.google.android.gms.common.internal.safeparcel.b.c(paramParcel, 2, paramWalletFragmentOptions.getEnvironment());
     com.google.android.gms.common.internal.safeparcel.b.c(paramParcel, 3, paramWalletFragmentOptions.getTheme());
     com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 4, paramWalletFragmentOptions.getFragmentStyle(), paramInt, false);
     com.google.android.gms.common.internal.safeparcel.b.c(paramParcel, 5, paramWalletFragmentOptions.getMode());
-    com.google.android.gms.common.internal.safeparcel.b.G(paramParcel, i);
+    com.google.android.gms.common.internal.safeparcel.b.H(paramParcel, i);
   }
 
-  public WalletFragmentOptions ch(Parcel paramParcel)
+  public WalletFragmentOptions dE(Parcel paramParcel)
   {
     int i = 1;
     int j = 0;
-    int k = a.B(paramParcel);
+    int k = a.C(paramParcel);
     WalletFragmentStyle localWalletFragmentStyle = null;
     int m = i;
     int n = 0;
     while (paramParcel.dataPosition() < k)
     {
-      int i1 = a.A(paramParcel);
-      switch (a.ar(i1))
+      int i1 = a.B(paramParcel);
+      switch (a.aD(i1))
       {
       default:
         a.b(paramParcel, i1);
@@ -56,13 +56,13 @@ public class b
     return new WalletFragmentOptions(n, m, j, localWalletFragmentStyle, i);
   }
 
-  public WalletFragmentOptions[] dO(int paramInt)
+  public WalletFragmentOptions[] fG(int paramInt)
   {
     return new WalletFragmentOptions[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.fragment.b
  * JD-Core Version:    0.6.2
  */

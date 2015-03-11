@@ -1,32 +1,58 @@
 package textnow.w;
 
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import com.enflick.android.TextNow.persistence.contentproviders.c;
-import com.enflick.android.TextNow.persistence.contentproviders.f;
+import android.content.Context;
+import android.content.res.Resources;
+import android.os.AsyncTask;
+import textnow.z.f;
+import textnow.z.u;
 
-public final class a
+public final class a extends AsyncTask<Void, Void, Boolean>
 {
-  public static void a(ContentResolver paramContentResolver, String paramString)
+  private Context a;
+  private u b;
+  private f c;
+  private b d;
+  private String e;
+  private String f;
+  private String g;
+  private String h;
+  private String i;
+  private String j;
+  private String k;
+  private String l;
+  private String m;
+  private String n;
+
+  public a(Context paramContext, b paramb)
   {
-    paramContentResolver.delete(c.d, "contact_value = ?", new String[] { paramString });
-    paramContentResolver.delete(f.d, "contact_value = ?", new String[] { paramString });
+    this.a = paramContext;
+    this.d = paramb;
+    this.b = new u(paramContext);
+    this.e = this.a.getResources().getString(2131296913);
+    this.f = this.a.getResources().getString(2131296914);
+    this.g = this.a.getResources().getString(2131296916);
+    this.h = this.a.getResources().getString(2131296917);
+    this.i = this.a.getResources().getString(2131296918);
+    this.j = this.a.getResources().getString(2131296919);
+    this.k = this.a.getResources().getString(2131296920);
+    this.l = this.a.getResources().getString(2131296921);
+    this.m = this.a.getResources().getString(2131296922);
+    this.n = this.a.getResources().getString(2131296925);
   }
 
-  public static void a(ContentResolver paramContentResolver, String paramString, ContentValues paramContentValues)
+  public final void a(f paramf)
   {
-    paramContentResolver.update(c.d, paramContentValues, "contact_value=?", new String[] { paramString });
+    this.c = paramf;
+    execute(new Void[0]);
   }
 
-  public static void a(ContentResolver paramContentResolver, String paramString1, String paramString2)
+  protected final void onPreExecute()
   {
-    ContentValues localContentValues = new ContentValues();
-    localContentValues.put("contact_name", paramString2);
-    a(paramContentResolver, paramString1, localContentValues);
+    this.d.x();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.w.a
  * JD-Core Version:    0.6.2
  */

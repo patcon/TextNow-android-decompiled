@@ -15,7 +15,7 @@ public abstract class a$a extends Binder
     attachInterface(this, "com.google.android.gms.location.ILocationListener");
   }
 
-  public static a aq(IBinder paramIBinder)
+  public static a aI(IBinder paramIBinder)
   {
     if (paramIBinder == null)
       return null;
@@ -51,7 +51,7 @@ public abstract class a$a extends Binder
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.location.a.a
  * JD-Core Version:    0.6.2
  */

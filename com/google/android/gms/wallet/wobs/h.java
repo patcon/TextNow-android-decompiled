@@ -11,22 +11,22 @@ public class h
 {
   static void a(g paramg, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
+    int i = b.D(paramParcel);
     b.c(paramParcel, 1, paramg.getVersionCode());
-    b.c(paramParcel, 2, paramg.akT);
-    b.a(paramParcel, 3, paramg.akU, false);
-    b.a(paramParcel, 4, paramg.akV);
-    b.a(paramParcel, 5, paramg.akW, false);
-    b.a(paramParcel, 6, paramg.akX);
-    b.c(paramParcel, 7, paramg.akY);
-    b.G(paramParcel, i);
+    b.c(paramParcel, 2, paramg.auD);
+    b.a(paramParcel, 3, paramg.auE, false);
+    b.a(paramParcel, 4, paramg.auF);
+    b.a(paramParcel, 5, paramg.auG, false);
+    b.a(paramParcel, 6, paramg.auH);
+    b.c(paramParcel, 7, paramg.auI);
+    b.H(paramParcel, i);
   }
 
-  public g cm(Parcel paramParcel)
+  public g dJ(Parcel paramParcel)
   {
     String str1 = null;
     int i = 0;
-    int j = a.B(paramParcel);
+    int j = a.C(paramParcel);
     double d = 0.0D;
     long l = 0L;
     int k = -1;
@@ -34,8 +34,8 @@ public class h
     int m = 0;
     while (paramParcel.dataPosition() < j)
     {
-      int n = a.A(paramParcel);
-      switch (a.ar(n))
+      int n = a.B(paramParcel);
+      switch (a.aD(n))
       {
       default:
         a.b(paramParcel, n);
@@ -67,13 +67,13 @@ public class h
     return new g(m, i, str2, d, str1, l, k);
   }
 
-  public g[] dU(int paramInt)
+  public g[] fM(int paramInt)
   {
     return new g[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.wobs.h
  * JD-Core Version:    0.6.2
  */

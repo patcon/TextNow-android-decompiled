@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.content.m;
+import com.facebook.internal.LikeActionController;
+import com.facebook.internal.NativeProtocol;
+import com.facebook.internal.PendingCallStore;
 import com.facebook.widget.FacebookDialog;
 import com.facebook.widget.FacebookDialog.Callback;
 import com.facebook.widget.FacebookDialog.PendingCall;
@@ -14,12 +17,13 @@ import java.util.UUID;
 public class UiLifecycleHelper
 {
   private static final String ACTIVITY_NULL_MESSAGE = "activity cannot be null";
-  private static final String DIALOG_CALL_BUNDLE_SAVE_KEY = "com.facebook.UiLifecycleHelper.pendingFacebookDialogCallKey";
+  private static final String DIALOG_CALL_ID_SAVE_KEY = "com.facebook.UiLifecycleHelper.pendingFacebookDialogCallKey";
   private final Activity activity;
   private AppEventsLogger appEventsLogger;
   private final m broadcastManager;
   private final Session.StatusCallback callback;
-  private FacebookDialog.PendingCall pendingFacebookDialogCall;
+  private UUID pendingFacebookDialogCallId;
+  private PendingCallStore pendingFacebookDialogCallStore;
   private final BroadcastReceiver receiver;
 
   public UiLifecycleHelper(Activity paramActivity, Session.StatusCallback paramStatusCallback)
@@ -30,53 +34,63 @@ public class UiLifecycleHelper
     this.callback = paramStatusCallback;
     this.receiver = new UiLifecycleHelper.ActiveSessionBroadcastReceiver(this, null);
     this.broadcastManager = m.a(paramActivity);
+    this.pendingFacebookDialogCallStore = PendingCallStore.getInstance();
+    Settings.sdkInitialize(paramActivity);
   }
 
   private void cancelPendingAppCall(FacebookDialog.Callback paramCallback)
   {
+    if (this.pendingFacebookDialogCallId == null);
+    FacebookDialog.PendingCall localPendingCall;
+    do
+    {
+      return;
+      localPendingCall = this.pendingFacebookDialogCallStore.getPendingCallById(this.pendingFacebookDialogCallId);
+    }
+    while (localPendingCall == null);
     if (paramCallback != null)
     {
-      Intent localIntent1 = this.pendingFacebookDialogCall.getRequestIntent();
+      Intent localIntent1 = localPendingCall.getRequestIntent();
       Intent localIntent2 = new Intent();
       localIntent2.putExtra("com.facebook.platform.protocol.CALL_ID", localIntent1.getStringExtra("com.facebook.platform.protocol.CALL_ID"));
       localIntent2.putExtra("com.facebook.platform.protocol.PROTOCOL_ACTION", localIntent1.getStringExtra("com.facebook.platform.protocol.PROTOCOL_ACTION"));
       localIntent2.putExtra("com.facebook.platform.protocol.PROTOCOL_VERSION", localIntent1.getIntExtra("com.facebook.platform.protocol.PROTOCOL_VERSION", 0));
       localIntent2.putExtra("com.facebook.platform.status.ERROR_TYPE", "UnknownError");
-      FacebookDialog.handleActivityResult(this.activity, this.pendingFacebookDialogCall, this.pendingFacebookDialogCall.getRequestCode(), localIntent2, paramCallback);
+      FacebookDialog.handleActivityResult(this.activity, localPendingCall, localPendingCall.getRequestCode(), localIntent2, paramCallback);
     }
-    this.pendingFacebookDialogCall = null;
+    stopTrackingPendingAppCall();
   }
 
   private boolean handleFacebookDialogActivityResult(int paramInt1, int paramInt2, Intent paramIntent, FacebookDialog.Callback paramCallback)
   {
-    if ((this.pendingFacebookDialogCall == null) || (this.pendingFacebookDialogCall.getRequestCode() != paramInt1))
+    if (this.pendingFacebookDialogCallId == null);
+    FacebookDialog.PendingCall localPendingCall;
+    do
+    {
       return false;
+      localPendingCall = this.pendingFacebookDialogCallStore.getPendingCallById(this.pendingFacebookDialogCallId);
+    }
+    while ((localPendingCall == null) || (localPendingCall.getRequestCode() != paramInt1));
     if (paramIntent == null)
     {
       cancelPendingAppCall(paramCallback);
       return true;
     }
-    String str = paramIntent.getStringExtra("com.facebook.platform.protocol.CALL_ID");
-    if (str != null);
+    UUID localUUID = NativeProtocol.getCallIdFromIntent(paramIntent);
+    if ((localUUID != null) && (this.pendingFacebookDialogCallId.equals(localUUID)))
+      FacebookDialog.handleActivityResult(this.activity, localPendingCall, paramInt1, paramIntent, paramCallback);
     while (true)
     {
-      try
-      {
-        UUID localUUID2 = UUID.fromString(str);
-        localUUID1 = localUUID2;
-        if ((localUUID1 == null) || (!this.pendingFacebookDialogCall.getCallId().equals(localUUID1)))
-          break label107;
-        FacebookDialog.handleActivityResult(this.activity, this.pendingFacebookDialogCall, paramInt1, paramIntent, paramCallback);
-        this.pendingFacebookDialogCall = null;
-        return true;
-      }
-      catch (IllegalArgumentException localIllegalArgumentException)
-      {
-      }
-      UUID localUUID1 = null;
-      continue;
-      label107: cancelPendingAppCall(paramCallback);
+      stopTrackingPendingAppCall();
+      return true;
+      cancelPendingAppCall(paramCallback);
     }
+  }
+
+  private void stopTrackingPendingAppCall()
+  {
+    this.pendingFacebookDialogCallStore.stopTrackingPendingCall(this.pendingFacebookDialogCallId);
+    this.pendingFacebookDialogCallId = null;
   }
 
   public AppEventsLogger getAppEventsLogger()
@@ -103,6 +117,8 @@ public class UiLifecycleHelper
     Session localSession = Session.getActiveSession();
     if (localSession != null)
       localSession.onActivityResult(this.activity, paramInt1, paramInt2, paramIntent);
+    if (LikeActionController.handleOnActivityResult(this.activity, paramInt1, paramInt2, paramIntent))
+      return;
     handleFacebookDialogActivityResult(paramInt1, paramInt2, paramIntent, paramCallback);
   }
 
@@ -118,7 +134,12 @@ public class UiLifecycleHelper
       Session.setActiveSession(localSession);
     }
     if (paramBundle != null)
-      this.pendingFacebookDialogCall = ((FacebookDialog.PendingCall)paramBundle.getParcelable("com.facebook.UiLifecycleHelper.pendingFacebookDialogCallKey"));
+    {
+      String str = paramBundle.getString("com.facebook.UiLifecycleHelper.pendingFacebookDialogCallKey");
+      if (str != null)
+        this.pendingFacebookDialogCallId = UUID.fromString(str);
+      this.pendingFacebookDialogCallStore.restoreFromSavedInstanceState(paramBundle);
+    }
   }
 
   public void onDestroy()
@@ -155,7 +176,9 @@ public class UiLifecycleHelper
   public void onSaveInstanceState(Bundle paramBundle)
   {
     Session.saveSession(Session.getActiveSession(), paramBundle);
-    paramBundle.putParcelable("com.facebook.UiLifecycleHelper.pendingFacebookDialogCallKey", this.pendingFacebookDialogCall);
+    if (this.pendingFacebookDialogCallId != null)
+      paramBundle.putString("com.facebook.UiLifecycleHelper.pendingFacebookDialogCallKey", this.pendingFacebookDialogCallId.toString());
+    this.pendingFacebookDialogCallStore.saveInstanceState(paramBundle);
   }
 
   public void onStop()
@@ -165,13 +188,17 @@ public class UiLifecycleHelper
 
   public void trackPendingDialogCall(FacebookDialog.PendingCall paramPendingCall)
   {
-    if (this.pendingFacebookDialogCall != null)
+    if (this.pendingFacebookDialogCallId != null)
       cancelPendingAppCall(null);
-    this.pendingFacebookDialogCall = paramPendingCall;
+    if (paramPendingCall != null)
+    {
+      this.pendingFacebookDialogCallId = paramPendingCall.getCallId();
+      this.pendingFacebookDialogCallStore.trackPendingCall(paramPendingCall);
+    }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.UiLifecycleHelper
  * JD-Core Version:    0.6.2
  */

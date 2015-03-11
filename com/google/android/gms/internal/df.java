@@ -1,22 +1,42 @@
 package com.google.android.gms.internal;
 
-import android.content.Intent;
-import android.os.IInterface;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-public abstract interface df extends IInterface
+@ez
+public class df
 {
-  public abstract void finishPurchase();
+  private final boolean rb;
+  private final boolean rc;
+  private final boolean rd;
+  private final boolean re;
+  private final boolean rf;
 
-  public abstract String getProductId();
+  private df(df.a parama)
+  {
+    this.rb = df.a.a(parama);
+    this.rc = df.a.b(parama);
+    this.rd = df.a.c(parama);
+    this.re = df.a.d(parama);
+    this.rf = df.a.e(parama);
+  }
 
-  public abstract Intent getPurchaseData();
-
-  public abstract int getResultCode();
-
-  public abstract boolean isVerified();
+  public JSONObject bK()
+  {
+    try
+    {
+      JSONObject localJSONObject = new JSONObject().put("sms", this.rb).put("tel", this.rc).put("calendar", this.rd).put("storePicture", this.re).put("inlineVideo", this.rf);
+      return localJSONObject;
+    }
+    catch (JSONException localJSONException)
+    {
+      gs.b("Error occured while obtaining the MRAID capabilities.", localJSONException);
+    }
+    return null;
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.df
  * JD-Core Version:    0.6.2
  */

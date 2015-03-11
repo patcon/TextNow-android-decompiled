@@ -8,22 +8,22 @@ public final class NotifyTransactionStatusRequest
   implements SafeParcelable
 {
   public static final Parcelable.Creator<NotifyTransactionStatusRequest> CREATOR = new m();
-  String aiQ;
-  String ajR;
+  final int BR;
+  String asB;
+  String atB;
   int status;
-  final int xM;
 
   NotifyTransactionStatusRequest()
   {
-    this.xM = 1;
+    this.BR = 1;
   }
 
   NotifyTransactionStatusRequest(int paramInt1, String paramString1, int paramInt2, String paramString2)
   {
-    this.xM = paramInt1;
-    this.aiQ = paramString1;
+    this.BR = paramInt1;
+    this.asB = paramString1;
     this.status = paramInt2;
-    this.ajR = paramString2;
+    this.atB = paramString2;
   }
 
   public static NotifyTransactionStatusRequest.Builder newBuilder()
@@ -40,12 +40,12 @@ public final class NotifyTransactionStatusRequest
 
   public final String getDetailedReason()
   {
-    return this.ajR;
+    return this.atB;
   }
 
   public final String getGoogleTransactionId()
   {
-    return this.aiQ;
+    return this.asB;
   }
 
   public final int getStatus()
@@ -55,7 +55,7 @@ public final class NotifyTransactionStatusRequest
 
   public final int getVersionCode()
   {
-    return this.xM;
+    return this.BR;
   }
 
   public final void writeToParcel(Parcel paramParcel, int paramInt)
@@ -64,7 +64,7 @@ public final class NotifyTransactionStatusRequest
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.NotifyTransactionStatusRequest
  * JD-Core Version:    0.6.2
  */

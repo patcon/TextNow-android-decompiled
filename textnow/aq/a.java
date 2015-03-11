@@ -1,28 +1,68 @@
 package textnow.aq;
 
-import java.util.concurrent.CountDownLatch;
+import java.lang.reflect.Type;
+import textnow.ao.b;
 
-public class a
-  implements Runnable
+public final class a<T>
 {
-  m a = null;
-  CountDownLatch b = null;
+  final Class<? super T> a;
+  final Type b;
+  final int c;
 
-  public a(m paramm, CountDownLatch paramCountDownLatch)
+  protected a()
   {
-    this.a = paramm;
-    this.b = paramCountDownLatch;
+    Type localType = getClass().getGenericSuperclass();
+    if ((localType instanceof Class))
+      throw new RuntimeException("Missing type parameter.");
+    this.b = b.a(((java.lang.reflect.ParameterizedType)localType).getActualTypeArguments()[0]);
+    this.a = b.b(this.b);
+    this.c = this.b.hashCode();
   }
 
-  public void run()
+  private a(Type paramType)
   {
-    this.a.c();
-    if (this.b != null)
-      this.b.countDown();
+    this.b = b.a((Type)textnow.ao.a.a(paramType));
+    this.a = b.b(this.b);
+    this.c = this.b.hashCode();
+  }
+
+  public static <T> a<T> a(Class<T> paramClass)
+  {
+    return new a(paramClass);
+  }
+
+  public static a<?> a(Type paramType)
+  {
+    return new a(paramType);
+  }
+
+  public final Class<? super T> a()
+  {
+    return this.a;
+  }
+
+  public final Type b()
+  {
+    return this.b;
+  }
+
+  public final boolean equals(Object paramObject)
+  {
+    return ((paramObject instanceof a)) && (b.a(this.b, ((a)paramObject).b));
+  }
+
+  public final int hashCode()
+  {
+    return this.c;
+  }
+
+  public final String toString()
+  {
+    return b.c(this.b);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.aq.a
  * JD-Core Version:    0.6.2
  */

@@ -7,16 +7,16 @@ import android.os.Parcel;
 class a$a$a
   implements a
 {
-  private IBinder kq;
+  private IBinder lb;
 
   a$a$a(IBinder paramIBinder)
   {
-    this.kq = paramIBinder;
+    this.lb = paramIBinder;
   }
 
   public IBinder asBinder()
   {
-    return this.kq;
+    return this.lb;
   }
 
   public void onLocationChanged(Location paramLocation)
@@ -32,7 +32,7 @@ class a$a$a
       }
       while (true)
       {
-        this.kq.transact(1, localParcel, null, 1);
+        this.lb.transact(1, localParcel, null, 1);
         return;
         localParcel.writeInt(0);
       }
@@ -44,7 +44,7 @@ class a$a$a
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.location.a.a.a
  * JD-Core Version:    0.6.2
  */

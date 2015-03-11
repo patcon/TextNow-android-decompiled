@@ -12,25 +12,25 @@ public class f
 {
   static void a(FullWallet paramFullWallet, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
+    int i = b.D(paramParcel);
     b.c(paramParcel, 1, paramFullWallet.getVersionCode());
-    b.a(paramParcel, 2, paramFullWallet.aiQ, false);
-    b.a(paramParcel, 3, paramFullWallet.aiR, false);
-    b.a(paramParcel, 4, paramFullWallet.aiS, paramInt, false);
-    b.a(paramParcel, 5, paramFullWallet.aiT, false);
-    b.a(paramParcel, 6, paramFullWallet.aiU, paramInt, false);
-    b.a(paramParcel, 7, paramFullWallet.aiV, paramInt, false);
-    b.a(paramParcel, 8, paramFullWallet.aiW, false);
-    b.a(paramParcel, 9, paramFullWallet.aiX, paramInt, false);
-    b.a(paramParcel, 10, paramFullWallet.aiY, paramInt, false);
-    b.a(paramParcel, 11, paramFullWallet.aiZ, paramInt, false);
-    b.G(paramParcel, i);
+    b.a(paramParcel, 2, paramFullWallet.asB, false);
+    b.a(paramParcel, 3, paramFullWallet.asC, false);
+    b.a(paramParcel, 4, paramFullWallet.asD, paramInt, false);
+    b.a(paramParcel, 5, paramFullWallet.asE, false);
+    b.a(paramParcel, 6, paramFullWallet.asF, paramInt, false);
+    b.a(paramParcel, 7, paramFullWallet.asG, paramInt, false);
+    b.a(paramParcel, 8, paramFullWallet.asH, false);
+    b.a(paramParcel, 9, paramFullWallet.asI, paramInt, false);
+    b.a(paramParcel, 10, paramFullWallet.asJ, paramInt, false);
+    b.a(paramParcel, 11, paramFullWallet.asK, paramInt, false);
+    b.H(paramParcel, i);
   }
 
-  public FullWallet bU(Parcel paramParcel)
+  public FullWallet dr(Parcel paramParcel)
   {
     InstrumentInfo[] arrayOfInstrumentInfo = null;
-    int i = a.B(paramParcel);
+    int i = a.C(paramParcel);
     int j = 0;
     UserAddress localUserAddress1 = null;
     UserAddress localUserAddress2 = null;
@@ -43,8 +43,8 @@ public class f
     String str3 = null;
     while (paramParcel.dataPosition() < i)
     {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
       {
       default:
         a.b(paramParcel, k);
@@ -88,13 +88,13 @@ public class f
     return new FullWallet(j, str3, str2, localProxyCard, str1, localAddress2, localAddress1, arrayOfString, localUserAddress2, localUserAddress1, arrayOfInstrumentInfo);
   }
 
-  public FullWallet[] dA(int paramInt)
+  public FullWallet[] fs(int paramInt)
   {
     return new FullWallet[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.f
  * JD-Core Version:    0.6.2
  */

@@ -28,8 +28,8 @@ public class CustomLoader
   private static final String TAG = "CustomLoader";
   private static final String VIDEO_SDK_DEX = "video_dex.jar";
   private static final String VIDEO_SDK_DEX_PREFIX = "video_dex_";
+  private static Long mCachedAppBuildTime;
   protected Context mAppContext;
-  private Long mCachedAppBuildTime;
   protected DexClassLoader mClassLoader;
   private final String mDexAssetName;
   protected File mDexInternalStoragePath;
@@ -181,12 +181,12 @@ public class CustomLoader
 
   private long getAppBuildTime()
   {
-    if (this.mCachedAppBuildTime == null);
+    if (mCachedAppBuildTime == null);
     try
     {
-      this.mCachedAppBuildTime = Long.valueOf(new ZipFile(this.mAppContext.getPackageManager().getApplicationInfo(this.mAppContext.getPackageName(), 0).sourceDir).getEntry("classes.dex").getTime());
-      new StringBuilder().append("app build time ").append(this.mCachedAppBuildTime).toString();
-      return this.mCachedAppBuildTime.longValue();
+      mCachedAppBuildTime = Long.valueOf(new ZipFile(this.mAppContext.getPackageManager().getApplicationInfo(this.mAppContext.getPackageName(), 0).sourceDir).getEntry("classes.dex").getTime());
+      new StringBuilder().append("app build time ").append(mCachedAppBuildTime).toString();
+      return mCachedAppBuildTime.longValue();
     }
     catch (Throwable localThrowable)
     {
@@ -380,7 +380,7 @@ public class CustomLoader
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.customloader.CustomLoader
  * JD-Core Version:    0.6.2
  */

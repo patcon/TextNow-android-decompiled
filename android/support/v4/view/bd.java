@@ -1,17 +1,27 @@
 package android.support.v4.view;
 
-import android.view.ViewConfiguration;
+import android.graphics.Paint;
+import android.view.View;
 
-class bd
-  implements bh
+class bd extends bc
 {
-  public int a(ViewConfiguration paramViewConfiguration)
+  public final void a(View paramView, Paint paramPaint)
   {
-    return paramViewConfiguration.getScaledTouchSlop();
+    paramView.setLayerPaint(paramPaint);
+  }
+
+  public final int i(View paramView)
+  {
+    return paramView.getLayoutDirection();
+  }
+
+  public final int t(View paramView)
+  {
+    return paramView.getWindowSystemUiVisibility();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.view.bd
  * JD-Core Version:    0.6.2
  */

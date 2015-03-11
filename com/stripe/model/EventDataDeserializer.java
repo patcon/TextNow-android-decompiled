@@ -8,13 +8,13 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import textnow.ac.e;
-import textnow.z.f;
-import textnow.z.j;
-import textnow.z.k;
-import textnow.z.l;
-import textnow.z.m;
-import textnow.z.r;
+import textnow.af.f;
+import textnow.af.j;
+import textnow.af.k;
+import textnow.af.l;
+import textnow.af.m;
+import textnow.af.r;
+import textnow.ai.e;
 
 public class EventDataDeserializer
   implements l<EventData>
@@ -88,7 +88,7 @@ public class EventDataDeserializer
     return paramr.c();
   }
 
-  private void populateMapFromJSONObject(Map<String, Object> paramMap, textnow.z.p paramp)
+  private void populateMapFromJSONObject(Map<String, Object> paramMap, textnow.af.p paramp)
   {
     Iterator localIterator = paramp.a().iterator();
     while (localIterator.hasNext())
@@ -128,7 +128,7 @@ public class EventDataDeserializer
         }
         label214: for (Object localObject2 = null; ; localObject2 = localf.a(new e(localm2), (Type)localObject1))
         {
-          localEventData.setObject((StripeObject)textnow.ab.p.a((Class)localObject1).cast(localObject2));
+          localEventData.setObject((StripeObject)textnow.ah.p.a((Class)localObject1).cast(localObject2));
           break;
           localObject1 = StripeRawJsonObject.class;
           break label177;
@@ -139,7 +139,7 @@ public class EventDataDeserializer
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.stripe.model.EventDataDeserializer
  * JD-Core Version:    0.6.2
  */

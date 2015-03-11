@@ -5,13 +5,15 @@ import android.app.Application;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.SystemClock;
-import com.enflick.android.TextNow.activities.phone.d;
-import com.enflick.android.TextNow.activities.phone.j;
+import com.appsflyer.AppsFlyerLib;
+import com.enflick.android.TextNow.activities.phone.h;
+import com.enflick.android.TextNow.activities.phone.n;
+import com.enflick.android.TextNow.chatheads.g;
 import com.enflick.android.TextNow.pullservice.PullAlarmReceiver;
-import com.vessel.VesselSDK;
-import textnow.q.q;
-import textnow.u.p;
-import textnow.u.r;
+import com.google.android.gcm.a;
+import textnow.v.o;
+import textnow.z.r;
+import textnow.z.u;
 
 public class TextNowApp extends Application
 {
@@ -33,18 +35,31 @@ public class TextNowApp extends Application
   public static void a(boolean paramBoolean)
   {
     d = paramBoolean;
+    g localg;
+    if (g.f())
+    {
+      localg = g.a(a);
+      if (d)
+        localg.k();
+    }
+    else
+    {
+      return;
+    }
+    localg.a();
   }
 
   public static void b()
   {
-    com.google.android.gcm.a.a(a);
-    r localr = new r(a);
-    localr.l(null);
-    localr.c(false);
-    localr.n();
+    g.g();
+    a.a(a);
+    u localu = new u(a);
+    localu.l(null);
+    localu.c(false);
+    localu.B();
     TextNowApp localTextNowApp = a;
     b.cancel(localTextNowApp.c);
-    d.g();
+    h.g();
   }
 
   public static boolean c()
@@ -54,7 +69,7 @@ public class TextNowApp extends Application
 
   public final void d()
   {
-    long l = new r(this).J();
+    long l = new u(this).L();
     new StringBuilder().append("Schedule next auto pull service in ").append(l / 1000L).append(" seconds").toString();
     b.setRepeating(2, l + SystemClock.elapsedRealtime(), l, this.c);
   }
@@ -62,35 +77,28 @@ public class TextNowApp extends Application
   public void onCreate()
   {
     super.onCreate();
-    p.a(this);
+    r.a(this);
     try
     {
-      d.a();
-      b = (AlarmManager)getSystemService("alarm");
+      h.a();
+      label12: b = (AlarmManager)getSystemService("alarm");
       this.c = PendingIntent.getBroadcast(this, 0, new Intent(this, PullAlarmReceiver.class), 0);
-      textnow.x.a.a(getApplicationContext());
+      AppsFlyerLib.setAppsFlyerKey("yYxAmNc5Sjr84FZ2HVGX7K");
+      return;
     }
-    catch (j localj)
+    catch (n localn)
     {
-      try
-      {
-        VesselSDK.initialize(getApplicationContext(), "cmZEb2hCdDNhblh1bVJHOTRMVWs1SFBD");
-        return;
-        localj = localj;
-      }
-      catch (Throwable localThrowable)
-      {
-      }
+      break label12;
     }
   }
 
   public void onLowMemory()
   {
-    q.g();
+    o.g();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.TextNowApp
  * JD-Core Version:    0.6.2
  */

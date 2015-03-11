@@ -14,12 +14,17 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build.VERSION;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.os.SystemClock;
 import android.provider.ContactsContract;
+import android.support.v4.app.bz;
+import android.support.v4.content.m;
 import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.text.style.TextAppearanceSpan;
+import android.text.util.Linkify;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.KeyEvent;
@@ -30,36 +35,50 @@ import android.view.View;
 import android.widget.HeaderViewListAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+import com.appsflyer.AppsFlyerLib;
 import com.enflick.android.TextNow.TextNowApp;
 import com.enflick.android.TextNow.activities.phone.DialerFragment;
 import com.enflick.android.TextNow.activities.phone.DialerFragment.DialerState;
-import com.enflick.android.TextNow.activities.phone.s;
+import com.enflick.android.TextNow.activities.phone.w;
+import com.enflick.android.TextNow.api.responsemodel.Plan;
+import com.enflick.android.TextNow.api.responsemodel.Settings.AndroidSettings.Banner;
 import com.enflick.android.TextNow.customloader.CustomLoader;
 import com.enflick.android.TextNow.customloader.INexage;
+import com.enflick.android.TextNow.tasks.CheckESNTask;
 import com.enflick.android.TextNow.tasks.GetGroupsTask;
-import com.enflick.android.TextNow.tasks.GetSettingsTask;
+import com.enflick.android.TextNow.tasks.GetNewMessagesTask;
 import com.enflick.android.TextNow.tasks.GetSubscriptionTask;
 import com.enflick.android.TextNow.tasks.GetUserInfoTask;
 import com.enflick.android.TextNow.tasks.ImportSMSTask;
+import com.enflick.android.TextNow.tasks.MarkMessagesReadTask;
 import com.enflick.android.TextNow.tasks.RefreshContactProxyTask;
 import com.enflick.android.TextNow.tasks.ReportIdfaTask;
-import com.enflick.android.TextNow.tasks.TwitterPostTask;
+import com.enflick.android.TextNow.tasks.SendMessageTask;
+import com.enflick.android.TextNow.tasks.UpdateBillingInfoTask;
 import com.facebook.FacebookRequestError;
 import com.facebook.Request.Callback;
 import com.facebook.Response;
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-import textnow.k.w;
-import textnow.p.h;
-import textnow.q.ac;
-import textnow.q.ad;
+import textnow.p.y;
+import textnow.u.d;
+import textnow.u.e;
+import textnow.u.j;
+import textnow.v.z;
+import textnow.z.u;
 
-public class MainActivity extends an
+public class MainActivity extends au
   implements com.enflick.android.TextNow.views.a
 {
+  public static Activity a;
+  private Dialog A;
+  private int B = 0;
   public Request.Callback b = new Request.Callback()
   {
     public final void onCompleted(Response paramAnonymousResponse)
@@ -82,9 +101,9 @@ public class MainActivity extends an
       MainActivity.a(MainActivity.this, bool, -1, null);
     }
   };
-  textnow.p.i c = new textnow.p.i()
+  textnow.u.i c = new textnow.u.i()
   {
-    public final void a(textnow.p.j paramAnonymousj, textnow.p.k paramAnonymousk)
+    public final void a(j paramAnonymousj, textnow.u.k paramAnonymousk)
     {
       if (paramAnonymousj.c())
         new StringBuilder().append("Failed to query inventory: ").append(paramAnonymousj).toString();
@@ -97,46 +116,46 @@ public class MainActivity extends an
         while (localIterator1.hasNext())
         {
           String str2 = (String)localIterator1.next();
-          if (textnow.n.i.c(str2))
+          if (textnow.s.i.c(str2))
             localArrayList.add(paramAnonymousk.b(str2));
         }
-        textnow.u.j localj = new textnow.u.j(MainActivity.this);
-        Iterator localIterator2 = textnow.n.i.a().iterator();
+        textnow.z.l locall = new textnow.z.l(MainActivity.this);
+        Iterator localIterator2 = textnow.s.i.a().iterator();
         while (localIterator2.hasNext())
         {
           String str1 = (String)localIterator2.next();
-          textnow.p.n localn = paramAnonymousk.a(str1);
+          textnow.u.n localn = paramAnonymousk.a(str1);
           if (localn != null)
-            localj.a(str1, localn.a());
+            locall.a(str1, localn.a());
         }
-        localj.n();
+        locall.B();
       }
       while ((localArrayList.size() <= 0) || (MainActivity.a(MainActivity.this) == null));
       MainActivity.a(MainActivity.this).a(localArrayList, MainActivity.this.f);
     }
   };
-  textnow.p.g d = new textnow.p.g()
+  textnow.u.g d = new textnow.u.g()
   {
-    public final void a(textnow.p.j paramAnonymousj, textnow.p.l paramAnonymousl)
+    public final void a(j paramAnonymousj, textnow.u.l paramAnonymousl)
     {
       new StringBuilder().append("Purchase finished: ").append(paramAnonymousj).append(", purchase: ").append(paramAnonymousl).toString();
       if (paramAnonymousj.c())
         if ((paramAnonymousj.a() != 1) && (paramAnonymousj.a() != -1005))
-          MainActivity.this.c(2131493343);
+          MainActivity.this.b(2131296746);
       do
       {
         do
           return;
-        while (!textnow.n.i.c(paramAnonymousl.a()));
-        MainActivity.this.a(2131493021, false);
+        while (!textnow.s.i.c(paramAnonymousl.a()));
+        MainActivity.this.a(2131296428, false);
       }
       while (MainActivity.a(MainActivity.this) == null);
       MainActivity.a(MainActivity.this).a(paramAnonymousl, MainActivity.this.e);
     }
   };
-  textnow.p.e e = new textnow.p.e()
+  e e = new e()
   {
-    public final void a(textnow.p.l paramAnonymousl, textnow.p.j paramAnonymousj)
+    public final void a(textnow.u.l paramAnonymousl, j paramAnonymousj)
     {
       new StringBuilder().append("Consumption finished. Purchase: ").append(paramAnonymousl).append(", result: ").append(paramAnonymousj).toString();
       if (paramAnonymousj.b())
@@ -145,30 +164,30 @@ public class MainActivity extends an
         String str1 = paramAnonymousl.a();
         String str2 = paramAnonymousl.c();
         String str3 = paramAnonymousl.d();
-        new textnow.n.f(MainActivity.this).a(str1, str2, str3, textnow.n.g.b);
+        new textnow.s.f(MainActivity.this).a(str1, str2, str3, textnow.s.g.b);
         return;
       }
       new StringBuilder().append(paramAnonymousl.a()).append(": Error while consuming: ").append(paramAnonymousj).toString();
-      MainActivity.this.r();
-      MainActivity.this.c(2131493343);
+      MainActivity.this.v();
+      MainActivity.this.b(2131296746);
     }
   };
-  textnow.p.f f = new textnow.p.f()
+  textnow.u.f f = new textnow.u.f()
   {
-    public final void a(List<textnow.p.l> paramAnonymousList, List<textnow.p.j> paramAnonymousList1)
+    public final void a(List<textnow.u.l> paramAnonymousList, List<j> paramAnonymousList1)
     {
       int i = 0;
       if (i < paramAnonymousList.size())
       {
-        textnow.p.j localj = (textnow.p.j)paramAnonymousList1.get(i);
-        textnow.p.l locall = (textnow.p.l)paramAnonymousList.get(i);
+        j localj = (j)paramAnonymousList1.get(i);
+        textnow.u.l locall = (textnow.u.l)paramAnonymousList.get(i);
         if (localj.b())
         {
           String str1 = locall.a();
           String str2 = locall.c();
           String str3 = locall.d();
           new StringBuilder().append(locall.a()).append(" consumption successful").toString();
-          new textnow.n.f(MainActivity.this).a(str1, str2, str3, textnow.n.g.b);
+          new textnow.s.f(MainActivity.this).a(str1, str2, str3, textnow.s.g.b);
         }
         while (true)
         {
@@ -179,15 +198,176 @@ public class MainActivity extends an
       }
     }
   };
-  private l l;
-  private boolean m;
-  private Menu n;
-  private textnow.p.d o = null;
-  private boolean p = false;
-  private boolean q = false;
-  private k r;
+  private q o;
+  private boolean p;
+  private d q = null;
+  private boolean r = false;
   private boolean s = false;
-  private INexage t;
+  private p t;
+  private boolean u = false;
+  private INexage v;
+  private textnow.z.s w;
+  private long x;
+  private int y = 0;
+  private Dialog z;
+
+  private void J()
+  {
+    textnow.z.p localp = new textnow.z.p(this);
+    textnow.z.s locals = new textnow.z.s(this);
+    Settings.AndroidSettings.Banner[] arrayOfBanner = localp.w();
+    int j;
+    final Settings.AndroidSettings.Banner localBanner;
+    if (arrayOfBanner != null)
+    {
+      int i = arrayOfBanner.length;
+      j = 0;
+      if (j < i)
+      {
+        localBanner = arrayOfBanner[j];
+        if ("delinquent".equalsIgnoreCase(localBanner.id))
+          if (!"DELINQUENT".equalsIgnoreCase(locals.f()))
+            break label162;
+      }
+    }
+    while (true)
+    {
+      label72: if (localBanner == null)
+        break label385;
+      a(localBanner, new aq()
+      {
+        public final void a()
+        {
+          MainActivity.this.z();
+          com.enflick.android.TextNow.ads.b.a("promo_banner_clicked", "id", localBanner.id);
+          Intent localIntent;
+          if (!TextUtils.isEmpty(localBanner.url))
+          {
+            String str = localBanner.url;
+            localIntent = new Intent("android.intent.action.VIEW");
+            localIntent.setData(Uri.parse(str));
+          }
+          try
+          {
+            MainActivity.this.startActivity(localIntent);
+            do
+            {
+              return;
+              if ("activate".equalsIgnoreCase(localBanner.id))
+              {
+                MainActivity.this.c(false);
+                return;
+              }
+              if ("delinquent".equalsIgnoreCase(localBanner.id))
+              {
+                MainActivity.this.l();
+                return;
+              }
+              if ("reactivate".equalsIgnoreCase(localBanner.id))
+              {
+                MainActivity.c(MainActivity.this).a(1);
+                return;
+              }
+            }
+            while (!"data_usage".equalsIgnoreCase(localBanner.id));
+            MainActivity.c(MainActivity.this).a(6);
+            return;
+          }
+          catch (Throwable localThrowable)
+          {
+          }
+        }
+
+        public final void b()
+        {
+          MainActivity localMainActivity = MainActivity.this;
+          Settings.AndroidSettings.Banner localBanner1 = localBanner;
+          textnow.z.p localp;
+          Settings.AndroidSettings.Banner[] arrayOfBanner;
+          int i;
+          if (localBanner1 != null)
+          {
+            localp = new textnow.z.p(localMainActivity);
+            arrayOfBanner = localp.w();
+            i = arrayOfBanner.length;
+          }
+          for (int j = 0; ; j++)
+          {
+            if (j < i)
+            {
+              Settings.AndroidSettings.Banner localBanner2 = arrayOfBanner[j];
+              if (!localBanner2.id.equals(localBanner1.id))
+                continue;
+              localBanner2.lastDismissedTime = System.currentTimeMillis();
+              if (localBanner2.firstDismissedTime == 0L)
+                localBanner2.firstDismissedTime = localBanner2.lastDismissedTime;
+            }
+            localp.a(arrayOfBanner);
+            localp.B();
+            return;
+          }
+        }
+      }
+      , "delinquent".equalsIgnoreCase(localBanner.id));
+      return;
+      int k;
+      if (localBanner != null)
+      {
+        if ((localBanner.lastDismissedTime == 0L) || (localBanner.firstDismissedTime == 0L))
+        {
+          k = 1;
+          label132: if (k != 0)
+          {
+            if (!"reactivate".equalsIgnoreCase(localBanner.id))
+              break label252;
+            if ("EXPIRED".equalsIgnoreCase(locals.f()))
+              continue;
+          }
+        }
+      }
+      else
+      {
+        label162: label252: int m;
+        label278: 
+        do
+        {
+          Plan localPlan;
+          do
+          {
+            do
+            {
+              j++;
+              break;
+              if ((System.currentTimeMillis() - localBanner.lastDismissedTime > 1000 * (60 * (60 * (24 * localBanner.interval)))) && ((localBanner.duration == 0) || (System.currentTimeMillis() - localBanner.firstDismissedTime < 1000 * (60 * (60 * (24 * localBanner.duration))))))
+              {
+                k = 1;
+                break label132;
+              }
+              k = 0;
+              break label132;
+              if (!"activate".equalsIgnoreCase(localBanner.id))
+                break label278;
+            }
+            while (locals.q() != textnow.z.t.c);
+            break label72;
+            if (!"data_usage".equalsIgnoreCase(localBanner.id))
+              break label72;
+            localPlan = locals.c();
+          }
+          while (localPlan == null);
+          m = 100 * locals.e() / localPlan.data;
+        }
+        while (m < 75);
+        String str = localBanner.secondary;
+        Object[] arrayOfObject = new Object[1];
+        arrayOfObject[0] = (String.valueOf(m) + "%");
+        localBanner.secondary = String.format(str, arrayOfObject);
+        continue;
+        localBanner = null;
+      }
+    }
+    label385: y();
+  }
 
   public static void a(Activity paramActivity)
   {
@@ -206,22 +386,22 @@ public class MainActivity extends an
     paramActivity.startActivity(localIntent);
   }
 
-  public static void a(Activity paramActivity, textnow.u.d paramd, DialerFragment.DialerState paramDialerState)
+  public static void a(Activity paramActivity, textnow.z.f paramf, DialerFragment.DialerState paramDialerState)
   {
     Intent localIntent = new Intent(paramActivity, MainActivity.class);
     localIntent.addFlags(268435456);
     localIntent.putExtra("extra_show_dialer", true);
-    localIntent.putExtra("extra_dialer_contact", paramd);
+    localIntent.putExtra("extra_dialer_contact", paramf);
     localIntent.putExtra("extra_dialer_state", paramDialerState);
     paramActivity.startActivity(localIntent);
   }
 
-  public static void a(Activity paramActivity, textnow.u.f paramf, MessageViewFragment.MessageViewState paramMessageViewState, int paramInt)
+  public static void a(Activity paramActivity, textnow.z.h paramh, MessageViewFragment.MessageViewState paramMessageViewState, int paramInt)
   {
     Intent localIntent = new Intent(paramActivity, MainActivity.class);
     localIntent.addFlags(268435456);
     localIntent.putExtra("extra_msg_view_type", paramInt);
-    localIntent.putExtra("extra_selected_convo", paramf);
+    localIntent.putExtra("extra_selected_convo", paramh);
     localIntent.putExtra("extra_message_view_state", paramMessageViewState);
     paramActivity.startActivity(localIntent);
   }
@@ -239,146 +419,197 @@ public class MainActivity extends an
 
   private void a(Intent paramIntent)
   {
-    int i;
-    textnow.u.f localf2;
-    MessageViewFragment.MessageViewState localMessageViewState1;
+    int j;
+    textnow.z.h localh3;
+    MessageViewFragment.MessageViewState localMessageViewState2;
     if (paramIntent.hasExtra("extra_msg_view_type"))
     {
-      i = paramIntent.getIntExtra("extra_msg_view_type", -1);
-      localf2 = (textnow.u.f)paramIntent.getSerializableExtra("extra_selected_convo");
-      localMessageViewState1 = (MessageViewFragment.MessageViewState)paramIntent.getParcelableExtra("extra_message_view_state");
-      if (localMessageViewState1 != null)
-        break label852;
+      j = paramIntent.getIntExtra("extra_msg_view_type", -1);
+      localh3 = (textnow.z.h)paramIntent.getSerializableExtra("extra_selected_convo");
+      localMessageViewState2 = (MessageViewFragment.MessageViewState)paramIntent.getParcelableExtra("extra_message_view_state");
+      if (localMessageViewState2 != null)
+        break label1158;
     }
-    label566: label831: label845: label852: for (MessageViewFragment.MessageViewState localMessageViewState2 = MessageViewFragment.MessageViewState.a; ; localMessageViewState2 = localMessageViewState1)
+    label453: label493: label1137: for (MessageViewFragment.MessageViewState localMessageViewState3 = MessageViewFragment.MessageViewState.a; ; localMessageViewState3 = localMessageViewState2)
     {
-      String str7;
-      int k;
-      textnow.u.e locale2;
-      if (localf2 == null)
+      String str10;
+      int m;
+      textnow.z.g localg3;
+      if (localh3 == null)
       {
-        str7 = paramIntent.getStringExtra("extra_selected_cv");
+        str10 = paramIntent.getStringExtra("extra_selected_cv");
         if (paramIntent.hasExtra("extra_selected_ct"))
         {
-          k = paramIntent.getIntExtra("extra_selected_ct", 2);
-          locale2 = textnow.u.d.a(this, textnow.u.f.b(this), str7, k);
-          if (locale2 == null)
-            break label845;
+          m = paramIntent.getIntExtra("extra_selected_ct", 2);
+          localg3 = textnow.z.f.a(this, textnow.z.h.b(this), str10, m);
+          if (localg3 == null)
+            break label1151;
         }
       }
-      for (String str8 = locale2.a; ; str8 = str7)
+      label372: label1151: for (String str11 = localg3.a; ; str11 = str10)
       {
-        if (str8 != null);
-        for (textnow.u.f localf3 = textnow.u.f.a(getContentResolver(), new String[] { str8 }); ; localf3 = localf2)
+        if (str11 != null);
+        for (textnow.z.h localh4 = textnow.z.h.a(getContentResolver(), new String[] { str11 }); ; localh4 = localh3)
         {
-          if (((localf3 != null) && (i != -1)) || (!(this.l instanceof n)))
+          if ((j == 1) || ((localh4 != null) && (j != -1)) || (!(this.o instanceof s)))
             if ((!paramIntent.hasExtra("extra_launched_from_widget")) || (!paramIntent.getBooleanExtra("extra_widget_reply", false)))
-              break label831;
-          for (int j = 3; ; j = i)
+              break label1137;
+          for (int k = 3; ; k = j)
           {
-            this.l.a(j, localf3, localMessageViewState2, null, null);
-            label363: Uri localUri1;
-            String str1;
+            this.o.a(k, localh4, localMessageViewState3);
+            CharSequence localCharSequence;
             do
             {
+              Bundle localBundle;
               do
               {
-                return;
-                k = textnow.u.d.d(str7);
-                break;
-                if (paramIntent.hasExtra("extra_dialer_hangup"))
-                  try
-                  {
-                    com.enflick.android.TextNow.activities.phone.d.a().b(false);
-                    textnow.q.o.a(this).c();
-                    return;
-                  }
-                  catch (com.enflick.android.TextNow.activities.phone.j localj)
-                  {
-                    return;
-                  }
-                if (paramIntent.hasExtra("extra_show_dialer"))
+                do
                 {
-                  if (com.enflick.android.TextNow.activities.phone.d.d())
+                  do
                   {
-                    if ("widget_action_dialer".equals(paramIntent.getAction()))
-                      paramIntent.getExtras().getString("extra_launched_from_widget");
-                    DialerFragment.DialerState localDialerState = (DialerFragment.DialerState)paramIntent.getParcelableExtra("extra_dialer_state");
-                    textnow.u.d locald = (textnow.u.d)paramIntent.getSerializableExtra("extra_dialer_contact");
-                    if (paramIntent.hasExtra("extra_launched_from_widget"))
+                    do
                     {
-                      this.l.a(locald, localDialerState, false, true);
+                      do
+                      {
+                        return;
+                        m = textnow.z.f.d(str10);
+                        break;
+                        if (paramIntent.hasExtra("extra_dialer_hangup"))
+                          try
+                          {
+                            com.enflick.android.TextNow.activities.phone.h.a().b(false);
+                            textnow.aa.a.a(this).c();
+                            return;
+                          }
+                          catch (com.enflick.android.TextNow.activities.phone.n localn)
+                          {
+                            return;
+                          }
+                        if (paramIntent.hasExtra("extra_show_dialer"))
+                        {
+                          if (com.enflick.android.TextNow.activities.phone.h.d())
+                          {
+                            if ("widget_action_dialer".equals(paramIntent.getAction()))
+                              paramIntent.getExtras().getString("extra_launched_from_widget");
+                            DialerFragment.DialerState localDialerState = (DialerFragment.DialerState)paramIntent.getParcelableExtra("extra_dialer_state");
+                            textnow.z.f localf = (textnow.z.f)paramIntent.getSerializableExtra("extra_dialer_contact");
+                            if (paramIntent.hasExtra("extra_launched_from_widget"))
+                            {
+                              this.o.a(localf, localDialerState, false, true);
+                              return;
+                            }
+                            this.o.a(localf, localDialerState, false, false);
+                            return;
+                          }
+                          b(2131296448);
+                          return;
+                        }
+                        if (!paramIntent.hasExtra("extra_show_account"))
+                          break label372;
+                      }
+                      while (this.w.c() == null);
+                      this.o.a(0);
+                      return;
+                      if (paramIntent.hasExtra("extra_show_theme"))
+                      {
+                        Parcelable localParcelable = paramIntent.getParcelableExtra("extra_view_state");
+                        this.o.e();
+                        this.o.a(new aw(localParcelable));
+                        return;
+                      }
+                      if (!"widget_action_answer".equals(paramIntent.getAction()))
+                        break label453;
+                    }
+                    while (!this.o.a(DialerFragment.class));
+                    ((DialerFragment)this.o.l()).i();
+                    return;
+                    if (!"widget_action_reject".equals(paramIntent.getAction()))
+                      break label493;
+                  }
+                  while (!this.o.a(DialerFragment.class));
+                  ((DialerFragment)this.o.l()).j();
+                  return;
+                  if (("android.intent.action.SENDTO".equals(paramIntent.getAction())) || ("android.intent.action.SEND".equals(paramIntent.getAction())))
+                  {
+                    new StringBuilder().append("sms intent received: ").append(paramIntent.getDataString()).toString();
+                    Uri localUri1 = paramIntent.getData();
+                    String str1 = paramIntent.getStringExtra("android.intent.extra.TEXT");
+                    MessageViewFragment.MessageViewState localMessageViewState1 = new MessageViewFragment.MessageViewState();
+                    localMessageViewState1.b = str1;
+                    if (localUri1 != null)
+                    {
+                      String str2 = localUri1.getSchemeSpecificPart();
+                      boolean bool = TextUtils.isEmpty(str2);
+                      String str3 = null;
+                      if (!bool)
+                        str3 = textnow.v.b.a(str2.split(",")[0], true);
+                      String str4 = textnow.v.b.b(str3);
+                      if (str4 != null)
+                      {
+                        textnow.z.h localh1 = textnow.z.h.a(getContentResolver(), new String[] { str4 });
+                        if (localh1 != null)
+                        {
+                          this.o.a(2, localh1, localMessageViewState1);
+                          return;
+                        }
+                      }
+                      localMessageViewState1.c = new textnow.z.f[] { new textnow.z.f(str4, 2, "", null) };
+                      this.o.a(1, null, localMessageViewState1);
                       return;
                     }
-                    this.l.a(locald, localDialerState, false, false);
+                    this.o.a(1, null, localMessageViewState1);
                     return;
                   }
-                  c(2131493041);
-                  return;
+                  if (("android.intent.action.DIAL".equals(paramIntent.getAction())) || ("android.intent.action.CALL".equals(paramIntent.getAction())) || ("android.intent.action.VIEW".equals(paramIntent.getAction())) || ((textnow.v.b.h(this)) && ("android.intent.action.CALL_EMERGENCY".equals(paramIntent.getAction()))) || ("android.intent.action.CALL_PRIVILEGED".equals(paramIntent.getAction())))
+                  {
+                    new StringBuilder().append("Intent received: ").append(paramIntent.getDataString()).toString();
+                    Uri localUri2 = paramIntent.getData();
+                    if (localUri2 != null)
+                    {
+                      String str5 = localUri2.getSchemeSpecificPart();
+                      if (!TextUtils.isEmpty(str5))
+                        str5 = textnow.v.b.e(str5);
+                      com.enflick.android.TextNow.activities.phone.h.e();
+                      textnow.z.g localg1 = textnow.z.f.a(this, textnow.z.h.b(this), str5, 2);
+                      if (localg1 != null);
+                      for (String str6 = localg1.a; ; str6 = str5)
+                      {
+                        this.o.a(new textnow.z.f(str6, 2, textnow.v.b.f(str6), null, true), null, false, true);
+                        return;
+                      }
+                    }
+                    this.o.a(null, null, false, false);
+                    return;
+                  }
                 }
-                if (!paramIntent.hasExtra("extra_show_account"))
-                  break label363;
+                while ((Build.VERSION.SDK_INT < 16) || (paramIntent.getClipData() == null));
+                localBundle = bz.a(paramIntent);
               }
-              while (new textnow.u.q(this).b() == null);
-              this.l.a(0);
-              return;
-              if (paramIntent.hasExtra("extra_show_theme"))
-              {
-                Parcelable localParcelable = paramIntent.getParcelableExtra("extra_view_state");
-                this.l.e();
-                this.l.a(new ap(localParcelable));
-                return;
-              }
-              if ((!"android.intent.action.SENDTO".equals(paramIntent.getAction())) && (!"android.intent.action.SEND".equals(paramIntent.getAction())))
-                break label566;
-              new StringBuilder().append("sms intent received: ").append(paramIntent.getDataString()).toString();
-              localUri1 = paramIntent.getData();
-              str1 = paramIntent.getStringExtra("android.intent.extra.TEXT");
+              while (localBundle == null);
+              textnow.aa.a.a(this).b();
+              localCharSequence = localBundle.getCharSequence("extra_voice_reply");
             }
-            while (localUri1 == null);
-            String str2 = localUri1.getSchemeSpecificPart();
-            if (!TextUtils.isEmpty(str2));
-            for (String str3 = textnow.q.b.a(str2.split(",")[0], true); ; str3 = null)
+            while (TextUtils.isEmpty(localCharSequence));
+            String str7 = paramIntent.getStringExtra("extra_selected_cv");
+            String str8 = paramIntent.getStringExtra("extra_selected_cn");
+            int i = textnow.z.f.d(str7);
+            textnow.z.g localg2 = textnow.z.f.a(this, textnow.z.h.b(this), str7, i);
+            if (localg2 != null)
+              str7 = localg2.a;
+            textnow.z.h localh2 = textnow.z.h.a(getContentResolver(), new String[] { str7 });
+            String str9;
+            if (localh2 != null)
+              str9 = localh2.h();
+            while (true)
             {
-              String str4 = textnow.q.b.b(str3);
-              if (str4 != null)
-              {
-                textnow.u.f localf1 = textnow.u.f.a(getContentResolver(), new String[] { str4 });
-                if (localf1 != null)
-                {
-                  this.l.a(2, localf1, MessageViewFragment.MessageViewState.a, null, str1);
-                  return;
-                }
-              }
-              this.l.a(str3, str1);
+              com.enflick.android.TextNow.ads.b.a("wearable", "reply_notification", "");
+              new SendMessageTask(this, i, str7, str8, str9, 1, 2, true, localCharSequence.toString(), null).b(this);
+              new MarkMessagesReadTask(str7).b(this);
               return;
-              if ((!"android.intent.action.DIAL".equals(paramIntent.getAction())) && (!"android.intent.action.CALL".equals(paramIntent.getAction())) && (!"android.intent.action.VIEW".equals(paramIntent.getAction())) && ((!textnow.q.b.i(this)) || (!"android.intent.action.CALL_EMERGENCY".equals(paramIntent.getAction()))) && (!"android.intent.action.CALL_PRIVILEGED".equals(paramIntent.getAction())))
-                break;
-              new StringBuilder().append("Intent received: ").append(paramIntent.getDataString()).toString();
-              Uri localUri2 = paramIntent.getData();
-              if ((localUri2 != null) && (localUri2.toString().startsWith("twitter://callback")))
-              {
-                if (!ac.a(this, localUri2.getQueryParameter("oauth_verifier")))
-                  break;
-                new TwitterPostTask(this.h.X()).b(this);
-                return;
-              }
-              if (localUri2 != null)
-              {
-                String str5 = localUri2.getSchemeSpecificPart();
-                if (!TextUtils.isEmpty(str5))
-                  str5 = textnow.q.b.e(str5);
-                com.enflick.android.TextNow.activities.phone.d.e();
-                textnow.u.e locale1 = textnow.u.d.a(this, textnow.u.f.b(this), str5, 2);
-                if (locale1 != null);
-                for (String str6 = locale1.a; ; str6 = str5)
-                {
-                  this.l.a(new textnow.u.d(str6, 2, textnow.q.b.f(str6), null, true), null, false, true);
-                  return;
-                }
-              }
-              this.l.a(null, null, false, false);
-              return;
+              Uri localUri3 = textnow.v.k.a(getContentResolver(), str7, i);
+              str9 = null;
+              if (localUri3 != null)
+                str9 = localUri3.toString();
             }
           }
         }
@@ -386,238 +617,311 @@ public class MainActivity extends an
     }
   }
 
-  public static boolean n()
+  public static boolean p()
   {
-    return textnow.q.b.b(textnow.q.c.e);
+    return textnow.v.b.b(textnow.v.c.f);
   }
 
-  public final void a(int paramInt, textnow.u.f paramf, MessageViewFragment.MessageViewState paramMessageViewState, w paramw, String paramString)
+  public final void a(int paramInt)
   {
-    this.l.a(2, paramf, paramMessageViewState, paramw, null);
+    boolean bool = true;
+    switch (paramInt)
+    {
+    default:
+      bool = false;
+    case 2131558814:
+    case 2131558817:
+    case 2131558820:
+    case 2131558809:
+    case 2131558823:
+    case 2131558837:
+    case 2131558831:
+    case 2131558811:
+    case 2131558500:
+    case 2131558828:
+    case 2131558834:
+    case 2131558840:
+    }
+    while (true)
+    {
+      if (bool)
+        I();
+      return;
+      bool = this.o.a(f.class);
+      this.o.f();
+      continue;
+      this.o.b(bool);
+      continue;
+      bool = this.o.a(ae.class);
+      this.o.d();
+      continue;
+      bool = this.o.a(textnow.s.h.class);
+      this.o.a(false);
+      continue;
+      bool = this.o.a(ah.class);
+      this.o.e();
+      continue;
+      bool = this.o.a(com.enflick.android.TextNow.activities.account.a.class);
+      this.o.a(0);
+      continue;
+      bool = this.o.a(com.enflick.android.TextNow.activities.account.k.class);
+      this.o.a(2);
+      continue;
+      bool = this.o.a(ag.class);
+      this.o.g();
+      continue;
+      this.B = paramInt;
+    }
+  }
+
+  public final void a(int paramInt, textnow.z.h paramh, MessageViewFragment.MessageViewState paramMessageViewState)
+  {
+    this.o.a(2, paramh, paramMessageViewState);
   }
 
   protected final void a(Bundle paramBundle)
   {
-    if (textnow.q.b.l(this));
-    textnow.u.d locald;
+    if (textnow.v.b.k(this));
+    textnow.z.f localf;
     do
     {
       do
         return;
       while ((paramBundle == null) || (paramBundle.getBoolean("to_dismiss")));
       String str = paramBundle.getString("callid");
-      locald = (textnow.u.d)paramBundle.getSerializable("contact");
-      new StringBuilder().append("Showing incoming call dialog for callId ").append(str).append(" and number ").append(locald.a()).toString();
+      localf = (textnow.z.f)paramBundle.getSerializable("contact");
+      new StringBuilder().append("Showing incoming call dialog for callId ").append(str).append(" and number ").append(localf.a()).toString();
     }
-    while (!com.enflick.android.TextNow.activities.phone.d.d());
-    this.l.a(locald, null, true, false);
+    while (!com.enflick.android.TextNow.activities.phone.h.d());
+    this.o.a(localf, null, true, false);
   }
 
-  public final void a(ao paramao)
+  public final void a(av paramav)
   {
-    this.l.a(paramao);
+    this.o.a(paramav);
   }
 
   protected final void a(com.enflick.android.TextNow.tasks.c paramc)
   {
     super.a(paramc);
-    if ((TextUtils.isEmpty(this.h.c())) && (!TextUtils.isEmpty(this.h.m())))
+    if ((TextUtils.isEmpty(this.k.c())) && (!TextUtils.isEmpty(this.k.m())))
     {
-      r();
+      v();
       AreaCodeActivity.a(this, 20, true);
     }
-    label123: textnow.u.n localn;
-    label242: 
+    Class localClass;
+    boolean bool;
+    label119: 
     do
     {
-      Class localClass;
-      boolean bool2;
-      do
+      break label119;
+      if (!textnow.v.b.a(this.k.r(), this.k.W()))
+        D();
+      while (true)
       {
-        break label123;
-        break label123;
-        if (!textnow.q.b.a(this.h.t(), this.h.U()))
-          y();
-        boolean bool1;
-        String str;
-        while (true)
-        {
-          localClass = paramc.getClass();
-          bool1 = paramc.h();
-          paramc.i();
-          str = paramc.j();
-          bool2 = c(str);
-          if (bool2)
-            r();
-          if (!this.l.a(paramc, bool2))
-            break label242;
-          if (textnow.q.a.a);
-          return;
-          if ((this.h.l()) && (!TextUtils.isEmpty(this.h.m())) && (!TextUtils.isEmpty(this.h.c())))
-            break;
-          r();
-          TextNowApp.b();
-          finish();
-          WelcomeActivity.a(this);
-          return;
-          if (((!this.l.a(MessageViewFragment.class)) || (!A())) && (!this.l.a(DialerFragment.class)) && (!this.l.a(j.class)) && (!this.l.a(textnow.n.b.class)))
-            z();
-        }
-        if ((localClass == TwitterPostTask.class) && (!bool2))
-        {
-          if (!bool1)
-          {
-            c(2131493218);
-            this.h.D("");
-            this.h.n();
-            return;
-          }
-          if ("187".equals(str))
-          {
-            c(2131493222);
-            return;
-          }
-          c(2131493220);
-          return;
-        }
-        if ((localClass == GetUserInfoTask.class) && (!bool2))
-        {
-          com.enflick.android.TextNow.activities.phone.d.e();
-          return;
-        }
-        if (localClass == ImportSMSTask.class)
-        {
-          e(true);
-          return;
-        }
+        localClass = paramc.getClass();
+        paramc.h();
+        paramc.i();
+        bool = c(paramc.j());
+        if (bool)
+          v();
+        if (!this.o.a(paramc, bool))
+          break label238;
+        if (textnow.v.a.a);
+        return;
+        if ((this.k.l()) && (!TextUtils.isEmpty(this.k.m())) && (!TextUtils.isEmpty(this.k.c())))
+          break;
+        v();
+        TextNowApp.b();
+        finish();
+        WelcomeActivity.a(this);
+        return;
+        if (((!this.o.a(MessageViewFragment.class)) || (!F())) && (!this.o.a(DialerFragment.class)) && (!this.o.a(l.class)) && (!this.o.a(textnow.s.b.class)))
+          E();
       }
-      while ((localClass != GetSubscriptionTask.class) || (bool2));
-      localn = new textnow.u.n(this);
+      if ((localClass == GetUserInfoTask.class) && (!bool))
+      {
+        com.enflick.android.TextNow.activities.phone.h.e();
+        G();
+        return;
+      }
+      if (localClass == ImportSMSTask.class)
+      {
+        h(true);
+        return;
+      }
+      if ((localClass == GetSubscriptionTask.class) && (!bool))
+      {
+        J();
+        G();
+        return;
+      }
+      if ((localClass == UpdateBillingInfoTask.class) && (!bool))
+      {
+        UpdateBillingInfoTask localUpdateBillingInfoTask = (UpdateBillingInfoTask)paramc;
+        v();
+        if (localUpdateBillingInfoTask.h())
+        {
+          if ("NOT_FOUND".equals(localUpdateBillingInfoTask.j()))
+          {
+            b(2131296847);
+            return;
+          }
+          b(2131296432);
+          return;
+        }
+        if ((this.z != null) && (this.z.isShowing()))
+          this.z.dismiss();
+        b(2131296849);
+        return;
+      }
     }
-    while (!localn.h());
-    a(localn.i());
+    while ((localClass != GetNewMessagesTask.class) || (bool));
+    label238: J();
   }
 
   public final void a(String paramString1, String paramString2)
   {
-    this.l.b(paramString1, paramString2);
+    this.o.a(paramString1, paramString2);
   }
 
-  public final void a(textnow.u.d paramd)
+  public final void a(textnow.z.f paramf)
   {
-    a(paramd, false, false);
+    a(paramf, false, false);
   }
 
-  public final void a(textnow.u.d paramd, boolean paramBoolean1, boolean paramBoolean2)
+  public final void a(textnow.z.f paramf, boolean paramBoolean1, boolean paramBoolean2)
   {
-    if (paramd != null)
-      new StringBuilder().append("opening dialer with a number:").append(paramd.a()).toString();
-    this.l.a(paramd, null, false, paramBoolean2);
+    if (paramf != null)
+      new StringBuilder().append("opening dialer with a number:").append(paramf.a()).toString();
+    this.o.a(paramf, null, false, paramBoolean2);
   }
 
   public final void a(boolean paramBoolean)
   {
-    this.s = paramBoolean;
-  }
-
-  public final void b(int paramInt)
-  {
-    switch (paramInt)
-    {
-    default:
-    case 2131165537:
-    case 2131165538:
-    case 2131165531:
-    case 2131165539:
-    case 2131165542:
-    case 2131165540:
-    case 2131165534:
-    case 2131165272:
-    }
-    while (true)
-    {
-      C();
-      return;
-      this.l.g();
-      continue;
-      this.l.d();
-      continue;
-      this.l.f();
-      continue;
-      this.l.e();
-      continue;
-      this.l.a(0);
-      continue;
-      this.l.a(2);
-      continue;
-      this.l.h();
-    }
+    this.o.b(false);
   }
 
   public final void b(String paramString1, String paramString2)
   {
-    if (this.p)
-      this.o.a(this, paramString1, 1208, this.d, paramString2);
+    if (this.r)
+      this.q.a(this, paramString1, 1208, this.d, paramString2);
   }
 
-  public final boolean g()
+  public final void b(boolean paramBoolean)
   {
-    return this.l instanceof o;
+    this.o.a(true);
+  }
+
+  public final void c(boolean paramBoolean)
+  {
+    Intent localIntent = new Intent(this, ActivateDataActivity.class);
+    localIntent.putExtra("extra_show_eli", paramBoolean);
+    startActivity(localIntent);
+  }
+
+  public final void g()
+  {
+    super.g();
+    switch (this.B)
+    {
+    default:
+    case 2131558828:
+    case 2131558834:
+    case 2131558840:
+    }
+    while (true)
+    {
+      this.B = 0;
+      return;
+      c(true);
+      continue;
+      Intent localIntent2 = new Intent("android.intent.action.VIEW");
+      localIntent2.addFlags(268435456);
+      localIntent2.setData(Uri.parse("https://www.textnow.com/wireless?ref=android"));
+      try
+      {
+        startActivity(localIntent2);
+      }
+      catch (Throwable localThrowable)
+      {
+      }
+      continue;
+      com.enflick.android.TextNow.ads.b.b("share");
+      Intent localIntent1 = new Intent();
+      localIntent1.setAction("android.intent.action.SEND");
+      localIntent1.putExtra("android.intent.extra.TEXT", getString(2131296934));
+      localIntent1.setType("text/plain");
+      startActivity(Intent.createChooser(localIntent1, getString(2131296933)));
+    }
   }
 
   public final void h()
   {
-    this.l.g();
+    super.h();
+    if ((!TextUtils.isEmpty(this.w.f())) && (System.currentTimeMillis() - this.x > 5000L))
+    {
+      new GetSubscriptionTask(this.k.b()).b(this);
+      this.x = System.currentTimeMillis();
+    }
   }
 
-  public final void i()
+  public final boolean i()
   {
-    this.l.f();
+    return this.o instanceof t;
   }
 
-  public final ao j()
+  public final void j()
   {
-    return this.l.l();
+    this.o.f();
   }
 
-  public final int k()
+  public final av k()
   {
-    ao localao = this.l.l();
-    if (localao == null)
+    return this.o.l();
+  }
+
+  public final void l()
+  {
+    if (isFinishing())
+      return;
+    this.z = com.enflick.android.TextNow.activities.account.a.a(this);
+    this.z.show();
+  }
+
+  public final int m()
+  {
+    av localav = this.o.l();
+    if (localav == null)
       return -1;
-    return localao.m();
+    return localav.n();
   }
 
-  public final boolean l()
+  public final boolean n()
   {
-    return (this.p) && (!textnow.q.a.b);
-  }
-
-  public final boolean m()
-  {
-    return (this.q) && (textnow.q.b.a());
+    return (this.r) && (!textnow.v.a.b);
   }
 
   public final boolean o()
   {
-    return this.s;
+    return (this.s) && (textnow.v.b.a());
   }
 
   protected void onActivityResult(int paramInt1, int paramInt2, Intent paramIntent)
   {
-    if ((this.o != null) && (this.o.a(paramInt1, paramInt2, paramIntent)));
-    while (textnow.q.l.a(this, paramInt1, paramInt2, paramIntent))
+    if ((this.q != null) && (this.q.a(paramInt1, paramInt2, paramIntent)));
+    while (textnow.v.l.a(this, paramInt1, paramInt2, paramIntent))
       return;
-    if ((paramInt1 == 10) && (paramInt2 == -1) && (paramIntent != null) && (paramIntent.getData() != null) && (paramIntent.getData().toString().startsWith("content://")) && (this.l.a(MessageViewFragment.class)))
+    if ((paramInt1 == 10) && (paramInt2 == -1) && (paramIntent != null) && (paramIntent.getData() != null) && (paramIntent.getData().toString().startsWith("content://")) && (this.o.a(MessageViewFragment.class)))
     {
-      String str2 = textnow.q.g.a(this, paramIntent.getData().toString());
+      String str2 = textnow.v.g.a(this, paramIntent.getData().toString());
       Uri localUri2 = paramIntent.getData();
-      textnow.u.f localf4 = ((MessageViewFragment)this.l.b(MessageViewFragment.class)).e();
-      if (localf4 != null)
+      textnow.z.h localh4 = ((MessageViewFragment)this.o.b(MessageViewFragment.class)).f();
+      if (localh4 != null)
       {
         Intent localIntent = new Intent(this, WallpaperPreviewActivity.class);
         localIntent.setData(localUri2);
-        localIntent.putExtra("conv_id", localf4.a());
+        localIntent.putExtra("conv_id", localh4.a());
         localIntent.putExtra("local_path", str2);
         startActivityForResult(localIntent, 11);
       }
@@ -626,51 +930,52 @@ public class MainActivity extends an
     {
       super.onActivityResult(paramInt1, paramInt2, paramIntent);
       return;
-      if ((paramInt1 == 11) && (paramInt2 == -1) && (this.l.a(MessageViewFragment.class)))
+      if ((paramInt1 == 11) && (paramInt2 == -1) && (this.o.a(MessageViewFragment.class)))
       {
-        MessageViewFragment localMessageViewFragment3 = (MessageViewFragment)this.l.b(MessageViewFragment.class);
-        textnow.u.f localf3 = localMessageViewFragment3.e();
-        if (localf3 != null)
+        MessageViewFragment localMessageViewFragment3 = (MessageViewFragment)this.o.b(MessageViewFragment.class);
+        textnow.z.h localh3 = localMessageViewFragment3.f();
+        if (localh3 != null)
         {
-          File localFile = getFileStreamPath(ad.a(localf3.a()));
-          new com.enflick.android.TextNow.tasks.a(this, localf3, localFile.getAbsolutePath(), null, localf3.a()).execute(new Void[0]);
+          File localFile = getFileStreamPath(z.a(localh3.a()));
+          new com.enflick.android.TextNow.tasks.a(this, localh3, localFile.getAbsolutePath(), null, null, localh3.a()).execute(new Void[0]);
           localMessageViewFragment3.a(localFile.getAbsolutePath(), false);
           supportInvalidateOptionsMenu();
         }
       }
-      else if ((paramInt1 == 12) && (paramInt2 == -1) && (this.l.a(MessageViewFragment.class)))
+      else if ((paramInt1 == 12) && (paramInt2 == -1) && (this.o.a(MessageViewFragment.class)))
       {
         if (paramIntent != null)
         {
-          MessageViewFragment localMessageViewFragment2 = (MessageViewFragment)this.l.b(MessageViewFragment.class);
-          textnow.u.f localf2 = localMessageViewFragment2.e();
-          if (localf2 != null)
+          MessageViewFragment localMessageViewFragment2 = (MessageViewFragment)this.o.b(MessageViewFragment.class);
+          textnow.z.h localh2 = localMessageViewFragment2.f();
+          if (localh2 != null)
           {
             Uri localUri1 = (Uri)paramIntent.getParcelableExtra("android.intent.extra.ringtone.PICKED_URI");
             if (localUri1 != null);
             for (String str1 = localUri1.toString(); ; str1 = "")
             {
-              new com.enflick.android.TextNow.tasks.a(this, localf2, null, str1, localf2.a()).execute(new Void[0]);
+              new com.enflick.android.TextNow.tasks.a(this, localh2, null, str1, null, localh2.a()).execute(new Void[0]);
               localMessageViewFragment2.a(str1);
               return;
             }
           }
         }
       }
-      else if ((paramInt1 == 17) && (paramInt2 == -1) && (this.l.a(MessageViewFragment.class)))
+      else if ((paramInt1 == 17) && (paramInt2 == -1) && (this.o.a(MessageViewFragment.class)))
       {
-        MessageViewFragment localMessageViewFragment1 = (MessageViewFragment)this.l.b(MessageViewFragment.class);
+        MessageViewFragment localMessageViewFragment1 = (MessageViewFragment)this.o.b(MessageViewFragment.class);
         if (localMessageViewFragment1 != null)
         {
-          textnow.u.f localf1 = localMessageViewFragment1.e();
-          textnow.u.d locald1 = localMessageViewFragment1.f();
-          if (localf1 != null)
+          textnow.z.h localh1 = localMessageViewFragment1.f();
+          textnow.z.f localf1 = localMessageViewFragment1.g();
+          if (localh1 != null)
           {
-            textnow.u.d locald2 = textnow.q.k.a(getContentResolver(), localf1, locald1);
-            if (locald2 != null)
+            textnow.z.f localf2 = textnow.v.k.a(getContentResolver(), localh1, localf1);
+            if (localf2 != null)
             {
-              setTitle(locald2.g());
-              this.n.removeItem(2131165759);
+              setTitle(localf2.g());
+              localMessageViewFragment1.a(localf2);
+              invalidateOptionsMenu();
             }
           }
         }
@@ -679,38 +984,38 @@ public class MainActivity extends an
       {
         if (paramInt2 == -1)
         {
-          this.l.e();
-          this.l.a(new ap(null));
+          this.o.e();
+          this.o.a(new aw(null));
         }
       }
       else if (paramInt1 == 19)
       {
         if (paramInt2 == -1)
-          this.l.a(1, null, MessageViewFragment.MessageViewState.a, null, null);
+          this.o.a(1, null, MessageViewFragment.MessageViewState.a);
       }
       else if (paramInt1 == 20)
       {
         finish();
         a(this, true, false);
       }
-      else if ((paramInt1 == 1118) && (this.l.a(textnow.n.a.class)))
+      else if ((paramInt1 == 1118) && (this.o.a(textnow.s.a.class)))
       {
-        ((textnow.n.a)this.l.b(textnow.n.a.class)).b();
+        ((textnow.s.a)this.o.b(textnow.s.a.class)).b();
       }
       else if ((paramInt1 == 21) && (paramInt2 == -1))
       {
-        if (!textnow.q.b.i(this))
-          this.h.f(true);
-        ad.a(this);
+        if (!textnow.v.b.h(this))
+          this.k.f(true);
+        z.a(this);
       }
     }
   }
 
   public void onBackPressed()
   {
-    if (B())
-      C();
-    while (this.l.b())
+    if (H())
+      I();
+    while (this.o.b())
       return;
     super.onBackPressed();
   }
@@ -718,24 +1023,24 @@ public class MainActivity extends an
   public void onConfigurationChanged(Configuration paramConfiguration)
   {
     super.onConfigurationChanged(paramConfiguration);
-    if ((s()) && (ad.c(this)) && (!ad.d(this)))
+    if ((w()) && (z.e(this)) && (!z.f(this)))
     {
-      this.m = true;
-      if (this.l.a(MessageViewFragment.class))
+      this.p = true;
+      if (this.o.a(MessageViewFragment.class))
       {
-        localMessageViewFragment = (MessageViewFragment)this.l.b(MessageViewFragment.class);
-        if (localMessageViewFragment.v())
+        localMessageViewFragment = (MessageViewFragment)this.o.b(MessageViewFragment.class);
+        if (localMessageViewFragment.w())
         {
-          localMessageViewState2 = localMessageViewFragment.z();
+          localMessageViewState2 = localMessageViewFragment.B();
           i = 1;
           localMessageViewState1 = localMessageViewState2;
           localObject = null;
           finish();
-          a(this, (textnow.u.f)localObject, localMessageViewState1, i);
+          a(this, (textnow.z.h)localObject, localMessageViewState1, i);
         }
       }
     }
-    while (!this.l.a(MessageViewFragment.class))
+    while (!this.o.a(MessageViewFragment.class))
     {
       while (true)
       {
@@ -745,7 +1050,7 @@ public class MainActivity extends an
         MessageViewFragment.MessageViewState localMessageViewState1;
         Object localObject;
         return;
-        if (localMessageViewFragment.u())
+        if (localMessageViewFragment.v())
         {
           localMessageViewState1 = MessageViewFragment.MessageViewState.a;
           i = -1;
@@ -753,45 +1058,47 @@ public class MainActivity extends an
         }
         else
         {
-          textnow.u.f localf = localMessageViewFragment.e();
-          localMessageViewState1 = localMessageViewFragment.z();
-          localObject = localf;
+          textnow.z.h localh = localMessageViewFragment.f();
+          localMessageViewState1 = localMessageViewFragment.B();
+          localObject = localh;
           i = 2;
         }
       }
-      if (this.l.a(DialerFragment.class))
+      if (this.o.a(DialerFragment.class))
       {
-        DialerFragment localDialerFragment = (DialerFragment)this.l.b(DialerFragment.class);
+        DialerFragment localDialerFragment = (DialerFragment)this.o.b(DialerFragment.class);
         finish();
-        a(this, localDialerFragment.e(), localDialerFragment.h());
+        a(this, localDialerFragment.f(), localDialerFragment.k());
         return;
       }
       finish();
       a(this, false, false);
       return;
     }
-    ((MessageViewFragment)this.l.b(MessageViewFragment.class)).o();
+    ((MessageViewFragment)this.o.b(MessageViewFragment.class)).p();
   }
 
   public void onCreate(Bundle paramBundle)
   {
-    if (ad.b(this));
-    for (Object localObject = new o(this); ; localObject = new n(this))
+    a = this;
+    if (z.d(this));
+    for (Object localObject = new t(this); ; localObject = new s(this))
     {
-      this.l = ((l)localObject);
+      this.o = ((q)localObject);
       super.onCreate(paramBundle);
-      if ((this.h.l()) && (!TextUtils.isEmpty(this.h.m())))
+      if ((this.k.l()) && (!TextUtils.isEmpty(this.k.m())))
         break;
       TextNowApp.b();
       finish();
       WelcomeActivity.a(this);
       return;
     }
+    this.w = new textnow.z.s(this);
     try
     {
-      this.t = ((INexage)CustomLoader.newBannerLoader(this, "com.enflick.android.TextNow.customloader.wrappers.banner.NexageWrapper").loadWrapper(INexage.class, "com.enflick.android.TextNow.customloader.wrappers.banner.NexageWrapper"));
-      this.t.init(this.h.q(), this.h.s());
-      label119: new Thread(new Runnable()
+      this.v = ((INexage)CustomLoader.newBannerLoader(this, "com.enflick.android.TextNow.customloader.wrappers.banner.NexageWrapper").loadWrapper(INexage.class, "com.enflick.android.TextNow.customloader.wrappers.banner.NexageWrapper"));
+      this.v.init(this.k.o(), this.k.q());
+      label135: new Thread(new Runnable()
       {
         public final void run()
         {
@@ -805,45 +1112,66 @@ public class MainActivity extends an
           }
         }
       }).start();
-      setContentView(this.l.a());
-      a(2131165521, 2131165527);
-      setTitle(2131493012);
+      setContentView(this.o.a());
+      a(2131558799, 2131558803);
+      setTitle(2131296418);
       a(false, true);
-      x();
+      C();
       new AsyncTask()
       {
       }
       .execute(new Void[0]);
       if (getIntent().getBooleanExtra("extra_show_phone_dialog", false))
         if (new Random().nextInt(100) < 50)
-          startActivityForResult(new Intent(this, NewNumberAssignedActivity.class), 19);
+          new Handler().post(new Runnable()
+          {
+            public final void run()
+            {
+              MainActivity.this.startActivityForResult(new Intent(MainActivity.this, NewNumberAssignedActivity.class), 19);
+            }
+          });
       while (true)
       {
-        this.l.j();
+        this.o.i();
         a(getIntent());
-        this.m = false;
+        this.p = false;
         try
         {
-          com.enflick.android.TextNow.activities.phone.d.a().j();
-          label269: String str1 = this.h.b();
+          com.enflick.android.TextNow.activities.phone.h.a().j();
+          label287: String str1 = this.k.b();
           new GetUserInfoTask(str1).b(this);
-          new GetSubscriptionTask(str1).b(this);
+          String str3;
+          long l;
+          if (textnow.v.b.o(this))
+          {
+            str3 = textnow.v.b.i(this);
+            if (!TextUtils.isEmpty(str3))
+            {
+              textnow.z.t localt = this.l.q();
+              l = this.l.r();
+              if (l >= 0L)
+                break label735;
+              this.l.b(localt);
+              this.l.B();
+              new StringBuilder().append("schedule next esn check on ").append(new SimpleDateFormat().format(new Date(this.l.r()))).toString();
+            }
+          }
+          label416: new GetSubscriptionTask(str1).b(true).b(this);
           new ReportIdfaTask().b(this);
-          new GetSettingsTask().b(this);
-          if ((this.h.aa()) && ("ACTIVE".equalsIgnoreCase(new textnow.u.q(this).d())))
+          if ((this.k.Z()) && ("ACTIVE".equalsIgnoreCase(this.w.f())))
             new RefreshContactProxyTask(str1).b(this);
-          this.h.c(15000L);
-          this.h.n();
+          this.k.c(15000L);
+          this.k.B();
           TextNowApp.a().d();
           try
           {
-            str2 = new String(textnow.q.b.a(textnow.p.a.a("GSwxNgcFNhonHx8/Bxw9IkEDfi02BSA+NQ8gNBU0QDUDJj4WJh8/DS4mESQQTH0iQn8vMD5/DT4MCwsafg4FPl0dLQ0NJjI9M0wKDgEtVTcbeS0dbSkMDgpfT2NKLCQGPgEFJCg6J14jHD0zWzkgEB0/KB4dVzwZLQ49KFcbPy4BBgI+FjtQPiU0Ig5nERQROwc9bQMoPwc3Nn9dNiN9Xho3KDQEOAhAFiAuGCsaQD8zQBoFHkU6DjVHAlkDMigRPAwIBAcmNTAnIT0yLj1MHyUCPxAtAz0ABhhQAAEfVhIzHzEYJDlCNioSDgciQyQ1GxAeKxk1DjcmGgYcZj0qHCxfLxMgL00vCwUbKhkHHggbZgEoOBkLPDxQDyQUHxg4L0AxJTUcH0pKMRteHBASNxIkXwMjTj0FLFYVJiQSGzhAWGIvEQ0qFUMCUyoNfF9EbSkfN3YHPGROPxgcVjQ7KgpHFFsEHSxXJBYjHzYmNyV6NwAWUSkyHgxBPVQoLiEaOQUsPDUfLjU="), "TextNow".getBytes()));
-            this.o = new textnow.p.d(this, str2);
-            this.o.a(true);
+            str2 = new String(textnow.v.b.a(textnow.u.a.a("GSwxNgcFNhonHx8/Bxw9IkEDfi02BSA+NQ8gNBU0QDUDJj4WJh8/DS4mESQQTH0iQn8vMD5/DT4MCwsafg4FPl0dLQ0NJjI9M0wKDgEtVTcbeS0dbSkMDgpfT2NKLCQGPgEFJCg6J14jHD0zWzkgEB0/KB4dVzwZLQ49KFcbPy4BBgI+FjtQPiU0Ig5nERQROwc9bQMoPwc3Nn9dNiN9Xho3KDQEOAhAFiAuGCsaQD8zQBoFHkU6DjVHAlkDMigRPAwIBAcmNTAnIT0yLj1MHyUCPxAtAz0ABhhQAAEfVhIzHzEYJDlCNioSDgciQyQ1GxAeKxk1DjcmGgYcZj0qHCxfLxMgL00vCwUbKhkHHggbZgEoOBkLPDxQDyQUHxg4L0AxJTUcH0pKMRteHBASNxIkXwMjTj0FLFYVJiQSGzhAWGIvEQ0qFUMCUyoNfF9EbSkfN3YHPGROPxgcVjQ7KgpHFFsEHSxXJBYjHzYmNyV6NwAWUSkyHgxBPVQoLiEaOQUsPDUfLjU="), "TextNow".getBytes()));
+            this.q = new d(this, str2);
+            this.q.a(true);
             if (checkCallingOrSelfPermission("com.android.vending.BILLING") == 0)
-              this.o.a(new h()
+              this.q.a(new textnow.u.h()
               {
-                public final void a(textnow.p.j paramAnonymousj)
+                public final void a(j paramAnonymousj)
                 {
                   if (!paramAnonymousj.b())
                   {
@@ -856,34 +1184,54 @@ public class MainActivity extends an
                     MainActivity.a(MainActivity.this, true);
                   }
                   while (MainActivity.a(MainActivity.this) == null);
-                  MainActivity.a(MainActivity.this).a(true, textnow.n.i.a(), MainActivity.this.c);
+                  MainActivity.a(MainActivity.this).a(true, textnow.s.i.a(), MainActivity.this.c);
                 }
               });
-            this.r = new k(this);
-            getContentResolver().registerContentObserver(ContactsContract.AUTHORITY_URI, true, this.r);
-            textnow.q.q.a(this).f();
+            this.t = new p(this);
+            getContentResolver().registerContentObserver(ContactsContract.AUTHORITY_URI, true, this.t);
+            textnow.v.o.a(this).f();
+            AppsFlyerLib.sendTracking(getApplicationContext());
             return;
             showDialog(1);
             continue;
-            if ((Build.VERSION.SDK_INT < 19) || (!textnow.q.b.k(this)) || (this.h.Q()) || (textnow.q.b.i(this)))
+            if (this.k.ag())
+            {
+              showDialog(6);
+              if (this.A != null)
+              {
+                TextView localTextView = (TextView)this.A.findViewById(16908299);
+                if (localTextView != null)
+                  localTextView.setMovementMethod(LinkMovementMethod.getInstance());
+              }
+              this.k.m(false);
               continue;
-            this.h.f(true);
+            }
+            if ((Build.VERSION.SDK_INT < 19) || (!textnow.v.b.j(this)) || (this.k.S()) || (textnow.v.b.h(this)))
+              continue;
+            this.k.f(true);
+            continue;
+            label735: if (System.currentTimeMillis() < l)
+            {
+              new StringBuilder().append("skipping, next schedule on ").append(new SimpleDateFormat().format(Long.valueOf(l))).toString();
+              break label416;
+            }
+            new CheckESNTask(str3).b(true).b(this);
           }
-          catch (textnow.p.b localb)
+          catch (textnow.u.b localb)
           {
             while (true)
               String str2 = "";
           }
         }
-        catch (com.enflick.android.TextNow.activities.phone.j localj)
+        catch (com.enflick.android.TextNow.activities.phone.n localn)
         {
-          break label269;
+          break label287;
         }
       }
     }
     catch (Throwable localThrowable)
     {
-      break label119;
+      break label135;
     }
   }
 
@@ -893,14 +1241,14 @@ public class MainActivity extends an
     {
       ListView localListView = (ListView)paramView;
       if ((localListView.getAdapter() instanceof HeaderViewListAdapter));
-      for (ListAdapter localListAdapter = ((HeaderViewListAdapter)localListView.getAdapter()).getWrappedAdapter(); (localListAdapter instanceof textnow.k.r); localListAdapter = localListView.getAdapter())
+      for (ListAdapter localListAdapter = ((HeaderViewListAdapter)localListView.getAdapter()).getWrappedAdapter(); (localListAdapter instanceof y); localListAdapter = localListView.getAdapter())
       {
-        new MenuInflater(this).inflate(2131755016, paramContextMenu);
+        new MenuInflater(this).inflate(2131755018, paramContextMenu);
         return;
       }
-      if ((localListAdapter instanceof textnow.k.j))
+      if ((localListAdapter instanceof textnow.p.o))
       {
-        new MenuInflater(this).inflate(2131755008, paramContextMenu);
+        new MenuInflater(this).inflate(2131755010, paramContextMenu);
         return;
       }
     }
@@ -915,136 +1263,136 @@ public class MainActivity extends an
     default:
       return super.onCreateDialog(paramInt, paramBundle);
     case 1:
-      final String str1 = textnow.q.b.f(this.h.c());
-      String str2 = getString(2131493113);
+      final String str1 = textnow.v.b.f(this.k.c());
+      String str2 = getString(2131296525);
       int j = 1 + str2.length();
       int k = j + str1.length();
-      SpannableString localSpannableString = new SpannableString(str2 + " " + str1 + "\n\n" + getString(2131493114));
-      localSpannableString.setSpan(new TextAppearanceSpan(this, 2131558555), j, k, 18);
-      return new AlertDialog.Builder(this).setTitle(2131493016).setMessage(localSpannableString).setCancelable(false).setPositiveButton(2131493017, new DialogInterface.OnClickListener()
+      SpannableString localSpannableString2 = new SpannableString(str2 + " " + str1 + "\n\n" + getString(2131296526));
+      localSpannableString2.setSpan(new TextAppearanceSpan(this, 2131362052), j, k, 18);
+      return new AlertDialog.Builder(this).setTitle(2131296422).setMessage(localSpannableString2).setCancelable(false).setPositiveButton(2131296423, new DialogInterface.OnClickListener()
       {
         public final void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt)
         {
           try
           {
+            String str = MainActivity.this.k.b() + "@textnow.me";
             MainActivity localMainActivity1 = MainActivity.this;
             MainActivity localMainActivity2 = MainActivity.this;
-            Object[] arrayOfObject = new Object[1];
+            Object[] arrayOfObject = new Object[2];
             arrayOfObject[0] = str1;
-            textnow.q.l.a(localMainActivity1, localMainActivity2.getString(2131493199, arrayOfObject), "http://www.textnow.com", MainActivity.this.getString(2131493201), MainActivity.this.getString(2131493202), MainActivity.this.b);
+            arrayOfObject[1] = str;
+            textnow.v.l.a(localMainActivity1, localMainActivity2.getString(2131296941, arrayOfObject), "http://www.textnow.com", MainActivity.this.getString(2131296610), MainActivity.this.getString(2131296611), MainActivity.this.b);
             return;
           }
           catch (Throwable localThrowable)
           {
           }
         }
-      }).setNegativeButton(2131493018, null).create();
+      }).setNegativeButton(2131296424, null).create();
     case 2:
-      AlertDialog.Builder localBuilder = new AlertDialog.Builder(this).setTitle(2131493117);
+      AlertDialog.Builder localBuilder = new AlertDialog.Builder(this).setTitle(2131296529);
       if (paramBundle.getInt("count") > 1);
-      for (int i = 2131493118; ; i = 2131493119)
-        return localBuilder.setMessage(i).setCancelable(true).setPositiveButton(2131493017, new DialogInterface.OnClickListener()
+      for (int i = 2131296530; ; i = 2131296531)
+        return localBuilder.setMessage(i).setCancelable(true).setPositiveButton(2131296423, new DialogInterface.OnClickListener()
         {
           public final void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt)
           {
             MainActivity.c(MainActivity.this).o();
           }
-        }).setNegativeButton(2131493018, new DialogInterface.OnClickListener()
+        }).setNegativeButton(2131296424, new DialogInterface.OnClickListener()
         {
           public final void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt)
           {
-            e locale = (e)MainActivity.c(MainActivity.this).b(e.class);
-            if (locale != null)
-              locale.i();
+            f localf = (f)MainActivity.c(MainActivity.this).b(f.class);
+            if (localf != null)
+              localf.i();
           }
         }).create();
     case 3:
-      return new AlertDialog.Builder(this).setTitle(2131493139).setMessage(2131493140).setCancelable(true).setPositiveButton(2131493017, new DialogInterface.OnClickListener()
+      return new AlertDialog.Builder(this).setTitle(2131296551).setMessage(2131296552).setCancelable(true).setPositiveButton(2131296423, new DialogInterface.OnClickListener()
       {
         public final void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt)
         {
           MessageViewFragment localMessageViewFragment = (MessageViewFragment)MainActivity.c(MainActivity.this).b(MessageViewFragment.class);
           if (localMessageViewFragment != null)
-            localMessageViewFragment.r();
+            localMessageViewFragment.s();
         }
-      }).setNegativeButton(2131493018, null).create();
+      }).setNegativeButton(2131296424, null).create();
     case 5:
+      return new AlertDialog.Builder(this).setTitle(2131296777).setMessage(2131296778).setCancelable(true).setPositiveButton(2131296427, null).create();
+    case 6:
     }
-    return new AlertDialog.Builder(this).setTitle(2131493374).setMessage(2131493375).setCancelable(true).setPositiveButton(2131493020, null).create();
+    SpannableString localSpannableString1 = new SpannableString(getString(2131296983));
+    Linkify.addLinks(localSpannableString1, 15);
+    this.A = new AlertDialog.Builder(this).setTitle(2131296982).setMessage(localSpannableString1).setPositiveButton(2131296427, null).setCancelable(true).create();
+    return this.A;
   }
 
   public boolean onCreateOptionsMenu(Menu paramMenu)
   {
-    this.l.a(paramMenu);
-    this.n = paramMenu;
+    this.o.a(paramMenu);
     return super.onCreateOptionsMenu(paramMenu);
   }
 
   protected void onDestroy()
   {
+    a = null;
     super.onDestroy();
-    if (!this.m)
-      textnow.q.q.a(this).e();
-    if (this.o != null)
-      this.o.a();
-    this.o = null;
-    if (this.r != null)
-      getContentResolver().unregisterContentObserver(this.r);
+    if (!this.p)
+      textnow.v.o.a(this).e();
+    if (this.q != null)
+      this.q.a();
+    this.q = null;
+    if (this.t != null)
+      getContentResolver().unregisterContentObserver(this.t);
   }
 
   public boolean onKeyDown(int paramInt, KeyEvent paramKeyEvent)
   {
-    if (((paramInt == 25) || (paramInt == 24) || (paramInt == 26)) && (this.l.a(DialerFragment.class)))
-      ((DialerFragment)this.l.b(DialerFragment.class)).g();
+    if (((paramInt == 25) || (paramInt == 24) || (paramInt == 26)) && (this.o.a(DialerFragment.class)))
+      ((DialerFragment)this.o.b(DialerFragment.class)).h();
     return super.onKeyDown(paramInt, paramKeyEvent);
   }
 
   protected void onNewIntent(Intent paramIntent)
   {
     super.onNewIntent(paramIntent);
-    this.l.a(paramIntent);
+    this.o.a(paramIntent);
     a(paramIntent);
   }
 
   public boolean onOptionsItemSelected(MenuItem paramMenuItem)
   {
-    if (this.l.a(paramMenuItem))
+    if (this.o.a(paramMenuItem))
       return true;
-    switch (paramMenuItem.getItemId())
-    {
-    default:
-      return super.onOptionsItemSelected(paramMenuItem);
-    case 2131165757:
-    }
-    textnow.q.b.a(this, textnow.q.d.a);
-    return true;
+    return super.onOptionsItemSelected(paramMenuItem);
   }
 
   protected void onPause()
   {
     super.onPause();
-    if (this.t != null)
-      this.t.pauseNexageSDK();
+    if (this.v != null)
+      this.v.pauseNexageSDK();
     try
     {
-      com.enflick.android.TextNow.activities.phone.d.a();
-      com.enflick.android.TextNow.activities.phone.d.c();
+      com.enflick.android.TextNow.activities.phone.h.a();
+      com.enflick.android.TextNow.activities.phone.h.c();
       try
       {
-        label32: com.enflick.android.TextNow.activities.phone.d locald = com.enflick.android.TextNow.activities.phone.d.a();
-        if (com.enflick.android.TextNow.activities.phone.d.c(locald.y()))
+        label32: com.enflick.android.TextNow.activities.phone.h localh = com.enflick.android.TextNow.activities.phone.h.a();
+        if (com.enflick.android.TextNow.activities.phone.h.c(localh.y()))
         {
-          s locals = locald.p();
-          if (locals != null)
-            textnow.q.o.a(this).a(locals.b(), System.currentTimeMillis() - (SystemClock.uptimeMillis() - locals.j()));
+          w localw = localh.p();
+          if (localw != null)
+            textnow.aa.a.a(this).a(localw.b(), System.currentTimeMillis() - (SystemClock.uptimeMillis() - localw.j()));
         }
         return;
       }
-      catch (com.enflick.android.TextNow.activities.phone.j localj2)
+      catch (com.enflick.android.TextNow.activities.phone.n localn2)
       {
       }
     }
-    catch (com.enflick.android.TextNow.activities.phone.j localj1)
+    catch (com.enflick.android.TextNow.activities.phone.n localn1)
     {
       break label32;
     }
@@ -1061,7 +1409,7 @@ public class MainActivity extends an
     }
     AlertDialog localAlertDialog = (AlertDialog)paramDialog;
     if (paramBundle.getInt("count") > 1);
-    for (String str = getString(2131493118); ; str = getString(2131493119))
+    for (String str = getString(2131296530); ; str = getString(2131296531))
     {
       localAlertDialog.setMessage(str);
       break;
@@ -1072,33 +1420,34 @@ public class MainActivity extends an
   {
     try
     {
-      com.enflick.android.TextNow.activities.phone.d.a();
-      com.enflick.android.TextNow.activities.phone.d.b();
-      com.enflick.android.TextNow.activities.phone.d.a().C();
+      com.enflick.android.TextNow.activities.phone.h.a();
+      com.enflick.android.TextNow.activities.phone.h.b();
+      com.enflick.android.TextNow.activities.phone.h.a().C();
       label13: super.onResume();
-      setVolumeControlStream(2);
-      textnow.q.o.a(this).b();
+      setVolumeControlStream(0);
+      textnow.aa.a.a(this).b();
       new AsyncTask()
       {
       }
       .execute(new Void[0]);
-      this.l.k();
-      if (this.t != null)
-        this.t.resumeNexageSDK();
+      this.o.j();
+      if (this.v != null)
+        this.v.resumeNexageSDK();
       c("POKE");
-      if ((ad.b(this)) && ((this.l instanceof n)))
+      if ((z.d(this)) && ((this.o instanceof s)))
         onConfigurationChanged(getResources().getConfiguration());
       while (true)
       {
         net.hockeyapp.android.b.a(this, "6f37333bdc4907e2030ec685669edf48");
-        if (!A())
-          f(false);
+        if (!F())
+          i(false);
+        m.a(this).a(new Intent("quickreply_action_finish"));
         return;
-        if ((!ad.b(this)) && ((this.l instanceof o)))
+        if ((!z.d(this)) && ((this.o instanceof t)))
           onConfigurationChanged(getResources().getConfiguration());
       }
     }
-    catch (com.enflick.android.TextNow.activities.phone.j localj)
+    catch (com.enflick.android.TextNow.activities.phone.n localn)
     {
       break label13;
     }
@@ -1115,13 +1464,18 @@ public class MainActivity extends an
     super.onStop();
   }
 
-  public final boolean p()
+  public final boolean q()
   {
-    return this.l.r();
+    return this.o.r();
+  }
+
+  public final void r()
+  {
+    this.o.h();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.activities.MainActivity
  * JD-Core Version:    0.6.2
  */

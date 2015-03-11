@@ -2,7 +2,7 @@ package com.google.ads.mediation.customevent;
 
 import com.google.ads.AdRequest.ErrorCode;
 import com.google.ads.mediation.MediationInterstitialListener;
-import com.google.android.gms.internal.eu;
+import com.google.android.gms.internal.gs;
 
 class CustomEventAdapter$b
   implements CustomEventInterstitialListener
@@ -18,36 +18,36 @@ class CustomEventAdapter$b
 
   public void onDismissScreen()
   {
-    eu.z("Custom event adapter called onDismissScreen.");
+    gs.S("Custom event adapter called onDismissScreen.");
     this.s.onDismissScreen(this.q);
   }
 
   public void onFailedToReceiveAd()
   {
-    eu.z("Custom event adapter called onFailedToReceiveAd.");
+    gs.S("Custom event adapter called onFailedToReceiveAd.");
     this.s.onFailedToReceiveAd(this.q, AdRequest.ErrorCode.NO_FILL);
   }
 
   public void onLeaveApplication()
   {
-    eu.z("Custom event adapter called onLeaveApplication.");
+    gs.S("Custom event adapter called onLeaveApplication.");
     this.s.onLeaveApplication(this.q);
   }
 
   public void onPresentScreen()
   {
-    eu.z("Custom event adapter called onPresentScreen.");
+    gs.S("Custom event adapter called onPresentScreen.");
     this.s.onPresentScreen(this.q);
   }
 
   public void onReceivedAd()
   {
-    eu.z("Custom event adapter called onReceivedAd.");
+    gs.S("Custom event adapter called onReceivedAd.");
     this.s.onReceivedAd(this.t);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.ads.mediation.customevent.CustomEventAdapter.b
  * JD-Core Version:    0.6.2
  */

@@ -10,29 +10,29 @@ public class b
 {
   static void a(UserAddress paramUserAddress, Parcel paramParcel, int paramInt)
   {
-    int i = com.google.android.gms.common.internal.safeparcel.b.C(paramParcel);
+    int i = com.google.android.gms.common.internal.safeparcel.b.D(paramParcel);
     com.google.android.gms.common.internal.safeparcel.b.c(paramParcel, 1, paramUserAddress.getVersionCode());
     com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 2, paramUserAddress.name, false);
-    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 3, paramUserAddress.UH, false);
-    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 4, paramUserAddress.UI, false);
-    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 5, paramUserAddress.UJ, false);
-    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 6, paramUserAddress.UK, false);
-    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 7, paramUserAddress.UL, false);
-    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 8, paramUserAddress.UM, false);
-    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 9, paramUserAddress.UN, false);
-    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 10, paramUserAddress.rf, false);
-    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 11, paramUserAddress.UO, false);
-    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 12, paramUserAddress.UP, false);
-    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 13, paramUserAddress.UQ, false);
-    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 14, paramUserAddress.UR);
-    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 15, paramUserAddress.US, false);
-    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 16, paramUserAddress.UT, false);
-    com.google.android.gms.common.internal.safeparcel.b.G(paramParcel, i);
+    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 3, paramUserAddress.adN, false);
+    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 4, paramUserAddress.adO, false);
+    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 5, paramUserAddress.adP, false);
+    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 6, paramUserAddress.adQ, false);
+    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 7, paramUserAddress.adR, false);
+    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 8, paramUserAddress.adS, false);
+    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 9, paramUserAddress.adT, false);
+    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 10, paramUserAddress.uW, false);
+    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 11, paramUserAddress.adU, false);
+    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 12, paramUserAddress.adV, false);
+    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 13, paramUserAddress.adW, false);
+    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 14, paramUserAddress.adX);
+    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 15, paramUserAddress.adY, false);
+    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 16, paramUserAddress.adZ, false);
+    com.google.android.gms.common.internal.safeparcel.b.H(paramParcel, i);
   }
 
-  public UserAddress br(Parcel paramParcel)
+  public UserAddress cr(Parcel paramParcel)
   {
-    int i = a.B(paramParcel);
+    int i = a.C(paramParcel);
     int j = 0;
     String str1 = null;
     String str2 = null;
@@ -51,8 +51,8 @@ public class b
     String str14 = null;
     while (paramParcel.dataPosition() < i)
     {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
       {
       default:
         a.b(paramParcel, k);
@@ -111,13 +111,13 @@ public class b
     return new UserAddress(j, str1, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, str12, bool, str13, str14);
   }
 
-  public UserAddress[] cE(int paramInt)
+  public UserAddress[] dZ(int paramInt)
   {
     return new UserAddress[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.identity.intents.model.b
  * JD-Core Version:    0.6.2
  */

@@ -2,7 +2,7 @@ package com.handmark.pulltorefresh.library;
 
 import java.util.HashSet;
 import java.util.Iterator;
-import textnow.af.d;
+import textnow.al.d;
 
 public final class b
   implements a
@@ -37,7 +37,7 @@ public final class b
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.handmark.pulltorefresh.library.b
  * JD-Core Version:    0.6.2
  */

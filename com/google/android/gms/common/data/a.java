@@ -18,29 +18,29 @@ public class a
   implements SafeParcelable
 {
   public static final Parcelable.Creator<a> CREATOR = new b();
-  final int AT;
-  ParcelFileDescriptor Ew;
-  private Bitmap Ex;
-  private boolean Ey;
-  private File Ez;
-  final int xM;
+  final int BR;
+  final int FD;
+  ParcelFileDescriptor JR;
+  private Bitmap JS;
+  private boolean JT;
+  private File JU;
 
   a(int paramInt1, ParcelFileDescriptor paramParcelFileDescriptor, int paramInt2)
   {
-    this.xM = paramInt1;
-    this.Ew = paramParcelFileDescriptor;
-    this.AT = paramInt2;
-    this.Ex = null;
-    this.Ey = false;
+    this.BR = paramInt1;
+    this.JR = paramParcelFileDescriptor;
+    this.FD = paramInt2;
+    this.JS = null;
+    this.JT = false;
   }
 
   public a(Bitmap paramBitmap)
   {
-    this.xM = 1;
-    this.Ew = null;
-    this.AT = 0;
-    this.Ex = paramBitmap;
-    this.Ey = true;
+    this.BR = 1;
+    this.JR = null;
+    this.FD = 0;
+    this.JS = paramBitmap;
+    this.JT = true;
   }
 
   private void a(Closeable paramCloseable)
@@ -56,11 +56,11 @@ public class a
   }
 
   // ERROR //
-  private java.io.FileOutputStream eT()
+  private java.io.FileOutputStream gx()
   {
     // Byte code:
     //   0: aload_0
-    //   1: getfield 57	com/google/android/gms/common/data/a:Ez	Ljava/io/File;
+    //   1: getfield 57	com/google/android/gms/common/data/a:JU	Ljava/io/File;
     //   4: ifnonnull +13 -> 17
     //   7: new 59	java/lang/IllegalStateException
     //   10: dup
@@ -70,7 +70,7 @@ public class a
     //   17: ldc 66
     //   19: ldc 68
     //   21: aload_0
-    //   22: getfield 57	com/google/android/gms/common/data/a:Ez	Ljava/io/File;
+    //   22: getfield 57	com/google/android/gms/common/data/a:JU	Ljava/io/File;
     //   25: invokestatic 74	java/io/File:createTempFile	(Ljava/lang/String;Ljava/lang/String;Ljava/io/File;)Ljava/io/File;
     //   28: astore_2
     //   29: new 76	java/io/FileOutputStream
@@ -82,7 +82,7 @@ public class a
     //   39: aload_2
     //   40: ldc 80
     //   42: invokestatic 86	android/os/ParcelFileDescriptor:open	(Ljava/io/File;I)Landroid/os/ParcelFileDescriptor;
-    //   45: putfield 35	com/google/android/gms/common/data/a:Ew	Landroid/os/ParcelFileDescriptor;
+    //   45: putfield 35	com/google/android/gms/common/data/a:JR	Landroid/os/ParcelFileDescriptor;
     //   48: aload_2
     //   49: invokevirtual 90	java/io/File:delete	()Z
     //   52: pop
@@ -112,7 +112,7 @@ public class a
   {
     if (paramFile == null)
       throw new NullPointerException("Cannot set null temp directory");
-    this.Ez = paramFile;
+    this.JU = paramFile;
   }
 
   public int describeContents()
@@ -120,11 +120,11 @@ public class a
     return 0;
   }
 
-  public Bitmap eS()
+  public Bitmap gw()
   {
     DataInputStream localDataInputStream;
-    if (!this.Ey)
-      localDataInputStream = new DataInputStream(new ParcelFileDescriptor.AutoCloseInputStream(this.Ew));
+    if (!this.JT)
+      localDataInputStream = new DataInputStream(new ParcelFileDescriptor.AutoCloseInputStream(this.JR));
     try
     {
       byte[] arrayOfByte = new byte[localDataInputStream.readInt()];
@@ -136,9 +136,9 @@ public class a
       ByteBuffer localByteBuffer = ByteBuffer.wrap(arrayOfByte);
       Bitmap localBitmap = Bitmap.createBitmap(i, j, localConfig);
       localBitmap.copyPixelsFromBuffer(localByteBuffer);
-      this.Ex = localBitmap;
-      this.Ey = true;
-      return this.Ex;
+      this.JS = localBitmap;
+      this.JT = true;
+      return this.JS;
     }
     catch (IOException localIOException)
     {
@@ -155,13 +155,13 @@ public class a
     Bitmap localBitmap;
     byte[] arrayOfByte;
     DataOutputStream localDataOutputStream;
-    if (this.Ew == null)
+    if (this.JR == null)
     {
-      localBitmap = this.Ex;
+      localBitmap = this.JS;
       ByteBuffer localByteBuffer = ByteBuffer.allocate(localBitmap.getRowBytes() * localBitmap.getHeight());
       localBitmap.copyPixelsToBuffer(localByteBuffer);
       arrayOfByte = localByteBuffer.array();
-      localDataOutputStream = new DataOutputStream(eT());
+      localDataOutputStream = new DataOutputStream(gx());
     }
     try
     {
@@ -185,7 +185,7 @@ public class a
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.common.data.a
  * JD-Core Version:    0.6.2
  */

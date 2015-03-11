@@ -1,230 +1,59 @@
 package com.google.android.gms.internal;
 
-import android.content.Context;
-import android.os.RemoteException;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.doubleclick.AppEventListener;
-import com.google.android.gms.ads.purchase.InAppPurchaseListener;
-import com.google.android.gms.ads.purchase.PlayStorePurchaseListener;
+import android.location.Location;
+import android.os.Bundle;
+import android.os.Parcel;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
+import java.util.List;
 
+@ez
 public final class av
+  implements SafeParcelable
 {
-  private AdListener lQ;
-  private InAppPurchaseListener mB;
-  private PlayStorePurchaseListener mC;
-  private final Context mContext;
-  private AppEventListener mh;
-  private String mj;
-  private final bs mw = new bs();
-  private final ak mx;
-  private aq my;
-  private String mz;
+  public static final aw CREATOR = new aw();
+  public final Bundle extras;
+  public final long nT;
+  public final int nU;
+  public final List<String> nV;
+  public final boolean nW;
+  public final int nX;
+  public final boolean nY;
+  public final String nZ;
+  public final bj oa;
+  public final Location ob;
+  public final String oc;
+  public final Bundle od;
+  public final int versionCode;
 
-  public av(Context paramContext)
+  public av(int paramInt1, long paramLong, Bundle paramBundle1, int paramInt2, List<String> paramList, boolean paramBoolean1, int paramInt3, boolean paramBoolean2, String paramString1, bj parambj, Location paramLocation, String paramString2, Bundle paramBundle2)
   {
-    this(paramContext, ak.aF());
+    this.versionCode = paramInt1;
+    this.nT = paramLong;
+    this.extras = paramBundle1;
+    this.nU = paramInt2;
+    this.nV = paramList;
+    this.nW = paramBoolean1;
+    this.nX = paramInt3;
+    this.nY = paramBoolean2;
+    this.nZ = paramString1;
+    this.oa = parambj;
+    this.ob = paramLocation;
+    this.oc = paramString2;
+    this.od = paramBundle2;
   }
 
-  public av(Context paramContext, ak paramak)
+  public final int describeContents()
   {
-    this.mContext = paramContext;
-    this.mx = paramak;
+    return 0;
   }
 
-  private void k(String paramString)
+  public final void writeToParcel(Parcel paramParcel, int paramInt)
   {
-    if (this.mj == null)
-      l(paramString);
-    this.my = ah.a(this.mContext, new al(), this.mj, this.mw);
-    if (this.lQ != null)
-      this.my.a(new ag(this.lQ));
-    if (this.mh != null)
-      this.my.a(new an(this.mh));
-    if (this.mB != null)
-      this.my.a(new dh(this.mB));
-    if (this.mC != null)
-      this.my.a(new dl(this.mC), this.mz);
-  }
-
-  private void l(String paramString)
-  {
-    if (this.my == null)
-      throw new IllegalStateException("The ad unit ID must be set on InterstitialAd before " + paramString + " is called.");
-  }
-
-  public final void a(at paramat)
-  {
-    try
-    {
-      if (this.my == null)
-        k("loadAd");
-      if (this.my.a(this.mx.a(this.mContext, paramat)))
-        this.mw.c(paramat.aI());
-      return;
-    }
-    catch (RemoteException localRemoteException)
-    {
-      eu.c("Failed to load ad.", localRemoteException);
-    }
-  }
-
-  public final AdListener getAdListener()
-  {
-    return this.lQ;
-  }
-
-  public final String getAdUnitId()
-  {
-    return this.mj;
-  }
-
-  public final AppEventListener getAppEventListener()
-  {
-    return this.mh;
-  }
-
-  public final InAppPurchaseListener getInAppPurchaseListener()
-  {
-    return this.mB;
-  }
-
-  public final boolean isLoaded()
-  {
-    try
-    {
-      if (this.my == null)
-        return false;
-      boolean bool = this.my.isReady();
-      return bool;
-    }
-    catch (RemoteException localRemoteException)
-    {
-      eu.c("Failed to check if ad is ready.", localRemoteException);
-    }
-    return false;
-  }
-
-  public final void setAdListener(AdListener paramAdListener)
-  {
-    try
-    {
-      this.lQ = paramAdListener;
-      aq localaq;
-      if (this.my != null)
-      {
-        localaq = this.my;
-        if (paramAdListener == null)
-          break label40;
-      }
-      label40: for (ag localag = new ag(paramAdListener); ; localag = null)
-      {
-        localaq.a(localag);
-        return;
-      }
-    }
-    catch (RemoteException localRemoteException)
-    {
-      eu.c("Failed to set the AdListener.", localRemoteException);
-    }
-  }
-
-  public final void setAdUnitId(String paramString)
-  {
-    if (this.mj != null)
-      throw new IllegalStateException("The ad unit ID can only be set once on InterstitialAd.");
-    this.mj = paramString;
-  }
-
-  public final void setAppEventListener(AppEventListener paramAppEventListener)
-  {
-    try
-    {
-      this.mh = paramAppEventListener;
-      aq localaq;
-      if (this.my != null)
-      {
-        localaq = this.my;
-        if (paramAppEventListener == null)
-          break label40;
-      }
-      label40: for (an localan = new an(paramAppEventListener); ; localan = null)
-      {
-        localaq.a(localan);
-        return;
-      }
-    }
-    catch (RemoteException localRemoteException)
-    {
-      eu.c("Failed to set the AppEventListener.", localRemoteException);
-    }
-  }
-
-  public final void setInAppPurchaseListener(InAppPurchaseListener paramInAppPurchaseListener)
-  {
-    if (this.mC != null)
-      throw new IllegalStateException("Play store purchase parameter has already been set.");
-    try
-    {
-      this.mB = paramInAppPurchaseListener;
-      aq localaq;
-      if (this.my != null)
-      {
-        localaq = this.my;
-        if (paramInAppPurchaseListener == null)
-          break label57;
-      }
-      label57: for (dh localdh = new dh(paramInAppPurchaseListener); ; localdh = null)
-      {
-        localaq.a(localdh);
-        return;
-      }
-    }
-    catch (RemoteException localRemoteException)
-    {
-      eu.c("Failed to set the InAppPurchaseListener.", localRemoteException);
-    }
-  }
-
-  public final void setPlayStorePurchaseParams(PlayStorePurchaseListener paramPlayStorePurchaseListener, String paramString)
-  {
-    try
-    {
-      this.mC = paramPlayStorePurchaseListener;
-      aq localaq;
-      if (this.my != null)
-      {
-        localaq = this.my;
-        if (paramPlayStorePurchaseListener == null)
-          break label43;
-      }
-      label43: for (dl localdl = new dl(paramPlayStorePurchaseListener); ; localdl = null)
-      {
-        localaq.a(localdl, paramString);
-        return;
-      }
-    }
-    catch (RemoteException localRemoteException)
-    {
-      eu.c("Failed to set the play store purchase parameter.", localRemoteException);
-    }
-  }
-
-  public final void show()
-  {
-    try
-    {
-      l("show");
-      this.my.showInterstitial();
-      return;
-    }
-    catch (RemoteException localRemoteException)
-    {
-      eu.c("Failed to show interstitial.", localRemoteException);
-    }
+    aw.a(this, paramParcel, paramInt);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.av
  * JD-Core Version:    0.6.2
  */

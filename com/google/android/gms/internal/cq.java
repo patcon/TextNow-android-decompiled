@@ -1,97 +1,30 @@
 package com.google.android.gms.internal;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.IBinder;
-import android.os.Parcel;
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-import com.google.android.gms.dynamic.d;
-import com.google.android.gms.dynamic.d.a;
-import com.google.android.gms.dynamic.e;
-
+@ez
 public final class cq
-  implements SafeParcelable
 {
-  public static final cp CREATOR = new cp();
-  public final dg kX;
-  public final cz kZ;
-  public final db oT;
-  public final Context oU;
-  public final int versionCode;
+  public final String qA;
+  public final co qB;
+  public final int qx;
+  public final cl qy;
+  public final cu qz;
 
-  cq(int paramInt, IBinder paramIBinder1, IBinder paramIBinder2, IBinder paramIBinder3, IBinder paramIBinder4)
+  public cq(int paramInt)
   {
-    this.versionCode = paramInt;
-    this.kX = ((dg)e.e(d.a.ag(paramIBinder1)));
-    this.kZ = ((cz)e.e(d.a.ag(paramIBinder2)));
-    this.oT = ((db)e.e(d.a.ag(paramIBinder3)));
-    this.oU = ((Context)e.e(d.a.ag(paramIBinder4)));
+    this(null, null, null, null, paramInt);
   }
 
-  public cq(db paramdb, dg paramdg, cz paramcz, Context paramContext)
+  public cq(cl paramcl, cu paramcu, String paramString, co paramco, int paramInt)
   {
-    this.versionCode = 1;
-    this.oT = paramdb;
-    this.kX = paramdg;
-    this.kZ = paramcz;
-    this.oU = paramContext;
-  }
-
-  public static void a(Intent paramIntent, cq paramcq)
-  {
-    Bundle localBundle = new Bundle(1);
-    localBundle.putParcelable("com.google.android.gms.ads.internal.purchase.InAppPurchaseManagerInfo", paramcq);
-    paramIntent.putExtra("com.google.android.gms.ads.internal.purchase.InAppPurchaseManagerInfo", localBundle);
-  }
-
-  public static cq b(Intent paramIntent)
-  {
-    try
-    {
-      Bundle localBundle = paramIntent.getBundleExtra("com.google.android.gms.ads.internal.purchase.InAppPurchaseManagerInfo");
-      localBundle.setClassLoader(cq.class.getClassLoader());
-      cq localcq = (cq)localBundle.getParcelable("com.google.android.gms.ads.internal.purchase.InAppPurchaseManagerInfo");
-      return localcq;
-    }
-    catch (Exception localException)
-    {
-    }
-    return null;
-  }
-
-  final IBinder bd()
-  {
-    return e.h(this.kX).asBinder();
-  }
-
-  final IBinder be()
-  {
-    return e.h(this.kZ).asBinder();
-  }
-
-  final IBinder bf()
-  {
-    return e.h(this.oT).asBinder();
-  }
-
-  final IBinder bg()
-  {
-    return e.h(this.oU).asBinder();
-  }
-
-  public final int describeContents()
-  {
-    return 0;
-  }
-
-  public final void writeToParcel(Parcel paramParcel, int paramInt)
-  {
-    cp.a(this, paramParcel, paramInt);
+    this.qy = paramcl;
+    this.qz = paramcu;
+    this.qA = paramString;
+    this.qB = paramco;
+    this.qx = paramInt;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.cq
  * JD-Core Version:    0.6.2
  */

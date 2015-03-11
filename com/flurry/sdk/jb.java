@@ -55,7 +55,7 @@ public abstract class jb
   public abstract jg<?> c(iy paramiy, jc paramjc, sh paramsh, is paramis);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.flurry.sdk.jb
  * JD-Core Version:    0.6.2
  */

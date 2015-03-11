@@ -1,204 +1,101 @@
 package com.google.android.gms.internal;
 
-import android.content.Context;
-import android.os.Handler;
-import android.os.RemoteException;
-import android.os.SystemClock;
-import android.text.TextUtils;
-import com.google.android.gms.ads.mediation.customevent.CustomEvent;
+import android.graphics.drawable.Drawable;
+import com.google.android.gms.dynamic.d;
 import com.google.android.gms.dynamic.e;
 
-public final class bp
+@ez
+public class bp extends bs.a
   implements bq.a
 {
-  private final bt kB;
-  private final ai lh;
-  private final Object ls = new Object();
-  private final Context mContext;
-  private final String nC;
-  private final long nD;
-  private final bl nE;
-  private final al nF;
-  private final ev nG;
-  private bu nH;
-  private int nI = -2;
+  private final Object mw = new Object();
+  private final String pl;
+  private final Drawable pm;
+  private final String pn;
+  private final String pp;
+  private bq pt;
+  private final Drawable pu;
+  private final String pv;
 
-  public bp(Context paramContext, String paramString, bt parambt, bm parambm, bl parambl, ai paramai, al paramal, ev paramev)
+  public bp(String paramString1, Drawable paramDrawable1, String paramString2, Drawable paramDrawable2, String paramString3, String paramString4)
   {
-    this.mContext = paramContext;
-    if ("com.google.ads.mediation.customevent.CustomEventAdapter".equals(paramString))
+    this.pl = paramString1;
+    this.pm = paramDrawable1;
+    this.pn = paramString2;
+    this.pu = paramDrawable2;
+    this.pp = paramString3;
+    this.pv = paramString4;
+  }
+
+  public void a(bq parambq)
+  {
+    synchronized (this.mw)
     {
-      this.nC = b(parambl);
-      this.kB = parambt;
-      if (parambm.ns == -1L)
-        break label108;
-    }
-    label108: for (long l = parambm.ns; ; l = 10000L)
-    {
-      this.nD = l;
-      this.nE = parambl;
-      this.lh = paramai;
-      this.nF = paramal;
-      this.nG = paramev;
+      this.pt = parambq;
       return;
-      this.nC = paramString;
-      break;
     }
   }
 
-  private void a(long paramLong1, long paramLong2, long paramLong3, long paramLong4)
+  public void as()
   {
-    while (true)
+    synchronized (this.mw)
     {
-      if (this.nI != -2)
-        return;
-      b(paramLong1, paramLong2, paramLong3, paramLong4);
-    }
-  }
-
-  private void a(bo parambo)
-  {
-    try
-    {
-      if (this.nG.sy < 4100000)
+      if (this.pt == null)
       {
-        if (this.nF.mf)
-        {
-          this.nH.a(e.h(this.mContext), this.lh, this.nE.nq, parambo);
-          return;
-        }
-        this.nH.a(e.h(this.mContext), this.nF, this.lh, this.nE.nq, parambo);
+        gs.T("Attempt to record impression before content ad initialized.");
         return;
       }
-    }
-    catch (RemoteException localRemoteException)
-    {
-      eu.c("Could not request ad from mediation adapter.", localRemoteException);
-      g(5);
+      this.pt.as();
       return;
-    }
-    if (this.nF.mf)
-    {
-      this.nH.a(e.h(this.mContext), this.lh, this.nE.nq, this.nE.nk, parambo);
-      return;
-    }
-    this.nH.a(e.h(this.mContext), this.nF, this.lh, this.nE.nq, this.nE.nk, parambo);
-  }
-
-  private bu aP()
-  {
-    eu.B("Instantiating mediation adapter: " + this.nC);
-    try
-    {
-      bu localbu = this.kB.m(this.nC);
-      return localbu;
-    }
-    catch (RemoteException localRemoteException)
-    {
-      eu.a("Could not instantiate mediation adapter: " + this.nC, localRemoteException);
-    }
-    return null;
-  }
-
-  private String b(bl parambl)
-  {
-    try
-    {
-      if ((!TextUtils.isEmpty(parambl.no)) && (CustomEvent.class.isAssignableFrom(Class.forName(parambl.no, false, bp.class.getClassLoader()))))
-        return "com.google.android.gms.ads.mediation.customevent.CustomEventAdapter";
-    }
-    catch (ClassNotFoundException localClassNotFoundException)
-    {
-      eu.D("Could not create custom event adapter.");
-    }
-    return "com.google.ads.mediation.customevent.CustomEventAdapter";
-  }
-
-  private void b(long paramLong1, long paramLong2, long paramLong3, long paramLong4)
-  {
-    long l1 = SystemClock.elapsedRealtime();
-    long l2 = paramLong2 - (l1 - paramLong1);
-    long l3 = paramLong4 - (l1 - paramLong3);
-    if ((l2 <= 0L) || (l3 <= 0L))
-    {
-      eu.B("Timed out waiting for adapter.");
-      this.nI = 3;
-      return;
-    }
-    try
-    {
-      this.ls.wait(Math.min(l2, l3));
-      return;
-    }
-    catch (InterruptedException localInterruptedException)
-    {
-      this.nI = -1;
     }
   }
 
-  public final bq b(long paramLong1, long paramLong2)
+  public d bA()
   {
-    synchronized (this.ls)
+    return e.k(this.pu);
+  }
+
+  public String bB()
+  {
+    return this.pv;
+  }
+
+  public String bt()
+  {
+    return this.pl;
+  }
+
+  public d bu()
+  {
+    return e.k(this.pm);
+  }
+
+  public String bw()
+  {
+    return this.pp;
+  }
+
+  public String getBody()
+  {
+    return this.pn;
+  }
+
+  public void i(int paramInt)
+  {
+    synchronized (this.mw)
     {
-      long l = SystemClock.elapsedRealtime();
-      final bo localbo = new bo();
-      et.sv.post(new Runnable()
+      if (this.pt == null)
       {
-        public void run()
-        {
-          synchronized (bp.a(bp.this))
-          {
-            if (bp.b(bp.this) != -2)
-              return;
-            bp.a(bp.this, bp.c(bp.this));
-            if (bp.d(bp.this) == null)
-            {
-              bp.this.g(4);
-              return;
-            }
-          }
-          localbo.a(bp.this);
-          bp.a(bp.this, localbo);
-        }
-      });
-      a(l, this.nD, paramLong1, paramLong2);
-      bq localbq = new bq(this.nE, this.nH, this.nC, localbo, this.nI);
-      return localbq;
-    }
-  }
-
-  public final void cancel()
-  {
-    synchronized (this.ls)
-    {
-      try
-      {
-        if (this.nH != null)
-          this.nH.destroy();
-        this.nI = -1;
-        this.ls.notify();
+        gs.T("Attempt to perform click before content ad initialized.");
         return;
       }
-      catch (RemoteException localRemoteException)
-      {
-        while (true)
-          eu.c("Could not destroy mediation adapter.", localRemoteException);
-      }
-    }
-  }
-
-  public final void g(int paramInt)
-  {
-    synchronized (this.ls)
-    {
-      this.nI = paramInt;
-      this.ls.notify();
+      this.pt.b("1", paramInt);
       return;
     }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.bp
  * JD-Core Version:    0.6.2
  */

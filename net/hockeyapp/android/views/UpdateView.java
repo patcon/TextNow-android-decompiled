@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
-import textnow.bi.j;
+import textnow.bp.j;
 
 public class UpdateView extends RelativeLayout
 {
@@ -170,7 +170,7 @@ public class UpdateView extends RelativeLayout
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     net.hockeyapp.android.views.UpdateView
  * JD-Core Version:    0.6.2
  */

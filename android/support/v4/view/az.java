@@ -4,13 +4,13 @@ import android.view.View;
 
 class az extends ay
 {
-  public final void c(View paramView, int paramInt)
+  public final int b(View paramView)
   {
-    paramView.setImportantForAccessibility(paramInt);
+    return paramView.getOverScrollMode();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.view.az
  * JD-Core Version:    0.6.2
  */

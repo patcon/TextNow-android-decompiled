@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import textnow.t.c;
+import textnow.y.c;
 
 public final class b
 {
@@ -141,7 +141,7 @@ public final class b
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.api.common.b
  * JD-Core Version:    0.6.2
  */

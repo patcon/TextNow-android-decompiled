@@ -11,25 +11,25 @@ public class b
 {
   static void a(Cart paramCart, Parcel paramParcel, int paramInt)
   {
-    int i = com.google.android.gms.common.internal.safeparcel.b.C(paramParcel);
+    int i = com.google.android.gms.common.internal.safeparcel.b.D(paramParcel);
     com.google.android.gms.common.internal.safeparcel.b.c(paramParcel, 1, paramCart.getVersionCode());
-    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 2, paramCart.aiK, false);
-    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 3, paramCart.aiL, false);
-    com.google.android.gms.common.internal.safeparcel.b.b(paramParcel, 4, paramCart.aiM, false);
-    com.google.android.gms.common.internal.safeparcel.b.G(paramParcel, i);
+    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 2, paramCart.asv, false);
+    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 3, paramCart.asw, false);
+    com.google.android.gms.common.internal.safeparcel.b.c(paramParcel, 4, paramCart.asx, false);
+    com.google.android.gms.common.internal.safeparcel.b.H(paramParcel, i);
   }
 
-  public Cart bR(Parcel paramParcel)
+  public Cart jdMethod_do(Parcel paramParcel)
   {
     String str1 = null;
-    int i = a.B(paramParcel);
+    int i = a.C(paramParcel);
     ArrayList localArrayList = new ArrayList();
     int j = 0;
     String str2 = null;
     while (paramParcel.dataPosition() < i)
     {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
       {
       default:
         a.b(paramParcel, k);
@@ -52,13 +52,13 @@ public class b
     return new Cart(j, str2, str1, localArrayList);
   }
 
-  public Cart[] dx(int paramInt)
+  public Cart[] fp(int paramInt)
   {
     return new Cart[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.b
  * JD-Core Version:    0.6.2
  */

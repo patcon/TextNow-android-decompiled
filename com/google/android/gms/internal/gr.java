@@ -1,139 +1,106 @@
 package com.google.android.gms.internal;
 
-import android.os.SystemClock;
-import org.json.JSONObject;
+import android.content.Context;
+import android.content.res.Resources;
+import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
+import android.provider.Settings.Secure;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.FrameLayout.LayoutParams;
+import android.widget.TextView;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
 
+@ez
 public final class gr
 {
-  private static final gn BG = new gn("RequestTracker");
-  public static final Object CN = new Object();
-  private long CJ;
-  private long CK;
-  private long CL;
-  private gq CM;
+  public static final Handler wC = new Handler(Looper.getMainLooper());
 
-  public gr(long paramLong)
+  public static String R(String paramString)
   {
-    this.CJ = paramLong;
-    this.CK = -1L;
-    this.CL = 0L;
+    int i = 0;
+    while (i < 2)
+      try
+      {
+        MessageDigest localMessageDigest = MessageDigest.getInstance("MD5");
+        localMessageDigest.update(paramString.getBytes());
+        Locale localLocale = Locale.US;
+        Object[] arrayOfObject = new Object[1];
+        arrayOfObject[0] = new BigInteger(1, localMessageDigest.digest());
+        String str = String.format(localLocale, "%032X", arrayOfObject);
+        return str;
+      }
+      catch (NoSuchAlgorithmException localNoSuchAlgorithmException)
+      {
+        i++;
+      }
+    return null;
   }
 
-  private void eu()
+  public static int a(Context paramContext, int paramInt)
   {
-    this.CK = -1L;
-    this.CM = null;
-    this.CL = 0L;
+    return a(paramContext.getResources().getDisplayMetrics(), paramInt);
   }
 
-  public final void a(long paramLong, gq paramgq)
+  public static int a(DisplayMetrics paramDisplayMetrics, int paramInt)
   {
-    synchronized (CN)
-    {
-      gq localgq = this.CM;
-      long l = this.CK;
-      this.CK = paramLong;
-      this.CM = paramgq;
-      this.CL = SystemClock.elapsedRealtime();
-      if (localgq != null)
-        localgq.n(l);
+    return (int)TypedValue.applyDimension(1, paramInt, paramDisplayMetrics);
+  }
+
+  public static void a(ViewGroup paramViewGroup, ay paramay, String paramString)
+  {
+    a(paramViewGroup, paramay, paramString, -16777216, -1);
+  }
+
+  private static void a(ViewGroup paramViewGroup, ay paramay, String paramString, int paramInt1, int paramInt2)
+  {
+    if (paramViewGroup.getChildCount() != 0)
       return;
-    }
+    Context localContext = paramViewGroup.getContext();
+    TextView localTextView = new TextView(localContext);
+    localTextView.setGravity(17);
+    localTextView.setText(paramString);
+    localTextView.setTextColor(paramInt1);
+    localTextView.setBackgroundColor(paramInt2);
+    FrameLayout localFrameLayout = new FrameLayout(localContext);
+    localFrameLayout.setBackgroundColor(paramInt1);
+    int i = a(localContext, 3);
+    localFrameLayout.addView(localTextView, new FrameLayout.LayoutParams(paramay.widthPixels - i, paramay.heightPixels - i, 17));
+    paramViewGroup.addView(localFrameLayout, paramay.widthPixels, paramay.heightPixels);
   }
 
-  public final boolean b(long paramLong, int paramInt, JSONObject paramJSONObject)
+  public static void a(ViewGroup paramViewGroup, ay paramay, String paramString1, String paramString2)
   {
-    for (boolean bool = true; ; bool = false)
-    {
-      synchronized (CN)
-      {
-        if ((this.CK != -1L) && (this.CK == paramLong))
-        {
-          gn localgn = BG;
-          Object[] arrayOfObject = new Object[1];
-          arrayOfObject[0] = Long.valueOf(this.CK);
-          localgn.b("request %d completed", arrayOfObject);
-          localgq = this.CM;
-          eu();
-          if (localgq != null)
-            localgq.a(paramLong, paramInt, paramJSONObject);
-          return bool;
-        }
-      }
-      gq localgq = null;
-    }
+    gs.W(paramString2);
+    a(paramViewGroup, paramay, paramString1, -65536, -16777216);
   }
 
-  public final boolean c(long paramLong, int paramInt)
+  public static boolean dr()
   {
-    return b(paramLong, paramInt, null);
+    return Build.DEVICE.startsWith("generic");
   }
 
-  public final void clear()
+  public static boolean ds()
   {
-    synchronized (CN)
-    {
-      if (this.CK != -1L)
-        eu();
-      return;
-    }
+    return Looper.myLooper() == Looper.getMainLooper();
   }
 
-  public final boolean d(long paramLong, int paramInt)
+  public static String v(Context paramContext)
   {
-    boolean bool = true;
-    long l = 0L;
-    while (true)
-    {
-      synchronized (CN)
-      {
-        if ((this.CK != -1L) && (paramLong - this.CL >= this.CJ))
-        {
-          gn localgn = BG;
-          Object[] arrayOfObject = new Object[1];
-          arrayOfObject[0] = Long.valueOf(this.CK);
-          localgn.b("request %d timed out", arrayOfObject);
-          l = this.CK;
-          localgq = this.CM;
-          eu();
-          if (localgq != null)
-            localgq.a(l, paramInt, null);
-          return bool;
-        }
-      }
-      gq localgq = null;
-      bool = false;
-    }
-  }
-
-  public final boolean ev()
-  {
-    synchronized (CN)
-    {
-      if (this.CK != -1L)
-      {
-        bool = true;
-        return bool;
-      }
-      boolean bool = false;
-    }
-  }
-
-  public final boolean p(long paramLong)
-  {
-    synchronized (CN)
-    {
-      if ((this.CK != -1L) && (this.CK == paramLong))
-      {
-        bool = true;
-        return bool;
-      }
-      boolean bool = false;
-    }
+    String str = Settings.Secure.getString(paramContext.getContentResolver(), "android_id");
+    if ((str == null) || (dr()))
+      str = "emulator";
+    return R(str);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.gr
  * JD-Core Version:    0.6.2
  */

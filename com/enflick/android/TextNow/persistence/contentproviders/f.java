@@ -15,17 +15,17 @@ import android.text.TextUtils;
 public final class f extends a
   implements b
 {
-  public static final Uri d = Uri.parse("content://com.enflick.android.TextNow.TNContentProvider/messages");
+  public static final Uri d = Uri.parse("content://com.enflick.android.TextNow.TNContentProvider/groups");
 
-  public f(TNContentProvider paramTNContentProvider, Context paramContext, textnow.v.a parama)
+  public f(TNContentProvider paramTNContentProvider, Context paramContext, textnow.ab.a parama)
   {
     super(paramTNContentProvider, paramContext, parama);
   }
 
   public static void a(UriMatcher paramUriMatcher)
   {
-    paramUriMatcher.addURI("com.enflick.android.TextNow.TNContentProvider", "messages", 100);
-    paramUriMatcher.addURI("com.enflick.android.TextNow.TNContentProvider", "messages/#", 101);
+    paramUriMatcher.addURI("com.enflick.android.TextNow.TNContentProvider", "groups", 106);
+    paramUriMatcher.addURI("com.enflick.android.TextNow.TNContentProvider", "groups/#", 107);
   }
 
   public final int a(Uri paramUri, ContentValues paramContentValues, String paramString, String[] paramArrayOfString, int paramInt)
@@ -37,22 +37,18 @@ public final class f extends a
     {
     default:
       throw new IllegalArgumentException("Unknown URI");
-    case 101:
+    case 107:
       String str = paramUri.getLastPathSegment();
       localStringBuilder = new StringBuilder("_id=" + str);
       if (!TextUtils.isEmpty(paramString))
         localStringBuilder.append(" AND " + paramString);
       break;
-    case 100:
+    case 106:
     }
-    for (int i = localSQLiteDatabase.updateWithOnConflict("messages", paramContentValues, localStringBuilder.toString(), null, 5); ; i = localSQLiteDatabase.updateWithOnConflict("messages", paramContentValues, paramString, paramArrayOfString, 5))
+    for (int i = localSQLiteDatabase.update("groups", paramContentValues, localStringBuilder.toString(), paramArrayOfString); ; i = localSQLiteDatabase.update("groups", paramContentValues, paramString, paramArrayOfString))
     {
       if (bool)
-      {
-        ContentResolver localContentResolver = this.b.getContentResolver();
-        localContentResolver.notifyChange(paramUri, null);
-        localContentResolver.notifyChange(c.d, null);
-      }
+        this.b.getContentResolver().notifyChange(paramUri, null);
       return i;
     }
   }
@@ -65,21 +61,19 @@ public final class f extends a
     {
     default:
       throw new IllegalArgumentException("Unknown or Invalid URI " + paramUri);
-    case 100:
-      i = localSQLiteDatabase.delete("messages", paramString, paramArrayOfString);
-    case 101:
+    case 106:
+      i = localSQLiteDatabase.delete("groups", paramString, paramArrayOfString);
+    case 107:
     }
     while (true)
     {
-      ContentResolver localContentResolver = this.b.getContentResolver();
-      localContentResolver.notifyChange(paramUri, null);
-      localContentResolver.notifyChange(c.d, null);
+      this.b.getContentResolver().notifyChange(paramUri, null);
       return i;
       String str = paramUri.getLastPathSegment();
       if (TextUtils.isEmpty(paramString))
-        i = localSQLiteDatabase.delete("messages", "_id=" + str, null);
+        i = localSQLiteDatabase.delete("groups", "_id=" + str, null);
       else
-        i = localSQLiteDatabase.delete("messages", paramString + " and " + "_id" + "=" + str, paramArrayOfString);
+        i = localSQLiteDatabase.delete("groups", paramString + " and " + "_id" + "=" + str, paramArrayOfString);
     }
   }
 
@@ -87,14 +81,14 @@ public final class f extends a
   {
     SQLiteDatabase localSQLiteDatabase = this.c.getWritableDatabase();
     SQLiteQueryBuilder localSQLiteQueryBuilder = new SQLiteQueryBuilder();
-    localSQLiteQueryBuilder.setTables("messages");
+    localSQLiteQueryBuilder.setTables("groups");
     switch (paramInt)
     {
     default:
       throw new IllegalArgumentException("Unknown URI");
-    case 101:
+    case 107:
       localSQLiteQueryBuilder.appendWhere("_id=" + paramUri.getLastPathSegment());
-    case 100:
+    case 106:
     }
     Cursor localCursor = localSQLiteQueryBuilder.query(localSQLiteDatabase, paramArrayOfString1, paramString1, paramArrayOfString2, null, null, paramString2);
     localCursor.setNotificationUri(this.b.getContentResolver(), paramUri);
@@ -103,18 +97,15 @@ public final class f extends a
 
   public final Uri a(Uri paramUri, ContentValues paramContentValues, int paramInt)
   {
-    if (paramInt != 100)
+    if (paramInt != 106)
       throw new IllegalArgumentException("Invalid URI for insert");
     boolean bool = a(paramContentValues);
-    long l = this.c.getWritableDatabase().insertWithOnConflict("messages", null, paramContentValues, 5);
+    long l = this.c.getWritableDatabase().insertWithOnConflict("groups", null, paramContentValues, 5);
     if (l > 0L)
     {
       Uri localUri = ContentUris.withAppendedId(paramUri, l);
       if (bool)
-      {
         this.b.getContentResolver().notifyChange(paramUri, null);
-        this.b.getContentResolver().notifyChange(c.d, null);
-      }
       return localUri;
     }
     throw new SQLException("Failed to insert row into " + paramUri);
@@ -126,21 +117,21 @@ public final class f extends a
     {
     default:
       return null;
-    case 100:
+    case 106:
       return "vnd.android.cursor.dir/com.enflick.android.TextNow-message";
-    case 101:
+    case 107:
     }
     return "vnd.android.cursor.item/com.enflick.android.TextNow-message";
   }
 
   public final void a()
   {
-    TNContentProvider.a(100, this);
-    TNContentProvider.a(101, this);
+    TNContentProvider.a(106, this);
+    TNContentProvider.a(107, this);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.persistence.contentproviders.f
  * JD-Core Version:    0.6.2
  */

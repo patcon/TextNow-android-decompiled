@@ -1,9 +1,9 @@
 package com.stripe.model;
 
 import java.lang.reflect.Field;
-import textnow.z.d;
-import textnow.z.f;
-import textnow.z.h;
+import textnow.af.d;
+import textnow.af.f;
+import textnow.af.h;
 
 public abstract class StripeObject
 {
@@ -45,7 +45,7 @@ public abstract class StripeObject
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.stripe.model.StripeObject
  * JD-Core Version:    0.6.2
  */

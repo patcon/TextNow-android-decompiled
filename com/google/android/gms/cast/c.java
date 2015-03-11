@@ -11,28 +11,28 @@ public class c
 {
   static void a(LaunchOptions paramLaunchOptions, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
+    int i = b.D(paramParcel);
     b.c(paramParcel, 1, paramLaunchOptions.getVersionCode());
     b.a(paramParcel, 2, paramLaunchOptions.getRelaunchIfRunning());
     b.a(paramParcel, 3, paramLaunchOptions.getLanguage(), false);
-    b.G(paramParcel, i);
+    b.H(paramParcel, i);
   }
 
-  public LaunchOptions[] Q(int paramInt)
+  public LaunchOptions[] Z(int paramInt)
   {
     return new LaunchOptions[paramInt];
   }
 
-  public LaunchOptions t(Parcel paramParcel)
+  public LaunchOptions v(Parcel paramParcel)
   {
     boolean bool = false;
-    int i = a.B(paramParcel);
+    int i = a.C(paramParcel);
     String str = null;
     int j = 0;
     while (paramParcel.dataPosition() < i)
     {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
       {
       default:
         a.b(paramParcel, k);
@@ -53,7 +53,7 @@ public class c
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.cast.c
  * JD-Core Version:    0.6.2
  */

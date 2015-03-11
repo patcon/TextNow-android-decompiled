@@ -1,42 +1,31 @@
 package com.google.android.gms.internal;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.os.Looper;
-import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
-import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.common.data.DataHolder;
+import com.google.android.gms.drive.DriveId;
+import com.google.android.gms.drive.metadata.internal.j;
+import java.util.Arrays;
 
-public class kg extends hb<ke>
+public class kg extends j<DriveId>
 {
-  public kg(Context paramContext, Looper paramLooper, GoogleApiClient.ConnectionCallbacks paramConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener paramOnConnectionFailedListener)
+  public static final kg Qy = new kg();
+
+  private kg()
   {
-    super(paramContext, paramLooper, paramConnectionCallbacks, paramOnConnectionFailedListener, null);
+    super("driveId", Arrays.asList(new String[] { "sqlId", "resourceId" }), Arrays.asList(new String[] { "dbInstanceId" }), 4100000);
   }
 
-  protected void a(hi paramhi, hb.e parame)
+  protected DriveId m(DataHolder paramDataHolder, int paramInt1, int paramInt2)
   {
-    Bundle localBundle = new Bundle();
-    paramhi.a(parame, 5089000, getContext().getPackageName(), localBundle);
-  }
-
-  public ke bj(IBinder paramIBinder)
-  {
-    return ke.a.bi(paramIBinder);
-  }
-
-  protected String bu()
-  {
-    return "com.google.android.gms.panorama.service.START";
-  }
-
-  protected String bv()
-  {
-    return "com.google.android.gms.panorama.internal.IPanoramaService";
+    long l = paramDataHolder.gy().getLong("dbInstanceId");
+    String str = paramDataHolder.c("resourceId", paramInt1, paramInt2);
+    if ((str != null) && (str.startsWith("generated-android-")))
+      str = null;
+    return new DriveId(str, Long.valueOf(paramDataHolder.a("sqlId", paramInt1, paramInt2)).longValue(), l);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.kg
  * JD-Core Version:    0.6.2
  */

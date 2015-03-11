@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
-import com.enflick.android.TextNow.ads.a;
 import com.enflick.android.TextNow.tasks.GetEsnUserNameTask;
 import com.enflick.android.TextNow.tasks.GetGroupsTask;
 import com.enflick.android.TextNow.tasks.GetNewMessagesTask;
@@ -23,32 +22,31 @@ import com.enflick.android.TextNow.tasks.GetUserInfoTask;
 import com.enflick.android.TextNow.tasks.SignInTask;
 import com.enflick.android.TextNow.tasks.c;
 import java.util.Locale;
-import textnow.q.b;
-import textnow.u.r;
+import textnow.z.u;
 
-public class SignInActivity extends ah
+public class SignInActivity extends an
   implements View.OnClickListener
 {
+  private EditText a;
   private EditText b;
-  private EditText c;
-  private Button d;
-  private TextView e;
+  private Button c;
+  private TextView d;
 
   private void g()
   {
-    String str1 = this.b.getText().toString().toLowerCase(Locale.ENGLISH).trim();
-    String str2 = this.c.getText().toString();
+    String str1 = this.a.getText().toString().toLowerCase(Locale.ENGLISH).trim();
+    String str2 = this.b.getText().toString();
     if (str1.length() == 0)
     {
-      c(2131493075);
+      b(2131296482);
       return;
     }
     if (str2.length() == 0)
     {
-      c(2131493082);
+      b(2131296489);
       return;
     }
-    a(2131493050, false);
+    a(2131296457, false);
     new SignInTask(str1, str2).b(this);
   }
 
@@ -60,8 +58,8 @@ public class SignInActivity extends ah
     int i = paramc.i();
     String str1 = paramc.j();
     if (localClass == GetNewMessagesTask.class)
-      if (bool);
-    label49: 
+      if (!bool)
+        new GetGroupsTask().b(this);
     do
     {
       do
@@ -72,14 +70,18 @@ public class SignInActivity extends ah
           {
             do
             {
-              new GetGroupsTask().b(this);
-              break label49;
-              break label49;
-              break label49;
               do
+              {
                 return;
+                v();
+              }
               while (c(str1));
-              c(2131493083);
+              if ("DB_ERROR".equals(str1))
+              {
+                c(2131296942);
+                return;
+              }
+              c(2131296490);
               return;
               if (localClass != GetUserInfoTask.class)
                 break;
@@ -88,24 +90,24 @@ public class SignInActivity extends ah
                 new GetNewMessagesTask().b(this);
                 return;
               }
-              r();
+              v();
             }
             while (c(str1));
-            c(2131493084);
+            b(2131296491);
             return;
             if (localClass != GetGroupsTask.class)
               break;
-            r();
+            v();
             if (!bool)
             {
               setResult(-1);
               finish();
-              a.b("sign_in");
+              com.enflick.android.TextNow.ads.b.b("sign_in");
               return;
             }
           }
           while (c(str1));
-          c(2131493085);
+          b(2131296492);
           setResult(-1);
           finish();
           return;
@@ -113,39 +115,40 @@ public class SignInActivity extends ah
             break;
           if (!bool)
           {
-            new GetUserInfoTask(this.h.b()).b(this);
+            new GetUserInfoTask(this.k.b()).b(this);
             return;
           }
-          r();
+          v();
           if (i == 404)
           {
-            this.b.requestFocus();
-            c(2131493079);
+            this.a.requestFocus();
+            b(2131296486);
             return;
           }
           if (i == 401)
           {
-            this.c.requestFocus();
-            this.c.setSelection(0, this.c.length());
-            c(2131493082);
+            this.b.requestFocus();
+            this.b.setSelection(0, this.b.length());
+            b(2131296489);
             return;
           }
           if ((i == 400) && ("PASSWORD_UNSET".equals(str1)))
           {
-            d(2131493086);
+            c(2131296493);
             return;
           }
         }
         while (c(str1));
-        c(2131493025);
+        b(2131296432);
         return;
       }
       while (localClass != GetEsnUserNameTask.class);
-      r();
+      v();
     }
     while (bool);
-    String str2 = this.h.b();
-    this.b.setText(str2);
+    String str2 = this.k.b();
+    this.a.setText(str2);
+    this.b.requestFocus();
   }
 
   public void onClick(View paramView)
@@ -154,10 +157,10 @@ public class SignInActivity extends ah
     {
     default:
       return;
-    case 2131165672:
+    case 2131558974:
       g();
       return;
-    case 2131165673:
+    case 2131558975:
     }
     startActivity(new Intent(this, ForgotPasswordActivity.class));
   }
@@ -165,16 +168,16 @@ public class SignInActivity extends ah
   public void onCreate(Bundle paramBundle)
   {
     super.onCreate(paramBundle);
-    setContentView(2130903190);
-    setTitle(2131493048);
-    b(true);
-    this.b = ((EditText)findViewById(2131165669));
-    this.b.setInputType(524432);
-    this.b.addTextChangedListener(new TextWatcher()
+    setContentView(2130903208);
+    setTitle(2131296455);
+    d(true);
+    this.a = ((EditText)findViewById(2131558971));
+    this.a.setInputType(524432);
+    this.a.addTextChangedListener(new TextWatcher()
     {
       public final void afterTextChanged(Editable paramAnonymousEditable)
       {
-        b.a(paramAnonymousEditable);
+        textnow.v.b.a(paramAnonymousEditable);
       }
 
       public final void beforeTextChanged(CharSequence paramAnonymousCharSequence, int paramAnonymousInt1, int paramAnonymousInt2, int paramAnonymousInt3)
@@ -185,7 +188,7 @@ public class SignInActivity extends ah
       {
       }
     });
-    this.b.setSingleLine(true);
+    this.a.setSingleLine(true);
     InputFilter local2 = new InputFilter()
     {
       public final CharSequence filter(CharSequence paramAnonymousCharSequence, int paramAnonymousInt1, int paramAnonymousInt2, Spanned paramAnonymousSpanned, int paramAnonymousInt3, int paramAnonymousInt4)
@@ -195,7 +198,7 @@ public class SignInActivity extends ah
           if (paramAnonymousInt1 < paramAnonymousInt2)
           {
             char c = paramAnonymousCharSequence.charAt(paramAnonymousInt1);
-            if ((!b.a(c)) && (c != '.') && (c != '_'))
+            if ((!textnow.v.b.a(c)) && (c != '.') && (c != '_'))
               paramAnonymousCharSequence = "";
           }
           else
@@ -206,13 +209,13 @@ public class SignInActivity extends ah
         }
       }
     };
-    EditText localEditText = this.b;
+    EditText localEditText = this.a;
     InputFilter[] arrayOfInputFilter = new InputFilter[2];
     arrayOfInputFilter[0] = new InputFilter.LengthFilter(20);
     arrayOfInputFilter[1] = local2;
     localEditText.setFilters(arrayOfInputFilter);
-    this.c = ((EditText)findViewById(2131165671));
-    this.c.setOnEditorActionListener(new TextView.OnEditorActionListener()
+    this.b = ((EditText)findViewById(2131558973));
+    this.b.setOnEditorActionListener(new TextView.OnEditorActionListener()
     {
       public final boolean onEditorAction(TextView paramAnonymousTextView, int paramAnonymousInt, KeyEvent paramAnonymousKeyEvent)
       {
@@ -224,16 +227,16 @@ public class SignInActivity extends ah
         return false;
       }
     });
-    this.d = ((Button)findViewById(2131165672));
+    this.c = ((Button)findViewById(2131558974));
+    this.c.setOnClickListener(this);
+    this.d = ((TextView)findViewById(2131558975));
     this.d.setOnClickListener(this);
-    this.e = ((TextView)findViewById(2131165673));
-    this.e.setOnClickListener(this);
-    if (b.i(this))
+    if (textnow.v.b.h(this))
     {
-      String str = b.j(this);
+      String str = textnow.v.b.i(this);
       if (!TextUtils.isEmpty(str))
       {
-        a(2131493021, false);
+        a(2131296428, false);
         new GetEsnUserNameTask(str).b(this);
       }
     }
@@ -245,7 +248,7 @@ public class SignInActivity extends ah
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.activities.SignInActivity
  * JD-Core Version:    0.6.2
  */

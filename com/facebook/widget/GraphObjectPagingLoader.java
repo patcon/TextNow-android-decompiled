@@ -36,24 +36,27 @@ class GraphObjectPagingLoader<T extends GraphObject> extends j<SimpleGraphObject
   {
     SimpleGraphObjectCursor localSimpleGraphObjectCursor;
     boolean bool;
-    GraphObjectList localGraphObjectList;
+    int i;
     if ((this.cursor == null) || (!this.appendResults))
     {
       localSimpleGraphObjectCursor = new SimpleGraphObjectCursor();
       GraphObjectPagingLoader.PagedResults localPagedResults = (GraphObjectPagingLoader.PagedResults)paramResponse.getGraphObjectAs(GraphObjectPagingLoader.PagedResults.class);
       bool = paramResponse.getIsFromCache();
-      localGraphObjectList = localPagedResults.getData().castToListOf(this.graphObjectClass);
+      GraphObjectList localGraphObjectList = localPagedResults.getData().castToListOf(this.graphObjectClass);
       if (localGraphObjectList.size() <= 0)
-        break label149;
-    }
-    label149: for (int i = 1; ; i = 0)
-    {
-      if (i != 0)
+        break label156;
+      i = 1;
+      label68: if (i != 0)
       {
         this.nextRequest = paramResponse.getRequestForPagedResults(Response.PagingDirection.NEXT);
         localSimpleGraphObjectCursor.addGraphObjects(localGraphObjectList, bool);
+        if (this.nextRequest == null)
+          break label162;
         localSimpleGraphObjectCursor.setMoreObjectsAvailable(true);
       }
+    }
+    while (true)
+    {
       if (i == 0)
       {
         localSimpleGraphObjectCursor.setMoreObjectsAvailable(false);
@@ -66,6 +69,9 @@ class GraphObjectPagingLoader<T extends GraphObject> extends j<SimpleGraphObject
       return;
       localSimpleGraphObjectCursor = new SimpleGraphObjectCursor(this.cursor);
       break;
+      label156: i = 0;
+      break label68;
+      label162: localSimpleGraphObjectCursor.setMoreObjectsAvailable(false);
     }
   }
 
@@ -215,7 +221,7 @@ class GraphObjectPagingLoader<T extends GraphObject> extends j<SimpleGraphObject
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.widget.GraphObjectPagingLoader
  * JD-Core Version:    0.6.2
  */

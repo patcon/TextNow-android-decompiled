@@ -222,7 +222,7 @@ public abstract interface ItemScope extends Freezable<ItemScope>
   public abstract boolean hasWorstRating();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.plus.model.moments.ItemScope
  * JD-Core Version:    0.6.2
  */

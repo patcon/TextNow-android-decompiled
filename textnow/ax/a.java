@@ -1,43 +1,28 @@
 package textnow.ax;
 
-import android.app.Activity;
-import android.content.Context;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
+import java.util.concurrent.CountDownLatch;
 
-public final class a
+public class a
+  implements Runnable
 {
-  WebView a;
-  aj b;
-  e c;
-  public boolean d;
-  private Activity e;
+  m a = null;
+  CountDownLatch b = null;
 
-  public a(Context paramContext)
+  public a(m paramm, CountDownLatch paramCountDownLatch)
   {
-    this.e = ((Activity)paramContext);
-    this.a = new WebView(paramContext);
-    this.a.getSettings().setJavaScriptEnabled(true);
-    this.a.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-    this.a.addJavascriptInterface(this, "Device");
-    this.a.setWebViewClient(new c(this, (byte)0));
-    this.a.setWebChromeClient(new b(this, (byte)0));
+    this.a = paramm;
+    this.b = paramCountDownLatch;
   }
 
-  public final void a()
+  public void run()
   {
-    this.e.runOnUiThread(new Runnable()
-    {
-      public final void run()
-      {
-        a.this.a.destroy();
-        a.this.a = null;
-      }
-    });
+    this.a.c();
+    if (this.b != null)
+      this.b.countDown();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.ax.a
  * JD-Core Version:    0.6.2
  */

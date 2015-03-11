@@ -7,7 +7,7 @@ public abstract interface IncomingVideoCallView$IncomingVideoListener
   public abstract void onIncomingVideoStopped();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     cz.acrobits.video.IncomingVideoCallView.IncomingVideoListener
  * JD-Core Version:    0.6.2
  */

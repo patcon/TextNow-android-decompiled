@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import com.enflick.android.TextNow.TextNowApp;
 import java.io.Serializable;
-import textnow.s.i;
+import textnow.x.i;
 
 public abstract class c
   implements Serializable, Runnable
@@ -15,7 +15,8 @@ public abstract class c
   private boolean d = false;
   private int e = -1;
   private String f = null;
-  private Class<?> g;
+  private boolean g = false;
+  private Class<?> h;
 
   public c()
   {
@@ -26,16 +27,11 @@ public abstract class c
 
   public final int a(Context paramContext, Class<?> paramClass)
   {
-    this.g = paramClass;
+    this.h = paramClass;
     Intent localIntent = new Intent(paramContext, TNTaskService.class);
     localIntent.putExtra("task", this);
     paramContext.startService(localIntent);
     return this.b;
-  }
-
-  protected final void a(int paramInt)
-  {
-    this.e = paramInt;
   }
 
   public final void a(Context paramContext)
@@ -50,7 +46,7 @@ public abstract class c
 
   protected final void a(boolean paramBoolean)
   {
-    this.d = paramBoolean;
+    this.d = true;
   }
 
   protected final boolean a(i parami)
@@ -74,6 +70,12 @@ public abstract class c
     return a(paramContext, paramContext.getClass());
   }
 
+  public final c b(boolean paramBoolean)
+  {
+    this.g = true;
+    return this;
+  }
+
   public final void c(Context paramContext)
   {
     new StringBuilder().append("Starting task ").append(getClass().getSimpleName()).append(" synchronously").toString();
@@ -81,19 +83,19 @@ public abstract class c
     run();
   }
 
-  protected boolean d_()
-  {
-    return false;
-  }
-
   public final int e()
   {
     return this.b;
   }
 
-  public final Class<?> f()
+  protected boolean e_()
   {
     return this.g;
+  }
+
+  public final Class<?> f()
+  {
+    return this.h;
   }
 
   public final Context g()
@@ -122,7 +124,7 @@ public abstract class c
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.c
  * JD-Core Version:    0.6.2
  */

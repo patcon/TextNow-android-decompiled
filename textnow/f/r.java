@@ -1,94 +1,46 @@
 package textnow.f;
 
-import android.os.Build.VERSION;
+import android.os.Bundle;
+import java.util.ArrayList;
+import java.util.List;
 
-public final class r
+final class r extends s
 {
-  private static final u a = new w();
-  private final Object b;
-
-  static
+  public final Object a(final o paramo)
   {
-    if (Build.VERSION.SDK_INT >= 16)
+    return new v.1(new w()
     {
-      a = new v();
-      return;
-    }
-    if (Build.VERSION.SDK_INT >= 15)
-    {
-      a = new t();
-      return;
-    }
-    if (Build.VERSION.SDK_INT >= 14)
-    {
-      a = new s();
-      return;
-    }
-  }
-
-  private r(Object paramObject)
-  {
-    this.b = paramObject;
-  }
-
-  public static r a()
-  {
-    return new r(a.a());
-  }
-
-  public final void a(int paramInt)
-  {
-    a.b(this.b, paramInt);
-  }
-
-  public final void a(boolean paramBoolean)
-  {
-    a.a(this.b, paramBoolean);
-  }
-
-  public final void b(int paramInt)
-  {
-    a.a(this.b, paramInt);
-  }
-
-  public final void c(int paramInt)
-  {
-    a.c(this.b, paramInt);
-  }
-
-  public final boolean equals(Object paramObject)
-  {
-    if (this == paramObject);
-    r localr;
-    do
-    {
-      do
+      public final Object a(int paramAnonymousInt)
       {
-        return true;
-        if (paramObject == null)
-          return false;
-        if (getClass() != paramObject.getClass())
-          return false;
-        localr = (r)paramObject;
-        if (this.b != null)
-          break;
+        o.b();
+        return null;
       }
-      while (localr.b == null);
-      return false;
-    }
-    while (this.b.equals(localr.b));
-    return false;
-  }
 
-  public final int hashCode()
-  {
-    if (this.b == null)
-      return 0;
-    return this.b.hashCode();
+      public final List<Object> a(String paramAnonymousString, int paramAnonymousInt)
+      {
+        o.d();
+        ArrayList localArrayList = new ArrayList();
+        int i = null.size();
+        for (int j = 0; j < i; j++)
+          localArrayList.add(((e)null.get(j)).a());
+        return localArrayList;
+      }
+
+      public final boolean a(int paramAnonymousInt1, int paramAnonymousInt2, Bundle paramAnonymousBundle)
+      {
+        return o.c();
+      }
+
+      public final Object b(int paramAnonymousInt)
+      {
+        o.e();
+        return null;
+      }
+    });
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.f.r
  * JD-Core Version:    0.6.2
  */

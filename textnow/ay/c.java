@@ -1,35 +1,19 @@
 package textnow.ay;
 
-import android.app.Activity;
-import android.webkit.WebView;
-import java.util.Timer;
-import java.util.TimerTask;
+import android.os.Bundle;
 
-final class c extends TimerTask
+public abstract interface c
 {
-  String a;
+  public abstract void a();
 
-  public c(b paramb, String paramString)
-  {
-    this.a = paramString;
-  }
+  public abstract void a(Bundle paramBundle);
 
-  public final void run()
-  {
-    this.b.e.purge();
-    this.b.e.cancel();
-    this.b.e = null;
-    b.b(this.b).runOnUiThread(new Runnable()
-    {
-      public final void run()
-      {
-        b.c(c.this.b).loadUrl(c.this.a);
-      }
-    });
-  }
+  public abstract void a(a parama);
+
+  public abstract void a(d paramd);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.ay.c
  * JD-Core Version:    0.6.2
  */

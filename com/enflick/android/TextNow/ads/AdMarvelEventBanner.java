@@ -12,19 +12,25 @@ import com.mopub.mobileads.CustomEventBanner.CustomEventBannerListener;
 import com.mopub.mobileads.MoPubErrorCode;
 import java.util.HashMap;
 import java.util.Map;
-import textnow.u.r;
+import textnow.z.u;
 
 public class AdMarvelEventBanner extends CustomEventBanner
-  implements AdMarvelView.AdMarvelViewListener
+  implements AdMarvelView.AdMarvelViewListener, d
 {
   private static String a = "AdMarvelEventBanner";
   private AdMarvelView b;
   private CustomEventBanner.CustomEventBannerListener c;
 
+  public void invalidate()
+  {
+    if (this.b != null)
+      this.b.destroy();
+  }
+
   @SuppressLint({"NewApi"})
   protected void loadBanner(Context paramContext, CustomEventBanner.CustomEventBannerListener paramCustomEventBannerListener, Map<String, Object> paramMap, Map<String, String> paramMap1)
   {
-    this.c = paramCustomEventBannerListener;
+    this.c = new a(paramCustomEventBannerListener);
     if (!(paramContext instanceof Activity))
     {
       this.c.onBannerFailed(MoPubErrorCode.INTERNAL_ERROR);
@@ -33,14 +39,14 @@ public class AdMarvelEventBanner extends CustomEventBanner
     this.b = new AdMarvelView(paramContext);
     this.b.setLayoutParams(new ViewGroup.LayoutParams(-2, -2));
     this.b.setListener(this);
-    r localr = new r(paramContext);
+    u localu = new u(paramContext);
     HashMap localHashMap = new HashMap();
-    localHashMap.put("AGE", Integer.valueOf(localr.q()));
-    if (localr.s() == 1);
+    localHashMap.put("AGE", Integer.valueOf(localu.o()));
+    if (localu.q() == 1);
     for (String str = "m"; ; str = "f")
     {
       localHashMap.put("GENDER", str);
-      localHashMap.put("AREA_CODE", localr.d());
+      localHashMap.put("AREA_CODE", localu.d());
       this.b.requestNewAd(localHashMap, "afd0c07c7875b2ac", "77435");
       return;
     }
@@ -70,7 +76,6 @@ public class AdMarvelEventBanner extends CustomEventBanner
   protected void onInvalidate()
   {
     this.b.setListener(null);
-    this.b.destroy();
   }
 
   public void onReceiveAd(AdMarvelView paramAdMarvelView)
@@ -83,7 +88,7 @@ public class AdMarvelEventBanner extends CustomEventBanner
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.ads.AdMarvelEventBanner
  * JD-Core Version:    0.6.2
  */

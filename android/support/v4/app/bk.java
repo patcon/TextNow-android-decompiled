@@ -1,77 +1,145 @@
 package android.support.v4.app;
 
 import android.app.Notification;
+import android.app.Notification.BigPictureStyle;
+import android.app.Notification.BigTextStyle;
 import android.app.Notification.Builder;
-import android.app.PendingIntent;
-import android.content.Context;
+import android.app.Notification.InboxStyle;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.widget.RemoteViews;
+import android.os.Parcelable;
+import android.util.SparseArray;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
-public final class bk
-  implements ap, aq
+final class bk
 {
-  private Notification.Builder a;
+  private static final Object a = new Object();
+  private static Field b;
+  private static boolean c;
+  private static final Object d = new Object();
 
-  public bk(Context paramContext, Notification paramNotification1, CharSequence paramCharSequence1, CharSequence paramCharSequence2, CharSequence paramCharSequence3, RemoteViews paramRemoteViews, int paramInt1, PendingIntent paramPendingIntent1, PendingIntent paramPendingIntent2, Bitmap paramBitmap, int paramInt2, int paramInt3, boolean paramBoolean1, boolean paramBoolean2, boolean paramBoolean3, int paramInt4, CharSequence paramCharSequence4, boolean paramBoolean4, String paramString1, ArrayList<String> paramArrayList, Bundle paramBundle, int paramInt5, int paramInt6, Notification paramNotification2, String paramString2, boolean paramBoolean5, String paramString3)
+  public static Bundle a(Notification.Builder paramBuilder, bi parambi)
   {
-    Notification.Builder localBuilder1 = new Notification.Builder(paramContext).setWhen(paramNotification1.when).setShowWhen(paramBoolean2).setSmallIcon(paramNotification1.icon, paramNotification1.iconLevel).setContent(paramNotification1.contentView).setTicker(paramNotification1.tickerText, paramRemoteViews).setSound(paramNotification1.sound, paramNotification1.audioStreamType).setVibrate(paramNotification1.vibrate).setLights(paramNotification1.ledARGB, paramNotification1.ledOnMS, paramNotification1.ledOffMS);
-    boolean bool1;
-    boolean bool2;
-    label120: boolean bool3;
-    label142: Notification.Builder localBuilder4;
-    if ((0x2 & paramNotification1.flags) != 0)
+    paramBuilder.addAction(parambi.a(), parambi.b(), parambi.c());
+    Bundle localBundle = new Bundle(parambi.d());
+    if (parambi.e() != null)
+      localBundle.putParcelableArray("android.support.remoteInputs", cj.a(parambi.e()));
+    return localBundle;
+  }
+
+  public static Bundle a(Notification paramNotification)
+  {
+    synchronized (a)
     {
-      bool1 = true;
-      Notification.Builder localBuilder2 = localBuilder1.setOngoing(bool1);
-      if ((0x8 & paramNotification1.flags) == 0)
-        break label338;
-      bool2 = true;
-      Notification.Builder localBuilder3 = localBuilder2.setOnlyAlertOnce(bool2);
-      if ((0x10 & paramNotification1.flags) == 0)
-        break label344;
-      bool3 = true;
-      localBuilder4 = localBuilder3.setAutoCancel(bool3).setDefaults(paramNotification1.defaults).setContentTitle(paramCharSequence1).setContentText(paramCharSequence2).setSubText(paramCharSequence4).setContentInfo(paramCharSequence3).setContentIntent(paramPendingIntent1).setDeleteIntent(paramNotification1.deleteIntent);
-      if ((0x80 & paramNotification1.flags) == 0)
-        break label350;
+      if (c)
+        return null;
     }
-    label338: label344: label350: for (boolean bool4 = true; ; bool4 = false)
+    try
     {
-      this.a = localBuilder4.setFullScreenIntent(paramPendingIntent2, bool4).setLargeIcon(paramBitmap).setNumber(paramInt1).setUsesChronometer(paramBoolean3).setPriority(paramInt4).setProgress(paramInt2, paramInt3, paramBoolean1).setLocalOnly(paramBoolean4).setExtras(paramBundle).setGroup(paramString2).setGroupSummary(paramBoolean5).setSortKey(paramString3).setCategory(paramString1).setColor(paramInt5).setVisibility(paramInt6).setPublicVersion(paramNotification2);
-      Iterator localIterator = paramArrayList.iterator();
-      while (localIterator.hasNext())
+      if (b == null)
       {
-        String str = (String)localIterator.next();
-        this.a.addPerson(str);
+        Field localField = Notification.class.getDeclaredField("extras");
+        if (!Bundle.class.isAssignableFrom(localField.getType()))
+        {
+          c = true;
+          return null;
+        }
+        localField.setAccessible(true);
+        b = localField;
       }
-      bool1 = false;
-      break;
-      bool2 = false;
-      break label120;
-      bool3 = false;
-      break label142;
+      Bundle localBundle = (Bundle)b.get(paramNotification);
+      if (localBundle == null)
+      {
+        localBundle = new Bundle();
+        b.set(paramNotification, localBundle);
+      }
+      return localBundle;
+      localObject2 = finally;
+      throw localObject2;
+    }
+    catch (NoSuchFieldException localNoSuchFieldException)
+    {
+      c = true;
+      return null;
+    }
+    catch (IllegalAccessException localIllegalAccessException)
+    {
+      label110: break label110;
     }
   }
 
-  public final Notification.Builder a()
+  public static SparseArray<Bundle> a(List<Bundle> paramList)
   {
-    return this.a;
+    SparseArray localSparseArray = null;
+    int i = paramList.size();
+    for (int j = 0; j < i; j++)
+    {
+      Bundle localBundle = (Bundle)paramList.get(j);
+      if (localBundle != null)
+      {
+        if (localSparseArray == null)
+          localSparseArray = new SparseArray();
+        localSparseArray.put(j, localBundle);
+      }
+    }
+    return localSparseArray;
   }
 
-  public final void a(bm parambm)
+  public static ArrayList<Parcelable> a(bi[] paramArrayOfbi)
   {
-    bh.a(this.a, parambm);
+    Object localObject;
+    if (paramArrayOfbi == null)
+      localObject = null;
+    while (true)
+    {
+      return localObject;
+      localObject = new ArrayList(paramArrayOfbi.length);
+      int i = paramArrayOfbi.length;
+      for (int j = 0; j < i; j++)
+      {
+        bi localbi = paramArrayOfbi[j];
+        Bundle localBundle = new Bundle();
+        localBundle.putInt("icon", localbi.a());
+        localBundle.putCharSequence("title", localbi.b());
+        localBundle.putParcelable("actionIntent", localbi.c());
+        localBundle.putBundle("extras", localbi.d());
+        localBundle.putParcelableArray("remoteInputs", cj.a(localbi.e()));
+        ((ArrayList)localObject).add(localBundle);
+      }
+    }
   }
 
-  public final Notification b()
+  public static void a(aj paramaj, CharSequence paramCharSequence1, boolean paramBoolean1, CharSequence paramCharSequence2, Bitmap paramBitmap1, Bitmap paramBitmap2, boolean paramBoolean2)
   {
-    return this.a.build();
+    Notification.BigPictureStyle localBigPictureStyle = new Notification.BigPictureStyle(paramaj.a()).setBigContentTitle(paramCharSequence1).bigPicture(paramBitmap1);
+    if (paramBoolean2)
+      localBigPictureStyle.bigLargeIcon(paramBitmap2);
+    if (paramBoolean1)
+      localBigPictureStyle.setSummaryText(paramCharSequence2);
+  }
+
+  public static void a(aj paramaj, CharSequence paramCharSequence1, boolean paramBoolean, CharSequence paramCharSequence2, CharSequence paramCharSequence3)
+  {
+    Notification.BigTextStyle localBigTextStyle = new Notification.BigTextStyle(paramaj.a()).setBigContentTitle(paramCharSequence1).bigText(paramCharSequence3);
+    if (paramBoolean)
+      localBigTextStyle.setSummaryText(paramCharSequence2);
+  }
+
+  public static void a(aj paramaj, CharSequence paramCharSequence1, boolean paramBoolean, CharSequence paramCharSequence2, ArrayList<CharSequence> paramArrayList)
+  {
+    Notification.InboxStyle localInboxStyle = new Notification.InboxStyle(paramaj.a()).setBigContentTitle(paramCharSequence1);
+    if (paramBoolean)
+      localInboxStyle.setSummaryText(paramCharSequence2);
+    Iterator localIterator = paramArrayList.iterator();
+    while (localIterator.hasNext())
+      localInboxStyle.addLine((CharSequence)localIterator.next());
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.app.bk
  * JD-Core Version:    0.6.2
  */

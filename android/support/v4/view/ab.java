@@ -1,58 +1,43 @@
 package android.support.v4.view;
 
-import android.os.Build.VERSION;
-import android.view.MotionEvent;
+import android.view.MenuItem;
+import android.view.View;
 
-public final class ab
+class ab
+  implements ad
 {
-  static final ae a = new ac();
-
-  static
+  public final MenuItem a(MenuItem paramMenuItem, View paramView)
   {
-    if (Build.VERSION.SDK_INT >= 5)
-    {
-      a = new ad();
-      return;
-    }
+    return paramMenuItem.setActionView(paramView);
   }
 
-  public static int a(MotionEvent paramMotionEvent)
+  public final View a(MenuItem paramMenuItem)
   {
-    return 0xFF & paramMotionEvent.getAction();
+    return paramMenuItem.getActionView();
   }
 
-  public static int a(MotionEvent paramMotionEvent, int paramInt)
+  public final void a(MenuItem paramMenuItem, int paramInt)
   {
-    return a.a(paramMotionEvent, paramInt);
+    paramMenuItem.setShowAsAction(paramInt);
   }
 
-  public static int b(MotionEvent paramMotionEvent)
+  public final MenuItem b(MenuItem paramMenuItem, int paramInt)
   {
-    return (0xFF00 & paramMotionEvent.getAction()) >> 8;
+    return paramMenuItem.setActionView(paramInt);
   }
 
-  public static int b(MotionEvent paramMotionEvent, int paramInt)
+  public boolean b(MenuItem paramMenuItem)
   {
-    return a.b(paramMotionEvent, paramInt);
+    return false;
   }
 
-  public static float c(MotionEvent paramMotionEvent, int paramInt)
+  public boolean c(MenuItem paramMenuItem)
   {
-    return a.c(paramMotionEvent, paramInt);
-  }
-
-  public static int c(MotionEvent paramMotionEvent)
-  {
-    return a.a(paramMotionEvent);
-  }
-
-  public static float d(MotionEvent paramMotionEvent, int paramInt)
-  {
-    return a.d(paramMotionEvent, paramInt);
+    return false;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.view.ab
  * JD-Core Version:    0.6.2
  */

@@ -3,8 +3,8 @@ package com.enflick.android.TextNow.tasks;
 import android.text.TextUtils;
 import com.enflick.android.TextNow.api.EsnUserNameGet;
 import com.enflick.android.TextNow.api.responsemodel.EsnUserName;
-import textnow.s.i;
-import textnow.u.r;
+import textnow.x.i;
+import textnow.z.u;
 
 public class GetEsnUserNameTask extends c
 {
@@ -17,7 +17,7 @@ public class GetEsnUserNameTask extends c
 
   public void run()
   {
-    r localr = new r(this.a);
+    u localu = new u(this.a);
     com.enflick.android.TextNow.api.c localc = new com.enflick.android.TextNow.api.c(this.d);
     i locali = new EsnUserNameGet(this.a).runSync(localc);
     if (a(locali));
@@ -28,12 +28,12 @@ public class GetEsnUserNameTask extends c
       localEsnUserName = (EsnUserName)locali.c();
     }
     while ((localEsnUserName == null) || (TextUtils.isEmpty(localEsnUserName.username)));
-    localr.a(localEsnUserName.username);
-    localr.n();
+    localu.a(localEsnUserName.username);
+    localu.B();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.GetEsnUserNameTask
  * JD-Core Version:    0.6.2
  */

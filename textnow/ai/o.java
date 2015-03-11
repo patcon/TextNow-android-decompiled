@@ -1,48 +1,49 @@
 package textnow.ai;
 
-import java.util.ConcurrentModificationException;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
+import java.lang.reflect.Type;
+import java.lang.reflect.TypeVariable;
+import textnow.af.f;
+import textnow.af.y;
+import textnow.ak.c;
 
-abstract class o<T>
-  implements Iterator<T>
+final class o<T> extends y<T>
 {
-  p<K, V> b = this.e.c.d;
-  p<K, V> c = null;
-  int d = this.e.e;
+  private final f a;
+  private final y<T> b;
+  private final Type c;
 
-  private o(j paramj)
+  o(f paramf, y<T> paramy, Type paramType)
   {
+    this.a = paramf;
+    this.b = paramy;
+    this.c = paramType;
   }
 
-  final p<K, V> a()
+  public final T a(textnow.ak.a parama)
   {
-    p localp = this.b;
-    if (localp == this.e.c)
-      throw new NoSuchElementException();
-    if (this.e.e != this.d)
-      throw new ConcurrentModificationException();
-    this.b = localp.d;
-    this.c = localp;
-    return localp;
+    return this.b.a(parama);
   }
 
-  public final boolean hasNext()
+  public final void a(c paramc, T paramT)
   {
-    return this.b != this.e.c;
-  }
-
-  public final void remove()
-  {
-    if (this.c == null)
-      throw new IllegalStateException();
-    this.e.a(this.c, true);
-    this.c = null;
-    this.d = this.e.e;
+    y localy1 = this.b;
+    Object localObject = this.c;
+    if ((paramT != null) && ((localObject == Object.class) || ((localObject instanceof TypeVariable)) || ((localObject instanceof Class))))
+      localObject = paramT.getClass();
+    if (localObject != this.c)
+    {
+      localy2 = this.a.a(textnow.aj.a.a((Type)localObject));
+      if ((!(localy2 instanceof k)) || ((this.b instanceof k)));
+    }
+    for (y localy2 = this.b; ; localy2 = localy1)
+    {
+      localy2.a(paramc, paramT);
+      return;
+    }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.ai.o
  * JD-Core Version:    0.6.2
  */

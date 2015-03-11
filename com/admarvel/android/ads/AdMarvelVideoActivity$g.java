@@ -1,22 +1,35 @@
 package com.admarvel.android.ads;
 
-import java.util.ArrayList;
-import java.util.List;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 
-class AdMarvelVideoActivity$g
+class AdMarvelVideoActivity$g extends BroadcastReceiver
 {
-  public int a;
-  public List<String> b = new ArrayList();
-
-  public AdMarvelVideoActivity$g(int paramInt, List<String> paramList)
+  AdMarvelVideoActivity$g(AdMarvelVideoActivity paramAdMarvelVideoActivity)
   {
-    this.a = paramList;
-    Object localObject;
-    this.b = localObject;
+  }
+
+  public void onReceive(Context paramContext, Intent paramIntent)
+  {
+    if (paramIntent.getAction().equals("android.intent.action.SCREEN_OFF"))
+    {
+      if ((AdMarvelVideoActivity.r(this.a)) && (this.a.i == AdMarvelVideoActivity.j.g) && (AdMarvelVideoActivity.a(this.a) != null))
+      {
+        this.a.i = AdMarvelVideoActivity.j.b;
+        AdMarvelVideoActivity.d(this.a, false);
+      }
+      if ((AdMarvelVideoActivity.s(this.a)) && (this.a.i == AdMarvelVideoActivity.j.g) && (AdMarvelVideoActivity.a(this.a) != null))
+      {
+        AdMarvelVideoActivity.a(this.a).pause();
+        this.a.i = AdMarvelVideoActivity.j.c;
+        AdMarvelVideoActivity.e(this.a, false);
+      }
+    }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.AdMarvelVideoActivity.g
  * JD-Core Version:    0.6.2
  */

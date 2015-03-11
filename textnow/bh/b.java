@@ -1,100 +1,162 @@
 package textnow.bh;
 
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
-import android.os.AsyncTask;
-import android.os.Environment;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.UUID;
-import textnow.bf.a;
+import java.util.ArrayList;
+import java.util.List;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
 
-public final class b extends AsyncTask<String, Integer, Boolean>
+final class b extends DefaultHandler
 {
-  private Context a;
-  private a b;
-  private String c;
-  private String d;
-  private String e;
-  private ProgressDialog f;
+  c a = c.l;
+  boolean b = false;
+  List<e> c = new ArrayList();
+  String d;
+  List<d> e = new ArrayList();
+  d f;
+  boolean g;
+  String h;
+  int i;
+  StringBuilder j = new StringBuilder();
 
-  public b(Context paramContext, String paramString, a parama)
+  private b(a parama)
   {
-    this.a = paramContext;
-    this.c = paramString;
-    this.d = (UUID.randomUUID() + ".apk");
-    this.e = (Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download");
-    this.b = parama;
   }
 
-  private Boolean b()
+  private static c a(String paramString)
   {
-    URLConnection localURLConnection;
-    int i;
-    File localFile1;
     try
     {
-      localURLConnection = new URL(this.c + "&type=apk").openConnection();
-      localURLConnection.setRequestProperty("connection", "close");
-      localURLConnection.connect();
-      i = localURLConnection.getContentLength();
-      localFile1 = new File(this.e);
-      if ((!localFile1.mkdirs()) && (!localFile1.exists()))
-        throw new IOException("Could not create the dir(s):" + localFile1.getAbsolutePath());
+      c localc = c.valueOf(paramString);
+      return localc;
     }
     catch (Exception localException)
     {
-      localException.printStackTrace();
-      return Boolean.valueOf(false);
     }
-    File localFile2 = new File(localFile1, this.d);
-    BufferedInputStream localBufferedInputStream = new BufferedInputStream(localURLConnection.getInputStream());
-    FileOutputStream localFileOutputStream = new FileOutputStream(localFile2);
-    byte[] arrayOfByte = new byte[1024];
-    long l = 0L;
+    return c.l;
+  }
+
+  public final void characters(char[] paramArrayOfChar, int paramInt1, int paramInt2)
+  {
+    this.j.append(paramArrayOfChar, paramInt1, paramInt2);
+  }
+
+  public final void endElement(String paramString1, String paramString2, String paramString3)
+  {
+    int m = 1;
+    if (a(paramString2) == c.d)
+      this.b = false;
     while (true)
     {
-      int j = localBufferedInputStream.read(arrayOfByte);
-      if (j == -1)
-        break;
-      l += j;
-      Integer[] arrayOfInteger = new Integer[1];
-      arrayOfInteger[0] = Integer.valueOf((int)(100L * l / i));
-      publishProgress(arrayOfInteger);
-      localFileOutputStream.write(arrayOfByte, 0, j);
+      this.j.setLength(0);
+      return;
+      String str1 = this.j.toString().trim();
+      if (str1.length() > 0)
+        if (this.b)
+        {
+          if (this.a == c.f)
+          {
+            ((e)this.c.get(-1 + this.c.size())).b = str1;
+          }
+          else if (this.a == c.g)
+          {
+            this.d = str1;
+          }
+          else if (this.a == c.h)
+          {
+            this.c.add(new e("click", str1));
+          }
+          else
+          {
+            if (this.a == c.i)
+            {
+              String str2 = this.f.d;
+              int n;
+              if (str2.equalsIgnoreCase("video/3gp"))
+                n = m;
+              while (true)
+              {
+                if (n != 0)
+                {
+                  if (str1.toLowerCase().endsWith(".flv"))
+                    m = 0;
+                  if (m != 0)
+                  {
+                    this.f.c = str1;
+                    this.e.add(this.f);
+                  }
+                }
+                this.f = null;
+                break;
+                if (str2.equalsIgnoreCase("video/3gpp"))
+                  n = m;
+                else if (str2.equalsIgnoreCase("video/mp4"))
+                  n = m;
+                else
+                  n = 0;
+              }
+            }
+            if (this.a == c.e)
+            {
+              String[] arrayOfString = str1.split(":");
+              this.i = 0;
+              this.i += Math.round(1000.0F * (60.0F * (60.0F * Float.parseFloat(arrayOfString[0]))));
+              this.i += Math.round(1000.0F * (60.0F * Float.parseFloat(arrayOfString[m])));
+              this.i += Math.round(1000.0F * Float.parseFloat(arrayOfString[2]));
+            }
+          }
+        }
+        else if (this.a == c.c)
+          this.c.add(new e("impression", str1));
+        else if (this.a == c.k)
+          this.h = str1;
     }
-    localFileOutputStream.flush();
-    localFileOutputStream.close();
-    localBufferedInputStream.close();
-    if (l > 0L);
-    for (boolean bool = true; ; bool = false)
+  }
+
+  public final void startElement(String paramString1, String paramString2, String paramString3, Attributes paramAttributes)
+  {
+    this.a = a(paramString2);
+    if (this.a == c.a)
     {
-      Boolean localBoolean = Boolean.valueOf(bool);
-      return localBoolean;
+      float f1 = Float.parseFloat(paramAttributes.getValue("version").split("\\.")[0]);
+      if ((f1 < 2.0D) || (f1 >= 3.0D))
+        throw new SAXException("Invalid VAST Version: " + paramAttributes.getValue("version"));
     }
-  }
-
-  public final void a()
-  {
-    this.a = null;
-    this.f = null;
-  }
-
-  public final void a(Context paramContext)
-  {
-    this.a = paramContext;
+    else
+    {
+      if (this.a != c.d)
+        break label110;
+      this.b = true;
+    }
+    label110: 
+    do
+    {
+      do
+      {
+        return;
+        if (this.a == c.j)
+        {
+          this.g = true;
+          return;
+        }
+      }
+      while (!this.b);
+      if (this.a == c.f)
+      {
+        this.c.add(new e(paramAttributes.getValue("event")));
+        return;
+      }
+    }
+    while (this.a != c.i);
+    this.f = new d(this.k);
+    this.f.a = Integer.parseInt(paramAttributes.getValue("width"));
+    this.f.b = Integer.parseInt(paramAttributes.getValue("height"));
+    this.f.e = Integer.parseInt(paramAttributes.getValue("bitrate"));
+    this.f.d = paramAttributes.getValue("type");
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.bh.b
  * JD-Core Version:    0.6.2
  */

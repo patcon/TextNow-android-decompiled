@@ -1,121 +1,47 @@
 package com.google.android.gms.internal;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.os.IBinder;
-import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-public class cr
+@ez
+public final class cr
 {
-  private final Context mContext;
-  private Object oV;
-
-  public cr(Context paramContext)
+  public static List<String> a(JSONObject paramJSONObject, String paramString)
   {
-    this.mContext = paramContext;
-  }
-
-  public int a(String paramString1, String paramString2)
-  {
-    try
+    JSONArray localJSONArray = paramJSONObject.optJSONArray(paramString);
+    if (localJSONArray != null)
     {
-      Class localClass = this.mContext.getClassLoader().loadClass("com.android.vending.billing.IInAppBillingService");
-      Class[] arrayOfClass = new Class[3];
-      arrayOfClass[0] = Integer.TYPE;
-      arrayOfClass[1] = String.class;
-      arrayOfClass[2] = String.class;
-      Method localMethod = localClass.getDeclaredMethod("consumePurchase", arrayOfClass);
-      Object localObject = localClass.cast(this.oV);
-      Object[] arrayOfObject = new Object[3];
-      arrayOfObject[0] = Integer.valueOf(3);
-      arrayOfObject[1] = paramString1;
-      arrayOfObject[2] = paramString2;
-      int i = ((Integer)localMethod.invoke(localObject, arrayOfObject)).intValue();
-      return i;
-    }
-    catch (Exception localException)
-    {
-      eu.c("IInAppBillingService is not available, please add com.android.vending.billing.IInAppBillingService to project.", localException);
-    }
-    return 5;
-  }
-
-  public Bundle a(String paramString1, String paramString2, String paramString3)
-  {
-    try
-    {
-      Class localClass = this.mContext.getClassLoader().loadClass("com.android.vending.billing.IInAppBillingService");
-      Class[] arrayOfClass = new Class[5];
-      arrayOfClass[0] = Integer.TYPE;
-      arrayOfClass[1] = String.class;
-      arrayOfClass[2] = String.class;
-      arrayOfClass[3] = String.class;
-      arrayOfClass[4] = String.class;
-      Method localMethod = localClass.getDeclaredMethod("getBuyIntent", arrayOfClass);
-      Object localObject = localClass.cast(this.oV);
-      Object[] arrayOfObject = new Object[5];
-      arrayOfObject[0] = Integer.valueOf(3);
-      arrayOfObject[1] = paramString1;
-      arrayOfObject[2] = paramString2;
-      arrayOfObject[3] = "inapp";
-      arrayOfObject[4] = paramString3;
-      Bundle localBundle = (Bundle)localMethod.invoke(localObject, arrayOfObject);
-      return localBundle;
-    }
-    catch (Exception localException)
-    {
-      eu.c("IInAppBillingService is not available, please add com.android.vending.billing.IInAppBillingService to project.", localException);
+      ArrayList localArrayList = new ArrayList(localJSONArray.length());
+      for (int i = 0; i < localJSONArray.length(); i++)
+        localArrayList.add(localJSONArray.getString(i));
+      return Collections.unmodifiableList(localArrayList);
     }
     return null;
   }
 
-  public Bundle b(String paramString1, String paramString2)
+  public static void a(Context paramContext, String paramString1, fz paramfz, String paramString2, boolean paramBoolean, List<String> paramList)
   {
-    try
+    if (paramBoolean);
+    for (String str1 = "1"; ; str1 = "0")
     {
-      Class localClass = this.mContext.getClassLoader().loadClass("com.android.vending.billing.IInAppBillingService");
-      Class[] arrayOfClass = new Class[4];
-      arrayOfClass[0] = Integer.TYPE;
-      arrayOfClass[1] = String.class;
-      arrayOfClass[2] = String.class;
-      arrayOfClass[3] = String.class;
-      Method localMethod = localClass.getDeclaredMethod("getPurchases", arrayOfClass);
-      Object localObject = localClass.cast(this.oV);
-      Object[] arrayOfObject = new Object[4];
-      arrayOfObject[0] = Integer.valueOf(3);
-      arrayOfObject[1] = paramString1;
-      arrayOfObject[2] = "inapp";
-      arrayOfObject[3] = paramString2;
-      Bundle localBundle = (Bundle)localMethod.invoke(localObject, arrayOfObject);
-      return localBundle;
-    }
-    catch (Exception localException)
-    {
-      eu.c("IInAppBillingService is not available, please add com.android.vending.billing.IInAppBillingService to project.", localException);
-    }
-    return null;
-  }
-
-  public void destroy()
-  {
-    this.oV = null;
-  }
-
-  public void o(IBinder paramIBinder)
-  {
-    try
-    {
-      this.oV = this.mContext.getClassLoader().loadClass("com.android.vending.billing.IInAppBillingService$Stub").getDeclaredMethod("asInterface", new Class[] { IBinder.class }).invoke(null, new Object[] { paramIBinder });
-      return;
-    }
-    catch (Exception localException)
-    {
-      eu.D("IInAppBillingService is not available, please add com.android.vending.billing.IInAppBillingService to project.");
+      Iterator localIterator = paramList.iterator();
+      while (localIterator.hasNext())
+      {
+        String str2 = ((String)localIterator.next()).replaceAll("@gw_adlocid@", paramString2).replaceAll("@gw_adnetrefresh@", str1).replaceAll("@gw_qdata@", paramfz.vq.qi).replaceAll("@gw_sdkver@", paramString1).replaceAll("@gw_sessid@", gb.vK).replaceAll("@gw_seqnum@", paramfz.tA);
+        if (paramfz.qy != null)
+          str2 = str2.replaceAll("@gw_adnetid@", paramfz.qy.pX).replaceAll("@gw_allocid@", paramfz.qy.pZ);
+        new gq(paramContext, paramString1, str2).start();
+      }
     }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.cr
  * JD-Core Version:    0.6.2
  */

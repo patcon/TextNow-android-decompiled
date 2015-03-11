@@ -1,84 +1,29 @@
 package android.support.v7.internal.view.menu;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import java.util.ArrayList;
+import android.os.Build.VERSION;
+import android.view.Menu;
+import android.view.MenuItem;
 
-final class z extends BaseAdapter
+public final class z
 {
-  private n b;
-  private int c = -1;
-
-  public z(y paramy, n paramn)
+  public static Menu a(Menu paramMenu)
   {
-    this.b = paramn;
-    a();
+    if (Build.VERSION.SDK_INT >= 14)
+      paramMenu = new aa(paramMenu);
+    return paramMenu;
   }
 
-  private void a()
+  public static MenuItem a(MenuItem paramMenuItem)
   {
-    r localr = y.c(this.a).s();
-    if (localr != null)
-    {
-      ArrayList localArrayList = y.c(this.a).m();
-      int i = localArrayList.size();
-      for (int j = 0; j < i; j++)
-        if ((r)localArrayList.get(j) == localr)
-        {
-          this.c = j;
-          return;
-        }
-    }
-    this.c = -1;
-  }
-
-  public final r a(int paramInt)
-  {
-    if (y.a(this.a));
-    for (ArrayList localArrayList = this.b.m(); ; localArrayList = this.b.j())
-    {
-      if ((this.c >= 0) && (paramInt >= this.c))
-        paramInt++;
-      return (r)localArrayList.get(paramInt);
-    }
-  }
-
-  public final int getCount()
-  {
-    if (y.a(this.a));
-    for (ArrayList localArrayList = this.b.m(); this.c < 0; localArrayList = this.b.j())
-      return localArrayList.size();
-    return -1 + localArrayList.size();
-  }
-
-  public final long getItemId(int paramInt)
-  {
-    return paramInt;
-  }
-
-  public final View getView(int paramInt, View paramView, ViewGroup paramViewGroup)
-  {
-    if (paramView == null);
-    for (View localView = y.b(this.a).inflate(y.b, paramViewGroup, false); ; localView = paramView)
-    {
-      ad localad = (ad)localView;
-      if (this.a.c)
-        ((ListMenuItemView)localView).a(true);
-      localad.a(a(paramInt), 0);
-      return localView;
-    }
-  }
-
-  public final void notifyDataSetChanged()
-  {
-    a();
-    super.notifyDataSetChanged();
+    if (Build.VERSION.SDK_INT >= 16)
+      paramMenuItem = new r(paramMenuItem);
+    while (Build.VERSION.SDK_INT < 14)
+      return paramMenuItem;
+    return new n(paramMenuItem);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v7.internal.view.menu.z
  * JD-Core Version:    0.6.2
  */

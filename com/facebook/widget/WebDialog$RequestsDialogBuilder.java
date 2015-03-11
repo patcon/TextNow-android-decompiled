@@ -12,6 +12,11 @@ public class WebDialog$RequestsDialogBuilder extends WebDialog.BuilderBase<Reque
   private static final String TITLE_PARAM = "title";
   private static final String TO_PARAM = "to";
 
+  public WebDialog$RequestsDialogBuilder(Context paramContext)
+  {
+    super(paramContext, "apprequests");
+  }
+
   public WebDialog$RequestsDialogBuilder(Context paramContext, Session paramSession)
   {
     super(paramContext, paramSession, "apprequests", null);
@@ -20,6 +25,11 @@ public class WebDialog$RequestsDialogBuilder extends WebDialog.BuilderBase<Reque
   public WebDialog$RequestsDialogBuilder(Context paramContext, Session paramSession, Bundle paramBundle)
   {
     super(paramContext, paramSession, "apprequests", paramBundle);
+  }
+
+  public WebDialog$RequestsDialogBuilder(Context paramContext, String paramString, Bundle paramBundle)
+  {
+    super(paramContext, paramString, "apprequests", paramBundle);
   }
 
   public RequestsDialogBuilder setData(String paramString)
@@ -47,7 +57,7 @@ public class WebDialog$RequestsDialogBuilder extends WebDialog.BuilderBase<Reque
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.widget.WebDialog.RequestsDialogBuilder
  * JD-Core Version:    0.6.2
  */

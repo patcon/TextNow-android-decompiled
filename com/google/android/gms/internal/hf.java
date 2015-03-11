@@ -1,48 +1,70 @@
 package com.google.android.gms.internal;
 
-import android.util.Log;
+import android.accounts.Account;
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import com.google.android.gms.common.internal.safeparcel.a;
+import com.google.android.gms.common.internal.safeparcel.a.a;
+import com.google.android.gms.common.internal.safeparcel.b;
 
-public final class hf
+public class hf
+  implements Parcelable.Creator<he>
 {
-  private final String GI;
-
-  public hf(String paramString)
+  static void a(he paramhe, Parcel paramParcel, int paramInt)
   {
-    this.GI = ((String)hm.f(paramString));
+    int i = b.D(paramParcel);
+    b.a(paramParcel, 1, paramhe.BS, paramInt, false);
+    b.c(paramParcel, 1000, paramhe.BR);
+    b.a(paramParcel, 2, paramhe.BT, false);
+    b.a(paramParcel, 3, paramhe.BU);
+    b.a(paramParcel, 4, paramhe.account, paramInt, false);
+    b.H(paramParcel, i);
   }
 
-  public final void a(String paramString1, String paramString2, Throwable paramThrowable)
+  public he[] I(int paramInt)
   {
-    ap(4);
+    return new he[paramInt];
   }
 
-  public final boolean ap(int paramInt)
+  public he l(Parcel paramParcel)
   {
-    return Log.isLoggable(this.GI, paramInt);
-  }
-
-  public final void b(String paramString1, String paramString2, Throwable paramThrowable)
-  {
-    ap(6);
-  }
-
-  public final void i(String paramString1, String paramString2)
-  {
-    ap(2);
-  }
-
-  public final void j(String paramString1, String paramString2)
-  {
-    ap(5);
-  }
-
-  public final void k(String paramString1, String paramString2)
-  {
-    ap(6);
+    boolean bool = false;
+    Account localAccount = null;
+    int i = a.C(paramParcel);
+    String str = null;
+    hi[] arrayOfhi = null;
+    int j = 0;
+    while (paramParcel.dataPosition() < i)
+    {
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
+      {
+      default:
+        a.b(paramParcel, k);
+        break;
+      case 1:
+        arrayOfhi = (hi[])a.b(paramParcel, k, hi.CREATOR);
+        break;
+      case 1000:
+        j = a.g(paramParcel, k);
+        break;
+      case 2:
+        str = a.o(paramParcel, k);
+        break;
+      case 3:
+        bool = a.c(paramParcel, k);
+        break;
+      case 4:
+        localAccount = (Account)a.a(paramParcel, k, Account.CREATOR);
+      }
+    }
+    if (paramParcel.dataPosition() != i)
+      throw new a.a("Overread allowed size end=" + i, paramParcel);
+    return new he(j, arrayOfhi, str, bool, localAccount);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.hf
  * JD-Core Version:    0.6.2
  */

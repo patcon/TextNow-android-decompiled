@@ -5,8 +5,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import textnow.q.m;
-import textnow.u.r;
+import textnow.v.m;
+import textnow.z.u;
 
 public final class a
 {
@@ -15,7 +15,7 @@ public final class a
 
   static
   {
-    if (textnow.q.a.b)
+    if (textnow.v.a.b)
     {
       a = "1850573d55ae2117a54f3a758cac3c22d35ccf7cfd375aea33380165a21536ca";
       b = "TN_AMAZON";
@@ -25,12 +25,12 @@ public final class a
 
   public static String a(Context paramContext, Map<String, String> paramMap)
   {
-    r localr = new r(paramContext);
-    String str = localr.m();
+    u localu = new u(paramContext);
+    String str = localu.m();
     StringBuilder localStringBuilder = new StringBuilder();
     localStringBuilder.append("?client_type=").append(b);
-    if ((localr.l()) && (str != null))
-      localStringBuilder.append("&client_id=").append(new r(paramContext).m());
+    if ((localu.l()) && (str != null))
+      localStringBuilder.append("&client_id=").append(new u(paramContext).m());
     if (paramMap != null)
     {
       Iterator localIterator = paramMap.entrySet().iterator();
@@ -49,7 +49,7 @@ public final class a
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.api.common.a
  * JD-Core Version:    0.6.2
  */

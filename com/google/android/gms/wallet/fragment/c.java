@@ -12,23 +12,23 @@ public class c
 {
   static void a(WalletFragmentStyle paramWalletFragmentStyle, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
-    b.c(paramParcel, 1, paramWalletFragmentStyle.xM);
-    b.a(paramParcel, 2, paramWalletFragmentStyle.akE, false);
-    b.c(paramParcel, 3, paramWalletFragmentStyle.akF);
-    b.G(paramParcel, i);
+    int i = b.D(paramParcel);
+    b.c(paramParcel, 1, paramWalletFragmentStyle.BR);
+    b.a(paramParcel, 2, paramWalletFragmentStyle.auo, false);
+    b.c(paramParcel, 3, paramWalletFragmentStyle.aup);
+    b.H(paramParcel, i);
   }
 
-  public WalletFragmentStyle ci(Parcel paramParcel)
+  public WalletFragmentStyle dF(Parcel paramParcel)
   {
     int i = 0;
-    int j = a.B(paramParcel);
+    int j = a.C(paramParcel);
     Bundle localBundle = null;
     int k = 0;
     while (paramParcel.dataPosition() < j)
     {
-      int m = a.A(paramParcel);
-      switch (a.ar(m))
+      int m = a.B(paramParcel);
+      switch (a.aD(m))
       {
       default:
         a.b(paramParcel, m);
@@ -48,13 +48,13 @@ public class c
     return new WalletFragmentStyle(k, localBundle, i);
   }
 
-  public WalletFragmentStyle[] dP(int paramInt)
+  public WalletFragmentStyle[] fH(int paramInt)
   {
     return new WalletFragmentStyle[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.fragment.c
  * JD-Core Version:    0.6.2
  */

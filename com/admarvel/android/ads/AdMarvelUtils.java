@@ -9,8 +9,13 @@ import android.os.Handler;
 import android.util.DisplayMetrics;
 import com.admarvel.android.util.Logging;
 import com.admarvel.android.util.a;
+import com.admarvel.android.util.c;
+import com.admarvel.android.util.e;
+import com.admarvel.android.util.f;
+import com.admarvel.android.util.k;
 import java.lang.ref.WeakReference;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
 
 public class AdMarvelUtils
 {
@@ -32,12 +37,17 @@ public class AdMarvelUtils
 
   public static void appendParams(StringBuilder paramStringBuilder, String paramString1, String paramString2)
   {
-    ab.a(paramStringBuilder, paramString1, paramString2);
+    r.a(paramStringBuilder, paramString1, paramString2);
   }
 
   public static String captureTargetingParams(Map<String, Object> paramMap, String paramString)
   {
-    return ab.a(paramMap, paramString);
+    return r.a(paramMap, paramString);
+  }
+
+  public static boolean detectDeviceForWebViewCrash()
+  {
+    return r.c();
   }
 
   public static void disableLogDump()
@@ -62,7 +72,65 @@ public class AdMarvelUtils
 
   public static String encodeString(String paramString)
   {
-    return ab.c(paramString);
+    return r.d(paramString);
+  }
+
+  public static void forceCloseFullScreenAd(Activity paramActivity, AdMarvelActivity paramAdMarvelActivity, AdMarvelVideoActivity paramAdMarvelVideoActivity)
+  {
+    if (paramAdMarvelActivity != null)
+      paramAdMarvelActivity.finish();
+    if (paramAdMarvelVideoActivity != null)
+      paramAdMarvelVideoActivity.finish();
+    try
+    {
+      AdMarvelAdapterInstances.getInstance("ADMARVELGUID", "com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter").forceCloseFullScreenAd(paramActivity);
+      Logging.log("com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter: forceCloseFullScreenAd");
+      return;
+    }
+    catch (Exception localException)
+    {
+    }
+  }
+
+  public static AdMarvelUtils.AdMArvelErrorReason getAdMArvelErrorReason(int paramInt)
+  {
+    switch (paramInt)
+    {
+    default:
+      return null;
+    case 201:
+      return AdMarvelUtils.AdMArvelErrorReason.SITE_ID_OR_PARTNER_ID_NOT_PRESENT;
+    case 202:
+      return AdMarvelUtils.AdMArvelErrorReason.SITE_ID_AND_PARTNER_ID_DO_NOT_MATCH;
+    case 203:
+      return AdMarvelUtils.AdMArvelErrorReason.BOT_USER_AGENT_FOUND;
+    case 204:
+      return AdMarvelUtils.AdMArvelErrorReason.NO_BANNER_FOUND;
+    case 205:
+      return AdMarvelUtils.AdMArvelErrorReason.NO_AD_FOUND;
+    case 206:
+      return AdMarvelUtils.AdMArvelErrorReason.NO_USER_AGENT_FOUND;
+    case 207:
+      return AdMarvelUtils.AdMArvelErrorReason.SITE_ID_NOT_PRESENT;
+    case 208:
+      return AdMarvelUtils.AdMArvelErrorReason.PARTNER_ID_NOT_PRESENT;
+    case 301:
+      return AdMarvelUtils.AdMArvelErrorReason.NO_NETWORK_CONNECTIVITY;
+    case 302:
+      return AdMarvelUtils.AdMArvelErrorReason.NETWORK_CONNECTIVITY_DISRUPTED;
+    case 303:
+      return AdMarvelUtils.AdMArvelErrorReason.AD_REQUEST_XML_PARSING_EXCEPTION;
+    case 304:
+      return AdMarvelUtils.AdMArvelErrorReason.AD_REQUEST_IN_PROCESS_EXCEPTION;
+    case 305:
+      return AdMarvelUtils.AdMArvelErrorReason.AD_UNIT_NOT_ABLE_TO_RENDER;
+    case 306:
+      return AdMarvelUtils.AdMArvelErrorReason.AD_REQUEST_MISSING_XML_ELEMENTS;
+    case 307:
+      return AdMarvelUtils.AdMArvelErrorReason.AD_REQUEST_SDK_TYPE_UNSUPPORTED;
+    case 308:
+    }
+    return AdMarvelUtils.AdMArvelErrorReason.AD_UNIT_NOT_ABLE_TO_LOAD;
   }
 
   public static Map<String, String> getAdMarvelOptionalFlags()
@@ -73,7 +141,7 @@ public class AdMarvelUtils
   public static Integer getAdmarvelActivityOrientationInfo(Context paramContext)
   {
     if (AdmarvelActivityOrientationInfo != null);
-    switch (1.a[AdmarvelActivityOrientationInfo.ordinal()])
+    switch (2.a[AdmarvelActivityOrientationInfo.ordinal()])
     {
     default:
       return null;
@@ -87,37 +155,42 @@ public class AdMarvelUtils
       return Integer.valueOf(9);
     case 5:
     }
-    return ab.e(paramContext);
+    return r.e(paramContext);
   }
 
   public static int getAndroidSDKVersion()
   {
-    return ac.a();
+    return Version.getAndroidSDKVersion();
   }
 
   public static String getDeviceConnectivitiy(Context paramContext)
   {
-    return ab.a(paramContext);
+    return r.a(paramContext);
+  }
+
+  public static float getDeviceDensity(Context paramContext)
+  {
+    return r.i(paramContext);
   }
 
   public static int getDeviceHeight(Context paramContext)
   {
-    return ab.h(paramContext);
+    return r.h(paramContext);
   }
 
   public static int getDeviceWidth(Context paramContext)
   {
-    return ab.g(paramContext);
+    return r.g(paramContext);
   }
 
   public static int getErrorCode(AdMarvelUtils.ErrorReason paramErrorReason)
   {
-    return ab.a(paramErrorReason);
+    return r.a(paramErrorReason);
   }
 
   public static AdMarvelUtils.ErrorReason getErrorReason(int paramInt)
   {
-    return ab.a(paramInt);
+    return r.a(paramInt);
   }
 
   public static boolean getPreferenceValueBoolean(Context paramContext, String paramString1, String paramString2)
@@ -178,22 +251,83 @@ public class AdMarvelUtils
 
   public static String getSDKVersion()
   {
-    return "2.4.5";
+    return "2.4.7";
   }
 
   public static String getSDKVersionDate()
   {
-    return "2014-07-09";
+    return "2014-12-18";
+  }
+
+  public static int getScreenOrientation(Context paramContext)
+  {
+    return r.d(paramContext);
   }
 
   public static String getSupportedInterfaceOrientations(Activity paramActivity)
   {
-    return ab.a(paramActivity);
+    return r.a(paramActivity);
   }
 
   public static String getUserAgent(Context paramContext, Handler paramHandler)
   {
-    return new ab(paramContext, paramHandler).a();
+    return new r(paramContext).a();
+  }
+
+  public static void initialize(Activity paramActivity, Map<AdMarvelUtils.SDKAdNetwork, String> paramMap)
+  {
+    Logging.log("AdMarvelUtils - initialize");
+    try
+    {
+      AdMarvelAnalyticsAdapterInstances.getInstance("com.admarvel.android.admarvelmologiqadapter.AdMarvelMologiqAdapter", paramActivity).start();
+      label16: if ((Version.getAndroidSDKVersion() >= 11) && (AdMarvelView.a()))
+        AdMarvelUtils.a.a(paramActivity);
+      try
+      {
+        AdMarvelAdapterInstances.getInstance("ADMARVELGUID", "com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter").initialize(paramActivity, paramMap);
+        Logging.log("com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter: initialize");
+        try
+        {
+          label52: AdMarvelAdapterInstances.getInstance("ADMARVELGUID", "com.admarvel.android.admarvelinmobiadapter.AdMarvelInmobiAdapter").initialize(paramActivity, paramMap);
+          Logging.log("com.admarvel.android.admarvelinmobiadapter.AdMarvelInmobiAdapter: initialize");
+          try
+          {
+            label71: AdMarvelAdapterInstances.getInstance("ADMARVELGUID", "com.admarvel.android.admarvelheyzapadapter.AdMarvelHeyzapAdapter").initialize(paramActivity, paramMap);
+            Logging.log("com.admarvel.android.admarvelheyzapadapter.AdMarvelHeyzapAdapter: initialize");
+            label90: f.a().b().execute(new Runnable()
+            {
+              public final void run()
+              {
+                r.l(AdMarvelUtils.this);
+                if (Version.getAndroidSDKVersion() > 8)
+                  k.c(AdMarvelUtils.this);
+                r.o(AdMarvelUtils.this);
+              }
+            });
+            r.n(paramActivity);
+            if (!isLogDumpEnabled())
+              r.m(paramActivity);
+            return;
+          }
+          catch (Exception localException4)
+          {
+            break label90;
+          }
+        }
+        catch (Exception localException3)
+        {
+          break label71;
+        }
+      }
+      catch (Exception localException2)
+      {
+        break label52;
+      }
+    }
+    catch (Exception localException1)
+    {
+      break label16;
+    }
   }
 
   public static boolean isLogDumpEnabled()
@@ -208,7 +342,7 @@ public class AdMarvelUtils
 
   public static final boolean isNetworkAvailable(Context paramContext)
   {
-    return ab.f(paramContext);
+    return r.f(paramContext);
   }
 
   public static boolean isNotificationBarInFullScreenLaunchEnabled()
@@ -235,6 +369,7 @@ public class AdMarvelUtils
 
   public static void lockAdMarvelActivityOrientation(AdMarvelUtils.AdmarvelOrientationInfo paramAdmarvelOrientationInfo)
   {
+    Logging.log("AdMarvelUtils - lockAdMarvelActivityOrientation");
     AdmarvelActivityOrientationInfo = paramAdmarvelOrientationInfo;
   }
 
@@ -279,7 +414,7 @@ public class AdMarvelUtils
   {
     if (paramInt > 0)
     {
-      u.a = paramInt * 1000;
+      Constants.WAIT_FOR_INTERSTITIAL = paramInt * 1000;
       return;
     }
     Logging.log("setFullScreenloadingTimeout :- time cannot be less than zero");
@@ -349,28 +484,121 @@ public class AdMarvelUtils
     }
   }
 
+  public static void uninitialize(Activity paramActivity)
+  {
+    Logging.log("AdMarvelUtils - uninitialize");
+    e locale = e.a();
+    if ((locale != null) && (locale.b()))
+      locale.c();
+    c localc = c.a();
+    if (localc != null)
+      localc.a(paramActivity);
+    k.a();
+    r.n(paramActivity);
+    if (!isLogDumpEnabled())
+      r.m(paramActivity);
+    if (AdMarvelInterstitialAds.e.b != AdMarvelInterstitialAds.getInterstitialAdsState());
+    try
+    {
+      AdMarvelAdapterInstances.getInstance("ADMARVELGUID", "com.admarvel.android.admarvelgoogleplayadapter.AdMarvelGooglePlayAdapter").uninitialize(paramActivity, null);
+      Logging.log("com.admarvel.android.admarvelgoogleplayadapter.AdMarvelGooglePlayAdapter: uninitialize");
+      try
+      {
+        label83: AdMarvelAdapterInstances.getInstance("ADMARVELGUID", "com.admarvel.android.admarvelamazonadapter.AdMarvelAmazonAdapter").uninitialize(paramActivity, null);
+        Logging.log("com.admarvel.android.admarvelamazonadapter.AdMarvelAmazonAdapter: uninitialize");
+        try
+        {
+          label102: AdMarvelAdapterInstances.getInstance("ADMARVELGUID", "com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter").uninitialize(paramActivity, null);
+          Logging.log("com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter: uninitialize");
+          try
+          {
+            label120: AdMarvelAdapterInstances.getInstance("ADMARVELGUID", "com.admarvel.android.admarvelfacebookadapter.AdMarvelFacebookAdapter").uninitialize(paramActivity, null);
+            Logging.log("com.admarvel.android.admarvelfacebookadapter.AdMarvelFacebookAdapter: uninitialize");
+            try
+            {
+              label139: AdMarvelAdapterInstances.getInstance("ADMARVELGUID", "com.admarvel.android.admarvelheyzapadapter.AdMarvelHeyzapAdapter").uninitialize(paramActivity, null);
+              Logging.log("com.admarvel.android.admarvelheyzapadapter.AdMarvelHeyzapAdapter: uninitialize");
+              try
+              {
+                label158: AdMarvelAdapterInstances.getInstance("ADMARVELGUID", "com.admarvel.android.admarvelinmobiadapter.AdMarvelInmobiAdapter").uninitialize(paramActivity, null);
+                Logging.log("com.admarvel.android.admarvelinmobiadapter.AdMarvelInmobiAdapter: uninitialize");
+                try
+                {
+                  label177: AdMarvelAdapterInstances.getInstance("ADMARVELGUID", "com.admarvel.android.admarvelmillennialadapter.AdMarvelMillennialAdapter").uninitialize(paramActivity, null);
+                  Logging.log("com.admarvel.android.admarvelmillennialadapter.AdMarvelMillennialAdapter: uninitialize");
+                  try
+                  {
+                    label196: AdMarvelAdapterInstances.getInstance("ADMARVELGUID", "com.admarvel.android.admarvelrhythmadapter.AdMarvelRhythmAdapter").uninitialize(paramActivity, null);
+                    Logging.log("com.admarvel.android.admarvelrhythmadapter.AdMarvelRhythmAdapter: uninitialize");
+                    return;
+                  }
+                  catch (Exception localException8)
+                  {
+                  }
+                }
+                catch (Exception localException7)
+                {
+                  break label196;
+                }
+              }
+              catch (Exception localException6)
+              {
+                break label177;
+              }
+            }
+            catch (Exception localException5)
+            {
+              break label158;
+            }
+          }
+          catch (Exception localException4)
+          {
+            break label139;
+          }
+        }
+        catch (Exception localException3)
+        {
+          break label120;
+        }
+      }
+      catch (Exception localException2)
+      {
+        break label102;
+      }
+    }
+    catch (Exception localException1)
+    {
+      break label83;
+    }
+  }
+
   public void firePixel(AdMarvelAd paramAdMarvelAd)
   {
-    new ab((Context)this.contextReference.get()).a(paramAdMarvelAd);
+    new r((Context)this.contextReference.get()).a(paramAdMarvelAd);
   }
 
   public void firePixel(String paramString)
   {
-    new ab((Context)this.contextReference.get()).a(paramString);
+    new r((Context)this.contextReference.get()).b(paramString);
+  }
+
+  public void firePixelUsingHTTP(String paramString)
+  {
+    new r((Context)this.contextReference.get()).a(paramString);
   }
 
   public void firePixelUsingHTTP(String paramString, Handler paramHandler)
   {
-    new ab((Context)this.contextReference.get()).a(paramString, paramHandler);
+    new r((Context)this.contextReference.get()).a(paramString, paramHandler);
   }
 
   public String getUserAgent()
   {
-    return new ab((Context)this.contextReference.get()).a();
+    return new r((Context)this.contextReference.get()).a();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.AdMarvelUtils
  * JD-Core Version:    0.6.2
  */

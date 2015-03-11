@@ -17,7 +17,7 @@ import android.view.animation.Interpolator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
-import textnow.af.f;
+import textnow.al.f;
 
 public abstract class PullToRefreshBase<T extends View> extends LinearLayout
 {
@@ -39,8 +39,8 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout
   private boolean p = true;
   private Interpolator q;
   private d r = d.a();
-  private textnow.af.d s;
-  private textnow.af.d t;
+  private textnow.al.d s;
+  private textnow.al.d t;
   private h<T> u;
   private i<T> v;
   private g<T> w;
@@ -112,7 +112,7 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout
       setOrientation(1);
       setGravity(17);
       this.b = ViewConfiguration.get(paramContext).getScaledTouchSlop();
-      localTypedArray = paramContext.obtainStyledAttributes(paramAttributeSet, com.enflick.android.TextNow.b.p);
+      localTypedArray = paramContext.obtainStyledAttributes(paramAttributeSet, com.enflick.android.TextNow.b.v);
       if (localTypedArray.hasValue(4))
         this.i = e.a(localTypedArray.getInteger(4, 0));
       if (localTypedArray.hasValue(12))
@@ -278,9 +278,9 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout
     return b(true, false);
   }
 
-  protected final textnow.af.d a(Context paramContext, e parame, TypedArray paramTypedArray)
+  protected final textnow.al.d a(Context paramContext, e parame, TypedArray paramTypedArray)
   {
-    textnow.af.d locald = this.r.a(paramContext, parame, p(), paramTypedArray);
+    textnow.al.d locald = this.r.a(paramContext, parame, p(), paramTypedArray);
     locald.setVisibility(4);
     return locald;
   }
@@ -803,7 +803,7 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout
     this.p = false;
   }
 
-  protected final textnow.af.d r()
+  protected final textnow.al.d r()
   {
     return this.t;
   }
@@ -818,7 +818,7 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout
     this.a.setLongClickable(paramBoolean);
   }
 
-  protected final textnow.af.d t()
+  protected final textnow.al.d t()
   {
     return this.s;
   }
@@ -834,7 +834,7 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.handmark.pulltorefresh.library.PullToRefreshBase
  * JD-Core Version:    0.6.2
  */

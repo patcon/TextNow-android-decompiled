@@ -1,35 +1,17 @@
 package com.admarvel.android.ads;
 
-import android.content.Context;
-import com.admarvel.android.util.a;
+import android.app.Activity;
+import android.view.Window;
 
-public class AdMarvelVideoActivity$e
-  implements Runnable
+class AdMarvelVideoActivity$e
 {
-  private final AdMarvelAd a;
-  private final Context b;
-
-  public AdMarvelVideoActivity$e(AdMarvelAd paramAdMarvelAd, Context paramContext)
+  static void a(Activity paramActivity)
   {
-    this.a = paramAdMarvelAd;
-    this.b = paramContext;
-  }
-
-  public void run()
-  {
-    if (this.a != null)
-      this.a.setResponseJson();
-    a locala = a.b(this.b);
-    if ((locala != null) && (this.a != null))
-    {
-      int i = locala.a(this.b);
-      this.a.setAdHistoryCounter(i);
-      locala.a(this.a.getAdHistoryDumpString(), i);
-    }
+    paramActivity.getWindow().setFlags(16777216, 16777216);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.AdMarvelVideoActivity.e
  * JD-Core Version:    0.6.2
  */

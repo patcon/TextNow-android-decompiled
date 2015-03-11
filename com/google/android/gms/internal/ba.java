@@ -1,11 +1,24 @@
 package com.google.android.gms.internal;
 
-public abstract interface ba
+import com.google.android.gms.ads.doubleclick.AppEventListener;
+
+@ez
+public final class ba extends bf.a
 {
-  public abstract void onAppEvent(String paramString1, String paramString2);
+  private final AppEventListener oi;
+
+  public ba(AppEventListener paramAppEventListener)
+  {
+    this.oi = paramAppEventListener;
+  }
+
+  public final void onAppEvent(String paramString1, String paramString2)
+  {
+    this.oi.onAppEvent(paramString1, paramString2);
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ba
  * JD-Core Version:    0.6.2
  */

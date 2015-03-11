@@ -1,7 +1,7 @@
 package com.enflick.android.TextNow.api.calls;
 
 import com.enflick.android.TextNow.api.common.c;
-import textnow.t.e;
+import textnow.y.e;
 
 public final class a extends c
 {
@@ -9,7 +9,7 @@ public final class a extends c
   @e(a=0)
   public String a;
 
-  @textnow.t.a(a="transport")
+  @textnow.y.a(a="transport")
   public String b;
 
   public a(String paramString, boolean paramBoolean)
@@ -24,7 +24,7 @@ public final class a extends c
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.api.calls.a
  * JD-Core Version:    0.6.2
  */

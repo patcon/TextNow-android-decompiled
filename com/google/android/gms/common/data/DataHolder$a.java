@@ -1,30 +1,30 @@
 package com.google.android.gms.common.data;
 
-import com.google.android.gms.internal.hm;
+import com.google.android.gms.common.internal.o;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DataHolder$a
 {
-  private final String[] EG;
-  private final ArrayList<HashMap<String, Object>> EP;
-  private final String EQ;
-  private final HashMap<Object, Integer> ER;
-  private boolean ES;
-  private String ET;
+  private final String[] Kb;
+  private final ArrayList<HashMap<String, Object>> Kk;
+  private final String Kl;
+  private final HashMap<Object, Integer> Km;
+  private boolean Kn;
+  private String Ko;
 
   private DataHolder$a(String[] paramArrayOfString, String paramString)
   {
-    this.EG = ((String[])hm.f(paramArrayOfString));
-    this.EP = new ArrayList();
-    this.EQ = paramString;
-    this.ER = new HashMap();
-    this.ES = false;
-    this.ET = null;
+    this.Kb = ((String[])o.i(paramArrayOfString));
+    this.Kk = new ArrayList();
+    this.Kl = paramString;
+    this.Km = new HashMap();
+    this.Kn = false;
+    this.Ko = null;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.common.data.DataHolder.a
  * JD-Core Version:    0.6.2
  */

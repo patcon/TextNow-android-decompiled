@@ -1,81 +1,38 @@
 package com.google.android.gms.internal;
 
-import android.os.Parcel;
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import android.os.SystemClock;
 
 public final class jw
-  implements SafeParcelable
+  implements ju
 {
-  public static final jx CREATOR = new jx();
-  public static final jw YP = w("test_type", 1);
-  public static final jw YQ = w("saved_offers", 4);
-  public static final Set<jw> YR;
-  final int YS;
-  final String qX;
-  final int xM;
+  private static jw MS;
 
-  static
+  public static ju hA()
   {
-    jw[] arrayOfjw = new jw[2];
-    arrayOfjw[0] = YP;
-    arrayOfjw[1] = YQ;
-    YR = Collections.unmodifiableSet(new HashSet(Arrays.asList(arrayOfjw)));
-  }
-
-  jw(int paramInt1, String paramString, int paramInt2)
-  {
-    hm.aE(paramString);
-    this.xM = paramInt1;
-    this.qX = paramString;
-    this.YS = paramInt2;
-  }
-
-  private static jw w(String paramString, int paramInt)
-  {
-    return new jw(0, paramString, paramInt);
-  }
-
-  public final int describeContents()
-  {
-    return 0;
-  }
-
-  public final boolean equals(Object paramObject)
-  {
-    if (this == paramObject);
-    jw localjw;
-    do
+    try
     {
-      return true;
-      if (!(paramObject instanceof jw))
-        return false;
-      localjw = (jw)paramObject;
+      if (MS == null)
+        MS = new jw();
+      jw localjw = MS;
+      return localjw;
     }
-    while ((this.qX.equals(localjw.qX)) && (this.YS == localjw.YS));
-    return false;
+    finally
+    {
+    }
   }
 
-  public final int hashCode()
+  public final long currentTimeMillis()
   {
-    return this.qX.hashCode();
+    return System.currentTimeMillis();
   }
 
-  public final String toString()
+  public final long elapsedRealtime()
   {
-    return this.qX;
-  }
-
-  public final void writeToParcel(Parcel paramParcel, int paramInt)
-  {
-    jx.a(this, paramParcel, paramInt);
+    return SystemClock.elapsedRealtime();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.jw
  * JD-Core Version:    0.6.2
  */

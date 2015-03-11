@@ -17,8 +17,8 @@ import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListAdapter;
-import textnow.af.a;
-import textnow.af.c;
+import textnow.al.a;
+import textnow.al.c;
 
 public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extends PullToRefreshBase<T>
   implements AbsListView.OnScrollListener
@@ -64,7 +64,7 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
     {
       this.f = new c(getContext(), e.b);
       FrameLayout.LayoutParams localLayoutParams2 = new FrameLayout.LayoutParams(-2, -2);
-      localLayoutParams2.rightMargin = getResources().getDimensionPixelSize(2131361824);
+      localLayoutParams2.rightMargin = getResources().getDimensionPixelSize(2131165258);
       localLayoutParams2.gravity = 53;
       localFrameLayout.addView(this.f, localLayoutParams2);
     }
@@ -73,7 +73,7 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
       {
         this.g = new c(getContext(), e.c);
         FrameLayout.LayoutParams localLayoutParams1 = new FrameLayout.LayoutParams(-2, -2);
-        localLayoutParams1.rightMargin = getResources().getDimensionPixelSize(2131361824);
+        localLayoutParams1.rightMargin = getResources().getDimensionPixelSize(2131165258);
         localLayoutParams1.gravity = 85;
         localFrameLayout.addView(this.g, localLayoutParams1);
         return;
@@ -357,7 +357,7 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.handmark.pulltorefresh.library.PullToRefreshAdapterViewBase
  * JD-Core Version:    0.6.2
  */

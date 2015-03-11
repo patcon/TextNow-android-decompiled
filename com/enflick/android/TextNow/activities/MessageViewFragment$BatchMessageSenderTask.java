@@ -21,7 +21,7 @@ class MessageViewFragment$BatchMessageSenderTask extends c
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.activities.MessageViewFragment.BatchMessageSenderTask
  * JD-Core Version:    0.6.2
  */

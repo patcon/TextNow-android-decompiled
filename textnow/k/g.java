@@ -1,182 +1,206 @@
 package textnow.k;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.database.Cursor;
-import android.database.MatrixCursor;
-import android.database.MatrixCursor.RowBuilder;
-import android.net.Uri;
-import android.provider.ContactsContract.CommonDataKinds.Email;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
+import android.content.res.TypedArray;
+import android.support.v4.view.j;
+import android.support.v4.view.z;
+import android.support.v7.internal.view.menu.m;
+import android.support.v7.internal.view.menu.n;
+import android.util.AttributeSet;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FilterQueryProvider;
-import android.widget.ImageView;
-import android.widget.TextView;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Locale;
-import java.util.TreeSet;
-import textnow.q.b;
-import textnow.q.k;
-import textnow.q.q;
-import textnow.u.d;
-import textnow.u.r;
+import java.lang.reflect.Constructor;
+import textnow.g.l;
 
-public final class g extends e
+final class g
 {
-  public g(final Context paramContext, Cursor paramCursor)
+  private Menu b;
+  private int c;
+  private int d;
+  private int e;
+  private int f;
+  private boolean g;
+  private boolean h;
+  private boolean i;
+  private int j;
+  private int k;
+  private CharSequence l;
+  private CharSequence m;
+  private int n;
+  private char o;
+  private char p;
+  private int q;
+  private boolean r;
+  private boolean s;
+  private boolean t;
+  private int u;
+  private int v;
+  private String w;
+  private String x;
+  private String y;
+  private j z;
+
+  public g(e parame, Menu paramMenu)
   {
-    super(paramContext, null);
-    a(new FilterQueryProvider()
-    {
-      public final Cursor runQuery(CharSequence paramAnonymousCharSequence)
-      {
-        Context localContext = paramContext;
-        if (paramAnonymousCharSequence == null);
-        for (String str = ""; ; str = paramAnonymousCharSequence.toString())
-          return e.a(localContext, str);
-      }
-    });
+    this.b = paramMenu;
+    a();
   }
 
-  public final View a(Context paramContext, Cursor paramCursor, ViewGroup paramViewGroup)
+  private static char a(String paramString)
   {
-    View localView = LayoutInflater.from(paramContext).inflate(2130903094, paramViewGroup, false);
-    localView.setTag(new i(localView));
-    return localView;
+    if (paramString == null)
+      return '\000';
+    return paramString.charAt(0);
   }
 
-  public final void a(View paramView, Context paramContext, Cursor paramCursor)
+  private <T> T a(String paramString, Class<?>[] paramArrayOfClass, Object[] paramArrayOfObject)
   {
-    i locali1 = (i)paramView.getTag();
-    if (locali1 == null);
-    for (i locali2 = new i(paramView); ; locali2 = locali1)
+    try
     {
-      int i = 0;
-      if (paramCursor != null)
-      {
-        if (!paramCursor.moveToPrevious())
-          break label287;
-        long l3 = paramCursor.getLong(5);
-        paramCursor.moveToNext();
-        boolean bool = l3 < paramCursor.getLong(5);
-        i = 0;
-        if (!bool)
-          i = 1;
-      }
-      long l1 = paramCursor.getLong(1);
-      String str1 = paramCursor.getString(2);
-      String str2 = paramCursor.getString(3);
-      String str3 = paramCursor.getString(4);
-      long l2 = paramCursor.getLong(5);
-      if (i != 0)
-      {
-        locali2.b.setVisibility(4);
-        locali2.c.setVisibility(8);
-        locali2.d.setText(str2 + ": " + str3);
-        if (a(str3) != 1)
-          break label371;
-        locali2.a = new d(b.e(str3), 2, str1, k.a(l2).toString());
-        label218: if (TextUtils.isEmpty(new r(this.d).x()))
-          break label469;
-      }
-      label287: label469: for (int j = 1; ; j = 0)
-      {
-        if (j != 0)
-        {
-          locali2.c.setTextColor(this.d.getResources().getColor(2131296289));
-          locali2.d.setTextColor(this.d.getResources().getColor(2131296291));
-        }
-        return;
-        paramCursor.moveToNext();
-        i = 0;
+      Object localObject = e.a(this.a).getClassLoader().loadClass(paramString).getConstructor(paramArrayOfClass).newInstance(paramArrayOfObject);
+      return localObject;
+    }
+    catch (Exception localException)
+    {
+      new StringBuilder().append("Cannot instantiate class: ").append(paramString).toString();
+    }
+    return null;
+  }
+
+  private void a(MenuItem paramMenuItem)
+  {
+    boolean bool1 = true;
+    MenuItem localMenuItem = paramMenuItem.setChecked(this.r).setVisible(this.s).setEnabled(this.t);
+    if (this.q > 0);
+    for (boolean bool2 = bool1; ; bool2 = false)
+    {
+      localMenuItem.setCheckable(bool2).setTitleCondensed(this.m).setIcon(this.n).setAlphabeticShortcut(this.o).setNumericShortcut(this.p);
+      if (this.u >= 0)
+        z.a(paramMenuItem, this.u);
+      if (this.y == null)
+        break label162;
+      if (!e.a(this.a).isRestricted())
         break;
-        locali2.b.setVisibility(0);
-        locali2.c.setVisibility(0);
-        q.a(this.d).a(locali2.b, l1);
-        TextView localTextView = locali2.c;
-        if (TextUtils.isEmpty(str1));
-        for (String str4 = str3; ; str4 = str1)
-        {
-          localTextView.setText(str4);
-          break;
-        }
-        label371: if ((str3 == null) || (str3.indexOf("@") < 0))
-          break label218;
-        if (str3.toLowerCase(Locale.US).endsWith("@textnow.me"))
-        {
-          locali2.a = new d(str3.substring(0, str3.indexOf("@")), 1, str1, k.a(l2).toString());
-          break label218;
-        }
-        locali2.a = new d(str3, 3, str1, k.a(l2).toString());
-        break label218;
-      }
+      throw new IllegalStateException("The android:onClick attribute cannot be used within a restricted context");
+    }
+    paramMenuItem.setOnMenuItemClickListener(new f(e.c(this.a), this.y));
+    label162: if (this.q >= 2)
+    {
+      if ((paramMenuItem instanceof m))
+        ((m)paramMenuItem).a(bool1);
+    }
+    else
+    {
+      if (this.w == null)
+        break label273;
+      z.a(paramMenuItem, (View)a(this.w, e.b(), e.d(this.a)));
+    }
+    while (true)
+    {
+      if ((this.v > 0) && (!bool1))
+        z.b(paramMenuItem, this.v);
+      if (this.z != null)
+        z.a(paramMenuItem, this.z);
+      return;
+      if (!(paramMenuItem instanceof n))
+        break;
+      ((n)paramMenuItem).a(bool1);
+      break;
+      label273: bool1 = false;
     }
   }
 
-  public final CharSequence c(Cursor paramCursor)
+  public final void a()
   {
-    String str2;
-    if (paramCursor == null)
-      str2 = "";
-    String str1;
-    do
-    {
-      return str2;
-      str1 = paramCursor.getString(2);
-      str2 = paramCursor.getString(4);
-    }
-    while (str1 == null);
-    return str1;
+    this.c = 0;
+    this.d = 0;
+    this.e = 0;
+    this.f = 0;
+    this.g = true;
+    this.h = true;
   }
 
-  protected final Cursor d(Cursor paramCursor)
+  public final void a(AttributeSet paramAttributeSet)
   {
-    TreeSet localTreeSet = new TreeSet();
-    HashSet localHashSet = new HashSet();
-    MatrixCursor localMatrixCursor = new MatrixCursor(j);
-    label227: 
-    while ((paramCursor != null) && (!paramCursor.isClosed()) && (paramCursor.moveToNext()))
-    {
-      int i = paramCursor.getInt(0);
-      long l1 = paramCursor.getLong(1);
-      String str1 = paramCursor.getString(2);
-      int j = paramCursor.getInt(3);
-      String str2 = paramCursor.getString(4);
-      long l2 = paramCursor.getLong(5);
-      String str3 = paramCursor.getString(6);
-      if (str2 != null)
+    TypedArray localTypedArray = e.a(this.a).obtainStyledAttributes(paramAttributeSet, l.aj);
+    this.c = localTypedArray.getResourceId(l.am, 0);
+    this.d = localTypedArray.getInt(l.an, 0);
+    this.e = localTypedArray.getInt(l.ao, 0);
+    this.f = localTypedArray.getInt(l.ak, 0);
+    this.g = localTypedArray.getBoolean(l.ap, true);
+    this.h = localTypedArray.getBoolean(l.al, true);
+    localTypedArray.recycle();
+  }
+
+  public final void b()
+  {
+    this.i = true;
+    a(this.b.add(this.c, this.j, this.k, this.l));
+  }
+
+  public final void b(AttributeSet paramAttributeSet)
+  {
+    int i1 = 1;
+    TypedArray localTypedArray = e.a(this.a).obtainStyledAttributes(paramAttributeSet, l.aq);
+    this.j = localTypedArray.getResourceId(l.az, 0);
+    int i2 = localTypedArray.getInt(l.aA, this.d);
+    int i3 = localTypedArray.getInt(l.aD, this.e);
+    this.k = (i2 & 0xFFFF0000 | i3 & 0xFFFF);
+    this.l = localTypedArray.getText(l.aE);
+    this.m = localTypedArray.getText(l.aF);
+    this.n = localTypedArray.getResourceId(l.ay, 0);
+    this.o = a(localTypedArray.getString(l.au));
+    this.p = a(localTypedArray.getString(l.aB));
+    int i4;
+    if (localTypedArray.hasValue(l.av))
+      if (localTypedArray.getBoolean(l.av, false))
       {
-        String str4;
-        if (a(str2) == 1)
-          str4 = ContactsContract.CommonDataKinds.Phone.getTypeLabel(this.d.getResources(), j, str3).toString();
-        for (String str5 = b.e(str2); ; str5 = str2.trim().toLowerCase())
-        {
-          if (localHashSet.contains(str5))
-            break label227;
-          localHashSet.add(str5);
-          localTreeSet.add(new h(i, l1, str1, str2, str4, l2));
-          break;
-          str4 = ContactsContract.CommonDataKinds.Email.getTypeLabel(this.d.getResources(), j, str3).toString();
-        }
+        i4 = i1;
+        this.q = i4;
+        label164: this.r = localTypedArray.getBoolean(l.aw, false);
+        this.s = localTypedArray.getBoolean(l.aG, this.g);
+        this.t = localTypedArray.getBoolean(l.ax, this.h);
+        this.u = localTypedArray.getInt(l.aH, -1);
+        this.y = localTypedArray.getString(l.aC);
+        this.v = localTypedArray.getResourceId(l.ar, 0);
+        this.w = localTypedArray.getString(l.at);
+        this.x = localTypedArray.getString(l.as);
+        if (this.x == null)
+          break label340;
+        label270: if ((i1 == 0) || (this.v != 0) || (this.w != null))
+          break label345;
       }
-    }
-    Iterator localIterator = localTreeSet.iterator();
-    while (localIterator.hasNext())
+    label340: label345: for (this.z = ((j)a(this.x, e.a(), e.b(this.a))); ; this.z = null)
     {
-      h localh = (h)localIterator.next();
-      localMatrixCursor.newRow().add(Integer.valueOf(localh.a)).add(Long.valueOf(localh.b)).add(localh.c).add(localh.e).add(localh.d).add(Long.valueOf(localh.f));
+      localTypedArray.recycle();
+      this.i = false;
+      return;
+      i4 = 0;
+      break;
+      this.q = this.f;
+      break label164;
+      i1 = 0;
+      break label270;
     }
-    if (paramCursor != null)
-      paramCursor.close();
-    return localMatrixCursor;
+  }
+
+  public final SubMenu c()
+  {
+    this.i = true;
+    SubMenu localSubMenu = this.b.addSubMenu(this.c, this.j, this.k, this.l);
+    a(localSubMenu.getItem());
+    return localSubMenu;
+  }
+
+  public final boolean d()
+  {
+    return this.i;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.k.g
  * JD-Core Version:    0.6.2
  */

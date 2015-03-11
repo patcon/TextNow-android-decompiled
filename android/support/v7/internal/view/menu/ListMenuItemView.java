@@ -13,14 +13,14 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import textnow.g.f;
-import textnow.g.h;
-import textnow.g.k;
+import textnow.g.g;
+import textnow.g.i;
+import textnow.g.l;
 
 public class ListMenuItemView extends LinearLayout
-  implements ad
+  implements y
 {
-  private r a;
+  private m a;
   private ImageView b;
   private RadioButton c;
   private TextView d;
@@ -44,10 +44,10 @@ public class ListMenuItemView extends LinearLayout
   {
     super(paramContext, paramAttributeSet);
     this.l = paramContext;
-    TypedArray localTypedArray = paramContext.obtainStyledAttributes(paramAttributeSet, k.l, paramInt, 0);
-    this.g = localTypedArray.getDrawable(5);
-    this.h = localTypedArray.getResourceId(1, -1);
-    this.j = localTypedArray.getBoolean(7, false);
+    TypedArray localTypedArray = paramContext.obtainStyledAttributes(paramAttributeSet, l.aI, paramInt, 0);
+    this.g = localTypedArray.getDrawable(l.aJ);
+    this.h = localTypedArray.getResourceId(l.aK, -1);
+    this.j = localTypedArray.getBoolean(l.aL, false);
     this.i = paramContext;
     localTypedArray.recycle();
   }
@@ -59,14 +59,14 @@ public class ListMenuItemView extends LinearLayout
     return this.m;
   }
 
-  public final r a()
+  public final m a()
   {
     return this.a;
   }
 
-  public final void a(r paramr, int paramInt)
+  public final void a(m paramm, int paramInt)
   {
-    this.a = paramr;
+    this.a = paramm;
     this.k = 0;
     int i1;
     label63: Object localObject1;
@@ -75,24 +75,24 @@ public class ListMenuItemView extends LinearLayout
     label177: label216: int i2;
     label245: int i3;
     label311: Drawable localDrawable2;
-    if (paramr.isVisible())
+    if (paramm.isVisible())
     {
       i1 = 0;
       setVisibility(i1);
-      CharSequence localCharSequence = paramr.a(this);
+      CharSequence localCharSequence = paramm.a(this);
       if (localCharSequence == null)
         break label444;
       this.d.setText(localCharSequence);
       if (this.d.getVisibility() != 0)
         this.d.setVisibility(0);
-      boolean bool1 = paramr.isCheckable();
+      boolean bool1 = paramm.isCheckable();
       if ((bool1) || (this.c != null) || (this.e != null))
       {
         if (!this.a.f())
           break label468;
         if (this.c == null)
         {
-          this.c = ((RadioButton)c().inflate(h.o, this, false));
+          this.c = ((RadioButton)c().inflate(i.k, this, false));
           addView(this.c);
         }
         RadioButton localRadioButton2 = this.c;
@@ -110,8 +110,8 @@ public class ListMenuItemView extends LinearLayout
         if ((localObject2 != null) && (((CompoundButton)localObject2).getVisibility() != 8))
           ((CompoundButton)localObject2).setVisibility(8);
       }
-      boolean bool2 = paramr.e();
-      paramr.c();
+      boolean bool2 = paramm.e();
+      paramm.c();
       if ((!bool2) || (!this.a.e()))
         break label567;
       i2 = 0;
@@ -119,7 +119,7 @@ public class ListMenuItemView extends LinearLayout
         this.f.setText(this.a.d());
       if (this.f.getVisibility() != i2)
         this.f.setVisibility(i2);
-      Drawable localDrawable1 = paramr.getIcon();
+      Drawable localDrawable1 = paramm.getIcon();
       if ((!this.a.g()) && (!this.n))
         break label574;
       i3 = 1;
@@ -127,7 +127,7 @@ public class ListMenuItemView extends LinearLayout
       {
         if (this.b == null)
         {
-          this.b = ((ImageView)c().inflate(h.m, this, false));
+          this.b = ((ImageView)c().inflate(i.i, this, false));
           addView(this.b, 0);
         }
         if ((localDrawable1 == null) && (!this.j))
@@ -143,7 +143,7 @@ public class ListMenuItemView extends LinearLayout
     }
     while (true)
     {
-      setEnabled(paramr.isEnabled());
+      setEnabled(paramm.isEnabled());
       return;
       i1 = 8;
       break;
@@ -153,7 +153,7 @@ public class ListMenuItemView extends LinearLayout
       break label63;
       label468: if (this.e == null)
       {
-        this.e = ((CheckBox)c().inflate(h.l, this, false));
+        this.e = ((CheckBox)c().inflate(i.h, this, false));
         addView(this.e);
       }
       CheckBox localCheckBox1 = this.e;
@@ -194,10 +194,10 @@ public class ListMenuItemView extends LinearLayout
   {
     super.onFinishInflate();
     setBackgroundDrawable(this.g);
-    this.d = ((TextView)findViewById(f.F));
+    this.d = ((TextView)findViewById(g.C));
     if (this.h != -1)
       this.d.setTextAppearance(this.i, this.h);
-    this.f = ((TextView)findViewById(f.C));
+    this.f = ((TextView)findViewById(g.z));
   }
 
   protected void onMeasure(int paramInt1, int paramInt2)
@@ -213,7 +213,7 @@ public class ListMenuItemView extends LinearLayout
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v7.internal.view.menu.ListMenuItemView
  * JD-Core Version:    0.6.2
  */

@@ -31,7 +31,7 @@ public abstract class CompoundEditText extends LinearLayout
   protected EditText e;
   private ImageView f;
   private ProgressBar g;
-  private c h = c.d;
+  private d h = d.d;
   private boolean i = false;
 
   public CompoundEditText(Context paramContext)
@@ -45,13 +45,13 @@ public abstract class CompoundEditText extends LinearLayout
     super(paramContext, paramAttributeSet);
     this.c = LayoutInflater.from(paramContext);
     h();
-    this.a = getResources().getColor(2131296298);
+    this.a = getResources().getColor(2131230818);
     this.b = new BackgroundColorSpan(this.a);
   }
 
   private void h()
   {
-    this.c.inflate(2130903092, this);
+    this.c.inflate(2130903104, this);
   }
 
   public final Editable a()
@@ -59,10 +59,10 @@ public abstract class CompoundEditText extends LinearLayout
     return this.e.getEditableText();
   }
 
-  public final void a(c paramc)
+  public final void a(d paramd)
   {
-    this.h = paramc;
-    switch (2.a[paramc.ordinal()])
+    this.h = paramd;
+    switch (2.a[paramd.ordinal()])
     {
     default:
       return;
@@ -95,11 +95,11 @@ public abstract class CompoundEditText extends LinearLayout
   {
     if (paramBoolean)
     {
-      a(c.a);
+      a(d.a);
       Toast.makeText(getContext(), paramString, 0).show();
       return;
     }
-    a(c.d);
+    a(d.d);
   }
 
   protected final boolean a(int paramInt)
@@ -145,7 +145,7 @@ public abstract class CompoundEditText extends LinearLayout
   {
     boolean bool = false;
     Matcher localMatcher = Pattern.compile(paramString2, 0).matcher(paramString1);
-    String str = getContext().getString(2131493072);
+    String str = getContext().getString(2131296479);
     while (localMatcher.find())
     {
       bool = true;
@@ -162,12 +162,12 @@ public abstract class CompoundEditText extends LinearLayout
 
   public final boolean c()
   {
-    return this.h == c.c;
+    return this.h == d.c;
   }
 
   public final boolean d()
   {
-    return this.h == c.b;
+    return this.h == d.b;
   }
 
   public final boolean e()
@@ -190,9 +190,9 @@ public abstract class CompoundEditText extends LinearLayout
 
   public void onFinishInflate()
   {
-    this.d = ((RelativeLayout)findViewById(2131165355));
+    this.d = ((RelativeLayout)findViewById(2131558622));
     this.d.setAddStatesFromChildren(true);
-    this.e = ((EditText)this.d.findViewById(2131165356));
+    this.e = ((EditText)this.d.findViewById(2131558623));
     this.e.setOnFocusChangeListener(this);
     this.e.addTextChangedListener(new TextWatcher()
     {
@@ -204,7 +204,7 @@ public abstract class CompoundEditText extends LinearLayout
       {
         if (!this.a.equals(paramAnonymousEditable.toString()))
         {
-          CompoundEditText.this.a(c.d);
+          CompoundEditText.this.a(d.d);
           CompoundEditText.a(CompoundEditText.this, true);
         }
         if (this.b != -1)
@@ -246,8 +246,8 @@ public abstract class CompoundEditText extends LinearLayout
         CompoundEditText.this.a(false, null);
       }
     });
-    this.f = ((ImageView)this.d.findViewById(2131165357));
-    this.g = ((ProgressBar)this.d.findViewById(2131165358));
+    this.f = ((ImageView)this.d.findViewById(2131558624));
+    this.g = ((ProgressBar)this.d.findViewById(2131558625));
     setOnClickListener(this);
     this.f.setOnClickListener(this);
   }
@@ -264,7 +264,7 @@ public abstract class CompoundEditText extends LinearLayout
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.views.CompoundEditText
  * JD-Core Version:    0.6.2
  */

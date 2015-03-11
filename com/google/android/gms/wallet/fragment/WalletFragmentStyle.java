@@ -15,26 +15,26 @@ public final class WalletFragmentStyle
   implements SafeParcelable
 {
   public static final Parcelable.Creator<WalletFragmentStyle> CREATOR = new c();
-  Bundle akE;
-  int akF;
-  final int xM;
+  final int BR;
+  Bundle auo;
+  int aup;
 
   public WalletFragmentStyle()
   {
-    this.xM = 1;
-    this.akE = new Bundle();
+    this.BR = 1;
+    this.auo = new Bundle();
   }
 
   WalletFragmentStyle(int paramInt1, Bundle paramBundle, int paramInt2)
   {
-    this.xM = paramInt1;
-    this.akE = paramBundle;
-    this.akF = paramInt2;
+    this.BR = paramInt1;
+    this.auo = paramBundle;
+    this.aup = paramInt2;
   }
 
   private void a(TypedArray paramTypedArray, int paramInt, String paramString)
   {
-    if (this.akE.containsKey(paramString));
+    if (this.auo.containsKey(paramString));
     TypedValue localTypedValue;
     do
     {
@@ -42,12 +42,12 @@ public final class WalletFragmentStyle
       localTypedValue = paramTypedArray.peekValue(paramInt);
     }
     while (localTypedValue == null);
-    this.akE.putLong(paramString, Dimension.a(localTypedValue));
+    this.auo.putLong(paramString, Dimension.a(localTypedValue));
   }
 
   private void a(TypedArray paramTypedArray, int paramInt, String paramString1, String paramString2)
   {
-    if ((this.akE.containsKey(paramString1)) || (this.akE.containsKey(paramString2)));
+    if ((this.auo.containsKey(paramString1)) || (this.auo.containsKey(paramString2)));
     TypedValue localTypedValue;
     do
     {
@@ -57,15 +57,15 @@ public final class WalletFragmentStyle
     while (localTypedValue == null);
     if ((localTypedValue.type >= 28) && (localTypedValue.type <= 31))
     {
-      this.akE.putInt(paramString1, localTypedValue.data);
+      this.auo.putInt(paramString1, localTypedValue.data);
       return;
     }
-    this.akE.putInt(paramString2, localTypedValue.resourceId);
+    this.auo.putInt(paramString2, localTypedValue.resourceId);
   }
 
   private void b(TypedArray paramTypedArray, int paramInt, String paramString)
   {
-    if (this.akE.containsKey(paramString));
+    if (this.auo.containsKey(paramString));
     TypedValue localTypedValue;
     do
     {
@@ -73,36 +73,36 @@ public final class WalletFragmentStyle
       localTypedValue = paramTypedArray.peekValue(paramInt);
     }
     while (localTypedValue == null);
-    this.akE.putInt(paramString, localTypedValue.data);
-  }
-
-  public final void Q(Context paramContext)
-  {
-    if (this.akF <= 0);
-    for (int i = R.style.WalletFragmentDefaultStyle; ; i = this.akF)
-    {
-      TypedArray localTypedArray = paramContext.obtainStyledAttributes(i, R.styleable.WalletFragmentStyle);
-      a(localTypedArray, 1, "buyButtonWidth");
-      a(localTypedArray, 0, "buyButtonHeight");
-      b(localTypedArray, 2, "buyButtonText");
-      b(localTypedArray, 3, "buyButtonAppearance");
-      b(localTypedArray, 4, "maskedWalletDetailsTextAppearance");
-      b(localTypedArray, 5, "maskedWalletDetailsHeaderTextAppearance");
-      a(localTypedArray, 6, "maskedWalletDetailsBackgroundColor", "maskedWalletDetailsBackgroundResource");
-      b(localTypedArray, 7, "maskedWalletDetailsButtonTextAppearance");
-      a(localTypedArray, 8, "maskedWalletDetailsButtonBackgroundColor", "maskedWalletDetailsButtonBackgroundResource");
-      b(localTypedArray, 9, "maskedWalletDetailsLogoTextColor");
-      b(localTypedArray, 10, "maskedWalletDetailsLogoImageType");
-      localTypedArray.recycle();
-      return;
-    }
+    this.auo.putInt(paramString, localTypedValue.data);
   }
 
   public final int a(String paramString, DisplayMetrics paramDisplayMetrics, int paramInt)
   {
-    if (this.akE.containsKey(paramString))
-      paramInt = Dimension.a(this.akE.getLong(paramString), paramDisplayMetrics);
+    if (this.auo.containsKey(paramString))
+      paramInt = Dimension.a(this.auo.getLong(paramString), paramDisplayMetrics);
     return paramInt;
+  }
+
+  public final void aa(Context paramContext)
+  {
+    if (this.aup <= 0);
+    for (int i = R.style.WalletFragmentDefaultStyle; ; i = this.aup)
+    {
+      TypedArray localTypedArray = paramContext.obtainStyledAttributes(i, R.styleable.WalletFragmentStyle);
+      a(localTypedArray, R.styleable.WalletFragmentStyle_buyButtonWidth, "buyButtonWidth");
+      a(localTypedArray, R.styleable.WalletFragmentStyle_buyButtonHeight, "buyButtonHeight");
+      b(localTypedArray, R.styleable.WalletFragmentStyle_buyButtonText, "buyButtonText");
+      b(localTypedArray, R.styleable.WalletFragmentStyle_buyButtonAppearance, "buyButtonAppearance");
+      b(localTypedArray, R.styleable.WalletFragmentStyle_maskedWalletDetailsTextAppearance, "maskedWalletDetailsTextAppearance");
+      b(localTypedArray, R.styleable.WalletFragmentStyle_maskedWalletDetailsHeaderTextAppearance, "maskedWalletDetailsHeaderTextAppearance");
+      a(localTypedArray, R.styleable.WalletFragmentStyle_maskedWalletDetailsBackground, "maskedWalletDetailsBackgroundColor", "maskedWalletDetailsBackgroundResource");
+      b(localTypedArray, R.styleable.WalletFragmentStyle_maskedWalletDetailsButtonTextAppearance, "maskedWalletDetailsButtonTextAppearance");
+      a(localTypedArray, R.styleable.WalletFragmentStyle_maskedWalletDetailsButtonBackground, "maskedWalletDetailsButtonBackgroundColor", "maskedWalletDetailsButtonBackgroundResource");
+      b(localTypedArray, R.styleable.WalletFragmentStyle_maskedWalletDetailsLogoTextColor, "maskedWalletDetailsLogoTextColor");
+      b(localTypedArray, R.styleable.WalletFragmentStyle_maskedWalletDetailsLogoImageType, "maskedWalletDetailsLogoImageType");
+      localTypedArray.recycle();
+      return;
+    }
   }
 
   public final int describeContents()
@@ -112,101 +112,101 @@ public final class WalletFragmentStyle
 
   public final WalletFragmentStyle setBuyButtonAppearance(int paramInt)
   {
-    this.akE.putInt("buyButtonAppearance", paramInt);
+    this.auo.putInt("buyButtonAppearance", paramInt);
     return this;
   }
 
   public final WalletFragmentStyle setBuyButtonHeight(int paramInt)
   {
-    this.akE.putLong("buyButtonHeight", Dimension.dM(paramInt));
+    this.auo.putLong("buyButtonHeight", Dimension.fE(paramInt));
     return this;
   }
 
   public final WalletFragmentStyle setBuyButtonHeight(int paramInt, float paramFloat)
   {
-    this.akE.putLong("buyButtonHeight", Dimension.a(paramInt, paramFloat));
+    this.auo.putLong("buyButtonHeight", Dimension.a(paramInt, paramFloat));
     return this;
   }
 
   public final WalletFragmentStyle setBuyButtonText(int paramInt)
   {
-    this.akE.putInt("buyButtonText", paramInt);
+    this.auo.putInt("buyButtonText", paramInt);
     return this;
   }
 
   public final WalletFragmentStyle setBuyButtonWidth(int paramInt)
   {
-    this.akE.putLong("buyButtonWidth", Dimension.dM(paramInt));
+    this.auo.putLong("buyButtonWidth", Dimension.fE(paramInt));
     return this;
   }
 
   public final WalletFragmentStyle setBuyButtonWidth(int paramInt, float paramFloat)
   {
-    this.akE.putLong("buyButtonWidth", Dimension.a(paramInt, paramFloat));
+    this.auo.putLong("buyButtonWidth", Dimension.a(paramInt, paramFloat));
     return this;
   }
 
   public final WalletFragmentStyle setMaskedWalletDetailsBackgroundColor(int paramInt)
   {
-    this.akE.remove("maskedWalletDetailsBackgroundResource");
-    this.akE.putInt("maskedWalletDetailsBackgroundColor", paramInt);
+    this.auo.remove("maskedWalletDetailsBackgroundResource");
+    this.auo.putInt("maskedWalletDetailsBackgroundColor", paramInt);
     return this;
   }
 
   public final WalletFragmentStyle setMaskedWalletDetailsBackgroundResource(int paramInt)
   {
-    this.akE.remove("maskedWalletDetailsBackgroundColor");
-    this.akE.putInt("maskedWalletDetailsBackgroundResource", paramInt);
+    this.auo.remove("maskedWalletDetailsBackgroundColor");
+    this.auo.putInt("maskedWalletDetailsBackgroundResource", paramInt);
     return this;
   }
 
   public final WalletFragmentStyle setMaskedWalletDetailsButtonBackgroundColor(int paramInt)
   {
-    this.akE.remove("maskedWalletDetailsButtonBackgroundResource");
-    this.akE.putInt("maskedWalletDetailsButtonBackgroundColor", paramInt);
+    this.auo.remove("maskedWalletDetailsButtonBackgroundResource");
+    this.auo.putInt("maskedWalletDetailsButtonBackgroundColor", paramInt);
     return this;
   }
 
   public final WalletFragmentStyle setMaskedWalletDetailsButtonBackgroundResource(int paramInt)
   {
-    this.akE.remove("maskedWalletDetailsButtonBackgroundColor");
-    this.akE.putInt("maskedWalletDetailsButtonBackgroundResource", paramInt);
+    this.auo.remove("maskedWalletDetailsButtonBackgroundColor");
+    this.auo.putInt("maskedWalletDetailsButtonBackgroundResource", paramInt);
     return this;
   }
 
   public final WalletFragmentStyle setMaskedWalletDetailsButtonTextAppearance(int paramInt)
   {
-    this.akE.putInt("maskedWalletDetailsButtonTextAppearance", paramInt);
+    this.auo.putInt("maskedWalletDetailsButtonTextAppearance", paramInt);
     return this;
   }
 
   public final WalletFragmentStyle setMaskedWalletDetailsHeaderTextAppearance(int paramInt)
   {
-    this.akE.putInt("maskedWalletDetailsHeaderTextAppearance", paramInt);
+    this.auo.putInt("maskedWalletDetailsHeaderTextAppearance", paramInt);
     return this;
   }
 
   public final WalletFragmentStyle setMaskedWalletDetailsLogoImageType(int paramInt)
   {
-    this.akE.putInt("maskedWalletDetailsLogoImageType", paramInt);
+    this.auo.putInt("maskedWalletDetailsLogoImageType", paramInt);
     return this;
   }
 
   public final WalletFragmentStyle setMaskedWalletDetailsLogoTextColor(int paramInt)
   {
-    this.akE.putInt("maskedWalletDetailsLogoTextColor", paramInt);
+    this.auo.putInt("maskedWalletDetailsLogoTextColor", paramInt);
     return this;
   }
 
   public final WalletFragmentStyle setMaskedWalletDetailsTextAppearance(int paramInt)
   {
-    this.akE.putInt("maskedWalletDetailsTextAppearance", paramInt);
+    this.auo.putInt("maskedWalletDetailsTextAppearance", paramInt);
     return this;
   }
 
   public final WalletFragmentStyle setStyleResourceId(int paramInt)
   {
-    this.akF = paramInt;
+    this.aup = paramInt;
     return this;
   }
 
@@ -216,7 +216,7 @@ public final class WalletFragmentStyle
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.fragment.WalletFragmentStyle
  * JD-Core Version:    0.6.2
  */

@@ -1,36 +1,50 @@
 package com.admarvel.android.ads;
 
-import android.content.Context;
-import com.admarvel.android.util.a;
+import android.util.Log;
+import com.admarvel.android.util.Logging;
+import com.admarvel.android.util.a.b;
+import java.lang.ref.WeakReference;
 
 class AdMarvelActivity$i
   implements Runnable
 {
-  private final AdMarvelAd a;
-  private final Context b;
+  private final WeakReference<d> a;
+  private final WeakReference<AdMarvelActivity> b;
+  private final String c;
 
-  public AdMarvelActivity$i(AdMarvelAd paramAdMarvelAd, Context paramContext)
+  public AdMarvelActivity$i(d paramd, AdMarvelActivity paramAdMarvelActivity, String paramString)
   {
-    this.a = paramAdMarvelAd;
-    this.b = paramContext;
+    this.a = new WeakReference(paramd);
+    this.b = new WeakReference(paramAdMarvelActivity);
+    this.c = paramString;
   }
 
   public void run()
   {
-    a locala = a.b(this.b);
-    if ((locala != null) && (this.a != null))
+    AdMarvelActivity localAdMarvelActivity;
+    try
     {
-      int i = this.a.getAdHistoryCounter();
-      StringBuilder localStringBuilder = new StringBuilder();
-      localStringBuilder.append("/ssr_");
-      localStringBuilder.append(i);
-      localStringBuilder.append(".jpg");
-      locala.a(localStringBuilder.toString());
+      if ((d)this.a.get() == null)
+        return;
+      localAdMarvelActivity = (AdMarvelActivity)this.b.get();
+      if ((localAdMarvelActivity == null) || (this.c == null) || (this.c.length() <= 0))
+        return;
+      if (AdMarvelInterstitialAds.enableOfflineSDK)
+      {
+        new b().a(this.c, localAdMarvelActivity, localAdMarvelActivity.d);
+        return;
+      }
     }
+    catch (Exception localException)
+    {
+      Logging.log(Log.getStackTraceString(localException));
+      return;
+    }
+    new r(localAdMarvelActivity).b(this.c);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.AdMarvelActivity.i
  * JD-Core Version:    0.6.2
  */

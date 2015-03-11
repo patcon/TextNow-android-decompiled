@@ -91,57 +91,54 @@ public class ga
 
   public static int a(long paramLong, byte[] paramArrayOfByte, int paramInt)
   {
-    long l1 = paramLong << 1 ^ paramLong >> 63;
+    long l = paramLong << 1 ^ paramLong >> 63;
     int i;
-    long l2;
     int k;
-    long l3;
-    if ((0xFFFFFF80 & l1) != 0L)
+    if ((0xFFFFFF80 & l) != 0L)
     {
       i = paramInt + 1;
-      paramArrayOfByte[paramInt] = ((byte)(int)(0xFF & (0x80 | l1)));
-      l2 = l1 >>> 7;
-      if (l2 > 127L)
+      paramArrayOfByte[paramInt] = ((byte)(int)(0xFF & (0x80 | l)));
+      l >>>= 7;
+      if (l > 127L)
       {
         k = i + 1;
-        paramArrayOfByte[i] = ((byte)(int)(0xFF & (0x80 | l2)));
-        l3 = l2 >>> 7;
-        if (l3 > 127L)
+        paramArrayOfByte[i] = ((byte)(int)(0xFF & (0x80 | l)));
+        l >>>= 7;
+        if (l <= 127L)
+          break label371;
+        i = k + 1;
+        paramArrayOfByte[k] = ((byte)(int)(0xFF & (0x80 | l)));
+        l >>>= 7;
+        if (l > 127L)
         {
-          i = k + 1;
-          paramArrayOfByte[k] = ((byte)(int)(0xFF & (0x80 | l3)));
-          l2 = l3 >>> 7;
-          if (l2 <= 127L)
-            break label382;
           k = i + 1;
-          paramArrayOfByte[i] = ((byte)(int)(0xFF & (0x80 | l2)));
-          l3 = l2 >>> 7;
-          if (l3 > 127L)
+          paramArrayOfByte[i] = ((byte)(int)(0xFF & (0x80 | l)));
+          l >>>= 7;
+          if (l <= 127L)
+            break label371;
+          i = k + 1;
+          paramArrayOfByte[k] = ((byte)(int)(0xFF & (0x80 | l)));
+          l >>>= 7;
+          if (l > 127L)
           {
-            i = k + 1;
-            paramArrayOfByte[k] = ((byte)(int)(0xFF & (0x80 | l3)));
-            l2 = l3 >>> 7;
-            if (l2 <= 127L)
-              break label382;
             k = i + 1;
-            paramArrayOfByte[i] = ((byte)(int)(0xFF & (0x80 | l2)));
-            l3 = l2 >>> 7;
-            if (l3 > 127L)
+            paramArrayOfByte[i] = ((byte)(int)(0xFF & (0x80 | l)));
+            l >>>= 7;
+            if (l <= 127L)
+              break label371;
+            i = k + 1;
+            paramArrayOfByte[k] = ((byte)(int)(0xFF & (0x80 | l)));
+            l >>>= 7;
+            if (l > 127L)
             {
-              i = k + 1;
-              paramArrayOfByte[k] = ((byte)(int)(0xFF & (0x80 | l3)));
-              l2 = l3 >>> 7;
-              if (l2 <= 127L)
-                break label382;
               k = i + 1;
-              paramArrayOfByte[i] = ((byte)(int)(0xFF & (0x80 | l2)));
-              l3 = l2 >>> 7;
-              if (l3 > 127L)
-              {
-                i = k + 1;
-                paramArrayOfByte[k] = ((byte)(int)(0xFF & (0x80 | l3)));
-                l1 = l3 >>> 7;
-              }
+              paramArrayOfByte[i] = ((byte)(int)(0xFF & (0x80 | l)));
+              l >>>= 7;
+              if (l <= 127L)
+                break label371;
+              i = k + 1;
+              paramArrayOfByte[k] = ((byte)(int)(0xFF & (0x80 | l)));
+              l >>>= 7;
             }
           }
         }
@@ -150,12 +147,9 @@ public class ga
     while (true)
     {
       int j = i + 1;
-      paramArrayOfByte[i] = ((byte)(int)l1);
+      paramArrayOfByte[i] = ((byte)(int)l);
       return j - paramInt;
-      i = k;
-      l1 = l3;
-      continue;
-      label382: l1 = l2;
+      label371: i = k;
       continue;
       i = paramInt;
     }
@@ -188,7 +182,7 @@ public class ga
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.flurry.sdk.ga
  * JD-Core Version:    0.6.2
  */

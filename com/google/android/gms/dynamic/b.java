@@ -7,11 +7,11 @@ import android.view.View;
 
 public final class b extends c.a
 {
-  private Fragment Mj;
+  private Fragment Sj;
 
   private b(Fragment paramFragment)
   {
-    this.Mj = paramFragment;
+    this.Sj = paramFragment;
   }
 
   public static b a(Fragment paramFragment)
@@ -21,140 +21,140 @@ public final class b extends c.a
     return null;
   }
 
-  public final void c(d paramd)
-  {
-    View localView = (View)e.e(paramd);
-    this.Mj.registerForContextMenu(localView);
-  }
-
   public final void d(d paramd)
   {
-    View localView = (View)e.e(paramd);
-    this.Mj.unregisterForContextMenu(localView);
+    View localView = (View)e.f(paramd);
+    this.Sj.registerForContextMenu(localView);
   }
 
-  public final d gI()
+  public final void e(d paramd)
   {
-    return e.h(this.Mj.getActivity());
-  }
-
-  public final c gJ()
-  {
-    return a(this.Mj.getParentFragment());
-  }
-
-  public final d gK()
-  {
-    return e.h(this.Mj.getResources());
-  }
-
-  public final c gL()
-  {
-    return a(this.Mj.getTargetFragment());
+    View localView = (View)e.f(paramd);
+    this.Sj.unregisterForContextMenu(localView);
   }
 
   public final Bundle getArguments()
   {
-    return this.Mj.getArguments();
+    return this.Sj.getArguments();
   }
 
   public final int getId()
   {
-    return this.Mj.getId();
+    return this.Sj.getId();
   }
 
   public final boolean getRetainInstance()
   {
-    return this.Mj.getRetainInstance();
+    return this.Sj.getRetainInstance();
   }
 
   public final String getTag()
   {
-    return this.Mj.getTag();
+    return this.Sj.getTag();
   }
 
   public final int getTargetRequestCode()
   {
-    return this.Mj.getTargetRequestCode();
+    return this.Sj.getTargetRequestCode();
   }
 
   public final boolean getUserVisibleHint()
   {
-    return this.Mj.getUserVisibleHint();
+    return this.Sj.getUserVisibleHint();
   }
 
   public final d getView()
   {
-    return e.h(this.Mj.getView());
+    return e.k(this.Sj.getView());
   }
 
   public final boolean isAdded()
   {
-    return this.Mj.isAdded();
+    return this.Sj.isAdded();
   }
 
   public final boolean isDetached()
   {
-    return this.Mj.isDetached();
+    return this.Sj.isDetached();
   }
 
   public final boolean isHidden()
   {
-    return this.Mj.isHidden();
+    return this.Sj.isHidden();
   }
 
   public final boolean isInLayout()
   {
-    return this.Mj.isInLayout();
+    return this.Sj.isInLayout();
   }
 
   public final boolean isRemoving()
   {
-    return this.Mj.isRemoving();
+    return this.Sj.isRemoving();
   }
 
   public final boolean isResumed()
   {
-    return this.Mj.isResumed();
+    return this.Sj.isResumed();
   }
 
   public final boolean isVisible()
   {
-    return this.Mj.isVisible();
+    return this.Sj.isVisible();
+  }
+
+  public final d iu()
+  {
+    return e.k(this.Sj.getActivity());
+  }
+
+  public final c iv()
+  {
+    return a(this.Sj.getParentFragment());
+  }
+
+  public final d iw()
+  {
+    return e.k(this.Sj.getResources());
+  }
+
+  public final c ix()
+  {
+    return a(this.Sj.getTargetFragment());
   }
 
   public final void setHasOptionsMenu(boolean paramBoolean)
   {
-    this.Mj.setHasOptionsMenu(paramBoolean);
+    this.Sj.setHasOptionsMenu(paramBoolean);
   }
 
   public final void setMenuVisibility(boolean paramBoolean)
   {
-    this.Mj.setMenuVisibility(paramBoolean);
+    this.Sj.setMenuVisibility(paramBoolean);
   }
 
   public final void setRetainInstance(boolean paramBoolean)
   {
-    this.Mj.setRetainInstance(paramBoolean);
+    this.Sj.setRetainInstance(paramBoolean);
   }
 
   public final void setUserVisibleHint(boolean paramBoolean)
   {
-    this.Mj.setUserVisibleHint(paramBoolean);
+    this.Sj.setUserVisibleHint(paramBoolean);
   }
 
   public final void startActivity(Intent paramIntent)
   {
-    this.Mj.startActivity(paramIntent);
+    this.Sj.startActivity(paramIntent);
   }
 
   public final void startActivityForResult(Intent paramIntent, int paramInt)
   {
-    this.Mj.startActivityForResult(paramIntent, paramInt);
+    this.Sj.startActivityForResult(paramIntent, paramInt);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.dynamic.b
  * JD-Core Version:    0.6.2
  */

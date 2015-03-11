@@ -2,32 +2,32 @@ package com.google.android.gms.plus.internal;
 
 import android.os.Bundle;
 import android.os.Parcel;
+import com.google.android.gms.common.internal.n;
+import com.google.android.gms.common.internal.n.a;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 import com.google.android.gms.common.internal.safeparcel.c;
-import com.google.android.gms.internal.hk;
-import com.google.android.gms.internal.hk.a;
 
 public class PlusCommonExtras
   implements SafeParcelable
 {
   public static final f CREATOR = new f();
   public static String TAG = "PlusCommonExtras";
-  private String abQ;
-  private String abR;
-  private final int xM;
+  private final int BR;
+  private String alA;
+  private String alB;
 
   public PlusCommonExtras()
   {
-    this.xM = 1;
-    this.abQ = "";
-    this.abR = "";
+    this.BR = 1;
+    this.alA = "";
+    this.alB = "";
   }
 
   PlusCommonExtras(int paramInt, String paramString1, String paramString2)
   {
-    this.xM = paramInt;
-    this.abQ = paramString1;
-    this.abR = paramString2;
+    this.BR = paramInt;
+    this.alA = paramString1;
+    this.alB = paramString2;
   }
 
   public int describeContents()
@@ -44,42 +44,42 @@ public class PlusCommonExtras
       return false;
       localPlusCommonExtras = (PlusCommonExtras)paramObject;
     }
-    while ((this.xM != localPlusCommonExtras.xM) || (!hk.equal(this.abQ, localPlusCommonExtras.abQ)) || (!hk.equal(this.abR, localPlusCommonExtras.abR)));
+    while ((this.BR != localPlusCommonExtras.BR) || (!n.equal(this.alA, localPlusCommonExtras.alA)) || (!n.equal(this.alB, localPlusCommonExtras.alB)));
     return true;
   }
 
   public int getVersionCode()
   {
-    return this.xM;
+    return this.BR;
   }
 
   public int hashCode()
   {
     Object[] arrayOfObject = new Object[3];
-    arrayOfObject[0] = Integer.valueOf(this.xM);
-    arrayOfObject[1] = this.abQ;
-    arrayOfObject[2] = this.abR;
-    return hk.hashCode(arrayOfObject);
+    arrayOfObject[0] = Integer.valueOf(this.BR);
+    arrayOfObject[1] = this.alA;
+    arrayOfObject[2] = this.alB;
+    return n.hashCode(arrayOfObject);
   }
 
-  public String jX()
+  public String ne()
   {
-    return this.abQ;
+    return this.alA;
   }
 
-  public String jY()
+  public String nf()
   {
-    return this.abR;
+    return this.alB;
   }
 
-  public void n(Bundle paramBundle)
+  public void o(Bundle paramBundle)
   {
     paramBundle.putByteArray("android.gms.plus.internal.PlusCommonExtras.extraPlusCommon", c.a(this));
   }
 
   public String toString()
   {
-    return hk.e(this).a("versionCode", Integer.valueOf(this.xM)).a("Gpsrc", this.abQ).a("ClientCallingPackage", this.abR).toString();
+    return n.h(this).a("versionCode", Integer.valueOf(this.BR)).a("Gpsrc", this.alA).a("ClientCallingPackage", this.alB).toString();
   }
 
   public void writeToParcel(Parcel paramParcel, int paramInt)
@@ -88,7 +88,7 @@ public class PlusCommonExtras
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.plus.internal.PlusCommonExtras
  * JD-Core Version:    0.6.2
  */

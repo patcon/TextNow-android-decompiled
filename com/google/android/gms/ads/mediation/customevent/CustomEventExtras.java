@@ -7,20 +7,20 @@ import java.util.HashMap;
 public final class CustomEventExtras
   implements NetworkExtras
 {
-  private final HashMap<String, Object> ta = new HashMap();
+  private final HashMap<String, Object> xj = new HashMap();
 
   public final Object getExtra(String paramString)
   {
-    return this.ta.get(paramString);
+    return this.xj.get(paramString);
   }
 
   public final void setExtra(String paramString, Object paramObject)
   {
-    this.ta.put(paramString, paramObject);
+    this.xj.put(paramString, paramObject);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.ads.mediation.customevent.CustomEventExtras
  * JD-Core Version:    0.6.2
  */

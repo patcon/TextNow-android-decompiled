@@ -3,24 +3,24 @@ package com.google.android.gms.dynamic;
 import android.content.Context;
 import android.os.IBinder;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.internal.hm;
+import com.google.android.gms.common.internal.o;
 
 public abstract class g<T>
 {
-  private final String Ml;
-  private T Mm;
+  private final String Sl;
+  private T Sm;
 
   protected g(String paramString)
   {
-    this.Ml = paramString;
+    this.Sl = paramString;
   }
 
-  protected final T G(Context paramContext)
+  protected final T L(Context paramContext)
   {
     ClassLoader localClassLoader;
-    if (this.Mm == null)
+    if (this.Sm == null)
     {
-      hm.f(paramContext);
+      o.i(paramContext);
       Context localContext = GooglePlayServicesUtil.getRemoteContext(paramContext);
       if (localContext == null)
         throw new g.a("Could not get remote context.");
@@ -28,27 +28,27 @@ public abstract class g<T>
     }
     try
     {
-      this.Mm = d((IBinder)localClassLoader.loadClass(this.Ml).newInstance());
-      return this.Mm;
+      this.Sm = d((IBinder)localClassLoader.loadClass(this.Sl).newInstance());
+      return this.Sm;
     }
     catch (ClassNotFoundException localClassNotFoundException)
     {
-      throw new g.a("Could not load creator class.");
+      throw new g.a("Could not load creator class.", localClassNotFoundException);
     }
     catch (InstantiationException localInstantiationException)
     {
-      throw new g.a("Could not instantiate creator.");
+      throw new g.a("Could not instantiate creator.", localInstantiationException);
     }
     catch (IllegalAccessException localIllegalAccessException)
     {
+      throw new g.a("Could not access creator.", localIllegalAccessException);
     }
-    throw new g.a("Could not access creator.");
   }
 
   protected abstract T d(IBinder paramIBinder);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.dynamic.g
  * JD-Core Version:    0.6.2
  */

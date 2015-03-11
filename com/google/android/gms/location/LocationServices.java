@@ -10,23 +10,21 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 import com.google.android.gms.common.api.Scope;
-import com.google.android.gms.internal.gy;
-import com.google.android.gms.internal.hm;
-import com.google.android.gms.internal.jb;
-import com.google.android.gms.internal.jc;
-import com.google.android.gms.internal.jg;
+import com.google.android.gms.common.internal.ClientSettings;
+import com.google.android.gms.common.internal.o;
+import com.google.android.gms.internal.lu;
+import com.google.android.gms.internal.lv;
+import com.google.android.gms.internal.lz;
 
 public class LocationServices
 {
-  public static final Api<Api.ApiOptions.NoOptions> API = new Api(yI, yH, new Scope[0]);
-  public static FusedLocationProviderApi FusedLocationApi = new jb();
-  public static GeofencingApi GeofencingApi = new jc();
-  private static final Api.c<jg> yH = new Api.c();
-  private static final Api.b<jg, Api.ApiOptions.NoOptions> yI = new Api.b()
+  public static final Api<Api.ApiOptions.NoOptions> API = new Api(CV, CU, new Scope[0]);
+  private static final Api.c<lz> CU = new Api.c();
+  private static final Api.b<lz, Api.ApiOptions.NoOptions> CV = new Api.b()
   {
-    public final jg c(Context paramAnonymousContext, Looper paramAnonymousLooper, gy paramAnonymousgy, Api.ApiOptions.NoOptions paramAnonymousNoOptions, GoogleApiClient.ConnectionCallbacks paramAnonymousConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener paramAnonymousOnConnectionFailedListener)
+    public final lz d(Context paramAnonymousContext, Looper paramAnonymousLooper, ClientSettings paramAnonymousClientSettings, Api.ApiOptions.NoOptions paramAnonymousNoOptions, GoogleApiClient.ConnectionCallbacks paramAnonymousConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener paramAnonymousOnConnectionFailedListener)
     {
-      return new jg(paramAnonymousContext, paramAnonymousLooper, paramAnonymousConnectionCallbacks, paramAnonymousOnConnectionFailedListener, "locationServices");
+      return new lz(paramAnonymousContext, paramAnonymousLooper, paramAnonymousContext.getPackageName(), paramAnonymousConnectionCallbacks, paramAnonymousOnConnectionFailedListener, "locationServices", paramAnonymousClientSettings.getAccountName());
     }
 
     public final int getPriority()
@@ -34,24 +32,26 @@ public class LocationServices
       return 2147483647;
     }
   };
+  public static FusedLocationProviderApi FusedLocationApi = new lu();
+  public static GeofencingApi GeofencingApi = new lv();
 
-  public static jg e(GoogleApiClient paramGoogleApiClient)
+  public static lz e(GoogleApiClient paramGoogleApiClient)
   {
     boolean bool1 = true;
     boolean bool2;
-    jg localjg;
+    lz locallz;
     if (paramGoogleApiClient != null)
     {
       bool2 = bool1;
-      hm.b(bool2, "GoogleApiClient parameter is required.");
-      localjg = (jg)paramGoogleApiClient.a(yH);
-      if (localjg == null)
+      o.b(bool2, "GoogleApiClient parameter is required.");
+      locallz = (lz)paramGoogleApiClient.a(CU);
+      if (locallz == null)
         break label44;
     }
     while (true)
     {
-      hm.a(bool1, "GoogleApiClient is not configured to use the LocationServices.API Api. Pass thisinto GoogleApiClient.Builder#addApi() to use this feature.");
-      return localjg;
+      o.a(bool1, "GoogleApiClient is not configured to use the LocationServices.API Api. Pass thisinto GoogleApiClient.Builder#addApi() to use this feature.");
+      return locallz;
       bool2 = false;
       break;
       label44: bool1 = false;
@@ -59,7 +59,7 @@ public class LocationServices
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.location.LocationServices
  * JD-Core Version:    0.6.2
  */

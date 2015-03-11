@@ -8,18 +8,18 @@ public final class b
   implements SafeParcelable
 {
   public static final Parcelable.Creator<b> CREATOR = new c();
+  private final int BR;
   String label;
   String value;
-  private final int xM;
 
   b()
   {
-    this.xM = 1;
+    this.BR = 1;
   }
 
   b(int paramInt, String paramString1, String paramString2)
   {
-    this.xM = paramInt;
+    this.BR = paramInt;
     this.label = paramString1;
     this.value = paramString2;
   }
@@ -31,7 +31,7 @@ public final class b
 
   public final int getVersionCode()
   {
-    return this.xM;
+    return this.BR;
   }
 
   public final void writeToParcel(Parcel paramParcel, int paramInt)
@@ -40,7 +40,7 @@ public final class b
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.wobs.b
  * JD-Core Version:    0.6.2
  */

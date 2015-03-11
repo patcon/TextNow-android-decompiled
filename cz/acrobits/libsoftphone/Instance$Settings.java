@@ -43,7 +43,7 @@ public final class Instance$Settings
   public static native void setPrivateValue(String paramString1, String paramString2, String paramString3);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     cz.acrobits.libsoftphone.Instance.Settings
  * JD-Core Version:    0.6.2
  */

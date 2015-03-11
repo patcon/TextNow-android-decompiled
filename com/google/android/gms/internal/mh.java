@@ -1,47 +1,87 @@
 package com.google.android.gms.internal;
 
+import android.os.Parcel;
+import com.google.android.gms.common.internal.n;
+import com.google.android.gms.common.internal.n.a;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
+
 public final class mh
+  implements SafeParcelable
 {
-  public static final int[] and = new int[0];
-  public static final long[] ane = new long[0];
-  public static final float[] anf = new float[0];
-  public static final double[] ang = new double[0];
-  public static final boolean[] anh = new boolean[0];
-  public static final String[] ani = new String[0];
-  public static final byte[][] anj = new byte[0][];
-  public static final byte[] ank = new byte[0];
+  public static final mi CREATOR = new mi();
+  private final int BR;
+  private final int aeh;
+  private final int afp;
+  private final mj afq;
 
-  public static final int b(ly paramly, int paramInt)
+  mh(int paramInt1, int paramInt2, int paramInt3, mj parammj)
   {
-    int i = 1;
-    int j = paramly.getPosition();
-    paramly.ev(paramInt);
-    while ((paramly.nN() > 0) && (paramly.nB() == paramInt))
+    this.BR = paramInt1;
+    this.aeh = paramInt2;
+    this.afp = paramInt3;
+    this.afq = parammj;
+  }
+
+  public final int describeContents()
+  {
+    return 0;
+  }
+
+  public final boolean equals(Object paramObject)
+  {
+    if (this == paramObject);
+    mh localmh;
+    do
     {
-      paramly.ev(paramInt);
-      i++;
+      return true;
+      if (!(paramObject instanceof mh))
+        return false;
+      localmh = (mh)paramObject;
     }
-    paramly.ez(j);
-    return i;
+    while ((this.aeh == localmh.aeh) && (this.afp == localmh.afp) && (this.afq.equals(localmh.afq)));
+    return false;
   }
 
-  static int eN(int paramInt)
+  public final int getVersionCode()
   {
-    return paramInt & 0x7;
+    return this.BR;
   }
 
-  public static int eO(int paramInt)
+  public final int hashCode()
   {
-    return paramInt >>> 3;
+    Object[] arrayOfObject = new Object[2];
+    arrayOfObject[0] = Integer.valueOf(this.aeh);
+    arrayOfObject[1] = Integer.valueOf(this.afp);
+    return n.hashCode(arrayOfObject);
   }
 
-  static int u(int paramInt1, int paramInt2)
+  public final int mc()
   {
-    return paramInt2 | paramInt1 << 3;
+    return this.aeh;
+  }
+
+  public final int mg()
+  {
+    return this.afp;
+  }
+
+  public final mj mh()
+  {
+    return this.afq;
+  }
+
+  public final String toString()
+  {
+    return n.h(this).a("transitionTypes", Integer.valueOf(this.aeh)).a("loiteringTimeMillis", Integer.valueOf(this.afp)).a("placeFilter", this.afq).toString();
+  }
+
+  public final void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    mi.a(this, paramParcel, paramInt);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.mh
  * JD-Core Version:    0.6.2
  */

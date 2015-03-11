@@ -1,22 +1,14 @@
 package textnow.az;
 
-public final class i
-  implements Runnable
+import android.webkit.WebView;
+import java.util.Map;
+
+abstract interface i
 {
-  String a;
-
-  public i(e parame, String paramString)
-  {
-    this.a = paramString;
-  }
-
-  public final void run()
-  {
-    this.b.loadUrl("javascript:" + this.a);
-  }
+  public abstract f a(Map<String, String> paramMap, WebView paramWebView);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.az.i
  * JD-Core Version:    0.6.2
  */

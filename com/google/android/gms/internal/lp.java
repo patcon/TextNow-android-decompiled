@@ -1,25 +1,31 @@
 package com.google.android.gms.internal;
 
-import android.os.Bundle;
-import android.os.IInterface;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.wallet.FullWallet;
-import com.google.android.gms.wallet.MaskedWallet;
+import android.content.Context;
 
-public abstract interface lp extends IInterface
+public class lp
 {
-  public abstract void a(int paramInt, FullWallet paramFullWallet, Bundle paramBundle);
+  private final String Dd;
+  private final me<lx> Dh;
+  private final String IM;
+  private lq aeA;
+  private final Context mContext;
 
-  public abstract void a(int paramInt, MaskedWallet paramMaskedWallet, Bundle paramBundle);
+  private lp(Context paramContext, String paramString1, String paramString2, me<lx> paramme)
+  {
+    this.mContext = paramContext;
+    this.Dd = paramString1;
+    this.Dh = paramme;
+    this.aeA = null;
+    this.IM = paramString2;
+  }
 
-  public abstract void a(int paramInt, boolean paramBoolean, Bundle paramBundle);
-
-  public abstract void a(Status paramStatus, li paramli, Bundle paramBundle);
-
-  public abstract void i(int paramInt, Bundle paramBundle);
+  public static lp a(Context paramContext, String paramString1, String paramString2, me<lx> paramme)
+  {
+    return new lp(paramContext, paramString1, paramString2, paramme);
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.lp
  * JD-Core Version:    0.6.2
  */

@@ -1,6 +1,9 @@
 package com.mopub.mobileads;
 
 import android.content.Context;
+import com.enflick.android.TextNow.ads.a;
+import com.enflick.android.TextNow.ads.c;
+import com.enflick.android.TextNow.ads.d;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdRequest.Builder;
 import com.google.android.gms.ads.AdSize;
@@ -8,9 +11,10 @@ import com.google.android.gms.ads.AdView;
 import com.mopub.common.util.Views;
 import java.util.GregorianCalendar;
 import java.util.Map;
-import textnow.u.r;
+import textnow.z.u;
 
 class GooglePlayServicesBanner extends CustomEventBanner
+  implements d
 {
   private static final String AD_HEIGHT_KEY = "adHeight";
   private static final String AD_UNIT_ID_KEY = "adUnitID";
@@ -52,32 +56,31 @@ class GooglePlayServicesBanner extends CustomEventBanner
     return this.mGoogleAdView;
   }
 
+  public void invalidate()
+  {
+    if (this.mGoogleAdView != null)
+    {
+      Views.removeFromParent(this.mGoogleAdView);
+      this.mGoogleAdView.setAdListener(null);
+      this.mGoogleAdView.destroy();
+    }
+  }
+
   protected void loadBanner(Context paramContext, CustomEventBanner.CustomEventBannerListener paramCustomEventBannerListener, Map<String, Object> paramMap, Map<String, String> paramMap1)
   {
-    this.mBannerListener = paramCustomEventBannerListener;
-    AdSize localAdSize;
-    if (extrasAreValid(paramMap1))
-    {
-      String str = (String)paramMap1.get("adUnitID");
-      int i = Integer.parseInt((String)paramMap1.get("adWidth"));
-      int j = Integer.parseInt((String)paramMap1.get("adHeight"));
-      this.mGoogleAdView = new AdView(paramContext);
-      this.mGoogleAdView.setAdListener(new GooglePlayServicesBanner.AdViewListener(this, null));
-      this.mGoogleAdView.setAdUnitId(str);
-      localAdSize = calculateAdSize(i, j);
-      if (localAdSize != null)
-        break label140;
+    this.mBannerListener = new a(paramCustomEventBannerListener);
+    this.mGoogleAdView = new AdView(paramContext);
+    this.mGoogleAdView.setAdListener(new GooglePlayServicesBanner.AdViewListener(this, null));
+    this.mGoogleAdView.setAdUnitId("a14ff728a173c11");
+    AdSize localAdSize = calculateAdSize(320, 50);
+    if (localAdSize == null)
       this.mBannerListener.onBannerFailed(MoPubErrorCode.ADAPTER_CONFIGURATION_ERROR);
-    }
-    label140: 
     do
     {
       return;
-      this.mBannerListener.onBannerFailed(MoPubErrorCode.ADAPTER_CONFIGURATION_ERROR);
-      return;
       this.mGoogleAdView.setAdSize(localAdSize);
-      r localr = new r(paramContext);
-      AdRequest localAdRequest = new AdRequest.Builder().setBirthday(new GregorianCalendar(localr.r(), 0, 1).getTime()).setGender(localr.s()).build();
+      u localu = new u(paramContext);
+      AdRequest localAdRequest = new AdRequest.Builder().setBirthday(new GregorianCalendar(localu.p(), 0, 1).getTime()).setGender(localu.q()).build();
       try
       {
         this.mGoogleAdView.loadAd(localAdRequest);
@@ -93,16 +96,13 @@ class GooglePlayServicesBanner extends CustomEventBanner
 
   protected void onInvalidate()
   {
-    Views.removeFromParent(this.mGoogleAdView);
     if (this.mGoogleAdView != null)
-    {
       this.mGoogleAdView.setAdListener(null);
-      this.mGoogleAdView.destroy();
-    }
+    c.a(this);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.mopub.mobileads.GooglePlayServicesBanner
  * JD-Core Version:    0.6.2
  */

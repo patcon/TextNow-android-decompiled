@@ -1,245 +1,80 @@
 package com.google.android.gms.internal;
 
-import android.os.Parcel;
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-import com.google.android.gms.plus.model.moments.ItemScope;
-import com.google.android.gms.plus.model.moments.Moment;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import android.os.IInterface;
+import com.google.android.gms.fitness.request.DataDeleteRequest;
+import com.google.android.gms.fitness.request.DataReadRequest;
+import com.google.android.gms.fitness.request.DataSourcesRequest;
+import com.google.android.gms.fitness.request.DataTypeCreateRequest;
+import com.google.android.gms.fitness.request.SessionInsertRequest;
+import com.google.android.gms.fitness.request.SessionReadRequest;
+import com.google.android.gms.fitness.request.StartBleScanRequest;
+import com.google.android.gms.fitness.request.aa;
+import com.google.android.gms.fitness.request.ad;
+import com.google.android.gms.fitness.request.af;
+import com.google.android.gms.fitness.request.ah;
+import com.google.android.gms.fitness.request.aj;
+import com.google.android.gms.fitness.request.b;
+import com.google.android.gms.fitness.request.e;
+import com.google.android.gms.fitness.request.j;
+import com.google.android.gms.fitness.request.m;
+import com.google.android.gms.fitness.request.o;
+import com.google.android.gms.fitness.request.q;
+import com.google.android.gms.fitness.request.u;
+import com.google.android.gms.fitness.request.w;
+import com.google.android.gms.fitness.request.y;
 
-public final class kp extends hy
-  implements SafeParcelable, Moment
+public abstract interface kp extends IInterface
 {
-  public static final kq CREATOR = new kq();
-  private static final HashMap<String, hy.a<?, ?>> acr;
-  private final Set<Integer> acs;
-  private String adf;
-  private kn adn;
-  private kn ado;
-  private String qX;
-  private String xG;
-  private final int xM;
+  public abstract void a(DataDeleteRequest paramDataDeleteRequest, kt paramkt, String paramString);
 
-  static
-  {
-    HashMap localHashMap = new HashMap();
-    acr = localHashMap;
-    localHashMap.put("id", hy.a.j("id", 2));
-    acr.put("result", hy.a.a("result", 4, kn.class));
-    acr.put("startDate", hy.a.j("startDate", 5));
-    acr.put("target", hy.a.a("target", 6, kn.class));
-    acr.put("type", hy.a.j("type", 7));
-  }
+  public abstract void a(DataReadRequest paramDataReadRequest, km paramkm, String paramString);
 
-  public kp()
-  {
-    this.xM = 1;
-    this.acs = new HashSet();
-  }
+  public abstract void a(DataSourcesRequest paramDataSourcesRequest, kn paramkn, String paramString);
 
-  kp(Set<Integer> paramSet, int paramInt, String paramString1, kn paramkn1, String paramString2, kn paramkn2, String paramString3)
-  {
-    this.acs = paramSet;
-    this.xM = paramInt;
-    this.xG = paramString1;
-    this.adn = paramkn1;
-    this.adf = paramString2;
-    this.ado = paramkn2;
-    this.qX = paramString3;
-  }
+  public abstract void a(DataTypeCreateRequest paramDataTypeCreateRequest, ko paramko, String paramString);
 
-  public kp(Set<Integer> paramSet, String paramString1, kn paramkn1, String paramString2, kn paramkn2, String paramString3)
-  {
-    this.acs = paramSet;
-    this.xM = 1;
-    this.xG = paramString1;
-    this.adn = paramkn1;
-    this.adf = paramString2;
-    this.ado = paramkn2;
-    this.qX = paramString3;
-  }
+  public abstract void a(SessionInsertRequest paramSessionInsertRequest, kt paramkt, String paramString);
 
-  protected final boolean a(hy.a parama)
-  {
-    return this.acs.contains(Integer.valueOf(parama.fN()));
-  }
+  public abstract void a(SessionReadRequest paramSessionReadRequest, kr paramkr, String paramString);
 
-  protected final Object aF(String paramString)
-  {
-    return null;
-  }
+  public abstract void a(StartBleScanRequest paramStartBleScanRequest, kt paramkt, String paramString);
 
-  protected final boolean aG(String paramString)
-  {
-    return false;
-  }
+  public abstract void a(aa paramaa, kt paramkt, String paramString);
 
-  protected final Object b(hy.a parama)
-  {
-    switch (parama.fN())
-    {
-    case 3:
-    default:
-      throw new IllegalStateException("Unknown safe parcelable id=" + parama.fN());
-    case 2:
-      return this.xG;
-    case 4:
-      return this.adn;
-    case 5:
-      return this.adf;
-    case 6:
-      return this.ado;
-    case 7:
-    }
-    return this.qX;
-  }
+  public abstract void a(ad paramad, kt paramkt, String paramString);
 
-  public final int describeContents()
-  {
-    return 0;
-  }
+  public abstract void a(af paramaf, kt paramkt, String paramString);
 
-  public final boolean equals(Object paramObject)
-  {
-    if (!(paramObject instanceof kp))
-      return false;
-    if (this == paramObject)
-      return true;
-    kp localkp = (kp)paramObject;
-    Iterator localIterator = acr.values().iterator();
-    while (localIterator.hasNext())
-    {
-      hy.a locala = (hy.a)localIterator.next();
-      if (a(locala))
-      {
-        if (localkp.a(locala))
-        {
-          if (!b(locala).equals(localkp.b(locala)))
-            return false;
-        }
-        else
-          return false;
-      }
-      else if (localkp.a(locala))
-        return false;
-    }
-    return true;
-  }
+  public abstract void a(ah paramah, kt paramkt, String paramString);
 
-  public final HashMap<String, hy.a<?, ?>> fG()
-  {
-    return acr;
-  }
+  public abstract void a(aj paramaj, kt paramkt, String paramString);
 
-  public final String getId()
-  {
-    return this.xG;
-  }
+  public abstract void a(b paramb, kt paramkt, String paramString);
 
-  public final ItemScope getResult()
-  {
-    return this.adn;
-  }
+  public abstract void a(e parame, kt paramkt, String paramString);
 
-  public final String getStartDate()
-  {
-    return this.adf;
-  }
+  public abstract void a(j paramj, ko paramko, String paramString);
 
-  public final ItemScope getTarget()
-  {
-    return this.ado;
-  }
+  public abstract void a(m paramm, kq paramkq, String paramString);
 
-  public final String getType()
-  {
-    return this.qX;
-  }
+  public abstract void a(o paramo, kt paramkt, String paramString);
 
-  final int getVersionCode()
-  {
-    return this.xM;
-  }
+  public abstract void a(q paramq, kt paramkt, String paramString);
 
-  public final boolean hasId()
-  {
-    return this.acs.contains(Integer.valueOf(2));
-  }
+  public abstract void a(u paramu, kt paramkt, String paramString);
 
-  public final boolean hasResult()
-  {
-    return this.acs.contains(Integer.valueOf(4));
-  }
+  public abstract void a(w paramw, kt paramkt, String paramString);
 
-  public final boolean hasStartDate()
-  {
-    return this.acs.contains(Integer.valueOf(5));
-  }
+  public abstract void a(y paramy, ks paramks, String paramString);
 
-  public final boolean hasTarget()
-  {
-    return this.acs.contains(Integer.valueOf(6));
-  }
+  public abstract void a(kt paramkt, String paramString);
 
-  public final boolean hasType()
-  {
-    return this.acs.contains(Integer.valueOf(7));
-  }
+  public abstract void a(lf paramlf, String paramString);
 
-  public final int hashCode()
-  {
-    Iterator localIterator = acr.values().iterator();
-    int i = 0;
-    hy.a locala;
-    if (localIterator.hasNext())
-    {
-      locala = (hy.a)localIterator.next();
-      if (!a(locala))
-        break label66;
-    }
-    label66: for (int j = i + locala.fN() + b(locala).hashCode(); ; j = i)
-    {
-      i = j;
-      break;
-      return i;
-    }
-  }
-
-  public final boolean isDataValid()
-  {
-    return true;
-  }
-
-  final kn kB()
-  {
-    return this.adn;
-  }
-
-  final kn kC()
-  {
-    return this.ado;
-  }
-
-  public final kp kD()
-  {
-    return this;
-  }
-
-  final Set<Integer> kk()
-  {
-    return this.acs;
-  }
-
-  public final void writeToParcel(Parcel paramParcel, int paramInt)
-  {
-    kq.a(this, paramParcel, paramInt);
-  }
+  public abstract void b(kt paramkt, String paramString);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.kp
  * JD-Core Version:    0.6.2
  */

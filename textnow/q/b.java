@@ -1,593 +1,200 @@
 package textnow.q;
 
-import android.annotation.TargetApi;
-import android.app.KeyguardManager;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.media.AudioManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.NetworkInfo.State;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Build.VERSION;
-import android.provider.Settings.Global;
-import android.provider.Settings.SettingNotFoundException;
-import android.provider.Settings.System;
-import android.provider.Telephony.Sms;
-import android.telephony.PhoneNumberFormattingTextWatcher;
-import android.telephony.TelephonyManager;
-import android.text.Editable;
-import android.text.Html;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.util.Log;
-import android.util.Patterns;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Iterator;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import textnow.u.r;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.ContentResolver;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.support.v4.app.aa;
+import android.support.v4.app.k;
+import android.support.v4.app.z;
+import android.support.v4.content.d;
+import android.support.v4.content.j;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
+import com.enflick.android.TextNow.activities.MainActivity;
+import com.enflick.android.TextNow.activities.av;
+import com.enflick.android.TextNow.persistence.contentproviders.e;
+import com.enflick.android.TextNow.tasks.AddGroupMemberTask;
+import com.enflick.android.TextNow.tasks.DeleteGroupTask;
+import com.enflick.android.TextNow.tasks.UpdateGroupInfoTask;
+import textnow.p.s;
 
-public final class b
+public final class b extends av
+  implements aa<Cursor>
 {
-  private static PhoneNumberFormattingTextWatcher a = new PhoneNumberFormattingTextWatcher();
-  private static SimpleDateFormat b = new SimpleDateFormat("MMM d, yyyy");
-  private static SimpleDateFormat c = new SimpleDateFormat("MMM d");
-  private static SimpleDateFormat d = new SimpleDateFormat("hh:mm a");
-  private static final String[] e = { "403", "587", "780", "825", "236", "250", "604", "672", "778", "204", "431", "506", "709", "902", "226", "249", "289", "343", "365", "416", "519", "613", "647", "705", "807", "905", "902", "418", "438", "450", "514", "579", "581", "819", "873", "306", "639", "867" };
+  private TextView a;
+  private s b;
+  private z f;
+  private d g;
+  private String h;
+  private String i;
 
-  static
+  public static b a(String paramString1, String paramString2)
   {
-    c.i.addAll(c.a);
-    c.i.addAll(c.c);
-    c.i.addAll(c.d);
-    c.i.addAll(c.g);
-    c.i.addAll(c.h);
-    c.j.addAll(c.b);
-    c.j.addAll(c.a);
-    c.k.addAll(c.d);
-    c.l.addAll(c.c);
+    b localb = new b();
+    Bundle localBundle = new Bundle();
+    localBundle.putString("arg_contact_value", paramString1);
+    localBundle.putString("arg_title", paramString2);
+    localb.setArguments(localBundle);
+    return localb;
   }
 
-  public static Uri a(Context paramContext, String paramString, boolean paramBoolean)
+  protected final boolean a(com.enflick.android.TextNow.tasks.c paramc, boolean paramBoolean)
   {
-    File localFile = new File(paramContext.getExternalCacheDir(), "exported_conversation.txt");
-    if (localFile.exists())
-      localFile.delete();
-    Html.fromHtml(paramString).toString();
-    try
-    {
-      localFile.createNewFile();
-      FileOutputStream localFileOutputStream = new FileOutputStream(localFile);
-      localFileOutputStream.write(paramString.getBytes());
-      localFileOutputStream.close();
-      return Uri.fromFile(localFile);
-    }
-    catch (IOException localIOException)
-    {
-      localIOException.printStackTrace();
-    }
-    return null;
-  }
-
-  public static String a(int paramInt)
-  {
-    if (paramInt == 0)
-      return "0MB";
-    float f = paramInt / 1024.0F;
-    if (f < 1.0F)
-      return paramInt + "MB";
-    int i = (int)Math.floor(f);
-    if (f - i > 0.0F)
-    {
-      Object[] arrayOfObject = new Object[1];
-      arrayOfObject[0] = Float.valueOf(f);
-      return String.format("%.1fGB", arrayOfObject);
-    }
-    return i + "GB";
-  }
-
-  public static String a(long paramLong)
-  {
-    return new SimpleDateFormat("yyyy-MM-dd HH:mm z").format(new Date(paramLong));
-  }
-
-  public static String a(long paramLong1, long paramLong2)
-  {
-    return a(new Date(paramLong1 - paramLong2));
-  }
-
-  public static String a(Context paramContext)
-  {
-    try
-    {
-      String str = paramContext.getPackageManager().getPackageInfo(paramContext.getPackageName(), 0).versionName;
-      return str;
-    }
-    catch (Exception localException)
-    {
-      Log.getStackTraceString(localException);
-    }
-    return "NA";
-  }
-
-  public static String a(Iterable<? extends Object> paramIterable, String paramString)
-  {
-    StringBuffer localStringBuffer = new StringBuffer();
-    Iterator localIterator = paramIterable.iterator();
-    while (localIterator.hasNext())
-    {
-      Object localObject = localIterator.next();
-      if (localObject != null)
+    if (paramc.getClass() == UpdateGroupInfoTask.class)
+      if (paramc.h())
       {
-        localStringBuffer.append(localObject);
-        localStringBuffer.append(paramString);
+        this.d.b(2131296818);
+        new c(this, (byte)0).execute(new Void[0]);
       }
-    }
-    String str = localStringBuffer.toString();
-    if (localStringBuffer.length() > paramString.length())
-      str = localStringBuffer.substring(0, localStringBuffer.length() - paramString.length());
-    return str;
-  }
-
-  public static String a(String paramString1, String paramString2)
-  {
-    Date localDate = d(paramString1);
-    return new SimpleDateFormat(paramString2).format(localDate);
-  }
-
-  public static String a(String paramString, boolean paramBoolean)
-  {
-    if (paramString == null)
-      return "";
-    if ((paramBoolean) && (paramString.startsWith("+")))
-      return "+" + paramString.replaceAll("[^\\d]", "");
-    return paramString.replaceAll("[^\\d]", "");
-  }
-
-  public static String a(Date paramDate)
-  {
-    Date localDate = new Date();
-    GregorianCalendar localGregorianCalendar1 = new GregorianCalendar();
-    GregorianCalendar localGregorianCalendar2 = new GregorianCalendar();
-    localGregorianCalendar1.setTime(paramDate);
-    localGregorianCalendar2.setTime(localDate);
-    if (localGregorianCalendar1.get(1) != localGregorianCalendar2.get(1))
-      return b.format(paramDate);
-    if (localGregorianCalendar1.get(5) != localGregorianCalendar2.get(5))
-      return c.format(paramDate);
-    return d.format(paramDate);
-  }
-
-  public static String a(Object[] paramArrayOfObject, String paramString)
-  {
-    return a(Arrays.asList(paramArrayOfObject), paramString);
-  }
-
-  public static void a(Context paramContext, String paramString1, String paramString2, Uri paramUri, String paramString3)
-  {
-    Intent localIntent = new Intent("android.intent.action.SEND");
-    localIntent.setType("text/html");
-    localIntent.putExtra("android.intent.extra.EMAIL", new String[] { paramString3 });
-    localIntent.putExtra("android.intent.extra.SUBJECT", paramString1);
-    if (paramUri != null)
-      localIntent.putExtra("android.intent.extra.STREAM", paramUri);
-    localIntent.addFlags(268435456);
-    localIntent.putExtra("android.intent.extra.TEXT", Html.fromHtml(paramString2));
-    paramContext.startActivity(localIntent);
-  }
-
-  public static void a(Context paramContext, String paramString1, String paramString2, String paramString3, String paramString4, boolean paramBoolean)
-  {
-    String str = paramString4 + "\n\n" + f(paramContext);
-    Uri localUri = b(paramContext, paramString3, paramBoolean);
-    Intent localIntent = new Intent("android.intent.action.SEND");
-    localIntent.setType("text/html");
-    localIntent.putExtra("android.intent.extra.EMAIL", new String[] { paramString1 });
-    localIntent.putExtra("android.intent.extra.SUBJECT", paramString2);
-    localIntent.putExtra("android.intent.extra.TEXT", str);
-    localIntent.addFlags(268435456);
-    if (localUri != null)
-      localIntent.putExtra("android.intent.extra.STREAM", localUri);
-    paramContext.startActivity(localIntent);
-  }
-
-  public static void a(Context paramContext, d paramd)
-  {
-    String str = f(paramContext);
-    Uri localUri = b(paramContext, str, true);
-    Intent localIntent = new Intent("android.intent.action.SEND");
-    localIntent.setType("text/html");
-    localIntent.putExtra("android.intent.extra.EMAIL", new String[] { "textnow.android.feedback@enflick.com" });
-    localIntent.putExtra("android.intent.extra.SUBJECT", "TextNow " + a(paramContext) + " " + paramd.toString());
-    localIntent.addFlags(268435456);
-    localIntent.putExtra("android.intent.extra.TEXT", str);
-    if (localUri != null)
-      localIntent.putExtra("android.intent.extra.STREAM", localUri);
-    paramContext.startActivity(localIntent);
-  }
-
-  public static boolean a()
-  {
-    return Build.MANUFACTURER.equalsIgnoreCase("amazon");
-  }
-
-  public static boolean a(char paramChar)
-  {
-    if ((('A' <= paramChar) && (paramChar <= 'Z')) || (('a' <= paramChar) && (paramChar <= 'z')));
-    while (('0' <= paramChar) && (paramChar <= '9'))
-      return true;
+    while ((paramc.getClass() != AddGroupMemberTask.class) || (!paramc.h()) || ("GROUP_MEMBER_EXISTS".equals(paramc.j())))
+      return false;
+    this.d.b(2131296432);
     return false;
   }
 
-  public static boolean a(long paramLong, String paramString)
+  public final String l()
   {
-    return new SimpleDateFormat("yyyy-MM-dd").format(new Date(paramLong + new Date().getTime())).compareTo(paramString) >= 0;
+    return "/Group_Members";
   }
 
-  public static boolean a(Editable paramEditable)
+  public final String m()
   {
-    char[] arrayOfChar = paramEditable.toString().toCharArray();
-    int i = 0;
-    int j = 0;
-    while (i < arrayOfChar.length)
-    {
-      if (Character.isUpperCase(arrayOfChar[i]))
-      {
-        arrayOfChar[i] = Character.toLowerCase(arrayOfChar[i]);
-        j = 1;
-      }
-      i++;
-    }
-    if (j != 0)
-      paramEditable.replace(0, paramEditable.length(), new String(arrayOfChar).trim());
+    return this.d.getString(2131296805);
+  }
+
+  public final int n()
+  {
+    return 2131558814;
+  }
+
+  public final boolean o()
+  {
     return true;
   }
 
-  public static final boolean a(CharSequence paramCharSequence)
+  public final void onCreate(Bundle paramBundle)
   {
-    try
-    {
-      boolean bool = Patterns.EMAIL_ADDRESS.matcher(paramCharSequence).matches();
-      return bool;
-    }
-    catch (NullPointerException localNullPointerException)
-    {
-    }
-    return false;
+    super.onCreate(paramBundle);
+    this.h = getArguments().getString("arg_contact_value");
+    setHasOptionsMenu(true);
   }
 
-  public static boolean a(String paramString)
+  public final j<Cursor> onCreateLoader(int paramInt, Bundle paramBundle)
   {
-    if (paramString == null)
-      return false;
-    return paramString.replaceAll("[^\\d]", "").matches("^(?:\\+?1[-. ]?)?\\(?([0-9]{3})\\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$");
+    String[] arrayOfString1 = { "_id", "member_contact_value", "member_display_name", "member_contact_uri" };
+    String[] arrayOfString2 = new String[1];
+    arrayOfString2[0] = this.h;
+    this.g = new d(getActivity(), e.d, arrayOfString1, "contact_value=?", arrayOfString2, null);
+    return this.g;
   }
 
-  public static boolean a(List<String> paramList)
+  public final void onCreateOptionsMenu(Menu paramMenu, MenuInflater paramMenuInflater)
   {
-    Iterator localIterator = paramList.iterator();
-    while (localIterator.hasNext())
+    paramMenuInflater.inflate(2131755015, paramMenu);
+  }
+
+  public final View onCreateView(LayoutInflater paramLayoutInflater, ViewGroup paramViewGroup, Bundle paramBundle)
+  {
+    View localView = paramLayoutInflater.inflate(2130903139, null);
+    this.a = ((TextView)localView.findViewById(2131558762));
+    new c(this, (byte)0).execute(new Void[0]);
+    ListView localListView = (ListView)localView.findViewById(2131558763);
+    this.b = new s(getActivity(), null, 0);
+    localListView.setAdapter(this.b);
+    this.f = getLoaderManager();
+    this.f.a(2, null, this);
+    return localView;
+  }
+
+  public final void onDestroy()
+  {
+    super.onDestroy();
+  }
+
+  public final void onLoaderReset(j<Cursor> paramj)
+  {
+    if (this.b != null)
+      this.b.b(null);
+  }
+
+  public final boolean onOptionsItemSelected(MenuItem paramMenuItem)
+  {
+    switch (paramMenuItem.getItemId())
     {
-      String str = (String)localIterator.next();
-      if (Build.MODEL.equals(str))
-        return true;
-    }
-    return false;
-  }
-
-  public static byte[] a(byte[] paramArrayOfByte1, byte[] paramArrayOfByte2)
-  {
-    byte[] arrayOfByte = new byte[paramArrayOfByte1.length];
-    for (int i = 0; i < paramArrayOfByte1.length; i++)
-      arrayOfByte[i] = ((byte)(paramArrayOfByte1[i] ^ paramArrayOfByte2[(i % paramArrayOfByte2.length)]));
-    return arrayOfByte;
-  }
-
-  private static Uri b(Context paramContext, String paramString, boolean paramBoolean)
-  {
-    try
-    {
-      File localFile = new File(paramContext.getExternalCacheDir(), "TextNowLog.txt");
-      if (localFile.exists())
-        localFile.delete();
-      localFile.createNewFile();
-      FileOutputStream localFileOutputStream = new FileOutputStream(localFile);
-      localFileOutputStream.write(paramString.getBytes());
-      if (paramBoolean)
+    default:
+      return super.onOptionsItemSelected(paramMenuItem);
+    case 2131559086:
+      AlertDialog.Builder localBuilder2 = new AlertDialog.Builder(getActivity());
+      localBuilder2.setTitle(2131296816);
+      this.i = this.a.getText().toString();
+      View localView = this.d.getLayoutInflater().inflate(2130903130, null);
+      localBuilder2.setView(localView);
+      final EditText localEditText = (EditText)localView.findViewById(2131558740);
+      localEditText.setText(this.i);
+      localEditText.setInputType(8192);
+      localEditText.setHint(2131296812);
+      localBuilder2.setPositiveButton(2131296427, new DialogInterface.OnClickListener()
       {
-        InputStream localInputStream = Runtime.getRuntime().exec("logcat -d").getInputStream();
-        n.a(localInputStream, localFileOutputStream);
-        localInputStream.close();
-      }
-      localFileOutputStream.close();
-      Uri localUri = Uri.fromFile(localFile);
-      return localUri;
-    }
-    catch (IOException localIOException)
-    {
-    }
-    return null;
-  }
-
-  public static String b(String paramString)
-  {
-    String str;
-    if (!a(paramString))
-      str = null;
-    do
-    {
-      return str;
-      str = a(paramString, false);
-    }
-    while (str.length() != 11);
-    return str.substring(1);
-  }
-
-  public static boolean b()
-  {
-    return b(c.i);
-  }
-
-  public static boolean b(char paramChar)
-  {
-    return (('A' <= paramChar) && (paramChar <= 'Z')) || (('a' <= paramChar) && (paramChar <= 'z'));
-  }
-
-  public static boolean b(Context paramContext)
-  {
-    NetworkInfo[] arrayOfNetworkInfo = ((ConnectivityManager)paramContext.getSystemService("connectivity")).getAllNetworkInfo();
-    if (arrayOfNetworkInfo == null)
-      return false;
-    int i = arrayOfNetworkInfo.length;
-    for (int j = 0; j < i; j++)
-    {
-      NetworkInfo localNetworkInfo = arrayOfNetworkInfo[j];
-      if ((localNetworkInfo != null) && ((localNetworkInfo.getState() == NetworkInfo.State.CONNECTED) || (localNetworkInfo.getState() == NetworkInfo.State.CONNECTING)))
-        return true;
-    }
-    return false;
-  }
-
-  public static boolean b(List<String> paramList)
-  {
-    Iterator localIterator = paramList.iterator();
-    while (localIterator.hasNext())
-    {
-      String str = (String)localIterator.next();
-      if (Build.MODEL.toUpperCase().startsWith(str.toUpperCase()))
-        return true;
-    }
-    return false;
-  }
-
-  public static boolean c()
-  {
-    return b(c.j);
-  }
-
-  public static boolean c(Context paramContext)
-  {
-    String str1 = b(new r(paramContext).c());
-    if ((str1 == null) || (str1.length() != 10));
-    while (true)
-    {
-      return false;
-      String str2 = str1.substring(0, 3);
-      String[] arrayOfString = e;
-      int i = arrayOfString.length;
-      for (int j = 0; j < i; j++)
-        if (arrayOfString[j].equals(str2))
-          return true;
-    }
-  }
-
-  public static final boolean c(String paramString)
-  {
-    return (!TextUtils.isEmpty(paramString)) && (paramString.matches("^[2-9][0-9][0-9]$"));
-  }
-
-  public static Date d(String paramString)
-  {
-    try
-    {
-      if (!TextUtils.isEmpty(paramString))
-      {
-        String str = paramString.replace("Z", "+0000");
-        Date localDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").parse(str);
-        return localDate;
-      }
-    }
-    catch (Exception localException)
-    {
-      Log.getStackTraceString(localException);
-    }
-    return new Date();
-  }
-
-  public static boolean d()
-  {
-    return b(c.k);
-  }
-
-  public static boolean d(Context paramContext)
-  {
-    NetworkInfo[] arrayOfNetworkInfo = ((ConnectivityManager)paramContext.getSystemService("connectivity")).getAllNetworkInfo();
-    int j;
-    if (arrayOfNetworkInfo != null)
-    {
-      int i = arrayOfNetworkInfo.length;
-      j = 0;
-      if (j < i)
-      {
-        NetworkInfo localNetworkInfo = arrayOfNetworkInfo[j];
-        if ((localNetworkInfo == null) || (!localNetworkInfo.isRoaming()));
-      }
-    }
-    for (boolean bool = true; ; bool = false)
-    {
-      new StringBuilder().append("roaming ").append(bool).toString();
-      return bool;
-      j++;
-      break;
-    }
-  }
-
-  public static String e(String paramString)
-  {
-    return a(paramString, false);
-  }
-
-  public static boolean e()
-  {
-    return b(c.l);
-  }
-
-  @TargetApi(17)
-  public static boolean e(Context paramContext)
-  {
-    boolean bool = true;
-    if (Build.VERSION.SDK_INT < 17)
-      if (Settings.System.getInt(paramContext.getContentResolver(), "airplane_mode_on", 0) == 0);
-    while (true)
-    {
-      new StringBuilder().append("airplane mode ").append(bool).toString();
-      return bool;
-      bool = false;
-      continue;
-      if (Settings.Global.getInt(paramContext.getContentResolver(), "airplane_mode_on", 0) == 0)
-        bool = false;
-    }
-  }
-
-  public static String f(Context paramContext)
-  {
-    String str = "";
-    try
-    {
-      str = paramContext.getPackageManager().getPackageInfo(paramContext.getPackageName(), 0).versionName;
-      label20: return "App Version: " + str + "\nDevice Info: " + Build.MANUFACTURER + " " + Build.MODEL + " Android version " + Build.VERSION.RELEASE + "\n";
-    }
-    catch (PackageManager.NameNotFoundException localNameNotFoundException)
-    {
-      break label20;
-    }
-  }
-
-  public static String f(String paramString)
-  {
-    String str = a(paramString, false);
-    if ((str.length() == 10) || (str.length() == 11))
-    {
-      StringBuilder localStringBuilder = new StringBuilder(str);
-      int i = str.length();
-      localStringBuilder.insert(i - 4, '-');
-      localStringBuilder.insert(i - 7, ") ");
-      localStringBuilder.insert(i - 10, '(');
-      if (i > 10)
-        localStringBuilder.insert(i - 10, ' ');
-      return localStringBuilder.toString();
-    }
-    SpannableStringBuilder localSpannableStringBuilder = new SpannableStringBuilder(paramString);
-    a.afterTextChanged(localSpannableStringBuilder);
-    return localSpannableStringBuilder.toString();
-  }
-
-  public static String g(String paramString)
-  {
-    return a(paramString, false).replaceFirst("(\\d{3})(\\d{3})(\\d{4})", "$1-$2-$3");
-  }
-
-  public static boolean g(Context paramContext)
-  {
-    return ((ConnectivityManager)paramContext.getSystemService("connectivity")).getNetworkInfo(1).isConnected();
-  }
-
-  public static e h(Context paramContext)
-  {
-    if ((!paramContext.getPackageManager().hasSystemFeature("android.hardware.telephony")) || (Build.MODEL.startsWith("BNTV2")) || (Build.MODEL.startsWith("BNRV")))
-      return e.a;
-    if (((TelephonyManager)paramContext.getSystemService("phone")).getSimState() != 5)
-      return e.b;
-    return e.c;
-  }
-
-  public static boolean i(Context paramContext)
-  {
-    return paramContext.checkCallingOrSelfPermission("android.permission.CALL_PRIVILEGED") == 0;
-  }
-
-  public static String j(Context paramContext)
-  {
-    TelephonyManager localTelephonyManager = (TelephonyManager)paramContext.getSystemService("phone");
-    if (localTelephonyManager == null)
-      return null;
-    return localTelephonyManager.getDeviceId();
-  }
-
-  public static boolean k(Context paramContext)
-  {
-    if (Build.VERSION.SDK_INT >= 19)
-      return paramContext.getPackageName().equals(Telephony.Sms.getDefaultSmsPackage(paramContext));
-    return false;
-  }
-
-  public static boolean l(Context paramContext)
-  {
-    return ((KeyguardManager)paramContext.getSystemService("keyguard")).inKeyguardRestrictedInputMode();
-  }
-
-  public static boolean m(Context paramContext)
-  {
-    AudioManager localAudioManager = (AudioManager)paramContext.getSystemService("audio");
-    if (localAudioManager == null)
-      return true;
-    if (Build.VERSION.SDK_INT >= 16);
-    while (true)
-    {
-      int i;
-      try
-      {
-        int j = Settings.System.getInt(paramContext.getContentResolver(), "vibrate_when_ringing");
-        if (j == 1)
+        public final void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt)
         {
-          i = 1;
-          if ((localAudioManager.getRingerMode() == 1) || (i != 0))
-            break;
-          return false;
+          String str = localEditText.getText().toString();
+          new StringBuilder().append("Updating group name to: ").append(str).toString();
+          new UpdateGroupInfoTask(b.a(b.this), str).b(b.this.getActivity());
+          b.b(b.this).setText(str);
         }
-        i = 0;
-        continue;
-      }
-      catch (Settings.SettingNotFoundException localSettingNotFoundException)
+      });
+      localBuilder2.setNegativeButton(2131296425, new DialogInterface.OnClickListener()
       {
-        localSettingNotFoundException.printStackTrace();
-        i = 1;
-        continue;
-      }
-      if (((localAudioManager.getVibrateSetting(0) == 2) && (localAudioManager.getRingerMode() == 0)) || (localAudioManager.getVibrateSetting(0) == 1))
-        i = 1;
-      else
-        i = 0;
+        public final void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt)
+        {
+        }
+      });
+      localBuilder2.create().show();
+      return true;
+    case 2131559087:
+      AlertDialog.Builder localBuilder1 = new AlertDialog.Builder(getActivity());
+      localBuilder1.setTitle(2131296808).setMessage(2131296809).setCancelable(true).setPositiveButton(2131296427, new DialogInterface.OnClickListener()
+      {
+        public final void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt)
+        {
+          ContentResolver localContentResolver = b.this.getActivity().getContentResolver();
+          textnow.ac.a.a(localContentResolver, b.a(b.this));
+          textnow.ac.b.c(localContentResolver, b.a(b.this));
+          new DeleteGroupTask(b.a(b.this)).b(b.this.getActivity());
+          b.c(b.this).j();
+        }
+      }).setNegativeButton(2131296425, null);
+      localBuilder1.show();
+      return true;
+    case 2131559085:
     }
+    this.d.a(a.a(this.h));
+    return true;
+  }
+
+  public final void onPause()
+  {
+    super.onPause();
+  }
+
+  public final void onResume()
+  {
+    super.onResume();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.q.b
  * JD-Core Version:    0.6.2
  */

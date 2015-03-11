@@ -1,23 +1,25 @@
 package android.support.v7.internal.view.menu;
 
-import android.view.MenuItem;
-import android.view.MenuItem.OnMenuItemClickListener;
+import android.content.Context;
 
-final class v extends k<MenuItem.OnMenuItemClickListener>
-  implements MenuItem.OnMenuItemClickListener
+public abstract interface v
 {
-  v(s params, MenuItem.OnMenuItemClickListener paramOnMenuItemClickListener)
-  {
-    super(paramOnMenuItemClickListener);
-  }
+  public abstract void a(Context paramContext, i parami);
 
-  public final boolean onMenuItemClick(MenuItem paramMenuItem)
-  {
-    return ((MenuItem.OnMenuItemClickListener)this.a).onMenuItemClick(this.b.a(paramMenuItem));
-  }
+  public abstract void a(i parami, boolean paramBoolean);
+
+  public abstract boolean a(ab paramab);
+
+  public abstract void b(boolean paramBoolean);
+
+  public abstract boolean b();
+
+  public abstract boolean b(m paramm);
+
+  public abstract boolean c(m paramm);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v7.internal.view.menu.v
  * JD-Core Version:    0.6.2
  */

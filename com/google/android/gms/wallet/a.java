@@ -10,25 +10,25 @@ public class a
 {
   static void a(Address paramAddress, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
+    int i = b.D(paramParcel);
     b.c(paramParcel, 1, paramAddress.getVersionCode());
     b.a(paramParcel, 2, paramAddress.name, false);
-    b.a(paramParcel, 3, paramAddress.UH, false);
-    b.a(paramParcel, 4, paramAddress.UI, false);
-    b.a(paramParcel, 5, paramAddress.UJ, false);
-    b.a(paramParcel, 6, paramAddress.rf, false);
-    b.a(paramParcel, 7, paramAddress.aiI, false);
-    b.a(paramParcel, 8, paramAddress.aiJ, false);
-    b.a(paramParcel, 9, paramAddress.UO, false);
-    b.a(paramParcel, 10, paramAddress.UQ, false);
-    b.a(paramParcel, 11, paramAddress.UR);
-    b.a(paramParcel, 12, paramAddress.US, false);
-    b.G(paramParcel, i);
+    b.a(paramParcel, 3, paramAddress.adN, false);
+    b.a(paramParcel, 4, paramAddress.adO, false);
+    b.a(paramParcel, 5, paramAddress.adP, false);
+    b.a(paramParcel, 6, paramAddress.uW, false);
+    b.a(paramParcel, 7, paramAddress.ast, false);
+    b.a(paramParcel, 8, paramAddress.asu, false);
+    b.a(paramParcel, 9, paramAddress.adU, false);
+    b.a(paramParcel, 10, paramAddress.adW, false);
+    b.a(paramParcel, 11, paramAddress.adX);
+    b.a(paramParcel, 12, paramAddress.adY, false);
+    b.H(paramParcel, i);
   }
 
-  public Address bQ(Parcel paramParcel)
+  public Address dn(Parcel paramParcel)
   {
-    int i = com.google.android.gms.common.internal.safeparcel.a.B(paramParcel);
+    int i = com.google.android.gms.common.internal.safeparcel.a.C(paramParcel);
     int j = 0;
     String str1 = null;
     String str2 = null;
@@ -43,8 +43,8 @@ public class a
     String str10 = null;
     while (paramParcel.dataPosition() < i)
     {
-      int k = com.google.android.gms.common.internal.safeparcel.a.A(paramParcel);
-      switch (com.google.android.gms.common.internal.safeparcel.a.ar(k))
+      int k = com.google.android.gms.common.internal.safeparcel.a.B(paramParcel);
+      switch (com.google.android.gms.common.internal.safeparcel.a.aD(k))
       {
       default:
         com.google.android.gms.common.internal.safeparcel.a.b(paramParcel, k);
@@ -91,13 +91,13 @@ public class a
     return new Address(j, str1, str2, str3, str4, str5, str6, str7, str8, str9, bool, str10);
   }
 
-  public Address[] dw(int paramInt)
+  public Address[] fo(int paramInt)
   {
     return new Address[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.a
  * JD-Core Version:    0.6.2
  */

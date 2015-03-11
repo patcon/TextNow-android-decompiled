@@ -7,8 +7,8 @@ import android.net.Uri;
 import com.enflick.android.TextNow.api.common.TNDownloadCommand;
 import java.io.File;
 import java.io.InputStream;
-import textnow.q.g;
-import textnow.q.h;
+import textnow.v.g;
+import textnow.v.h;
 
 public class DownloadToFileTask extends c
 {
@@ -26,15 +26,20 @@ public class DownloadToFileTask extends c
 
   public final String a()
   {
+    return this.d;
+  }
+
+  public final String b()
+  {
     return this.f;
   }
 
-  public final h b()
+  public final h c()
   {
     return this.g;
   }
 
-  public final String c()
+  public final String d()
   {
     return this.e;
   }
@@ -43,10 +48,10 @@ public class DownloadToFileTask extends c
   {
     do
     {
-      textnow.q.i locali1;
+      textnow.v.i locali1;
       do
       {
-        textnow.s.i locali;
+        textnow.x.i locali;
         try
         {
           TNDownloadCommand localTNDownloadCommand = new TNDownloadCommand(this.a, this.e);
@@ -72,7 +77,7 @@ public class DownloadToFileTask extends c
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.DownloadToFileTask
  * JD-Core Version:    0.6.2
  */

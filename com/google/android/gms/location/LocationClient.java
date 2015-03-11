@@ -9,9 +9,10 @@ import android.os.RemoteException;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallbacks;
 import com.google.android.gms.common.GooglePlayServicesClient.OnConnectionFailedListener;
-import com.google.android.gms.internal.hm;
-import com.google.android.gms.internal.jg;
-import com.google.android.gms.internal.jh;
+import com.google.android.gms.common.internal.o;
+import com.google.android.gms.internal.lz;
+import com.google.android.gms.internal.ma;
+import com.google.android.gms.internal.mc;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -22,11 +23,11 @@ public class LocationClient
 {
   public static final String KEY_LOCATION_CHANGED = "com.google.android.location.LOCATION";
   public static final String KEY_MOCK_LOCATION = "mockLocation";
-  private final jg UU;
+  private final lz aea;
 
   public LocationClient(Context paramContext, GooglePlayServicesClient.ConnectionCallbacks paramConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener paramOnConnectionFailedListener)
   {
-    this.UU = new jg(paramContext, paramConnectionCallbacks, paramOnConnectionFailedListener, "location");
+    this.aea = new lz(paramContext, paramConnectionCallbacks, paramOnConnectionFailedListener, "location");
   }
 
   public static int getErrorCode(Intent paramIntent)
@@ -51,7 +52,7 @@ public class LocationClient
     ArrayList localArrayList2 = new ArrayList(localArrayList1.size());
     Iterator localIterator = localArrayList1.iterator();
     while (localIterator.hasNext())
-      localArrayList2.add(jh.h((byte[])localIterator.next()));
+      localArrayList2.add(mc.h((byte[])localIterator.next()));
     return localArrayList2;
   }
 
@@ -75,14 +76,14 @@ public class LocationClient
       while (localIterator.hasNext())
       {
         Geofence localGeofence = (Geofence)localIterator.next();
-        hm.b(localGeofence instanceof jh, "Geofence must be created using Geofence.Builder.");
-        localArrayList.add((jh)localGeofence);
+        o.b(localGeofence instanceof mc, "Geofence must be created using Geofence.Builder.");
+        localArrayList.add((mc)localGeofence);
       }
       localObject = localArrayList;
     }
     try
     {
-      this.UU.addGeofences(localObject, paramPendingIntent, paramOnAddGeofencesResultListener);
+      this.aea.addGeofences(localObject, paramPendingIntent, paramOnAddGeofencesResultListener);
       return;
     }
     catch (RemoteException localRemoteException)
@@ -93,54 +94,54 @@ public class LocationClient
 
   public void connect()
   {
-    this.UU.connect();
+    this.aea.connect();
   }
 
   public void disconnect()
   {
-    this.UU.disconnect();
+    this.aea.disconnect();
   }
 
   public Location getLastLocation()
   {
-    return this.UU.getLastLocation();
+    return this.aea.getLastLocation();
   }
 
   public boolean isConnected()
   {
-    return this.UU.isConnected();
+    return this.aea.isConnected();
   }
 
   public boolean isConnecting()
   {
-    return this.UU.isConnecting();
+    return this.aea.isConnecting();
   }
 
   public boolean isConnectionCallbacksRegistered(GooglePlayServicesClient.ConnectionCallbacks paramConnectionCallbacks)
   {
-    return this.UU.isConnectionCallbacksRegistered(paramConnectionCallbacks);
+    return this.aea.isConnectionCallbacksRegistered(paramConnectionCallbacks);
   }
 
   public boolean isConnectionFailedListenerRegistered(GooglePlayServicesClient.OnConnectionFailedListener paramOnConnectionFailedListener)
   {
-    return this.UU.isConnectionFailedListenerRegistered(paramOnConnectionFailedListener);
+    return this.aea.isConnectionFailedListenerRegistered(paramOnConnectionFailedListener);
   }
 
   public void registerConnectionCallbacks(GooglePlayServicesClient.ConnectionCallbacks paramConnectionCallbacks)
   {
-    this.UU.registerConnectionCallbacks(paramConnectionCallbacks);
+    this.aea.registerConnectionCallbacks(paramConnectionCallbacks);
   }
 
   public void registerConnectionFailedListener(GooglePlayServicesClient.OnConnectionFailedListener paramOnConnectionFailedListener)
   {
-    this.UU.registerConnectionFailedListener(paramOnConnectionFailedListener);
+    this.aea.registerConnectionFailedListener(paramOnConnectionFailedListener);
   }
 
   public void removeGeofences(PendingIntent paramPendingIntent, LocationClient.OnRemoveGeofencesResultListener paramOnRemoveGeofencesResultListener)
   {
     try
     {
-      this.UU.removeGeofences(paramPendingIntent, paramOnRemoveGeofencesResultListener);
+      this.aea.removeGeofences(paramPendingIntent, paramOnRemoveGeofencesResultListener);
       return;
     }
     catch (RemoteException localRemoteException)
@@ -153,7 +154,7 @@ public class LocationClient
   {
     try
     {
-      this.UU.removeGeofences(paramList, paramOnRemoveGeofencesResultListener);
+      this.aea.removeGeofences(paramList, paramOnRemoveGeofencesResultListener);
       return;
     }
     catch (RemoteException localRemoteException)
@@ -166,7 +167,7 @@ public class LocationClient
   {
     try
     {
-      this.UU.removeLocationUpdates(paramPendingIntent);
+      this.aea.removeLocationUpdates(paramPendingIntent);
       return;
     }
     catch (RemoteException localRemoteException)
@@ -179,7 +180,7 @@ public class LocationClient
   {
     try
     {
-      this.UU.removeLocationUpdates(paramLocationListener);
+      this.aea.removeLocationUpdates(paramLocationListener);
       return;
     }
     catch (RemoteException localRemoteException)
@@ -192,7 +193,7 @@ public class LocationClient
   {
     try
     {
-      this.UU.requestLocationUpdates(paramLocationRequest, paramPendingIntent);
+      this.aea.b(ma.b(paramLocationRequest), paramPendingIntent);
       return;
     }
     catch (RemoteException localRemoteException)
@@ -205,7 +206,7 @@ public class LocationClient
   {
     try
     {
-      this.UU.requestLocationUpdates(paramLocationRequest, paramLocationListener);
+      this.aea.a(ma.b(paramLocationRequest), paramLocationListener);
       return;
     }
     catch (RemoteException localRemoteException)
@@ -218,7 +219,7 @@ public class LocationClient
   {
     try
     {
-      this.UU.requestLocationUpdates(paramLocationRequest, paramLocationListener, paramLooper);
+      this.aea.a(ma.b(paramLocationRequest), paramLocationListener, paramLooper);
       return;
     }
     catch (RemoteException localRemoteException)
@@ -231,7 +232,7 @@ public class LocationClient
   {
     try
     {
-      this.UU.setMockLocation(paramLocation);
+      this.aea.setMockLocation(paramLocation);
       return;
     }
     catch (RemoteException localRemoteException)
@@ -244,7 +245,7 @@ public class LocationClient
   {
     try
     {
-      this.UU.setMockMode(paramBoolean);
+      this.aea.setMockMode(paramBoolean);
       return;
     }
     catch (RemoteException localRemoteException)
@@ -255,16 +256,16 @@ public class LocationClient
 
   public void unregisterConnectionCallbacks(GooglePlayServicesClient.ConnectionCallbacks paramConnectionCallbacks)
   {
-    this.UU.unregisterConnectionCallbacks(paramConnectionCallbacks);
+    this.aea.unregisterConnectionCallbacks(paramConnectionCallbacks);
   }
 
   public void unregisterConnectionFailedListener(GooglePlayServicesClient.OnConnectionFailedListener paramOnConnectionFailedListener)
   {
-    this.UU.unregisterConnectionFailedListener(paramOnConnectionFailedListener);
+    this.aea.unregisterConnectionFailedListener(paramOnConnectionFailedListener);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.location.LocationClient
  * JD-Core Version:    0.6.2
  */

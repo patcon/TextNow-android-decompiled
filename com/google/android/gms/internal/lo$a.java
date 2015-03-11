@@ -6,15 +6,16 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
 import android.os.Parcelable.Creator;
+import com.google.android.gms.identity.intents.UserAddressRequest;
 
 public abstract class lo$a extends Binder
   implements lo
 {
-  public static lo bs(IBinder paramIBinder)
+  public static lo aH(IBinder paramIBinder)
   {
     if (paramIBinder == null)
       return null;
-    IInterface localIInterface = paramIBinder.queryLocalInterface("com.google.android.gms.wallet.internal.IWalletInternalServiceCallbacks");
+    IInterface localIInterface = paramIBinder.queryLocalInterface("com.google.android.gms.identity.intents.internal.IAddressService");
     if ((localIInterface != null) && ((localIInterface instanceof lo)))
       return (lo)localIInterface;
     return new lo.a.a(paramIBinder);
@@ -27,24 +28,31 @@ public abstract class lo$a extends Binder
     default:
       return super.onTransact(paramInt1, paramParcel1, paramParcel2, paramInt2);
     case 1598968902:
-      paramParcel2.writeString("com.google.android.gms.wallet.internal.IWalletInternalServiceCallbacks");
+      paramParcel2.writeString("com.google.android.gms.identity.intents.internal.IAddressService");
       return true;
-    case 1:
+    case 2:
     }
-    paramParcel1.enforceInterface("com.google.android.gms.wallet.internal.IWalletInternalServiceCallbacks");
-    int i = paramParcel1.readInt();
-    int j = paramParcel1.readInt();
-    if (paramParcel1.readInt() != 0);
-    for (Bundle localBundle = (Bundle)Bundle.CREATOR.createFromParcel(paramParcel1); ; localBundle = null)
+    paramParcel1.enforceInterface("com.google.android.gms.identity.intents.internal.IAddressService");
+    ln localln = ln.a.aG(paramParcel1.readStrongBinder());
+    UserAddressRequest localUserAddressRequest;
+    if (paramParcel1.readInt() != 0)
     {
-      b(i, j, localBundle);
+      localUserAddressRequest = (UserAddressRequest)UserAddressRequest.CREATOR.createFromParcel(paramParcel1);
+      if (paramParcel1.readInt() == 0)
+        break label125;
+    }
+    label125: for (Bundle localBundle = (Bundle)Bundle.CREATOR.createFromParcel(paramParcel1); ; localBundle = null)
+    {
+      a(localln, localUserAddressRequest, localBundle);
       paramParcel2.writeNoException();
       return true;
+      localUserAddressRequest = null;
+      break;
     }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.lo.a
  * JD-Core Version:    0.6.2
  */

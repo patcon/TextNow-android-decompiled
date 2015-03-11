@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.Parcelable.Creator;
 import java.io.Serializable;
-import textnow.u.d;
+import textnow.z.f;
 
 public class MessageViewFragment$MessageViewState
   implements Parcelable
@@ -12,54 +12,40 @@ public class MessageViewFragment$MessageViewState
   public static final Parcelable.Creator CREATOR = new Parcelable.Creator()
   {
   };
-  public static MessageViewState a = new MessageViewState("", new d[0], new String[0]);
-  private String b;
-  private d[] c;
-  private String[] d;
+  public static MessageViewState a = new MessageViewState();
+  public String b = "";
+  public f[] c;
+  public String[] d;
+  public String e = "";
+  public int f = -1;
+
+  public MessageViewFragment$MessageViewState()
+  {
+  }
 
   public MessageViewFragment$MessageViewState(Parcel paramParcel)
   {
     this.b = paramParcel.readString();
     Serializable localSerializable1 = paramParcel.readSerializable();
-    d[] arrayOfd;
+    f[] arrayOff;
     Serializable localSerializable2;
-    if ((localSerializable1 instanceof d[]))
+    if ((localSerializable1 instanceof f[]))
     {
-      arrayOfd = (d[])localSerializable1;
-      this.c = arrayOfd;
+      arrayOff = (f[])localSerializable1;
+      this.c = arrayOff;
       localSerializable2 = paramParcel.readSerializable();
       if (!(localSerializable2 instanceof String[]))
-        break label70;
+        break label103;
     }
-    label70: for (String[] arrayOfString = (String[])localSerializable2; ; arrayOfString = new String[0])
+    label103: for (String[] arrayOfString = (String[])localSerializable2; ; arrayOfString = new String[0])
     {
       this.d = arrayOfString;
+      this.e = paramParcel.readString();
+      this.f = paramParcel.readInt();
       return;
-      arrayOfd = new d[0];
+      arrayOff = new f[0];
       break;
     }
-  }
-
-  public MessageViewFragment$MessageViewState(String paramString, d[] paramArrayOfd, String[] paramArrayOfString)
-  {
-    this.b = paramString;
-    this.c = paramArrayOfd;
-    this.d = paramArrayOfString;
-  }
-
-  public final String a()
-  {
-    return this.b;
-  }
-
-  public final d[] b()
-  {
-    return this.c;
-  }
-
-  public final String[] c()
-  {
-    return this.d;
   }
 
   public int describeContents()
@@ -72,10 +58,12 @@ public class MessageViewFragment$MessageViewState
     paramParcel.writeString(this.b);
     paramParcel.writeSerializable(this.c);
     paramParcel.writeSerializable(this.d);
+    paramParcel.writeString(this.e);
+    paramParcel.writeInt(this.f);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.activities.MessageViewFragment.MessageViewState
  * JD-Core Version:    0.6.2
  */

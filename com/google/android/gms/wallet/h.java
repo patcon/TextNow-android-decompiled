@@ -11,23 +11,23 @@ public class h
 {
   static void a(InstrumentInfo paramInstrumentInfo, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
+    int i = b.D(paramParcel);
     b.c(paramParcel, 1, paramInstrumentInfo.getVersionCode());
     b.a(paramParcel, 2, paramInstrumentInfo.getInstrumentType(), false);
     b.a(paramParcel, 3, paramInstrumentInfo.getInstrumentDetails(), false);
-    b.G(paramParcel, i);
+    b.H(paramParcel, i);
   }
 
-  public InstrumentInfo bW(Parcel paramParcel)
+  public InstrumentInfo dt(Parcel paramParcel)
   {
     String str1 = null;
-    int i = a.B(paramParcel);
+    int i = a.C(paramParcel);
     int j = 0;
     String str2 = null;
     while (paramParcel.dataPosition() < i)
     {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
       {
       default:
         a.b(paramParcel, k);
@@ -47,13 +47,13 @@ public class h
     return new InstrumentInfo(j, str2, str1);
   }
 
-  public InstrumentInfo[] dC(int paramInt)
+  public InstrumentInfo[] fu(int paramInt)
   {
     return new InstrumentInfo[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.h
  * JD-Core Version:    0.6.2
  */

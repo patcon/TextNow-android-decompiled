@@ -1,183 +1,165 @@
 package textnow.n;
 
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
-import com.enflick.android.TextNow.activities.MainActivity;
-import com.enflick.android.TextNow.activities.ao;
-import com.enflick.android.TextNow.ads.a;
-import com.enflick.android.TextNow.tasks.GetUserInfoTask;
-import com.enflick.android.TextNow.tasks.PurchaseAdRemovalTask;
-import com.enflick.android.TextNow.tasks.PurchaseBarnesTask;
-import org.json.JSONException;
-import org.json.JSONObject;
-import textnow.q.b;
-import textnow.u.j;
-import textnow.u.r;
+import android.os.IBinder;
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
 
-public final class c extends ao
-  implements View.OnClickListener
+final class c
+  implements a
 {
-  private r a;
-  private Button b;
-  private Button g;
+  private IBinder a;
 
-  protected final boolean a(com.enflick.android.TextNow.tasks.c paramc, boolean paramBoolean)
+  c(IBinder paramIBinder)
   {
-    Class localClass = paramc.getClass();
-    paramc.j();
-    paramc.h();
-    paramc.i();
-    if ((!paramBoolean) && ((localClass == PurchaseAdRemovalTask.class) || (localClass == PurchaseBarnesTask.class)))
+    this.a = paramIBinder;
+  }
+
+  public final int a(int paramInt, String paramString1, String paramString2)
+  {
+    Parcel localParcel1 = Parcel.obtain();
+    Parcel localParcel2 = Parcel.obtain();
+    try
     {
-      this.e.r();
-      if (paramc.h())
-      {
-        new StringBuilder().append("Could not purchase ad removal: ").append(paramc.i()).toString();
-        this.e.c(2131493343);
-        return true;
-      }
-      this.e.c(2131493344);
-      this.e.y();
-      return true;
+      localParcel1.writeInterfaceToken("com.android.vending.billing.IInAppBillingService");
+      localParcel1.writeInt(paramInt);
+      localParcel1.writeString(paramString1);
+      localParcel1.writeString(paramString2);
+      this.a.transact(1, localParcel1, localParcel2, 0);
+      localParcel2.readException();
+      int i = localParcel2.readInt();
+      return i;
     }
-    if ((!paramBoolean) && (localClass == GetUserInfoTask.class))
+    finally
     {
-      this.e.r();
-      return true;
+      localParcel2.recycle();
+      localParcel1.recycle();
     }
-    return false;
   }
 
-  public final String k()
+  public final Bundle a(int paramInt, String paramString1, String paramString2, Bundle paramBundle)
   {
-    return "/Purchase_Ad_Removal";
-  }
-
-  protected final String l()
-  {
-    return this.e.getString(2131493328);
-  }
-
-  public final int m()
-  {
-    return 2131165539;
-  }
-
-  protected final boolean n()
-  {
-    return true;
-  }
-
-  public final void onActivityCreated(Bundle paramBundle)
-  {
-    super.onActivityCreated(paramBundle);
-    this.e.setTitle(2131493328);
-  }
-
-  public final void onClick(View paramView)
-  {
-    String str1;
-    switch (paramView.getId())
-    {
-    default:
-      this.e.c(2131493025);
-      return;
-    case 2131165619:
-      a.a("purchase_enhancements", "item", "1month_ad_expiry");
-      str1 = "adremoval1month";
-    case 2131165620:
-    }
+    Parcel localParcel1 = Parcel.obtain();
+    Parcel localParcel2 = Parcel.obtain();
     while (true)
     {
-      new StringBuilder().append("buying: ").append(str1).toString();
-      String str2 = this.a.b();
-      JSONObject localJSONObject = new JSONObject();
       try
       {
-        localJSONObject.put("username", str2);
-        this.e.b(str1, localJSONObject.toString());
-        return;
-        a.a("purchase_enhancements", "item", "1year_ad_expiry");
-        str1 = "adremoval1year";
+        localParcel1.writeInterfaceToken("com.android.vending.billing.IInAppBillingService");
+        localParcel1.writeInt(paramInt);
+        localParcel1.writeString(paramString1);
+        localParcel1.writeString(paramString2);
+        if (paramBundle != null)
+        {
+          localParcel1.writeInt(1);
+          paramBundle.writeToParcel(localParcel1, 0);
+          this.a.transact(2, localParcel1, localParcel2, 0);
+          localParcel2.readException();
+          if (localParcel2.readInt() != 0)
+          {
+            localBundle = (Bundle)Bundle.CREATOR.createFromParcel(localParcel2);
+            return localBundle;
+          }
+        }
+        else
+        {
+          localParcel1.writeInt(0);
+          continue;
+        }
       }
-      catch (JSONException localJSONException)
+      finally
       {
-        while (true)
-          localJSONException.printStackTrace();
+        localParcel2.recycle();
+        localParcel1.recycle();
       }
+      Bundle localBundle = null;
     }
   }
 
-  public final void onCreate(Bundle paramBundle)
+  public final Bundle a(int paramInt, String paramString1, String paramString2, String paramString3)
   {
-    super.onCreate(paramBundle);
-    this.a = new r(this.e);
-  }
-
-  public final View onCreateView(LayoutInflater paramLayoutInflater, ViewGroup paramViewGroup, Bundle paramBundle)
-  {
-    new StringBuilder().append(this).append(" onCreateView").toString();
-    j localj = new j(this.e);
-    View localView = paramLayoutInflater.inflate(2130903168, null);
-    this.b = ((Button)localView.findViewById(2131165619));
-    Button localButton1 = this.b;
-    MainActivity localMainActivity1 = this.e;
-    Object[] arrayOfObject1 = new Object[1];
-    arrayOfObject1[0] = localj.b("adremoval1month", "$0.99");
-    localButton1.setText(localMainActivity1.getString(2131493326, arrayOfObject1));
-    this.b.setOnClickListener(this);
-    this.g = ((Button)localView.findViewById(2131165620));
-    Button localButton2 = this.g;
-    MainActivity localMainActivity2 = this.e;
-    Object[] arrayOfObject2 = new Object[1];
-    arrayOfObject2[0] = localj.b("adremoval1year", "$5.99");
-    localButton2.setText(localMainActivity2.getString(2131493327, arrayOfObject2));
-    this.g.setOnClickListener(this);
-    TextView localTextView1 = (TextView)localView.findViewById(2131165622);
-    if (!this.e.l())
-      if (this.e.m())
-      {
-        MainActivity localMainActivity5 = this.e;
-        Object[] arrayOfObject5 = new Object[1];
-        arrayOfObject5[0] = this.e.getString(2131493334);
-        localTextView1.setText(localMainActivity5.getString(2131493332, arrayOfObject5));
-      }
-    TextView localTextView2;
-    while (true)
+    Parcel localParcel1 = Parcel.obtain();
+    Parcel localParcel2 = Parcel.obtain();
+    try
     {
-      localTextView2 = (TextView)localView.findViewById(2131165618);
-      String str = this.a.U();
-      if ((this.a.U() == null) || (b.a(this.a.t(), this.a.U())))
-        break;
-      localTextView2.setText(String.format(this.e.getResources().getString(2131493280), new Object[] { str }));
-      return localView;
-      if (MainActivity.n())
+      localParcel1.writeInterfaceToken("com.android.vending.billing.IInAppBillingService");
+      localParcel1.writeInt(paramInt);
+      localParcel1.writeString(paramString1);
+      localParcel1.writeString(paramString2);
+      localParcel1.writeString(paramString3);
+      this.a.transact(4, localParcel1, localParcel2, 0);
+      localParcel2.readException();
+      if (localParcel2.readInt() != 0)
       {
-        MainActivity localMainActivity4 = this.e;
-        Object[] arrayOfObject4 = new Object[1];
-        arrayOfObject4[0] = this.e.getString(2131493335);
-        localTextView1.setText(localMainActivity4.getString(2131493332, arrayOfObject4));
+        localBundle = (Bundle)Bundle.CREATOR.createFromParcel(localParcel2);
+        return localBundle;
       }
-      else
-      {
-        MainActivity localMainActivity3 = this.e;
-        Object[] arrayOfObject3 = new Object[1];
-        arrayOfObject3[0] = this.e.getString(2131493333);
-        localTextView1.setText(localMainActivity3.getString(2131493332, arrayOfObject3));
-      }
+      Bundle localBundle = null;
     }
-    localTextView2.setText(2131493330);
-    return localView;
+    finally
+    {
+      localParcel2.recycle();
+      localParcel1.recycle();
+    }
+  }
+
+  public final Bundle a(int paramInt, String paramString1, String paramString2, String paramString3, String paramString4)
+  {
+    Parcel localParcel1 = Parcel.obtain();
+    Parcel localParcel2 = Parcel.obtain();
+    try
+    {
+      localParcel1.writeInterfaceToken("com.android.vending.billing.IInAppBillingService");
+      localParcel1.writeInt(paramInt);
+      localParcel1.writeString(paramString1);
+      localParcel1.writeString(paramString2);
+      localParcel1.writeString(paramString3);
+      localParcel1.writeString(paramString4);
+      this.a.transact(3, localParcel1, localParcel2, 0);
+      localParcel2.readException();
+      if (localParcel2.readInt() != 0)
+      {
+        localBundle = (Bundle)Bundle.CREATOR.createFromParcel(localParcel2);
+        return localBundle;
+      }
+      Bundle localBundle = null;
+    }
+    finally
+    {
+      localParcel2.recycle();
+      localParcel1.recycle();
+    }
+  }
+
+  public final IBinder asBinder()
+  {
+    return this.a;
+  }
+
+  public final int b(int paramInt, String paramString1, String paramString2)
+  {
+    Parcel localParcel1 = Parcel.obtain();
+    Parcel localParcel2 = Parcel.obtain();
+    try
+    {
+      localParcel1.writeInterfaceToken("com.android.vending.billing.IInAppBillingService");
+      localParcel1.writeInt(paramInt);
+      localParcel1.writeString(paramString1);
+      localParcel1.writeString(paramString2);
+      this.a.transact(5, localParcel1, localParcel2, 0);
+      localParcel2.readException();
+      int i = localParcel2.readInt();
+      return i;
+    }
+    finally
+    {
+      localParcel2.recycle();
+      localParcel1.recycle();
+    }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.n.c
  * JD-Core Version:    0.6.2
  */

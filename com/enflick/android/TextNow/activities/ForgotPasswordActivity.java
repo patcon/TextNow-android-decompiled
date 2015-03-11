@@ -13,11 +13,11 @@ import android.widget.EditText;
 import com.enflick.android.TextNow.tasks.SendPasswordResetEmailTask;
 import com.enflick.android.TextNow.tasks.c;
 
-public class ForgotPasswordActivity extends ah
+public class ForgotPasswordActivity extends an
 {
-  private EditText b;
-  private Button c;
-  private String d = "";
+  private EditText a;
+  private Button b;
+  private String c = "";
 
   protected final void a(c paramc)
   {
@@ -29,7 +29,7 @@ public class ForgotPasswordActivity extends ah
       boolean bool = paramc.h();
       i = paramc.i();
       str = paramc.j();
-      r();
+      v();
       if (bool)
         break label44;
       showDialog(1);
@@ -40,22 +40,22 @@ public class ForgotPasswordActivity extends ah
       return;
       if (i == 400)
       {
-        c(2131493096);
+        b(2131296503);
         return;
       }
     }
     while (c(str));
-    c(2131493025);
+    b(2131296432);
   }
 
   public void onCreate(Bundle paramBundle)
   {
     super.onCreate(paramBundle);
-    setContentView(2130903120);
-    b(true);
-    this.b = ((EditText)findViewById(2131165477));
-    this.c = ((Button)findViewById(2131165478));
-    this.c.setOnClickListener(new View.OnClickListener()
+    setContentView(2130903134);
+    d(true);
+    this.a = ((EditText)findViewById(2131558748));
+    this.b = ((Button)findViewById(2131558749));
+    this.b.setOnClickListener(new View.OnClickListener()
     {
       public final void onClick(View paramAnonymousView)
       {
@@ -74,8 +74,8 @@ public class ForgotPasswordActivity extends ah
     }
     AlertDialog.Builder localBuilder = new AlertDialog.Builder(this);
     Object[] arrayOfObject = new Object[1];
-    arrayOfObject[0] = ("\n" + this.d);
-    return localBuilder.setMessage(getString(2131493095, arrayOfObject)).setPositiveButton(2131493020, new DialogInterface.OnClickListener()
+    arrayOfObject[0] = ("\n" + this.c);
+    return localBuilder.setMessage(getString(2131296502, arrayOfObject)).setPositiveButton(2131296427, new DialogInterface.OnClickListener()
     {
       public final void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt)
       {
@@ -87,12 +87,12 @@ public class ForgotPasswordActivity extends ah
   protected void onStart()
   {
     super.onStart();
-    this.b.requestFocus();
-    ((InputMethodManager)getSystemService("input_method")).showSoftInput(this.b, 0);
+    this.a.requestFocus();
+    ((InputMethodManager)getSystemService("input_method")).showSoftInput(this.a, 0);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.activities.ForgotPasswordActivity
  * JD-Core Version:    0.6.2
  */

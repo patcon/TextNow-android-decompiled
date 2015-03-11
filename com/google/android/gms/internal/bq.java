@@ -1,29 +1,48 @@
 package com.google.android.gms.internal;
 
-public final class bq
-{
-  public final int nL;
-  public final bl nM;
-  public final bu nN;
-  public final String nO;
-  public final bo nP;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-  public bq(int paramInt)
+@ez
+public class bq
+{
+  private u pw;
+  private ah px;
+  private JSONObject py;
+
+  public bq(u paramu, ah paramah, JSONObject paramJSONObject)
   {
-    this(null, null, null, null, paramInt);
+    this.pw = paramu;
+    this.px = paramah;
+    this.py = paramJSONObject;
   }
 
-  public bq(bl parambl, bu parambu, String paramString, bo parambo, int paramInt)
+  public void as()
   {
-    this.nM = parambl;
-    this.nN = parambu;
-    this.nO = paramString;
-    this.nP = parambo;
-    this.nL = paramInt;
+    this.pw.aj();
+  }
+
+  public void b(String paramString, int paramInt)
+  {
+    try
+    {
+      JSONObject localJSONObject1 = new JSONObject();
+      localJSONObject1.put("asset", paramInt);
+      localJSONObject1.put("template", paramString);
+      JSONObject localJSONObject2 = new JSONObject();
+      localJSONObject2.put("ad", this.py);
+      localJSONObject2.put("click", localJSONObject1);
+      this.px.a("google.afma.nativeAds.handleClick", localJSONObject2);
+      return;
+    }
+    catch (JSONException localJSONException)
+    {
+      gs.b("Unable to create click JSON.", localJSONException);
+    }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.bq
  * JD-Core Version:    0.6.2
  */

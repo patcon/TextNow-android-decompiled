@@ -1,106 +1,81 @@
 package textnow.k;
 
-import android.content.ContentResolver;
 import android.content.Context;
-import android.net.Uri;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import com.enflick.android.TextNow.activities.phone.s;
-import java.util.ArrayList;
-import textnow.q.k;
-import textnow.q.q;
-import textnow.u.f;
+import android.content.pm.ApplicationInfo;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.os.Build.VERSION;
+import android.support.v4.view.bi;
+import android.util.DisplayMetrics;
+import android.view.ViewConfiguration;
+import textnow.g.b;
+import textnow.g.c;
+import textnow.g.e;
+import textnow.g.h;
+import textnow.g.l;
 
-public final class a extends ArrayAdapter<s>
-  implements View.OnClickListener
+public final class a
 {
   private Context a;
-  private d b;
 
-  public a(Context paramContext, int paramInt, com.enflick.android.TextNow.activities.phone.d paramd, d paramd1)
+  private a(Context paramContext)
   {
-    super(paramContext, 2130903074, new ArrayList(paramd.q().d()));
-    this.b = paramd1;
     this.a = paramContext;
   }
 
-  public final View getView(int paramInt, View paramView, ViewGroup paramViewGroup)
+  public static a a(Context paramContext)
   {
-    Object localObject1;
-    Object localObject3;
-    Object localObject2;
-    if (paramView == null)
-    {
-      paramView = LayoutInflater.from(getContext()).inflate(2130903074, null);
-      if (paramView == null)
-        return null;
-      c localc2 = new c(this, paramView);
-      paramView.setTag(localc2);
-      Button localButton2 = c.a(localc2);
-      b localb2 = new b(this, (byte)0);
-      localButton2.setOnClickListener(this);
-      localObject1 = localc2;
-      localObject3 = localb2;
-      localObject2 = localButton2;
-    }
-    String str1;
-    ContentResolver localContentResolver;
-    Uri localUri;
-    while (true)
-    {
-      b.a((b)localObject3, (s)getItem(paramInt));
-      ((Button)localObject2).setTag(localObject3);
-      str1 = b.a((b)localObject3).b().a();
-      localContentResolver = getContext().getContentResolver();
-      localUri = k.a(localContentResolver, str1, 2);
-      if ((localUri != null) && (!f.c(localUri.toString())))
-        break;
-      c.b((c)localObject1).setImageResource(2130837594);
-      c.c((c)localObject1).setText(textnow.q.b.f(str1));
-      c.d((c)localObject1).setVisibility(8);
-      return paramView;
-      c localc1 = (c)paramView.getTag();
-      Button localButton1 = c.a(localc1);
-      b localb1 = (b)localButton1.getTag();
-      localObject1 = localc1;
-      localObject2 = localButton1;
-      localObject3 = localb1;
-    }
-    q.a(this.a).a(c.b((c)localObject1), localUri);
-    String str2 = k.a(localContentResolver, str1);
-    if (TextUtils.isEmpty(str2))
-    {
-      c.c((c)localObject1).setText(textnow.q.b.f(str1));
-      c.d((c)localObject1).setVisibility(8);
-      return paramView;
-    }
-    c.c((c)localObject1).setText(textnow.q.b.f(str2));
-    c.d((c)localObject1).setVisibility(0);
-    c.d((c)localObject1).setText(textnow.q.b.f(str1));
-    return paramView;
+    return new a(paramContext);
   }
 
-  public final void onClick(View paramView)
+  public final int a()
   {
-    switch (paramView.getId())
-    {
-    default:
-      return;
-    case 2131165320:
-    }
-    s locals = b.a((b)paramView.getTag());
-    this.b.a(locals);
+    return this.a.getResources().getInteger(h.a);
+  }
+
+  public final boolean b()
+  {
+    if (Build.VERSION.SDK_INT >= 19);
+    while (!bi.b(ViewConfiguration.get(this.a)))
+      return true;
+    return false;
+  }
+
+  public final int c()
+  {
+    return this.a.getResources().getDisplayMetrics().widthPixels / 2;
+  }
+
+  public final boolean d()
+  {
+    if (this.a.getApplicationInfo().targetSdkVersion >= 16)
+      return this.a.getResources().getBoolean(c.a);
+    return this.a.getResources().getBoolean(c.b);
+  }
+
+  public final int e()
+  {
+    TypedArray localTypedArray = this.a.obtainStyledAttributes(null, l.a, b.c, 0);
+    int i = localTypedArray.getLayoutDimension(l.l, 0);
+    Resources localResources = this.a.getResources();
+    if (!d())
+      i = Math.min(i, localResources.getDimensionPixelSize(e.a));
+    localTypedArray.recycle();
+    return i;
+  }
+
+  public final boolean f()
+  {
+    return this.a.getApplicationInfo().targetSdkVersion < 14;
+  }
+
+  public final int g()
+  {
+    return this.a.getResources().getDimensionPixelSize(e.b);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.k.a
  * JD-Core Version:    0.6.2
  */

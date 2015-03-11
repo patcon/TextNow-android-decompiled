@@ -20,11 +20,11 @@ class a$a
   {
     try
     {
-      a.c localc = new a.c(this.a, this.b);
+      a.b localb = new a.b(this.a, this.b);
       Executor localExecutor = AsyncTask.THREAD_POOL_EXECUTOR;
       Integer[] arrayOfInteger = new Integer[1];
       arrayOfInteger[0] = Integer.valueOf(this.c);
-      localc.executeOnExecutor(localExecutor, arrayOfInteger);
+      localb.executeOnExecutor(localExecutor, arrayOfInteger);
       return;
     }
     catch (Exception localException)
@@ -34,7 +34,7 @@ class a$a
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.util.a.a
  * JD-Core Version:    0.6.2
  */

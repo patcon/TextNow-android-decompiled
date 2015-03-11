@@ -1,15 +1,49 @@
 package com.google.android.gms.internal;
 
-public final class ee
-  implements ed
+import android.content.Intent;
+
+@ez
+public class ee
 {
-  public final String u(String paramString)
+  private final String oA;
+
+  public ee(String paramString)
   {
-    return null;
+    this.oA = paramString;
+  }
+
+  public boolean a(String paramString, int paramInt, Intent paramIntent)
+  {
+    if ((paramString == null) || (paramIntent == null));
+    String str1;
+    String str2;
+    do
+    {
+      return false;
+      str1 = ed.e(paramIntent);
+      str2 = ed.f(paramIntent);
+    }
+    while ((str1 == null) || (str2 == null));
+    if (!paramString.equals(ed.D(str1)))
+    {
+      gs.W("Developer payload not match.");
+      return false;
+    }
+    if ((this.oA != null) && (!ef.b(this.oA, str1, str2)))
+    {
+      gs.W("Fail to verify signature.");
+      return false;
+    }
+    return true;
+  }
+
+  public String ct()
+  {
+    return gj.jdMethod_do();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ee
  * JD-Core Version:    0.6.2
  */

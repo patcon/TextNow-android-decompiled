@@ -13,32 +13,32 @@ public class f
 {
   static void a(DataHolder paramDataHolder, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
-    b.a(paramParcel, 1, paramDataHolder.eX(), false);
+    int i = b.D(paramParcel);
+    b.a(paramParcel, 1, paramDataHolder.gB(), false);
     b.c(paramParcel, 1000, paramDataHolder.getVersionCode());
-    b.a(paramParcel, 2, paramDataHolder.eY(), paramInt, false);
+    b.a(paramParcel, 2, paramDataHolder.gC(), paramInt, false);
     b.c(paramParcel, 3, paramDataHolder.getStatusCode());
-    b.a(paramParcel, 4, paramDataHolder.eU(), false);
-    b.G(paramParcel, i);
+    b.a(paramParcel, 4, paramDataHolder.gy(), false);
+    b.H(paramParcel, i);
   }
 
-  public DataHolder[] ag(int paramInt)
+  public DataHolder[] at(int paramInt)
   {
     return new DataHolder[paramInt];
   }
 
-  public DataHolder x(Parcel paramParcel)
+  public DataHolder z(Parcel paramParcel)
   {
     int i = 0;
     Bundle localBundle = null;
-    int j = a.B(paramParcel);
+    int j = a.C(paramParcel);
     CursorWindow[] arrayOfCursorWindow = null;
     String[] arrayOfString = null;
     int k = 0;
     while (paramParcel.dataPosition() < j)
     {
-      int m = a.A(paramParcel);
-      switch (a.ar(m))
+      int m = a.B(paramParcel);
+      switch (a.aD(m))
       {
       default:
         a.b(paramParcel, m);
@@ -62,12 +62,12 @@ public class f
     if (paramParcel.dataPosition() != j)
       throw new a.a("Overread allowed size end=" + j, paramParcel);
     DataHolder localDataHolder = new DataHolder(k, arrayOfString, arrayOfCursorWindow, i, localBundle);
-    localDataHolder.eW();
+    localDataHolder.gA();
     return localDataHolder;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.common.data.f
  * JD-Core Version:    0.6.2
  */

@@ -4,7 +4,7 @@ import android.widget.RelativeLayout;
 import java.lang.ref.WeakReference;
 
 class AdMarvelActivity$b
-  implements g
+  implements b
 {
   private final WeakReference<AdMarvelActivity> a;
 
@@ -17,24 +17,24 @@ class AdMarvelActivity$b
   {
     AdMarvelActivity localAdMarvelActivity = (AdMarvelActivity)this.a.get();
     if (localAdMarvelActivity == null);
-    AdMarvelInternalWebView localAdMarvelInternalWebView;
+    d locald;
     do
     {
       RelativeLayout localRelativeLayout;
       do
       {
         return;
-        localRelativeLayout = (RelativeLayout)localAdMarvelActivity.findViewById(AdMarvelActivity.b);
+        localRelativeLayout = (RelativeLayout)localAdMarvelActivity.findViewById(AdMarvelActivity.a);
       }
       while (localRelativeLayout == null);
-      localAdMarvelInternalWebView = (AdMarvelInternalWebView)localRelativeLayout.findViewWithTag(paramString + "WEBVIEW");
+      locald = (d)localRelativeLayout.findViewWithTag(paramString + "WEBVIEW");
     }
-    while ((localAdMarvelInternalWebView == null) || (localAdMarvelInternalWebView.isSignalShutdown()) || (localAdMarvelInternalWebView.mInAppBrowserCloseCallback == null) || (localAdMarvelInternalWebView.mInAppBrowserCloseCallback.length() <= 0));
-    localAdMarvelInternalWebView.loadUrl("javascript:" + localAdMarvelInternalWebView.mInAppBrowserCloseCallback + "()");
+    while ((locald == null) || (locald.b()) || (locald.u == null) || (locald.u.length() <= 0));
+    locald.loadUrl("javascript:" + locald.u + "()");
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.AdMarvelActivity.b
  * JD-Core Version:    0.6.2
  */

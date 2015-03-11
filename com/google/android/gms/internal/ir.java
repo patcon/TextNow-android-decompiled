@@ -1,27 +1,13 @@
 package com.google.android.gms.internal;
 
-import android.os.Bundle;
-import android.util.SparseArray;
-import com.google.android.gms.common.data.DataHolder;
-import com.google.android.gms.drive.metadata.internal.AppVisibleCustomProperties;
-import com.google.android.gms.drive.metadata.internal.j;
-import java.util.Arrays;
-import java.util.Collections;
-
-public class ir extends j<AppVisibleCustomProperties>
+public abstract interface ir
 {
-  public ir(int paramInt)
-  {
-    super("customFileProperties", Collections.emptyList(), Arrays.asList(new String[] { "customPropertiesExtra" }), paramInt);
-  }
+  public abstract void a(String paramString1, String paramString2, long paramLong, String paramString3);
 
-  protected AppVisibleCustomProperties j(DataHolder paramDataHolder, int paramInt1, int paramInt2)
-  {
-    return (AppVisibleCustomProperties)paramDataHolder.eU().getSparseParcelableArray("customPropertiesExtra").get(paramInt1, AppVisibleCustomProperties.JN);
-  }
+  public abstract long fx();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ir
  * JD-Core Version:    0.6.2
  */

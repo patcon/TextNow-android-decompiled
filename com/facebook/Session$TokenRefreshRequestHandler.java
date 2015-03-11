@@ -28,13 +28,13 @@ class Session$TokenRefreshRequestHandler extends Handler
     Session.TokenRefreshRequest localTokenRefreshRequest = (Session.TokenRefreshRequest)this.refreshRequestWeakReference.get();
     if (localTokenRefreshRequest != null)
     {
-      Session.access$1100().unbindService(localTokenRefreshRequest);
-      Session.TokenRefreshRequest.access$1300(localTokenRefreshRequest);
+      Session.access$1500().unbindService(localTokenRefreshRequest);
+      Session.TokenRefreshRequest.access$1700(localTokenRefreshRequest);
     }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.Session.TokenRefreshRequestHandler
  * JD-Core Version:    0.6.2
  */

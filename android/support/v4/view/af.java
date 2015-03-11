@@ -1,34 +1,58 @@
 package android.support.v4.view;
 
-import android.database.DataSetObservable;
-import android.database.DataSetObserver;
-import android.view.ViewGroup;
+import android.os.Build.VERSION;
+import android.view.MotionEvent;
 
-public abstract class af
+public final class af
 {
-  private DataSetObservable a = new DataSetObservable();
+  static final ai a = new ag();
 
-  public abstract int a();
-
-  public final void a(DataSetObserver paramDataSetObserver)
+  static
   {
-    this.a.registerObserver(paramDataSetObserver);
+    if (Build.VERSION.SDK_INT >= 5)
+    {
+      a = new ah();
+      return;
+    }
   }
 
-  public final void a(ViewGroup paramViewGroup, int paramInt, Object paramObject)
+  public static int a(MotionEvent paramMotionEvent)
   {
-    throw new UnsupportedOperationException("Required method destroyItem was not overridden");
+    return 0xFF & paramMotionEvent.getAction();
   }
 
-  public final void b(DataSetObserver paramDataSetObserver)
+  public static int a(MotionEvent paramMotionEvent, int paramInt)
   {
-    this.a.unregisterObserver(paramDataSetObserver);
+    return a.a(paramMotionEvent, paramInt);
   }
 
-  public abstract boolean b();
+  public static int b(MotionEvent paramMotionEvent)
+  {
+    return (0xFF00 & paramMotionEvent.getAction()) >> 8;
+  }
+
+  public static int b(MotionEvent paramMotionEvent, int paramInt)
+  {
+    return a.b(paramMotionEvent, paramInt);
+  }
+
+  public static float c(MotionEvent paramMotionEvent, int paramInt)
+  {
+    return a.c(paramMotionEvent, paramInt);
+  }
+
+  public static int c(MotionEvent paramMotionEvent)
+  {
+    return a.a(paramMotionEvent);
+  }
+
+  public static float d(MotionEvent paramMotionEvent, int paramInt)
+  {
+    return a.d(paramMotionEvent, paramInt);
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.view.af
  * JD-Core Version:    0.6.2
  */

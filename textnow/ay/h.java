@@ -1,18 +1,30 @@
 package textnow.ay;
 
-import java.io.File;
+import android.content.Context;
+import android.view.KeyEvent;
+import android.webkit.WebViewClient;
 
-public final class h
+public final class h extends e
 {
-  private File a;
-
-  public final void a(File paramFile)
+  protected h(Context paramContext, String paramString, c paramc)
   {
-    this.a = paramFile;
+    super(paramContext, paramString, paramc);
+  }
+
+  protected final WebViewClient b()
+  {
+    return new i(this, (byte)0);
+  }
+
+  public final boolean onKeyLongPress(int paramInt, KeyEvent paramKeyEvent)
+  {
+    if (paramInt == 84)
+      return true;
+    return super.onKeyLongPress(paramInt, paramKeyEvent);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.ay.h
  * JD-Core Version:    0.6.2
  */

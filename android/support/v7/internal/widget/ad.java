@@ -1,63 +1,42 @@
 package android.support.v7.internal.widget;
 
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
-import android.widget.ListAdapter;
+import android.support.v7.app.a;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 
-final class ad
-  implements DialogInterface.OnClickListener, ag
+final class ad extends BaseAdapter
 {
-  private AlertDialog b;
-  private ListAdapter c;
-  private CharSequence d;
-
   private ad(ac paramac)
   {
   }
 
-  public final void a(ListAdapter paramListAdapter)
+  public final int getCount()
   {
-    this.c = paramListAdapter;
+    return ac.a(this.a).getChildCount();
   }
 
-  public final void a(CharSequence paramCharSequence)
+  public final Object getItem(int paramInt)
   {
-    this.d = paramCharSequence;
+    return ((af)ac.a(this.a).getChildAt(paramInt)).a();
   }
 
-  public final void c()
+  public final long getItemId(int paramInt)
   {
-    AlertDialog.Builder localBuilder = new AlertDialog.Builder(this.a.getContext());
-    if (this.d != null)
-      localBuilder.setTitle(this.d);
-    this.b = localBuilder.setSingleChoiceItems(this.c, this.a.d(), this).show();
+    return paramInt;
   }
 
-  public final void d()
+  public final View getView(int paramInt, View paramView, ViewGroup paramViewGroup)
   {
-    this.b.dismiss();
-    this.b = null;
-  }
-
-  public final boolean f()
-  {
-    if (this.b != null)
-      return this.b.isShowing();
-    return false;
-  }
-
-  public final void onClick(DialogInterface paramDialogInterface, int paramInt)
-  {
-    this.a.a(paramInt);
-    if (this.a.t != null)
-      this.a.a(null, paramInt, this.c.getItemId(paramInt));
-    d();
+    if (paramView == null)
+      return ac.a(this.a, (a)getItem(paramInt), true);
+    ((af)paramView).a((a)getItem(paramInt));
+    return paramView;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v7.internal.widget.ad
  * JD-Core Version:    0.6.2
  */

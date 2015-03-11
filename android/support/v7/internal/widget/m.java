@@ -1,54 +1,180 @@
 package android.support.v7.internal.widget;
 
-import android.database.DataSetObserver;
-import android.os.Parcelable;
-import android.widget.Adapter;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.MeasureSpec;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+import textnow.g.i;
+import textnow.g.j;
 
-final class m extends DataSetObserver
+final class m extends BaseAdapter
 {
-  private Parcelable b = null;
+  private g b;
+  private int c = 4;
+  private boolean d;
+  private boolean e;
+  private boolean f;
 
-  m(l paraml)
+  private m(ActivityChooserView paramActivityChooserView)
   {
   }
 
-  public final void onChanged()
+  public final int a()
   {
-    this.a.u = true;
-    this.a.A = this.a.z;
-    this.a.z = this.a.c().getCount();
-    if ((this.a.c().hasStableIds()) && (this.b != null) && (this.a.A == 0) && (this.a.z > 0))
+    int i = 0;
+    int j = this.c;
+    this.c = 2147483647;
+    int k = View.MeasureSpec.makeMeasureSpec(0, 0);
+    int m = View.MeasureSpec.makeMeasureSpec(0, 0);
+    int n = getCount();
+    View localView = null;
+    int i1 = 0;
+    while (i < n)
     {
-      l.a(this.a, this.b);
-      this.b = null;
+      localView = getView(i, localView, null);
+      localView.measure(k, m);
+      i1 = Math.max(i1, localView.getMeasuredWidth());
+      i++;
     }
-    while (true)
+    this.c = j;
+    return i1;
+  }
+
+  public final void a(int paramInt)
+  {
+    if (this.c != paramInt)
     {
-      this.a.e();
-      this.a.requestLayout();
-      return;
-      this.a.h();
+      this.c = paramInt;
+      notifyDataSetChanged();
     }
   }
 
-  public final void onInvalidated()
+  public final void a(boolean paramBoolean)
   {
-    this.a.u = true;
-    if (this.a.c().hasStableIds())
-      this.b = l.a(this.a);
-    this.a.A = this.a.z;
-    this.a.z = 0;
-    this.a.x = -1;
-    this.a.y = -9223372036854775808L;
-    this.a.v = -1;
-    this.a.w = -9223372036854775808L;
-    this.a.p = false;
-    this.a.e();
-    this.a.requestLayout();
+    if (this.f != paramBoolean)
+    {
+      this.f = paramBoolean;
+      notifyDataSetChanged();
+    }
+  }
+
+  public final void a(boolean paramBoolean1, boolean paramBoolean2)
+  {
+    if ((this.d != paramBoolean1) || (this.e != paramBoolean2))
+    {
+      this.d = paramBoolean1;
+      this.e = paramBoolean2;
+      notifyDataSetChanged();
+    }
+  }
+
+  public final ResolveInfo b()
+  {
+    return this.b.b();
+  }
+
+  public final int c()
+  {
+    return this.b.a();
+  }
+
+  public final int d()
+  {
+    return this.b.c();
+  }
+
+  public final g e()
+  {
+    return this.b;
+  }
+
+  public final boolean f()
+  {
+    return this.d;
+  }
+
+  public final int getCount()
+  {
+    int i = this.b.a();
+    if ((!this.d) && (this.b.b() != null))
+      i--;
+    int j = Math.min(i, this.c);
+    if (this.f)
+      j++;
+    return j;
+  }
+
+  public final Object getItem(int paramInt)
+  {
+    switch (getItemViewType(paramInt))
+    {
+    default:
+      throw new IllegalArgumentException();
+    case 1:
+      return null;
+    case 0:
+    }
+    if ((!this.d) && (this.b.b() != null))
+      paramInt++;
+    return this.b.a(paramInt);
+  }
+
+  public final long getItemId(int paramInt)
+  {
+    return paramInt;
+  }
+
+  public final int getItemViewType(int paramInt)
+  {
+    if ((this.f) && (paramInt == -1 + getCount()))
+      return 1;
+    return 0;
+  }
+
+  public final View getView(int paramInt, View paramView, ViewGroup paramViewGroup)
+  {
+    switch (getItemViewType(paramInt))
+    {
+    default:
+      throw new IllegalArgumentException();
+    case 1:
+      if ((paramView == null) || (paramView.getId() != 1))
+      {
+        paramView = LayoutInflater.from(this.a.getContext()).inflate(i.f, paramViewGroup, false);
+        paramView.setId(1);
+        ((TextView)paramView.findViewById(textnow.g.g.C)).setText(this.a.getContext().getString(j.b));
+      }
+      break;
+    case 0:
+    }
+    do
+    {
+      return paramView;
+      if ((paramView == null) || (paramView.getId() != textnow.g.g.q))
+        paramView = LayoutInflater.from(this.a.getContext()).inflate(i.f, paramViewGroup, false);
+      PackageManager localPackageManager = this.a.getContext().getPackageManager();
+      ImageView localImageView = (ImageView)paramView.findViewById(textnow.g.g.o);
+      ResolveInfo localResolveInfo = (ResolveInfo)getItem(paramInt);
+      localImageView.setImageDrawable(localResolveInfo.loadIcon(localPackageManager));
+      ((TextView)paramView.findViewById(textnow.g.g.C)).setText(localResolveInfo.loadLabel(localPackageManager));
+    }
+    while ((!this.d) || (paramInt != 0));
+    return paramView;
+  }
+
+  public final int getViewTypeCount()
+  {
+    return 3;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v7.internal.widget.m
  * JD-Core Version:    0.6.2
  */

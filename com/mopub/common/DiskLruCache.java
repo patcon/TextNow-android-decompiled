@@ -589,57 +589,59 @@ public final class DiskLruCache
 
   public final DiskLruCache.Snapshot get(String paramString)
   {
-    while (true)
+    try
     {
-      try
+      checkNotClosed();
+      validateKey(paramString);
+      DiskLruCache.Entry localEntry = (DiskLruCache.Entry)this.lruEntries.get(paramString);
+      DiskLruCache.Snapshot localSnapshot = null;
+      if (localEntry == null);
+      while (true)
       {
-        checkNotClosed();
-        validateKey(paramString);
-        DiskLruCache.Entry localEntry = (DiskLruCache.Entry)this.lruEntries.get(paramString);
-        if (localEntry == null)
+        return localSnapshot;
+        boolean bool = DiskLruCache.Entry.access$600(localEntry);
+        localSnapshot = null;
+        if (bool)
         {
-          localSnapshot = null;
-          return localSnapshot;
-        }
-        if (!DiskLruCache.Entry.access$600(localEntry))
-        {
-          localSnapshot = null;
-          continue;
-        }
-        InputStream[] arrayOfInputStream = new InputStream[this.valueCount];
-        int i = 0;
-        int j;
-        try
-        {
-          if (i >= this.valueCount)
-            continue;
-          arrayOfInputStream[i] = new FileInputStream(localEntry.getCleanFile(i));
-          i++;
-          continue;
-        }
-        catch (FileNotFoundException localFileNotFoundException)
-        {
-          j = 0;
-          if (j >= this.valueCount)
-            break label221;
-        }
-        if (arrayOfInputStream[j] != null)
-        {
-          DiskLruCacheUtil.closeQuietly(arrayOfInputStream[j]);
-          j++;
-          continue;
-          this.redundantOpCount = (1 + this.redundantOpCount);
+          InputStream[] arrayOfInputStream = new InputStream[this.valueCount];
+          int i = 0;
+          while (true)
+          {
+            int j;
+            int k;
+            try
+            {
+              if (i >= this.valueCount)
+                break label144;
+              arrayOfInputStream[i] = new FileInputStream(localEntry.getCleanFile(i));
+              i++;
+              continue;
+            }
+            catch (FileNotFoundException localFileNotFoundException)
+            {
+              j = 0;
+              k = this.valueCount;
+              localSnapshot = null;
+            }
+            if (j >= k)
+              break;
+            InputStream localInputStream = arrayOfInputStream[j];
+            localSnapshot = null;
+            if (localInputStream == null)
+              break;
+            DiskLruCacheUtil.closeQuietly(arrayOfInputStream[j]);
+            j++;
+          }
+          label144: this.redundantOpCount = (1 + this.redundantOpCount);
           this.journalWriter.append("READ " + paramString + '\n');
           if (journalRebuildRequired())
             this.executorService.submit(this.cleanupCallable);
           localSnapshot = new DiskLruCache.Snapshot(this, paramString, DiskLruCache.Entry.access$1200(localEntry), arrayOfInputStream, DiskLruCache.Entry.access$1000(localEntry), null);
-          continue;
         }
       }
-      finally
-      {
-      }
-      label221: DiskLruCache.Snapshot localSnapshot = null;
+    }
+    finally
+    {
     }
   }
 
@@ -753,7 +755,7 @@ public final class DiskLruCache
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.mopub.common.DiskLruCache
  * JD-Core Version:    0.6.2
  */

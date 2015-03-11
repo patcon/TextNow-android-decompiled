@@ -1,6 +1,6 @@
 package com.google.android.gms.cast;
 
-import com.google.android.gms.internal.gi;
+import com.google.android.gms.internal.ik;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -22,17 +22,17 @@ public final class MediaStatus
   public static final int PLAYER_STATE_PAUSED = 3;
   public static final int PLAYER_STATE_PLAYING = 2;
   public static final int PLAYER_STATE_UNKNOWN;
-  private JSONObject AA;
-  private MediaInfo AB;
-  private long AJ;
-  private double AK;
-  private int AL;
-  private int AM;
-  private long AN;
-  private long AO;
-  private double AP;
-  private boolean AQ;
-  private long[] AR;
+  private double FA;
+  private boolean FB;
+  private long[] FC;
+  private JSONObject Fl;
+  private MediaInfo Fm;
+  private long Fu;
+  private double Fv;
+  private int Fw;
+  private int Fx;
+  private long Fy;
+  private long Fz;
 
   public MediaStatus(JSONObject paramJSONObject)
   {
@@ -44,8 +44,8 @@ public final class MediaStatus
     int i = 2;
     int j = 1;
     long l1 = paramJSONObject.getLong("mediaSessionId");
-    if (l1 != this.AJ)
-      this.AJ = l1;
+    if (l1 != this.Fu)
+      this.Fu = l1;
     for (int k = j; ; k = 0)
     {
       String str1;
@@ -59,9 +59,9 @@ public final class MediaStatus
       }
       while (true)
       {
-        if (i3 != this.AL)
+        if (i3 != this.Fw)
         {
-          this.AL = i3;
+          this.Fw = i3;
           k |= 2;
         }
         String str2;
@@ -73,35 +73,35 @@ public final class MediaStatus
         }
         while (true)
         {
-          label119: if (i != this.AM)
+          label119: if (i != this.Fx)
           {
-            this.AM = i;
+            this.Fx = i;
             k |= 2;
           }
           if (paramJSONObject.has("playbackRate"))
           {
             double d2 = paramJSONObject.getDouble("playbackRate");
-            if (this.AK != d2)
+            if (this.Fv != d2)
             {
-              this.AK = d2;
+              this.Fv = d2;
               k |= 2;
             }
           }
           if ((paramJSONObject.has("currentTime")) && ((paramInt & 0x2) == 0))
           {
-            long l3 = gi.b(paramJSONObject.getDouble("currentTime"));
-            if (l3 != this.AN)
+            long l3 = ik.b(paramJSONObject.getDouble("currentTime"));
+            if (l3 != this.Fy)
             {
-              this.AN = l3;
+              this.Fy = l3;
               k |= 2;
             }
           }
           if (paramJSONObject.has("supportedMediaCommands"))
           {
             long l2 = paramJSONObject.getLong("supportedMediaCommands");
-            if (l2 != this.AO)
+            if (l2 != this.Fz)
             {
-              this.AO = l2;
+              this.Fz = l2;
               k |= 2;
             }
           }
@@ -109,15 +109,15 @@ public final class MediaStatus
           {
             JSONObject localJSONObject2 = paramJSONObject.getJSONObject("volume");
             double d1 = localJSONObject2.getDouble("level");
-            if (d1 != this.AP)
+            if (d1 != this.FA)
             {
-              this.AP = d1;
+              this.FA = d1;
               k |= 2;
             }
             boolean bool = localJSONObject2.getBoolean("muted");
-            if (bool != this.AQ)
+            if (bool != this.FB)
             {
-              this.AQ = bool;
+              this.FB = bool;
               k |= 2;
             }
           }
@@ -164,45 +164,45 @@ public final class MediaStatus
                 i = 4;
                 break label119;
               }
-            if (this.AR != null);
+            if (this.FC != null);
           }
           while (true)
           {
             if (j != 0)
-              this.AR = arrayOfLong2;
+              this.FC = arrayOfLong2;
             int m = j;
             long[] arrayOfLong1 = arrayOfLong2;
             while (true)
             {
               if (m != 0)
               {
-                this.AR = arrayOfLong1;
+                this.FC = arrayOfLong1;
                 k |= 2;
               }
               if (paramJSONObject.has("customData"))
               {
-                this.AA = paramJSONObject.getJSONObject("customData");
+                this.Fl = paramJSONObject.getJSONObject("customData");
                 k |= 2;
               }
               if (paramJSONObject.has("media"))
               {
                 JSONObject localJSONObject1 = paramJSONObject.getJSONObject("media");
-                this.AB = new MediaInfo(localJSONObject1);
+                this.Fm = new MediaInfo(localJSONObject1);
                 k |= 2;
                 if (localJSONObject1.has("metadata"))
                   k |= 4;
               }
               return k;
-              if (this.AR.length != n)
+              if (this.FC.length != n)
                 break;
               for (int i2 = 0; ; i2++)
               {
                 if (i2 >= n)
                   break label691;
-                if (this.AR[i2] != arrayOfLong2[i2])
+                if (this.FC[i2] != arrayOfLong2[i2])
                   break;
               }
-              if (this.AR != null)
+              if (this.FC != null)
               {
                 m = j;
                 arrayOfLong1 = null;
@@ -222,63 +222,63 @@ public final class MediaStatus
     }
   }
 
-  public final long ea()
+  public final long fw()
   {
-    return this.AJ;
+    return this.Fu;
   }
 
   public final long[] getActiveTrackIds()
   {
-    return this.AR;
+    return this.FC;
   }
 
   public final JSONObject getCustomData()
   {
-    return this.AA;
+    return this.Fl;
   }
 
   public final int getIdleReason()
   {
-    return this.AM;
+    return this.Fx;
   }
 
   public final MediaInfo getMediaInfo()
   {
-    return this.AB;
+    return this.Fm;
   }
 
   public final double getPlaybackRate()
   {
-    return this.AK;
+    return this.Fv;
   }
 
   public final int getPlayerState()
   {
-    return this.AL;
+    return this.Fw;
   }
 
   public final long getStreamPosition()
   {
-    return this.AN;
+    return this.Fy;
   }
 
   public final double getStreamVolume()
   {
-    return this.AP;
+    return this.FA;
   }
 
   public final boolean isMediaCommandSupported(long paramLong)
   {
-    return (paramLong & this.AO) != 0L;
+    return (paramLong & this.Fz) != 0L;
   }
 
   public final boolean isMute()
   {
-    return this.AQ;
+    return this.FB;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.cast.MediaStatus
  * JD-Core Version:    0.6.2
  */

@@ -1,18 +1,17 @@
 package textnow.bd;
 
-public final class v
+public enum v
 {
-  public final Integer a;
-  public final Integer b;
-
-  public v(Integer paramInteger1, Integer paramInteger2)
+  static
   {
-    this.a = paramInteger1;
-    this.b = paramInteger2;
+    v[] arrayOfv = new v[3];
+    arrayOfv[0] = a;
+    arrayOfv[1] = b;
+    arrayOfv[2] = c;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.bd.v
  * JD-Core Version:    0.6.2
  */

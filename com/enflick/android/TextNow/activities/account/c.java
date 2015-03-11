@@ -12,18 +12,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import com.enflick.android.TextNow.activities.MainActivity;
-import com.enflick.android.TextNow.activities.ao;
+import com.enflick.android.TextNow.activities.av;
 import com.enflick.android.TextNow.tasks.GetBillingInfoTask;
 import com.enflick.android.TextNow.tasks.UpdateBillingAddressTask;
-import textnow.u.q;
+import textnow.z.s;
 
-public final class c extends ao
+public final class c extends av
 {
   private TextView a;
   private TextView b;
+  private TextView f;
   private TextView g;
-  private TextView h;
-  private AlertDialog i;
+  private AlertDialog h;
 
   public static c a()
   {
@@ -32,14 +32,14 @@ public final class c extends ao
 
   private void b()
   {
-    q localq = new q(this.e);
-    String str1 = localq.f();
-    String str2 = localq.g();
-    String str3 = localq.h();
-    String str4 = localq.i();
-    String str5 = localq.j();
-    String str6 = localq.l();
-    String str7 = localq.k();
+    s locals = new s(this.d);
+    String str1 = locals.h();
+    String str2 = locals.i();
+    String str3 = locals.j();
+    String str4 = locals.k();
+    String str5 = locals.l();
+    String str6 = locals.n();
+    String str7 = locals.m();
     this.a.setText(str1);
     TextView localTextView1 = this.b;
     StringBuilder localStringBuilder1 = new StringBuilder().append(str2);
@@ -50,7 +50,7 @@ public final class c extends ao
     {
       str8 = "\n" + str3;
       localTextView1.setText(str8);
-      localTextView2 = this.g;
+      localTextView2 = this.f;
       localStringBuilder2 = new StringBuilder();
       if (!TextUtils.isEmpty(str4))
         break label198;
@@ -58,7 +58,7 @@ public final class c extends ao
     label198: for (String str9 = ""; ; str9 = str4 + ", ")
     {
       localTextView2.setText(str9 + str5 + " " + str7);
-      this.h.setText(str6);
+      this.g.setText(str6);
       return;
       str8 = "";
       break;
@@ -72,45 +72,45 @@ public final class c extends ao
     while (paramc.getClass() != UpdateBillingAddressTask.class)
       return false;
     UpdateBillingAddressTask localUpdateBillingAddressTask = (UpdateBillingAddressTask)paramc;
-    this.e.r();
+    this.d.v();
     if (localUpdateBillingAddressTask.h())
       if ("PARAMETER_MISSING".equals(localUpdateBillingAddressTask.j()))
-        this.e.c(2131493472);
+        this.d.b(2131296846);
     while (true)
     {
       return true;
       if ("NOT_FOUND".equals(localUpdateBillingAddressTask.j()))
       {
-        this.e.c(2131493473);
+        this.d.b(2131296847);
       }
       else
       {
-        this.e.c(2131493025);
+        this.d.b(2131296432);
         continue;
-        if ((this.i != null) && (this.i.isShowing()))
-          this.i.dismiss();
+        if ((this.h != null) && (this.h.isShowing()))
+          this.h.dismiss();
         b();
-        this.e.c(2131493476);
+        this.d.b(2131296850);
       }
     }
   }
 
-  public final String k()
+  public final String l()
   {
     return "/Billing_Address";
   }
 
-  public final String l()
+  public final String m()
   {
-    return this.e.getString(2131493438);
+    return this.d.getString(2131296829);
   }
 
-  public final int m()
+  public final int n()
   {
-    return 2131165540;
+    return 2131558831;
   }
 
-  public final boolean n()
+  public final boolean o()
   {
     return true;
   }
@@ -122,12 +122,12 @@ public final class c extends ao
 
   public final View onCreateView(LayoutInflater paramLayoutInflater, ViewGroup paramViewGroup, Bundle paramBundle)
   {
-    View localView = paramLayoutInflater.inflate(2130903073, null);
-    this.a = ((TextView)localView.findViewById(2131165311));
-    this.b = ((TextView)localView.findViewById(2131165312));
-    this.g = ((TextView)localView.findViewById(2131165313));
-    this.h = ((TextView)localView.findViewById(2131165314));
-    ((Button)localView.findViewById(2131165315)).setOnClickListener(new View.OnClickListener()
+    View localView = paramLayoutInflater.inflate(2130903077, null);
+    this.a = ((TextView)localView.findViewById(2131558545));
+    this.b = ((TextView)localView.findViewById(2131558546));
+    this.f = ((TextView)localView.findViewById(2131558547));
+    this.g = ((TextView)localView.findViewById(2131558548));
+    ((Button)localView.findViewById(2131558549)).setOnClickListener(new View.OnClickListener()
     {
       public final void onClick(View paramAnonymousView)
       {
@@ -144,7 +144,7 @@ public final class c extends ao
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.activities.account.c
  * JD-Core Version:    0.6.2
  */

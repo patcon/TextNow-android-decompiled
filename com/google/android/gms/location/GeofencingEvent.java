@@ -2,24 +2,24 @@ package com.google.android.gms.location;
 
 import android.content.Intent;
 import android.location.Location;
-import com.google.android.gms.internal.jh;
+import com.google.android.gms.internal.mc;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class GeofencingEvent
 {
-  private final int Vi;
-  private final List<Geofence> Vj;
-  private final Location Vk;
-  private final int pJ;
+  private final int aep;
+  private final List<Geofence> aeq;
+  private final Location aer;
+  private final int tc;
 
   private GeofencingEvent(int paramInt1, int paramInt2, List<Geofence> paramList, Location paramLocation)
   {
-    this.pJ = paramInt1;
-    this.Vi = paramInt2;
-    this.Vj = paramList;
-    this.Vk = paramLocation;
+    this.tc = paramInt1;
+    this.aep = paramInt2;
+    this.aeq = paramList;
+    this.aer = paramLocation;
   }
 
   public static GeofencingEvent fromIntent(Intent paramIntent)
@@ -46,37 +46,37 @@ public class GeofencingEvent
     ArrayList localArrayList2 = new ArrayList(localArrayList1.size());
     Iterator localIterator = localArrayList1.iterator();
     while (localIterator.hasNext())
-      localArrayList2.add(jh.h((byte[])localIterator.next()));
+      localArrayList2.add(mc.h((byte[])localIterator.next()));
     return localArrayList2;
   }
 
   public int getErrorCode()
   {
-    return this.pJ;
+    return this.tc;
   }
 
   public int getGeofenceTransition()
   {
-    return this.Vi;
+    return this.aep;
   }
 
   public List<Geofence> getTriggeringGeofences()
   {
-    return this.Vj;
+    return this.aeq;
   }
 
   public Location getTriggeringLocation()
   {
-    return this.Vk;
+    return this.aer;
   }
 
   public boolean hasError()
   {
-    return this.pJ != -1;
+    return this.tc != -1;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.location.GeofencingEvent
  * JD-Core Version:    0.6.2
  */

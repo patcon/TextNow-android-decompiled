@@ -1,50 +1,92 @@
 package com.google.android.gms.internal;
 
-import android.app.Activity;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.FrameLayout;
-import android.widget.FrameLayout.LayoutParams;
-import android.widget.ImageButton;
+import android.content.Context;
+import android.os.Handler;
+import android.os.RemoteException;
+import java.util.Iterator;
+import java.util.List;
 
-public final class ck extends FrameLayout
-  implements View.OnClickListener
+@ez
+public final class ck
 {
-  private final ImageButton oR;
-  private final Activity og;
+  private final ct lq;
+  private final Context mContext;
+  private final Object mw = new Object();
+  private final fi pQ;
+  private final cm pR;
+  private boolean pS = false;
+  private cp pT;
 
-  public ck(Activity paramActivity, int paramInt)
+  public ck(Context paramContext, fi paramfi, ct paramct, cm paramcm)
   {
-    super(paramActivity);
-    this.og = paramActivity;
-    setOnClickListener(this);
-    this.oR = new ImageButton(paramActivity);
-    this.oR.setImageResource(17301527);
-    this.oR.setBackgroundColor(0);
-    this.oR.setOnClickListener(this);
-    this.oR.setPadding(0, 0, 0, 0);
-    int i = et.a(paramActivity, paramInt);
-    addView(this.oR, new FrameLayout.LayoutParams(i, i, 17));
+    this.mContext = paramContext;
+    this.pQ = paramfi;
+    this.lq = paramct;
+    this.pR = paramcm;
   }
 
-  public final void j(boolean paramBoolean)
+  public final cq a(long paramLong1, long paramLong2)
   {
-    ImageButton localImageButton = this.oR;
-    if (paramBoolean);
-    for (int i = 4; ; i = 0)
+    gs.S("Starting mediation.");
+    Iterator localIterator1 = this.pR.qd.iterator();
+    while (localIterator1.hasNext())
     {
-      localImageButton.setVisibility(i);
+      cl localcl = (cl)localIterator1.next();
+      gs.U("Trying mediation network: " + localcl.pX);
+      Iterator localIterator2 = localcl.pY.iterator();
+      while (localIterator2.hasNext())
+      {
+        String str = (String)localIterator2.next();
+        final cq localcq2;
+        synchronized (this.mw)
+        {
+          if (this.pS)
+          {
+            cq localcq1 = new cq(-1);
+            return localcq1;
+          }
+          this.pT = new cp(this.mContext, str, this.lq, this.pR, localcl, this.pQ.tx, this.pQ.lH, this.pQ.lD);
+          localcq2 = this.pT.b(paramLong1, paramLong2);
+          if (localcq2.qx == 0)
+          {
+            gs.S("Adapter succeeded.");
+            return localcq2;
+          }
+        }
+        if (localcq2.qz != null)
+          gr.wC.post(new Runnable()
+          {
+            public void run()
+            {
+              try
+              {
+                localcq2.qz.destroy();
+                return;
+              }
+              catch (RemoteException localRemoteException)
+              {
+                gs.d("Could not destroy mediation adapter.", localRemoteException);
+              }
+            }
+          });
+      }
+    }
+    return new cq(1);
+  }
+
+  public final void cancel()
+  {
+    synchronized (this.mw)
+    {
+      this.pS = true;
+      if (this.pT != null)
+        this.pT.cancel();
       return;
     }
   }
-
-  public final void onClick(View paramView)
-  {
-    this.og.finish();
-  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ck
  * JD-Core Version:    0.6.2
  */

@@ -1,77 +1,13 @@
 package com.google.android.gms.internal;
 
-import android.os.Parcel;
-import android.os.Parcelable.Creator;
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-import com.google.android.gms.maps.model.LatLng;
-import java.util.ArrayList;
-import java.util.List;
-
-public class ju
-  implements SafeParcelable
+public abstract interface ju
 {
-  public static final Parcelable.Creator<ju> CREATOR = new jv();
-  private final LatLng YK;
-  private final String YL;
-  private final List<js> YM;
-  private final String YN;
-  private final String YO;
-  private final String mName;
-  final int xM;
+  public abstract long currentTimeMillis();
 
-  ju(int paramInt, String paramString1, LatLng paramLatLng, String paramString2, List<js> paramList, String paramString3, String paramString4)
-  {
-    this.xM = paramInt;
-    this.mName = paramString1;
-    this.YK = paramLatLng;
-    this.YL = paramString2;
-    this.YM = new ArrayList(paramList);
-    this.YN = paramString3;
-    this.YO = paramString4;
-  }
-
-  public int describeContents()
-  {
-    return 0;
-  }
-
-  public String getAddress()
-  {
-    return this.YL;
-  }
-
-  public String getName()
-  {
-    return this.mName;
-  }
-
-  public String getPhoneNumber()
-  {
-    return this.YN;
-  }
-
-  public LatLng jk()
-  {
-    return this.YK;
-  }
-
-  public List<js> jl()
-  {
-    return this.YM;
-  }
-
-  public String jm()
-  {
-    return this.YO;
-  }
-
-  public void writeToParcel(Parcel paramParcel, int paramInt)
-  {
-    jv.a(this, paramParcel, paramInt);
-  }
+  public abstract long elapsedRealtime();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ju
  * JD-Core Version:    0.6.2
  */

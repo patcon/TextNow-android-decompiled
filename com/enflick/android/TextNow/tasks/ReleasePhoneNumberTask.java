@@ -1,26 +1,26 @@
 package com.enflick.android.TextNow.tasks;
 
-import com.enflick.android.TextNow.activities.phone.d;
+import com.enflick.android.TextNow.activities.phone.h;
 import com.enflick.android.TextNow.api.users.UsersPhoneDelete;
 import com.enflick.android.TextNow.api.users.y;
-import textnow.u.r;
+import textnow.z.u;
 
 public class ReleasePhoneNumberTask extends c
 {
   public void run()
   {
-    r localr = new r(this.a);
-    y localy = new y(localr.b());
+    u localu = new u(this.a);
+    y localy = new y(localu.b());
     if (a(new UsersPhoneDelete(this.a).runSync(localy)))
       return;
-    localr.b("");
-    localr.c("");
-    localr.n();
-    d.g();
+    localu.b("");
+    localu.c("");
+    localu.B();
+    h.g();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.ReleasePhoneNumberTask
  * JD-Core Version:    0.6.2
  */

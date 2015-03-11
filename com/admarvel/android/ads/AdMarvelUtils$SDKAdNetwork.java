@@ -4,31 +4,30 @@ public enum AdMarvelUtils$SDKAdNetwork
 {
   static
   {
-    MILLENNIAL = new SDKAdNetwork("MILLENNIAL", 2);
-    ADMARVEL = new SDKAdNetwork("ADMARVEL", 3);
-    AMAZON = new SDKAdNetwork("AMAZON", 4);
-    ADCOLONY = new SDKAdNetwork("ADCOLONY", 5);
-    PULSE3D = new SDKAdNetwork("PULSE3D", 6);
-    GOOGLEPLAY = new SDKAdNetwork("GOOGLEPLAY", 7);
-    FACEBOOK = new SDKAdNetwork("FACEBOOK", 8);
-    INMOBI = new SDKAdNetwork("INMOBI", 9);
-    HEYZAP = new SDKAdNetwork("HEYZAP", 10);
-    SDKAdNetwork[] arrayOfSDKAdNetwork = new SDKAdNetwork[11];
-    arrayOfSDKAdNetwork[0] = GREYSTRIPE;
-    arrayOfSDKAdNetwork[1] = RHYTHM;
-    arrayOfSDKAdNetwork[2] = MILLENNIAL;
-    arrayOfSDKAdNetwork[3] = ADMARVEL;
-    arrayOfSDKAdNetwork[4] = AMAZON;
-    arrayOfSDKAdNetwork[5] = ADCOLONY;
-    arrayOfSDKAdNetwork[6] = PULSE3D;
-    arrayOfSDKAdNetwork[7] = GOOGLEPLAY;
-    arrayOfSDKAdNetwork[8] = FACEBOOK;
-    arrayOfSDKAdNetwork[9] = INMOBI;
-    arrayOfSDKAdNetwork[10] = HEYZAP;
+    MILLENNIAL = new SDKAdNetwork("MILLENNIAL", 1);
+    ADMARVEL = new SDKAdNetwork("ADMARVEL", 2);
+    AMAZON = new SDKAdNetwork("AMAZON", 3);
+    ADCOLONY = new SDKAdNetwork("ADCOLONY", 4);
+    PULSE3D = new SDKAdNetwork("PULSE3D", 5);
+    GOOGLEPLAY = new SDKAdNetwork("GOOGLEPLAY", 6);
+    FACEBOOK = new SDKAdNetwork("FACEBOOK", 7);
+    INMOBI = new SDKAdNetwork("INMOBI", 8);
+    HEYZAP = new SDKAdNetwork("HEYZAP", 9);
+    SDKAdNetwork[] arrayOfSDKAdNetwork = new SDKAdNetwork[10];
+    arrayOfSDKAdNetwork[0] = RHYTHM;
+    arrayOfSDKAdNetwork[1] = MILLENNIAL;
+    arrayOfSDKAdNetwork[2] = ADMARVEL;
+    arrayOfSDKAdNetwork[3] = AMAZON;
+    arrayOfSDKAdNetwork[4] = ADCOLONY;
+    arrayOfSDKAdNetwork[5] = PULSE3D;
+    arrayOfSDKAdNetwork[6] = GOOGLEPLAY;
+    arrayOfSDKAdNetwork[7] = FACEBOOK;
+    arrayOfSDKAdNetwork[8] = INMOBI;
+    arrayOfSDKAdNetwork[9] = HEYZAP;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.AdMarvelUtils.SDKAdNetwork
  * JD-Core Version:    0.6.2
  */

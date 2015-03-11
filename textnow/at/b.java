@@ -1,24 +1,17 @@
 package textnow.at;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
-final class b extends TimerTask
+public abstract interface b
 {
-  b(a parama)
-  {
-  }
+  public abstract void a(a parama);
 
-  public final void run()
-  {
-    this.a.b.cancel();
-    this.a.b.purge();
-    this.a.b = null;
-    a.a(this.a);
-  }
+  public abstract void b(a parama);
+
+  public abstract void c(a parama);
+
+  public abstract void d(a parama);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.at.b
  * JD-Core Version:    0.6.2
  */

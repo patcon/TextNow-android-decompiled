@@ -1,110 +1,61 @@
 package com.google.android.gms.internal;
 
-import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Typeface;
-import android.util.AttributeSet;
-import android.util.DisplayMetrics;
-import android.widget.Button;
-import com.google.android.gms.R.color;
-import com.google.android.gms.R.drawable;
-import com.google.android.gms.R.string;
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.internal.safeparcel.a;
+import com.google.android.gms.common.internal.safeparcel.a.a;
+import com.google.android.gms.common.internal.safeparcel.b;
+import java.util.ArrayList;
 
-public final class ho extends Button
+public class ho
+  implements Parcelable.Creator<hm.b>
 {
-  public ho(Context paramContext)
+  static void a(hm.b paramb, Parcel paramParcel, int paramInt)
   {
-    this(paramContext, null);
+    int i = b.D(paramParcel);
+    b.c(paramParcel, 1000, paramb.BR);
+    b.a(paramParcel, 1, paramb.Ck, paramInt, false);
+    b.c(paramParcel, 2, paramb.Cl, false);
+    b.H(paramParcel, i);
   }
 
-  public ho(Context paramContext, AttributeSet paramAttributeSet)
+  public hm.b[] N(int paramInt)
   {
-    super(paramContext, paramAttributeSet, 16842824);
+    return new hm.b[paramInt];
   }
 
-  private int b(int paramInt1, int paramInt2, int paramInt3)
+  public hm.b q(Parcel paramParcel)
   {
-    switch (paramInt1)
+    int i = a.C(paramParcel);
+    Status localStatus = null;
+    int j = 0;
+    ArrayList localArrayList = null;
+    while (paramParcel.dataPosition() < i)
     {
-    default:
-      throw new IllegalStateException("Unknown color scheme: " + paramInt1);
-    case 1:
-      paramInt2 = paramInt3;
-    case 0:
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
+      {
+      default:
+        a.b(paramParcel, k);
+        break;
+      case 1000:
+        j = a.g(paramParcel, k);
+        break;
+      case 1:
+        localStatus = (Status)a.a(paramParcel, k, Status.CREATOR);
+        break;
+      case 2:
+        localArrayList = a.c(paramParcel, k, hs.CREATOR);
+      }
     }
-    return paramInt2;
-  }
-
-  private void b(Resources paramResources, int paramInt1, int paramInt2)
-  {
-    switch (paramInt1)
-    {
-    default:
-      throw new IllegalStateException("Unknown button size: " + paramInt1);
-    case 0:
-    case 1:
-    case 2:
-    }
-    for (int i = b(paramInt2, R.drawable.common_signin_btn_text_dark, R.drawable.common_signin_btn_text_light); i == -1; i = b(paramInt2, R.drawable.common_signin_btn_icon_dark, R.drawable.common_signin_btn_icon_light))
-      throw new IllegalStateException("Could not find background resource!");
-    setBackgroundDrawable(paramResources.getDrawable(i));
-  }
-
-  private void c(Resources paramResources)
-  {
-    setTypeface(Typeface.DEFAULT_BOLD);
-    setTextSize(14.0F);
-    float f = paramResources.getDisplayMetrics().density;
-    setMinHeight((int)(0.5F + f * 48.0F));
-    setMinWidth((int)(0.5F + f * 48.0F));
-  }
-
-  private void c(Resources paramResources, int paramInt1, int paramInt2)
-  {
-    setTextColor(paramResources.getColorStateList(b(paramInt2, R.color.common_signin_btn_text_dark, R.color.common_signin_btn_text_light)));
-    switch (paramInt1)
-    {
-    default:
-      throw new IllegalStateException("Unknown button size: " + paramInt1);
-    case 0:
-      setText(paramResources.getString(R.string.common_signin_button_text));
-      return;
-    case 1:
-      setText(paramResources.getString(R.string.common_signin_button_text_long));
-      return;
-    case 2:
-    }
-    setText(null);
-  }
-
-  public final void a(Resources paramResources, int paramInt1, int paramInt2)
-  {
-    boolean bool1;
-    if ((paramInt1 >= 0) && (paramInt1 < 3))
-    {
-      bool1 = true;
-      Object[] arrayOfObject1 = new Object[1];
-      arrayOfObject1[0] = Integer.valueOf(paramInt1);
-      hm.a(bool1, "Unknown button size %d", arrayOfObject1);
-      if ((paramInt2 < 0) || (paramInt2 >= 2))
-        break label96;
-    }
-    label96: for (boolean bool2 = true; ; bool2 = false)
-    {
-      Object[] arrayOfObject2 = new Object[1];
-      arrayOfObject2[0] = Integer.valueOf(paramInt2);
-      hm.a(bool2, "Unknown color scheme %s", arrayOfObject2);
-      c(paramResources);
-      b(paramResources, paramInt1, paramInt2);
-      c(paramResources, paramInt1, paramInt2);
-      return;
-      bool1 = false;
-      break;
-    }
+    if (paramParcel.dataPosition() != i)
+      throw new a.a("Overread allowed size end=" + i, paramParcel);
+    return new hm.b(j, localStatus, localArrayList);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ho
  * JD-Core Version:    0.6.2
  */

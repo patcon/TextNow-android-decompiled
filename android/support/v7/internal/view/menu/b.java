@@ -1,36 +1,59 @@
 package android.support.v7.internal.view.menu;
 
-import android.content.Context;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.graphics.Rect;
-import android.text.method.TransformationMethod;
-import android.view.View;
-import java.util.Locale;
+import android.support.v7.widget.ListPopupWindow;
+import android.support.v7.widget.aa;
 
-final class b
-  implements TransformationMethod
+final class b extends aa
 {
-  private Locale b;
-
   public b(ActionMenuItemView paramActionMenuItemView)
   {
-    this.b = paramActionMenuItemView.getContext().getResources().getConfiguration().locale;
+    super(paramActionMenuItemView);
   }
 
-  public final CharSequence getTransformation(CharSequence paramCharSequence, View paramView)
+  public final ListPopupWindow a()
   {
-    if (paramCharSequence != null)
-      return paramCharSequence.toString().toUpperCase(this.b);
+    if (ActionMenuItemView.a(this.a) != null)
+      return ActionMenuItemView.a(this.a).a();
     return null;
   }
 
-  public final void onFocusChanged(View paramView, CharSequence paramCharSequence, boolean paramBoolean, int paramInt, Rect paramRect)
+  protected final boolean b()
   {
+    k localk = ActionMenuItemView.b(this.a);
+    boolean bool1 = false;
+    if (localk != null)
+    {
+      boolean bool2 = ActionMenuItemView.b(this.a).a(ActionMenuItemView.c(this.a));
+      bool1 = false;
+      if (bool2)
+      {
+        ListPopupWindow localListPopupWindow = a();
+        bool1 = false;
+        if (localListPopupWindow != null)
+        {
+          boolean bool3 = localListPopupWindow.b();
+          bool1 = false;
+          if (bool3)
+            bool1 = true;
+        }
+      }
+    }
+    return bool1;
+  }
+
+  protected final boolean c()
+  {
+    ListPopupWindow localListPopupWindow = a();
+    if (localListPopupWindow != null)
+    {
+      localListPopupWindow.a();
+      return true;
+    }
+    return false;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v7.internal.view.menu.b
  * JD-Core Version:    0.6.2
  */

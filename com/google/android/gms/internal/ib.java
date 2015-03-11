@@ -1,150 +1,172 @@
 package com.google.android.gms.internal;
 
-import android.os.Parcel;
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Set;
+import android.content.Context;
+import android.os.IBinder;
+import android.os.Looper;
+import android.os.RemoteException;
+import com.google.android.gms.appstate.AppStateManager.StateDeletedResult;
+import com.google.android.gms.appstate.AppStateManager.StateListResult;
+import com.google.android.gms.appstate.AppStateManager.StateResult;
+import com.google.android.gms.common.api.BaseImplementation.b;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.internal.e;
+import com.google.android.gms.common.internal.e.e;
+import com.google.android.gms.common.internal.l;
+import com.google.android.gms.common.internal.o;
 
-public class ib
-  implements SafeParcelable
+public final class ib extends e<id>
 {
-  public static final ic CREATOR = new ic();
-  private final HashMap<String, HashMap<String, hy.a<?, ?>>> Hl;
-  private final ArrayList<ib.a> Hm;
-  private final String Hn;
-  private final int xM;
+  private final String Dd;
 
-  ib(int paramInt, ArrayList<ib.a> paramArrayList, String paramString)
+  public ib(Context paramContext, Looper paramLooper, GoogleApiClient.ConnectionCallbacks paramConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener paramOnConnectionFailedListener, String paramString, String[] paramArrayOfString)
   {
-    this.xM = paramInt;
-    this.Hm = null;
-    this.Hl = b(paramArrayList);
-    this.Hn = ((String)hm.f(paramString));
-    fT();
+    super(paramContext, paramLooper, paramConnectionCallbacks, paramOnConnectionFailedListener, paramArrayOfString);
+    this.Dd = ((String)o.i(paramString));
   }
 
-  public ib(Class<? extends hy> paramClass)
+  protected final id I(IBinder paramIBinder)
   {
-    this.xM = 1;
-    this.Hm = null;
-    this.Hl = new HashMap();
-    this.Hn = paramClass.getCanonicalName();
+    return id.a.K(paramIBinder);
   }
 
-  private static HashMap<String, HashMap<String, hy.a<?, ?>>> b(ArrayList<ib.a> paramArrayList)
+  public final void a(BaseImplementation.b<AppStateManager.StateListResult> paramb)
   {
-    HashMap localHashMap = new HashMap();
-    int i = paramArrayList.size();
-    for (int j = 0; j < i; j++)
+    try
     {
-      ib.a locala = (ib.a)paramArrayList.get(j);
-      localHashMap.put(locala.className, locala.fX());
+      ((id)gS()).a(new ib.c(paramb));
+      return;
     }
-    return localHashMap;
-  }
-
-  public void a(Class<? extends hy> paramClass, HashMap<String, hy.a<?, ?>> paramHashMap)
-  {
-    this.Hl.put(paramClass.getCanonicalName(), paramHashMap);
-  }
-
-  public HashMap<String, hy.a<?, ?>> aJ(String paramString)
-  {
-    return (HashMap)this.Hl.get(paramString);
-  }
-
-  public boolean b(Class<? extends hy> paramClass)
-  {
-    return this.Hl.containsKey(paramClass.getCanonicalName());
-  }
-
-  public int describeContents()
-  {
-    return 0;
-  }
-
-  public void fT()
-  {
-    Iterator localIterator1 = this.Hl.keySet().iterator();
-    while (localIterator1.hasNext())
+    catch (RemoteException localRemoteException)
     {
-      String str = (String)localIterator1.next();
-      HashMap localHashMap = (HashMap)this.Hl.get(str);
-      Iterator localIterator2 = localHashMap.keySet().iterator();
-      while (localIterator2.hasNext())
-        ((hy.a)localHashMap.get((String)localIterator2.next())).a(this);
     }
   }
 
-  public void fU()
+  public final void a(BaseImplementation.b<AppStateManager.StateDeletedResult> paramb, int paramInt)
   {
-    Iterator localIterator1 = this.Hl.keySet().iterator();
-    while (localIterator1.hasNext())
+    try
     {
-      String str1 = (String)localIterator1.next();
-      HashMap localHashMap1 = (HashMap)this.Hl.get(str1);
-      HashMap localHashMap2 = new HashMap();
-      Iterator localIterator2 = localHashMap1.keySet().iterator();
-      while (localIterator2.hasNext())
+      ((id)gS()).b(new ib.a(paramb), paramInt);
+      return;
+    }
+    catch (RemoteException localRemoteException)
+    {
+    }
+  }
+
+  public final void a(BaseImplementation.b<AppStateManager.StateResult> paramb, int paramInt, String paramString, byte[] paramArrayOfByte)
+  {
+    try
+    {
+      ((id)gS()).a(new ib.e(paramb), paramInt, paramString, paramArrayOfByte);
+      return;
+    }
+    catch (RemoteException localRemoteException)
+    {
+    }
+  }
+
+  public final void a(BaseImplementation.b<AppStateManager.StateResult> paramb, int paramInt, byte[] paramArrayOfByte)
+  {
+    Object localObject;
+    if (paramb == null)
+      localObject = null;
+    try
+    {
+      while (true)
       {
-        String str2 = (String)localIterator2.next();
-        localHashMap2.put(str2, ((hy.a)localHashMap1.get(str2)).fJ());
-      }
-      this.Hl.put(str1, localHashMap2);
-    }
-  }
-
-  ArrayList<ib.a> fV()
-  {
-    ArrayList localArrayList = new ArrayList();
-    Iterator localIterator = this.Hl.keySet().iterator();
-    while (localIterator.hasNext())
-    {
-      String str = (String)localIterator.next();
-      localArrayList.add(new ib.a(str, (HashMap)this.Hl.get(str)));
-    }
-    return localArrayList;
-  }
-
-  public String fW()
-  {
-    return this.Hn;
-  }
-
-  int getVersionCode()
-  {
-    return this.xM;
-  }
-
-  public String toString()
-  {
-    StringBuilder localStringBuilder = new StringBuilder();
-    Iterator localIterator1 = this.Hl.keySet().iterator();
-    while (localIterator1.hasNext())
-    {
-      String str1 = (String)localIterator1.next();
-      localStringBuilder.append(str1).append(":\n");
-      HashMap localHashMap = (HashMap)this.Hl.get(str1);
-      Iterator localIterator2 = localHashMap.keySet().iterator();
-      while (localIterator2.hasNext())
-      {
-        String str2 = (String)localIterator2.next();
-        localStringBuilder.append("  ").append(str2).append(": ");
-        localStringBuilder.append(localHashMap.get(str2));
+        ((id)gS()).a((ic)localObject, paramInt, paramArrayOfByte);
+        return;
+        ib.e locale = new ib.e(paramb);
+        localObject = locale;
       }
     }
-    return localStringBuilder.toString();
+    catch (RemoteException localRemoteException)
+    {
+    }
   }
 
-  public void writeToParcel(Parcel paramParcel, int paramInt)
+  protected final void a(l paraml, e.e parame)
   {
-    ic.a(this, paramParcel, paramInt);
+    paraml.a(parame, 6171000, getContext().getPackageName(), this.Dd, gR());
+  }
+
+  public final void b(BaseImplementation.b<Status> paramb)
+  {
+    try
+    {
+      ((id)gS()).b(new ib.g(paramb));
+      return;
+    }
+    catch (RemoteException localRemoteException)
+    {
+    }
+  }
+
+  public final void b(BaseImplementation.b<AppStateManager.StateResult> paramb, int paramInt)
+  {
+    try
+    {
+      ((id)gS()).a(new ib.e(paramb), paramInt);
+      return;
+    }
+    catch (RemoteException localRemoteException)
+    {
+    }
+  }
+
+  protected final void c(String[] paramArrayOfString)
+  {
+    int i = 0;
+    boolean bool = false;
+    while (i < paramArrayOfString.length)
+    {
+      if (paramArrayOfString[i].equals("https://www.googleapis.com/auth/appstate"))
+        bool = true;
+      i++;
+    }
+    o.a(bool, String.format("App State APIs requires %s to function.", new Object[] { "https://www.googleapis.com/auth/appstate" }));
+  }
+
+  public final int fq()
+  {
+    try
+    {
+      int i = ((id)gS()).fq();
+      return i;
+    }
+    catch (RemoteException localRemoteException)
+    {
+    }
+    return 2;
+  }
+
+  public final int fr()
+  {
+    try
+    {
+      int i = ((id)gS()).fr();
+      return i;
+    }
+    catch (RemoteException localRemoteException)
+    {
+    }
+    return 2;
+  }
+
+  protected final String getServiceDescriptor()
+  {
+    return "com.google.android.gms.appstate.internal.IAppStateService";
+  }
+
+  protected final String getStartServiceAction()
+  {
+    return "com.google.android.gms.appstate.service.START";
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ib
  * JD-Core Version:    0.6.2
  */

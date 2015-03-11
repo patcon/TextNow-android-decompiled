@@ -68,7 +68,7 @@ public abstract class gi
   public abstract void f();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.flurry.sdk.gi
  * JD-Core Version:    0.6.2
  */

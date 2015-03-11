@@ -1,57 +1,119 @@
 package com.admarvel.android.util;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationManager;
+import com.admarvel.android.ads.d;
+import com.admarvel.android.ads.r;
+import java.lang.ref.WeakReference;
+import java.util.List;
 
 public class c
 {
-  private String[] a;
-  private String b;
+  private static c a = null;
+  private static c.a b = null;
+  private static c.a c = null;
+  private String d;
+  private String e;
+  private WeakReference<d> f;
 
-  public c(String[] paramArrayOfString, String paramString)
+  public static c a()
   {
-    this.a = paramArrayOfString;
-    this.b = paramString;
+    if (a == null)
+      a = new c();
+    return a;
   }
 
-  public void a()
+  private boolean a(Context paramContext, String paramString)
   {
-    ZipOutputStream localZipOutputStream;
-    for (int i = 0; ; i++)
+    LocationManager localLocationManager = (LocationManager)paramContext.getSystemService("location");
+    try
     {
-      BufferedInputStream localBufferedInputStream;
+      List localList = localLocationManager.getAllProviders();
+      for (int i = 0; ; i++)
+      {
+        int j = localList.size();
+        boolean bool = false;
+        if (i < j)
+        {
+          if (paramString.equals((String)localList.get(i)))
+            bool = true;
+        }
+        else
+          return bool;
+      }
+    }
+    catch (Throwable localThrowable)
+    {
+    }
+    return false;
+  }
+
+  public Location a(d paramd)
+  {
+    Location localLocation = null;
+    if ((!r.c(paramd.getContext(), "android.permission.ACCESS_COARSE_LOCATION")) && (!r.c(paramd.getContext(), "android.permission.ACCESS_FINE_LOCATION")))
+      return null;
+    LocationManager localLocationManager = (LocationManager)paramd.getContext().getSystemService("location");
+    List localList = localLocationManager.getProviders(true);
+    for (int i = -1 + localList.size(); i >= 0; i--)
+    {
+      localLocation = localLocationManager.getLastKnownLocation((String)localList.get(i));
+      if (localLocation != null)
+        break;
+    }
+    return localLocation;
+  }
+
+  public void a(Context paramContext)
+  {
+    LocationManager localLocationManager = (LocationManager)paramContext.getSystemService("location");
+    if (c != null)
+      localLocationManager.removeUpdates(c);
+    if (b != null)
+      localLocationManager.removeUpdates(b);
+    c = null;
+    b = null;
+  }
+
+  public void a(d paramd, String paramString)
+  {
+    if ((!r.c(paramd.getContext(), "android.permission.ACCESS_COARSE_LOCATION")) && (!r.c(paramd.getContext(), "android.permission.ACCESS_FINE_LOCATION")));
+    while (true)
+    {
+      return;
+      LocationManager localLocationManager = (LocationManager)paramd.getContext().getSystemService("location");
+      this.f = new WeakReference(paramd);
+      this.e = paramString;
       try
       {
-        localZipOutputStream = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(this.b)));
-        byte[] arrayOfByte = new byte[2048];
-        if (i >= this.a.length)
-          break;
-        localBufferedInputStream = new BufferedInputStream(new FileInputStream(this.a[i]), 2048);
-        localZipOutputStream.putNextEntry(new ZipEntry(this.a[i].substring(1 + this.a[i].lastIndexOf("/"))));
-        while (true)
+        if ((a(paramd.getContext(), "gps")) && (localLocationManager.getProvider("gps") != null))
+          b = new c.a(this, "gps", localLocationManager);
+        try
         {
-          int j = localBufferedInputStream.read(arrayOfByte, 0, 2048);
-          if (j == -1)
-            break;
-          localZipOutputStream.write(arrayOfByte, 0, j);
+          label91: if ((a(paramd.getContext(), "network")) && (localLocationManager.getProvider("network") != null))
+            c = new c.a(this, "network", localLocationManager);
+          label127: if (c != null)
+            c.a();
+          if (b == null)
+            continue;
+          b.a();
+          return;
+        }
+        catch (Exception localException2)
+        {
+          break label127;
         }
       }
-      catch (Exception localException)
+      catch (Exception localException1)
       {
-        localException.printStackTrace();
-        return;
+        break label91;
       }
-      localBufferedInputStream.close();
     }
-    localZipOutputStream.close();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.util.c
  * JD-Core Version:    0.6.2
  */

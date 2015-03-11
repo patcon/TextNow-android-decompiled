@@ -1,21 +1,15 @@
 package com.enflick.android.TextNow.activities.phone;
 
-import android.widget.ImageView;
-import textnow.q.s;
+import textnow.z.h;
 
-final class p extends s
+public abstract interface p
 {
-  private p(DialerFragment paramDialerFragment)
-  {
-  }
+  public abstract void b(h paramh);
 
-  public final void a(ImageView paramImageView)
-  {
-    paramImageView.setImageResource(2130837596);
-  }
+  public abstract void s();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.activities.phone.p
  * JD-Core Version:    0.6.2
  */

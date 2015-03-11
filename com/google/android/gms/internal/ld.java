@@ -1,272 +1,121 @@
 package com.google.android.gms.internal;
 
-import com.google.android.gms.common.data.DataHolder;
-import com.google.android.gms.common.data.d;
-import com.google.android.gms.plus.model.people.Person;
-import com.google.android.gms.plus.model.people.Person.AgeRange;
-import com.google.android.gms.plus.model.people.Person.Cover;
-import com.google.android.gms.plus.model.people.Person.Image;
-import com.google.android.gms.plus.model.people.Person.Name;
-import com.google.android.gms.plus.model.people.Person.Organizations;
-import com.google.android.gms.plus.model.people.Person.PlacesLived;
-import com.google.android.gms.plus.model.people.Person.Urls;
-import java.util.ArrayList;
+import android.app.PendingIntent;
+import android.content.Context;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.fitness.SessionsApi;
+import com.google.android.gms.fitness.data.Session;
+import com.google.android.gms.fitness.request.SessionInsertRequest;
+import com.google.android.gms.fitness.request.SessionReadRequest;
+import com.google.android.gms.fitness.request.aa;
+import com.google.android.gms.fitness.request.u;
+import com.google.android.gms.fitness.request.w.a;
+import com.google.android.gms.fitness.request.y.a;
+import com.google.android.gms.fitness.result.SessionReadResult;
+import com.google.android.gms.fitness.result.SessionStopResult;
 
-public final class ld extends d
-  implements Person
+public class ld
+  implements SessionsApi
 {
-  public ld(DataHolder paramDataHolder, int paramInt)
+  private PendingResult<SessionStopResult> a(GoogleApiClient paramGoogleApiClient, final String paramString1, final String paramString2)
   {
-    super(paramDataHolder, paramInt);
+    return paramGoogleApiClient.b(new kk.a()
+    {
+      protected SessionStopResult B(Status paramAnonymousStatus)
+      {
+        return SessionStopResult.I(paramAnonymousStatus);
+      }
+
+      protected void a(kk paramAnonymouskk)
+      {
+        ld.b localb = new ld.b(this, null);
+        String str = paramAnonymouskk.getContext().getPackageName();
+        paramAnonymouskk.jb().a(new y.a().bu(paramString1).bv(paramString2).jB(), localb, str);
+      }
+    });
   }
 
-  public final String getAboutMe()
+  public PendingResult<Status> insertSession(GoogleApiClient paramGoogleApiClient, final SessionInsertRequest paramSessionInsertRequest)
   {
-    return null;
+    return paramGoogleApiClient.a(new kk.c()
+    {
+      protected void a(kk paramAnonymouskk)
+      {
+        kk.b localb = new kk.b(this);
+        String str = paramAnonymouskk.getContext().getPackageName();
+        paramAnonymouskk.jb().a(paramSessionInsertRequest, localb, str);
+      }
+    });
   }
 
-  public final Person.AgeRange getAgeRange()
+  public PendingResult<SessionReadResult> readSession(GoogleApiClient paramGoogleApiClient, final SessionReadRequest paramSessionReadRequest)
   {
-    return null;
+    return paramGoogleApiClient.a(new kk.a()
+    {
+      protected SessionReadResult C(Status paramAnonymousStatus)
+      {
+        return SessionReadResult.H(paramAnonymousStatus);
+      }
+
+      protected void a(kk paramAnonymouskk)
+      {
+        ld.a locala = new ld.a(this, null);
+        String str = paramAnonymouskk.getContext().getPackageName();
+        paramAnonymouskk.jb().a(paramSessionReadRequest, locala, str);
+      }
+    });
   }
 
-  public final String getBirthday()
+  public PendingResult<Status> registerForSessions(GoogleApiClient paramGoogleApiClient, final PendingIntent paramPendingIntent)
   {
-    return null;
+    return paramGoogleApiClient.b(new kk.c()
+    {
+      protected void a(kk paramAnonymouskk)
+      {
+        kk.b localb = new kk.b(this);
+        u localu = new u(paramPendingIntent);
+        String str = paramAnonymouskk.getContext().getPackageName();
+        paramAnonymouskk.jb().a(localu, localb, str);
+      }
+    });
   }
 
-  public final String getBraggingRights()
+  public PendingResult<Status> startSession(GoogleApiClient paramGoogleApiClient, final Session paramSession)
   {
-    return null;
+    return paramGoogleApiClient.b(new kk.c()
+    {
+      protected void a(kk paramAnonymouskk)
+      {
+        kk.b localb = new kk.b(this);
+        String str = paramAnonymouskk.getContext().getPackageName();
+        paramAnonymouskk.jb().a(new w.a().b(paramSession).jA(), localb, str);
+      }
+    });
   }
 
-  public final int getCircledByCount()
+  public PendingResult<SessionStopResult> stopSession(GoogleApiClient paramGoogleApiClient, String paramString)
   {
-    return 0;
+    return a(paramGoogleApiClient, null, paramString);
   }
 
-  public final Person.Cover getCover()
+  public PendingResult<Status> unregisterForSessions(GoogleApiClient paramGoogleApiClient, final PendingIntent paramPendingIntent)
   {
-    return null;
-  }
-
-  public final String getCurrentLocation()
-  {
-    return null;
-  }
-
-  public final String getDisplayName()
-  {
-    return getString("displayName");
-  }
-
-  public final int getGender()
-  {
-    return 0;
-  }
-
-  public final String getId()
-  {
-    return getString("personId");
-  }
-
-  public final Person.Image getImage()
-  {
-    return new ks.c(getString("image"));
-  }
-
-  public final String getLanguage()
-  {
-    return null;
-  }
-
-  public final Person.Name getName()
-  {
-    return null;
-  }
-
-  public final String getNickname()
-  {
-    return null;
-  }
-
-  public final int getObjectType()
-  {
-    return ks.e.bA(getString("objectType"));
-  }
-
-  public final int getPlusOneCount()
-  {
-    return 0;
-  }
-
-  public final int getRelationshipStatus()
-  {
-    return 0;
-  }
-
-  public final String getTagline()
-  {
-    return null;
-  }
-
-  public final String getUrl()
-  {
-    return getString("url");
-  }
-
-  public final boolean hasAboutMe()
-  {
-    return false;
-  }
-
-  public final boolean hasAgeRange()
-  {
-    return false;
-  }
-
-  public final boolean hasBirthday()
-  {
-    return false;
-  }
-
-  public final boolean hasBraggingRights()
-  {
-    return false;
-  }
-
-  public final boolean hasCircledByCount()
-  {
-    return false;
-  }
-
-  public final boolean hasCover()
-  {
-    return false;
-  }
-
-  public final boolean hasCurrentLocation()
-  {
-    return false;
-  }
-
-  public final boolean hasDisplayName()
-  {
-    return true;
-  }
-
-  public final boolean hasGender()
-  {
-    return false;
-  }
-
-  public final boolean hasId()
-  {
-    return true;
-  }
-
-  public final boolean hasImage()
-  {
-    return true;
-  }
-
-  public final boolean hasIsPlusUser()
-  {
-    return false;
-  }
-
-  public final boolean hasLanguage()
-  {
-    return false;
-  }
-
-  public final boolean hasName()
-  {
-    return false;
-  }
-
-  public final boolean hasNickname()
-  {
-    return false;
-  }
-
-  public final boolean hasObjectType()
-  {
-    return true;
-  }
-
-  public final boolean hasOrganizations()
-  {
-    return false;
-  }
-
-  public final boolean hasPlacesLived()
-  {
-    return false;
-  }
-
-  public final boolean hasPlusOneCount()
-  {
-    return false;
-  }
-
-  public final boolean hasRelationshipStatus()
-  {
-    return false;
-  }
-
-  public final boolean hasTagline()
-  {
-    return false;
-  }
-
-  public final boolean hasUrl()
-  {
-    return true;
-  }
-
-  public final boolean hasUrls()
-  {
-    return false;
-  }
-
-  public final boolean hasVerified()
-  {
-    return false;
-  }
-
-  public final boolean isPlusUser()
-  {
-    return false;
-  }
-
-  public final boolean isVerified()
-  {
-    return false;
-  }
-
-  public final ArrayList<Person.Organizations> kZ()
-  {
-    return null;
-  }
-
-  public final ArrayList<Person.PlacesLived> la()
-  {
-    return null;
-  }
-
-  public final ArrayList<Person.Urls> lb()
-  {
-    return null;
-  }
-
-  public final Person lc()
-  {
-    return new ks(getDisplayName(), getId(), (ks.c)getImage(), getObjectType(), getUrl());
+    return paramGoogleApiClient.b(new kk.c()
+    {
+      protected void a(kk paramAnonymouskk)
+      {
+        kk.b localb = new kk.b(this);
+        aa localaa = new aa(paramPendingIntent);
+        String str = paramAnonymouskk.getContext().getPackageName();
+        paramAnonymouskk.jb().a(localaa, localb, str);
+      }
+    });
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ld
  * JD-Core Version:    0.6.2
  */

@@ -9,7 +9,7 @@ public final class SecurityStatus$Stream
   public SecurityStatus.ZRTP zrtp;
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     cz.acrobits.libsoftphone.data.SecurityStatus.Stream
  * JD-Core Version:    0.6.2
  */

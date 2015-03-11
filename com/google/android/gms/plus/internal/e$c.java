@@ -1,69 +1,69 @@
 package com.google.android.gms.plus.internal;
 
+import com.google.android.gms.common.api.BaseImplementation.b;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.common.api.a.d;
 import com.google.android.gms.common.data.DataHolder;
-import com.google.android.gms.internal.hb;
-import com.google.android.gms.internal.hb.d;
+import com.google.android.gms.common.internal.e;
+import com.google.android.gms.common.internal.e.d;
 import com.google.android.gms.plus.Moments.LoadMomentsResult;
 import com.google.android.gms.plus.model.moments.MomentBuffer;
 
-final class e$c extends hb<d>.d<a.d<Moments.LoadMomentsResult>>
+final class e$c extends e<d>.d<BaseImplementation.b<Moments.LoadMomentsResult>>
   implements Moments.LoadMomentsResult
 {
-  private final String HS;
-  private final String abN;
-  private MomentBuffer abO;
-  private final Status yz;
+  private final Status CM;
+  private final String Nq;
+  private final String alx;
+  private MomentBuffer aly;
 
-  public e$c(a.d<Moments.LoadMomentsResult> paramd, Status paramStatus, DataHolder paramDataHolder, String paramString1, String paramString2)
+  public e$c(BaseImplementation.b<Moments.LoadMomentsResult> paramb, Status paramStatus, DataHolder paramDataHolder, String paramString1, String paramString2)
   {
-    super(paramd, paramStatus, paramString1);
-    this.yz = paramDataHolder;
-    this.HS = paramString2;
+    super(paramb, paramStatus, paramString1);
+    this.CM = paramDataHolder;
+    this.Nq = paramString2;
     Object localObject;
-    this.abN = localObject;
+    this.alx = localObject;
   }
 
-  protected final void a(a.d<Moments.LoadMomentsResult> paramd, DataHolder paramDataHolder)
+  protected final void a(BaseImplementation.b<Moments.LoadMomentsResult> paramb, DataHolder paramDataHolder)
   {
     if (paramDataHolder != null);
     for (MomentBuffer localMomentBuffer = new MomentBuffer(paramDataHolder); ; localMomentBuffer = null)
     {
-      this.abO = localMomentBuffer;
-      paramd.a(this);
+      this.aly = localMomentBuffer;
+      paramb.b(this);
       return;
     }
   }
 
   public final MomentBuffer getMomentBuffer()
   {
-    return this.abO;
+    return this.aly;
   }
 
   public final String getNextPageToken()
   {
-    return this.HS;
+    return this.Nq;
   }
 
   public final Status getStatus()
   {
-    return this.yz;
+    return this.CM;
   }
 
   public final String getUpdated()
   {
-    return this.abN;
+    return this.alx;
   }
 
   public final void release()
   {
-    if (this.abO != null)
-      this.abO.close();
+    if (this.aly != null)
+      this.aly.close();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.plus.internal.e.c
  * JD-Core Version:    0.6.2
  */

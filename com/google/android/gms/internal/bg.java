@@ -1,89 +1,136 @@
 package com.google.android.gms.internal;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import android.content.Context;
+import android.location.Location;
+import android.os.Bundle;
+import com.google.android.gms.ads.mediation.MediationAdapter;
+import com.google.android.gms.ads.mediation.NetworkExtras;
+import com.google.android.gms.ads.mediation.customevent.CustomEvent;
+import com.google.android.gms.ads.search.SearchAdRequest;
+import java.util.Collections;
+import java.util.Date;
 import java.util.Map;
+import java.util.Set;
 
+@ez
 public final class bg
-  implements bc
 {
-  private final bd nd;
+  public static final String DEVICE_ID_EMULATOR = gr.R("emulator");
+  private final Date d;
+  private final Set<String> f;
+  private final Location h;
+  private final String ol;
+  private final int om;
+  private final boolean on;
+  private final Bundle oo;
+  private final Map<Class<? extends NetworkExtras>, NetworkExtras> op;
+  private final String oq;
+  private final SearchAdRequest or;
+  private final int os;
+  private final Set<String> ot;
 
-  public bg(bd parambd)
+  public bg(bg.a parama)
   {
-    this.nd = parambd;
+    this(parama, null);
   }
 
-  private static boolean a(Map<String, String> paramMap)
+  public bg(bg.a parama, SearchAdRequest paramSearchAdRequest)
   {
-    return "1".equals(paramMap.get("custom_close"));
+    this.d = bg.a.a(parama);
+    this.ol = bg.a.b(parama);
+    this.om = bg.a.c(parama);
+    this.f = Collections.unmodifiableSet(bg.a.d(parama));
+    this.h = bg.a.e(parama);
+    this.on = bg.a.f(parama);
+    this.oo = bg.a.g(parama);
+    this.op = Collections.unmodifiableMap(bg.a.h(parama));
+    this.oq = bg.a.i(parama);
+    this.or = paramSearchAdRequest;
+    this.os = bg.a.j(parama);
+    this.ot = Collections.unmodifiableSet(bg.a.k(parama));
   }
 
-  private static int b(Map<String, String> paramMap)
+  public final SearchAdRequest bd()
   {
-    String str = (String)paramMap.get("o");
-    if (str != null)
-    {
-      if ("p".equalsIgnoreCase(str))
-        return eo.bS();
-      if ("l".equalsIgnoreCase(str))
-        return eo.bR();
-    }
-    return -1;
+    return this.or;
   }
 
-  public final void b(ex paramex, Map<String, String> paramMap)
+  public final Map<Class<? extends NetworkExtras>, NetworkExtras> be()
   {
-    String str1 = (String)paramMap.get("a");
-    if (str1 == null)
-      eu.D("Action missing from an open GMSG.");
-    ey localey;
-    String str2;
-    String str3;
-    do
-    {
-      return;
-      localey = paramex.cb();
-      if ("expand".equalsIgnoreCase(str1))
-      {
-        if (paramex.ce())
-        {
-          eu.D("Cannot expand WebView that is already expanded.");
-          return;
-        }
-        localey.a(a(paramMap), b(paramMap));
-        return;
-      }
-      if ("webapp".equalsIgnoreCase(str1))
-      {
-        String str4 = (String)paramMap.get("u");
-        if (str4 != null)
-        {
-          localey.a(a(paramMap), b(paramMap), str4);
-          return;
-        }
-        localey.a(a(paramMap), b(paramMap), (String)paramMap.get("html"), (String)paramMap.get("baseurl"));
-        return;
-      }
-      if (!"in_app_purchase".equalsIgnoreCase(str1))
-        break;
-      str2 = (String)paramMap.get("product_id");
-      str3 = (String)paramMap.get("report_urls");
-    }
-    while (this.nd == null);
-    if ((str3 != null) && (!str3.isEmpty()))
-    {
-      String[] arrayOfString = str3.split(" ");
-      this.nd.a(str2, new ArrayList(Arrays.asList(arrayOfString)));
-      return;
-    }
-    this.nd.a(str2, new ArrayList());
-    return;
-    localey.a(new ce((String)paramMap.get("i"), (String)paramMap.get("u"), (String)paramMap.get("m"), (String)paramMap.get("p"), (String)paramMap.get("c"), (String)paramMap.get("f"), (String)paramMap.get("e")));
+    return this.op;
+  }
+
+  public final Bundle bf()
+  {
+    return this.oo;
+  }
+
+  public final int bg()
+  {
+    return this.os;
+  }
+
+  public final Date getBirthday()
+  {
+    return this.d;
+  }
+
+  public final String getContentUrl()
+  {
+    return this.ol;
+  }
+
+  public final Bundle getCustomEventExtrasBundle(Class<? extends CustomEvent> paramClass)
+  {
+    Bundle localBundle = this.oo.getBundle("com.google.android.gms.ads.mediation.customevent.CustomEventAdapter");
+    if (localBundle != null)
+      return localBundle.getBundle(paramClass.getClass().getName());
+    return null;
+  }
+
+  public final int getGender()
+  {
+    return this.om;
+  }
+
+  public final Set<String> getKeywords()
+  {
+    return this.f;
+  }
+
+  public final Location getLocation()
+  {
+    return this.h;
+  }
+
+  public final boolean getManualImpressionsEnabled()
+  {
+    return this.on;
+  }
+
+  @Deprecated
+  public final <T extends NetworkExtras> T getNetworkExtras(Class<T> paramClass)
+  {
+    return (NetworkExtras)this.op.get(paramClass);
+  }
+
+  public final Bundle getNetworkExtrasBundle(Class<? extends MediationAdapter> paramClass)
+  {
+    return this.oo.getBundle(paramClass.getName());
+  }
+
+  public final String getPublisherProvidedId()
+  {
+    return this.oq;
+  }
+
+  public final boolean isTestDevice(Context paramContext)
+  {
+    return this.ot.contains(gr.v(paramContext));
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.bg
  * JD-Core Version:    0.6.2
  */

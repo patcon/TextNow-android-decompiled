@@ -21,12 +21,12 @@ public class j extends i
     return new j(paramContext, locale, new p(239));
   }
 
-  protected void c(Context paramContext)
+  protected void b(Context paramContext)
   {
-    super.c(paramContext);
+    super.b(paramContext);
     try
     {
-      j.a locala1 = i(paramContext);
+      j.a locala1 = h(paramContext);
       if (locala1.isLimitAdTrackingEnabled());
       for (long l = 1L; ; l = 0L)
       {
@@ -42,7 +42,7 @@ public class j extends i
     }
     catch (GooglePlayServicesNotAvailableException localGooglePlayServicesNotAvailableException)
     {
-      a(24, f(paramContext));
+      a(24, d(paramContext));
       return;
     }
     catch (IOException localIOException)
@@ -53,50 +53,7 @@ public class j extends i
     }
   }
 
-  protected void d(Context paramContext)
-  {
-    long l = 1L;
-    super.c(paramContext);
-    try
-    {
-      a(24, f(paramContext));
-    }
-    catch (IOException localIOException2)
-    {
-      try
-      {
-        j.a locala1 = i(paramContext);
-        if (locala1.isLimitAdTrackingEnabled())
-        {
-          a(28, l);
-          String str = locala1.getId();
-          if (str == null)
-            return;
-          a(30, str);
-        }
-      }
-      catch (IOException localIOException1)
-      {
-        while (true)
-        {
-          a(28, 1L);
-          return;
-          localIOException2 = localIOException2;
-          return;
-          l = 0L;
-        }
-      }
-      catch (GooglePlayServicesNotAvailableException localGooglePlayServicesNotAvailableException)
-      {
-      }
-    }
-    catch (i.a locala)
-    {
-      label17: break label17;
-    }
-  }
-
-  j.a i(Context paramContext)
+  j.a h(Context paramContext)
   {
     int i = 0;
     AdvertisingIdClient.Info localInfo;
@@ -124,12 +81,16 @@ public class j extends i
     {
       throw new IOException(localGooglePlayServicesRepairableException);
     }
-    for (String str2 = this.jQ.a(arrayOfByte, true); ; str2 = str1)
+    catch (SecurityException localSecurityException)
+    {
+      throw new IOException(localSecurityException);
+    }
+    for (String str2 = this.ky.a(arrayOfByte, true); ; str2 = str1)
       return new j.a(this, str2, localInfo.isLimitAdTrackingEnabled());
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.j
  * JD-Core Version:    0.6.2
  */

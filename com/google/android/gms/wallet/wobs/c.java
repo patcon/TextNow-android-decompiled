@@ -10,23 +10,23 @@ public class c
 {
   static void a(b paramb, Parcel paramParcel, int paramInt)
   {
-    int i = com.google.android.gms.common.internal.safeparcel.b.C(paramParcel);
+    int i = com.google.android.gms.common.internal.safeparcel.b.D(paramParcel);
     com.google.android.gms.common.internal.safeparcel.b.c(paramParcel, 1, paramb.getVersionCode());
     com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 2, paramb.label, false);
     com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 3, paramb.value, false);
-    com.google.android.gms.common.internal.safeparcel.b.G(paramParcel, i);
+    com.google.android.gms.common.internal.safeparcel.b.H(paramParcel, i);
   }
 
-  public b ck(Parcel paramParcel)
+  public b dH(Parcel paramParcel)
   {
     String str1 = null;
-    int i = a.B(paramParcel);
+    int i = a.C(paramParcel);
     int j = 0;
     String str2 = null;
     while (paramParcel.dataPosition() < i)
     {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
       {
       default:
         a.b(paramParcel, k);
@@ -46,13 +46,13 @@ public class c
     return new b(j, str2, str1);
   }
 
-  public b[] dS(int paramInt)
+  public b[] fK(int paramInt)
   {
     return new b[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.wobs.c
  * JD-Core Version:    0.6.2
  */

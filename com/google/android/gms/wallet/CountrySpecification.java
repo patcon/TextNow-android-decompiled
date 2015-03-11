@@ -9,19 +9,19 @@ public class CountrySpecification
   implements SafeParcelable
 {
   public static final Parcelable.Creator<CountrySpecification> CREATOR = new c();
-  String rf;
-  private final int xM;
+  private final int BR;
+  String uW;
 
   CountrySpecification(int paramInt, String paramString)
   {
-    this.xM = paramInt;
-    this.rf = paramString;
+    this.BR = paramInt;
+    this.uW = paramString;
   }
 
   public CountrySpecification(String paramString)
   {
-    this.xM = 1;
-    this.rf = paramString;
+    this.BR = 1;
+    this.uW = paramString;
   }
 
   public int describeContents()
@@ -31,12 +31,12 @@ public class CountrySpecification
 
   public String getCountryCode()
   {
-    return this.rf;
+    return this.uW;
   }
 
   public int getVersionCode()
   {
-    return this.xM;
+    return this.BR;
   }
 
   public void writeToParcel(Parcel paramParcel, int paramInt)
@@ -45,7 +45,7 @@ public class CountrySpecification
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.CountrySpecification
  * JD-Core Version:    0.6.2
  */

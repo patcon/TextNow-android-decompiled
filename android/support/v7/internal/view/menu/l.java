@@ -1,129 +1,126 @@
 package android.support.v7.internal.view.menu;
 
-import android.content.Context;
-import android.view.ContextThemeWrapper;
-import android.view.LayoutInflater;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
+import android.content.DialogInterface.OnDismissListener;
+import android.content.DialogInterface.OnKeyListener;
+import android.os.IBinder;
+import android.view.KeyEvent;
+import android.view.KeyEvent.DispatcherState;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
+import android.view.Window;
+import android.view.WindowManager.LayoutParams;
 import android.widget.ListAdapter;
-import textnow.g.h;
+import textnow.g.k;
 
 public final class l
-  implements aa, AdapterView.OnItemClickListener
+  implements DialogInterface.OnClickListener, DialogInterface.OnDismissListener, DialogInterface.OnKeyListener, w
 {
-  Context a;
-  LayoutInflater b;
-  n c;
-  ExpandedMenuView d;
-  int e;
-  int f;
-  m g;
-  private int h;
-  private ab i;
+  g a;
+  private i b;
+  private AlertDialog c;
+  private w d;
 
-  public l(int paramInt1, int paramInt2)
+  public l(i parami)
   {
-    this.f = paramInt1;
-    this.e = paramInt2;
+    this.b = parami;
   }
 
-  public final ac a(ViewGroup paramViewGroup)
+  public final void a(IBinder paramIBinder)
   {
-    if (this.g == null)
-      this.g = new m(this);
-    if (!this.g.isEmpty())
-    {
-      if (this.d == null)
-      {
-        this.d = ((ExpandedMenuView)this.b.inflate(h.k, paramViewGroup, false));
-        this.d.setAdapter(this.g);
-        this.d.setOnItemClickListener(this);
-      }
-      return this.d;
-    }
-    return null;
-  }
-
-  public final ListAdapter a()
-  {
-    if (this.g == null)
-      this.g = new m(this);
-    return this.g;
-  }
-
-  public final void a(Context paramContext, n paramn)
-  {
-    if (this.e != 0)
-    {
-      this.a = new ContextThemeWrapper(paramContext, this.e);
-      this.b = LayoutInflater.from(this.a);
-    }
+    i locali = this.b;
+    AlertDialog.Builder localBuilder = new AlertDialog.Builder(locali.d());
+    this.a = new g(textnow.g.i.j, k.b);
+    this.a.a(this);
+    this.b.a(this.a);
+    localBuilder.setAdapter(this.a.a(), this);
+    View localView = locali.p();
+    if (localView != null)
+      localBuilder.setCustomTitle(localView);
     while (true)
     {
-      this.c = paramn;
-      if (this.g != null)
-        this.g.notifyDataSetChanged();
+      localBuilder.setOnKeyListener(this);
+      this.c = localBuilder.create();
+      this.c.setOnDismissListener(this);
+      WindowManager.LayoutParams localLayoutParams = this.c.getWindow().getAttributes();
+      localLayoutParams.type = 1003;
+      localLayoutParams.flags = (0x20000 | localLayoutParams.flags);
+      this.c.show();
       return;
-      if (this.a != null)
-      {
-        this.a = paramContext;
-        if (this.b == null)
-          this.b = LayoutInflater.from(this.a);
-      }
+      localBuilder.setIcon(locali.o()).setTitle(locali.n());
     }
   }
 
-  public final void a(ab paramab)
+  public final void a(i parami, boolean paramBoolean)
   {
-    this.i = paramab;
+    if (((paramBoolean) || (parami == this.b)) && (this.c != null))
+      this.c.dismiss();
+    if (this.d != null)
+      this.d.a(parami, paramBoolean);
   }
 
-  public final void a(n paramn, boolean paramBoolean)
+  public final boolean a(i parami)
   {
-    if (this.i != null)
-      this.i.a(paramn, paramBoolean);
-  }
-
-  public final boolean a(ag paramag)
-  {
-    if (!paramag.hasVisibleItems())
-      return false;
-    new q(paramag).a(null);
-    if (this.i != null)
-      this.i.b(paramag);
-    return true;
-  }
-
-  public final boolean b(r paramr)
-  {
+    if (this.d != null)
+      return this.d.a(parami);
     return false;
   }
 
-  public final boolean c(r paramr)
+  public final void onClick(DialogInterface paramDialogInterface, int paramInt)
   {
-    return false;
+    this.b.a((m)this.a.a().getItem(paramInt), 0);
   }
 
-  public final void d(boolean paramBoolean)
+  public final void onDismiss(DialogInterface paramDialogInterface)
   {
-    if (this.g != null)
-      this.g.notifyDataSetChanged();
+    this.a.a(this.b, true);
   }
 
-  public final boolean h()
+  public final boolean onKey(DialogInterface paramDialogInterface, int paramInt, KeyEvent paramKeyEvent)
   {
-    return false;
-  }
-
-  public final void onItemClick(AdapterView<?> paramAdapterView, View paramView, int paramInt, long paramLong)
-  {
-    this.c.a(this.g.a(paramInt), 0);
+    if ((paramInt == 82) || (paramInt == 4))
+      if ((paramKeyEvent.getAction() == 0) && (paramKeyEvent.getRepeatCount() == 0))
+      {
+        Window localWindow2 = this.c.getWindow();
+        if (localWindow2 != null)
+        {
+          View localView2 = localWindow2.getDecorView();
+          if (localView2 != null)
+          {
+            KeyEvent.DispatcherState localDispatcherState2 = localView2.getKeyDispatcherState();
+            if (localDispatcherState2 != null)
+            {
+              localDispatcherState2.startTracking(paramKeyEvent, this);
+              return true;
+            }
+          }
+        }
+      }
+      else if ((paramKeyEvent.getAction() == 1) && (!paramKeyEvent.isCanceled()))
+      {
+        Window localWindow1 = this.c.getWindow();
+        if (localWindow1 != null)
+        {
+          View localView1 = localWindow1.getDecorView();
+          if (localView1 != null)
+          {
+            KeyEvent.DispatcherState localDispatcherState1 = localView1.getKeyDispatcherState();
+            if ((localDispatcherState1 != null) && (localDispatcherState1.isTracking(paramKeyEvent)))
+            {
+              this.b.a(true);
+              paramDialogInterface.dismiss();
+              return true;
+            }
+          }
+        }
+      }
+    return this.b.performShortcut(paramInt, paramKeyEvent, 0);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v7.internal.view.menu.l
  * JD-Core Version:    0.6.2
  */

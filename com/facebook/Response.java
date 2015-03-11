@@ -28,12 +28,14 @@ public class Response
   public static final String NON_JSON_RESPONSE_PROPERTY = "FACEBOOK_NON_JSON_RESULT";
   private static final String RESPONSE_CACHE_TAG = "ResponseCache";
   private static final String RESPONSE_LOG_TAG = "Response";
+  public static final String SUCCESS_KEY = "success";
   private static FileLruCache responseCache;
   private final HttpURLConnection connection;
   private final FacebookRequestError error;
   private final GraphObject graphObject;
   private final GraphObjectList<GraphObject> graphObjectList;
   private final boolean isFromCache;
+  private final String rawResponse;
   private final Request request;
 
   static
@@ -48,32 +50,28 @@ public class Response
 
   Response(Request paramRequest, HttpURLConnection paramHttpURLConnection, FacebookRequestError paramFacebookRequestError)
   {
+    this(paramRequest, paramHttpURLConnection, null, null, null, false, paramFacebookRequestError);
+  }
+
+  Response(Request paramRequest, HttpURLConnection paramHttpURLConnection, String paramString, GraphObject paramGraphObject, GraphObjectList<GraphObject> paramGraphObjectList, boolean paramBoolean, FacebookRequestError paramFacebookRequestError)
+  {
     this.request = paramRequest;
     this.connection = paramHttpURLConnection;
-    this.graphObject = null;
-    this.graphObjectList = null;
-    this.isFromCache = false;
+    this.rawResponse = paramString;
+    this.graphObject = paramGraphObject;
+    this.graphObjectList = paramGraphObjectList;
+    this.isFromCache = paramBoolean;
     this.error = paramFacebookRequestError;
   }
 
-  Response(Request paramRequest, HttpURLConnection paramHttpURLConnection, GraphObject paramGraphObject, boolean paramBoolean)
+  Response(Request paramRequest, HttpURLConnection paramHttpURLConnection, String paramString, GraphObject paramGraphObject, boolean paramBoolean)
   {
-    this.request = paramRequest;
-    this.connection = paramHttpURLConnection;
-    this.graphObject = paramGraphObject;
-    this.graphObjectList = null;
-    this.isFromCache = paramBoolean;
-    this.error = null;
+    this(paramRequest, paramHttpURLConnection, paramString, paramGraphObject, null, paramBoolean, null);
   }
 
-  Response(Request paramRequest, HttpURLConnection paramHttpURLConnection, GraphObjectList<GraphObject> paramGraphObjectList, boolean paramBoolean)
+  Response(Request paramRequest, HttpURLConnection paramHttpURLConnection, String paramString, GraphObjectList<GraphObject> paramGraphObjectList, boolean paramBoolean)
   {
-    this.request = paramRequest;
-    this.connection = paramHttpURLConnection;
-    this.graphObject = null;
-    this.graphObjectList = paramGraphObjectList;
-    this.isFromCache = paramBoolean;
-    this.error = null;
+    this(paramRequest, paramHttpURLConnection, paramString, null, paramGraphObjectList, paramBoolean, null);
   }
 
   static List<Response> constructErrorResponses(List<Request> paramList, HttpURLConnection paramHttpURLConnection, FacebookException paramFacebookException)
@@ -103,13 +101,19 @@ public class Response
       }
       Object localObject = Utility.getStringPropertyAsJSON(localJSONObject, "body", "FACEBOOK_NON_JSON_RESULT");
       if ((localObject instanceof JSONObject))
-        return new Response(paramRequest, paramHttpURLConnection, GraphObject.Factory.create((JSONObject)localObject), paramBoolean);
+      {
+        GraphObject localGraphObject = GraphObject.Factory.create((JSONObject)localObject);
+        return new Response(paramRequest, paramHttpURLConnection, localObject.toString(), localGraphObject, paramBoolean);
+      }
       if ((localObject instanceof JSONArray))
-        return new Response(paramRequest, paramHttpURLConnection, GraphObject.Factory.createList((JSONArray)localObject, GraphObject.class), paramBoolean);
+      {
+        GraphObjectList localGraphObjectList = GraphObject.Factory.createList((JSONArray)localObject, GraphObject.class);
+        return new Response(paramRequest, paramHttpURLConnection, localObject.toString(), localGraphObjectList, paramBoolean);
+      }
       paramObject1 = JSONObject.NULL;
     }
     if (paramObject1 == JSONObject.NULL)
-      return new Response(paramRequest, paramHttpURLConnection, null, paramBoolean);
+      return new Response(paramRequest, paramHttpURLConnection, paramObject1.toString(), null, paramBoolean);
     throw new FacebookException("Got unexpected object type in response, class: " + paramObject1.getClass().getSimpleName());
   }
 
@@ -208,39 +212,39 @@ public class Response
     //   0: aconst_null
     //   1: astore_2
     //   2: aload_1
-    //   3: instanceof 263
+    //   3: instanceof 273
     //   6: ifeq +495 -> 501
     //   9: aload_1
-    //   10: checkcast 263	com/facebook/internal/CacheableRequestBatch
+    //   10: checkcast 273	com/facebook/internal/CacheableRequestBatch
     //   13: astore 17
-    //   15: invokestatic 267	com/facebook/Response:getResponseCache	()Lcom/facebook/internal/FileLruCache;
+    //   15: invokestatic 277	com/facebook/Response:getResponseCache	()Lcom/facebook/internal/FileLruCache;
     //   18: astore 18
     //   20: aload 17
-    //   22: invokevirtual 270	com/facebook/internal/CacheableRequestBatch:getCacheKeyOverride	()Ljava/lang/String;
+    //   22: invokevirtual 280	com/facebook/internal/CacheableRequestBatch:getCacheKeyOverride	()Ljava/lang/String;
     //   25: astore 19
     //   27: aload 19
-    //   29: invokestatic 274	com/facebook/internal/Utility:isNullOrEmpty	(Ljava/lang/String;)Z
+    //   29: invokestatic 284	com/facebook/internal/Utility:isNullOrEmpty	(Ljava/lang/String;)Z
     //   32: ifeq +21 -> 53
     //   35: aload_1
-    //   36: invokevirtual 275	com/facebook/RequestBatch:size	()I
+    //   36: invokevirtual 285	com/facebook/RequestBatch:size	()I
     //   39: iconst_1
     //   40: if_icmpne +66 -> 106
     //   43: aload_1
     //   44: iconst_0
-    //   45: invokevirtual 278	com/facebook/RequestBatch:get	(I)Lcom/facebook/Request;
-    //   48: invokevirtual 281	com/facebook/Request:getUrlForSingleRequest	()Ljava/lang/String;
+    //   45: invokevirtual 288	com/facebook/RequestBatch:get	(I)Lcom/facebook/Request;
+    //   48: invokevirtual 291	com/facebook/Request:getUrlForSingleRequest	()Ljava/lang/String;
     //   51: astore 19
     //   53: aload 17
-    //   55: invokevirtual 284	com/facebook/internal/CacheableRequestBatch:getForceRoundTrip	()Z
+    //   55: invokevirtual 294	com/facebook/internal/CacheableRequestBatch:getForceRoundTrip	()Z
     //   58: ifne +430 -> 488
     //   61: aload 18
     //   63: ifnull +425 -> 488
     //   66: aload 19
-    //   68: invokestatic 274	com/facebook/internal/Utility:isNullOrEmpty	(Ljava/lang/String;)Z
+    //   68: invokestatic 284	com/facebook/internal/Utility:isNullOrEmpty	(Ljava/lang/String;)Z
     //   71: ifne +417 -> 488
     //   74: aload 18
     //   76: aload 19
-    //   78: invokevirtual 289	com/facebook/internal/FileLruCache:get	(Ljava/lang/String;)Ljava/io/InputStream;
+    //   78: invokevirtual 299	com/facebook/internal/FileLruCache:get	(Ljava/lang/String;)Ljava/io/InputStream;
     //   81: astore 27
     //   83: aload 27
     //   85: astore_2
@@ -250,19 +254,19 @@ public class Response
     //   91: aconst_null
     //   92: aload_1
     //   93: iconst_1
-    //   94: invokestatic 291	com/facebook/Response:createResponsesFromStream	(Ljava/io/InputStream;Ljava/net/HttpURLConnection;Lcom/facebook/RequestBatch;Z)Ljava/util/List;
+    //   94: invokestatic 301	com/facebook/Response:createResponsesFromStream	(Ljava/io/InputStream;Ljava/net/HttpURLConnection;Lcom/facebook/RequestBatch;Z)Ljava/util/List;
     //   97: astore 30
     //   99: aload_2
-    //   100: invokestatic 295	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
+    //   100: invokestatic 305	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
     //   103: aload 30
     //   105: areturn
-    //   106: getstatic 250	com/facebook/LoggingBehavior:REQUESTS	Lcom/facebook/LoggingBehavior;
+    //   106: getstatic 260	com/facebook/LoggingBehavior:REQUESTS	Lcom/facebook/LoggingBehavior;
     //   109: ldc 23
-    //   111: ldc_w 297
-    //   114: invokestatic 300	com/facebook/internal/Logger:log	(Lcom/facebook/LoggingBehavior;Ljava/lang/String;Ljava/lang/String;)V
+    //   111: ldc_w 307
+    //   114: invokestatic 310	com/facebook/internal/Logger:log	(Lcom/facebook/LoggingBehavior;Ljava/lang/String;Ljava/lang/String;)V
     //   117: goto -64 -> 53
     //   120: aload_2
-    //   121: invokestatic 295	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
+    //   121: invokestatic 305	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
     //   124: aload 18
     //   126: astore_3
     //   127: aload 19
@@ -272,27 +276,27 @@ public class Response
     //   134: aload 28
     //   136: astore 5
     //   138: aload_0
-    //   139: invokevirtual 190	java/net/HttpURLConnection:getResponseCode	()I
+    //   139: invokevirtual 200	java/net/HttpURLConnection:getResponseCode	()I
     //   142: sipush 400
     //   145: if_icmplt +106 -> 251
     //   148: aload_0
-    //   149: invokevirtual 304	java/net/HttpURLConnection:getErrorStream	()Ljava/io/InputStream;
+    //   149: invokevirtual 314	java/net/HttpURLConnection:getErrorStream	()Ljava/io/InputStream;
     //   152: astore 4
     //   154: aload 4
     //   156: aload_0
     //   157: aload_1
     //   158: iconst_0
-    //   159: invokestatic 291	com/facebook/Response:createResponsesFromStream	(Ljava/io/InputStream;Ljava/net/HttpURLConnection;Lcom/facebook/RequestBatch;Z)Ljava/util/List;
+    //   159: invokestatic 301	com/facebook/Response:createResponsesFromStream	(Ljava/io/InputStream;Ljava/net/HttpURLConnection;Lcom/facebook/RequestBatch;Z)Ljava/util/List;
     //   162: astore 16
     //   164: aload 4
-    //   166: invokestatic 295	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
+    //   166: invokestatic 305	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
     //   169: aload 16
     //   171: areturn
     //   172: astore 25
     //   174: aconst_null
     //   175: astore 26
     //   177: aload 26
-    //   179: invokestatic 295	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
+    //   179: invokestatic 305	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
     //   182: aload 19
     //   184: astore 5
     //   186: aload 26
@@ -302,7 +306,7 @@ public class Response
     //   193: goto -55 -> 138
     //   196: astore 23
     //   198: aload_2
-    //   199: invokestatic 295	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
+    //   199: invokestatic 305	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
     //   202: aload 18
     //   204: astore_3
     //   205: aload 19
@@ -314,7 +318,7 @@ public class Response
     //   216: goto -78 -> 138
     //   219: astore 21
     //   221: aload_2
-    //   222: invokestatic 295	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
+    //   222: invokestatic 305	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
     //   225: aload 18
     //   227: astore_3
     //   228: aload 19
@@ -326,11 +330,11 @@ public class Response
     //   239: goto -101 -> 138
     //   242: astore 20
     //   244: aload_2
-    //   245: invokestatic 295	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
+    //   245: invokestatic 305	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
     //   248: aload 20
     //   250: athrow
     //   251: aload_0
-    //   252: invokevirtual 307	java/net/HttpURLConnection:getInputStream	()Ljava/io/InputStream;
+    //   252: invokevirtual 317	java/net/HttpURLConnection:getInputStream	()Ljava/io/InputStream;
     //   255: astore 4
     //   257: aload_3
     //   258: ifnull -104 -> 154
@@ -341,7 +345,7 @@ public class Response
     //   271: aload_3
     //   272: aload 5
     //   274: aload 4
-    //   276: invokevirtual 311	com/facebook/internal/FileLruCache:interceptAndPut	(Ljava/lang/String;Ljava/io/InputStream;)Ljava/io/InputStream;
+    //   276: invokevirtual 321	com/facebook/internal/FileLruCache:interceptAndPut	(Ljava/lang/String;Ljava/io/InputStream;)Ljava/io/InputStream;
     //   279: astore 15
     //   281: aload 15
     //   283: ifnull -129 -> 154
@@ -349,97 +353,97 @@ public class Response
     //   288: astore 4
     //   290: goto -136 -> 154
     //   293: astore 13
-    //   295: getstatic 250	com/facebook/LoggingBehavior:REQUESTS	Lcom/facebook/LoggingBehavior;
+    //   295: getstatic 260	com/facebook/LoggingBehavior:REQUESTS	Lcom/facebook/LoggingBehavior;
     //   298: ldc 26
-    //   300: ldc_w 313
+    //   300: ldc_w 323
     //   303: iconst_1
     //   304: anewarray 4	java/lang/Object
     //   307: dup
     //   308: iconst_0
     //   309: aload 13
     //   311: aastore
-    //   312: invokestatic 234	com/facebook/internal/Logger:log	(Lcom/facebook/LoggingBehavior;Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+    //   312: invokestatic 244	com/facebook/internal/Logger:log	(Lcom/facebook/LoggingBehavior;Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
     //   315: aload_1
     //   316: aload_0
     //   317: aload 13
-    //   319: invokestatic 315	com/facebook/Response:constructErrorResponses	(Ljava/util/List;Ljava/net/HttpURLConnection;Lcom/facebook/FacebookException;)Ljava/util/List;
+    //   319: invokestatic 325	com/facebook/Response:constructErrorResponses	(Ljava/util/List;Ljava/net/HttpURLConnection;Lcom/facebook/FacebookException;)Ljava/util/List;
     //   322: astore 14
     //   324: aload 4
-    //   326: invokestatic 295	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
+    //   326: invokestatic 305	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
     //   329: aload 14
     //   331: areturn
     //   332: astore 11
-    //   334: getstatic 250	com/facebook/LoggingBehavior:REQUESTS	Lcom/facebook/LoggingBehavior;
+    //   334: getstatic 260	com/facebook/LoggingBehavior:REQUESTS	Lcom/facebook/LoggingBehavior;
     //   337: ldc 26
-    //   339: ldc_w 313
+    //   339: ldc_w 323
     //   342: iconst_1
     //   343: anewarray 4	java/lang/Object
     //   346: dup
     //   347: iconst_0
     //   348: aload 11
     //   350: aastore
-    //   351: invokestatic 234	com/facebook/internal/Logger:log	(Lcom/facebook/LoggingBehavior;Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+    //   351: invokestatic 244	com/facebook/internal/Logger:log	(Lcom/facebook/LoggingBehavior;Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
     //   354: aload_1
     //   355: aload_0
-    //   356: new 148	com/facebook/FacebookException
+    //   356: new 161	com/facebook/FacebookException
     //   359: dup
     //   360: aload 11
-    //   362: invokespecial 318	com/facebook/FacebookException:<init>	(Ljava/lang/Throwable;)V
-    //   365: invokestatic 315	com/facebook/Response:constructErrorResponses	(Ljava/util/List;Ljava/net/HttpURLConnection;Lcom/facebook/FacebookException;)Ljava/util/List;
+    //   362: invokespecial 328	com/facebook/FacebookException:<init>	(Ljava/lang/Throwable;)V
+    //   365: invokestatic 325	com/facebook/Response:constructErrorResponses	(Ljava/util/List;Ljava/net/HttpURLConnection;Lcom/facebook/FacebookException;)Ljava/util/List;
     //   368: astore 12
     //   370: aload 4
-    //   372: invokestatic 295	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
+    //   372: invokestatic 305	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
     //   375: aload 12
     //   377: areturn
     //   378: astore 9
-    //   380: getstatic 250	com/facebook/LoggingBehavior:REQUESTS	Lcom/facebook/LoggingBehavior;
+    //   380: getstatic 260	com/facebook/LoggingBehavior:REQUESTS	Lcom/facebook/LoggingBehavior;
     //   383: ldc 26
-    //   385: ldc_w 313
+    //   385: ldc_w 323
     //   388: iconst_1
     //   389: anewarray 4	java/lang/Object
     //   392: dup
     //   393: iconst_0
     //   394: aload 9
     //   396: aastore
-    //   397: invokestatic 234	com/facebook/internal/Logger:log	(Lcom/facebook/LoggingBehavior;Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+    //   397: invokestatic 244	com/facebook/internal/Logger:log	(Lcom/facebook/LoggingBehavior;Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
     //   400: aload_1
     //   401: aload_0
-    //   402: new 148	com/facebook/FacebookException
+    //   402: new 161	com/facebook/FacebookException
     //   405: dup
     //   406: aload 9
-    //   408: invokespecial 318	com/facebook/FacebookException:<init>	(Ljava/lang/Throwable;)V
-    //   411: invokestatic 315	com/facebook/Response:constructErrorResponses	(Ljava/util/List;Ljava/net/HttpURLConnection;Lcom/facebook/FacebookException;)Ljava/util/List;
+    //   408: invokespecial 328	com/facebook/FacebookException:<init>	(Ljava/lang/Throwable;)V
+    //   411: invokestatic 325	com/facebook/Response:constructErrorResponses	(Ljava/util/List;Ljava/net/HttpURLConnection;Lcom/facebook/FacebookException;)Ljava/util/List;
     //   414: astore 10
     //   416: aload 4
-    //   418: invokestatic 295	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
+    //   418: invokestatic 305	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
     //   421: aload 10
     //   423: areturn
     //   424: astore 7
-    //   426: getstatic 250	com/facebook/LoggingBehavior:REQUESTS	Lcom/facebook/LoggingBehavior;
+    //   426: getstatic 260	com/facebook/LoggingBehavior:REQUESTS	Lcom/facebook/LoggingBehavior;
     //   429: ldc 26
-    //   431: ldc_w 313
+    //   431: ldc_w 323
     //   434: iconst_1
     //   435: anewarray 4	java/lang/Object
     //   438: dup
     //   439: iconst_0
     //   440: aload 7
     //   442: aastore
-    //   443: invokestatic 234	com/facebook/internal/Logger:log	(Lcom/facebook/LoggingBehavior;Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+    //   443: invokestatic 244	com/facebook/internal/Logger:log	(Lcom/facebook/LoggingBehavior;Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
     //   446: aload_1
     //   447: aload_0
-    //   448: new 148	com/facebook/FacebookException
+    //   448: new 161	com/facebook/FacebookException
     //   451: dup
     //   452: aload 7
-    //   454: invokespecial 318	com/facebook/FacebookException:<init>	(Ljava/lang/Throwable;)V
-    //   457: invokestatic 315	com/facebook/Response:constructErrorResponses	(Ljava/util/List;Ljava/net/HttpURLConnection;Lcom/facebook/FacebookException;)Ljava/util/List;
+    //   454: invokespecial 328	com/facebook/FacebookException:<init>	(Ljava/lang/Throwable;)V
+    //   457: invokestatic 325	com/facebook/Response:constructErrorResponses	(Ljava/util/List;Ljava/net/HttpURLConnection;Lcom/facebook/FacebookException;)Ljava/util/List;
     //   460: astore 8
     //   462: aload 4
-    //   464: invokestatic 295	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
+    //   464: invokestatic 305	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
     //   467: aload 8
     //   469: areturn
     //   470: astore 6
     //   472: aload 4
-    //   474: invokestatic 295	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
+    //   474: invokestatic 305	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
     //   477: aload 6
     //   479: athrow
     //   480: astore 29
@@ -549,6 +553,11 @@ public class Response
     return this.isFromCache;
   }
 
+  public String getRawResponse()
+  {
+    return this.rawResponse;
+  }
+
   public Request getRequest()
   {
     return this.request;
@@ -609,7 +618,7 @@ public class Response
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.Response
  * JD-Core Version:    0.6.2
  */

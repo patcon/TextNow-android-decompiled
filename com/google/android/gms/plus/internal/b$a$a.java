@@ -6,17 +6,17 @@ import android.os.Parcel;
 import android.os.ParcelFileDescriptor;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.data.DataHolder;
-import com.google.android.gms.internal.ie;
-import com.google.android.gms.internal.ks;
+import com.google.android.gms.internal.jp;
+import com.google.android.gms.internal.nz;
 
 class b$a$a
   implements b
 {
-  private IBinder kq;
+  private IBinder lb;
 
   b$a$a(IBinder paramIBinder)
   {
-    this.kq = paramIBinder;
+    this.lb = paramIBinder;
   }
 
   public void a(int paramInt, Bundle paramBundle1, Bundle paramBundle2)
@@ -37,7 +37,7 @@ class b$a$a
           {
             localParcel1.writeInt(1);
             paramBundle2.writeToParcel(localParcel1, 0);
-            this.kq.transact(1, localParcel1, localParcel2, 0);
+            this.lb.transact(1, localParcel1, localParcel2, 0);
             localParcel2.readException();
           }
         }
@@ -74,7 +74,7 @@ class b$a$a
           {
             localParcel1.writeInt(1);
             paramParcelFileDescriptor.writeToParcel(localParcel1, 0);
-            this.kq.transact(2, localParcel1, localParcel2, 0);
+            this.lb.transact(2, localParcel1, localParcel2, 0);
             localParcel2.readException();
           }
         }
@@ -93,7 +93,7 @@ class b$a$a
     }
   }
 
-  public void a(int paramInt, Bundle paramBundle, ie paramie)
+  public void a(int paramInt, Bundle paramBundle, jp paramjp)
   {
     Parcel localParcel1 = Parcel.obtain();
     Parcel localParcel2 = Parcel.obtain();
@@ -107,11 +107,11 @@ class b$a$a
         {
           localParcel1.writeInt(1);
           paramBundle.writeToParcel(localParcel1, 0);
-          if (paramie != null)
+          if (paramjp != null)
           {
             localParcel1.writeInt(1);
-            paramie.writeToParcel(localParcel1, 0);
-            this.kq.transact(5, localParcel1, localParcel2, 0);
+            paramjp.writeToParcel(localParcel1, 0);
+            this.lb.transact(5, localParcel1, localParcel2, 0);
             localParcel2.readException();
           }
         }
@@ -130,7 +130,7 @@ class b$a$a
     }
   }
 
-  public void a(int paramInt, ks paramks)
+  public void a(int paramInt, nz paramnz)
   {
     Parcel localParcel1 = Parcel.obtain();
     Parcel localParcel2 = Parcel.obtain();
@@ -138,14 +138,14 @@ class b$a$a
     {
       localParcel1.writeInterfaceToken("com.google.android.gms.plus.internal.IPlusCallbacks");
       localParcel1.writeInt(paramInt);
-      if (paramks != null)
+      if (paramnz != null)
       {
         localParcel1.writeInt(1);
-        paramks.writeToParcel(localParcel1, 0);
+        paramnz.writeToParcel(localParcel1, 0);
       }
       while (true)
       {
-        this.kq.transact(9, localParcel1, localParcel2, 0);
+        this.lb.transact(9, localParcel1, localParcel2, 0);
         localParcel2.readException();
         return;
         localParcel1.writeInt(0);
@@ -173,7 +173,7 @@ class b$a$a
       while (true)
       {
         localParcel1.writeString(paramString);
-        this.kq.transact(4, localParcel1, localParcel2, 0);
+        this.lb.transact(4, localParcel1, localParcel2, 0);
         localParcel2.readException();
         return;
         localParcel1.writeInt(0);
@@ -202,7 +202,7 @@ class b$a$a
       {
         localParcel1.writeString(paramString1);
         localParcel1.writeString(paramString2);
-        this.kq.transact(6, localParcel1, localParcel2, 0);
+        this.lb.transact(6, localParcel1, localParcel2, 0);
         localParcel2.readException();
         return;
         localParcel1.writeInt(0);
@@ -215,7 +215,7 @@ class b$a$a
     }
   }
 
-  public void am(Status paramStatus)
+  public void aB(Status paramStatus)
   {
     Parcel localParcel1 = Parcel.obtain();
     Parcel localParcel2 = Parcel.obtain();
@@ -229,7 +229,7 @@ class b$a$a
       }
       while (true)
       {
-        this.kq.transact(10, localParcel1, localParcel2, 0);
+        this.lb.transact(10, localParcel1, localParcel2, 0);
         localParcel2.readException();
         return;
         localParcel1.writeInt(0);
@@ -244,10 +244,10 @@ class b$a$a
 
   public IBinder asBinder()
   {
-    return this.kq;
+    return this.lb;
   }
 
-  public void bw(String paramString)
+  public void ce(String paramString)
   {
     Parcel localParcel1 = Parcel.obtain();
     Parcel localParcel2 = Parcel.obtain();
@@ -255,7 +255,7 @@ class b$a$a
     {
       localParcel1.writeInterfaceToken("com.google.android.gms.plus.internal.IPlusCallbacks");
       localParcel1.writeString(paramString);
-      this.kq.transact(3, localParcel1, localParcel2, 0);
+      this.lb.transact(3, localParcel1, localParcel2, 0);
       localParcel2.readException();
       return;
     }
@@ -266,7 +266,7 @@ class b$a$a
     }
   }
 
-  public void bx(String paramString)
+  public void cf(String paramString)
   {
     Parcel localParcel1 = Parcel.obtain();
     Parcel localParcel2 = Parcel.obtain();
@@ -274,7 +274,7 @@ class b$a$a
     {
       localParcel1.writeInterfaceToken("com.google.android.gms.plus.internal.IPlusCallbacks");
       localParcel1.writeString(paramString);
-      this.kq.transact(8, localParcel1, localParcel2, 0);
+      this.lb.transact(8, localParcel1, localParcel2, 0);
       localParcel2.readException();
       return;
     }
@@ -300,7 +300,7 @@ class b$a$a
       }
       while (true)
       {
-        this.kq.transact(7, localParcel1, localParcel2, 0);
+        this.lb.transact(7, localParcel1, localParcel2, 0);
         localParcel2.readException();
         return;
         localParcel1.writeInt(0);
@@ -314,7 +314,7 @@ class b$a$a
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.plus.internal.b.a.a
  * JD-Core Version:    0.6.2
  */

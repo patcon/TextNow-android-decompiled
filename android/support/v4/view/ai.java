@@ -1,17 +1,21 @@
 package android.support.v4.view;
 
-import android.widget.TextView;
+import android.view.MotionEvent;
 
-final class ai
-  implements ah
+abstract interface ai
 {
-  public final void a(TextView paramTextView)
-  {
-    paramTextView.setSingleLine();
-  }
+  public abstract int a(MotionEvent paramMotionEvent);
+
+  public abstract int a(MotionEvent paramMotionEvent, int paramInt);
+
+  public abstract int b(MotionEvent paramMotionEvent, int paramInt);
+
+  public abstract float c(MotionEvent paramMotionEvent, int paramInt);
+
+  public abstract float d(MotionEvent paramMotionEvent, int paramInt);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.view.ai
  * JD-Core Version:    0.6.2
  */

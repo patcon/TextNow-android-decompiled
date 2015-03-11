@@ -6,6 +6,8 @@ import android.view.View.AccessibilityDelegate;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeProvider;
+import textnow.f.e;
+import textnow.f.o;
 
 final class d extends b
 {
@@ -15,9 +17,9 @@ final class d extends b
     {
       public final Object a(View paramAnonymousView)
       {
-        textnow.f.i locali = a.a(paramAnonymousView);
-        if (locali != null)
-          return locali.a();
+        o localo = a.a(paramAnonymousView);
+        if (localo != null)
+          return localo.a();
         return null;
       }
 
@@ -28,7 +30,7 @@ final class d extends b
 
       public final void a(View paramAnonymousView, Object paramAnonymousObject)
       {
-        parama.a(paramAnonymousView, new textnow.f.a(paramAnonymousObject));
+        parama.a(paramAnonymousView, new e(paramAnonymousObject));
       }
 
       public final boolean a(View paramAnonymousView, int paramAnonymousInt, Bundle paramAnonymousBundle)
@@ -63,11 +65,11 @@ final class d extends b
     });
   }
 
-  public final textnow.f.i a(Object paramObject, View paramView)
+  public final o a(Object paramObject, View paramView)
   {
     AccessibilityNodeProvider localAccessibilityNodeProvider = ((View.AccessibilityDelegate)paramObject).getAccessibilityNodeProvider(paramView);
     if (localAccessibilityNodeProvider != null)
-      return new textnow.f.i(localAccessibilityNodeProvider);
+      return new o(localAccessibilityNodeProvider);
     return null;
   }
 
@@ -77,7 +79,7 @@ final class d extends b
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.view.d
  * JD-Core Version:    0.6.2
  */

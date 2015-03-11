@@ -1,15 +1,13 @@
 package com.google.android.gms.internal;
 
-import java.util.List;
-
-public final class c$c extends ma<c>
+public final class c$c extends ph<c>
 {
-  private static volatile c[] eL;
-  public String eM;
-  public long eN;
-  public long eO;
-  public boolean eP;
-  public long eQ;
+  private static volatile c[] fu;
+  public String fv;
+  public long fw;
+  public long fx;
+  public boolean fy;
+  public long fz;
 
   public c$c()
   {
@@ -18,158 +16,157 @@ public final class c$c extends ma<c>
 
   public static c[] f()
   {
-    if (eL == null);
-    synchronized (mc.ana)
+    if (fu == null);
+    synchronized (pl.awT)
     {
-      if (eL == null)
-        eL = new c[0];
-      return eL;
+      if (fu == null)
+        fu = new c[0];
+      return fu;
     }
   }
 
-  public final void a(lz paramlz)
+  public final void a(pg parampg)
   {
-    if (!this.eM.equals(""))
-      paramlz.b(1, this.eM);
-    if (this.eN != 0L)
-      paramlz.b(2, this.eN);
-    if (this.eO != 2147483647L)
-      paramlz.b(3, this.eO);
-    if (this.eP)
-      paramlz.a(4, this.eP);
-    if (this.eQ != 0L)
-      paramlz.b(5, this.eQ);
-    super.a(paramlz);
+    if (!this.fv.equals(""))
+      parampg.b(1, this.fv);
+    if (this.fw != 0L)
+      parampg.b(2, this.fw);
+    if (this.fx != 2147483647L)
+      parampg.b(3, this.fx);
+    if (this.fy)
+      parampg.b(4, this.fy);
+    if (this.fz != 0L)
+      parampg.b(5, this.fz);
+    super.a(parampg);
   }
 
   protected final int c()
   {
     int i = super.c();
-    if (!this.eM.equals(""))
-      i += lz.h(1, this.eM);
-    if (this.eN != 0L)
-      i += lz.d(2, this.eN);
-    if (this.eO != 2147483647L)
-      i += lz.d(3, this.eO);
-    if (this.eP)
-      i += lz.b(4, this.eP);
-    if (this.eQ != 0L)
-      i += lz.d(5, this.eQ);
+    if (!this.fv.equals(""))
+      i += pg.j(1, this.fv);
+    if (this.fw != 0L)
+      i += pg.d(2, this.fw);
+    if (this.fx != 2147483647L)
+      i += pg.d(3, this.fx);
+    if (this.fy)
+      i += pg.c(4, this.fy);
+    if (this.fz != 0L)
+      i += pg.d(5, this.fz);
     return i;
   }
 
-  public final c d(ly paramly)
+  public final c d(pf parampf)
   {
     while (true)
     {
-      int i = paramly.nB();
+      int i = parampf.qi();
       switch (i)
       {
       default:
-        if (a(paramly, i))
+        if (a(parampf, i))
           continue;
       case 0:
         return this;
       case 10:
-        this.eM = paramly.readString();
+        this.fv = parampf.readString();
         break;
       case 16:
-        this.eN = paramly.nD();
+        this.fw = parampf.qk();
         break;
       case 24:
-        this.eO = paramly.nD();
+        this.fx = parampf.qk();
         break;
       case 32:
-        this.eP = paramly.nF();
+        this.fy = parampf.qm();
         break;
       case 40:
       }
-      this.eQ = paramly.nD();
+      this.fz = parampf.qk();
     }
   }
 
   public final boolean equals(Object paramObject)
   {
-    if (paramObject == this);
+    boolean bool2;
+    if (paramObject == this)
+      bool2 = true;
     c localc;
     do
     {
-      return true;
-      if (!(paramObject instanceof c))
-        return false;
-      localc = (c)paramObject;
-      if (this.eM == null)
+      boolean bool1;
+      do
       {
-        if (localc.eM != null)
-          return false;
+        return bool2;
+        bool1 = paramObject instanceof c;
+        bool2 = false;
       }
-      else if (!this.eM.equals(localc.eM))
-        return false;
-      if (this.eN != localc.eN)
-        return false;
-      if (this.eO != localc.eO)
-        return false;
-      if (this.eP != localc.eP)
-        return false;
-      if (this.eQ != localc.eQ)
-        return false;
-      if ((this.amX != null) && (!this.amX.isEmpty()))
+      while (!bool1);
+      localc = (c)paramObject;
+      if (this.fv != null)
         break;
+      str = localc.fv;
+      bool2 = false;
     }
-    while ((localc.amX == null) || (localc.amX.isEmpty()));
+    while (str != null);
+    while (this.fv.equals(localc.fv))
+    {
+      String str;
+      boolean bool3 = this.fw < localc.fw;
+      bool2 = false;
+      if (bool3)
+        break;
+      boolean bool4 = this.fx < localc.fx;
+      bool2 = false;
+      if (bool4)
+        break;
+      boolean bool5 = this.fy;
+      boolean bool6 = localc.fy;
+      bool2 = false;
+      if (bool5 != bool6)
+        break;
+      boolean bool7 = this.fz < localc.fz;
+      bool2 = false;
+      if (bool7)
+        break;
+      return a(localc);
+    }
     return false;
-    return this.amX.equals(localc.amX);
   }
 
   public final c g()
   {
-    this.eM = "";
-    this.eN = 0L;
-    this.eO = 2147483647L;
-    this.eP = false;
-    this.eQ = 0L;
-    this.amX = null;
-    this.anb = -1;
+    this.fv = "";
+    this.fw = 0L;
+    this.fx = 2147483647L;
+    this.fy = false;
+    this.fz = 0L;
+    this.awJ = null;
+    this.awU = -1;
     return this;
   }
 
   public final int hashCode()
   {
     int i;
-    int k;
-    label63: int m;
-    int n;
-    if (this.eM == null)
+    int j;
+    if (this.fv == null)
     {
       i = 0;
-      int j = 31 * (31 * (31 * (i + 527) + (int)(this.eN ^ this.eN >>> 32)) + (int)(this.eO ^ this.eO >>> 32));
-      if (!this.eP)
-        break label138;
-      k = 1231;
-      m = 31 * (31 * (k + j) + (int)(this.eQ ^ this.eQ >>> 32));
-      List localList = this.amX;
-      n = 0;
-      if (localList != null)
-      {
-        boolean bool = this.amX.isEmpty();
-        n = 0;
-        if (!bool)
-          break label145;
-      }
+      j = 31 * (31 * (31 * (i + 527) + (int)(this.fw ^ this.fw >>> 32)) + (int)(this.fx ^ this.fx >>> 32));
+      if (!this.fy)
+        break label103;
     }
-    while (true)
+    label103: for (int k = 1231; ; k = 1237)
     {
-      return m + n;
-      i = this.eM.hashCode();
+      return 31 * (31 * (k + j) + (int)(this.fz ^ this.fz >>> 32)) + qz();
+      i = this.fv.hashCode();
       break;
-      label138: k = 1237;
-      break label63;
-      label145: n = this.amX.hashCode();
     }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.c.c
  * JD-Core Version:    0.6.2
  */

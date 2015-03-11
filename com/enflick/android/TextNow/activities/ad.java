@@ -1,38 +1,26 @@
 package com.enflick.android.TextNow.activities;
 
-import android.net.Uri;
-import android.preference.ListPreference;
 import android.preference.Preference;
-import com.enflick.android.TextNow.ads.a;
-import com.enflick.android.TextNow.tasks.VoicemailEnableTask;
-import textnow.o.e;
+import android.preference.Preference.OnPreferenceClickListener;
 
-final class ad
-  implements e
+public class ad
+  implements Preference.OnPreferenceClickListener
 {
-  private ListPreference b;
-  private Preference c;
+  final av a;
 
-  public ad(ab paramab, ListPreference paramListPreference, Preference paramPreference)
+  public ad(ac paramac, av paramav)
   {
-    this.b = paramListPreference;
-    this.c = paramPreference;
+    this.a = paramav;
   }
 
-  public final void a(Uri paramUri)
+  public boolean onPreferenceClick(Preference paramPreference)
   {
-    new StringBuilder().append("Saving file to uri: ").append(paramUri.toString()).toString();
-    new VoicemailEnableTask(paramUri, this.a.e).b(this.a.e);
-    this.a.e.a(this.a.getString(2131493022), false);
-    ab.a(this.a, this.c);
-    this.c.setSummary(null);
-    ab.a(this.a, this.b);
-    this.b.setValue(this.a.getString(2131493287));
-    a.a("change_voicemail_greeting", "action", "custom");
+    this.b.d.a(this.a);
+    return true;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.activities.ad
  * JD-Core Version:    0.6.2
  */

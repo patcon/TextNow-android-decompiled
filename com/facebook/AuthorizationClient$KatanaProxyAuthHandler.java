@@ -80,13 +80,13 @@ class AuthorizationClient$KatanaProxyAuthHandler extends AuthorizationClient.Kat
   {
     this.applicationId = paramAuthorizationRequest.getApplicationId();
     String str = AuthorizationClient.access$100();
-    Intent localIntent = NativeProtocol.createProxyAuthIntent(this.this$0.context, paramAuthorizationRequest.getApplicationId(), paramAuthorizationRequest.getPermissions(), str);
+    Intent localIntent = NativeProtocol.createProxyAuthIntent(this.this$0.context, paramAuthorizationRequest.getApplicationId(), paramAuthorizationRequest.getPermissions(), str, paramAuthorizationRequest.isRerequest(), paramAuthorizationRequest.getDefaultAudience());
     addLoggingExtra("e2e", str);
     return tryIntent(localIntent, paramAuthorizationRequest.getRequestCode());
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.AuthorizationClient.KatanaProxyAuthHandler
  * JD-Core Version:    0.6.2
  */

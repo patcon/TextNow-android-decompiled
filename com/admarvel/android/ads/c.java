@@ -1,36 +1,35 @@
 package com.admarvel.android.ads;
 
-import android.content.Context;
-import java.util.HashMap;
-import java.util.Map;
+import android.os.AsyncTask;
+import android.os.Environment;
+import java.io.File;
 
-class c
+public class c extends AsyncTask<Object, Object, Object>
 {
-  private static Map<String, AdMarvelAnalyticsAdapter> a = null;
+  private static long a = 864000000L;
 
-  static AdMarvelAnalyticsAdapter a(String paramString, Context paramContext)
+  protected Object doInBackground(Object[] paramArrayOfObject)
   {
-    if (a == null)
-      a = a(paramContext);
-    return (AdMarvelAnalyticsAdapter)a.get(paramString);
-  }
-
-  static Map<String, AdMarvelAnalyticsAdapter> a(Context paramContext)
-  {
-    HashMap localHashMap = new HashMap();
     try
     {
-      localHashMap.put("com.admarvel.android.admarvelmologiqadapter.AdMarvelMologiqAdapter", AdMarvelAnalyticsAdapter.createInstance("com.admarvel.android.admarvelmologiqadapter.AdMarvelMologiqAdapter", paramContext));
-      return localHashMap;
+      if ("mounted".equals(Environment.getExternalStorageState()))
+      {
+        File localFile1 = new File(Environment.getExternalStorageDirectory(), "/" + r.d("adm_tracker_dir"));
+        if (localFile1.exists())
+          for (File localFile2 : localFile1.listFiles())
+            if (System.currentTimeMillis() - localFile2.lastModified() > a)
+              localFile2.delete();
+      }
     }
     catch (Exception localException)
     {
+      localException.printStackTrace();
     }
-    return localHashMap;
+    return null;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.c
  * JD-Core Version:    0.6.2
  */

@@ -15,17 +15,17 @@ import android.text.TextUtils;
 public final class g extends a
   implements b
 {
-  public static final Uri d = Uri.parse("content://com.enflick.android.TextNow.TNContentProvider/proxy");
+  public static final Uri d = Uri.parse("content://com.enflick.android.TextNow.TNContentProvider/messages");
 
-  public g(TNContentProvider paramTNContentProvider, Context paramContext, textnow.v.a parama)
+  public g(TNContentProvider paramTNContentProvider, Context paramContext, textnow.ab.a parama)
   {
     super(paramTNContentProvider, paramContext, parama);
   }
 
   public static void a(UriMatcher paramUriMatcher)
   {
-    paramUriMatcher.addURI("com.enflick.android.TextNow.TNContentProvider", "proxy", 110);
-    paramUriMatcher.addURI("com.enflick.android.TextNow.TNContentProvider", "proxy/#", 111);
+    paramUriMatcher.addURI("com.enflick.android.TextNow.TNContentProvider", "messages", 100);
+    paramUriMatcher.addURI("com.enflick.android.TextNow.TNContentProvider", "messages/#", 101);
   }
 
   public final int a(Uri paramUri, ContentValues paramContentValues, String paramString, String[] paramArrayOfString, int paramInt)
@@ -37,18 +37,21 @@ public final class g extends a
     {
     default:
       throw new IllegalArgumentException("Unknown URI");
-    case 111:
+    case 101:
       String str = paramUri.getLastPathSegment();
       localStringBuilder = new StringBuilder("_id=" + str);
       if (!TextUtils.isEmpty(paramString))
         localStringBuilder.append(" AND " + paramString);
       break;
-    case 110:
+    case 100:
     }
-    for (int i = localSQLiteDatabase.update("proxy", paramContentValues, localStringBuilder.toString(), paramArrayOfString); ; i = localSQLiteDatabase.update("proxy", paramContentValues, paramString, paramArrayOfString))
+    for (int i = localSQLiteDatabase.updateWithOnConflict("messages", paramContentValues, localStringBuilder.toString(), null, 5); ; i = localSQLiteDatabase.updateWithOnConflict("messages", paramContentValues, paramString, paramArrayOfString, 5))
     {
+      ContentResolver localContentResolver = this.b.getContentResolver();
       if (bool)
-        this.b.getContentResolver().notifyChange(paramUri, null);
+        localContentResolver.notifyChange(paramUri, null);
+      localContentResolver.notifyChange(d.d, null);
+      localContentResolver.notifyChange(c.d, null);
       return i;
     }
   }
@@ -61,19 +64,22 @@ public final class g extends a
     {
     default:
       throw new IllegalArgumentException("Unknown or Invalid URI " + paramUri);
-    case 110:
-      i = localSQLiteDatabase.delete("proxy", paramString, paramArrayOfString);
-    case 111:
+    case 100:
+      i = localSQLiteDatabase.delete("messages", paramString, paramArrayOfString);
+    case 101:
     }
     while (true)
     {
-      this.b.getContentResolver().notifyChange(paramUri, null);
+      ContentResolver localContentResolver = this.b.getContentResolver();
+      localContentResolver.notifyChange(paramUri, null);
+      localContentResolver.notifyChange(d.d, null);
+      localContentResolver.notifyChange(c.d, null);
       return i;
       String str = paramUri.getLastPathSegment();
       if (TextUtils.isEmpty(paramString))
-        i = localSQLiteDatabase.delete("proxy", "_id=" + str, null);
+        i = localSQLiteDatabase.delete("messages", "_id=" + str, null);
       else
-        i = localSQLiteDatabase.delete("proxy", paramString + " and " + "_id" + "=" + str, paramArrayOfString);
+        i = localSQLiteDatabase.delete("messages", paramString + " and " + "_id" + "=" + str, paramArrayOfString);
     }
   }
 
@@ -81,14 +87,14 @@ public final class g extends a
   {
     SQLiteDatabase localSQLiteDatabase = this.c.getWritableDatabase();
     SQLiteQueryBuilder localSQLiteQueryBuilder = new SQLiteQueryBuilder();
-    localSQLiteQueryBuilder.setTables("proxy");
+    localSQLiteQueryBuilder.setTables("messages");
     switch (paramInt)
     {
     default:
       throw new IllegalArgumentException("Unknown URI");
-    case 111:
+    case 101:
       localSQLiteQueryBuilder.appendWhere("_id=" + paramUri.getLastPathSegment());
-    case 110:
+    case 100:
     }
     Cursor localCursor = localSQLiteQueryBuilder.query(localSQLiteDatabase, paramArrayOfString1, paramString1, paramArrayOfString2, null, null, paramString2);
     localCursor.setNotificationUri(this.b.getContentResolver(), paramUri);
@@ -97,15 +103,19 @@ public final class g extends a
 
   public final Uri a(Uri paramUri, ContentValues paramContentValues, int paramInt)
   {
-    if (paramInt != 110)
+    if (paramInt != 100)
       throw new IllegalArgumentException("Invalid URI for insert");
     boolean bool = a(paramContentValues);
-    long l = this.c.getWritableDatabase().insertWithOnConflict("proxy", null, paramContentValues, 5);
+    long l = this.c.getWritableDatabase().insertWithOnConflict("messages", null, paramContentValues, 5);
     if (l > 0L)
     {
       Uri localUri = ContentUris.withAppendedId(paramUri, l);
       if (bool)
+      {
         this.b.getContentResolver().notifyChange(paramUri, null);
+        this.b.getContentResolver().notifyChange(d.d, null);
+        this.b.getContentResolver().notifyChange(c.d, null);
+      }
       return localUri;
     }
     throw new SQLException("Failed to insert row into " + paramUri);
@@ -117,21 +127,21 @@ public final class g extends a
     {
     default:
       return null;
-    case 110:
+    case 100:
       return "vnd.android.cursor.dir/com.enflick.android.TextNow-message";
-    case 111:
+    case 101:
     }
     return "vnd.android.cursor.item/com.enflick.android.TextNow-message";
   }
 
   public final void a()
   {
-    TNContentProvider.a(110, this);
-    TNContentProvider.a(111, this);
+    TNContentProvider.a(100, this);
+    TNContentProvider.a(101, this);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.persistence.contentproviders.g
  * JD-Core Version:    0.6.2
  */

@@ -10,7 +10,7 @@ import com.google.ads.mediation.MediationBannerListener;
 import com.google.ads.mediation.MediationInterstitialAdapter;
 import com.google.ads.mediation.MediationInterstitialListener;
 import com.google.android.gms.ads.mediation.customevent.CustomEventExtras;
-import com.google.android.gms.internal.eu;
+import com.google.android.gms.internal.gs;
 
 public final class CustomEventAdapter
   implements MediationBannerAdapter<CustomEventExtras, CustomEventServerParameters>, MediationInterstitialAdapter<CustomEventExtras, CustomEventServerParameters>
@@ -28,7 +28,7 @@ public final class CustomEventAdapter
     }
     catch (Throwable localThrowable)
     {
-      eu.D("Could not instantiate custom event adapter: " + paramString + ". " + localThrowable.getMessage());
+      gs.W("Could not instantiate custom event adapter: " + paramString + ". " + localThrowable.getMessage());
     }
     return null;
   }
@@ -99,7 +99,7 @@ public final class CustomEventAdapter
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.ads.mediation.customevent.CustomEventAdapter
  * JD-Core Version:    0.6.2
  */

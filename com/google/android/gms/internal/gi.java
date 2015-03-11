@@ -1,57 +1,72 @@
 package com.google.android.gms.internal;
 
-import android.text.TextUtils;
-import java.util.Locale;
+import android.os.Process;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.RejectedExecutionException;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.atomic.AtomicInteger;
 
+@ez
 public final class gi
 {
-  public static <T> boolean a(T paramT1, T paramT2)
+  private static final ThreadFactory wh = new ThreadFactory()
   {
-    return ((paramT1 == null) && (paramT2 == null)) || ((paramT1 != null) && (paramT2 != null) && (paramT1.equals(paramT2)));
+    private final AtomicInteger wl = new AtomicInteger(1);
+
+    public final Thread newThread(Runnable paramAnonymousRunnable)
+    {
+      return new Thread(paramAnonymousRunnable, "AdWorker #" + this.wl.getAndIncrement());
+    }
+  };
+  private static final ExecutorService wi = Executors.newFixedThreadPool(10, wh);
+
+  public static Future<Void> a(Runnable paramRunnable)
+  {
+    return submit(new Callable()
+    {
+      public final Void dj()
+      {
+        gi.this.run();
+        return null;
+      }
+    });
   }
 
-  public static void ak(String paramString)
+  public static <T> Future<T> submit(Callable<T> paramCallable)
   {
-    if (TextUtils.isEmpty(paramString))
-      throw new IllegalArgumentException("Namespace cannot be null or empty");
-    if (paramString.length() > 128)
-      throw new IllegalArgumentException("Invalid namespace length");
-    if (!paramString.startsWith("urn:x-cast:"))
-      throw new IllegalArgumentException("Namespace must begin with the prefix \"urn:x-cast:\"");
-    if (paramString.length() == "urn:x-cast:".length())
-      throw new IllegalArgumentException("Namespace must begin with the prefix \"urn:x-cast:\" and have non-empty suffix");
-  }
-
-  public static String al(String paramString)
-  {
-    return "urn:x-cast:" + paramString;
-  }
-
-  public static long b(double paramDouble)
-  {
-    return ()(1000.0D * paramDouble);
-  }
-
-  public static String b(Locale paramLocale)
-  {
-    StringBuilder localStringBuilder = new StringBuilder(20);
-    localStringBuilder.append(paramLocale.getLanguage());
-    String str1 = paramLocale.getCountry();
-    if (!TextUtils.isEmpty(str1))
-      localStringBuilder.append('-').append(str1);
-    String str2 = paramLocale.getVariant();
-    if (!TextUtils.isEmpty(str2))
-      localStringBuilder.append('-').append(str2);
-    return localStringBuilder.toString();
-  }
-
-  public static double o(long paramLong)
-  {
-    return paramLong / 1000.0D;
+    try
+    {
+      Future localFuture = wi.submit(new Callable()
+      {
+        public final T call()
+        {
+          try
+          {
+            Process.setThreadPriority(10);
+            Object localObject = gi.this.call();
+            return localObject;
+          }
+          catch (Exception localException)
+          {
+            gb.e(localException);
+          }
+          return null;
+        }
+      });
+      return localFuture;
+    }
+    catch (RejectedExecutionException localRejectedExecutionException)
+    {
+      gs.d("Thread execution is rejected.", localRejectedExecutionException);
+    }
+    return new gl(null);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.gi
  * JD-Core Version:    0.6.2
  */

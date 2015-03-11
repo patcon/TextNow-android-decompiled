@@ -1,82 +1,183 @@
 package textnow.ao;
 
-import android.animation.Animator;
-import android.animation.Animator.AnimatorListener;
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.view.animation.Interpolator;
-import java.lang.ref.WeakReference;
+import java.lang.reflect.Field;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import textnow.am.b;
+import textnow.am.e;
+import textnow.am.s;
+import textnow.am.t;
+import textnow.an.d;
 
-final class g extends b
+public final class g
+  implements Cloneable, t
 {
-  private final WeakReference<ViewPropertyAnimator> a;
+  public static final g a = new g();
+  private double b = -1.0D;
+  private int c = 136;
+  private boolean d = true;
+  private boolean e;
+  private List<textnow.am.a> f = Collections.emptyList();
+  private List<textnow.am.a> g = Collections.emptyList();
 
-  g(View paramView)
+  private g a()
   {
-    this.a = new WeakReference(paramView.animate());
-  }
-
-  public final b a(float paramFloat)
-  {
-    ViewPropertyAnimator localViewPropertyAnimator = (ViewPropertyAnimator)this.a.get();
-    if (localViewPropertyAnimator != null)
-      localViewPropertyAnimator.translationX(paramFloat);
-    return this;
-  }
-
-  public final b a(long paramLong)
-  {
-    ViewPropertyAnimator localViewPropertyAnimator = (ViewPropertyAnimator)this.a.get();
-    if (localViewPropertyAnimator != null)
-      localViewPropertyAnimator.setDuration(paramLong);
-    return this;
-  }
-
-  public final b a(Interpolator paramInterpolator)
-  {
-    ViewPropertyAnimator localViewPropertyAnimator = (ViewPropertyAnimator)this.a.get();
-    if (localViewPropertyAnimator != null)
-      localViewPropertyAnimator.setInterpolator(paramInterpolator);
-    return this;
-  }
-
-  public final b a(final textnow.am.b paramb)
-  {
-    ViewPropertyAnimator localViewPropertyAnimator = (ViewPropertyAnimator)this.a.get();
-    if (localViewPropertyAnimator != null)
+    try
     {
-      if (paramb == null)
-        localViewPropertyAnimator.setListener(null);
+      g localg = (g)super.clone();
+      return localg;
     }
-    else
-      return this;
-    localViewPropertyAnimator.setListener(new Animator.AnimatorListener()
+    catch (CloneNotSupportedException localCloneNotSupportedException)
     {
-      public final void onAnimationCancel(Animator paramAnonymousAnimator)
+    }
+    throw new AssertionError();
+  }
+
+  private static boolean a(Class<?> paramClass)
+  {
+    return (!Enum.class.isAssignableFrom(paramClass)) && ((paramClass.isAnonymousClass()) || (paramClass.isLocalClass()));
+  }
+
+  private boolean a(textnow.an.c paramc, d paramd)
+  {
+    int i;
+    if ((paramc != null) && (paramc.a() > this.b))
+    {
+      i = 0;
+      if (i == 0)
+        break label63;
+      if ((paramd == null) || (paramd.a() > this.b))
+        break label57;
+    }
+    label57: for (int j = 0; ; j = 1)
+    {
+      if (j == 0)
+        break label63;
+      return true;
+      i = 1;
+      break;
+    }
+    label63: return false;
+  }
+
+  private boolean b(Class<?> paramClass)
+  {
+    if (paramClass.isMemberClass())
+    {
+      if ((0x8 & paramClass.getModifiers()) != 0);
+      for (int i = 1; i == 0; i = 0)
+        return true;
+    }
+    return false;
+  }
+
+  public final <T> s<T> a(final e parame, final textnow.aq.a<T> parama)
+  {
+    Class localClass = parama.a();
+    final boolean bool1 = a(localClass, true);
+    final boolean bool2 = a(localClass, false);
+    if ((!bool1) && (!bool2))
+      return null;
+    return new s()
+    {
+      private s<T> f;
+
+      private s<T> a()
       {
-        paramb.c(null);
+        s locals1 = this.f;
+        if (locals1 != null)
+          return locals1;
+        s locals2 = parame.a(g.this, parama);
+        this.f = locals2;
+        return locals2;
       }
 
-      public final void onAnimationEnd(Animator paramAnonymousAnimator)
+      public final T a(textnow.ar.a paramAnonymousa)
       {
-        paramb.b(null);
+        if (bool2)
+        {
+          paramAnonymousa.n();
+          return null;
+        }
+        return a().a(paramAnonymousa);
       }
 
-      public final void onAnimationRepeat(Animator paramAnonymousAnimator)
+      public final void a(textnow.ar.c paramAnonymousc, T paramAnonymousT)
       {
-        paramb.d(null);
+        if (bool1)
+        {
+          paramAnonymousc.f();
+          return;
+        }
+        a().a(paramAnonymousc, paramAnonymousT);
       }
+    };
+  }
 
-      public final void onAnimationStart(Animator paramAnonymousAnimator)
+  public final boolean a(Class<?> paramClass, boolean paramBoolean)
+  {
+    if ((this.b != -1.0D) && (!a((textnow.an.c)paramClass.getAnnotation(textnow.an.c.class), (d)paramClass.getAnnotation(d.class))))
+      return true;
+    if ((!this.d) && (b(paramClass)))
+      return true;
+    if (a(paramClass))
+      return true;
+    if (paramBoolean);
+    for (List localList = this.f; ; localList = this.g)
+    {
+      Iterator localIterator = localList.iterator();
+      do
+        if (!localIterator.hasNext())
+          break;
+      while (!((textnow.am.a)localIterator.next()).b());
+      return true;
+    }
+    return false;
+  }
+
+  public final boolean a(Field paramField, boolean paramBoolean)
+  {
+    if ((this.c & paramField.getModifiers()) != 0)
+      return true;
+    if ((this.b != -1.0D) && (!a((textnow.an.c)paramField.getAnnotation(textnow.an.c.class), (d)paramField.getAnnotation(d.class))))
+      return true;
+    if (paramField.isSynthetic())
+      return true;
+    if (this.e)
+    {
+      textnow.an.a locala = (textnow.an.a)paramField.getAnnotation(textnow.an.a.class);
+      if (locala != null)
       {
-        paramb.a(null);
+        if (!paramBoolean)
+          break label100;
+        if (locala.a())
+          break label110;
       }
-    });
-    return this;
+      label100: 
+      while (!locala.b())
+        return true;
+    }
+    label110: if ((!this.d) && (b(paramField.getType())))
+      return true;
+    if (a(paramField.getType()))
+      return true;
+    if (paramBoolean);
+    for (List localList = this.f; !localList.isEmpty(); localList = this.g)
+    {
+      new b(paramField);
+      Iterator localIterator = localList.iterator();
+      do
+        if (!localIterator.hasNext())
+          break;
+      while (!((textnow.am.a)localIterator.next()).a());
+      return true;
+    }
+    return false;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.ao.g
  * JD-Core Version:    0.6.2
  */

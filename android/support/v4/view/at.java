@@ -1,22 +1,22 @@
 package android.support.v4.view;
 
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.VelocityTracker;
 
-class at extends as
+final class at
+  implements au
 {
-  public final void a(ViewGroup paramViewGroup, boolean paramBoolean)
+  public final float a(VelocityTracker paramVelocityTracker, int paramInt)
   {
-    bb.a(paramViewGroup, paramBoolean);
+    return paramVelocityTracker.getXVelocity(paramInt);
   }
 
-  public final boolean g(View paramView)
+  public final float b(VelocityTracker paramVelocityTracker, int paramInt)
   {
-    return paramView.isOpaque();
+    return paramVelocityTracker.getYVelocity(paramInt);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.view.at
  * JD-Core Version:    0.6.2
  */

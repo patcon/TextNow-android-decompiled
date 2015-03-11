@@ -6,58 +6,63 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.google.android.gms.ads.purchase.InAppPurchaseListener;
 import com.google.android.gms.ads.purchase.PlayStorePurchaseListener;
-import com.google.android.gms.internal.au;
+import com.google.android.gms.internal.bh;
 
 public final class AdView extends ViewGroup
 {
-  private final au kx;
+  private final bh li;
 
   public AdView(Context paramContext)
   {
     super(paramContext);
-    this.kx = new au(this);
+    this.li = new bh(this);
   }
 
   public AdView(Context paramContext, AttributeSet paramAttributeSet)
   {
     super(paramContext, paramAttributeSet);
-    this.kx = new au(this, paramAttributeSet, false);
+    this.li = new bh(this, paramAttributeSet, false);
   }
 
   public AdView(Context paramContext, AttributeSet paramAttributeSet, int paramInt)
   {
     super(paramContext, paramAttributeSet, paramInt);
-    this.kx = new au(this, paramAttributeSet, false);
+    this.li = new bh(this, paramAttributeSet, false);
   }
 
   public final void destroy()
   {
-    this.kx.destroy();
+    this.li.destroy();
   }
 
   public final AdListener getAdListener()
   {
-    return this.kx.getAdListener();
+    return this.li.getAdListener();
   }
 
   public final AdSize getAdSize()
   {
-    return this.kx.getAdSize();
+    return this.li.getAdSize();
   }
 
   public final String getAdUnitId()
   {
-    return this.kx.getAdUnitId();
+    return this.li.getAdUnitId();
   }
 
   public final InAppPurchaseListener getInAppPurchaseListener()
   {
-    return this.kx.getInAppPurchaseListener();
+    return this.li.getInAppPurchaseListener();
+  }
+
+  public final String getMediationAdapterClassName()
+  {
+    return this.li.getMediationAdapterClassName();
   }
 
   public final void loadAd(AdRequest paramAdRequest)
   {
-    this.kx.a(paramAdRequest.T());
+    this.li.a(paramAdRequest.V());
   }
 
   protected final void onLayout(boolean paramBoolean, int paramInt1, int paramInt2, int paramInt3, int paramInt4)
@@ -107,41 +112,41 @@ public final class AdView extends ViewGroup
 
   public final void pause()
   {
-    this.kx.pause();
+    this.li.pause();
   }
 
   public final void resume()
   {
-    this.kx.resume();
+    this.li.resume();
   }
 
   public final void setAdListener(AdListener paramAdListener)
   {
-    this.kx.setAdListener(paramAdListener);
+    this.li.setAdListener(paramAdListener);
   }
 
   public final void setAdSize(AdSize paramAdSize)
   {
-    this.kx.setAdSizes(new AdSize[] { paramAdSize });
+    this.li.setAdSizes(new AdSize[] { paramAdSize });
   }
 
   public final void setAdUnitId(String paramString)
   {
-    this.kx.setAdUnitId(paramString);
+    this.li.setAdUnitId(paramString);
   }
 
   public final void setInAppPurchaseListener(InAppPurchaseListener paramInAppPurchaseListener)
   {
-    this.kx.setInAppPurchaseListener(paramInAppPurchaseListener);
+    this.li.setInAppPurchaseListener(paramInAppPurchaseListener);
   }
 
   public final void setPlayStorePurchaseParams(PlayStorePurchaseListener paramPlayStorePurchaseListener, String paramString)
   {
-    this.kx.setPlayStorePurchaseParams(paramPlayStorePurchaseListener, paramString);
+    this.li.setPlayStorePurchaseParams(paramPlayStorePurchaseListener, paramString);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.ads.AdView
  * JD-Core Version:    0.6.2
  */

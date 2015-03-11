@@ -12,25 +12,25 @@ public class n
 {
   static void a(OfferWalletObject paramOfferWalletObject, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
+    int i = b.D(paramParcel);
     b.c(paramParcel, 1, paramOfferWalletObject.getVersionCode());
-    b.a(paramParcel, 2, paramOfferWalletObject.eC, false);
-    b.a(paramParcel, 3, paramOfferWalletObject.ajT, false);
-    b.a(paramParcel, 4, paramOfferWalletObject.ajU, paramInt, false);
-    b.G(paramParcel, i);
+    b.a(paramParcel, 2, paramOfferWalletObject.fl, false);
+    b.a(paramParcel, 3, paramOfferWalletObject.atD, false);
+    b.a(paramParcel, 4, paramOfferWalletObject.atE, paramInt, false);
+    b.H(paramParcel, i);
   }
 
-  public OfferWalletObject cc(Parcel paramParcel)
+  public OfferWalletObject dz(Parcel paramParcel)
   {
     CommonWalletObject localCommonWalletObject = null;
-    int i = a.B(paramParcel);
+    int i = a.C(paramParcel);
     String str1 = null;
     int j = 0;
     String str2 = null;
     while (paramParcel.dataPosition() < i)
     {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
       {
       default:
         a.b(paramParcel, k);
@@ -53,13 +53,13 @@ public class n
     return new OfferWalletObject(j, str1, str2, localCommonWalletObject);
   }
 
-  public OfferWalletObject[] dI(int paramInt)
+  public OfferWalletObject[] fA(int paramInt)
   {
     return new OfferWalletObject[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.n
  * JD-Core Version:    0.6.2
  */

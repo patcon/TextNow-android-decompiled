@@ -1,57 +1,23 @@
 package com.google.android.gms.internal;
 
-import android.app.Activity;
-import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
-import android.content.Intent;
-import android.support.v4.app.Fragment;
+import android.view.View;
+import android.webkit.WebChromeClient.CustomViewCallback;
 
-public class gz
-  implements DialogInterface.OnClickListener
+@ez
+public final class gz extends gx
 {
-  private final Fragment FV;
-  private final int FW;
-  private final Intent mIntent;
-  private final Activity og;
-
-  public gz(Activity paramActivity, Intent paramIntent, int paramInt)
+  public gz(gv paramgv)
   {
-    this.og = paramActivity;
-    this.FV = null;
-    this.mIntent = paramIntent;
-    this.FW = paramInt;
+    super(paramgv);
   }
 
-  public gz(Fragment paramFragment, Intent paramIntent, int paramInt)
+  public final void onShowCustomView(View paramView, int paramInt, WebChromeClient.CustomViewCallback paramCustomViewCallback)
   {
-    this.og = null;
-    this.FV = paramFragment;
-    this.mIntent = paramIntent;
-    this.FW = paramInt;
-  }
-
-  public void onClick(DialogInterface paramDialogInterface, int paramInt)
-  {
-    try
-    {
-      if ((this.mIntent != null) && (this.FV != null))
-        this.FV.startActivityForResult(this.mIntent, this.FW);
-      while (true)
-      {
-        paramDialogInterface.dismiss();
-        return;
-        if (this.mIntent != null)
-          this.og.startActivityForResult(this.mIntent, this.FW);
-      }
-    }
-    catch (ActivityNotFoundException localActivityNotFoundException)
-    {
-    }
+    a(paramView, paramInt, paramCustomViewCallback);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.gz
  * JD-Core Version:    0.6.2
  */

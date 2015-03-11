@@ -9,39 +9,16 @@ import android.os.Parcelable.Creator;
 class c$a$a
   implements c
 {
-  private IBinder kq;
+  private IBinder lb;
 
   c$a$a(IBinder paramIBinder)
   {
-    this.kq = paramIBinder;
+    this.lb = paramIBinder;
   }
 
   public IBinder asBinder()
   {
-    return this.kq;
-  }
-
-  public void c(d paramd)
-  {
-    Parcel localParcel1 = Parcel.obtain();
-    Parcel localParcel2 = Parcel.obtain();
-    try
-    {
-      localParcel1.writeInterfaceToken("com.google.android.gms.dynamic.IFragmentWrapper");
-      if (paramd != null);
-      for (IBinder localIBinder = paramd.asBinder(); ; localIBinder = null)
-      {
-        localParcel1.writeStrongBinder(localIBinder);
-        this.kq.transact(20, localParcel1, localParcel2, 0);
-        localParcel2.readException();
-        return;
-      }
-    }
-    finally
-    {
-      localParcel2.recycle();
-      localParcel1.recycle();
-    }
+    return this.lb;
   }
 
   public void d(d paramd)
@@ -55,7 +32,7 @@ class c$a$a
       for (IBinder localIBinder = paramd.asBinder(); ; localIBinder = null)
       {
         localParcel1.writeStrongBinder(localIBinder);
-        this.kq.transact(27, localParcel1, localParcel2, 0);
+        this.lb.transact(20, localParcel1, localParcel2, 0);
         localParcel2.readException();
         return;
       }
@@ -67,74 +44,21 @@ class c$a$a
     }
   }
 
-  public d gI()
+  public void e(d paramd)
   {
     Parcel localParcel1 = Parcel.obtain();
     Parcel localParcel2 = Parcel.obtain();
     try
     {
       localParcel1.writeInterfaceToken("com.google.android.gms.dynamic.IFragmentWrapper");
-      this.kq.transact(2, localParcel1, localParcel2, 0);
-      localParcel2.readException();
-      d locald = d.a.ag(localParcel2.readStrongBinder());
-      return locald;
-    }
-    finally
-    {
-      localParcel2.recycle();
-      localParcel1.recycle();
-    }
-  }
-
-  public c gJ()
-  {
-    Parcel localParcel1 = Parcel.obtain();
-    Parcel localParcel2 = Parcel.obtain();
-    try
-    {
-      localParcel1.writeInterfaceToken("com.google.android.gms.dynamic.IFragmentWrapper");
-      this.kq.transact(5, localParcel1, localParcel2, 0);
-      localParcel2.readException();
-      c localc = c.a.af(localParcel2.readStrongBinder());
-      return localc;
-    }
-    finally
-    {
-      localParcel2.recycle();
-      localParcel1.recycle();
-    }
-  }
-
-  public d gK()
-  {
-    Parcel localParcel1 = Parcel.obtain();
-    Parcel localParcel2 = Parcel.obtain();
-    try
-    {
-      localParcel1.writeInterfaceToken("com.google.android.gms.dynamic.IFragmentWrapper");
-      this.kq.transact(6, localParcel1, localParcel2, 0);
-      localParcel2.readException();
-      d locald = d.a.ag(localParcel2.readStrongBinder());
-      return locald;
-    }
-    finally
-    {
-      localParcel2.recycle();
-      localParcel1.recycle();
-    }
-  }
-
-  public c gL()
-  {
-    Parcel localParcel1 = Parcel.obtain();
-    Parcel localParcel2 = Parcel.obtain();
-    try
-    {
-      localParcel1.writeInterfaceToken("com.google.android.gms.dynamic.IFragmentWrapper");
-      this.kq.transact(9, localParcel1, localParcel2, 0);
-      localParcel2.readException();
-      c localc = c.a.af(localParcel2.readStrongBinder());
-      return localc;
+      if (paramd != null);
+      for (IBinder localIBinder = paramd.asBinder(); ; localIBinder = null)
+      {
+        localParcel1.writeStrongBinder(localIBinder);
+        this.lb.transact(27, localParcel1, localParcel2, 0);
+        localParcel2.readException();
+        return;
+      }
     }
     finally
     {
@@ -150,7 +74,7 @@ class c$a$a
     try
     {
       localParcel1.writeInterfaceToken("com.google.android.gms.dynamic.IFragmentWrapper");
-      this.kq.transact(3, localParcel1, localParcel2, 0);
+      this.lb.transact(3, localParcel1, localParcel2, 0);
       localParcel2.readException();
       if (localParcel2.readInt() != 0)
       {
@@ -173,7 +97,7 @@ class c$a$a
     try
     {
       localParcel1.writeInterfaceToken("com.google.android.gms.dynamic.IFragmentWrapper");
-      this.kq.transact(4, localParcel1, localParcel2, 0);
+      this.lb.transact(4, localParcel1, localParcel2, 0);
       localParcel2.readException();
       int i = localParcel2.readInt();
       return i;
@@ -192,7 +116,7 @@ class c$a$a
     try
     {
       localParcel1.writeInterfaceToken("com.google.android.gms.dynamic.IFragmentWrapper");
-      this.kq.transact(7, localParcel1, localParcel2, 0);
+      this.lb.transact(7, localParcel1, localParcel2, 0);
       localParcel2.readException();
       int i = localParcel2.readInt();
       boolean bool = false;
@@ -214,7 +138,7 @@ class c$a$a
     try
     {
       localParcel1.writeInterfaceToken("com.google.android.gms.dynamic.IFragmentWrapper");
-      this.kq.transact(8, localParcel1, localParcel2, 0);
+      this.lb.transact(8, localParcel1, localParcel2, 0);
       localParcel2.readException();
       String str = localParcel2.readString();
       return str;
@@ -233,7 +157,7 @@ class c$a$a
     try
     {
       localParcel1.writeInterfaceToken("com.google.android.gms.dynamic.IFragmentWrapper");
-      this.kq.transact(10, localParcel1, localParcel2, 0);
+      this.lb.transact(10, localParcel1, localParcel2, 0);
       localParcel2.readException();
       int i = localParcel2.readInt();
       return i;
@@ -252,7 +176,7 @@ class c$a$a
     try
     {
       localParcel1.writeInterfaceToken("com.google.android.gms.dynamic.IFragmentWrapper");
-      this.kq.transact(11, localParcel1, localParcel2, 0);
+      this.lb.transact(11, localParcel1, localParcel2, 0);
       localParcel2.readException();
       int i = localParcel2.readInt();
       boolean bool = false;
@@ -274,9 +198,9 @@ class c$a$a
     try
     {
       localParcel1.writeInterfaceToken("com.google.android.gms.dynamic.IFragmentWrapper");
-      this.kq.transact(12, localParcel1, localParcel2, 0);
+      this.lb.transact(12, localParcel1, localParcel2, 0);
       localParcel2.readException();
-      d locald = d.a.ag(localParcel2.readStrongBinder());
+      d locald = d.a.am(localParcel2.readStrongBinder());
       return locald;
     }
     finally
@@ -293,7 +217,7 @@ class c$a$a
     try
     {
       localParcel1.writeInterfaceToken("com.google.android.gms.dynamic.IFragmentWrapper");
-      this.kq.transact(13, localParcel1, localParcel2, 0);
+      this.lb.transact(13, localParcel1, localParcel2, 0);
       localParcel2.readException();
       int i = localParcel2.readInt();
       boolean bool = false;
@@ -315,7 +239,7 @@ class c$a$a
     try
     {
       localParcel1.writeInterfaceToken("com.google.android.gms.dynamic.IFragmentWrapper");
-      this.kq.transact(14, localParcel1, localParcel2, 0);
+      this.lb.transact(14, localParcel1, localParcel2, 0);
       localParcel2.readException();
       int i = localParcel2.readInt();
       boolean bool = false;
@@ -337,7 +261,7 @@ class c$a$a
     try
     {
       localParcel1.writeInterfaceToken("com.google.android.gms.dynamic.IFragmentWrapper");
-      this.kq.transact(15, localParcel1, localParcel2, 0);
+      this.lb.transact(15, localParcel1, localParcel2, 0);
       localParcel2.readException();
       int i = localParcel2.readInt();
       boolean bool = false;
@@ -359,7 +283,7 @@ class c$a$a
     try
     {
       localParcel1.writeInterfaceToken("com.google.android.gms.dynamic.IFragmentWrapper");
-      this.kq.transact(16, localParcel1, localParcel2, 0);
+      this.lb.transact(16, localParcel1, localParcel2, 0);
       localParcel2.readException();
       int i = localParcel2.readInt();
       boolean bool = false;
@@ -381,7 +305,7 @@ class c$a$a
     try
     {
       localParcel1.writeInterfaceToken("com.google.android.gms.dynamic.IFragmentWrapper");
-      this.kq.transact(17, localParcel1, localParcel2, 0);
+      this.lb.transact(17, localParcel1, localParcel2, 0);
       localParcel2.readException();
       int i = localParcel2.readInt();
       boolean bool = false;
@@ -403,7 +327,7 @@ class c$a$a
     try
     {
       localParcel1.writeInterfaceToken("com.google.android.gms.dynamic.IFragmentWrapper");
-      this.kq.transact(18, localParcel1, localParcel2, 0);
+      this.lb.transact(18, localParcel1, localParcel2, 0);
       localParcel2.readException();
       int i = localParcel2.readInt();
       boolean bool = false;
@@ -425,13 +349,89 @@ class c$a$a
     try
     {
       localParcel1.writeInterfaceToken("com.google.android.gms.dynamic.IFragmentWrapper");
-      this.kq.transact(19, localParcel1, localParcel2, 0);
+      this.lb.transact(19, localParcel1, localParcel2, 0);
       localParcel2.readException();
       int i = localParcel2.readInt();
       boolean bool = false;
       if (i != 0)
         bool = true;
       return bool;
+    }
+    finally
+    {
+      localParcel2.recycle();
+      localParcel1.recycle();
+    }
+  }
+
+  public d iu()
+  {
+    Parcel localParcel1 = Parcel.obtain();
+    Parcel localParcel2 = Parcel.obtain();
+    try
+    {
+      localParcel1.writeInterfaceToken("com.google.android.gms.dynamic.IFragmentWrapper");
+      this.lb.transact(2, localParcel1, localParcel2, 0);
+      localParcel2.readException();
+      d locald = d.a.am(localParcel2.readStrongBinder());
+      return locald;
+    }
+    finally
+    {
+      localParcel2.recycle();
+      localParcel1.recycle();
+    }
+  }
+
+  public c iv()
+  {
+    Parcel localParcel1 = Parcel.obtain();
+    Parcel localParcel2 = Parcel.obtain();
+    try
+    {
+      localParcel1.writeInterfaceToken("com.google.android.gms.dynamic.IFragmentWrapper");
+      this.lb.transact(5, localParcel1, localParcel2, 0);
+      localParcel2.readException();
+      c localc = c.a.al(localParcel2.readStrongBinder());
+      return localc;
+    }
+    finally
+    {
+      localParcel2.recycle();
+      localParcel1.recycle();
+    }
+  }
+
+  public d iw()
+  {
+    Parcel localParcel1 = Parcel.obtain();
+    Parcel localParcel2 = Parcel.obtain();
+    try
+    {
+      localParcel1.writeInterfaceToken("com.google.android.gms.dynamic.IFragmentWrapper");
+      this.lb.transact(6, localParcel1, localParcel2, 0);
+      localParcel2.readException();
+      d locald = d.a.am(localParcel2.readStrongBinder());
+      return locald;
+    }
+    finally
+    {
+      localParcel2.recycle();
+      localParcel1.recycle();
+    }
+  }
+
+  public c ix()
+  {
+    Parcel localParcel1 = Parcel.obtain();
+    Parcel localParcel2 = Parcel.obtain();
+    try
+    {
+      localParcel1.writeInterfaceToken("com.google.android.gms.dynamic.IFragmentWrapper");
+      this.lb.transact(9, localParcel1, localParcel2, 0);
+      localParcel2.readException();
+      c localc = c.a.al(localParcel2.readStrongBinder());
+      return localc;
     }
     finally
     {
@@ -451,7 +451,7 @@ class c$a$a
       if (paramBoolean)
         i = 1;
       localParcel1.writeInt(i);
-      this.kq.transact(21, localParcel1, localParcel2, 0);
+      this.lb.transact(21, localParcel1, localParcel2, 0);
       localParcel2.readException();
       return;
     }
@@ -473,7 +473,7 @@ class c$a$a
       if (paramBoolean)
         i = 1;
       localParcel1.writeInt(i);
-      this.kq.transact(22, localParcel1, localParcel2, 0);
+      this.lb.transact(22, localParcel1, localParcel2, 0);
       localParcel2.readException();
       return;
     }
@@ -495,7 +495,7 @@ class c$a$a
       if (paramBoolean)
         i = 1;
       localParcel1.writeInt(i);
-      this.kq.transact(23, localParcel1, localParcel2, 0);
+      this.lb.transact(23, localParcel1, localParcel2, 0);
       localParcel2.readException();
       return;
     }
@@ -517,7 +517,7 @@ class c$a$a
       if (paramBoolean)
         i = 1;
       localParcel1.writeInt(i);
-      this.kq.transact(24, localParcel1, localParcel2, 0);
+      this.lb.transact(24, localParcel1, localParcel2, 0);
       localParcel2.readException();
       return;
     }
@@ -542,7 +542,7 @@ class c$a$a
       }
       while (true)
       {
-        this.kq.transact(25, localParcel1, localParcel2, 0);
+        this.lb.transact(25, localParcel1, localParcel2, 0);
         localParcel2.readException();
         return;
         localParcel1.writeInt(0);
@@ -570,7 +570,7 @@ class c$a$a
       while (true)
       {
         localParcel1.writeInt(paramInt);
-        this.kq.transact(26, localParcel1, localParcel2, 0);
+        this.lb.transact(26, localParcel1, localParcel2, 0);
         localParcel2.readException();
         return;
         localParcel1.writeInt(0);
@@ -584,7 +584,7 @@ class c$a$a
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.dynamic.c.a.a
  * JD-Core Version:    0.6.2
  */

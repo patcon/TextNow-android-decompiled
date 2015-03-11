@@ -5,7 +5,7 @@ import android.os.Parcelable.Creator;
 import com.google.android.gms.common.internal.safeparcel.a;
 import com.google.android.gms.common.internal.safeparcel.a.a;
 import com.google.android.gms.common.internal.safeparcel.b;
-import com.google.android.gms.internal.ig;
+import com.google.android.gms.internal.jr;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.wallet.wobs.d;
 import com.google.android.gms.wallet.wobs.f;
@@ -19,36 +19,36 @@ public class j
 {
   static void a(LoyaltyWalletObject paramLoyaltyWalletObject, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
+    int i = b.D(paramParcel);
     b.c(paramParcel, 1, paramLoyaltyWalletObject.getVersionCode());
-    b.a(paramParcel, 2, paramLoyaltyWalletObject.eC, false);
-    b.a(paramParcel, 3, paramLoyaltyWalletObject.aji, false);
-    b.a(paramParcel, 4, paramLoyaltyWalletObject.ajj, false);
-    b.a(paramParcel, 5, paramLoyaltyWalletObject.ajk, false);
-    b.a(paramParcel, 6, paramLoyaltyWalletObject.ajl, false);
-    b.a(paramParcel, 7, paramLoyaltyWalletObject.ajm, false);
-    b.a(paramParcel, 8, paramLoyaltyWalletObject.ajn, false);
-    b.a(paramParcel, 9, paramLoyaltyWalletObject.ajo, false);
-    b.a(paramParcel, 10, paramLoyaltyWalletObject.ajp, false);
-    b.a(paramParcel, 11, paramLoyaltyWalletObject.ajq, false);
+    b.a(paramParcel, 2, paramLoyaltyWalletObject.fl, false);
+    b.a(paramParcel, 3, paramLoyaltyWalletObject.asT, false);
+    b.a(paramParcel, 4, paramLoyaltyWalletObject.asU, false);
+    b.a(paramParcel, 5, paramLoyaltyWalletObject.asV, false);
+    b.a(paramParcel, 6, paramLoyaltyWalletObject.Dv, false);
+    b.a(paramParcel, 7, paramLoyaltyWalletObject.asW, false);
+    b.a(paramParcel, 8, paramLoyaltyWalletObject.asX, false);
+    b.a(paramParcel, 9, paramLoyaltyWalletObject.asY, false);
+    b.a(paramParcel, 10, paramLoyaltyWalletObject.asZ, false);
+    b.a(paramParcel, 11, paramLoyaltyWalletObject.ata, false);
     b.c(paramParcel, 12, paramLoyaltyWalletObject.state);
-    b.b(paramParcel, 13, paramLoyaltyWalletObject.ajr, false);
-    b.a(paramParcel, 14, paramLoyaltyWalletObject.ajs, paramInt, false);
-    b.b(paramParcel, 15, paramLoyaltyWalletObject.ajt, false);
-    b.a(paramParcel, 17, paramLoyaltyWalletObject.ajv, false);
-    b.a(paramParcel, 16, paramLoyaltyWalletObject.aju, false);
-    b.a(paramParcel, 19, paramLoyaltyWalletObject.ajx);
-    b.b(paramParcel, 18, paramLoyaltyWalletObject.ajw, false);
-    b.b(paramParcel, 21, paramLoyaltyWalletObject.ajz, false);
-    b.b(paramParcel, 20, paramLoyaltyWalletObject.ajy, false);
-    b.a(paramParcel, 23, paramLoyaltyWalletObject.ajB, paramInt, false);
-    b.b(paramParcel, 22, paramLoyaltyWalletObject.ajA, false);
-    b.G(paramParcel, i);
+    b.c(paramParcel, 13, paramLoyaltyWalletObject.atb, false);
+    b.a(paramParcel, 14, paramLoyaltyWalletObject.atc, paramInt, false);
+    b.c(paramParcel, 15, paramLoyaltyWalletObject.atd, false);
+    b.a(paramParcel, 17, paramLoyaltyWalletObject.atf, false);
+    b.a(paramParcel, 16, paramLoyaltyWalletObject.ate, false);
+    b.a(paramParcel, 19, paramLoyaltyWalletObject.ath);
+    b.c(paramParcel, 18, paramLoyaltyWalletObject.atg, false);
+    b.c(paramParcel, 21, paramLoyaltyWalletObject.atj, false);
+    b.c(paramParcel, 20, paramLoyaltyWalletObject.ati, false);
+    b.a(paramParcel, 23, paramLoyaltyWalletObject.atl, paramInt, false);
+    b.c(paramParcel, 22, paramLoyaltyWalletObject.atk, false);
+    b.H(paramParcel, i);
   }
 
-  public LoyaltyWalletObject bY(Parcel paramParcel)
+  public LoyaltyWalletObject dv(Parcel paramParcel)
   {
-    int i = a.B(paramParcel);
+    int i = a.C(paramParcel);
     int j = 0;
     String str1 = null;
     String str2 = null;
@@ -61,21 +61,21 @@ public class j
     String str9 = null;
     String str10 = null;
     int k = 0;
-    ArrayList localArrayList1 = ig.ga();
+    ArrayList localArrayList1 = jr.hz();
     l locall = null;
-    ArrayList localArrayList2 = ig.ga();
+    ArrayList localArrayList2 = jr.hz();
     String str11 = null;
     String str12 = null;
-    ArrayList localArrayList3 = ig.ga();
+    ArrayList localArrayList3 = jr.hz();
     boolean bool = false;
-    ArrayList localArrayList4 = ig.ga();
-    ArrayList localArrayList5 = ig.ga();
-    ArrayList localArrayList6 = ig.ga();
+    ArrayList localArrayList4 = jr.hz();
+    ArrayList localArrayList5 = jr.hz();
+    ArrayList localArrayList6 = jr.hz();
     f localf = null;
     while (paramParcel.dataPosition() < i)
     {
-      int m = a.A(paramParcel);
-      switch (a.ar(m))
+      int m = a.B(paramParcel);
+      switch (a.aD(m))
       {
       default:
         a.b(paramParcel, m);
@@ -155,13 +155,13 @@ public class j
     return new LoyaltyWalletObject(j, str1, str2, str3, str4, str5, str6, str7, str8, str9, str10, k, localArrayList1, locall, localArrayList2, str11, str12, localArrayList3, bool, localArrayList4, localArrayList5, localArrayList6, localf);
   }
 
-  public LoyaltyWalletObject[] dE(int paramInt)
+  public LoyaltyWalletObject[] fw(int paramInt)
   {
     return new LoyaltyWalletObject[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.j
  * JD-Core Version:    0.6.2
  */

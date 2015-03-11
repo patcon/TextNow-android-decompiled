@@ -1,33 +1,22 @@
 package android.support.v4.view;
 
-import android.view.MenuItem;
-import android.view.View;
+import android.view.ViewGroup.MarginLayoutParams;
 
-class x
-  implements z
+final class x
+  implements w
 {
-  public final MenuItem a(MenuItem paramMenuItem, View paramView)
+  public final int a(ViewGroup.MarginLayoutParams paramMarginLayoutParams)
   {
-    return paramMenuItem.setActionView(paramView);
+    return paramMarginLayoutParams.leftMargin;
   }
 
-  public final View a(MenuItem paramMenuItem)
+  public final int b(ViewGroup.MarginLayoutParams paramMarginLayoutParams)
   {
-    return paramMenuItem.getActionView();
-  }
-
-  public final void a(MenuItem paramMenuItem, int paramInt)
-  {
-    paramMenuItem.setShowAsAction(paramInt);
-  }
-
-  public final MenuItem b(MenuItem paramMenuItem, int paramInt)
-  {
-    return paramMenuItem.setActionView(paramInt);
+    return paramMarginLayoutParams.rightMargin;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.view.x
  * JD-Core Version:    0.6.2
  */

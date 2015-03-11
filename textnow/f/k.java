@@ -1,40 +1,33 @@
 package textnow.f;
 
-import android.os.Bundle;
-import java.util.ArrayList;
-import java.util.List;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.accessibility.AccessibilityNodeInfo.CollectionInfo;
+import android.view.accessibility.AccessibilityNodeInfo.CollectionItemInfo;
 
-final class k extends m
+class k extends j
 {
-  public final Object a(final i parami)
+  public Object a(int paramInt1, int paramInt2, int paramInt3, int paramInt4, boolean paramBoolean1, boolean paramBoolean2)
   {
-    return new n.1(new o()
-    {
-      public final Object a(int paramAnonymousInt)
-      {
-        i.b();
-        return null;
-      }
+    return AccessibilityNodeInfo.CollectionItemInfo.obtain(paramInt1, paramInt2, paramInt3, paramInt4, paramBoolean1);
+  }
 
-      public final List<Object> a(String paramAnonymousString, int paramAnonymousInt)
-      {
-        i.d();
-        ArrayList localArrayList = new ArrayList();
-        int i = null.size();
-        for (int j = 0; j < i; j++)
-          localArrayList.add(((a)null.get(j)).a());
-        return localArrayList;
-      }
+  public Object a(int paramInt1, int paramInt2, boolean paramBoolean, int paramInt3)
+  {
+    return AccessibilityNodeInfo.CollectionInfo.obtain(paramInt1, paramInt2, paramBoolean);
+  }
 
-      public final boolean a(int paramAnonymousInt1, int paramAnonymousInt2, Bundle paramAnonymousBundle)
-      {
-        return i.c();
-      }
-    });
+  public final void a(Object paramObject1, Object paramObject2)
+  {
+    ((AccessibilityNodeInfo)paramObject1).setCollectionInfo((AccessibilityNodeInfo.CollectionInfo)paramObject2);
+  }
+
+  public final void b(Object paramObject1, Object paramObject2)
+  {
+    ((AccessibilityNodeInfo)paramObject1).setCollectionItemInfo((AccessibilityNodeInfo.CollectionItemInfo)paramObject2);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.f.k
  * JD-Core Version:    0.6.2
  */

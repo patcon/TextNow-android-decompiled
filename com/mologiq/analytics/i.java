@@ -1,43 +1,69 @@
 package com.mologiq.analytics;
 
-final class i
-{
-  private int a;
-  private String b;
-  private int c;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Parcel;
 
-  public final int a()
+final class i
+  implements IInterface
+{
+  private IBinder a;
+
+  i(IBinder paramIBinder)
+  {
+    this.a = paramIBinder;
+  }
+
+  final String a()
+  {
+    Parcel localParcel1 = Parcel.obtain();
+    Parcel localParcel2 = Parcel.obtain();
+    try
+    {
+      localParcel1.writeInterfaceToken("com.google.android.gms.ads.identifier.internal.IAdvertisingIdService");
+      this.a.transact(1, localParcel1, localParcel2, 0);
+      localParcel2.readException();
+      String str = localParcel2.readString();
+      localParcel2.readInt();
+      return str;
+    }
+    finally
+    {
+      localParcel2.recycle();
+      localParcel1.recycle();
+    }
+  }
+
+  final boolean a(boolean paramBoolean)
+  {
+    boolean bool = true;
+    Parcel localParcel1 = Parcel.obtain();
+    Parcel localParcel2 = Parcel.obtain();
+    try
+    {
+      localParcel1.writeInterfaceToken("com.google.android.gms.ads.identifier.internal.IAdvertisingIdService");
+      localParcel1.writeInt(1);
+      this.a.transact(2, localParcel1, localParcel2, 0);
+      localParcel2.readException();
+      int i = localParcel2.readInt();
+      if (i != 0)
+        return bool;
+      bool = false;
+    }
+    finally
+    {
+      localParcel2.recycle();
+      localParcel1.recycle();
+    }
+  }
+
+  public final IBinder asBinder()
   {
     return this.a;
   }
-
-  public final void a(int paramInt)
-  {
-    this.a = paramInt;
-  }
-
-  public final void a(String paramString)
-  {
-    this.b = paramString;
-  }
-
-  public final String b()
-  {
-    return this.b;
-  }
-
-  public final void b(int paramInt)
-  {
-    this.c = paramInt;
-  }
-
-  public final int c()
-  {
-    return this.c;
-  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.mologiq.analytics.i
  * JD-Core Version:    0.6.2
  */

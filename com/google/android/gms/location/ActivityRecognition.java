@@ -9,21 +9,21 @@ import com.google.android.gms.common.api.Api.c;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 import com.google.android.gms.common.api.Scope;
-import com.google.android.gms.internal.gy;
-import com.google.android.gms.internal.ja;
-import com.google.android.gms.internal.jg;
+import com.google.android.gms.common.internal.ClientSettings;
+import com.google.android.gms.internal.lr;
+import com.google.android.gms.internal.lz;
 
 public class ActivityRecognition
 {
-  public static final Api<Api.ApiOptions.NoOptions> API = new Api(yI, yH, new Scope[0]);
-  public static ActivityRecognitionApi ActivityRecognitionApi = new ja();
+  public static final Api<Api.ApiOptions.NoOptions> API = new Api(CV, CU, new Scope[0]);
+  public static ActivityRecognitionApi ActivityRecognitionApi = new lr();
   public static final String CLIENT_NAME = "activity_recognition";
-  private static final Api.c<jg> yH = new Api.c();
-  private static final Api.b<jg, Api.ApiOptions.NoOptions> yI = new Api.b()
+  private static final Api.c<lz> CU = new Api.c();
+  private static final Api.b<lz, Api.ApiOptions.NoOptions> CV = new Api.b()
   {
-    public final jg c(Context paramAnonymousContext, Looper paramAnonymousLooper, gy paramAnonymousgy, Api.ApiOptions.NoOptions paramAnonymousNoOptions, GoogleApiClient.ConnectionCallbacks paramAnonymousConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener paramAnonymousOnConnectionFailedListener)
+    public final lz d(Context paramAnonymousContext, Looper paramAnonymousLooper, ClientSettings paramAnonymousClientSettings, Api.ApiOptions.NoOptions paramAnonymousNoOptions, GoogleApiClient.ConnectionCallbacks paramAnonymousConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener paramAnonymousOnConnectionFailedListener)
     {
-      return new jg(paramAnonymousContext, paramAnonymousLooper, paramAnonymousConnectionCallbacks, paramAnonymousOnConnectionFailedListener, "activity_recognition");
+      return new lz(paramAnonymousContext, paramAnonymousLooper, paramAnonymousContext.getPackageName(), paramAnonymousConnectionCallbacks, paramAnonymousOnConnectionFailedListener, "activity_recognition");
     }
 
     public final int getPriority()
@@ -33,7 +33,7 @@ public class ActivityRecognition
   };
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.location.ActivityRecognition
  * JD-Core Version:    0.6.2
  */

@@ -1,31 +1,14 @@
 package android.support.v4.widget;
 
-import android.support.v4.view.aq;
 import android.view.View;
-import java.util.ArrayList;
+import android.widget.PopupWindow;
 
-final class ag
-  implements Runnable
+abstract interface ag
 {
-  final View a;
-
-  ag(SlidingPaneLayout paramSlidingPaneLayout, View paramView)
-  {
-    this.a = paramView;
-  }
-
-  public final void run()
-  {
-    if (this.a.getParent() == this.b)
-    {
-      aq.a(this.a, 0, null);
-      SlidingPaneLayout.a(this.b, this.a);
-    }
-    SlidingPaneLayout.g(this.b).remove(this);
-  }
+  public abstract void a(PopupWindow paramPopupWindow, View paramView, int paramInt1, int paramInt2, int paramInt3);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.widget.ag
  * JD-Core Version:    0.6.2
  */

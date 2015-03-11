@@ -11,14 +11,14 @@ public final class b extends d
     super(paramDataHolder, paramInt);
   }
 
-  public final AppState dS()
-  {
-    return new a(this);
-  }
-
   public final boolean equals(Object paramObject)
   {
     return a.a(this, paramObject);
+  }
+
+  public final AppState fo()
+  {
+    return new a(this);
   }
 
   public final byte[] getConflictData()
@@ -48,7 +48,7 @@ public final class b extends d
 
   public final boolean hasConflict()
   {
-    return !ax("conflict_version");
+    return !aS("conflict_version");
   }
 
   public final int hashCode()
@@ -62,7 +62,7 @@ public final class b extends d
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.appstate.b
  * JD-Core Version:    0.6.2
  */

@@ -1,26 +1,39 @@
 package com.google.android.gms.internal;
 
-import com.google.android.gms.appstate.AppStateManager.StateDeletedResult;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.common.api.a.d;
+import android.os.Bundle;
+import android.os.SystemClock;
 
-final class ga$a extends fz
+@ez
+final class ga$a
 {
-  private final a.d<AppStateManager.StateDeletedResult> yR;
+  private long vH = -1L;
+  private long vI = -1L;
 
-  public ga$a(a.d<AppStateManager.StateDeletedResult> paramd)
+  public final long cR()
   {
-    this.yR = ((a.d)hm.b(paramd, "Result holder must not be null"));
+    return this.vI;
   }
 
-  public final void b(int paramInt1, int paramInt2)
+  public final void cS()
   {
-    Status localStatus = new Status(paramInt1);
-    this.yR.a(new ga.b(localStatus, paramInt2));
+    this.vI = SystemClock.elapsedRealtime();
+  }
+
+  public final void cT()
+  {
+    this.vH = SystemClock.elapsedRealtime();
+  }
+
+  public final Bundle toBundle()
+  {
+    Bundle localBundle = new Bundle();
+    localBundle.putLong("topen", this.vH);
+    localBundle.putLong("tclose", this.vI);
+    return localBundle;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ga.a
  * JD-Core Version:    0.6.2
  */

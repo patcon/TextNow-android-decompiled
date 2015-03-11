@@ -1,44 +1,43 @@
 package android.support.v4.view;
 
 import android.os.Build.VERSION;
-import android.view.ViewGroup;
+import android.view.ViewConfiguration;
 
 public final class bi
 {
-  static final bm a = new bo();
+  static final bn a = new bj();
 
   static
   {
-    int i = Build.VERSION.SDK_INT;
-    if (i >= 21)
+    if (Build.VERSION.SDK_INT >= 14)
     {
-      a = new bj();
+      a = new bm();
       return;
     }
-    if (i >= 18)
-    {
-      a = new bn();
-      return;
-    }
-    if (i >= 14)
+    if (Build.VERSION.SDK_INT >= 11)
     {
       a = new bl();
       return;
     }
-    if (i >= 11)
+    if (Build.VERSION.SDK_INT >= 8)
     {
       a = new bk();
       return;
     }
   }
 
-  public static void a(ViewGroup paramViewGroup, boolean paramBoolean)
+  public static int a(ViewConfiguration paramViewConfiguration)
   {
-    a.a(paramViewGroup, false);
+    return a.a(paramViewConfiguration);
+  }
+
+  public static boolean b(ViewConfiguration paramViewConfiguration)
+  {
+    return a.b(paramViewConfiguration);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.view.bi
  * JD-Core Version:    0.6.2
  */

@@ -14,46 +14,44 @@ import java.security.SecureRandom;
 public abstract class h
   implements g
 {
-  protected MotionEvent jO;
-  protected DisplayMetrics jP;
-  protected m jQ;
-  private n jR;
+  protected MotionEvent kw;
+  protected DisplayMetrics kx;
+  protected m ky;
+  private n kz;
 
   protected h(Context paramContext, m paramm, n paramn)
   {
-    this.jQ = paramm;
-    this.jR = paramn;
+    this.ky = paramm;
+    this.kz = paramn;
     try
     {
-      this.jP = paramContext.getResources().getDisplayMetrics();
+      this.kx = paramContext.getResources().getDisplayMetrics();
       return;
     }
     catch (UnsupportedOperationException localUnsupportedOperationException)
     {
-      this.jP = new DisplayMetrics();
-      this.jP.density = 1.0F;
+      this.kx = new DisplayMetrics();
+      this.kx.density = 1.0F;
     }
   }
 
-  private String a(Context paramContext, String paramString, boolean paramBoolean1, boolean paramBoolean2)
+  private String a(Context paramContext, String paramString, boolean paramBoolean)
   {
     try
     {
       try
       {
         t();
-        if (paramBoolean1)
-          e(paramContext);
+        if (paramBoolean)
+          c(paramContext);
         while (true)
         {
           arrayOfByte = u();
           if (arrayOfByte.length != 0)
-            break label74;
+            break;
           String str2 = Integer.toString(5);
           return str2;
-          if (!paramBoolean2)
-            break;
-          d(paramContext);
+          b(paramContext);
         }
       }
       finally
@@ -63,17 +61,13 @@ public abstract class h
     catch (NoSuchAlgorithmException localNoSuchAlgorithmException)
     {
       byte[] arrayOfByte;
-      while (true)
-      {
-        return Integer.toString(7);
-        c(paramContext);
-      }
+      return Integer.toString(7);
       String str1 = a(arrayOfByte, paramString);
       return str1;
     }
     catch (UnsupportedEncodingException localUnsupportedEncodingException)
     {
-      label74: return Integer.toString(7);
+      return Integer.toString(7);
     }
     catch (IOException localIOException)
     {
@@ -83,22 +77,22 @@ public abstract class h
 
   private void t()
   {
-    this.jR.reset();
+    this.kz.reset();
   }
 
   private byte[] u()
   {
-    return this.jR.A();
+    return this.kz.A();
   }
 
   public String a(Context paramContext)
   {
-    return a(paramContext, null, false, false);
+    return a(paramContext, null, false);
   }
 
   public String a(Context paramContext, String paramString)
   {
-    return a(paramContext, paramString, true, false);
+    return a(paramContext, paramString, true);
   }
 
   String a(byte[] paramArrayOfByte, String paramString)
@@ -125,34 +119,34 @@ public abstract class h
       new f().a(arrayOfByte3, arrayOfByte4);
       if ((paramString != null) && (paramString.length() > 0))
         a(paramString, arrayOfByte4);
-      return this.jQ.a(arrayOfByte4, true);
+      return this.ky.a(arrayOfByte4, true);
     }
   }
 
   public void a(int paramInt1, int paramInt2, int paramInt3)
   {
-    if (this.jO != null)
-      this.jO.recycle();
-    this.jO = MotionEvent.obtain(0L, paramInt3, 1, paramInt1 * this.jP.density, paramInt2 * this.jP.density, 0.0F, 0.0F, 0, 0.0F, 0.0F, 0, 0);
+    if (this.kw != null)
+      this.kw.recycle();
+    this.kw = MotionEvent.obtain(0L, paramInt3, 1, paramInt1 * this.kx.density, paramInt2 * this.kx.density, 0.0F, 0.0F, 0, 0.0F, 0.0F, 0, 0);
   }
 
   protected void a(int paramInt, long paramLong)
   {
-    this.jR.b(paramInt, paramLong);
+    this.kz.b(paramInt, paramLong);
   }
 
   protected void a(int paramInt, String paramString)
   {
-    this.jR.b(paramInt, paramString);
+    this.kz.b(paramInt, paramString);
   }
 
   public void a(MotionEvent paramMotionEvent)
   {
     if (paramMotionEvent.getAction() == 1)
     {
-      if (this.jO != null)
-        this.jO.recycle();
-      this.jO = MotionEvent.obtain(paramMotionEvent);
+      if (this.kw != null)
+        this.kw.recycle();
+      this.kw = MotionEvent.obtain(paramMotionEvent);
     }
   }
 
@@ -160,22 +154,15 @@ public abstract class h
   {
     if (paramString.length() > 32)
       paramString = paramString.substring(0, 32);
-    new lx(paramString.getBytes("UTF-8")).o(paramArrayOfByte);
+    new pe(paramString.getBytes("UTF-8")).o(paramArrayOfByte);
   }
 
-  public String b(Context paramContext)
-  {
-    return a(paramContext, null, false, true);
-  }
+  protected abstract void b(Context paramContext);
 
   protected abstract void c(Context paramContext);
-
-  protected abstract void d(Context paramContext);
-
-  protected abstract void e(Context paramContext);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.h
  * JD-Core Version:    0.6.2
  */

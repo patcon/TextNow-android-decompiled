@@ -18,10 +18,10 @@ import java.util.LinkedList;
 
 public abstract class a<T extends LifecycleDelegate>
 {
-  private T LX;
-  private Bundle LY;
-  private LinkedList<a.a> LZ;
-  private final f<T> Ma = new f()
+  private T RX;
+  private Bundle RY;
+  private LinkedList<a.a> RZ;
+  private final f<T> Sa = new f()
   {
     public void a(T paramAnonymousT)
     {
@@ -36,25 +36,25 @@ public abstract class a<T extends LifecycleDelegate>
 
   private void a(Bundle paramBundle, a.a parama)
   {
-    if (this.LX != null)
+    if (this.RX != null)
     {
-      parama.b(this.LX);
+      parama.b(this.RX);
       return;
     }
-    if (this.LZ == null)
-      this.LZ = new LinkedList();
-    this.LZ.add(parama);
+    if (this.RZ == null)
+      this.RZ = new LinkedList();
+    this.RZ.add(parama);
     if (paramBundle != null)
     {
-      if (this.LY != null)
+      if (this.RY != null)
         break label76;
-      this.LY = ((Bundle)paramBundle.clone());
+      this.RY = ((Bundle)paramBundle.clone());
     }
     while (true)
     {
-      a(this.Ma);
+      a(this.Sa);
       return;
-      label76: this.LY.putAll(paramBundle);
+      label76: this.RY.putAll(paramBundle);
     }
   }
 
@@ -88,10 +88,10 @@ public abstract class a<T extends LifecycleDelegate>
     }
   }
 
-  private void ca(int paramInt)
+  private void cv(int paramInt)
   {
-    while ((!this.LZ.isEmpty()) && (((a.a)this.LZ.getLast()).getState() >= paramInt))
-      this.LZ.removeLast();
+    while ((!this.RZ.isEmpty()) && (((a.a)this.RZ.getLast()).getState() >= paramInt))
+      this.RZ.removeLast();
   }
 
   protected void a(FrameLayout paramFrameLayout)
@@ -101,9 +101,9 @@ public abstract class a<T extends LifecycleDelegate>
 
   protected abstract void a(f<T> paramf);
 
-  public T gH()
+  public T it()
   {
-    return this.LX;
+    return this.RX;
   }
 
   public void onCreate(final Bundle paramBundle)
@@ -138,29 +138,29 @@ public abstract class a<T extends LifecycleDelegate>
         return 2;
       }
     });
-    if (this.LX == null)
+    if (this.RX == null)
       a(localFrameLayout);
     return localFrameLayout;
   }
 
   public void onDestroy()
   {
-    if (this.LX != null)
+    if (this.RX != null)
     {
-      this.LX.onDestroy();
+      this.RX.onDestroy();
       return;
     }
-    ca(1);
+    cv(1);
   }
 
   public void onDestroyView()
   {
-    if (this.LX != null)
+    if (this.RX != null)
     {
-      this.LX.onDestroyView();
+      this.RX.onDestroyView();
       return;
     }
-    ca(2);
+    cv(2);
   }
 
   public void onInflate(final Activity paramActivity, final Bundle paramBundle1, final Bundle paramBundle2)
@@ -181,18 +181,18 @@ public abstract class a<T extends LifecycleDelegate>
 
   public void onLowMemory()
   {
-    if (this.LX != null)
-      this.LX.onLowMemory();
+    if (this.RX != null)
+      this.RX.onLowMemory();
   }
 
   public void onPause()
   {
-    if (this.LX != null)
+    if (this.RX != null)
     {
-      this.LX.onPause();
+      this.RX.onPause();
       return;
     }
-    ca(5);
+    cv(5);
   }
 
   public void onResume()
@@ -213,11 +213,11 @@ public abstract class a<T extends LifecycleDelegate>
 
   public void onSaveInstanceState(Bundle paramBundle)
   {
-    if (this.LX != null)
-      this.LX.onSaveInstanceState(paramBundle);
-    while (this.LY == null)
+    if (this.RX != null)
+      this.RX.onSaveInstanceState(paramBundle);
+    while (this.RY == null)
       return;
-    paramBundle.putAll(this.LY);
+    paramBundle.putAll(this.RY);
   }
 
   public void onStart()
@@ -238,16 +238,16 @@ public abstract class a<T extends LifecycleDelegate>
 
   public void onStop()
   {
-    if (this.LX != null)
+    if (this.RX != null)
     {
-      this.LX.onStop();
+      this.RX.onStop();
       return;
     }
-    ca(4);
+    cv(4);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.dynamic.a
  * JD-Core Version:    0.6.2
  */

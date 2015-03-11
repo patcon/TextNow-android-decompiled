@@ -7,15 +7,15 @@ import android.view.MotionEvent;
 
 public class k
 {
-  private String kg = "googleads.g.doubleclick.net";
-  private String kh = "/pagead/ads";
-  private String ki = "ad.doubleclick.net";
-  private String[] kj = { ".doubleclick.net", ".googleadservices.com", ".googlesyndication.com" };
-  private g kk;
+  private String kR = "googleads.g.doubleclick.net";
+  private String kS = "/pagead/ads";
+  private String kT = "ad.doubleclick.net";
+  private String[] kU = { ".doubleclick.net", ".googleadservices.com", ".googlesyndication.com" };
+  private g kV;
 
   public k(g paramg)
   {
-    this.kk = paramg;
+    this.kV = paramg;
   }
 
   private Uri a(Uri paramUri, Context paramContext, String paramString, boolean paramBoolean)
@@ -38,7 +38,7 @@ public class k
     if (paramUri.getQueryParameter("ms") != null)
       throw new l("Query parameter already exists: ms");
     label65: if (paramBoolean);
-    for (String str = this.kk.a(paramContext, paramString); bool; str = this.kk.a(paramContext))
+    for (String str = this.kV.a(paramContext, paramString); bool; str = this.kV.a(paramContext))
       return b(paramUri, "dc_ms", str);
     Uri localUri = a(paramUri, "ms", str);
     return localUri;
@@ -81,7 +81,7 @@ public class k
 
   public void a(MotionEvent paramMotionEvent)
   {
-    this.kk.a(paramMotionEvent);
+    this.kV.a(paramMotionEvent);
   }
 
   public boolean a(Uri paramUri)
@@ -90,7 +90,7 @@ public class k
       throw new NullPointerException();
     try
     {
-      boolean bool = paramUri.getHost().equals(this.ki);
+      boolean bool = paramUri.getHost().equals(this.kT);
       return bool;
     }
     catch (NullPointerException localNullPointerException)
@@ -106,7 +106,7 @@ public class k
     try
     {
       String str = paramUri.getHost();
-      String[] arrayOfString = this.kj;
+      String[] arrayOfString = this.kU;
       int i = arrayOfString.length;
       for (int j = 0; ; j++)
       {
@@ -131,11 +131,11 @@ public class k
 
   public g z()
   {
-    return this.kk;
+    return this.kV;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.k
  * JD-Core Version:    0.6.2
  */

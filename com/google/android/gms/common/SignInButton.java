@@ -6,10 +6,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import com.google.android.gms.common.internal.o;
+import com.google.android.gms.common.internal.p;
+import com.google.android.gms.common.internal.q;
 import com.google.android.gms.dynamic.g.a;
-import com.google.android.gms.internal.hm;
-import com.google.android.gms.internal.hn;
-import com.google.android.gms.internal.ho;
 
 public final class SignInButton extends FrameLayout
   implements View.OnClickListener
@@ -19,9 +19,9 @@ public final class SignInButton extends FrameLayout
   public static final int SIZE_ICON_ONLY = 2;
   public static final int SIZE_STANDARD = 0;
   public static final int SIZE_WIDE = 1;
-  private int Dj;
-  private View Dk;
-  private View.OnClickListener Dl = null;
+  private View Im;
+  private View.OnClickListener In = null;
+  private int mColor;
   private int mSize;
 
   public SignInButton(Context paramContext)
@@ -40,36 +40,36 @@ public final class SignInButton extends FrameLayout
     setStyle(0, 0);
   }
 
-  private void C(Context paramContext)
+  private void G(Context paramContext)
   {
-    if (this.Dk != null)
-      removeView(this.Dk);
+    if (this.Im != null)
+      removeView(this.Im);
     try
     {
-      this.Dk = hn.b(paramContext, this.mSize, this.Dj);
-      addView(this.Dk);
-      this.Dk.setEnabled(isEnabled());
-      this.Dk.setOnClickListener(this);
+      this.Im = p.b(paramContext, this.mSize, this.mColor);
+      addView(this.Im);
+      this.Im.setEnabled(isEnabled());
+      this.Im.setOnClickListener(this);
       return;
     }
     catch (g.a locala)
     {
       while (true)
-        this.Dk = a(paramContext, this.mSize, this.Dj);
+        this.Im = a(paramContext, this.mSize, this.mColor);
     }
   }
 
   private static Button a(Context paramContext, int paramInt1, int paramInt2)
   {
-    ho localho = new ho(paramContext);
-    localho.a(paramContext.getResources(), paramInt1, paramInt2);
-    return localho;
+    q localq = new q(paramContext);
+    localq.a(paramContext.getResources(), paramInt1, paramInt2);
+    return localq;
   }
 
   public final void onClick(View paramView)
   {
-    if ((this.Dl != null) && (paramView == this.Dk))
-      this.Dl.onClick(this);
+    if ((this.In != null) && (paramView == this.Im))
+      this.In.onClick(this);
   }
 
   public final void setColorScheme(int paramInt)
@@ -80,19 +80,19 @@ public final class SignInButton extends FrameLayout
   public final void setEnabled(boolean paramBoolean)
   {
     super.setEnabled(paramBoolean);
-    this.Dk.setEnabled(paramBoolean);
+    this.Im.setEnabled(paramBoolean);
   }
 
   public final void setOnClickListener(View.OnClickListener paramOnClickListener)
   {
-    this.Dl = paramOnClickListener;
-    if (this.Dk != null)
-      this.Dk.setOnClickListener(this);
+    this.In = paramOnClickListener;
+    if (this.Im != null)
+      this.Im.setOnClickListener(this);
   }
 
   public final void setSize(int paramInt)
   {
-    setStyle(paramInt, this.Dj);
+    setStyle(paramInt, this.mColor);
   }
 
   public final void setStyle(int paramInt1, int paramInt2)
@@ -103,7 +103,7 @@ public final class SignInButton extends FrameLayout
       bool1 = true;
       Object[] arrayOfObject1 = new Object[1];
       arrayOfObject1[0] = Integer.valueOf(paramInt1);
-      hm.a(bool1, "Unknown button size %d", arrayOfObject1);
+      o.a(bool1, "Unknown button size %d", arrayOfObject1);
       if ((paramInt2 < 0) || (paramInt2 >= 2))
         break label92;
     }
@@ -111,10 +111,10 @@ public final class SignInButton extends FrameLayout
     {
       Object[] arrayOfObject2 = new Object[1];
       arrayOfObject2[0] = Integer.valueOf(paramInt2);
-      hm.a(bool2, "Unknown color scheme %s", arrayOfObject2);
+      o.a(bool2, "Unknown color scheme %s", arrayOfObject2);
       this.mSize = paramInt1;
-      this.Dj = paramInt2;
-      C(getContext());
+      this.mColor = paramInt2;
+      G(getContext());
       return;
       bool1 = false;
       break;
@@ -122,7 +122,7 @@ public final class SignInButton extends FrameLayout
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.common.SignInButton
  * JD-Core Version:    0.6.2
  */

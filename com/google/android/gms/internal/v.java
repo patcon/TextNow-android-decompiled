@@ -1,42 +1,57 @@
 package com.google.android.gms.internal;
 
-import android.os.Parcel;
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
+import android.os.Bundle;
 
-public final class v
-  implements SafeParcelable
+@ez
+public class v
 {
-  public static final w CREATOR = new w();
-  public final boolean lb;
-  public final boolean ld;
-  public final int versionCode;
+  private v.a lZ;
+  private boolean ma;
+  private boolean mb;
 
-  v(int paramInt, boolean paramBoolean1, boolean paramBoolean2)
+  public v()
   {
-    this.versionCode = paramInt;
-    this.lb = paramBoolean1;
-    this.ld = paramBoolean2;
+    Bundle localBundle = gb.bD();
+    boolean bool1 = false;
+    if (localBundle != null)
+    {
+      boolean bool2 = localBundle.getBoolean("gads:block_autoclicks", false);
+      bool1 = false;
+      if (bool2)
+        bool1 = true;
+    }
+    this.mb = bool1;
   }
 
-  public v(boolean paramBoolean1, boolean paramBoolean2)
+  public v(boolean paramBoolean)
   {
-    this.versionCode = 1;
-    this.lb = paramBoolean1;
-    this.ld = paramBoolean2;
+    this.mb = paramBoolean;
   }
 
-  public final int describeContents()
+  public void a(v.a parama)
   {
-    return 0;
+    this.lZ = parama;
   }
 
-  public final void writeToParcel(Parcel paramParcel, int paramInt)
+  public void ar()
   {
-    w.a(this, paramParcel, paramInt);
+    this.ma = true;
+  }
+
+  public boolean av()
+  {
+    return (!this.mb) || (this.ma);
+  }
+
+  public void d(String paramString)
+  {
+    gs.S("Action was blocked because no click was detected.");
+    if (this.lZ != null)
+      this.lZ.e(paramString);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.v
  * JD-Core Version:    0.6.2
  */

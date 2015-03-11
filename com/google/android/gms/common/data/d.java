@@ -2,56 +2,51 @@ package com.google.android.gms.common.data;
 
 import android.database.CharArrayBuffer;
 import android.net.Uri;
-import com.google.android.gms.internal.hk;
-import com.google.android.gms.internal.hm;
+import com.google.android.gms.common.internal.n;
+import com.google.android.gms.common.internal.o;
 
 public abstract class d
 {
-  protected final DataHolder DG;
-  protected int EC;
-  private int ED;
+  protected final DataHolder II;
+  protected int JX;
+  private int JY;
 
   public d(DataHolder paramDataHolder, int paramInt)
   {
-    this.DG = ((DataHolder)hm.f(paramDataHolder));
-    ac(paramInt);
+    this.II = ((DataHolder)o.i(paramDataHolder));
+    ap(paramInt);
   }
 
   protected void a(String paramString, CharArrayBuffer paramCharArrayBuffer)
   {
-    this.DG.a(paramString, this.EC, this.ED, paramCharArrayBuffer);
+    this.II.a(paramString, this.JX, this.JY, paramCharArrayBuffer);
   }
 
-  protected void ac(int paramInt)
+  public boolean aQ(String paramString)
   {
-    if ((paramInt >= 0) && (paramInt < this.DG.getCount()));
+    return this.II.aQ(paramString);
+  }
+
+  protected Uri aR(String paramString)
+  {
+    return this.II.g(paramString, this.JX, this.JY);
+  }
+
+  protected boolean aS(String paramString)
+  {
+    return this.II.h(paramString, this.JX, this.JY);
+  }
+
+  protected void ap(int paramInt)
+  {
+    if ((paramInt >= 0) && (paramInt < this.II.getCount()));
     for (boolean bool = true; ; bool = false)
     {
-      hm.A(bool);
-      this.EC = paramInt;
-      this.ED = this.DG.ae(this.EC);
+      o.I(bool);
+      this.JX = paramInt;
+      this.JY = this.II.ar(this.JX);
       return;
     }
-  }
-
-  public boolean av(String paramString)
-  {
-    return this.DG.av(paramString);
-  }
-
-  protected Uri aw(String paramString)
-  {
-    return this.DG.g(paramString, this.EC, this.ED);
-  }
-
-  protected boolean ax(String paramString)
-  {
-    return this.DG.h(paramString, this.EC, this.ED);
-  }
-
-  protected int eV()
-  {
-    return this.EC;
   }
 
   public boolean equals(Object paramObject)
@@ -61,16 +56,16 @@ public abstract class d
     if (bool1)
     {
       d locald = (d)paramObject;
-      boolean bool3 = hk.equal(Integer.valueOf(locald.EC), Integer.valueOf(this.EC));
+      boolean bool3 = n.equal(Integer.valueOf(locald.JX), Integer.valueOf(this.JX));
       bool2 = false;
       if (bool3)
       {
-        boolean bool4 = hk.equal(Integer.valueOf(locald.ED), Integer.valueOf(this.ED));
+        boolean bool4 = n.equal(Integer.valueOf(locald.JY), Integer.valueOf(this.JY));
         bool2 = false;
         if (bool4)
         {
-          DataHolder localDataHolder1 = locald.DG;
-          DataHolder localDataHolder2 = this.DG;
+          DataHolder localDataHolder1 = locald.II;
+          DataHolder localDataHolder2 = this.II;
           bool2 = false;
           if (localDataHolder1 == localDataHolder2)
             bool2 = true;
@@ -82,50 +77,55 @@ public abstract class d
 
   protected boolean getBoolean(String paramString)
   {
-    return this.DG.d(paramString, this.EC, this.ED);
+    return this.II.d(paramString, this.JX, this.JY);
   }
 
   protected byte[] getByteArray(String paramString)
   {
-    return this.DG.f(paramString, this.EC, this.ED);
+    return this.II.f(paramString, this.JX, this.JY);
   }
 
   protected float getFloat(String paramString)
   {
-    return this.DG.e(paramString, this.EC, this.ED);
+    return this.II.e(paramString, this.JX, this.JY);
   }
 
   protected int getInteger(String paramString)
   {
-    return this.DG.b(paramString, this.EC, this.ED);
+    return this.II.b(paramString, this.JX, this.JY);
   }
 
   protected long getLong(String paramString)
   {
-    return this.DG.a(paramString, this.EC, this.ED);
+    return this.II.a(paramString, this.JX, this.JY);
   }
 
   protected String getString(String paramString)
   {
-    return this.DG.c(paramString, this.EC, this.ED);
+    return this.II.c(paramString, this.JX, this.JY);
+  }
+
+  protected int gz()
+  {
+    return this.JX;
   }
 
   public int hashCode()
   {
     Object[] arrayOfObject = new Object[3];
-    arrayOfObject[0] = Integer.valueOf(this.EC);
-    arrayOfObject[1] = Integer.valueOf(this.ED);
-    arrayOfObject[2] = this.DG;
-    return hk.hashCode(arrayOfObject);
+    arrayOfObject[0] = Integer.valueOf(this.JX);
+    arrayOfObject[1] = Integer.valueOf(this.JY);
+    arrayOfObject[2] = this.II;
+    return n.hashCode(arrayOfObject);
   }
 
   public boolean isDataValid()
   {
-    return !this.DG.isClosed();
+    return !this.II.isClosed();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.common.data.d
  * JD-Core Version:    0.6.2
  */

@@ -4,25 +4,25 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.ParcelFileDescriptor;
 import android.os.Parcelable.Creator;
+import com.google.android.gms.common.internal.n;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-import com.google.android.gms.internal.hk;
 
 public class Asset
   implements SafeParcelable
 {
   public static final Parcelable.Creator<Asset> CREATOR = new a();
-  private byte[] TF;
-  private String alg;
-  public ParcelFileDescriptor alh;
+  final int BR;
+  private byte[] acH;
+  private String auQ;
+  public ParcelFileDescriptor auR;
   public Uri uri;
-  final int xM;
 
   Asset(int paramInt, byte[] paramArrayOfByte, String paramString, ParcelFileDescriptor paramParcelFileDescriptor, Uri paramUri)
   {
-    this.xM = paramInt;
-    this.TF = paramArrayOfByte;
-    this.alg = paramString;
-    this.alh = paramParcelFileDescriptor;
+    this.BR = paramInt;
+    this.acH = paramArrayOfByte;
+    this.auQ = paramString;
+    this.auR = paramParcelFileDescriptor;
     this.uri = paramUri;
   }
 
@@ -70,23 +70,23 @@ public class Asset
         return false;
       localAsset = (Asset)paramObject;
     }
-    while ((hk.equal(this.TF, localAsset.TF)) && (hk.equal(this.alg, localAsset.alg)) && (hk.equal(this.alh, localAsset.alh)) && (hk.equal(this.uri, localAsset.uri)));
+    while ((n.equal(this.acH, localAsset.acH)) && (n.equal(this.auQ, localAsset.auQ)) && (n.equal(this.auR, localAsset.auR)) && (n.equal(this.uri, localAsset.uri)));
     return false;
   }
 
   public byte[] getData()
   {
-    return this.TF;
+    return this.acH;
   }
 
   public String getDigest()
   {
-    return this.alg;
+    return this.auQ;
   }
 
   public ParcelFileDescriptor getFd()
   {
-    return this.alh;
+    return this.auR;
   }
 
   public Uri getUri()
@@ -97,11 +97,11 @@ public class Asset
   public int hashCode()
   {
     Object[] arrayOfObject = new Object[4];
-    arrayOfObject[0] = this.TF;
-    arrayOfObject[1] = this.alg;
-    arrayOfObject[2] = this.alh;
+    arrayOfObject[0] = this.acH;
+    arrayOfObject[1] = this.auQ;
+    arrayOfObject[2] = this.auR;
     arrayOfObject[3] = this.uri;
-    return hk.hashCode(arrayOfObject);
+    return n.hashCode(arrayOfObject);
   }
 
   public String toString()
@@ -109,19 +109,19 @@ public class Asset
     StringBuilder localStringBuilder = new StringBuilder();
     localStringBuilder.append("Asset[@");
     localStringBuilder.append(Integer.toHexString(hashCode()));
-    if (this.alg == null)
+    if (this.auQ == null)
       localStringBuilder.append(", nodigest");
     while (true)
     {
-      if (this.TF != null)
+      if (this.acH != null)
       {
         localStringBuilder.append(", size=");
-        localStringBuilder.append(this.TF.length);
+        localStringBuilder.append(this.acH.length);
       }
-      if (this.alh != null)
+      if (this.auR != null)
       {
         localStringBuilder.append(", fd=");
-        localStringBuilder.append(this.alh);
+        localStringBuilder.append(this.auR);
       }
       if (this.uri != null)
       {
@@ -131,7 +131,7 @@ public class Asset
       localStringBuilder.append("]");
       return localStringBuilder.toString();
       localStringBuilder.append(", ");
-      localStringBuilder.append(this.alg);
+      localStringBuilder.append(this.auQ);
     }
   }
 
@@ -141,7 +141,7 @@ public class Asset
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wearable.Asset
  * JD-Core Version:    0.6.2
  */

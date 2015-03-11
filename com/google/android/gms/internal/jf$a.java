@@ -1,40 +1,42 @@
 package com.google.android.gms.internal;
 
-import android.location.Location;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import com.google.android.gms.location.LocationListener;
+import android.os.Parcel;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
-class jf$a extends Handler
+public final class jf$a
+  implements SafeParcelable
 {
-  private final LocationListener VN;
+  public static final jh CREATOR = new jh();
+  final String Mw;
+  final int Mx;
+  final int versionCode;
 
-  public jf$a(LocationListener paramLocationListener)
+  jf$a(int paramInt1, String paramString, int paramInt2)
   {
-    this.VN = paramLocationListener;
+    this.versionCode = paramInt1;
+    this.Mw = paramString;
+    this.Mx = paramInt2;
   }
 
-  public jf$a(LocationListener paramLocationListener, Looper paramLooper)
+  jf$a(String paramString, int paramInt)
   {
-    super(paramLooper);
-    this.VN = paramLocationListener;
+    this.versionCode = 1;
+    this.Mw = paramString;
+    this.Mx = paramInt;
   }
 
-  public void handleMessage(Message paramMessage)
+  public final int describeContents()
   {
-    switch (paramMessage.what)
-    {
-    default:
-      return;
-    case 1:
-    }
-    Location localLocation = new Location((Location)paramMessage.obj);
-    this.VN.onLocationChanged(localLocation);
+    return 0;
+  }
+
+  public final void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    jh.a(this, paramParcel, paramInt);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.jf.a
  * JD-Core Version:    0.6.2
  */

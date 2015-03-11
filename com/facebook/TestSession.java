@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import com.facebook.internal.Validate;
 import com.facebook.model.GraphObject;
+import com.facebook.model.GraphUser;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +24,7 @@ public class TestSession extends Session
   private final List<String> requestedPermissions;
   private final String sessionUniqueUserTag;
   private String testAccountId;
+  private String testAccountUserName;
   private boolean wasAskedToExtendAccessToken;
 
   static
@@ -98,16 +101,16 @@ public class TestSession extends Session
     // Byte code:
     //   0: ldc 2
     //   2: monitorenter
-    //   3: getstatic 42	com/facebook/TestSession:testApplicationId	Ljava/lang/String;
-    //   6: invokestatic 185	com/facebook/internal/Utility:isNullOrEmpty	(Ljava/lang/String;)Z
+    //   3: getstatic 43	com/facebook/TestSession:testApplicationId	Ljava/lang/String;
+    //   6: invokestatic 186	com/facebook/internal/Utility:isNullOrEmpty	(Ljava/lang/String;)Z
     //   9: ifne +12 -> 21
-    //   12: getstatic 60	com/facebook/TestSession:testApplicationSecret	Ljava/lang/String;
-    //   15: invokestatic 185	com/facebook/internal/Utility:isNullOrEmpty	(Ljava/lang/String;)Z
+    //   12: getstatic 61	com/facebook/TestSession:testApplicationSecret	Ljava/lang/String;
+    //   15: invokestatic 186	com/facebook/internal/Utility:isNullOrEmpty	(Ljava/lang/String;)Z
     //   18: ifeq +21 -> 39
-    //   21: new 187	com/facebook/FacebookException
+    //   21: new 188	com/facebook/FacebookException
     //   24: dup
-    //   25: ldc 189
-    //   27: invokespecial 191	com/facebook/FacebookException:<init>	(Ljava/lang/String;)V
+    //   25: ldc 190
+    //   27: invokespecial 192	com/facebook/FacebookException:<init>	(Ljava/lang/String;)V
     //   30: athrow
     //   31: astore 4
     //   33: ldc 2
@@ -115,31 +118,31 @@ public class TestSession extends Session
     //   36: aload 4
     //   38: athrow
     //   39: aload_1
-    //   40: invokestatic 194	com/facebook/internal/Utility:isNullOrEmpty	(Ljava/util/Collection;)Z
+    //   40: invokestatic 195	com/facebook/internal/Utility:isNullOrEmpty	(Ljava/util/Collection;)Z
     //   43: ifeq +50 -> 93
     //   46: iconst_2
-    //   47: anewarray 118	java/lang/String
+    //   47: anewarray 119	java/lang/String
     //   50: dup
     //   51: iconst_0
-    //   52: ldc 196
+    //   52: ldc 197
     //   54: aastore
     //   55: dup
     //   56: iconst_1
-    //   57: ldc 198
+    //   57: ldc 199
     //   59: aastore
-    //   60: invokestatic 204	java/util/Arrays:asList	([Ljava/lang/Object;)Ljava/util/List;
+    //   60: invokestatic 205	java/util/Arrays:asList	([Ljava/lang/Object;)Ljava/util/List;
     //   63: astore 5
     //   65: new 2	com/facebook/TestSession
     //   68: dup
     //   69: aload_0
     //   70: aload 5
-    //   72: new 206	com/facebook/TestSession$TestTokenCachingStrategy
+    //   72: new 207	com/facebook/TestSession$TestTokenCachingStrategy
     //   75: dup
     //   76: aconst_null
-    //   77: invokespecial 209	com/facebook/TestSession$TestTokenCachingStrategy:<init>	(Lcom/facebook/TestSession$1;)V
+    //   77: invokespecial 210	com/facebook/TestSession$TestTokenCachingStrategy:<init>	(Lcom/facebook/TestSession$1;)V
     //   80: aload_3
     //   81: aload_2
-    //   82: invokespecial 211	com/facebook/TestSession:<init>	(Landroid/app/Activity;Ljava/util/List;Lcom/facebook/TokenCachingStrategy;Ljava/lang/String;Lcom/facebook/TestSession$Mode;)V
+    //   82: invokespecial 212	com/facebook/TestSession:<init>	(Landroid/app/Activity;Ljava/util/List;Lcom/facebook/TokenCachingStrategy;Ljava/lang/String;Lcom/facebook/TestSession$Mode;)V
     //   85: astore 6
     //   87: ldc 2
     //   89: monitorexit
@@ -171,7 +174,7 @@ public class TestSession extends Session
       arrayOfObject[1] = localFacebookRequestError.getException().toString();
       String.format("Could not delete test account %s: %s", arrayOfObject);
     }
-    while (localGraphObject.getProperty("FACEBOOK_NON_JSON_RESULT") != Boolean.valueOf(false))
+    while ((localGraphObject.getProperty("FACEBOOK_NON_JSON_RESULT") != Boolean.valueOf(false)) && (localGraphObject.getProperty("success") != Boolean.valueOf(false)))
     {
       Object[] arrayOfObject;
       return;
@@ -220,6 +223,7 @@ public class TestSession extends Session
   private void finishAuthWithTestAccount(TestSession.TestAccount paramTestAccount)
   {
     this.testAccountId = paramTestAccount.getId();
+    this.testAccountUserName = paramTestAccount.getName();
     finishAuthOrReauth(AccessToken.createFromString(paramTestAccount.getAccessToken(), this.requestedPermissions, AccessTokenSource.TEST_USER), null);
   }
 
@@ -269,155 +273,55 @@ public class TestSession extends Session
     }
   }
 
-  private static void populateTestAccounts(Collection<TestSession.TestAccount> paramCollection, Collection<TestSession.UserAccount> paramCollection1)
+  private static void populateTestAccounts(Collection<TestSession.TestAccount> paramCollection, GraphObject paramGraphObject)
   {
     try
     {
-      Iterator localIterator1 = paramCollection.iterator();
-      while (localIterator1.hasNext())
-        storeTestAccount((TestSession.TestAccount)localIterator1.next());
+      Iterator localIterator = paramCollection.iterator();
+      while (localIterator.hasNext())
+      {
+        TestSession.TestAccount localTestAccount = (TestSession.TestAccount)localIterator.next();
+        localTestAccount.setName(((GraphUser)paramGraphObject.getPropertyAs(localTestAccount.getId(), GraphUser.class)).getName());
+        storeTestAccount(localTestAccount);
+      }
     }
     finally
     {
     }
-    Iterator localIterator2 = paramCollection1.iterator();
-    while (localIterator2.hasNext())
-    {
-      TestSession.UserAccount localUserAccount = (TestSession.UserAccount)localIterator2.next();
-      TestSession.TestAccount localTestAccount = (TestSession.TestAccount)appTestAccounts.get(localUserAccount.getUid());
-      if (localTestAccount != null)
-        localTestAccount.setName(localUserAccount.getName());
-    }
   }
 
-  // ERROR //
   private static void retrieveTestAccountsForAppIfNeeded()
   {
-    // Byte code:
-    //   0: ldc 2
-    //   2: monitorenter
-    //   3: getstatic 252	com/facebook/TestSession:appTestAccounts	Ljava/util/Map;
-    //   6: astore_1
-    //   7: aload_1
-    //   8: ifnull +7 -> 15
-    //   11: ldc 2
-    //   13: monitorexit
-    //   14: return
-    //   15: new 346	java/util/HashMap
-    //   18: dup
-    //   19: invokespecial 347	java/util/HashMap:<init>	()V
-    //   22: putstatic 252	com/facebook/TestSession:appTestAccounts	Ljava/util/Map;
-    //   25: iconst_1
-    //   26: anewarray 109	java/lang/Object
-    //   29: astore_2
-    //   30: aload_2
-    //   31: iconst_0
-    //   32: getstatic 42	com/facebook/TestSession:testApplicationId	Ljava/lang/String;
-    //   35: aastore
-    //   36: ldc_w 349
-    //   39: aload_2
-    //   40: invokestatic 122	java/lang/String:format	(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
-    //   43: astore_3
-    //   44: new 89	android/os/Bundle
-    //   47: dup
-    //   48: invokespecial 91	android/os/Bundle:<init>	()V
-    //   51: astore 4
-    //   53: new 351	org/json/JSONObject
-    //   56: dup
-    //   57: invokespecial 352	org/json/JSONObject:<init>	()V
-    //   60: astore 5
-    //   62: aload 5
-    //   64: ldc_w 354
-    //   67: aload_3
-    //   68: invokevirtual 358	org/json/JSONObject:put	(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
-    //   71: pop
-    //   72: aload 5
-    //   74: ldc_w 360
-    //   77: ldc_w 362
-    //   80: invokevirtual 358	org/json/JSONObject:put	(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
-    //   83: pop
-    //   84: aload 4
-    //   86: ldc_w 364
-    //   89: aload 5
-    //   91: invokevirtual 365	org/json/JSONObject:toString	()Ljava/lang/String;
-    //   94: invokevirtual 98	android/os/Bundle:putString	(Ljava/lang/String;Ljava/lang/String;)V
-    //   97: aload 4
-    //   99: ldc 104
-    //   101: invokestatic 107	com/facebook/TestSession:getAppAccessToken	()Ljava/lang/String;
-    //   104: invokevirtual 98	android/os/Bundle:putString	(Ljava/lang/String;Ljava/lang/String;)V
-    //   107: new 124	com/facebook/Request
-    //   110: dup
-    //   111: aconst_null
-    //   112: ldc_w 367
-    //   115: aload 4
-    //   117: aconst_null
-    //   118: invokespecial 135	com/facebook/Request:<init>	(Lcom/facebook/Session;Ljava/lang/String;Landroid/os/Bundle;Lcom/facebook/HttpMethod;)V
-    //   121: invokevirtual 139	com/facebook/Request:executeAndWait	()Lcom/facebook/Response;
-    //   124: astore 9
-    //   126: aload 9
-    //   128: invokevirtual 145	com/facebook/Response:getError	()Lcom/facebook/FacebookRequestError;
-    //   131: ifnull +30 -> 161
-    //   134: aload 9
-    //   136: invokevirtual 145	com/facebook/Response:getError	()Lcom/facebook/FacebookRequestError;
-    //   139: invokevirtual 157	com/facebook/FacebookRequestError:getException	()Lcom/facebook/FacebookException;
-    //   142: athrow
-    //   143: astore_0
-    //   144: ldc 2
-    //   146: monitorexit
-    //   147: aload_0
-    //   148: athrow
-    //   149: astore 6
-    //   151: new 187	com/facebook/FacebookException
-    //   154: dup
-    //   155: aload 6
-    //   157: invokespecial 370	com/facebook/FacebookException:<init>	(Ljava/lang/Throwable;)V
-    //   160: athrow
-    //   161: aload 9
-    //   163: ldc_w 372
-    //   166: invokevirtual 151	com/facebook/Response:getGraphObjectAs	(Ljava/lang/Class;)Lcom/facebook/model/GraphObject;
-    //   169: checkcast 372	com/facebook/TestSession$FqlResponse
-    //   172: invokeinterface 376 1 0
-    //   177: astore 10
-    //   179: aload 10
-    //   181: ifnull +14 -> 195
-    //   184: aload 10
-    //   186: invokeinterface 381 1 0
-    //   191: iconst_2
-    //   192: if_icmpeq +14 -> 206
-    //   195: new 187	com/facebook/FacebookException
-    //   198: dup
-    //   199: ldc_w 383
-    //   202: invokespecial 191	com/facebook/FacebookException:<init>	(Ljava/lang/String;)V
-    //   205: athrow
-    //   206: aload 10
-    //   208: iconst_0
-    //   209: invokeinterface 386 2 0
-    //   214: checkcast 388	com/facebook/TestSession$FqlResult
-    //   217: invokeinterface 391 1 0
-    //   222: ldc 147
-    //   224: invokeinterface 395 2 0
-    //   229: aload 10
-    //   231: iconst_1
-    //   232: invokeinterface 386 2 0
-    //   237: checkcast 388	com/facebook/TestSession$FqlResult
-    //   240: invokeinterface 391 1 0
-    //   245: ldc_w 334
-    //   248: invokeinterface 395 2 0
-    //   253: invokestatic 397	com/facebook/TestSession:populateTestAccounts	(Ljava/util/Collection;Ljava/util/Collection;)V
-    //   256: goto -245 -> 11
-    //
-    // Exception table:
-    //   from	to	target	type
-    //   3	7	143	finally
-    //   15	53	143	finally
-    //   53	84	143	finally
-    //   84	143	143	finally
-    //   151	161	143	finally
-    //   161	179	143	finally
-    //   184	195	143	finally
-    //   195	206	143	finally
-    //   206	256	143	finally
-    //   53	84	149	org/json/JSONException
+    while (true)
+    {
+      List localList;
+      try
+      {
+        Map localMap = appTestAccounts;
+        if (localMap != null)
+          return;
+        appTestAccounts = new HashMap();
+        Request.setDefaultBatchApplicationId(testApplicationId);
+        Bundle localBundle1 = new Bundle();
+        localBundle1.putString("access_token", getAppAccessToken());
+        Request localRequest1 = new Request(null, "app/accounts/test-users", localBundle1, null);
+        localRequest1.setBatchEntryName("testUsers");
+        localRequest1.setBatchEntryOmitResultOnSuccess(false);
+        Bundle localBundle2 = new Bundle();
+        localBundle2.putString("access_token", getAppAccessToken());
+        localBundle2.putString("ids", "{result=testUsers:$.data.*.id}");
+        localBundle2.putString("fields", "name");
+        Request localRequest2 = new Request(null, "", localBundle2, null);
+        localRequest2.setBatchEntryDependsOn("testUsers");
+        localList = Request.executeBatchAndWait(new Request[] { localRequest1, localRequest2 });
+        if ((localList == null) || (localList.size() != 2))
+          throw new FacebookException("Unexpected number of results from TestUsers batch query");
+      }
+      finally
+      {
+      }
+      populateTestAccounts(((TestSession.TestAccountsResponse)((Response)localList.get(0)).getGraphObjectAs(TestSession.TestAccountsResponse.class)).getData(), ((Response)localList.get(1)).getGraphObject());
+    }
   }
 
   public static void setTestApplicationId(String paramString)
@@ -503,13 +407,18 @@ public class TestSession extends Session
   void forceExtendAccessToken(boolean paramBoolean)
   {
     AccessToken localAccessToken = getTokenInfo();
-    setTokenInfo(new AccessToken(localAccessToken.getToken(), new Date(), localAccessToken.getPermissions(), AccessTokenSource.TEST_USER, new Date(0L)));
+    setTokenInfo(new AccessToken(localAccessToken.getToken(), new Date(), localAccessToken.getPermissions(), localAccessToken.getDeclinedPermissions(), AccessTokenSource.TEST_USER, new Date(0L)));
     setLastAttemptedTokenExtendDate(new Date(0L));
   }
 
   public final String getTestUserId()
   {
     return this.testAccountId;
+  }
+
+  public final String getTestUserName()
+  {
+    return this.testAccountUserName;
   }
 
   boolean getWasAskedToExtendAccessToken()
@@ -539,7 +448,7 @@ public class TestSession extends Session
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.TestSession
  * JD-Core Version:    0.6.2
  */

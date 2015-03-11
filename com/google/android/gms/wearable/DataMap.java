@@ -2,11 +2,11 @@ package com.google.android.gms.wearable;
 
 import android.os.Bundle;
 import android.text.TextUtils;
-import com.google.android.gms.internal.lv;
-import com.google.android.gms.internal.lv.a;
-import com.google.android.gms.internal.lw;
-import com.google.android.gms.internal.md;
-import com.google.android.gms.internal.me;
+import com.google.android.gms.internal.pc;
+import com.google.android.gms.internal.pc.a;
+import com.google.android.gms.internal.pd;
+import com.google.android.gms.internal.pm;
+import com.google.android.gms.internal.pn;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -16,7 +16,7 @@ import java.util.Set;
 public class DataMap
 {
   public static final String TAG = "DataMap";
-  private final HashMap<String, Object> alk = new HashMap();
+  private final HashMap<String, Object> auW = new HashMap();
 
   private static void a(Bundle paramBundle, String paramString, Object paramObject)
   {
@@ -87,7 +87,7 @@ public class DataMap
       }
     }
     while (!(paramObject instanceof ArrayList));
-    switch (c((ArrayList)paramObject))
+    switch (d((ArrayList)paramObject))
     {
     default:
       return;
@@ -181,7 +181,7 @@ public class DataMap
       }
     }
     while (!(paramObject instanceof ArrayList));
-    switch (c((ArrayList)paramObject))
+    switch (d((ArrayList)paramObject))
     {
     case 4:
     default:
@@ -297,7 +297,7 @@ public class DataMap
     return localArrayList;
   }
 
-  private static int c(ArrayList<?> paramArrayList)
+  private static int d(ArrayList<?> paramArrayList)
   {
     if (paramArrayList.isEmpty())
       return 0;
@@ -337,23 +337,23 @@ public class DataMap
   {
     try
     {
-      DataMap localDataMap = lv.a(new lv.a(lw.n(paramArrayOfByte), new ArrayList()));
+      DataMap localDataMap = pc.a(new pc.a(pd.n(paramArrayOfByte), new ArrayList()));
       return localDataMap;
     }
-    catch (md localmd)
+    catch (pm localpm)
     {
-      throw new IllegalArgumentException("Unable to convert data", localmd);
+      throw new IllegalArgumentException("Unable to convert data", localpm);
     }
   }
 
   public void clear()
   {
-    this.alk.clear();
+    this.auW.clear();
   }
 
   public boolean containsKey(String paramString)
   {
-    return this.alk.containsKey(paramString);
+    return this.auW.containsKey(paramString);
   }
 
   public boolean equals(Object paramObject)
@@ -365,12 +365,12 @@ public class DataMap
 
   public <T> T get(String paramString)
   {
-    return this.alk.get(paramString);
+    return this.auW.get(paramString);
   }
 
   public Asset getAsset(String paramString)
   {
-    Object localObject = this.alk.get(paramString);
+    Object localObject = this.auW.get(paramString);
     if (localObject == null)
       return null;
     try
@@ -392,7 +392,7 @@ public class DataMap
 
   public boolean getBoolean(String paramString, boolean paramBoolean)
   {
-    Object localObject = this.alk.get(paramString);
+    Object localObject = this.auW.get(paramString);
     if (localObject == null)
       return paramBoolean;
     try
@@ -414,7 +414,7 @@ public class DataMap
 
   public byte getByte(String paramString, byte paramByte)
   {
-    Object localObject = this.alk.get(paramString);
+    Object localObject = this.auW.get(paramString);
     if (localObject == null)
       return paramByte;
     try
@@ -431,7 +431,7 @@ public class DataMap
 
   public byte[] getByteArray(String paramString)
   {
-    Object localObject = this.alk.get(paramString);
+    Object localObject = this.auW.get(paramString);
     if (localObject == null)
       return null;
     try
@@ -448,7 +448,7 @@ public class DataMap
 
   public DataMap getDataMap(String paramString)
   {
-    Object localObject = this.alk.get(paramString);
+    Object localObject = this.auW.get(paramString);
     if (localObject == null)
       return null;
     try
@@ -465,7 +465,7 @@ public class DataMap
 
   public ArrayList<DataMap> getDataMapArrayList(String paramString)
   {
-    Object localObject = this.alk.get(paramString);
+    Object localObject = this.auW.get(paramString);
     if (localObject == null)
       return null;
     try
@@ -487,7 +487,7 @@ public class DataMap
 
   public double getDouble(String paramString, double paramDouble)
   {
-    Object localObject = this.alk.get(paramString);
+    Object localObject = this.auW.get(paramString);
     if (localObject == null)
       return paramDouble;
     try
@@ -509,7 +509,7 @@ public class DataMap
 
   public float getFloat(String paramString, float paramFloat)
   {
-    Object localObject = this.alk.get(paramString);
+    Object localObject = this.auW.get(paramString);
     if (localObject == null)
       return paramFloat;
     try
@@ -526,7 +526,7 @@ public class DataMap
 
   public float[] getFloatArray(String paramString)
   {
-    Object localObject = this.alk.get(paramString);
+    Object localObject = this.auW.get(paramString);
     if (localObject == null)
       return null;
     try
@@ -548,7 +548,7 @@ public class DataMap
 
   public int getInt(String paramString, int paramInt)
   {
-    Object localObject = this.alk.get(paramString);
+    Object localObject = this.auW.get(paramString);
     if (localObject == null)
       return paramInt;
     try
@@ -565,7 +565,7 @@ public class DataMap
 
   public ArrayList<Integer> getIntegerArrayList(String paramString)
   {
-    Object localObject = this.alk.get(paramString);
+    Object localObject = this.auW.get(paramString);
     if (localObject == null)
       return null;
     try
@@ -587,7 +587,7 @@ public class DataMap
 
   public long getLong(String paramString, long paramLong)
   {
-    Object localObject = this.alk.get(paramString);
+    Object localObject = this.auW.get(paramString);
     if (localObject == null)
       return paramLong;
     try
@@ -604,7 +604,7 @@ public class DataMap
 
   public long[] getLongArray(String paramString)
   {
-    Object localObject = this.alk.get(paramString);
+    Object localObject = this.auW.get(paramString);
     if (localObject == null)
       return null;
     try
@@ -621,7 +621,7 @@ public class DataMap
 
   public String getString(String paramString)
   {
-    Object localObject = this.alk.get(paramString);
+    Object localObject = this.auW.get(paramString);
     if (localObject == null)
       return null;
     try
@@ -646,7 +646,7 @@ public class DataMap
 
   public String[] getStringArray(String paramString)
   {
-    Object localObject = this.alk.get(paramString);
+    Object localObject = this.auW.get(paramString);
     if (localObject == null)
       return null;
     try
@@ -663,7 +663,7 @@ public class DataMap
 
   public ArrayList<String> getStringArrayList(String paramString)
   {
-    Object localObject = this.alk.get(paramString);
+    Object localObject = this.auW.get(paramString);
     if (localObject == null)
       return null;
     try
@@ -680,17 +680,17 @@ public class DataMap
 
   public int hashCode()
   {
-    return 29 * this.alk.hashCode();
+    return 29 * this.auW.hashCode();
   }
 
   public boolean isEmpty()
   {
-    return this.alk.isEmpty();
+    return this.auW.isEmpty();
   }
 
   public Set<String> keySet()
   {
-    return this.alk.keySet();
+    return this.auW.keySet();
   }
 
   public void putAll(DataMap paramDataMap)
@@ -699,124 +699,124 @@ public class DataMap
     while (localIterator.hasNext())
     {
       String str = (String)localIterator.next();
-      this.alk.put(str, paramDataMap.get(str));
+      this.auW.put(str, paramDataMap.get(str));
     }
   }
 
   public void putAsset(String paramString, Asset paramAsset)
   {
-    this.alk.put(paramString, paramAsset);
+    this.auW.put(paramString, paramAsset);
   }
 
   public void putBoolean(String paramString, boolean paramBoolean)
   {
-    this.alk.put(paramString, Boolean.valueOf(paramBoolean));
+    this.auW.put(paramString, Boolean.valueOf(paramBoolean));
   }
 
   public void putByte(String paramString, byte paramByte)
   {
-    this.alk.put(paramString, Byte.valueOf(paramByte));
+    this.auW.put(paramString, Byte.valueOf(paramByte));
   }
 
   public void putByteArray(String paramString, byte[] paramArrayOfByte)
   {
-    this.alk.put(paramString, paramArrayOfByte);
+    this.auW.put(paramString, paramArrayOfByte);
   }
 
   public void putDataMap(String paramString, DataMap paramDataMap)
   {
-    this.alk.put(paramString, paramDataMap);
+    this.auW.put(paramString, paramDataMap);
   }
 
   public void putDataMapArrayList(String paramString, ArrayList<DataMap> paramArrayList)
   {
-    this.alk.put(paramString, paramArrayList);
+    this.auW.put(paramString, paramArrayList);
   }
 
   public void putDouble(String paramString, double paramDouble)
   {
-    this.alk.put(paramString, Double.valueOf(paramDouble));
+    this.auW.put(paramString, Double.valueOf(paramDouble));
   }
 
   public void putFloat(String paramString, float paramFloat)
   {
-    this.alk.put(paramString, Float.valueOf(paramFloat));
+    this.auW.put(paramString, Float.valueOf(paramFloat));
   }
 
   public void putFloatArray(String paramString, float[] paramArrayOfFloat)
   {
-    this.alk.put(paramString, paramArrayOfFloat);
+    this.auW.put(paramString, paramArrayOfFloat);
   }
 
   public void putInt(String paramString, int paramInt)
   {
-    this.alk.put(paramString, Integer.valueOf(paramInt));
+    this.auW.put(paramString, Integer.valueOf(paramInt));
   }
 
   public void putIntegerArrayList(String paramString, ArrayList<Integer> paramArrayList)
   {
-    this.alk.put(paramString, paramArrayList);
+    this.auW.put(paramString, paramArrayList);
   }
 
   public void putLong(String paramString, long paramLong)
   {
-    this.alk.put(paramString, Long.valueOf(paramLong));
+    this.auW.put(paramString, Long.valueOf(paramLong));
   }
 
   public void putLongArray(String paramString, long[] paramArrayOfLong)
   {
-    this.alk.put(paramString, paramArrayOfLong);
+    this.auW.put(paramString, paramArrayOfLong);
   }
 
   public void putString(String paramString1, String paramString2)
   {
-    this.alk.put(paramString1, paramString2);
+    this.auW.put(paramString1, paramString2);
   }
 
   public void putStringArray(String paramString, String[] paramArrayOfString)
   {
-    this.alk.put(paramString, paramArrayOfString);
+    this.auW.put(paramString, paramArrayOfString);
   }
 
   public void putStringArrayList(String paramString, ArrayList<String> paramArrayList)
   {
-    this.alk.put(paramString, paramArrayList);
+    this.auW.put(paramString, paramArrayList);
   }
 
   public Object remove(String paramString)
   {
-    return this.alk.remove(paramString);
+    return this.auW.remove(paramString);
   }
 
   public int size()
   {
-    return this.alk.size();
+    return this.auW.size();
   }
 
   public Bundle toBundle()
   {
     Bundle localBundle = new Bundle();
-    Iterator localIterator = this.alk.keySet().iterator();
+    Iterator localIterator = this.auW.keySet().iterator();
     while (localIterator.hasNext())
     {
       String str = (String)localIterator.next();
-      a(localBundle, str, this.alk.get(str));
+      a(localBundle, str, this.auW.get(str));
     }
     return localBundle;
   }
 
   public byte[] toByteArray()
   {
-    return me.d(lv.a(this).amp);
+    return pn.f(pc.a(this).awb);
   }
 
   public String toString()
   {
-    return this.alk.toString();
+    return this.auW.toString();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wearable.DataMap
  * JD-Core Version:    0.6.2
  */

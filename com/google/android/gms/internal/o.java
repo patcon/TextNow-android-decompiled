@@ -14,13 +14,13 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class o
 {
-  private final m jQ;
-  private final SecureRandom kl;
+  private final SecureRandom kW;
+  private final m ky;
 
   public o(m paramm, SecureRandom paramSecureRandom)
   {
-    this.jQ = paramm;
-    this.kl = paramSecureRandom;
+    this.ky = paramm;
+    this.kW = paramSecureRandom;
   }
 
   static void c(byte[] paramArrayOfByte)
@@ -34,7 +34,7 @@ public class o
     byte[] arrayOfByte1;
     try
     {
-      arrayOfByte1 = this.jQ.a(paramString, false);
+      arrayOfByte1 = this.ky.a(paramString, false);
       if (arrayOfByte1.length != 32)
         throw new o.a(this);
     }
@@ -55,7 +55,7 @@ public class o
       throw new o.a(this);
     try
     {
-      arrayOfByte1 = this.jQ.a(paramString, false);
+      arrayOfByte1 = this.ky.a(paramString, false);
       if (arrayOfByte1.length <= 16)
         throw new o.a(this);
     }
@@ -103,7 +103,7 @@ public class o
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.o
  * JD-Core Version:    0.6.2
  */

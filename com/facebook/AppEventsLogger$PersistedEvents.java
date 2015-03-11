@@ -98,7 +98,7 @@ class AppEventsLogger$PersistedEvents
     //   69: astore_2
     //   70: aload 11
     //   72: astore 4
-    //   74: invokestatic 140	com/facebook/AppEventsLogger:access$800	()Ljava/lang/String;
+    //   74: invokestatic 140	com/facebook/AppEventsLogger:access$1300	()Ljava/lang/String;
     //   77: pop
     //   78: new 142	java/lang/StringBuilder
     //   81: dup
@@ -168,7 +168,7 @@ class AppEventsLogger$PersistedEvents
     //   38: astore_2
     //   39: aconst_null
     //   40: astore_1
-    //   41: invokestatic 140	com/facebook/AppEventsLogger:access$800	()Ljava/lang/String;
+    //   41: invokestatic 140	com/facebook/AppEventsLogger:access$1300	()Ljava/lang/String;
     //   44: pop
     //   45: new 142	java/lang/StringBuilder
     //   48: dup
@@ -222,7 +222,7 @@ class AppEventsLogger$PersistedEvents
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.AppEventsLogger.PersistedEvents
  * JD-Core Version:    0.6.2
  */

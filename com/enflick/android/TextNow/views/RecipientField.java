@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
+import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
@@ -21,16 +22,17 @@ import android.widget.EditText;
 import android.widget.MultiAutoCompleteTextView.Tokenizer;
 import android.widget.TextView;
 import java.util.Locale;
-import textnow.q.ad;
-import textnow.q.b;
-import textnow.u.d;
+import textnow.v.b;
+import textnow.v.y;
+import textnow.v.z;
+import textnow.z.f;
 
 public class RecipientField extends ExtendedEditText
 {
   private TextView a;
   private TextWatcher b;
   private EditText c;
-  private h d;
+  private i d;
 
   public RecipientField(Context paramContext)
   {
@@ -69,14 +71,29 @@ public class RecipientField extends ExtendedEditText
       this.a.setLayoutParams(new ViewGroup.LayoutParams(-2, -2));
       this.a.setGravity(17);
       this.a.setTextSize(2, 14.0F);
-      this.a.setTextColor(paramContext.getResources().getColor(2131296289));
-      this.a.setBackgroundResource(2130837613);
-      this.a.setCompoundDrawablesWithIntrinsicBounds(0, 0, 2130837960, 0);
-      this.a.setCompoundDrawablePadding(ad.a(paramContext, 4));
+      this.a.setTextColor(paramContext.getResources().getColor(2131230803));
+      int j = y.b(paramContext, 2130772068);
+      Drawable localDrawable = paramContext.getResources().getDrawable(2130837568);
+      localDrawable.mutate().setColorFilter(j, PorterDuff.Mode.MULTIPLY);
+      this.a.setBackgroundDrawable(localDrawable);
+      this.a.setCompoundDrawablesWithIntrinsicBounds(0, 0, 2130837921, 0);
+      this.a.setCompoundDrawablePadding(z.a(paramContext, 4));
     }
+    int i = z.b(paramContext);
+    if (i < 400)
+    {
+      setMaxLines(1);
+      return;
+    }
+    if (i < 800)
+    {
+      setMaxLines(2);
+      return;
+    }
+    setMaxLines(3);
   }
 
-  public final h a()
+  public final i a()
   {
     return this.d;
   }
@@ -107,7 +124,7 @@ public class RecipientField extends ExtendedEditText
     }
     while (true)
     {
-      a(new d(str2, i, str1, null, true), paramTokenizer);
+      a(new f(str2, i, str1, null, true), paramTokenizer);
       return;
       label104: str2 = str1;
       continue;
@@ -123,16 +140,16 @@ public class RecipientField extends ExtendedEditText
     }
   }
 
-  public final void a(h paramh)
+  public final void a(i parami)
   {
-    this.d = paramh;
+    this.d = parami;
   }
 
-  public final void a(d paramd, MultiAutoCompleteTextView.Tokenizer paramTokenizer)
+  public final void a(f paramf, MultiAutoCompleteTextView.Tokenizer paramTokenizer)
   {
     removeTextChangedListener(this.b);
     Editable localEditable = getEditableText();
-    String str = paramd.g();
+    String str = paramf.g();
     if (str.length() >= 20)
       str = str.substring(0, 20) + "...";
     int i = getSelectionEnd();
@@ -152,12 +169,12 @@ public class RecipientField extends ExtendedEditText
     localTextView.destroyDrawingCache();
     BitmapDrawable localBitmapDrawable = new BitmapDrawable(getResources(), localBitmap);
     localBitmapDrawable.setBounds(0, 0, localBitmapDrawable.getIntrinsicWidth(), localBitmapDrawable.getIntrinsicHeight());
-    localEditable.setSpan(new j(localBitmapDrawable, paramd, 0), j, k, 33);
-    localEditable.setSpan(new i(), j, k, 33);
+    localEditable.setSpan(new k(localBitmapDrawable, paramf, 0), j, k, 33);
+    localEditable.setSpan(new j(), j, k, 33);
     localEditable.insert(k, " ");
     addTextChangedListener(this.b);
     if (this.d != null)
-      this.d.b(((j[])localEditable.getSpans(0, localEditable.length(), j.class)).length);
+      this.d.a(((k[])localEditable.getSpans(0, localEditable.length(), k.class)).length, false);
   }
 
   public boolean onTouchEvent(MotionEvent paramMotionEvent)
@@ -174,7 +191,7 @@ public class RecipientField extends ExtendedEditText
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.views.RecipientField
  * JD-Core Version:    0.6.2
  */

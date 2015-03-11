@@ -1,18 +1,11 @@
 package android.support.v7.internal.view.menu;
 
-class k<T>
+public abstract interface k
 {
-  final T a;
-
-  k(T paramT)
-  {
-    if (paramT == null)
-      throw new IllegalArgumentException("Wrapped Object can not be null.");
-    this.a = paramT;
-  }
+  public abstract boolean a(m paramm);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v7.internal.view.menu.k
  * JD-Core Version:    0.6.2
  */

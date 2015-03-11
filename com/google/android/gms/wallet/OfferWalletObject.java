@@ -10,26 +10,26 @@ public final class OfferWalletObject
   implements SafeParcelable
 {
   public static final Parcelable.Creator<OfferWalletObject> CREATOR = new n();
-  String ajT;
-  CommonWalletObject ajU;
-  String eC;
-  private final int xM;
+  private final int BR;
+  String atD;
+  CommonWalletObject atE;
+  String fl;
 
   OfferWalletObject()
   {
-    this.xM = 3;
+    this.BR = 3;
   }
 
   OfferWalletObject(int paramInt, String paramString1, String paramString2, CommonWalletObject paramCommonWalletObject)
   {
-    this.xM = paramInt;
-    this.ajT = paramString2;
+    this.BR = paramInt;
+    this.atD = paramString2;
     if (paramInt < 3)
     {
-      this.ajU = CommonWalletObject.nk().cw(paramString1).nl();
+      this.atE = CommonWalletObject.pQ().df(paramString1).pR();
       return;
     }
-    this.ajU = paramCommonWalletObject;
+    this.atE = paramCommonWalletObject;
   }
 
   public final int describeContents()
@@ -39,17 +39,17 @@ public final class OfferWalletObject
 
   public final String getId()
   {
-    return this.ajU.getId();
+    return this.atE.getId();
   }
 
   public final String getRedemptionCode()
   {
-    return this.ajT;
+    return this.atD;
   }
 
   public final int getVersionCode()
   {
-    return this.xM;
+    return this.BR;
   }
 
   public final void writeToParcel(Parcel paramParcel, int paramInt)
@@ -58,7 +58,7 @@ public final class OfferWalletObject
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.OfferWalletObject
  * JD-Core Version:    0.6.2
  */

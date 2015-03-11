@@ -25,11 +25,11 @@ class AccessToken$SerializationProxyV1
 
   private Object readResolve()
   {
-    return new AccessToken(this.token, this.expires, this.permissions, this.source, this.lastRefresh);
+    return new AccessToken(this.token, this.expires, this.permissions, null, this.source, this.lastRefresh);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.AccessToken.SerializationProxyV1
  * JD-Core Version:    0.6.2
  */

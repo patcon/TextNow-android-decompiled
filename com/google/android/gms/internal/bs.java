@@ -1,47 +1,28 @@
 package com.google.android.gms.internal;
 
-import android.os.RemoteException;
-import com.google.ads.mediation.MediationServerParameters;
-import java.util.Map;
+import android.os.IInterface;
+import com.google.android.gms.dynamic.d;
 
-public final class bs extends bt.a
+public abstract interface bs extends IInterface
 {
-  private Map<Class<? extends com.google.android.gms.ads.mediation.NetworkExtras>, com.google.android.gms.ads.mediation.NetworkExtras> nQ;
+  public abstract void as();
 
-  private <NETWORK_EXTRAS extends com.google.ads.mediation.NetworkExtras, SERVER_PARAMETERS extends MediationServerParameters> bu n(String paramString)
-  {
-    try
-    {
-      Class localClass = Class.forName(paramString, false, bs.class.getClassLoader());
-      if (com.google.ads.mediation.MediationAdapter.class.isAssignableFrom(localClass))
-      {
-        com.google.ads.mediation.MediationAdapter localMediationAdapter = (com.google.ads.mediation.MediationAdapter)localClass.newInstance();
-        return new bz(localMediationAdapter, (com.google.ads.mediation.NetworkExtras)this.nQ.get(localMediationAdapter.getAdditionalParametersType()));
-      }
-      if (com.google.android.gms.ads.mediation.MediationAdapter.class.isAssignableFrom(localClass))
-        return new bx((com.google.android.gms.ads.mediation.MediationAdapter)localClass.newInstance());
-      eu.D("Could not instantiate mediation adapter: " + paramString + " (not a valid adapter).");
-      throw new RemoteException();
-    }
-    catch (Throwable localThrowable)
-    {
-      eu.D("Could not instantiate mediation adapter: " + paramString + ". " + localThrowable.getMessage());
-    }
-    throw new RemoteException();
-  }
+  public abstract d bA();
 
-  public final void c(Map<Class<? extends com.google.android.gms.ads.mediation.NetworkExtras>, com.google.android.gms.ads.mediation.NetworkExtras> paramMap)
-  {
-    this.nQ = paramMap;
-  }
+  public abstract String bB();
 
-  public final bu m(String paramString)
-  {
-    return n(paramString);
-  }
+  public abstract String bt();
+
+  public abstract d bu();
+
+  public abstract String bw();
+
+  public abstract String getBody();
+
+  public abstract void i(int paramInt);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.bs
  * JD-Core Version:    0.6.2
  */

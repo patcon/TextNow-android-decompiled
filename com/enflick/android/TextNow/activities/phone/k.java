@@ -1,216 +1,65 @@
 package com.enflick.android.TextNow.activities.phone;
 
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.View.OnTouchListener;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
-import android.view.animation.AnimationSet;
-import android.view.animation.TranslateAnimation;
-import android.widget.ImageView;
-import com.enflick.android.TextNow.activities.MainActivity;
-import com.enflick.android.TextNow.activities.ah;
-import textnow.ao.a;
+import android.os.Handler;
+import android.os.SystemClock;
 
-final class k
-  implements View.OnTouchListener
+public final class k extends Handler
 {
-  final int a = 150;
-  private float c = 0.0F;
-  private float d = 0.0F;
-  private boolean e = false;
+  private h a;
+  private long b;
+  private boolean c;
+  private long d;
+  private m e;
+  private l f;
 
-  private k(DialerFragment paramDialerFragment)
+  public k(l paraml)
   {
+    this.f = paraml;
+    this.e = new m(this);
   }
 
-  private static boolean a(double paramDouble, int paramInt1, int paramInt2, int paramInt3, int paramInt4, int paramInt5)
+  public final void a()
   {
-    if (paramInt3 > paramInt1)
-      if ((paramInt4 < paramInt3) || (Math.abs(paramInt5 - paramInt2) > Math.tan(0.5235987755982988D) * (paramInt4 - paramInt1)));
-    while ((paramInt4 <= paramInt3) && (Math.abs(paramInt5 - paramInt2) <= Math.tan(0.5235987755982988D) * (paramInt1 - paramInt4)))
-    {
-      return true;
-      return false;
-    }
-    return false;
+    this.b = (SystemClock.uptimeMillis() - this.d);
   }
 
-  public final boolean onTouch(View paramView, MotionEvent paramMotionEvent)
+  public final void a(h paramh)
   {
-    if (paramMotionEvent.getAction() == 0)
-    {
-      Rect localRect1 = new Rect();
-      DialerFragment.f(this.b).getHitRect(localRect1);
-      if (localRect1.contains((int)paramMotionEvent.getX(), (int)paramMotionEvent.getY()))
-      {
-        this.e = true;
-        this.c = paramMotionEvent.getX();
-        this.d = paramMotionEvent.getY();
-        DialerFragment.g(this.b).cancel();
-        DialerFragment.h(this.b).clearAnimation();
-        DialerFragment.i(this.b).clearAnimation();
-        DialerFragment.h(this.b).setVisibility(8);
-        DialerFragment.i(this.b).setVisibility(8);
-        TranslateAnimation localTranslateAnimation1 = new TranslateAnimation((a.b(DialerFragment.f(this.b)) - a.b(DialerFragment.j(this.b))) / 2.0F, 0.0F, 0.0F, 0.0F);
-        AlphaAnimation localAlphaAnimation1 = new AlphaAnimation(0.0F, 1.0F);
-        TranslateAnimation localTranslateAnimation2 = new TranslateAnimation((a.b(DialerFragment.f(this.b)) - a.b(DialerFragment.k(this.b))) / 2.0F, 0.0F, 0.0F, 0.0F);
-        AlphaAnimation localAlphaAnimation2 = new AlphaAnimation(0.0F, 1.0F);
-        final AnimationSet localAnimationSet1 = new AnimationSet(true);
-        final AnimationSet localAnimationSet2 = new AnimationSet(true);
-        localAnimationSet1.addAnimation(localTranslateAnimation1);
-        localAnimationSet1.addAnimation(localAlphaAnimation1);
-        localAnimationSet1.setDuration(150L);
-        localAnimationSet2.addAnimation(localTranslateAnimation2);
-        localAnimationSet2.addAnimation(localAlphaAnimation2);
-        localAnimationSet2.setDuration(150L);
-        localAnimationSet1.setAnimationListener(new Animation.AnimationListener()
-        {
-          public final void onAnimationEnd(Animation paramAnonymousAnimation)
-          {
-            DialerFragment.j(k.this.b).setVisibility(0);
-            DialerFragment.k(k.this.b).setVisibility(0);
-          }
+    this.a = paramh;
+    this.d = 1000L;
+  }
 
-          public final void onAnimationRepeat(Animation paramAnonymousAnimation)
-          {
-          }
-
-          public final void onAnimationStart(Animation paramAnonymousAnimation)
-          {
-          }
-        });
-        DialerFragment.j(this.b).post(new Runnable()
-        {
-          public final void run()
-          {
-            DialerFragment.j(k.this.b).startAnimation(localAnimationSet1);
-            DialerFragment.k(k.this.b).startAnimation(localAnimationSet2);
-          }
-        });
-      }
-    }
-    do
+  public final void b()
+  {
+    if (!this.c)
     {
-      do
+      this.c = true;
+      long l1 = SystemClock.uptimeMillis();
+      for (long l2 = this.b + this.d; l1 >= l2; l2 += this.d);
+      new StringBuilder().append("periodicUpdateTimer() @ ").append(l2).toString();
+      postAtTime(this.e, l2);
+      this.b = l2;
+      if (this.a != null)
       {
-        return true;
-        if ((paramMotionEvent.getAction() == 2) && (this.e))
+        h localh = this.a;
+        if (this.f != null)
         {
-          a.b(DialerFragment.f(this.b), paramMotionEvent.getX() - this.c);
-          a.c(DialerFragment.f(this.b), paramMotionEvent.getY() - this.d);
-          Rect localRect5 = new Rect();
-          Rect localRect6 = new Rect();
-          Rect localRect7 = new Rect();
-          DialerFragment.j(this.b).getHitRect(localRect5);
-          DialerFragment.k(this.b).getHitRect(localRect6);
-          DialerFragment.f(this.b).getHitRect(localRect7);
-          int n = localRect5.left;
-          int i1 = localRect6.right;
-          int i2 = (i1 + n) / 2;
-          int i3 = localRect5.centerY();
-          if (a(0.5235987755982988D, i2, i3, n, (int)paramMotionEvent.getX(), (int)paramMotionEvent.getY()))
-          {
-            a.a(DialerFragment.f(this.b), 0.0F);
-            DialerFragment.j(this.b).setBackgroundResource(2130837879);
-            DialerFragment.j(this.b).setImageResource(2130837593);
-            return true;
-          }
-          if (a(0.5235987755982988D, i2, i3, i1, (int)paramMotionEvent.getX(), (int)paramMotionEvent.getY()))
-          {
-            a.a(DialerFragment.f(this.b), 0.0F);
-            DialerFragment.k(this.b).setBackgroundResource(2130838072);
-            DialerFragment.k(this.b).setImageResource(2130837881);
-            return true;
-          }
-          a.a(DialerFragment.f(this.b), 1.0F);
-          DialerFragment.k(this.b).setBackgroundResource(17170445);
-          DialerFragment.j(this.b).setBackgroundResource(17170445);
-          DialerFragment.j(this.b).setImageResource(2130837592);
-          DialerFragment.k(this.b).setImageResource(2130837880);
-          return true;
+          long l3 = localh.t();
+          new StringBuilder().append("updateElapsedTime, duration=").append(l3).toString();
+          this.f.a(l3 / 1000L);
         }
       }
-      while ((paramMotionEvent.getAction() != 1) || (!this.e));
-      this.e = false;
-      Rect localRect2 = new Rect();
-      Rect localRect3 = new Rect();
-      Rect localRect4 = new Rect();
-      DialerFragment.j(this.b).getHitRect(localRect2);
-      DialerFragment.k(this.b).getHitRect(localRect3);
-      DialerFragment.f(this.b).getHitRect(localRect4);
-      int i = localRect2.left;
-      int j = localRect3.right;
-      int k = (j + i) / 2;
-      int m = localRect2.centerY();
-      if (a(0.5235987755982988D, k, m, i, (int)paramMotionEvent.getX(), (int)paramMotionEvent.getY()))
-      {
-        DialerFragment.l(this.b);
-        DialerFragment.m(this.b);
-        return true;
-      }
-      if (!a(0.5235987755982988D, k, m, j, (int)paramMotionEvent.getX(), (int)paramMotionEvent.getY()))
-        break;
-      DialerFragment.b(this.b).b(DialerFragment.b(this.b).e(DialerFragment.n(this.b).a()));
-      new StringBuilder().append("Hung up call, new number of calls: ").append(DialerFragment.b(this.b).H()).toString();
     }
-    while (DialerFragment.b(this.b).H() != 0);
-    if (DialerFragment.o(this.b) != null)
-    {
-      DialerFragment.p(this.b).onBackPressed();
-      return true;
-    }
-    DialerFragment.a(this.b).finish();
-    return true;
-    a.b(DialerFragment.f(this.b), 0.0F);
-    a.c(DialerFragment.f(this.b), 0.0F);
-    TranslateAnimation localTranslateAnimation3 = new TranslateAnimation(0.0F, (a.b(DialerFragment.f(this.b)) - a.b(DialerFragment.j(this.b))) / 2.0F, 0.0F, 0.0F);
-    AlphaAnimation localAlphaAnimation3 = new AlphaAnimation(1.0F, 0.0F);
-    TranslateAnimation localTranslateAnimation4 = new TranslateAnimation(0.0F, (a.b(DialerFragment.f(this.b)) - a.b(DialerFragment.k(this.b))) / 2.0F, 0.0F, 0.0F);
-    AlphaAnimation localAlphaAnimation4 = new AlphaAnimation(1.0F, 0.0F);
-    final AnimationSet localAnimationSet3 = new AnimationSet(true);
-    final AnimationSet localAnimationSet4 = new AnimationSet(true);
-    localAnimationSet3.addAnimation(localTranslateAnimation3);
-    localAnimationSet3.addAnimation(localAlphaAnimation3);
-    localAnimationSet3.setDuration(150L);
-    localAnimationSet4.addAnimation(localTranslateAnimation4);
-    localAnimationSet4.addAnimation(localAlphaAnimation4);
-    localAnimationSet4.setDuration(150L);
-    localAnimationSet3.setAnimationListener(new Animation.AnimationListener()
-    {
-      public final void onAnimationEnd(Animation paramAnonymousAnimation)
-      {
-        DialerFragment.j(k.this.b).setVisibility(4);
-        DialerFragment.k(k.this.b).setVisibility(4);
-        if (!k.a(k.this))
-          DialerFragment.h(k.this.b).startAnimation(DialerFragment.g(k.this.b));
-      }
+  }
 
-      public final void onAnimationRepeat(Animation paramAnonymousAnimation)
-      {
-      }
-
-      public final void onAnimationStart(Animation paramAnonymousAnimation)
-      {
-        DialerFragment.j(k.this.b).setBackgroundResource(17170445);
-        DialerFragment.k(k.this.b).setBackgroundResource(17170445);
-      }
-    });
-    DialerFragment.j(this.b).post(new Runnable()
-    {
-      public final void run()
-      {
-        DialerFragment.j(k.this.b).startAnimation(localAnimationSet3);
-        DialerFragment.k(k.this.b).startAnimation(localAnimationSet4);
-      }
-    });
-    return true;
+  public final void c()
+  {
+    removeCallbacks(this.e);
+    this.c = false;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.activities.phone.k
  * JD-Core Version:    0.6.2
  */

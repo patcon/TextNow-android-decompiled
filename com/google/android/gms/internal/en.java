@@ -1,53 +1,78 @@
 package com.google.android.gms.internal;
 
-import android.os.Process;
-import java.util.concurrent.RejectedExecutionException;
-import java.util.concurrent.SynchronousQueue;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.IBinder;
+import android.os.RemoteException;
+import com.google.android.gms.dynamic.d;
+import com.google.android.gms.dynamic.e;
+import com.google.android.gms.dynamic.g;
+import com.google.android.gms.dynamic.g.a;
 
-public final class en
+@ez
+public final class en extends g<ej>
 {
-  private static final ThreadFactory sh = new ThreadFactory()
+  private static final en sK = new en();
+
+  private en()
   {
-    private final AtomicInteger sk = new AtomicInteger(1);
+    super("com.google.android.gms.ads.InAppPurchaseManagerCreatorImpl");
+  }
 
-    public final Thread newThread(Runnable paramAnonymousRunnable)
-    {
-      return new Thread(paramAnonymousRunnable, "AdWorker #" + this.sk.getAndIncrement());
-    }
-  };
-  private static final ThreadPoolExecutor si = new ThreadPoolExecutor(0, 10, 65L, TimeUnit.SECONDS, new SynchronousQueue(true), sh);
+  private static boolean c(Activity paramActivity)
+  {
+    Intent localIntent = paramActivity.getIntent();
+    if (!localIntent.hasExtra("com.google.android.gms.ads.internal.purchase.useClientJar"))
+      throw new en.a("InAppPurchaseManager requires the useClientJar flag in intent extras.");
+    return localIntent.getBooleanExtra("com.google.android.gms.ads.internal.purchase.useClientJar", false);
+  }
 
-  public static void execute(Runnable paramRunnable)
+  public static ei e(Activity paramActivity)
   {
     try
     {
-      si.execute(new Runnable()
+      if (c(paramActivity))
       {
-        public final void run()
-        {
-          Process.setThreadPriority(10);
-          en.this.run();
-        }
-      });
-      return;
+        gs.S("Using AdOverlay from the client jar.");
+        return new dz(paramActivity);
+      }
+      ei localei = sK.f(paramActivity);
+      return localei;
     }
-    catch (RejectedExecutionException localRejectedExecutionException)
+    catch (en.a locala)
     {
-      eu.c("Too many background threads already running. Aborting task.  Current pool size: " + getPoolSize(), localRejectedExecutionException);
+      gs.W(locala.getMessage());
     }
+    return null;
   }
 
-  public static int getPoolSize()
+  private ei f(Activity paramActivity)
   {
-    return si.getPoolSize();
+    try
+    {
+      d locald = e.k(paramActivity);
+      ei localei = ei.a.u(((ej)L(paramActivity)).b(locald));
+      return localei;
+    }
+    catch (RemoteException localRemoteException)
+    {
+      gs.d("Could not create remote InAppPurchaseManager.", localRemoteException);
+      return null;
+    }
+    catch (g.a locala)
+    {
+      gs.d("Could not create remote InAppPurchaseManager.", locala);
+    }
+    return null;
+  }
+
+  protected final ej y(IBinder paramIBinder)
+  {
+    return ej.a.v(paramIBinder);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.en
  * JD-Core Version:    0.6.2
  */

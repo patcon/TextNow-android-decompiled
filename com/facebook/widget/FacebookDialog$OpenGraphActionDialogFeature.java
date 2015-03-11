@@ -16,13 +16,18 @@ public enum FacebookDialog$OpenGraphActionDialogFeature
     this.minVersion = paramInt;
   }
 
+  public final String getAction()
+  {
+    return "com.facebook.platform.action.request.OGACTIONPUBLISH_DIALOG";
+  }
+
   public final int getMinVersion()
   {
     return this.minVersion;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.widget.FacebookDialog.OpenGraphActionDialogFeature
  * JD-Core Version:    0.6.2
  */

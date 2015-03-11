@@ -1,28 +1,55 @@
 package textnow.x;
 
-import android.content.Context;
-import com.enflick.android.TextNow.thirdparty.VesselWrapper.TestLoadedListener;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import textnow.u.n;
-
-public final class a
+public abstract class a
+  implements f
 {
-  private static n a;
-  private static Set<String> b = Collections.synchronizedSet(new HashSet());
-  private static List<VesselWrapper.TestLoadedListener> c = Collections.synchronizedList(new ArrayList());
-  private static Set<String> d = Collections.synchronizedSet(new HashSet());
+  private h request;
+  private i response;
+  private g responseListener;
+  private boolean terminated;
 
-  public static void a(Context paramContext)
+  public h getRequest()
   {
-    a = new n(paramContext);
+    return this.request;
+  }
+
+  public i getResponse()
+  {
+    return this.response;
+  }
+
+  public g getResponseListener()
+  {
+    return this.responseListener;
+  }
+
+  public boolean isTerminated()
+  {
+    return this.terminated;
+  }
+
+  public void setRequest(h paramh)
+  {
+    this.request = paramh;
+  }
+
+  public void setResponse(i parami)
+  {
+    this.response = parami;
+  }
+
+  public void setResponseListener(g paramg)
+  {
+    this.responseListener = paramg;
+  }
+
+  public void setTerminated(boolean paramBoolean)
+  {
+    this.terminated = paramBoolean;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.x.a
  * JD-Core Version:    0.6.2
  */

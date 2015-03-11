@@ -16,18 +16,18 @@ public class d extends com.google.android.gms.drive.metadata.d<Date>
     paramBundle.putLong(getName(), paramDate.getTime());
   }
 
-  protected Date e(DataHolder paramDataHolder, int paramInt1, int paramInt2)
+  protected Date f(DataHolder paramDataHolder, int paramInt1, int paramInt2)
   {
     return new Date(paramDataHolder.a(getName(), paramInt1, paramInt2));
   }
 
-  protected Date h(Bundle paramBundle)
+  protected Date i(Bundle paramBundle)
   {
     return new Date(paramBundle.getLong(getName()));
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.drive.metadata.internal.d
  * JD-Core Version:    0.6.2
  */

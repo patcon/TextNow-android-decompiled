@@ -3,7 +3,7 @@ package com.google.android.gms.wallet.wobs;
 import android.os.Parcel;
 import android.os.Parcelable.Creator;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-import com.google.android.gms.internal.ig;
+import com.google.android.gms.internal.jr;
 import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 
@@ -11,63 +11,63 @@ public class CommonWalletObject
   implements SafeParcelable
 {
   public static final Parcelable.Creator<CommonWalletObject> CREATOR = new a();
-  ArrayList<n> ajA;
-  String ajj;
-  String ajm;
-  String ajn;
-  String ajo;
-  String ajp;
-  String ajq;
-  ArrayList<p> ajr;
-  l ajs;
-  ArrayList<LatLng> ajt;
-  String aju;
-  String ajv;
-  ArrayList<d> ajw;
-  boolean ajx;
-  ArrayList<n> ajy;
-  ArrayList<j> ajz;
-  String eC;
+  private final int BR;
+  String asU;
+  String asW;
+  String asX;
+  String asY;
+  String asZ;
+  String ata;
+  ArrayList<p> atb;
+  l atc;
+  ArrayList<LatLng> atd;
+  String ate;
+  String atf;
+  ArrayList<d> atg;
+  boolean ath;
+  ArrayList<n> ati;
+  ArrayList<j> atj;
+  ArrayList<n> atk;
+  String fl;
   String name;
   int state;
-  private final int xM;
 
   CommonWalletObject()
   {
-    this.xM = 1;
-    this.ajr = ig.ga();
-    this.ajt = ig.ga();
-    this.ajw = ig.ga();
-    this.ajy = ig.ga();
-    this.ajz = ig.ga();
-    this.ajA = ig.ga();
+    this.BR = 1;
+    this.atb = jr.hz();
+    this.atd = jr.hz();
+    this.atg = jr.hz();
+    this.ati = jr.hz();
+    this.atj = jr.hz();
+    this.atk = jr.hz();
   }
 
   CommonWalletObject(int paramInt1, String paramString1, String paramString2, String paramString3, String paramString4, String paramString5, String paramString6, String paramString7, String paramString8, int paramInt2, ArrayList<p> paramArrayList, l paraml, ArrayList<LatLng> paramArrayList1, String paramString9, String paramString10, ArrayList<d> paramArrayList2, boolean paramBoolean, ArrayList<n> paramArrayList3, ArrayList<j> paramArrayList4, ArrayList<n> paramArrayList5)
   {
-    this.xM = paramInt1;
-    this.eC = paramString1;
-    this.ajq = paramString2;
+    this.BR = paramInt1;
+    this.fl = paramString1;
+    this.ata = paramString2;
     this.name = paramString3;
-    this.ajj = paramString4;
-    this.ajm = paramString5;
-    this.ajn = paramString6;
-    this.ajo = paramString7;
-    this.ajp = paramString8;
+    this.asU = paramString4;
+    this.asW = paramString5;
+    this.asX = paramString6;
+    this.asY = paramString7;
+    this.asZ = paramString8;
     this.state = paramInt2;
-    this.ajr = paramArrayList;
-    this.ajs = paraml;
-    this.ajt = paramArrayList1;
-    this.aju = paramString9;
-    this.ajv = paramString10;
-    this.ajw = paramArrayList2;
-    this.ajx = paramBoolean;
-    this.ajy = paramArrayList3;
-    this.ajz = paramArrayList4;
-    this.ajA = paramArrayList5;
+    this.atb = paramArrayList;
+    this.atc = paraml;
+    this.atd = paramArrayList1;
+    this.ate = paramString9;
+    this.atf = paramString10;
+    this.atg = paramArrayList2;
+    this.ath = paramBoolean;
+    this.ati = paramArrayList3;
+    this.atj = paramArrayList4;
+    this.atk = paramArrayList5;
   }
 
-  public static CommonWalletObject.a nk()
+  public static CommonWalletObject.a pQ()
   {
     CommonWalletObject localCommonWalletObject = new CommonWalletObject();
     localCommonWalletObject.getClass();
@@ -81,12 +81,12 @@ public class CommonWalletObject
 
   public String getId()
   {
-    return this.eC;
+    return this.fl;
   }
 
   public int getVersionCode()
   {
-    return this.xM;
+    return this.BR;
   }
 
   public void writeToParcel(Parcel paramParcel, int paramInt)
@@ -95,7 +95,7 @@ public class CommonWalletObject
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.wobs.CommonWalletObject
  * JD-Core Version:    0.6.2
  */

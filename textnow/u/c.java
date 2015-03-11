@@ -1,44 +1,37 @@
 package textnow.u;
 
-import android.content.Context;
-import android.text.TextUtils;
-import java.io.Serializable;
-import org.apache.http.entity.mime.content.ContentBody;
-import textnow.q.g;
-
-public abstract class c
-  implements Serializable
+public final class c extends Exception
 {
-  protected final String a;
+  j a;
 
-  protected c(String paramString)
+  public c(int paramInt, String paramString)
   {
-    this.a = paramString;
+    this(new j(paramInt, paramString));
   }
 
-  public static c a(Context paramContext, String paramString)
+  public c(int paramInt, String paramString, Exception paramException)
   {
-    if (TextUtils.isEmpty(paramString))
-      return null;
-    if (paramString.startsWith("content://"))
-    {
-      String str = g.a(paramContext, paramString);
-      if ((TextUtils.isEmpty(str)) || (str.toLowerCase().startsWith("http")))
-        return new u(paramString);
-      return new a(paramString);
-    }
-    return new b(paramString);
+    this(new j(paramInt, paramString), paramException);
   }
 
-  public String a()
+  private c(j paramj)
+  {
+    this(paramj, null);
+  }
+
+  private c(j paramj, Exception paramException)
+  {
+    super(paramj.b, paramException);
+    this.a = paramj;
+  }
+
+  public final j a()
   {
     return this.a;
   }
-
-  public abstract ContentBody b(Context paramContext);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.u.c
  * JD-Core Version:    0.6.2
  */

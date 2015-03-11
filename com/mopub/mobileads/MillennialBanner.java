@@ -2,10 +2,11 @@ package com.mopub.mobileads;
 
 import android.content.Context;
 import android.view.View;
+import com.enflick.android.TextNow.ads.a;
 import com.enflick.android.TextNow.customloader.CustomLoader;
 import com.enflick.android.TextNow.customloader.IMMSDK;
 import java.util.Map;
-import textnow.u.r;
+import textnow.z.u;
 
 class MillennialBanner extends CustomEventBanner
 {
@@ -39,7 +40,7 @@ class MillennialBanner extends CustomEventBanner
 
   protected void loadBanner(Context paramContext, CustomEventBanner.CustomEventBannerListener paramCustomEventBannerListener, Map<String, Object> paramMap, Map<String, String> paramMap1)
   {
-    this.mBannerListener = paramCustomEventBannerListener;
+    this.mBannerListener = new a(paramCustomEventBannerListener);
     String str;
     int i;
     int j;
@@ -53,22 +54,30 @@ class MillennialBanner extends CustomEventBanner
     try
     {
       this.mMMSDK = ((IMMSDK)CustomLoader.newBannerLoader(paramContext, "com.enflick.android.TextNow.customloader.wrappers.banner.MMSDKWrapper").loadWrapper(IMMSDK.class, "com.enflick.android.TextNow.customloader.wrappers.banner.MMSDKWrapper"));
-      label89: if (this.mMMSDK == null)
+      label96: if (this.mMMSDK == null)
       {
         return;
         this.mBannerListener.onBannerFailed(MoPubErrorCode.ADAPTER_CONFIGURATION_ERROR);
         return;
       }
-      r localr = new r(paramContext);
-      this.mMMSDK.initialize(paramContext, str, i, j, localr.s(), localr.q());
-      this.mMMSDK.setListener(this.mBannerListener);
-      AdViewController.setShouldHonorServerDimensions(this.mMMSDK.getBannerView());
-      this.mMMSDK.getAd();
-      return;
+      try
+      {
+        u localu = new u(paramContext);
+        this.mMMSDK.initialize(paramContext, str, i, j, localu.q(), localu.o());
+        this.mMMSDK.setListener(this.mBannerListener);
+        AdViewController.setShouldHonorServerDimensions(this.mMMSDK.getBannerView());
+        this.mMMSDK.getAd();
+        return;
+      }
+      catch (Throwable localThrowable1)
+      {
+        this.mBannerListener.onBannerFailed(MoPubErrorCode.INTERNAL_ERROR);
+        return;
+      }
     }
-    catch (Throwable localThrowable)
+    catch (Throwable localThrowable2)
     {
-      break label89;
+      break label96;
     }
   }
 
@@ -79,7 +88,7 @@ class MillennialBanner extends CustomEventBanner
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.mopub.mobileads.MillennialBanner
  * JD-Core Version:    0.6.2
  */

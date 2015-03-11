@@ -1,289 +1,235 @@
 package com.google.android.gms.internal;
 
-import android.net.Uri;
-import android.os.Handler;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import android.content.Context;
+import android.net.Uri.Builder;
+import android.os.Build;
+import android.os.Build.VERSION;
+import android.os.Bundle;
+import android.os.Looper;
+import android.text.TextUtils;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
-public class ey extends WebViewClient
+@ez
+public class ey
+  implements Thread.UncaughtExceptionHandler
 {
-  protected final ex lN;
-  private final Object ls = new Object();
-  private ba mS;
-  private bf nc;
-  private bd nd;
-  private ey.a pN;
-  private final HashMap<String, bc> sH = new HashMap();
-  private t sI;
-  private ci sJ;
-  private boolean sK = false;
-  private boolean sL;
-  private cl sM;
+  private Context mContext;
+  private Thread.UncaughtExceptionHandler sR;
+  private Thread.UncaughtExceptionHandler sS;
+  private gt sT;
 
-  public ey(ex paramex, boolean paramBoolean)
+  public ey(Context paramContext, gt paramgt, Thread.UncaughtExceptionHandler paramUncaughtExceptionHandler1, Thread.UncaughtExceptionHandler paramUncaughtExceptionHandler2)
   {
-    this.lN = paramex;
-    this.sL = paramBoolean;
+    this.sR = paramUncaughtExceptionHandler1;
+    this.sS = paramUncaughtExceptionHandler2;
+    this.mContext = paramContext;
+    this.sT = paramgt;
   }
 
-  private static boolean d(Uri paramUri)
+  public static ey a(Context paramContext, Thread paramThread, gt paramgt)
   {
-    String str = paramUri.getScheme();
-    return ("http".equalsIgnoreCase(str)) || ("https".equalsIgnoreCase(str));
-  }
-
-  private void e(Uri paramUri)
-  {
-    String str1 = paramUri.getPath();
-    bc localbc = (bc)this.sH.get(str1);
-    if (localbc != null)
-    {
-      Map localMap = eo.c(paramUri);
-      if (eu.p(2))
+    if ((paramContext == null) || (paramThread == null) || (paramgt == null))
+      return null;
+    gb.bD();
+    if (!k(paramContext))
+      return null;
+    Thread.UncaughtExceptionHandler localUncaughtExceptionHandler = paramThread.getUncaughtExceptionHandler();
+    ey localey = new ey(paramContext, paramgt, localUncaughtExceptionHandler, Thread.getDefaultUncaughtExceptionHandler());
+    if ((localUncaughtExceptionHandler == null) || (!(localUncaughtExceptionHandler instanceof ey)))
+      try
       {
-        eu.C("Received GMSG: " + str1);
-        Iterator localIterator = localMap.keySet().iterator();
-        while (localIterator.hasNext())
+        paramThread.setUncaughtExceptionHandler(localey);
+        return localey;
+      }
+      catch (SecurityException localSecurityException)
+      {
+        gs.c("Fail to set UncaughtExceptionHandler.", localSecurityException);
+        return null;
+      }
+    return (ey)localUncaughtExceptionHandler;
+  }
+
+  private String cw()
+  {
+    String str1 = Build.MANUFACTURER;
+    String str2 = Build.MODEL;
+    if (str2.startsWith(str1))
+      return str2;
+    return str1 + " " + str2;
+  }
+
+  private Throwable d(Throwable paramThrowable)
+  {
+    Bundle localBundle = gb.bD();
+    if ((localBundle != null) && (localBundle.getBoolean("gads:sdk_crash_report_full_stacktrace", false)))
+      return paramThrowable;
+    LinkedList localLinkedList = new LinkedList();
+    while (paramThrowable != null)
+    {
+      localLinkedList.push(paramThrowable);
+      paramThrowable = paramThrowable.getCause();
+    }
+    Object localObject1 = null;
+    Throwable localThrowable;
+    Object localObject2;
+    if (!localLinkedList.isEmpty())
+    {
+      localThrowable = (Throwable)localLinkedList.pop();
+      StackTraceElement[] arrayOfStackTraceElement = localThrowable.getStackTrace();
+      ArrayList localArrayList = new ArrayList();
+      localArrayList.add(new StackTraceElement(localThrowable.getClass().getName(), "<filtered>", "<filtered>", 1));
+      int i = arrayOfStackTraceElement.length;
+      int j = 0;
+      int k = 0;
+      if (j < i)
+      {
+        StackTraceElement localStackTraceElement = arrayOfStackTraceElement[j];
+        if (G(localStackTraceElement.getClassName()))
         {
-          String str2 = (String)localIterator.next();
-          eu.C("  " + str2 + ": " + (String)localMap.get(str2));
+          localArrayList.add(localStackTraceElement);
+          k = 1;
+        }
+        while (true)
+        {
+          j++;
+          break;
+          if (H(localStackTraceElement.getClassName()))
+            localArrayList.add(localStackTraceElement);
+          else
+            localArrayList.add(new StackTraceElement("<filtered>", "<filtered>", "<filtered>", 1));
         }
       }
-      localbc.b(this.lN, localMap);
-      return;
-    }
-    eu.C("No GMSG handler found for GMSG: " + paramUri);
-  }
-
-  public final void a(ce paramce)
-  {
-    boolean bool = this.lN.ce();
-    t localt;
-    ci localci;
-    if ((bool) && (!this.lN.V().mf))
-    {
-      localt = null;
-      localci = null;
-      if (!bool)
-        break label69;
-    }
-    while (true)
-    {
-      a(new ch(paramce, localt, localci, this.sM, this.lN.cd()));
-      return;
-      localt = this.sI;
-      break;
-      label69: localci = this.sJ;
-    }
-  }
-
-  protected void a(ch paramch)
-  {
-    cf.a(this.lN.getContext(), paramch);
-  }
-
-  public final void a(ey.a parama)
-  {
-    this.pN = parama;
-  }
-
-  public void a(t paramt, ci paramci, ba paramba, cl paramcl, boolean paramBoolean, bd parambd)
-  {
-    a("/appEvent", new az(paramba));
-    a("/canOpenURLs", bb.mU);
-    a("/click", bb.mV);
-    a("/close", bb.mW);
-    a("/customClose", bb.mX);
-    a("/httpTrack", bb.mY);
-    a("/log", bb.mZ);
-    a("/open", new bg(parambd));
-    a("/touch", bb.na);
-    a("/video", bb.nb);
-    this.sI = paramt;
-    this.sJ = paramci;
-    this.mS = paramba;
-    this.nd = parambd;
-    this.sM = paramcl;
-    this.sK = paramBoolean;
-  }
-
-  public void a(t paramt, ci paramci, ba paramba, cl paramcl, boolean paramBoolean, bd parambd, bf parambf)
-  {
-    a(paramt, paramci, paramba, paramcl, paramBoolean, parambd);
-    a("/setInterstitialProperties", new be(parambf));
-    this.nc = parambf;
-  }
-
-  public final void a(String paramString, bc parambc)
-  {
-    this.sH.put(paramString, parambc);
-  }
-
-  public final void a(boolean paramBoolean, int paramInt)
-  {
-    if ((this.lN.ce()) && (!this.lN.V().mf));
-    for (t localt = null; ; localt = this.sI)
-    {
-      a(new ch(localt, this.sJ, this.sM, this.lN, paramBoolean, paramInt, this.lN.cd()));
-      return;
-    }
-  }
-
-  public final void a(boolean paramBoolean, int paramInt, String paramString)
-  {
-    boolean bool = this.lN.ce();
-    t localt;
-    ci localci;
-    if ((bool) && (!this.lN.V().mf))
-    {
-      localt = null;
-      localci = null;
-      if (!bool)
-        break label89;
-    }
-    while (true)
-    {
-      a(new ch(localt, localci, this.mS, this.sM, this.lN, paramBoolean, paramInt, paramString, this.lN.cd(), this.nd));
-      return;
-      localt = this.sI;
-      break;
-      label89: localci = this.sJ;
-    }
-  }
-
-  public final void a(boolean paramBoolean, int paramInt, String paramString1, String paramString2)
-  {
-    boolean bool = this.lN.ce();
-    t localt;
-    if ((bool) && (!this.lN.V().mf))
-    {
-      localt = null;
-      if (!bool)
-        break label91;
-    }
-    label91: for (ci localci = null; ; localci = this.sJ)
-    {
-      a(new ch(localt, localci, this.mS, this.sM, this.lN, paramBoolean, paramInt, paramString1, paramString2, this.lN.cd(), this.nd));
-      return;
-      localt = this.sI;
-      break;
-    }
-  }
-
-  public final void aS()
-  {
-    synchronized (this.ls)
-    {
-      this.sK = false;
-      this.sL = true;
-      final cf localcf = this.lN.ca();
-      if (localcf != null)
+      if (k == 0)
+        break label276;
+      if (localObject1 == null)
       {
-        if (!et.bW())
-          et.sv.post(new Runnable()
-          {
-            public void run()
-            {
-              localcf.aS();
-            }
-          });
+        localObject2 = new Throwable(localThrowable.getMessage());
+        label230: ((Throwable)localObject2).setStackTrace((StackTraceElement[])localArrayList.toArray(new StackTraceElement[0]));
       }
-      else
-        return;
-      localcf.aS();
+    }
+    while (true)
+    {
+      localObject1 = localObject2;
+      break;
+      localObject2 = new Throwable(localThrowable.getMessage(), localObject1);
+      break label230;
+      return localObject1;
+      label276: localObject2 = localObject1;
     }
   }
 
-  public boolean cj()
+  private static boolean k(Context paramContext)
   {
-    synchronized (this.ls)
+    Bundle localBundle = gb.bD();
+    if (localBundle == null);
+    while (!localBundle.getBoolean("gads:sdk_crash_report_enabled", false))
+      return false;
+    return true;
+  }
+
+  protected boolean G(String paramString)
+  {
+    if (TextUtils.isEmpty(paramString))
+      return false;
+    if (paramString.startsWith("com.google.android.gms.ads"))
+      return true;
+    if (paramString.startsWith("com.google.ads"))
+      return true;
+    try
     {
-      boolean bool = this.sL;
+      boolean bool = Class.forName(paramString).isAnnotationPresent(ez.class);
       return bool;
     }
-  }
-
-  public final void onLoadResource(WebView paramWebView, String paramString)
-  {
-    eu.C("Loading resource: " + paramString);
-    Uri localUri = Uri.parse(paramString);
-    if (("gmsg".equalsIgnoreCase(localUri.getScheme())) && ("mobileads.google.com".equalsIgnoreCase(localUri.getHost())))
-      e(localUri);
-  }
-
-  public final void onPageFinished(WebView paramWebView, String paramString)
-  {
-    if (this.pN != null)
+    catch (Exception localException)
     {
-      this.pN.a(this.lN);
-      this.pN = null;
+      gs.a("Fail to check class type for class " + paramString, localException);
     }
+    return false;
   }
 
-  public final void r(boolean paramBoolean)
+  protected boolean H(String paramString)
   {
-    this.sK = paramBoolean;
+    if (TextUtils.isEmpty(paramString));
+    while ((!paramString.startsWith("android.")) && (!paramString.startsWith("java.")))
+      return false;
+    return true;
   }
 
-  public final void reset()
+  protected boolean a(Throwable paramThrowable)
   {
-    synchronized (this.ls)
+    boolean bool = true;
+    if (paramThrowable == null)
+      bool = false;
+    int i;
+    int j;
+    do
     {
-      this.sH.clear();
-      this.sI = null;
-      this.sJ = null;
-      this.pN = null;
-      this.mS = null;
-      this.sK = false;
-      this.sL = false;
-      this.nd = null;
-      this.sM = null;
+      return bool;
+      i = 0;
+      j = 0;
+      while (paramThrowable != null)
+      {
+        for (StackTraceElement localStackTraceElement : paramThrowable.getStackTrace())
+        {
+          if (G(localStackTraceElement.getClassName()))
+            j = bool;
+          if (getClass().getName().equals(localStackTraceElement.getClassName()))
+            i = bool;
+        }
+        paramThrowable = paramThrowable.getCause();
+      }
+    }
+    while ((j != 0) && (i == 0));
+    return false;
+  }
+
+  public void b(Throwable paramThrowable)
+  {
+    if (!k(this.mContext));
+    Throwable localThrowable;
+    do
+    {
       return;
+      localThrowable = d(paramThrowable);
     }
+    while (localThrowable == null);
+    ArrayList localArrayList = new ArrayList();
+    localArrayList.add(c(localThrowable));
+    gj.a(this.mContext, this.sT.wD, localArrayList, gb.de());
   }
 
-  public final boolean shouldOverrideUrlLoading(WebView paramWebView, String paramString)
+  protected String c(Throwable paramThrowable)
   {
-    eu.C("AdWebView shouldOverrideUrlLoading: " + paramString);
-    Object localObject1 = Uri.parse(paramString);
-    if (("gmsg".equalsIgnoreCase(((Uri)localObject1).getScheme())) && ("mobileads.google.com".equalsIgnoreCase(((Uri)localObject1).getHost())))
-      e((Uri)localObject1);
-    while (true)
+    StringWriter localStringWriter = new StringWriter();
+    paramThrowable.printStackTrace(new PrintWriter(localStringWriter));
+    return new Uri.Builder().scheme("https").path("//pagead2.googlesyndication.com/pagead/gen_204").appendQueryParameter("id", "gmob-apps-report-exception").appendQueryParameter("os", Build.VERSION.RELEASE).appendQueryParameter("api", String.valueOf(Build.VERSION.SDK_INT)).appendQueryParameter("device", cw()).appendQueryParameter("js", this.sT.wD).appendQueryParameter("appid", this.mContext.getApplicationContext().getPackageName()).appendQueryParameter("stacktrace", localStringWriter.toString()).toString();
+  }
+
+  public void uncaughtException(Thread paramThread, Throwable paramThrowable)
+  {
+    if (a(paramThrowable))
     {
-      return true;
-      if ((this.sK) && (paramWebView == this.lN) && (d((Uri)localObject1)))
-        return super.shouldOverrideUrlLoading(paramWebView, paramString);
-      if (!this.lN.willNotDraw())
-        try
-        {
-          k localk = this.lN.cc();
-          if ((localk != null) && (localk.b((Uri)localObject1)))
-          {
-            Uri localUri = localk.a((Uri)localObject1, this.lN.getContext());
-            localObject1 = localUri;
-          }
-          localObject2 = localObject1;
-          a(new ce("android.intent.action.VIEW", localObject2.toString(), null, null, null, null, null));
-        }
-        catch (l locall)
-        {
-          while (true)
-          {
-            eu.D("Unable to append parameter to URL: " + paramString);
-            Object localObject2 = localObject1;
-          }
-        }
-      else
-        eu.D("AdWebView unable to handle URL: " + paramString);
+      b(paramThrowable);
+      if (Looper.getMainLooper().getThread() == paramThread);
     }
+    do
+    {
+      return;
+      if (this.sR != null)
+      {
+        this.sR.uncaughtException(paramThread, paramThrowable);
+        return;
+      }
+    }
+    while (this.sS == null);
+    this.sS.uncaughtException(paramThread, paramThrowable);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ey
  * JD-Core Version:    0.6.2
  */

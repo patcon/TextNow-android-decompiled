@@ -11,14 +11,14 @@ public final class LocationStatusCodes
   public static final int GEOFENCE_TOO_MANY_PENDING_INTENTS = 1002;
   public static final int SUCCESS;
 
-  public static int cJ(int paramInt)
+  public static int ef(int paramInt)
   {
     if (((paramInt >= 0) && (paramInt <= 1)) || ((1000 <= paramInt) && (paramInt <= 1002)))
       return paramInt;
     return 1;
   }
 
-  public static Status cK(int paramInt)
+  public static Status eg(int paramInt)
   {
     switch (paramInt)
     {
@@ -33,7 +33,7 @@ public final class LocationStatusCodes
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.location.LocationStatusCodes
  * JD-Core Version:    0.6.2
  */

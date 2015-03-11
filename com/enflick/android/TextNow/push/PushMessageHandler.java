@@ -7,17 +7,21 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import com.enflick.android.TextNow.TextNowApp;
-import com.enflick.android.TextNow.activities.phone.d;
+import com.enflick.android.TextNow.activities.phone.h;
 import com.enflick.android.TextNow.activities.quickreply.QuickReplyActivityBase;
 import com.enflick.android.TextNow.activities.quickreply.QuickReplyKeyGuardActivity;
 import com.enflick.android.TextNow.tasks.AcceptCallTask;
 import com.enflick.android.TextNow.tasks.GetNewMessagesTask;
+import com.enflick.android.TextNow.tasks.GetSubscriptionTask;
 import com.enflick.android.TextNow.tasks.GetUserInfoTask;
 import com.enflick.android.TextNow.tasks.SetRegistrationIdTask;
 import com.enflick.android.TextNow.tasks.SpeedTestTask;
-import textnow.q.o;
-import textnow.u.n;
-import textnow.u.r;
+import textnow.aa.a;
+import textnow.v.b;
+import textnow.v.k;
+import textnow.z.p;
+import textnow.z.s;
+import textnow.z.u;
 
 public class PushMessageHandler
 {
@@ -25,7 +29,7 @@ public class PushMessageHandler
 
   public static void registerWithServer(Context paramContext, String paramString)
   {
-    if (TextUtils.isEmpty(new r(paramContext).m()))
+    if (TextUtils.isEmpty(new u(paramContext).m()))
       return;
     new SetRegistrationIdTask(paramString).b(paramContext);
   }
@@ -40,11 +44,11 @@ public class PushMessageHandler
     int i = 2;
     int j = 1;
     Bundle localBundle = paramIntent.getExtras();
-    r localr;
+    u localu;
     if (localBundle != null)
     {
-      localr = new r(paramContext);
-      if (localr.l());
+      localu = new u(paramContext);
+      if (localu.l());
     }
     else
     {
@@ -72,105 +76,118 @@ public class PushMessageHandler
       if (TextUtils.isEmpty(str9))
       {
         if (!TextUtils.isEmpty(str3))
-          break label316;
+          break label337;
         if (!TextUtils.isEmpty(str10))
-          break label329;
+          break label350;
         l = 0L;
         int k = str1.indexOf(":");
         str11 = "";
         if (k < 0)
-          break label342;
+          break label363;
         if (k > 0)
           str11 = str1.substring(0, k);
         if (k >= -1 + str1.length())
-          break label714;
-        String str15 = str1.substring(k + 1);
+          break label795;
+        String str16 = str1.substring(k + 1);
         str12 = str11;
-        str13 = str15;
+        str13 = str16;
       }
     }
     while (true)
     {
-      if (!TextUtils.isEmpty(str5))
+      label253: if (!TextUtils.isEmpty(str5))
         str12 = str5;
-      String str14 = str13.trim();
-      o.a(paramContext).a(str8, str12, i, str14, j, 0, l);
-      new GetNewMessagesTask().b(paramContext);
-      return;
-      i = Integer.valueOf(str9).intValue();
-      break label170;
-      label316: j = Integer.valueOf(str3).intValue();
-      break label178;
-      label329: l = Long.valueOf(str10).longValue();
-      break label189;
-      label342: str12 = "";
-      str13 = str1;
-      continue;
-      if ("true".equals(str2))
+      if (!str12.equals(str5));
+      for (String str14 = k.a(paramContext.getContentResolver(), str12); ; str14 = str12)
       {
-        String str7 = localBundle.getString("contact_value");
-        KeyguardManager localKeyguardManager = (KeyguardManager)paramContext.getSystemService("keyguard");
-        if ((!TextNowApp.c()) && (localr.A()))
-          if ((!localKeyguardManager.inKeyguardRestrictedInputMode()) || (!localr.B()))
-            break label471;
-        label471: for (Intent localIntent = new Intent(paramContext, QuickReplyKeyGuardActivity.class); ; localIntent = new Intent(paramContext, QuickReplyActivityBase.class))
+        String str15 = str13.trim();
+        a.a(paramContext).a(str8, str14, i, str15, j, 0, l);
+        new GetNewMessagesTask().b(paramContext);
+        return;
+        i = Integer.valueOf(str9).intValue();
+        break label170;
+        label337: j = Integer.valueOf(str3).intValue();
+        break label178;
+        label350: l = Long.valueOf(str10).longValue();
+        break label189;
+        label363: str12 = "";
+        str13 = str1;
+        break label253;
+        if ("true".equals(str2))
         {
-          localIntent.addFlags(268435456);
-          localIntent.putExtra("extra_outgoing_contact_value", str7);
-          localIntent.putExtra("extra_source", 0);
-          paramContext.startActivity(localIntent);
-          new GetNewMessagesTask().b(paramContext);
+          String str7 = localBundle.getString("contact_value");
+          KeyguardManager localKeyguardManager = (KeyguardManager)paramContext.getSystemService("keyguard");
+          if ((!TextNowApp.c()) && (localu.z()))
+          {
+            if ((!localKeyguardManager.inKeyguardRestrictedInputMode()) || (!localu.A()))
+              break label497;
+            if (j == 0)
+              break label503;
+          }
+          label497: label503: for (Intent localIntent = new Intent(paramContext, QuickReplyKeyGuardActivity.class); ; localIntent = new Intent(paramContext, QuickReplyActivityBase.class))
+          {
+            localIntent.addFlags(268435456);
+            localIntent.putExtra("extra_outgoing_contact_value", str7);
+            localIntent.putExtra("extra_source", 0);
+            paramContext.startActivity(localIntent);
+            new GetNewMessagesTask().b(paramContext);
+            return;
+            j = 0;
+            break;
+          }
+        }
+        if (str4 != null)
+        {
+          new StringBuilder().append("incoming call received, caller number: ").append(str4).toString();
+          h.f();
           return;
         }
-      }
-      if (str4 != null)
-      {
-        new StringBuilder().append("incoming call received, caller number: ").append(str4).toString();
-        d.f();
-        return;
-      }
-      if ((str1 != null) && (str3 == null))
-      {
-        o.a(paramContext).b(str1);
-        new GetUserInfoTask(localr.b()).b(paramContext);
-        return;
-      }
-      if (str6 != null)
-      {
-        new StringBuilder().append("cdma request push received, uuid ").append(str6).toString();
-        AudioManager localAudioManager;
-        do
+        if ((str1 != null) && (str3 == null))
         {
-          try
+          a.a(paramContext).b(str1);
+          new GetUserInfoTask(localu.b()).b(paramContext);
+          if (TextUtils.isEmpty(new s(paramContext).f()))
+            break;
+          new GetSubscriptionTask(localu.b()).b(paramContext);
+          return;
+        }
+        if (str6 != null)
+        {
+          new StringBuilder().append("cdma request push received, uuid ").append(str6).toString();
+          AudioManager localAudioManager;
+          do
           {
-            if (d.a().p() != null)
+            try
             {
-              new AcceptCallTask(str6, false).b(paramContext);
+              if ((h.a().p() != null) || (!b.n(paramContext)))
+              {
+                new AcceptCallTask(str6, false).b(paramContext);
+                return;
+              }
+            }
+            catch (Exception localException)
+            {
+              new SpeedTestTask(new p(paramContext), null, str6).b(paramContext);
               return;
             }
+            localAudioManager = (AudioManager)paramContext.getSystemService("audio");
           }
-          catch (Exception localException)
-          {
-            new SpeedTestTask(new n(paramContext), null, str6).b(paramContext);
-            return;
-          }
-          localAudioManager = (AudioManager)paramContext.getSystemService("audio");
+          while ((localAudioManager == null) || ((localAudioManager.getMode() != i) && (localAudioManager.getMode() != j)));
+          new AcceptCallTask(str6, true).b(paramContext);
+          return;
         }
-        while ((localAudioManager == null) || ((localAudioManager.getMode() != i) && (localAudioManager.getMode() != j)));
-        new AcceptCallTask(str6, true).b(paramContext);
+        if ((str1 != null) || (str4 != null) || (str6 != null))
+          break;
+        new GetUserInfoTask(localu.b()).b(paramContext);
         return;
       }
-      if ((str1 != null) || (str4 != null) || (str6 != null))
-        break;
-      new GetUserInfoTask(localr.b()).b(paramContext);
-      return;
-      label714: str12 = str11;
+      label795: str12 = str11;
       str13 = "";
     }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.push.PushMessageHandler
  * JD-Core Version:    0.6.2
  */

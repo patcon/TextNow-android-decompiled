@@ -1,34 +1,33 @@
 package com.google.android.gms.plus.internal;
 
+import com.google.android.gms.common.api.BaseImplementation.b;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.common.api.a.d;
-import com.google.android.gms.internal.hb;
-import com.google.android.gms.internal.hb.b;
+import com.google.android.gms.common.internal.e.b;
 
-final class e$h extends hb<d>.b<a.d<Status>>
+final class e$h extends com.google.android.gms.common.internal.e<d>.b<BaseImplementation.b<Status>>
 {
-  private final Status yz;
+  private final Status CM;
 
-  public e$h(a.d<Status> paramd, Status paramStatus)
+  public e$h(BaseImplementation.b<Status> paramb, Status paramStatus)
   {
-    super(paramd, paramStatus);
+    super(paramb, paramStatus);
     Object localObject;
-    this.yz = localObject;
+    this.CM = localObject;
   }
 
-  protected final void fu()
+  protected final void gT()
   {
   }
 
-  protected final void n(a.d<Status> paramd)
+  protected final void n(BaseImplementation.b<Status> paramb)
   {
-    this.abM.disconnect();
-    if (paramd != null)
-      paramd.a(this.yz);
+    this.alw.disconnect();
+    if (paramb != null)
+      paramb.b(this.CM);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.plus.internal.e.h
  * JD-Core Version:    0.6.2
  */

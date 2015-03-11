@@ -14,25 +14,25 @@ public class ActivityRecognitionResultCreator
 
   static void a(ActivityRecognitionResult paramActivityRecognitionResult, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
-    b.b(paramParcel, 1, paramActivityRecognitionResult.UV, false);
+    int i = b.D(paramParcel);
+    b.c(paramParcel, 1, paramActivityRecognitionResult.aeb, false);
     b.c(paramParcel, 1000, paramActivityRecognitionResult.getVersionCode());
-    b.a(paramParcel, 2, paramActivityRecognitionResult.UW);
-    b.a(paramParcel, 3, paramActivityRecognitionResult.UX);
-    b.G(paramParcel, i);
+    b.a(paramParcel, 2, paramActivityRecognitionResult.aec);
+    b.a(paramParcel, 3, paramActivityRecognitionResult.aed);
+    b.H(paramParcel, i);
   }
 
   public ActivityRecognitionResult createFromParcel(Parcel paramParcel)
   {
     long l1 = 0L;
-    int i = a.B(paramParcel);
+    int i = a.C(paramParcel);
     int j = 0;
     ArrayList localArrayList = null;
     long l2 = l1;
     while (paramParcel.dataPosition() < i)
     {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
       {
       default:
         a.b(paramParcel, k);
@@ -61,7 +61,7 @@ public class ActivityRecognitionResultCreator
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.location.ActivityRecognitionResultCreator
  * JD-Core Version:    0.6.2
  */

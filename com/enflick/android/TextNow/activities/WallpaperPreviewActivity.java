@@ -9,10 +9,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 
-public class WallpaperPreviewActivity extends ah
+public class WallpaperPreviewActivity extends an
   implements View.OnClickListener
 {
-  private Button b;
+  private Button a;
 
   public void onClick(View paramView)
   {
@@ -20,7 +20,7 @@ public class WallpaperPreviewActivity extends ah
     {
     default:
       return;
-    case 2131165717:
+    case 2131559017:
     }
     setResult(-1);
     finish();
@@ -29,13 +29,13 @@ public class WallpaperPreviewActivity extends ah
   public void onCreate(Bundle paramBundle)
   {
     super.onCreate(paramBundle);
-    setContentView(2130903202);
-    setTitle(2131493254);
-    b(true);
-    this.b = ((Button)findViewById(2131165717));
-    this.b.setOnClickListener(this);
-    final ImageView localImageView = (ImageView)findViewById(2131165716);
-    View localView = findViewById(2131165369);
+    setContentView(2130903218);
+    setTitle(2131296663);
+    d(true);
+    this.a = ((Button)findViewById(2131559017));
+    this.a.setOnClickListener(this);
+    final ImageView localImageView = (ImageView)findViewById(2131559016);
+    View localView = findViewById(2131558635);
     final Uri localUri = getIntent().getData();
     new AsyncTask()
     {
@@ -57,13 +57,13 @@ public class WallpaperPreviewActivity extends ah
         //   26: getfield 28	com/enflick/android/TextNow/activities/WallpaperPreviewActivity$1:a	Ljava/lang/String;
         //   29: aload_0
         //   30: getfield 26	com/enflick/android/TextNow/activities/WallpaperPreviewActivity$1:f	Lcom/enflick/android/TextNow/activities/WallpaperPreviewActivity;
-        //   33: invokestatic 66	textnow/q/ad:a	(Landroid/content/Context;)I
-        //   36: invokestatic 71	textnow/q/f:a	(Ljava/lang/String;I)Landroid/graphics/Bitmap;
+        //   33: invokestatic 66	textnow/v/z:c	(Landroid/content/Context;)I
+        //   36: invokestatic 71	textnow/v/f:a	(Ljava/lang/String;I)Landroid/graphics/Bitmap;
         //   39: astore 14
         //   41: aload_0
         //   42: getfield 28	com/enflick/android/TextNow/activities/WallpaperPreviewActivity$1:a	Ljava/lang/String;
         //   45: aload 14
-        //   47: invokestatic 74	textnow/q/f:a	(Ljava/lang/String;Landroid/graphics/Bitmap;)Landroid/graphics/Bitmap;
+        //   47: invokestatic 74	textnow/v/f:a	(Ljava/lang/String;Landroid/graphics/Bitmap;)Landroid/graphics/Bitmap;
         //   50: astore_1
         //   51: aconst_null
         //   52: astore_2
@@ -76,7 +76,7 @@ public class WallpaperPreviewActivity extends ah
         //   63: iflt +89 -> 152
         //   66: aload_0
         //   67: getfield 32	com/enflick/android/TextNow/activities/WallpaperPreviewActivity$1:c	J
-        //   70: invokestatic 77	textnow/q/ad:a	(J)Ljava/lang/String;
+        //   70: invokestatic 77	textnow/v/z:a	(J)Ljava/lang/String;
         //   73: astore 8
         //   75: aload_0
         //   76: getfield 26	com/enflick/android/TextNow/activities/WallpaperPreviewActivity$1:f	Lcom/enflick/android/TextNow/activities/WallpaperPreviewActivity;
@@ -101,7 +101,7 @@ public class WallpaperPreviewActivity extends ah
         //   117: aload 13
         //   119: astore_2
         //   120: aload 4
-        //   122: invokestatic 107	textnow/q/n:a	(Ljava/io/OutputStream;)V
+        //   122: invokestatic 107	textnow/v/n:a	(Ljava/io/OutputStream;)V
         //   125: aload_2
         //   126: areturn
         //   127: aload_0
@@ -111,8 +111,8 @@ public class WallpaperPreviewActivity extends ah
         //   135: getfield 30	com/enflick/android/TextNow/activities/WallpaperPreviewActivity$1:b	Landroid/net/Uri;
         //   138: aload_0
         //   139: getfield 26	com/enflick/android/TextNow/activities/WallpaperPreviewActivity$1:f	Lcom/enflick/android/TextNow/activities/WallpaperPreviewActivity;
-        //   142: invokestatic 66	textnow/q/ad:a	(Landroid/content/Context;)I
-        //   145: invokestatic 114	textnow/q/f:a	(Landroid/content/ContentResolver;Landroid/net/Uri;I)Landroid/graphics/Bitmap;
+        //   142: invokestatic 66	textnow/v/z:c	(Landroid/content/Context;)I
+        //   145: invokestatic 114	textnow/v/f:a	(Landroid/content/ContentResolver;Landroid/net/Uri;I)Landroid/graphics/Bitmap;
         //   148: astore_1
         //   149: goto -98 -> 51
         //   152: ldc 116
@@ -122,14 +122,14 @@ public class WallpaperPreviewActivity extends ah
         //   161: aconst_null
         //   162: astore 4
         //   164: aload 4
-        //   166: invokestatic 107	textnow/q/n:a	(Ljava/io/OutputStream;)V
+        //   166: invokestatic 107	textnow/v/n:a	(Ljava/io/OutputStream;)V
         //   169: aconst_null
         //   170: areturn
         //   171: astore 6
         //   173: aconst_null
         //   174: astore 4
         //   176: aload 4
-        //   178: invokestatic 107	textnow/q/n:a	(Ljava/io/OutputStream;)V
+        //   178: invokestatic 107	textnow/v/n:a	(Ljava/io/OutputStream;)V
         //   181: aconst_null
         //   182: areturn
         //   183: astore_3
@@ -138,7 +138,7 @@ public class WallpaperPreviewActivity extends ah
         //   187: aload_3
         //   188: astore 5
         //   190: aload 4
-        //   192: invokestatic 107	textnow/q/n:a	(Ljava/io/OutputStream;)V
+        //   192: invokestatic 107	textnow/v/n:a	(Ljava/io/OutputStream;)V
         //   195: aload 5
         //   197: athrow
         //   198: astore 5
@@ -163,14 +163,14 @@ public class WallpaperPreviewActivity extends ah
 
       protected final void onPreExecute()
       {
-        WallpaperPreviewActivity.this.a(2131493250, false);
+        WallpaperPreviewActivity.this.a(2131296659, false);
       }
     }
     .execute(new Void[0]);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.activities.WallpaperPreviewActivity
  * JD-Core Version:    0.6.2
  */

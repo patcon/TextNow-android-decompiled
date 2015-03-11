@@ -1,17 +1,22 @@
 package com.admarvel.android.ads;
 
-import android.app.Activity;
-import android.view.Window;
+import java.util.ArrayList;
+import java.util.List;
 
 class AdMarvelVideoActivity$f
 {
-  static void a(Activity paramActivity)
+  public int a;
+  public List<String> b = new ArrayList();
+
+  public AdMarvelVideoActivity$f(int paramInt, List<String> paramList)
   {
-    paramActivity.getWindow().setFlags(16777216, 16777216);
+    this.a = paramList;
+    Object localObject;
+    this.b = localObject;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.AdMarvelVideoActivity.f
  * JD-Core Version:    0.6.2
  */

@@ -1,42 +1,104 @@
 package android.support.v7.internal.view.menu;
 
-import android.content.Context;
-import android.widget.ImageButton;
-import textnow.g.c;
+import android.os.Build.VERSION;
+import android.view.MenuItem;
+import android.view.SubMenu;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
+import textnow.b.b;
 
-final class e extends ImageButton
-  implements h
+abstract class e<T> extends f<T>
 {
-  public e(ActionMenuPresenter paramActionMenuPresenter, Context paramContext)
+  private HashMap<MenuItem, b> b;
+  private HashMap<SubMenu, SubMenu> c;
+
+  e(T paramT)
   {
-    super(paramContext, null, c.g);
-    setClickable(true);
-    setFocusable(true);
-    setVisibility(0);
-    setEnabled(true);
+    super(paramT);
   }
 
-  public final boolean d()
+  final SubMenu a(SubMenu paramSubMenu)
   {
-    return false;
+    if (paramSubMenu != null)
+    {
+      if (this.c == null)
+        this.c = new HashMap();
+      Object localObject = (SubMenu)this.c.get(paramSubMenu);
+      if (localObject == null)
+      {
+        if (Build.VERSION.SDK_INT >= 14)
+        {
+          localObject = new ac(paramSubMenu);
+          this.c.put(paramSubMenu, localObject);
+        }
+      }
+      else
+        return localObject;
+      throw new UnsupportedOperationException();
+    }
+    return null;
   }
 
-  public final boolean e()
+  final b a(MenuItem paramMenuItem)
   {
-    return false;
+    if (paramMenuItem != null)
+    {
+      if (this.b == null)
+        this.b = new HashMap();
+      Object localObject = (b)this.b.get(paramMenuItem);
+      if (localObject == null)
+        if (Build.VERSION.SDK_INT < 16)
+          break label67;
+      for (localObject = new r(paramMenuItem); ; localObject = new n(paramMenuItem))
+      {
+        this.b.put(paramMenuItem, localObject);
+        return localObject;
+        label67: if (Build.VERSION.SDK_INT < 14)
+          break;
+      }
+      throw new UnsupportedOperationException();
+    }
+    return null;
   }
 
-  public final boolean performClick()
+  final void a()
   {
-    if (super.performClick())
-      return true;
-    playSoundEffect(0);
-    this.a.b();
-    return true;
+    if (this.b != null)
+      this.b.clear();
+    if (this.c != null)
+      this.c.clear();
+  }
+
+  final void a(int paramInt)
+  {
+    if (this.b == null);
+    while (true)
+    {
+      return;
+      Iterator localIterator = this.b.keySet().iterator();
+      while (localIterator.hasNext())
+        if (paramInt == ((MenuItem)localIterator.next()).getGroupId())
+          localIterator.remove();
+    }
+  }
+
+  final void b(int paramInt)
+  {
+    if (this.b == null);
+    Iterator localIterator;
+    do
+    {
+      return;
+      while (!localIterator.hasNext())
+        localIterator = this.b.keySet().iterator();
+    }
+    while (paramInt != ((MenuItem)localIterator.next()).getItemId());
+    localIterator.remove();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v7.internal.view.menu.e
  * JD-Core Version:    0.6.2
  */

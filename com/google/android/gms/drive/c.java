@@ -11,25 +11,25 @@ public class c
 {
   static void a(DriveId paramDriveId, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
-    b.c(paramParcel, 1, paramDriveId.xM);
-    b.a(paramParcel, 2, paramDriveId.HN, false);
-    b.a(paramParcel, 3, paramDriveId.HO);
-    b.a(paramParcel, 4, paramDriveId.HP);
-    b.G(paramParcel, i);
+    int i = b.D(paramParcel);
+    b.c(paramParcel, 1, paramDriveId.BR);
+    b.a(paramParcel, 2, paramDriveId.Ni, false);
+    b.a(paramParcel, 3, paramDriveId.Nj);
+    b.a(paramParcel, 4, paramDriveId.Nk);
+    b.H(paramParcel, i);
   }
 
-  public DriveId N(Parcel paramParcel)
+  public DriveId O(Parcel paramParcel)
   {
     long l1 = 0L;
-    int i = a.B(paramParcel);
+    int i = a.C(paramParcel);
     int j = 0;
     String str = null;
     long l2 = l1;
     while (paramParcel.dataPosition() < i)
     {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
       {
       default:
         a.b(paramParcel, k);
@@ -52,13 +52,13 @@ public class c
     return new DriveId(j, str, l2, l1);
   }
 
-  public DriveId[] aH(int paramInt)
+  public DriveId[] aT(int paramInt)
   {
     return new DriveId[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.drive.c
  * JD-Core Version:    0.6.2
  */

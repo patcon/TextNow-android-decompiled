@@ -1,25 +1,38 @@
 package textnow.az;
 
-import android.webkit.ConsoleMessage;
-import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import java.util.HashMap;
+import java.util.Map;
 
-final class h extends WebChromeClient
+final class h
 {
-  private h(e parame)
+  private static Map<String, i> a;
+
+  static
   {
+    HashMap localHashMap = new HashMap();
+    a = localHashMap;
+    localHashMap.put("trigger-event", new i()
+    {
+    });
+    a.put("cancel-auto-skip", new i()
+    {
+    });
+    a.put("validate-complete", new i()
+    {
+    });
   }
 
-  public final void onConsoleMessage(String paramString1, int paramInt, String paramString2)
+  static f a(String paramString, Map<String, String> paramMap, WebView paramWebView)
   {
-  }
-
-  public final boolean onConsoleMessage(ConsoleMessage paramConsoleMessage)
-  {
-    return false;
+    i locali = (i)a.get(paramString);
+    if (locali != null)
+      return locali.a(paramMap, paramWebView);
+    return null;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.az.h
  * JD-Core Version:    0.6.2
  */

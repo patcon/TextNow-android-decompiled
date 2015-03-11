@@ -13,7 +13,7 @@ public abstract interface Person$PlacesLived extends Freezable<PlacesLived>
   public abstract boolean isPrimary();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.plus.model.people.Person.PlacesLived
  * JD-Core Version:    0.6.2
  */

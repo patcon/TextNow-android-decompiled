@@ -1,18 +1,11 @@
 package android.support.v4.app;
 
-import android.app.SharedElementCallback;
-
-final class p extends SharedElementCallback
+final class p
 {
-  private o a;
-
-  public p(o paramo)
-  {
-    this.a = paramo;
-  }
+  public static final int[] a = { 16842755, 16842960, 16842961 };
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.app.p
  * JD-Core Version:    0.6.2
  */

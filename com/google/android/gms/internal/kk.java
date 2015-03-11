@@ -1,13 +1,16 @@
 package com.google.android.gms.internal;
 
-import com.google.android.gms.plus.b;
+import android.content.Context;
+import com.google.android.gms.common.api.Api.a;
 
-public final class kk
-  implements b
+public abstract interface kk extends Api.a
 {
+  public abstract Context getContext();
+
+  public abstract kp jb();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.kk
  * JD-Core Version:    0.6.2
  */

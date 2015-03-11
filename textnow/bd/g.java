@@ -1,18 +1,27 @@
 package textnow.bd;
 
-public enum g
+import java.util.Map;
+
+final class g extends e
 {
-  static
+  g(Map<String, String> paramMap, q paramq)
   {
-    g[] arrayOfg = new g[4];
-    arrayOfg[0] = a;
-    arrayOfg[1] = b;
-    arrayOfg[2] = c;
-    arrayOfg[3] = d;
+    super(paramMap, paramq);
+  }
+
+  final void a()
+  {
+    int i = a("w");
+    int j = a("h");
+    String str = b("url");
+    boolean bool1 = c("shouldUseCustomClose");
+    boolean bool2 = c("lockOrientation");
+    if ((i > 0) || (j <= 0));
+    this.b.g().a(str, bool1, bool2);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.bd.g
  * JD-Core Version:    0.6.2
  */

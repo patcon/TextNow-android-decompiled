@@ -30,16 +30,14 @@ class AuthorizationClient$WebViewAuthHandler extends AuthorizationClient.AuthHan
 
   private void saveCookieToken(String paramString)
   {
-    SharedPreferences.Editor localEditor = this.this$0.getStartActivityDelegate().getActivityContext().getSharedPreferences("com.facebook.AuthorizationClient.WebViewAuthHandler.TOKEN_STORE_KEY", 0).edit();
-    localEditor.putString("TOKEN", paramString);
-    if (!localEditor.commit())
-      Utility.logd("Facebook-AuthorizationClient", "Could not update saved web view auth handler token.");
+    this.this$0.getStartActivityDelegate().getActivityContext().getSharedPreferences("com.facebook.AuthorizationClient.WebViewAuthHandler.TOKEN_STORE_KEY", 0).edit().putString("TOKEN", paramString).apply();
   }
 
   void cancel()
   {
     if (this.loginDialog != null)
     {
+      this.loginDialog.setOnCompleteListener(null);
       this.loginDialog.dismiss();
       this.loginDialog = null;
     }
@@ -111,6 +109,7 @@ class AuthorizationClient$WebViewAuthHandler extends AuthorizationClient.AuthHan
       localBundle.putString("scope", str2);
       addLoggingExtra("scope", str2);
     }
+    localBundle.putString("default_audience", paramAuthorizationRequest.getDefaultAudience().getNativeProtocolAudience());
     String str1 = paramAuthorizationRequest.getPreviousAccessToken();
     if ((!Utility.isNullOrEmpty(str1)) && (str1.equals(loadCookieToken())))
     {
@@ -128,7 +127,7 @@ class AuthorizationClient$WebViewAuthHandler extends AuthorizationClient.AuthHan
       };
       this.e2e = AuthorizationClient.access$100();
       addLoggingExtra("e2e", this.e2e);
-      this.loginDialog = ((WebDialog.Builder)new AuthorizationClient.AuthDialogBuilder(this.this$0.getStartActivityDelegate().getActivityContext(), this.applicationId, localBundle).setE2E(this.e2e).setOnCompleteListener(local1)).build();
+      this.loginDialog = ((WebDialog.Builder)new AuthorizationClient.AuthDialogBuilder(this.this$0.getStartActivityDelegate().getActivityContext(), this.applicationId, localBundle).setE2E(this.e2e).setIsRerequest(paramAuthorizationRequest.isRerequest()).setOnCompleteListener(local1)).build();
       this.loginDialog.show();
       return true;
       Utility.clearFacebookCookies(this.this$0.context);
@@ -137,7 +136,7 @@ class AuthorizationClient$WebViewAuthHandler extends AuthorizationClient.AuthHan
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.AuthorizationClient.WebViewAuthHandler
  * JD-Core Version:    0.6.2
  */

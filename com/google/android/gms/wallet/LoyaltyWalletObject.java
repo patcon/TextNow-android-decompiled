@@ -3,7 +3,7 @@ package com.google.android.gms.wallet;
 import android.os.Parcel;
 import android.os.Parcelable.Creator;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-import com.google.android.gms.internal.ig;
+import com.google.android.gms.internal.jr;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.wallet.wobs.d;
 import com.google.android.gms.wallet.wobs.f;
@@ -16,66 +16,66 @@ public final class LoyaltyWalletObject
   implements SafeParcelable
 {
   public static final Parcelable.Creator<LoyaltyWalletObject> CREATOR = new j();
-  ArrayList<n> ajA;
-  f ajB;
-  String aji;
-  String ajj;
-  String ajk;
-  String ajl;
-  String ajm;
-  String ajn;
-  String ajo;
-  String ajp;
-  String ajq;
-  ArrayList<p> ajr;
-  l ajs;
-  ArrayList<LatLng> ajt;
-  String aju;
-  String ajv;
-  ArrayList<d> ajw;
-  boolean ajx;
-  ArrayList<n> ajy;
-  ArrayList<com.google.android.gms.wallet.wobs.j> ajz;
-  String eC;
+  private final int BR;
+  String Dv;
+  String asT;
+  String asU;
+  String asV;
+  String asW;
+  String asX;
+  String asY;
+  String asZ;
+  String ata;
+  ArrayList<p> atb;
+  l atc;
+  ArrayList<LatLng> atd;
+  String ate;
+  String atf;
+  ArrayList<d> atg;
+  boolean ath;
+  ArrayList<n> ati;
+  ArrayList<com.google.android.gms.wallet.wobs.j> atj;
+  ArrayList<n> atk;
+  f atl;
+  String fl;
   int state;
-  private final int xM;
 
   LoyaltyWalletObject()
   {
-    this.xM = 4;
-    this.ajr = ig.ga();
-    this.ajt = ig.ga();
-    this.ajw = ig.ga();
-    this.ajy = ig.ga();
-    this.ajz = ig.ga();
-    this.ajA = ig.ga();
+    this.BR = 4;
+    this.atb = jr.hz();
+    this.atd = jr.hz();
+    this.atg = jr.hz();
+    this.ati = jr.hz();
+    this.atj = jr.hz();
+    this.atk = jr.hz();
   }
 
   LoyaltyWalletObject(int paramInt1, String paramString1, String paramString2, String paramString3, String paramString4, String paramString5, String paramString6, String paramString7, String paramString8, String paramString9, String paramString10, int paramInt2, ArrayList<p> paramArrayList, l paraml, ArrayList<LatLng> paramArrayList1, String paramString11, String paramString12, ArrayList<d> paramArrayList2, boolean paramBoolean, ArrayList<n> paramArrayList3, ArrayList<com.google.android.gms.wallet.wobs.j> paramArrayList4, ArrayList<n> paramArrayList5, f paramf)
   {
-    this.xM = paramInt1;
-    this.eC = paramString1;
-    this.aji = paramString2;
-    this.ajj = paramString3;
-    this.ajk = paramString4;
-    this.ajl = paramString5;
-    this.ajm = paramString6;
-    this.ajn = paramString7;
-    this.ajo = paramString8;
-    this.ajp = paramString9;
-    this.ajq = paramString10;
+    this.BR = paramInt1;
+    this.fl = paramString1;
+    this.asT = paramString2;
+    this.asU = paramString3;
+    this.asV = paramString4;
+    this.Dv = paramString5;
+    this.asW = paramString6;
+    this.asX = paramString7;
+    this.asY = paramString8;
+    this.asZ = paramString9;
+    this.ata = paramString10;
     this.state = paramInt2;
-    this.ajr = paramArrayList;
-    this.ajs = paraml;
-    this.ajt = paramArrayList1;
-    this.aju = paramString11;
-    this.ajv = paramString12;
-    this.ajw = paramArrayList2;
-    this.ajx = paramBoolean;
-    this.ajy = paramArrayList3;
-    this.ajz = paramArrayList4;
-    this.ajA = paramArrayList5;
-    this.ajB = paramf;
+    this.atb = paramArrayList;
+    this.atc = paraml;
+    this.atd = paramArrayList1;
+    this.ate = paramString11;
+    this.atf = paramString12;
+    this.atg = paramArrayList2;
+    this.ath = paramBoolean;
+    this.ati = paramArrayList3;
+    this.atj = paramArrayList4;
+    this.atk = paramArrayList5;
+    this.atl = paramf;
   }
 
   public final int describeContents()
@@ -85,47 +85,47 @@ public final class LoyaltyWalletObject
 
   public final String getAccountId()
   {
-    return this.aji;
+    return this.asT;
   }
 
   public final String getAccountName()
   {
-    return this.ajl;
+    return this.Dv;
   }
 
   public final String getBarcodeAlternateText()
   {
-    return this.ajm;
+    return this.asW;
   }
 
   public final String getBarcodeType()
   {
-    return this.ajn;
+    return this.asX;
   }
 
   public final String getBarcodeValue()
   {
-    return this.ajo;
+    return this.asY;
   }
 
   public final String getId()
   {
-    return this.eC;
+    return this.fl;
   }
 
   public final String getIssuerName()
   {
-    return this.ajj;
+    return this.asU;
   }
 
   public final String getProgramName()
   {
-    return this.ajk;
+    return this.asV;
   }
 
   public final int getVersionCode()
   {
-    return this.xM;
+    return this.BR;
   }
 
   public final void writeToParcel(Parcel paramParcel, int paramInt)
@@ -134,7 +134,7 @@ public final class LoyaltyWalletObject
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.LoyaltyWalletObject
  * JD-Core Version:    0.6.2
  */

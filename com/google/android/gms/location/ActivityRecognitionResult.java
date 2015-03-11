@@ -3,8 +3,8 @@ package com.google.android.gms.location;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcel;
+import com.google.android.gms.common.internal.o;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-import com.google.android.gms.internal.hm;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -14,17 +14,17 @@ public class ActivityRecognitionResult
 {
   public static final ActivityRecognitionResultCreator CREATOR = new ActivityRecognitionResultCreator();
   public static final String EXTRA_ACTIVITY_RESULT = "com.google.android.location.internal.EXTRA_ACTIVITY_RESULT";
-  List<DetectedActivity> UV;
-  long UW;
-  long UX;
-  private final int xM;
+  private final int BR;
+  List<DetectedActivity> aeb;
+  long aec;
+  long aed;
 
   public ActivityRecognitionResult(int paramInt, List<DetectedActivity> paramList, long paramLong1, long paramLong2)
   {
-    this.xM = 1;
-    this.UV = paramList;
-    this.UW = paramLong1;
-    this.UX = paramLong2;
+    this.BR = 1;
+    this.aeb = paramList;
+    this.aec = paramLong1;
+    this.aed = paramLong2;
   }
 
   public ActivityRecognitionResult(DetectedActivity paramDetectedActivity, long paramLong1, long paramLong2)
@@ -37,7 +37,7 @@ public class ActivityRecognitionResult
     if ((paramList != null) && (paramList.size() > 0));
     for (boolean bool1 = true; ; bool1 = false)
     {
-      hm.b(bool1, "Must have at least 1 detected activity");
+      o.b(bool1, "Must have at least 1 detected activity");
       boolean bool2 = paramLong1 < 0L;
       boolean bool3 = false;
       if (bool2)
@@ -47,11 +47,11 @@ public class ActivityRecognitionResult
         if (bool4)
           bool3 = true;
       }
-      hm.b(bool3, "Must set times");
-      this.xM = 1;
-      this.UV = paramList;
-      this.UW = paramLong1;
-      this.UX = paramLong2;
+      o.b(bool3, "Must set times");
+      this.BR = 1;
+      this.aeb = paramList;
+      this.aec = paramLong1;
+      this.aed = paramLong2;
       return;
     }
   }
@@ -60,7 +60,17 @@ public class ActivityRecognitionResult
   {
     if (!hasResult(paramIntent))
       return null;
-    return (ActivityRecognitionResult)paramIntent.getExtras().get("com.google.android.location.internal.EXTRA_ACTIVITY_RESULT");
+    Object localObject = paramIntent.getExtras().get("com.google.android.location.internal.EXTRA_ACTIVITY_RESULT");
+    if ((localObject instanceof byte[]))
+    {
+      Parcel localParcel = Parcel.obtain();
+      localParcel.unmarshall((byte[])localObject, 0, ((byte[])localObject).length);
+      localParcel.setDataPosition(0);
+      return CREATOR.createFromParcel(localParcel);
+    }
+    if ((localObject instanceof ActivityRecognitionResult))
+      return (ActivityRecognitionResult)localObject;
+    return null;
   }
 
   public static boolean hasResult(Intent paramIntent)
@@ -77,7 +87,7 @@ public class ActivityRecognitionResult
 
   public int getActivityConfidence(int paramInt)
   {
-    Iterator localIterator = this.UV.iterator();
+    Iterator localIterator = this.aeb.iterator();
     while (localIterator.hasNext())
     {
       DetectedActivity localDetectedActivity = (DetectedActivity)localIterator.next();
@@ -89,32 +99,32 @@ public class ActivityRecognitionResult
 
   public long getElapsedRealtimeMillis()
   {
-    return this.UX;
+    return this.aed;
   }
 
   public DetectedActivity getMostProbableActivity()
   {
-    return (DetectedActivity)this.UV.get(0);
+    return (DetectedActivity)this.aeb.get(0);
   }
 
   public List<DetectedActivity> getProbableActivities()
   {
-    return this.UV;
+    return this.aeb;
   }
 
   public long getTime()
   {
-    return this.UW;
+    return this.aec;
   }
 
   public int getVersionCode()
   {
-    return this.xM;
+    return this.BR;
   }
 
   public String toString()
   {
-    return "ActivityRecognitionResult [probableActivities=" + this.UV + ", timeMillis=" + this.UW + ", elapsedRealtimeMillis=" + this.UX + "]";
+    return "ActivityRecognitionResult [probableActivities=" + this.aeb + ", timeMillis=" + this.aec + ", elapsedRealtimeMillis=" + this.aed + "]";
   }
 
   public void writeToParcel(Parcel paramParcel, int paramInt)
@@ -123,7 +133,7 @@ public class ActivityRecognitionResult
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.location.ActivityRecognitionResult
  * JD-Core Version:    0.6.2
  */

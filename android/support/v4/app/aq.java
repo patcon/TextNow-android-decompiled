@@ -1,13 +1,11 @@
 package android.support.v4.app;
 
-import android.app.Notification.Builder;
-
-abstract interface aq
+public abstract interface aq
 {
-  public abstract Notification.Builder a();
+  public abstract ap a(ap paramap);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.app.aq
  * JD-Core Version:    0.6.2
  */

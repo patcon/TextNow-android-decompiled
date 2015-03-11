@@ -1,380 +1,213 @@
 package textnow.am;
 
-import android.os.Looper;
-import android.util.AndroidRuntimeException;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AnimationUtils;
-import android.view.animation.Interpolator;
-import android.view.animation.LinearInterpolator;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.math.BigInteger;
+import textnow.ao.a;
+import textnow.ao.i;
 
-public final class o extends a
+public final class o extends j
 {
-  private static ThreadLocal<p> h = new ThreadLocal();
-  private static final ThreadLocal<ArrayList<o>> i = new ThreadLocal()
-  {
-  };
-  private static final ThreadLocal<ArrayList<o>> j = new ThreadLocal()
-  {
-  };
-  private static final ThreadLocal<ArrayList<o>> k = new ThreadLocal()
-  {
-  };
-  private static final ThreadLocal<ArrayList<o>> l = new ThreadLocal()
-  {
-  };
-  private static final ThreadLocal<ArrayList<o>> m = new ThreadLocal()
-  {
-  };
-  private static final Interpolator n = new AccelerateDecelerateInterpolator();
-  private static final n o = new e();
-  private static final n p = new c();
-  private static long z = 10L;
-  private int A = 0;
-  private int B = 1;
-  private Interpolator C = n;
-  private ArrayList<q> D = null;
-  long b;
-  long c = -1L;
-  int d = 0;
-  boolean e = false;
-  k[] f;
-  HashMap<String, k> g;
-  private boolean q = false;
-  private int r = 0;
-  private float s = 0.0F;
-  private boolean t = false;
-  private long u;
-  private boolean v = false;
-  private boolean w = false;
-  private long x = 300L;
-  private long y = 0L;
+  private static final Class<?>[] a = arrayOfClass;
+  private Object b;
 
-  public static o a(float[] paramArrayOfFloat)
+  static
   {
-    o localo = new o();
-    if ((paramArrayOfFloat == null) || (paramArrayOfFloat.length == 0))
-      return localo;
-    if ((localo.f == null) || (localo.f.length == 0))
-    {
-      k[] arrayOfk = new k[1];
-      arrayOfk[0] = k.a("", paramArrayOfFloat);
-      localo.a(arrayOfk);
-    }
-    while (true)
-    {
-      localo.e = false;
-      return localo;
-      localo.f[0].a(paramArrayOfFloat);
-    }
+    Class[] arrayOfClass = new Class[16];
+    arrayOfClass[0] = Integer.TYPE;
+    arrayOfClass[1] = Long.TYPE;
+    arrayOfClass[2] = Short.TYPE;
+    arrayOfClass[3] = Float.TYPE;
+    arrayOfClass[4] = Double.TYPE;
+    arrayOfClass[5] = Byte.TYPE;
+    arrayOfClass[6] = Boolean.TYPE;
+    arrayOfClass[7] = Character.TYPE;
+    arrayOfClass[8] = Integer.class;
+    arrayOfClass[9] = Long.class;
+    arrayOfClass[10] = Short.class;
+    arrayOfClass[11] = Float.class;
+    arrayOfClass[12] = Double.class;
+    arrayOfClass[13] = Byte.class;
+    arrayOfClass[14] = Boolean.class;
+    arrayOfClass[15] = Character.class;
   }
 
-  public static o a(int[] paramArrayOfInt)
+  public o(Boolean paramBoolean)
   {
-    o localo = new o();
-    if ((paramArrayOfInt == null) || (paramArrayOfInt.length == 0))
-      return localo;
-    if ((localo.f == null) || (localo.f.length == 0))
-    {
-      k[] arrayOfk = new k[1];
-      arrayOfk[0] = k.a("", paramArrayOfInt);
-      localo.a(arrayOfk);
-    }
-    while (true)
-    {
-      localo.e = false;
-      return localo;
-      localo.f[0].a(paramArrayOfInt);
-    }
+    a(paramBoolean);
   }
 
-  private void a(k[] paramArrayOfk)
+  public o(Number paramNumber)
   {
-    int i1 = paramArrayOfk.length;
-    this.f = paramArrayOfk;
-    this.g = new HashMap(i1);
-    for (int i2 = 0; i2 < i1; i2++)
-    {
-      k localk = paramArrayOfk[i2];
-      this.g.put(localk.c(), localk);
-    }
-    this.e = false;
+    a(paramNumber);
   }
 
-  private void d(long paramLong)
+  public o(String paramString)
   {
-    l();
-    long l1 = AnimationUtils.currentAnimationTimeMillis();
-    if (this.d != 1)
-    {
-      this.c = paramLong;
-      this.d = 2;
-    }
-    this.b = (l1 - paramLong);
-    c(l1);
+    a(paramString);
   }
 
-  private void l()
+  private void a(Object paramObject)
   {
-    if (!this.e)
+    if ((paramObject instanceof Character))
     {
-      int i1 = this.f.length;
-      for (int i2 = 0; i2 < i1; i2++)
-        this.f[i2].b();
-      this.e = true;
-    }
-  }
-
-  private void m()
-  {
-    ((ArrayList)i.get()).remove(this);
-    ((ArrayList)j.get()).remove(this);
-    ((ArrayList)k.get()).remove(this);
-    this.d = 0;
-    if ((this.v) && (this.a != null))
-    {
-      ArrayList localArrayList = (ArrayList)this.a.clone();
-      int i1 = localArrayList.size();
-      for (int i2 = 0; i2 < i1; i2++)
-        ((b)localArrayList.get(i2)).b(this);
-    }
-    this.v = false;
-    this.w = false;
-  }
-
-  private o n()
-  {
-    int i1 = 0;
-    o localo = (o)super.c();
-    if (this.D != null)
-    {
-      ArrayList localArrayList = this.D;
-      localo.D = new ArrayList();
-      int i3 = localArrayList.size();
-      for (int i4 = 0; i4 < i3; i4++)
-        localo.D.add(localArrayList.get(i4));
-    }
-    localo.c = -1L;
-    localo.q = false;
-    localo.r = 0;
-    localo.e = false;
-    localo.d = 0;
-    localo.t = false;
-    k[] arrayOfk = this.f;
-    if (arrayOfk != null)
-    {
-      int i2 = arrayOfk.length;
-      localo.f = new k[i2];
-      localo.g = new HashMap(i2);
-      while (i1 < i2)
-      {
-        k localk = arrayOfk[i1].a();
-        localo.f[i1] = localk;
-        localo.g.put(localk.c(), localk);
-        i1++;
-      }
-    }
-    return localo;
-  }
-
-  public final o a(long paramLong)
-  {
-    if (paramLong < 0L)
-      throw new IllegalArgumentException("Animators cannot have negative duration: " + paramLong);
-    this.x = paramLong;
-    return this;
-  }
-
-  public final void a()
-  {
-    if (Looper.myLooper() == null)
-      throw new AndroidRuntimeException("Animators may only be run on Looper threads");
-    this.q = false;
-    this.r = 0;
-    this.d = 0;
-    this.w = true;
-    this.t = false;
-    ((ArrayList)j.get()).add(this);
-    if (this.y == 0L)
-    {
-      if ((!this.e) || (this.d == 0));
-      for (long l1 = 0L; ; l1 = AnimationUtils.currentAnimationTimeMillis() - this.b)
-      {
-        d(l1);
-        this.d = 0;
-        this.v = true;
-        if (this.a == null)
-          break;
-        ArrayList localArrayList = (ArrayList)this.a.clone();
-        int i1 = localArrayList.size();
-        for (int i2 = 0; i2 < i1; i2++)
-          ((b)localArrayList.get(i2)).a(this);
-      }
-    }
-    p localp = (p)h.get();
-    if (localp == null)
-    {
-      localp = new p((byte)0);
-      h.set(localp);
-    }
-    localp.sendEmptyMessage(0);
-  }
-
-  public final void a(Interpolator paramInterpolator)
-  {
-    if (paramInterpolator != null)
-    {
-      this.C = paramInterpolator;
+      this.b = String.valueOf(((Character)paramObject).charValue());
       return;
     }
-    this.C = new LinearInterpolator();
-  }
-
-  public final void a(q paramq)
-  {
-    if (this.D == null)
-      this.D = new ArrayList();
-    this.D.add(paramq);
-  }
-
-  public final void b()
-  {
-    if ((this.d != 0) || (((ArrayList)j.get()).contains(this)) || (((ArrayList)k.get()).contains(this)))
+    int k;
+    if (!(paramObject instanceof Number))
     {
-      if ((this.v) && (this.a != null))
-      {
-        Iterator localIterator = ((ArrayList)this.a.clone()).iterator();
-        while (localIterator.hasNext())
-          ((b)localIterator.next()).c(this);
-      }
-      m();
-    }
-  }
-
-  public final void b(long paramLong)
-  {
-    this.y = paramLong;
-  }
-
-  final boolean c(long paramLong)
-  {
-    int i1 = 1;
-    int i2 = 0;
-    if (this.d == 0)
-    {
-      this.d = i1;
-      if (this.c >= 0L)
-        break label60;
-      this.b = paramLong;
+      if (!(paramObject instanceof String))
+        break label58;
+      k = 1;
     }
     while (true)
-      switch (this.d)
-      {
-      default:
-        i1 = 0;
-        return i1;
-        label60: this.b = (paramLong - this.c);
-        this.c = -1L;
-      case 1:
-      case 2:
-      }
-    float f1;
-    if (this.x > 0L)
-      f1 = (float)(paramLong - this.b) / (float)this.x;
-    boolean bool;
-    float f2;
-    while (true)
-      if (f1 >= 1.0F)
-        if ((this.r < this.A) || (this.A == -1))
-        {
-          if (this.a != null)
-          {
-            int i6 = this.a.size();
-            int i7 = 0;
-            while (true)
-              if (i7 < i6)
-              {
-                ((b)this.a.get(i7)).d(this);
-                i7++;
-                continue;
-                f1 = 1.0F;
-                break;
-              }
-          }
-          if (this.B == 2)
-          {
-            if (this.q)
-            {
-              bool = false;
-              this.q = bool;
-            }
-          }
-          else
-          {
-            this.r += (int)f1;
-            f2 = f1 % 1.0F;
-            this.b += this.x;
-            i1 = 0;
-          }
-        }
-    while (true)
     {
-      label243: if (this.q)
-        f2 = 1.0F - f2;
-      float f3 = this.C.getInterpolation(f2);
-      this.s = f3;
-      int i3 = this.f.length;
-      int i4 = 0;
-      while (true)
-        if (i4 < i3)
+      boolean bool = false;
+      if (k != 0)
+        bool = true;
+      a.a(bool);
+      this.b = paramObject;
+      return;
+      label58: Class localClass = paramObject.getClass();
+      Class[] arrayOfClass = a;
+      int i = arrayOfClass.length;
+      for (int j = 0; ; j++)
+      {
+        if (j >= i)
+          break label107;
+        if (arrayOfClass[j].isAssignableFrom(localClass))
         {
-          this.f[i4].a(f3);
-          i4++;
-          continue;
-          bool = i1;
+          k = 1;
           break;
-          f2 = Math.min(f1, 1.0F);
-          break label243;
         }
-      if (this.D == null)
-        break;
-      int i5 = this.D.size();
-      while (i2 < i5)
-      {
-        ((q)this.D.get(i2)).a(this);
-        i2++;
       }
-      break;
-      f2 = f1;
-      i1 = 0;
+      label107: k = 0;
     }
   }
 
-  public final Object d()
+  private static boolean a(o paramo)
   {
-    if ((this.f != null) && (this.f.length > 0))
-      return this.f[0].d();
-    return null;
+    if ((paramo.b instanceof Number))
+    {
+      Number localNumber = (Number)paramo.b;
+      return ((localNumber instanceof BigInteger)) || ((localNumber instanceof Long)) || ((localNumber instanceof Integer)) || ((localNumber instanceof Short)) || ((localNumber instanceof Byte));
+    }
+    return false;
   }
 
-  public final float e()
+  public final Number a()
   {
-    return this.s;
+    if ((this.b instanceof String))
+      return new i((String)this.b);
+    return (Number)this.b;
   }
 
-  public final String toString()
+  public final String b()
   {
-    String str = "ValueAnimator@" + Integer.toHexString(hashCode());
-    if (this.f != null)
-      for (int i1 = 0; i1 < this.f.length; i1++)
-        str = str + "\n    " + this.f[i1].toString();
-    return str;
+    if ((this.b instanceof Number))
+      return a().toString();
+    if ((this.b instanceof Boolean))
+      return ((Boolean)this.b).toString();
+    return (String)this.b;
+  }
+
+  public final double c()
+  {
+    if ((this.b instanceof Number))
+      return a().doubleValue();
+    return Double.parseDouble(b());
+  }
+
+  public final long d()
+  {
+    if ((this.b instanceof Number))
+      return a().longValue();
+    return Long.parseLong(b());
+  }
+
+  public final int e()
+  {
+    if ((this.b instanceof Number))
+      return a().intValue();
+    return Integer.parseInt(b());
+  }
+
+  public final boolean equals(Object paramObject)
+  {
+    if (this == paramObject);
+    o localo;
+    double d1;
+    double d2;
+    do
+    {
+      do
+      {
+        do
+        {
+          return true;
+          if ((paramObject == null) || (getClass() != paramObject.getClass()))
+            return false;
+          localo = (o)paramObject;
+          if (this.b != null)
+            break;
+        }
+        while (localo.b == null);
+        return false;
+        if ((!a(this)) || (!a(localo)))
+          break;
+      }
+      while (a().longValue() == localo.a().longValue());
+      return false;
+      if ((!(this.b instanceof Number)) || (!(localo.b instanceof Number)))
+        break;
+      d1 = a().doubleValue();
+      d2 = localo.a().doubleValue();
+    }
+    while ((d1 == d2) || ((Double.isNaN(d1)) && (Double.isNaN(d2))));
+    return false;
+    return this.b.equals(localo.b);
+  }
+
+  public final boolean f()
+  {
+    if ((this.b instanceof Boolean))
+      return ((Boolean)this.b).booleanValue();
+    return Boolean.parseBoolean(b());
+  }
+
+  public final int hashCode()
+  {
+    if (this.b == null)
+      return 31;
+    if (a(this))
+    {
+      long l2 = a().longValue();
+      return (int)(l2 ^ l2 >>> 32);
+    }
+    if ((this.b instanceof Number))
+    {
+      long l1 = Double.doubleToLongBits(a().doubleValue());
+      return (int)(l1 ^ l1 >>> 32);
+    }
+    return this.b.hashCode();
+  }
+
+  public final boolean n()
+  {
+    return this.b instanceof Boolean;
+  }
+
+  public final boolean o()
+  {
+    return this.b instanceof Number;
+  }
+
+  public final boolean p()
+  {
+    return this.b instanceof String;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.am.o
  * JD-Core Version:    0.6.2
  */

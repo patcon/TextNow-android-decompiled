@@ -6,12 +6,13 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.telephony.SmsManager;
 import android.text.TextUtils;
+import com.enflick.android.TextNow.persistence.contentproviders.d;
 import java.util.ArrayList;
-import textnow.q.a;
-import textnow.q.b;
-import textnow.u.f;
-import textnow.u.k;
-import textnow.u.r;
+import textnow.v.a;
+import textnow.v.b;
+import textnow.z.h;
+import textnow.z.m;
+import textnow.z.u;
 
 public class SendSMSTask extends c
 {
@@ -28,8 +29,8 @@ public class SendSMSTask extends c
 
   public void run()
   {
-    r localr = new r(this.a);
-    if ((!b.k(this.a)) && (!localr.Q()) && (!"911".equals(this.e)));
+    u localu = new u(this.a);
+    if ((!b.j(this.a)) && (!localu.S()) && (!"911".equals(this.e)));
     int i;
     do
     {
@@ -52,11 +53,11 @@ public class SendSMSTask extends c
         localSmsManager.sendTextMessage(this.e, null, this.f, null, null);
       while (true)
       {
-        k.a(this.a, 2, this.e, this.d, 1, 2, true, this.f, "", 1);
+        m.a(this.a, 2, this.e, this.d, 1, 2, true, this.f, "", 1);
         String[] arrayOfString1 = { "count (*)" };
         String[] arrayOfString2 = new String[1];
         arrayOfString2[0] = this.e;
-        Uri localUri = com.enflick.android.TextNow.persistence.contentproviders.c.d;
+        Uri localUri = d.d;
         Cursor localCursor = this.a.getContentResolver().query(localUri, arrayOfString1, "view_conversations.contact_value = ?", arrayOfString2, null);
         i = 0;
         if (localCursor != null);
@@ -73,7 +74,7 @@ public class SendSMSTask extends c
           if (i == 0)
           {
             new StringBuilder().append("New conversation with: ").append(this.e).toString();
-            f.a(this.a.getContentResolver(), 2, this.e, this.d, null);
+            h.a(this.a.getContentResolver(), 2, this.e, this.d, null);
             return;
             localSmsManager.sendMultipartTextMessage(this.e, null, localArrayList, null, null);
           }
@@ -89,7 +90,7 @@ public class SendSMSTask extends c
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.SendSMSTask
  * JD-Core Version:    0.6.2
  */

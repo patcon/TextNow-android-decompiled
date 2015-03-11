@@ -1,33 +1,33 @@
 package com.google.android.gms.common.data;
 
-import com.google.android.gms.internal.hm;
+import com.google.android.gms.common.internal.o;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class c<T>
   implements Iterator<T>
 {
-  protected final DataBuffer<T> EA;
-  protected int EB;
+  protected final DataBuffer<T> JV;
+  protected int JW;
 
   public c(DataBuffer<T> paramDataBuffer)
   {
-    this.EA = ((DataBuffer)hm.f(paramDataBuffer));
-    this.EB = -1;
+    this.JV = ((DataBuffer)o.i(paramDataBuffer));
+    this.JW = -1;
   }
 
   public boolean hasNext()
   {
-    return this.EB < -1 + this.EA.getCount();
+    return this.JW < -1 + this.JV.getCount();
   }
 
   public T next()
   {
     if (!hasNext())
-      throw new NoSuchElementException("Cannot advance the iterator beyond " + this.EB);
-    DataBuffer localDataBuffer = this.EA;
-    int i = 1 + this.EB;
-    this.EB = i;
+      throw new NoSuchElementException("Cannot advance the iterator beyond " + this.JW);
+    DataBuffer localDataBuffer = this.JV;
+    int i = 1 + this.JW;
+    this.JW = i;
     return localDataBuffer.get(i);
   }
 
@@ -37,7 +37,7 @@ public class c<T>
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.common.data.c
  * JD-Core Version:    0.6.2
  */

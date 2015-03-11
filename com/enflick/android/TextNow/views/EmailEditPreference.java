@@ -2,7 +2,7 @@ package com.enflick.android.TextNow.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import textnow.u.r;
+import textnow.z.u;
 
 public class EmailEditPreference extends EmailEditText
 {
@@ -20,28 +20,28 @@ public class EmailEditPreference extends EmailEditText
   {
     if (h())
     {
-      if ((!a(2131493069)) && (!a(toString(), 2131493067, 256)) && (b(2131493068)));
+      if ((!a(2131296476)) && (!a(toString(), 2131296474, 256)) && (b(2131296475)));
       for (int i = 1; ; i = 0)
       {
         if (i != 0)
         {
-          a(c.c);
+          a(d.c);
           a(false);
         }
         return;
       }
     }
-    a(c.c);
+    a(d.c);
     a(false);
   }
 
   public final boolean h()
   {
-    return !new r(getContext()).e().equalsIgnoreCase(toString());
+    return !new u(getContext()).e().equalsIgnoreCase(toString());
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.views.EmailEditPreference
  * JD-Core Version:    0.6.2
  */

@@ -1,69 +1,47 @@
 package com.google.android.gms.internal;
 
-import android.os.Parcel;
-import android.os.Parcelable.Creator;
-import com.google.android.gms.common.internal.safeparcel.a;
-import com.google.android.gms.common.internal.safeparcel.a.a;
-import com.google.android.gms.common.internal.safeparcel.b;
-import java.util.HashSet;
-import java.util.Set;
+import com.google.android.gms.fitness.data.DataSource;
 
 public class kw
-  implements Parcelable.Creator<ks.b.a>
 {
-  static void a(ks.b.a parama, Parcel paramParcel, int paramInt)
+  private static final ThreadLocal<String> Ty = new ThreadLocal();
+
+  public static String bt(String paramString)
   {
-    int i = b.C(paramParcel);
-    Set localSet = parama.kk();
-    if (localSet.contains(Integer.valueOf(1)))
-      b.c(paramParcel, 1, parama.getVersionCode());
-    if (localSet.contains(Integer.valueOf(2)))
-      b.c(paramParcel, 2, parama.getLeftImageOffset());
-    if (localSet.contains(Integer.valueOf(3)))
-      b.c(paramParcel, 3, parama.getTopImageOffset());
-    b.G(paramParcel, i);
+    return s(paramString, (String)Ty.get());
   }
 
-  public ks.b.a bJ(Parcel paramParcel)
+  public static DataSource c(DataSource paramDataSource)
   {
-    int i = 0;
-    int j = a.B(paramParcel);
-    HashSet localHashSet = new HashSet();
-    int k = 0;
-    int m = 0;
-    while (paramParcel.dataPosition() < j)
+    if (!paramDataSource.iO());
+    String str;
+    do
     {
-      int n = a.A(paramParcel);
-      switch (a.ar(n))
-      {
-      default:
-        a.b(paramParcel, n);
-        break;
-      case 1:
-        m = a.g(paramParcel, n);
-        localHashSet.add(Integer.valueOf(1));
-        break;
-      case 2:
-        k = a.g(paramParcel, n);
-        localHashSet.add(Integer.valueOf(2));
-        break;
-      case 3:
-        i = a.g(paramParcel, n);
-        localHashSet.add(Integer.valueOf(3));
-      }
+      return paramDataSource;
+      str = (String)Ty.get();
     }
-    if (paramParcel.dataPosition() != j)
-      throw new a.a("Overread allowed size end=" + j, paramParcel);
-    return new ks.b.a(localHashSet, m, k, i);
+    while ((jc()) || (str.equals(paramDataSource.getAppPackageName())));
+    return paramDataSource.iP();
   }
 
-  public ks.b.a[] dg(int paramInt)
+  public static boolean jc()
   {
-    return new ks.b.a[paramInt];
+    String str = (String)Ty.get();
+    return (str == null) || (str.startsWith("com.google"));
+  }
+
+  private static String s(String paramString1, String paramString2)
+  {
+    if ((paramString1 == null) || (paramString2 == null))
+      return paramString1;
+    byte[] arrayOfByte = new byte[paramString1.length() + paramString2.length()];
+    System.arraycopy(paramString1.getBytes(), 0, arrayOfByte, 0, paramString1.length());
+    System.arraycopy(paramString2.getBytes(), 0, arrayOfByte, paramString1.length(), paramString2.length());
+    return Integer.toHexString(kb.a(arrayOfByte, 0, arrayOfByte.length, 0));
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.kw
  * JD-Core Version:    0.6.2
  */

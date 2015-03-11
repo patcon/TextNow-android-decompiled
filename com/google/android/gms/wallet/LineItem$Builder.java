@@ -8,47 +8,47 @@ public final class LineItem$Builder
 
   public final LineItem build()
   {
-    return this.ajh;
+    return this.asS;
   }
 
   public final Builder setCurrencyCode(String paramString)
   {
-    this.ajh.aiL = paramString;
+    this.asS.asw = paramString;
     return this;
   }
 
   public final Builder setDescription(String paramString)
   {
-    this.ajh.description = paramString;
+    this.asS.description = paramString;
     return this;
   }
 
   public final Builder setQuantity(String paramString)
   {
-    this.ajh.aje = paramString;
+    this.asS.asP = paramString;
     return this;
   }
 
   public final Builder setRole(int paramInt)
   {
-    this.ajh.ajg = paramInt;
+    this.asS.asR = paramInt;
     return this;
   }
 
   public final Builder setTotalPrice(String paramString)
   {
-    this.ajh.aiK = paramString;
+    this.asS.asv = paramString;
     return this;
   }
 
   public final Builder setUnitPrice(String paramString)
   {
-    this.ajh.ajf = paramString;
+    this.asS.asQ = paramString;
     return this;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.LineItem.Builder
  * JD-Core Version:    0.6.2
  */

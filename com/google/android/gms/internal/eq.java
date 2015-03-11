@@ -1,54 +1,29 @@
 package com.google.android.gms.internal;
 
-import android.content.Context;
-import android.view.View;
-import android.view.Window;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import java.io.File;
+import com.google.android.gms.ads.purchase.PlayStorePurchaseListener;
 
-public final class eq
+@ez
+public final class eq extends el.a
 {
-  public static void a(Context paramContext, WebSettings paramWebSettings)
+  private final PlayStorePurchaseListener oD;
+
+  public eq(PlayStorePurchaseListener paramPlayStorePurchaseListener)
   {
-    paramWebSettings.setAppCachePath(paramContext.getCacheDir().getAbsolutePath());
-    paramWebSettings.setAppCacheMaxSize(0L);
-    paramWebSettings.setAppCacheEnabled(true);
-    paramWebSettings.setDatabasePath(paramContext.getDatabasePath("com.google.android.gms.ads.db").getAbsolutePath());
-    paramWebSettings.setDatabaseEnabled(true);
-    paramWebSettings.setDomStorageEnabled(true);
-    paramWebSettings.setDisplayZoomControls(false);
-    paramWebSettings.setBuiltInZoomControls(true);
-    paramWebSettings.setSupportZoom(true);
+    this.oD = paramPlayStorePurchaseListener;
   }
 
-  public static void a(Window paramWindow)
+  public final void a(ek paramek)
   {
-    paramWindow.setFlags(16777216, 16777216);
+    this.oD.onInAppPurchaseFinished(new eo(paramek));
   }
 
-  public static void a(WebView paramWebView)
+  public final boolean isValidPurchase(String paramString)
   {
-    paramWebView.onPause();
-  }
-
-  public static void b(WebView paramWebView)
-  {
-    paramWebView.onResume();
-  }
-
-  public static void d(View paramView)
-  {
-    paramView.setLayerType(1, null);
-  }
-
-  public static void e(View paramView)
-  {
-    paramView.setLayerType(0, null);
+    return this.oD.isValidPurchase(paramString);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.eq
  * JD-Core Version:    0.6.2
  */

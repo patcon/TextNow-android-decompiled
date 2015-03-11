@@ -1,46 +1,25 @@
 package android.support.v4.widget;
 
-import android.content.Context;
-import android.graphics.Canvas;
+import android.view.View;
+import android.view.View.OnApplyWindowInsetsListener;
+import android.view.WindowInsets;
 
 final class s
-  implements u
+  implements View.OnApplyWindowInsetsListener
 {
-  public final Object a(Context paramContext)
+  public final WindowInsets onApplyWindowInsets(View paramView, WindowInsets paramWindowInsets)
   {
-    return null;
-  }
-
-  public final void a(Object paramObject, int paramInt1, int paramInt2)
-  {
-  }
-
-  public final boolean a(Object paramObject)
-  {
-    return true;
-  }
-
-  public final boolean a(Object paramObject, float paramFloat)
-  {
-    return false;
-  }
-
-  public final boolean a(Object paramObject, Canvas paramCanvas)
-  {
-    return false;
-  }
-
-  public final void b(Object paramObject)
-  {
-  }
-
-  public final boolean c(Object paramObject)
-  {
-    return false;
+    t localt = (t)paramView;
+    if (paramWindowInsets.getSystemWindowInsetTop() > 0);
+    for (boolean bool = true; ; bool = false)
+    {
+      localt.a(paramWindowInsets, bool);
+      return paramWindowInsets.consumeSystemWindowInsets();
+    }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.widget.s
  * JD-Core Version:    0.6.2
  */

@@ -65,264 +65,284 @@ public class ImageDownloader
     //   15: invokespecial 116	java/net/URL:<init>	(Ljava/lang/String;)V
     //   18: invokevirtual 120	java/net/URL:openConnection	()Ljava/net/URLConnection;
     //   21: checkcast 122	java/net/HttpURLConnection
-    //   24: astore 10
-    //   26: aload 10
+    //   24: astore 11
+    //   26: aload 11
     //   28: iconst_0
     //   29: invokevirtual 126	java/net/HttpURLConnection:setInstanceFollowRedirects	(Z)V
-    //   32: aload 10
+    //   32: aload 11
     //   34: invokevirtual 130	java/net/HttpURLConnection:getResponseCode	()I
-    //   37: lookupswitch	default:+35->72, 200:+242->279, 301:+138->175, 302:+138->175
-    //   73: lconst_1
+    //   37: lookupswitch	default:+35->72, 200:+247->284, 301:+143->180, 302:+143->180
+    //   73: fconst_0
     //   74: invokevirtual 134	java/net/HttpURLConnection:getErrorStream	()Ljava/io/InputStream;
-    //   77: astore 24
-    //   79: aload 24
+    //   77: astore 25
+    //   79: aload 25
     //   81: astore 6
-    //   83: new 136	java/io/InputStreamReader
+    //   83: new 136	java/lang/StringBuilder
     //   86: dup
-    //   87: aload 6
-    //   89: invokespecial 139	java/io/InputStreamReader:<init>	(Ljava/io/InputStream;)V
-    //   92: astore 25
-    //   94: sipush 128
-    //   97: newarray char
-    //   99: astore 26
-    //   101: new 141	java/lang/StringBuilder
-    //   104: dup
-    //   105: invokespecial 142	java/lang/StringBuilder:<init>	()V
-    //   108: astore 27
-    //   110: aload 25
-    //   112: aload 26
-    //   114: iconst_0
-    //   115: aload 26
-    //   117: arraylength
-    //   118: invokevirtual 146	java/io/InputStreamReader:read	([CII)I
-    //   121: istore 28
-    //   123: iload 28
-    //   125: ifle +178 -> 303
-    //   128: aload 27
-    //   130: aload 26
-    //   132: iconst_0
-    //   133: iload 28
-    //   135: invokevirtual 150	java/lang/StringBuilder:append	([CII)Ljava/lang/StringBuilder;
-    //   138: pop
-    //   139: goto -29 -> 110
-    //   142: astore 18
-    //   144: aload 10
-    //   146: astore 5
-    //   148: aload 18
-    //   150: astore 4
-    //   152: aload 6
-    //   154: invokestatic 156	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
-    //   157: aload 5
-    //   159: invokestatic 160	com/facebook/internal/Utility:disconnectQuietly	(Ljava/net/URLConnection;)V
-    //   162: iload_3
-    //   163: ifeq +11 -> 174
-    //   166: aload_0
-    //   167: aload 4
-    //   169: aload_2
-    //   170: iconst_0
-    //   171: invokestatic 164	com/facebook/internal/ImageDownloader:issueResponse	(Lcom/facebook/internal/ImageDownloader$RequestKey;Ljava/lang/Exception;Landroid/graphics/Bitmap;Z)V
-    //   174: return
-    //   175: aload 10
-    //   177: ldc 166
-    //   179: invokevirtual 170	java/net/HttpURLConnection:getHeaderField	(Ljava/lang/String;)Ljava/lang/String;
-    //   182: astore 21
-    //   184: aload 21
-    //   186: invokestatic 174	com/facebook/internal/Utility:isNullOrEmpty	(Ljava/lang/String;)Z
-    //   189: ifne +301 -> 490
-    //   192: new 109	java/net/URI
-    //   195: dup
-    //   196: aload 21
-    //   198: invokespecial 175	java/net/URI:<init>	(Ljava/lang/String;)V
-    //   201: astore 22
-    //   203: aload_1
-    //   204: aload_0
-    //   205: getfield 107	com/facebook/internal/ImageDownloader$RequestKey:uri	Ljava/net/URI;
-    //   208: aload 22
-    //   210: invokestatic 179	com/facebook/internal/UrlRedirectCache:cacheUriRedirect	(Landroid/content/Context;Ljava/net/URI;Ljava/net/URI;)V
-    //   213: aload_0
-    //   214: invokestatic 183	com/facebook/internal/ImageDownloader:removePendingRequest	(Lcom/facebook/internal/ImageDownloader$RequestKey;)Lcom/facebook/internal/ImageDownloader$DownloaderContext;
-    //   217: astore 23
-    //   219: aload 23
-    //   221: ifnull +33 -> 254
-    //   224: aload 23
-    //   226: getfield 88	com/facebook/internal/ImageDownloader$DownloaderContext:isCancelled	Z
-    //   229: ifne +25 -> 254
-    //   232: aload 23
-    //   234: getfield 187	com/facebook/internal/ImageDownloader$DownloaderContext:request	Lcom/facebook/internal/ImageRequest;
-    //   237: new 50	com/facebook/internal/ImageDownloader$RequestKey
-    //   240: dup
-    //   241: aload 22
-    //   243: aload_0
-    //   244: getfield 191	com/facebook/internal/ImageDownloader$RequestKey:tag	Ljava/lang/Object;
-    //   247: invokespecial 63	com/facebook/internal/ImageDownloader$RequestKey:<init>	(Ljava/net/URI;Ljava/lang/Object;)V
-    //   250: iconst_0
-    //   251: invokestatic 195	com/facebook/internal/ImageDownloader:enqueueCacheRead	(Lcom/facebook/internal/ImageRequest;Lcom/facebook/internal/ImageDownloader$RequestKey;Z)V
-    //   254: iconst_0
-    //   255: istore_3
-    //   256: aconst_null
-    //   257: astore 17
-    //   259: aconst_null
-    //   260: astore 6
-    //   262: aload 6
-    //   264: invokestatic 156	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
-    //   267: aload 10
-    //   269: invokestatic 160	com/facebook/internal/Utility:disconnectQuietly	(Ljava/net/URLConnection;)V
-    //   272: aload 17
-    //   274: astore 4
-    //   276: goto -114 -> 162
-    //   279: aload_1
-    //   280: aload 10
-    //   282: invokestatic 199	com/facebook/internal/ImageResponseCache:interceptAndCacheImageStream	(Landroid/content/Context;Ljava/net/HttpURLConnection;)Ljava/io/InputStream;
-    //   285: astore 14
-    //   287: aload 14
-    //   289: astore 6
-    //   291: aload 6
-    //   293: invokestatic 205	android/graphics/BitmapFactory:decodeStream	(Ljava/io/InputStream;)Landroid/graphics/Bitmap;
-    //   296: astore_2
-    //   297: aconst_null
-    //   298: astore 17
-    //   300: goto -38 -> 262
-    //   303: aload 25
-    //   305: invokestatic 156	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
-    //   308: new 207	com/facebook/FacebookException
-    //   311: dup
-    //   312: aload 27
-    //   314: invokevirtual 208	java/lang/StringBuilder:toString	()Ljava/lang/String;
-    //   317: invokespecial 209	com/facebook/FacebookException:<init>	(Ljava/lang/String;)V
-    //   320: astore 17
-    //   322: aconst_null
-    //   323: astore_2
-    //   324: goto -62 -> 262
-    //   327: astore 16
-    //   329: aload 10
-    //   331: astore 7
-    //   333: aload 16
-    //   335: astore 4
-    //   337: aload 6
-    //   339: invokestatic 156	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
-    //   342: aload 7
-    //   344: invokestatic 160	com/facebook/internal/Utility:disconnectQuietly	(Ljava/net/URLConnection;)V
-    //   347: aconst_null
-    //   348: astore_2
-    //   349: goto -187 -> 162
-    //   352: astore 8
-    //   354: aconst_null
-    //   355: astore 9
-    //   357: aload_2
-    //   358: invokestatic 156	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
-    //   361: aload 9
-    //   363: invokestatic 160	com/facebook/internal/Utility:disconnectQuietly	(Ljava/net/URLConnection;)V
-    //   366: aload 8
-    //   368: athrow
-    //   369: astore 13
-    //   371: aload 10
-    //   373: astore 9
-    //   375: aload 13
-    //   377: astore 8
-    //   379: aconst_null
-    //   380: astore_2
-    //   381: goto -24 -> 357
-    //   384: astore 15
-    //   386: aload 6
-    //   388: astore_2
-    //   389: aload 10
-    //   391: astore 9
-    //   393: aload 15
-    //   395: astore 8
-    //   397: goto -40 -> 357
-    //   400: astore 4
+    //   87: invokespecial 137	java/lang/StringBuilder:<init>	()V
+    //   90: astore 26
+    //   92: aload 6
+    //   94: ifnull +263 -> 357
+    //   97: new 139	java/io/InputStreamReader
+    //   100: dup
+    //   101: aload 6
+    //   103: invokespecial 142	java/io/InputStreamReader:<init>	(Ljava/io/InputStream;)V
+    //   106: astore 27
+    //   108: sipush 128
+    //   111: newarray char
+    //   113: astore 28
+    //   115: aload 27
+    //   117: aload 28
+    //   119: iconst_0
+    //   120: aload 28
+    //   122: arraylength
+    //   123: invokevirtual 146	java/io/InputStreamReader:read	([CII)I
+    //   126: istore 29
+    //   128: iload 29
+    //   130: ifle +178 -> 308
+    //   133: aload 26
+    //   135: aload 28
+    //   137: iconst_0
+    //   138: iload 29
+    //   140: invokevirtual 150	java/lang/StringBuilder:append	([CII)Ljava/lang/StringBuilder;
+    //   143: pop
+    //   144: goto -29 -> 115
+    //   147: astore 19
+    //   149: aload 11
+    //   151: astore 5
+    //   153: aload 19
+    //   155: astore 4
+    //   157: aload 6
+    //   159: invokestatic 156	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
+    //   162: aload 5
+    //   164: invokestatic 160	com/facebook/internal/Utility:disconnectQuietly	(Ljava/net/URLConnection;)V
+    //   167: iload_3
+    //   168: ifeq +11 -> 179
+    //   171: aload_0
+    //   172: aload 4
+    //   174: aload_2
+    //   175: iconst_0
+    //   176: invokestatic 164	com/facebook/internal/ImageDownloader:issueResponse	(Lcom/facebook/internal/ImageDownloader$RequestKey;Ljava/lang/Exception;Landroid/graphics/Bitmap;Z)V
+    //   179: return
+    //   180: aload 11
+    //   182: ldc 166
+    //   184: invokevirtual 170	java/net/HttpURLConnection:getHeaderField	(Ljava/lang/String;)Ljava/lang/String;
+    //   187: astore 22
+    //   189: aload 22
+    //   191: invokestatic 174	com/facebook/internal/Utility:isNullOrEmpty	(Ljava/lang/String;)Z
+    //   194: ifne +323 -> 517
+    //   197: new 109	java/net/URI
+    //   200: dup
+    //   201: aload 22
+    //   203: invokespecial 175	java/net/URI:<init>	(Ljava/lang/String;)V
+    //   206: astore 23
+    //   208: aload_1
+    //   209: aload_0
+    //   210: getfield 107	com/facebook/internal/ImageDownloader$RequestKey:uri	Ljava/net/URI;
+    //   213: aload 23
+    //   215: invokestatic 179	com/facebook/internal/UrlRedirectCache:cacheUriRedirect	(Landroid/content/Context;Ljava/net/URI;Ljava/net/URI;)V
+    //   218: aload_0
+    //   219: invokestatic 183	com/facebook/internal/ImageDownloader:removePendingRequest	(Lcom/facebook/internal/ImageDownloader$RequestKey;)Lcom/facebook/internal/ImageDownloader$DownloaderContext;
+    //   222: astore 24
+    //   224: aload 24
+    //   226: ifnull +33 -> 259
+    //   229: aload 24
+    //   231: getfield 88	com/facebook/internal/ImageDownloader$DownloaderContext:isCancelled	Z
+    //   234: ifne +25 -> 259
+    //   237: aload 24
+    //   239: getfield 187	com/facebook/internal/ImageDownloader$DownloaderContext:request	Lcom/facebook/internal/ImageRequest;
+    //   242: new 50	com/facebook/internal/ImageDownloader$RequestKey
+    //   245: dup
+    //   246: aload 23
+    //   248: aload_0
+    //   249: getfield 191	com/facebook/internal/ImageDownloader$RequestKey:tag	Ljava/lang/Object;
+    //   252: invokespecial 63	com/facebook/internal/ImageDownloader$RequestKey:<init>	(Ljava/net/URI;Ljava/lang/Object;)V
+    //   255: iconst_0
+    //   256: invokestatic 195	com/facebook/internal/ImageDownloader:enqueueCacheRead	(Lcom/facebook/internal/ImageRequest;Lcom/facebook/internal/ImageDownloader$RequestKey;Z)V
+    //   259: iconst_0
+    //   260: istore_3
+    //   261: aconst_null
+    //   262: astore 18
+    //   264: aconst_null
+    //   265: astore 6
+    //   267: aload 6
+    //   269: invokestatic 156	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
+    //   272: aload 11
+    //   274: invokestatic 160	com/facebook/internal/Utility:disconnectQuietly	(Ljava/net/URLConnection;)V
+    //   277: aload 18
+    //   279: astore 4
+    //   281: goto -114 -> 167
+    //   284: aload_1
+    //   285: aload 11
+    //   287: invokestatic 199	com/facebook/internal/ImageResponseCache:interceptAndCacheImageStream	(Landroid/content/Context;Ljava/net/HttpURLConnection;)Ljava/io/InputStream;
+    //   290: astore 15
+    //   292: aload 15
+    //   294: astore 6
+    //   296: aload 6
+    //   298: invokestatic 205	android/graphics/BitmapFactory:decodeStream	(Ljava/io/InputStream;)Landroid/graphics/Bitmap;
+    //   301: astore_2
+    //   302: aconst_null
+    //   303: astore 18
+    //   305: goto -38 -> 267
+    //   308: aload 27
+    //   310: invokestatic 156	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
+    //   313: new 207	com/facebook/FacebookException
+    //   316: dup
+    //   317: aload 26
+    //   319: invokevirtual 208	java/lang/StringBuilder:toString	()Ljava/lang/String;
+    //   322: invokespecial 209	com/facebook/FacebookException:<init>	(Ljava/lang/String;)V
+    //   325: astore 18
+    //   327: aconst_null
+    //   328: astore_2
+    //   329: goto -62 -> 267
+    //   332: astore 17
+    //   334: aload 11
+    //   336: astore 7
+    //   338: aload 17
+    //   340: astore 4
+    //   342: aload 6
+    //   344: invokestatic 156	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
+    //   347: aload 7
+    //   349: invokestatic 160	com/facebook/internal/Utility:disconnectQuietly	(Ljava/net/URLConnection;)V
+    //   352: aconst_null
+    //   353: astore_2
+    //   354: goto -187 -> 167
+    //   357: aload 26
+    //   359: aload_1
+    //   360: getstatic 214	com/facebook/android/R$string:com_facebook_image_download_unknown_error	I
+    //   363: invokevirtual 220	android/content/Context:getString	(I)Ljava/lang/String;
+    //   366: invokevirtual 223	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   369: pop
+    //   370: goto -57 -> 313
+    //   373: astore 16
+    //   375: aload 6
+    //   377: astore 10
+    //   379: aload 11
+    //   381: astore 9
+    //   383: aload 16
+    //   385: astore 8
+    //   387: aload 10
+    //   389: invokestatic 156	com/facebook/internal/Utility:closeQuietly	(Ljava/io/Closeable;)V
+    //   392: aload 9
+    //   394: invokestatic 160	com/facebook/internal/Utility:disconnectQuietly	(Ljava/net/URLConnection;)V
+    //   397: aload 8
+    //   399: athrow
+    //   400: astore 8
     //   402: aconst_null
-    //   403: astore 7
+    //   403: astore 9
     //   405: aconst_null
-    //   406: astore 6
-    //   408: goto -71 -> 337
-    //   411: astore 12
-    //   413: aload 10
-    //   415: astore 7
-    //   417: aload 12
-    //   419: astore 4
+    //   406: astore 10
+    //   408: goto -21 -> 387
+    //   411: astore 14
+    //   413: aload 11
+    //   415: astore 9
+    //   417: aload 14
+    //   419: astore 8
     //   421: aconst_null
-    //   422: astore 6
-    //   424: goto -87 -> 337
-    //   427: astore 20
-    //   429: aload 10
-    //   431: astore 7
-    //   433: aload 20
-    //   435: astore 4
-    //   437: iconst_0
-    //   438: istore_3
-    //   439: aconst_null
-    //   440: astore 6
-    //   442: goto -105 -> 337
-    //   445: astore 4
-    //   447: aconst_null
-    //   448: astore 5
-    //   450: aconst_null
-    //   451: astore 6
-    //   453: goto -301 -> 152
-    //   456: astore 11
-    //   458: aload 10
-    //   460: astore 5
-    //   462: aload 11
-    //   464: astore 4
+    //   422: astore 10
+    //   424: goto -37 -> 387
+    //   427: astore 4
+    //   429: aconst_null
+    //   430: astore 7
+    //   432: aconst_null
+    //   433: astore 6
+    //   435: goto -93 -> 342
+    //   438: astore 13
+    //   440: aload 11
+    //   442: astore 7
+    //   444: aload 13
+    //   446: astore 4
+    //   448: aconst_null
+    //   449: astore 6
+    //   451: goto -109 -> 342
+    //   454: astore 21
+    //   456: aload 11
+    //   458: astore 7
+    //   460: aload 21
+    //   462: astore 4
+    //   464: iconst_0
+    //   465: istore_3
     //   466: aconst_null
     //   467: astore 6
-    //   469: goto -317 -> 152
-    //   472: astore 19
-    //   474: aload 10
-    //   476: astore 5
-    //   478: aload 19
-    //   480: astore 4
-    //   482: iconst_0
-    //   483: istore_3
-    //   484: aconst_null
-    //   485: astore 6
-    //   487: goto -335 -> 152
-    //   490: iconst_0
-    //   491: istore_3
-    //   492: aconst_null
-    //   493: astore_2
-    //   494: aconst_null
-    //   495: astore 17
-    //   497: aconst_null
-    //   498: astore 6
-    //   500: goto -238 -> 262
+    //   469: goto -127 -> 342
+    //   472: astore 4
+    //   474: aconst_null
+    //   475: astore 5
+    //   477: aconst_null
+    //   478: astore 6
+    //   480: goto -323 -> 157
+    //   483: astore 12
+    //   485: aload 11
+    //   487: astore 5
+    //   489: aload 12
+    //   491: astore 4
+    //   493: aconst_null
+    //   494: astore 6
+    //   496: goto -339 -> 157
+    //   499: astore 20
+    //   501: aload 11
+    //   503: astore 5
+    //   505: aload 20
+    //   507: astore 4
+    //   509: iconst_0
+    //   510: istore_3
+    //   511: aconst_null
+    //   512: astore 6
+    //   514: goto -357 -> 157
+    //   517: iconst_0
+    //   518: istore_3
+    //   519: aconst_null
+    //   520: astore_2
+    //   521: aconst_null
+    //   522: astore 18
+    //   524: aconst_null
+    //   525: astore 6
+    //   527: goto -260 -> 267
     //
     // Exception table:
     //   from	to	target	type
-    //   83	110	142	java/io/IOException
-    //   110	123	142	java/io/IOException
-    //   128	139	142	java/io/IOException
-    //   291	297	142	java/io/IOException
-    //   303	322	142	java/io/IOException
-    //   83	110	327	java/net/URISyntaxException
-    //   110	123	327	java/net/URISyntaxException
-    //   128	139	327	java/net/URISyntaxException
-    //   291	297	327	java/net/URISyntaxException
-    //   303	322	327	java/net/URISyntaxException
-    //   4	26	352	finally
-    //   26	72	369	finally
-    //   72	79	369	finally
-    //   175	219	369	finally
-    //   224	254	369	finally
-    //   279	287	369	finally
-    //   83	110	384	finally
-    //   110	123	384	finally
-    //   128	139	384	finally
-    //   291	297	384	finally
-    //   303	322	384	finally
-    //   4	26	400	java/net/URISyntaxException
-    //   26	72	411	java/net/URISyntaxException
-    //   72	79	411	java/net/URISyntaxException
-    //   279	287	411	java/net/URISyntaxException
-    //   175	219	427	java/net/URISyntaxException
-    //   224	254	427	java/net/URISyntaxException
-    //   4	26	445	java/io/IOException
-    //   26	72	456	java/io/IOException
-    //   72	79	456	java/io/IOException
-    //   279	287	456	java/io/IOException
-    //   175	219	472	java/io/IOException
-    //   224	254	472	java/io/IOException
+    //   83	92	147	java/io/IOException
+    //   97	115	147	java/io/IOException
+    //   115	128	147	java/io/IOException
+    //   133	144	147	java/io/IOException
+    //   296	302	147	java/io/IOException
+    //   308	313	147	java/io/IOException
+    //   313	327	147	java/io/IOException
+    //   357	370	147	java/io/IOException
+    //   83	92	332	java/net/URISyntaxException
+    //   97	115	332	java/net/URISyntaxException
+    //   115	128	332	java/net/URISyntaxException
+    //   133	144	332	java/net/URISyntaxException
+    //   296	302	332	java/net/URISyntaxException
+    //   308	313	332	java/net/URISyntaxException
+    //   313	327	332	java/net/URISyntaxException
+    //   357	370	332	java/net/URISyntaxException
+    //   83	92	373	finally
+    //   97	115	373	finally
+    //   115	128	373	finally
+    //   133	144	373	finally
+    //   296	302	373	finally
+    //   308	313	373	finally
+    //   313	327	373	finally
+    //   357	370	373	finally
+    //   4	26	400	finally
+    //   26	72	411	finally
+    //   72	79	411	finally
+    //   180	224	411	finally
+    //   229	259	411	finally
+    //   284	292	411	finally
+    //   4	26	427	java/net/URISyntaxException
+    //   26	72	438	java/net/URISyntaxException
+    //   72	79	438	java/net/URISyntaxException
+    //   284	292	438	java/net/URISyntaxException
+    //   180	224	454	java/net/URISyntaxException
+    //   229	259	454	java/net/URISyntaxException
+    //   4	26	472	java/io/IOException
+    //   26	72	483	java/io/IOException
+    //   72	79	483	java/io/IOException
+    //   284	292	483	java/io/IOException
+    //   180	224	499	java/io/IOException
+    //   229	259	499	java/io/IOException
   }
 
   public static void downloadAsync(ImageRequest paramImageRequest)
@@ -464,7 +484,7 @@ public class ImageDownloader
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.internal.ImageDownloader
  * JD-Core Version:    0.6.2
  */

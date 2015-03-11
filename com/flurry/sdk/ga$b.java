@@ -6,7 +6,7 @@ class ga$b
   private final gb b = new gb(new byte[0], 0, 0);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.flurry.sdk.ga.b
  * JD-Core Version:    0.6.2
  */

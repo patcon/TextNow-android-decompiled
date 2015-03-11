@@ -1,77 +1,84 @@
 package com.google.android.gms.internal;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.IBinder;
-import android.os.RemoteException;
-import com.google.android.gms.dynamic.d;
-import com.google.android.gms.dynamic.e;
-import com.google.android.gms.dynamic.g;
-import com.google.android.gms.dynamic.g.a;
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import com.google.android.gms.common.internal.safeparcel.a;
+import com.google.android.gms.common.internal.safeparcel.a.a;
+import com.google.android.gms.common.internal.safeparcel.b;
 
-public final class di extends g<de>
+public class di
+  implements Parcelable.Creator<dj>
 {
-  private static final di pv = new di();
-
-  private di()
+  static void a(dj paramdj, Parcel paramParcel, int paramInt)
   {
-    super("com.google.android.gms.ads.InAppPurchaseManagerCreatorImpl");
+    int i = b.D(paramParcel);
+    b.c(paramParcel, 1, paramdj.versionCode);
+    b.a(paramParcel, 2, paramdj.rp, false);
+    b.a(paramParcel, 3, paramdj.rq, false);
+    b.a(paramParcel, 4, paramdj.mimeType, false);
+    b.a(paramParcel, 5, paramdj.packageName, false);
+    b.a(paramParcel, 6, paramdj.rr, false);
+    b.a(paramParcel, 7, paramdj.rs, false);
+    b.a(paramParcel, 8, paramdj.rt, false);
+    b.H(paramParcel, i);
   }
 
-  private static boolean b(Activity paramActivity)
+  public dj e(Parcel paramParcel)
   {
-    Intent localIntent = paramActivity.getIntent();
-    if (!localIntent.hasExtra("com.google.android.gms.ads.internal.purchase.useClientJar"))
-      throw new di.a("InAppPurchaseManager requires the useClientJar flag in intent extras.");
-    return localIntent.getBooleanExtra("com.google.android.gms.ads.internal.purchase.useClientJar", false);
-  }
-
-  public static dd d(Activity paramActivity)
-  {
-    try
+    String str1 = null;
+    int i = a.C(paramParcel);
+    int j = 0;
+    String str2 = null;
+    String str3 = null;
+    String str4 = null;
+    String str5 = null;
+    String str6 = null;
+    String str7 = null;
+    while (paramParcel.dataPosition() < i)
     {
-      if (b(paramActivity))
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
       {
-        eu.z("Using AdOverlay from the client jar.");
-        return new cu(paramActivity);
+      default:
+        a.b(paramParcel, k);
+        break;
+      case 1:
+        j = a.g(paramParcel, k);
+        break;
+      case 2:
+        str7 = a.o(paramParcel, k);
+        break;
+      case 3:
+        str6 = a.o(paramParcel, k);
+        break;
+      case 4:
+        str5 = a.o(paramParcel, k);
+        break;
+      case 5:
+        str4 = a.o(paramParcel, k);
+        break;
+      case 6:
+        str3 = a.o(paramParcel, k);
+        break;
+      case 7:
+        str2 = a.o(paramParcel, k);
+        break;
+      case 8:
+        str1 = a.o(paramParcel, k);
       }
-      dd localdd = pv.e(paramActivity);
-      return localdd;
     }
-    catch (di.a locala)
-    {
-      eu.D(locala.getMessage());
-    }
-    return null;
+    if (paramParcel.dataPosition() != i)
+      throw new a.a("Overread allowed size end=" + i, paramParcel);
+    return new dj(j, str7, str6, str5, str4, str3, str2, str1);
   }
 
-  private dd e(Activity paramActivity)
+  public dj[] l(int paramInt)
   {
-    try
-    {
-      d locald = e.h(paramActivity);
-      dd localdd = dd.a.r(((de)G(paramActivity)).b(locald));
-      return localdd;
-    }
-    catch (RemoteException localRemoteException)
-    {
-      eu.c("Could not create remote InAppPurchaseManager.", localRemoteException);
-      return null;
-    }
-    catch (g.a locala)
-    {
-      eu.c("Could not create remote InAppPurchaseManager.", locala);
-    }
-    return null;
-  }
-
-  protected final de v(IBinder paramIBinder)
-  {
-    return de.a.s(paramIBinder);
+    return new dj[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.di
  * JD-Core Version:    0.6.2
  */

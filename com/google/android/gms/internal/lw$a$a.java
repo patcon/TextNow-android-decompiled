@@ -1,156 +1,94 @@
 package com.google.android.gms.internal;
 
-import java.util.List;
+import android.app.PendingIntent;
+import android.os.IBinder;
+import android.os.Parcel;
 
-public final class lw$a$a extends ma<a>
+class lw$a$a
+  implements lw
 {
-  private static volatile a[] amu;
-  public lw.a.a.a amv;
-  public int type;
+  private IBinder lb;
 
-  public lw$a$a()
+  lw$a$a(IBinder paramIBinder)
   {
-    nz();
+    this.lb = paramIBinder;
   }
 
-  public static a[] ny()
+  public IBinder asBinder()
   {
-    if (amu == null);
-    synchronized (mc.ana)
+    return this.lb;
+  }
+
+  public void onAddGeofencesResult(int paramInt, String[] paramArrayOfString)
+  {
+    Parcel localParcel1 = Parcel.obtain();
+    Parcel localParcel2 = Parcel.obtain();
+    try
     {
-      if (amu == null)
-        amu = new a[0];
-      return amu;
+      localParcel1.writeInterfaceToken("com.google.android.gms.location.internal.IGeofencerCallbacks");
+      localParcel1.writeInt(paramInt);
+      localParcel1.writeStringArray(paramArrayOfString);
+      this.lb.transact(1, localParcel1, localParcel2, 0);
+      localParcel2.readException();
+      return;
+    }
+    finally
+    {
+      localParcel2.recycle();
+      localParcel1.recycle();
     }
   }
 
-  public final void a(lz paramlz)
+  public void onRemoveGeofencesByPendingIntentResult(int paramInt, PendingIntent paramPendingIntent)
   {
-    paramlz.p(1, this.type);
-    if (this.amv != null)
-      paramlz.a(2, this.amv);
-    super.a(paramlz);
-  }
-
-  protected final int c()
-  {
-    int i = super.c() + lz.r(1, this.type);
-    if (this.amv != null)
-      i += lz.b(2, this.amv);
-    return i;
-  }
-
-  public final boolean equals(Object paramObject)
-  {
-    if (paramObject == this);
-    a locala;
-    do
+    Parcel localParcel1 = Parcel.obtain();
+    Parcel localParcel2 = Parcel.obtain();
+    try
     {
-      return true;
-      if (!(paramObject instanceof a))
-        return false;
-      locala = (a)paramObject;
-      if (this.type != locala.type)
-        return false;
-      if (this.amv == null)
+      localParcel1.writeInterfaceToken("com.google.android.gms.location.internal.IGeofencerCallbacks");
+      localParcel1.writeInt(paramInt);
+      if (paramPendingIntent != null)
       {
-        if (locala.amv != null)
-          return false;
+        localParcel1.writeInt(1);
+        paramPendingIntent.writeToParcel(localParcel1, 0);
       }
-      else if (!this.amv.equals(locala.amv))
-        return false;
-      if ((this.amX != null) && (!this.amX.isEmpty()))
-        break;
-    }
-    while ((locala.amX == null) || (locala.amX.isEmpty()));
-    return false;
-    return this.amX.equals(locala.amX);
-  }
-
-  public final int hashCode()
-  {
-    int i = 31 * (527 + this.type);
-    int j;
-    int k;
-    int m;
-    if (this.amv == null)
-    {
-      j = 0;
-      k = 31 * (j + i);
-      List localList = this.amX;
-      m = 0;
-      if (localList != null)
+      while (true)
       {
-        boolean bool = this.amX.isEmpty();
-        m = 0;
-        if (!bool)
-          break label77;
+        this.lb.transact(3, localParcel1, localParcel2, 0);
+        localParcel2.readException();
+        return;
+        localParcel1.writeInt(0);
       }
     }
-    while (true)
+    finally
     {
-      return k + m;
-      j = this.amv.hashCode();
-      break;
-      label77: m = this.amX.hashCode();
+      localParcel2.recycle();
+      localParcel1.recycle();
     }
   }
 
-  public final a nz()
+  public void onRemoveGeofencesByRequestIdsResult(int paramInt, String[] paramArrayOfString)
   {
-    this.type = 1;
-    this.amv = null;
-    this.amX = null;
-    this.anb = -1;
-    return this;
-  }
-
-  public final a s(ly paramly)
-  {
-    while (true)
+    Parcel localParcel1 = Parcel.obtain();
+    Parcel localParcel2 = Parcel.obtain();
+    try
     {
-      int i = paramly.nB();
-      switch (i)
-      {
-      default:
-        if (a(paramly, i))
-          continue;
-      case 0:
-        return this;
-      case 8:
-        int j = paramly.nE();
-        switch (j)
-        {
-        default:
-          break;
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-        case 5:
-        case 6:
-        case 7:
-        case 8:
-        case 9:
-        case 10:
-        case 11:
-        case 12:
-        case 13:
-        case 14:
-        case 15:
-        }
-        this.type = j;
-        break;
-      case 18:
-      }
-      if (this.amv == null)
-        this.amv = new lw.a.a.a();
-      paramly.a(this.amv);
+      localParcel1.writeInterfaceToken("com.google.android.gms.location.internal.IGeofencerCallbacks");
+      localParcel1.writeInt(paramInt);
+      localParcel1.writeStringArray(paramArrayOfString);
+      this.lb.transact(2, localParcel1, localParcel2, 0);
+      localParcel2.readException();
+      return;
+    }
+    finally
+    {
+      localParcel2.recycle();
+      localParcel1.recycle();
     }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.lw.a.a
  * JD-Core Version:    0.6.2
  */

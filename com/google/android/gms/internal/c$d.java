@@ -1,213 +1,223 @@
 package com.google.android.gms.internal;
 
-import java.util.List;
-
-public final class c$d extends ma<d>
+public final class c$d extends ph<d>
 {
-  public d.a[] eR;
-  public d.a[] eS;
-  public c.c[] eT;
+  public d.a[] fA;
+  public d.a[] fB;
+  public c.c[] fC;
 
   public c$d()
   {
     h();
   }
 
-  public final void a(lz paramlz)
+  public final void a(pg parampg)
   {
-    if ((this.eR != null) && (this.eR.length > 0))
-      for (int m = 0; m < this.eR.length; m++)
+    if ((this.fA != null) && (this.fA.length > 0))
+      for (int m = 0; m < this.fA.length; m++)
       {
-        d.a locala2 = this.eR[m];
+        d.a locala2 = this.fA[m];
         if (locala2 != null)
-          paramlz.a(1, locala2);
+          parampg.a(1, locala2);
       }
-    if ((this.eS != null) && (this.eS.length > 0))
-      for (int k = 0; k < this.eS.length; k++)
+    if ((this.fB != null) && (this.fB.length > 0))
+      for (int k = 0; k < this.fB.length; k++)
       {
-        d.a locala1 = this.eS[k];
+        d.a locala1 = this.fB[k];
         if (locala1 != null)
-          paramlz.a(2, locala1);
+          parampg.a(2, locala1);
       }
-    if (this.eT != null)
+    if (this.fC != null)
     {
-      int i = this.eT.length;
+      int i = this.fC.length;
       int j = 0;
       if (i > 0)
-        while (j < this.eT.length)
+        while (j < this.fC.length)
         {
-          c.c localc = this.eT[j];
+          c.c localc = this.fC[j];
           if (localc != null)
-            paramlz.a(3, localc);
+            parampg.a(3, localc);
           j++;
         }
     }
-    super.a(paramlz);
+    super.a(parampg);
   }
 
   protected final int c()
   {
     int i = super.c();
-    if ((this.eR != null) && (this.eR.length > 0))
+    if ((this.fA != null) && (this.fA.length > 0))
     {
       int i1 = i;
-      for (int i2 = 0; i2 < this.eR.length; i2++)
+      for (int i2 = 0; i2 < this.fA.length; i2++)
       {
-        d.a locala2 = this.eR[i2];
+        d.a locala2 = this.fA[i2];
         if (locala2 != null)
-          i1 += lz.b(1, locala2);
+          i1 += pg.c(1, locala2);
       }
       i = i1;
     }
-    if ((this.eS != null) && (this.eS.length > 0))
+    if ((this.fB != null) && (this.fB.length > 0))
     {
       int m = i;
-      for (int n = 0; n < this.eS.length; n++)
+      for (int n = 0; n < this.fB.length; n++)
       {
-        d.a locala1 = this.eS[n];
+        d.a locala1 = this.fB[n];
         if (locala1 != null)
-          m += lz.b(2, locala1);
+          m += pg.c(2, locala1);
       }
       i = m;
     }
-    if (this.eT != null)
+    if (this.fC != null)
     {
-      int j = this.eT.length;
+      int j = this.fC.length;
       int k = 0;
       if (j > 0)
-        while (k < this.eT.length)
+        while (k < this.fC.length)
         {
-          c.c localc = this.eT[k];
+          c.c localc = this.fC[k];
           if (localc != null)
-            i += lz.b(3, localc);
+            i += pg.c(3, localc);
           k++;
         }
     }
     return i;
   }
 
-  public final d e(ly paramly)
+  public final d e(pf parampf)
   {
     while (true)
     {
-      int i = paramly.nB();
+      int i = parampf.qi();
       switch (i)
       {
       default:
-        if (a(paramly, i))
+        if (a(parampf, i))
           continue;
       case 0:
         return this;
       case 10:
-        int i1 = mh.b(paramly, 10);
-        if (this.eR == null);
+        int i1 = pq.b(parampf, 10);
+        if (this.fA == null);
         d.a[] arrayOfa2;
-        for (int i2 = 0; ; i2 = this.eR.length)
+        for (int i2 = 0; ; i2 = this.fA.length)
         {
           arrayOfa2 = new d.a[i1 + i2];
           if (i2 != 0)
-            System.arraycopy(this.eR, 0, arrayOfa2, 0, i2);
+            System.arraycopy(this.fA, 0, arrayOfa2, 0, i2);
           while (i2 < -1 + arrayOfa2.length)
           {
             arrayOfa2[i2] = new d.a();
-            paramly.a(arrayOfa2[i2]);
-            paramly.nB();
+            parampf.a(arrayOfa2[i2]);
+            parampf.qi();
             i2++;
           }
         }
         arrayOfa2[i2] = new d.a();
-        paramly.a(arrayOfa2[i2]);
-        this.eR = arrayOfa2;
+        parampf.a(arrayOfa2[i2]);
+        this.fA = arrayOfa2;
         break;
       case 18:
-        int m = mh.b(paramly, 18);
-        if (this.eS == null);
+        int m = pq.b(parampf, 18);
+        if (this.fB == null);
         d.a[] arrayOfa1;
-        for (int n = 0; ; n = this.eS.length)
+        for (int n = 0; ; n = this.fB.length)
         {
           arrayOfa1 = new d.a[m + n];
           if (n != 0)
-            System.arraycopy(this.eS, 0, arrayOfa1, 0, n);
+            System.arraycopy(this.fB, 0, arrayOfa1, 0, n);
           while (n < -1 + arrayOfa1.length)
           {
             arrayOfa1[n] = new d.a();
-            paramly.a(arrayOfa1[n]);
-            paramly.nB();
+            parampf.a(arrayOfa1[n]);
+            parampf.qi();
             n++;
           }
         }
         arrayOfa1[n] = new d.a();
-        paramly.a(arrayOfa1[n]);
-        this.eS = arrayOfa1;
+        parampf.a(arrayOfa1[n]);
+        this.fB = arrayOfa1;
         break;
       case 26:
       }
-      int j = mh.b(paramly, 26);
-      if (this.eT == null);
+      int j = pq.b(parampf, 26);
+      if (this.fC == null);
       c.c[] arrayOfc;
-      for (int k = 0; ; k = this.eT.length)
+      for (int k = 0; ; k = this.fC.length)
       {
         arrayOfc = new c.c[j + k];
         if (k != 0)
-          System.arraycopy(this.eT, 0, arrayOfc, 0, k);
+          System.arraycopy(this.fC, 0, arrayOfc, 0, k);
         while (k < -1 + arrayOfc.length)
         {
           arrayOfc[k] = new c.c();
-          paramly.a(arrayOfc[k]);
-          paramly.nB();
+          parampf.a(arrayOfc[k]);
+          parampf.qi();
           k++;
         }
       }
       arrayOfc[k] = new c.c();
-      paramly.a(arrayOfc[k]);
-      this.eT = arrayOfc;
+      parampf.a(arrayOfc[k]);
+      this.fC = arrayOfc;
     }
   }
 
   public final boolean equals(Object paramObject)
   {
-    if (paramObject == this);
+    boolean bool2;
+    if (paramObject == this)
+      bool2 = true;
     d locald;
+    boolean bool5;
     do
     {
-      return true;
-      if (!(paramObject instanceof d))
-        return false;
-      locald = (d)paramObject;
-      if (!mc.equals(this.eR, locald.eR))
-        return false;
-      if (!mc.equals(this.eS, locald.eS))
-        return false;
-      if (!mc.equals(this.eT, locald.eT))
-        return false;
-      if ((this.amX != null) && (!this.amX.isEmpty()))
-        break;
+      boolean bool4;
+      do
+      {
+        boolean bool3;
+        do
+        {
+          boolean bool1;
+          do
+          {
+            return bool2;
+            bool1 = paramObject instanceof d;
+            bool2 = false;
+          }
+          while (!bool1);
+          locald = (d)paramObject;
+          bool3 = pl.equals(this.fA, locald.fA);
+          bool2 = false;
+        }
+        while (!bool3);
+        bool4 = pl.equals(this.fB, locald.fB);
+        bool2 = false;
+      }
+      while (!bool4);
+      bool5 = pl.equals(this.fC, locald.fC);
+      bool2 = false;
     }
-    while ((locald.amX == null) || (locald.amX.isEmpty()));
-    return false;
-    return this.amX.equals(locald.amX);
+    while (!bool5);
+    return a(locald);
   }
 
   public final d h()
   {
-    this.eR = d.a.r();
-    this.eS = d.a.r();
-    this.eT = c.c.f();
-    this.amX = null;
-    this.anb = -1;
+    this.fA = d.a.r();
+    this.fB = d.a.r();
+    this.fC = c.c.f();
+    this.awJ = null;
+    this.awU = -1;
     return this;
   }
 
   public final int hashCode()
   {
-    int i = 31 * (31 * (31 * (527 + mc.hashCode(this.eR)) + mc.hashCode(this.eS)) + mc.hashCode(this.eT));
-    if ((this.amX == null) || (this.amX.isEmpty()));
-    for (int j = 0; ; j = this.amX.hashCode())
-      return j + i;
+    return 31 * (31 * (31 * (527 + pl.hashCode(this.fA)) + pl.hashCode(this.fB)) + pl.hashCode(this.fC)) + qz();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.c.d
  * JD-Core Version:    0.6.2
  */

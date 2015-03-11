@@ -28,15 +28,15 @@ public class IndicatedViewFlipper extends LinearLayout
   {
     super(paramContext, paramAttributeSet);
     this.e = LayoutInflater.from(paramContext);
-    this.e.inflate(2130903131, this);
+    this.e.inflate(2130903145, this);
     this.b = paramContext;
-    this.f = AnimationUtils.loadAnimation(this.b, 2130968589);
+    this.f = AnimationUtils.loadAnimation(this.b, 2130968595);
     this.f.setDuration(200L);
-    this.g = AnimationUtils.loadAnimation(this.b, 2130968590);
+    this.g = AnimationUtils.loadAnimation(this.b, 2130968596);
     this.g.setDuration(200L);
-    this.h = AnimationUtils.loadAnimation(this.b, 2130968591);
+    this.h = AnimationUtils.loadAnimation(this.b, 2130968597);
     this.h.setDuration(200L);
-    this.i = AnimationUtils.loadAnimation(this.b, 2130968592);
+    this.i = AnimationUtils.loadAnimation(this.b, 2130968598);
     this.i.setDuration(200L);
     a = ViewConfiguration.get(paramContext).getScaledTouchSlop();
   }
@@ -105,10 +105,10 @@ public class IndicatedViewFlipper extends LinearLayout
   protected void onFinishInflate()
   {
     super.onFinishInflate();
-    this.c = ((ViewFlipper)findViewById(2131165518));
+    this.c = ((ViewFlipper)findViewById(2131558790));
     this.c.setClickable(true);
-    this.d = ((PageIndicator)findViewById(2131165519));
-    this.d.a(new e()
+    this.d = ((PageIndicator)findViewById(2131558791));
+    this.d.a(new f()
     {
       public final void a(int paramAnonymousInt1, int paramAnonymousInt2)
       {
@@ -132,7 +132,7 @@ public class IndicatedViewFlipper extends LinearLayout
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.views.IndicatedViewFlipper
  * JD-Core Version:    0.6.2
  */

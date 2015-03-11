@@ -1,230 +1,211 @@
 package textnow.bd;
 
-import android.util.SparseArray;
-import java.util.ArrayList;
-import java.util.List;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Environment;
+import com.tremorvideo.sdk.android.videoad.bd;
+import com.tremorvideo.sdk.android.videoad.r;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import textnow.be.m;
 
-final class a
-  implements bp
+public final class a
 {
-  private final List<Integer> a = new ArrayList();
-  private final SparseArray<c[]> b = new SparseArray();
-  private int c = 0;
-  private final b d;
-  private final d e;
+  public String a;
+  private bd b;
+  private Context c;
+  private boolean d = false;
+  private boolean e = false;
 
-  public a(b paramb, d paramd)
+  public a(Context paramContext)
   {
-    if (paramb == null)
-      throw new IllegalArgumentException("The adapter accessor type cannot be null.");
-    this.d = paramb;
-    this.e = paramd;
-  }
-
-  private c a(o paramo, c[] paramArrayOfc)
-  {
-    int i = 0;
-    Object localObject1 = null;
-    int j = 0;
-    Object localObject3;
-    if ((j < paramArrayOfc.length) && (localObject1 == null))
+    this.c = paramContext;
+    if (this.c.getPackageManager().checkPermission("android.permission.WRITE_EXTERNAL_STORAGE", this.c.getApplicationContext().getPackageName()) == 0);
+    for (this.e = true; ; this.e = false)
     {
-      localObject3 = paramArrayOfc[j];
-      if ((localObject3 == null) || (!((c)localObject3).a.equals(paramo)))
-        break label248;
-    }
-    while (true)
-    {
-      j++;
-      localObject1 = localObject3;
-      break;
-      Object localObject2;
-      if (localObject1 == null)
-      {
-        localObject1 = new c((byte)0);
-        ((c)localObject1).a = paramo;
-        ((c)localObject1).b = new ArrayList();
-        switch (1.a[this.d.ordinal()])
-        {
-        default:
-          localObject2 = localObject1;
-        case 1:
-        case 2:
-        case 3:
-        }
-      }
-      while (true)
-      {
-        if (localObject2 != null)
-        {
-          if (this.e != null)
-            this.e.a(localObject2.b);
-          this.c -= localObject2.b.size();
-        }
-        return localObject1;
-        c localc2;
-        for (localObject2 = localObject1; (i < paramArrayOfc.length) && (localObject2 != null); localObject2 = localc2)
-        {
-          localc2 = paramArrayOfc[i];
-          paramArrayOfc[i] = localObject2;
-          i++;
-        }
-        int k = -1 + paramArrayOfc.length;
-        c localc1;
-        for (localObject2 = localObject1; k >= 0; localObject2 = localc1)
-        {
-          localc1 = paramArrayOfc[k];
-          paramArrayOfc[k] = localObject2;
-          k--;
-        }
-      }
-      label248: localObject3 = localObject1;
-    }
-  }
-
-  private u a(boolean paramBoolean)
-  {
-    if (this.c == 0)
-      return null;
-    if (this.a.isEmpty())
-      throw new IllegalStateException("Fatal error: The size of the accessor cannot be non-zero while there are no pending adapter ids!");
-    int i = ((Integer)this.a.get(-1 + this.a.size())).intValue();
-    c[] arrayOfc = (c[])this.b.get(i);
-    int j = 0;
-    int k = 0;
-    int m = -1;
-    while (j < arrayOfc.length)
-    {
-      if (arrayOfc[j] != null)
-      {
-        k++;
-        if (m == -1)
-          m = j;
-      }
-      j++;
-    }
-    if (paramBoolean)
-    {
-      List localList = arrayOfc[m].b;
-      u localu = (u)localList.remove(0);
-      p localp;
-      if (this.d == b.a)
-      {
-        ax localax = localu.a.d();
-        localp = localu.c();
-        o localo = localp.e();
-        if (localax == ax.e)
-        {
-          if (m >= localo.c)
-            break label261;
-          localp.a(ax.f);
-        }
-      }
-      while (true)
-      {
-        if (localList.isEmpty())
-        {
-          arrayOfc[m] = null;
-          if (k - 1 == 0)
-          {
-            this.b.remove(Integer.valueOf(i).intValue());
-            this.a.remove(Integer.valueOf(i));
-          }
-        }
-        this.c = (-1 + this.c);
-        return localu;
-        label261: localp.a(ax.g);
-      }
-    }
-    return (u)arrayOfc[m].b.get(0);
-  }
-
-  public final bo a()
-  {
-    try
-    {
-      u localu = a(true);
-      return localu;
-    }
-    finally
-    {
-      localObject = finally;
-      throw localObject;
-    }
-  }
-
-  public final void a(bo parambo)
-  {
-    u localu;
-    o localo;
-    int i;
-    c[] arrayOfc;
-    try
-    {
-      localu = (u)parambo;
-      localo = localu.c().e();
-      i = localo.a;
-      if (!this.a.contains(Integer.valueOf(i)))
-        this.a.add(Integer.valueOf(i));
-      arrayOfc = (c[])this.b.get(i);
-      if (arrayOfc != null)
-        break label147;
-      switch (1.a[this.d.ordinal()])
-      {
-      default:
-        throw new IllegalStateException("The adapter accessor type cannot be null.");
-      case 1:
-      case 2:
-      case 3:
-      }
-    }
-    finally
-    {
-    }
-    int j = localo.c + localo.d;
-    while (true)
-    {
-      arrayOfc = new c[j];
-      label147: this.b.append(i, arrayOfc);
-      a(localo, arrayOfc).b.add(localu);
-      this.c = (1 + this.c);
+      File localFile1 = Environment.getExternalStorageDirectory();
+      this.a = (localFile1.getAbsolutePath() + "/tremor/mraid/");
+      File localFile2 = new File(this.a);
+      if (!localFile2.exists())
+        localFile2.mkdirs();
       return;
-      j = localo.d;
-      continue;
-      j = localo.c;
     }
   }
 
-  public final int b()
+  private void a(File paramFile)
   {
-    try
+    if (paramFile.isDirectory())
     {
-      int i = this.c;
-      return i;
+      File[] arrayOfFile = paramFile.listFiles();
+      int i = arrayOfFile.length;
+      for (int j = 0; j < i; j++)
+        a(arrayOfFile[j]);
     }
-    finally
+    paramFile.delete();
+  }
+
+  private String d(String paramString)
+  {
+    String str1;
+    if ("mounted".equals(Environment.getExternalStorageState()))
     {
-      localObject = finally;
-      throw localObject;
+      this.d = true;
+      if ((!this.d) || (!this.e));
+    }
+    else
+    {
+      FileInputStream localFileInputStream;
+      ZipInputStream localZipInputStream;
+      while (true)
+      {
+        String str2;
+        try
+        {
+          localFileInputStream = new FileInputStream(paramString);
+          localZipInputStream = new ZipInputStream(new BufferedInputStream(localFileInputStream));
+          str1 = null;
+          ZipEntry localZipEntry = localZipInputStream.getNextEntry();
+          if (localZipEntry == null)
+            break label320;
+          str2 = localZipEntry.getName();
+          if (!str2.equals("main.js"))
+            break label172;
+          str1 = "main.html";
+          if (!localZipEntry.isDirectory())
+            break label188;
+          String str3 = this.a;
+          File localFile = new File(str3 + str2);
+          if (localFile.isDirectory())
+            continue;
+          localFile.mkdirs();
+          continue;
+        }
+        catch (IOException localIOException)
+        {
+          r.a(localIOException);
+          this.d = false;
+          return null;
+        }
+        this.d = false;
+        break;
+        label172: if (str2.equals("main.html"))
+        {
+          str1 = "main.html";
+          continue;
+          label188: ByteArrayOutputStream localByteArrayOutputStream = new ByteArrayOutputStream();
+          byte[] arrayOfByte = new byte[1024];
+          StringBuilder localStringBuilder = new StringBuilder().append(this.a);
+          if (str2.equals("main.js"))
+            str2 = "main.html";
+          FileOutputStream localFileOutputStream = new FileOutputStream(str2);
+          while (true)
+          {
+            int i = localZipInputStream.read(arrayOfByte);
+            if (i == -1)
+              break;
+            localByteArrayOutputStream.write(arrayOfByte, 0, i);
+            localByteArrayOutputStream.toByteArray();
+            localFileOutputStream.write(localByteArrayOutputStream.toByteArray());
+            localByteArrayOutputStream.reset();
+          }
+          localFileOutputStream.close();
+          localZipInputStream.closeEntry();
+          localByteArrayOutputStream.close();
+        }
+      }
+      label320: localZipInputStream.close();
+      localFileInputStream.close();
+    }
+    while (true)
+    {
+      return str1;
+      str1 = null;
     }
   }
 
-  public final bo c()
+  public final String a(String paramString)
   {
+    return d(paramString);
+  }
+
+  public final void a()
+  {
+    a(new File(this.a));
+  }
+
+  public final void a(bd parambd)
+  {
+    this.b = parambd;
+  }
+
+  public final String b(String paramString)
+  {
+    String str = paramString.substring(1 + paramString.lastIndexOf("/"));
+    if (str.endsWith(".js"))
+      str = str.replace(".js", ".html");
+    File localFile = new File(this.a + str);
+    if (localFile.exists())
+      localFile.delete();
+    DefaultHttpClient localDefaultHttpClient = new DefaultHttpClient();
+    ByteArrayOutputStream localByteArrayOutputStream;
+    FileOutputStream localFileOutputStream;
     try
     {
-      u localu = a(false);
-      return localu;
+      localByteArrayOutputStream = new ByteArrayOutputStream();
+      localFileOutputStream = new FileOutputStream(localFile);
+      HttpGet localHttpGet = new HttpGet(paramString);
+      m.a(localHttpGet, paramString);
+      HttpEntity localHttpEntity = localDefaultHttpClient.execute(localHttpGet).getEntity();
+      if (localHttpEntity != null)
+      {
+        InputStream localInputStream = localHttpEntity.getContent();
+        byte[] arrayOfByte = new byte[4096];
+        while (true)
+        {
+          int i = localInputStream.read(arrayOfByte);
+          if (i == -1)
+            break;
+          localByteArrayOutputStream.write(arrayOfByte, 0, i);
+          localByteArrayOutputStream.toByteArray();
+          localFileOutputStream.write(localByteArrayOutputStream.toByteArray());
+          localByteArrayOutputStream.reset();
+        }
+      }
     }
-    finally
+    catch (Exception localException)
     {
-      localObject = finally;
-      throw localObject;
+      r.a(localException);
+      return str;
     }
+    localFileOutputStream.close();
+    localByteArrayOutputStream.close();
+    return str;
+  }
+
+  public final boolean b()
+  {
+    return (this.d) && (this.e);
+  }
+
+  public final void c(String paramString)
+  {
+    d(paramString);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.bd.a
  * JD-Core Version:    0.6.2
  */

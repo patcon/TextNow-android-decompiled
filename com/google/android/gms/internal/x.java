@@ -1,32 +1,43 @@
 package com.google.android.gms.internal;
 
-import java.util.HashMap;
-import java.util.Map;
+import android.os.Parcel;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
-class x
-  implements z
+@ez
+public final class x
+  implements SafeParcelable
 {
-  private ex le;
+  public static final y CREATOR = new y();
+  public final boolean lX;
+  public final boolean mh;
+  public final int versionCode;
 
-  public x(ex paramex)
+  x(int paramInt, boolean paramBoolean1, boolean paramBoolean2)
   {
-    this.le = paramex;
+    this.versionCode = paramInt;
+    this.lX = paramBoolean1;
+    this.mh = paramBoolean2;
   }
 
-  public void a(ac paramac, boolean paramBoolean)
+  public x(boolean paramBoolean1, boolean paramBoolean2)
   {
-    HashMap localHashMap = new HashMap();
-    if (paramBoolean);
-    for (String str = "1"; ; str = "0")
-    {
-      localHashMap.put("isVisible", str);
-      this.le.a("onAdVisibilityChanged", localHashMap);
-      return;
-    }
+    this.versionCode = 1;
+    this.lX = paramBoolean1;
+    this.mh = paramBoolean2;
+  }
+
+  public final int describeContents()
+  {
+    return 0;
+  }
+
+  public final void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    y.a(this, paramParcel, paramInt);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.x
  * JD-Core Version:    0.6.2
  */

@@ -53,7 +53,7 @@ public final class SMS$Message extends PointerHolder
   public final native void setUnread();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     cz.acrobits.libsoftphone.data.SMS.Message
  * JD-Core Version:    0.6.2
  */

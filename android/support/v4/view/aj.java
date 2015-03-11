@@ -1,17 +1,11 @@
 package android.support.v4.view;
 
-import android.widget.TextView;
-
-final class aj
-  implements ah
+public abstract interface aj
 {
-  public final void a(TextView paramTextView)
-  {
-    paramTextView.setTransformationMethod(new al(paramTextView.getContext()));
-  }
+  public abstract cs a(cs paramcs);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.view.aj
  * JD-Core Version:    0.6.2
  */

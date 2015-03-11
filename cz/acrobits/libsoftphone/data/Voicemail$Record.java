@@ -8,7 +8,7 @@ public final class Voicemail$Record
   public int oldMessages;
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     cz.acrobits.libsoftphone.data.Voicemail.Record
  * JD-Core Version:    0.6.2
  */

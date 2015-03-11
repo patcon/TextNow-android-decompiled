@@ -1,76 +1,112 @@
 package com.google.android.gms.internal;
 
-import android.os.Parcel;
-import android.os.Parcelable.Creator;
-import com.google.android.gms.common.internal.safeparcel.a;
-import com.google.android.gms.common.internal.safeparcel.a.a;
-import com.google.android.gms.common.internal.safeparcel.b;
-import java.util.HashSet;
-import java.util.Set;
+import android.content.Context;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.fitness.BleApi;
+import com.google.android.gms.fitness.data.BleDevice;
+import com.google.android.gms.fitness.request.BleScanCallback;
+import com.google.android.gms.fitness.request.StartBleScanRequest;
+import com.google.android.gms.fitness.request.ad;
+import com.google.android.gms.fitness.request.ah;
+import com.google.android.gms.fitness.request.b;
+import com.google.android.gms.fitness.result.BleDevicesResult;
 
 public class kx
-  implements Parcelable.Creator<ks.b.b>
+  implements BleApi
 {
-  static void a(ks.b.b paramb, Parcel paramParcel, int paramInt)
+  public PendingResult<Status> claimBleDevice(GoogleApiClient paramGoogleApiClient, final BleDevice paramBleDevice)
   {
-    int i = b.C(paramParcel);
-    Set localSet = paramb.kk();
-    if (localSet.contains(Integer.valueOf(1)))
-      b.c(paramParcel, 1, paramb.getVersionCode());
-    if (localSet.contains(Integer.valueOf(2)))
-      b.c(paramParcel, 2, paramb.getHeight());
-    if (localSet.contains(Integer.valueOf(3)))
-      b.a(paramParcel, 3, paramb.getUrl(), true);
-    if (localSet.contains(Integer.valueOf(4)))
-      b.c(paramParcel, 4, paramb.getWidth());
-    b.G(paramParcel, i);
-  }
-
-  public ks.b.b bK(Parcel paramParcel)
-  {
-    int i = 0;
-    int j = a.B(paramParcel);
-    HashSet localHashSet = new HashSet();
-    String str = null;
-    int k = 0;
-    int m = 0;
-    while (paramParcel.dataPosition() < j)
+    return paramGoogleApiClient.b(new kk.c()
     {
-      int n = a.A(paramParcel);
-      switch (a.ar(n))
+      protected void a(kk paramAnonymouskk)
       {
-      default:
-        a.b(paramParcel, n);
-        break;
-      case 1:
-        m = a.g(paramParcel, n);
-        localHashSet.add(Integer.valueOf(1));
-        break;
-      case 2:
-        k = a.g(paramParcel, n);
-        localHashSet.add(Integer.valueOf(2));
-        break;
-      case 3:
-        str = a.o(paramParcel, n);
-        localHashSet.add(Integer.valueOf(3));
-        break;
-      case 4:
-        i = a.g(paramParcel, n);
-        localHashSet.add(Integer.valueOf(4));
+        kk.b localb = new kk.b(this);
+        String str = paramAnonymouskk.getContext().getPackageName();
+        paramAnonymouskk.jb().a(new b(paramBleDevice), localb, str);
       }
-    }
-    if (paramParcel.dataPosition() != j)
-      throw new a.a("Overread allowed size end=" + j, paramParcel);
-    return new ks.b.b(localHashSet, m, k, str, i);
+    });
   }
 
-  public ks.b.b[] dh(int paramInt)
+  public PendingResult<Status> claimBleDevice(GoogleApiClient paramGoogleApiClient, final String paramString)
   {
-    return new ks.b.b[paramInt];
+    return paramGoogleApiClient.b(new kk.c()
+    {
+      protected void a(kk paramAnonymouskk)
+      {
+        kk.b localb = new kk.b(this);
+        String str = paramAnonymouskk.getContext().getPackageName();
+        paramAnonymouskk.jb().a(new b(paramString), localb, str);
+      }
+    });
+  }
+
+  public PendingResult<BleDevicesResult> listClaimedBleDevices(GoogleApiClient paramGoogleApiClient)
+  {
+    return paramGoogleApiClient.a(new kk.a()
+    {
+      protected void a(kk paramAnonymouskk)
+      {
+        kx.a locala = new kx.a(this, null);
+        String str = paramAnonymouskk.getContext().getPackageName();
+        paramAnonymouskk.jb().a(locala, str);
+      }
+
+      protected BleDevicesResult w(Status paramAnonymousStatus)
+      {
+        return BleDevicesResult.D(paramAnonymousStatus);
+      }
+    });
+  }
+
+  public PendingResult<Status> startBleScan(GoogleApiClient paramGoogleApiClient, final StartBleScanRequest paramStartBleScanRequest)
+  {
+    return paramGoogleApiClient.a(new kk.c()
+    {
+      protected void a(kk paramAnonymouskk)
+      {
+        kk.b localb = new kk.b(this);
+        String str = paramAnonymouskk.getContext().getPackageName();
+        paramAnonymouskk.jb().a(paramStartBleScanRequest, localb, str);
+      }
+    });
+  }
+
+  public PendingResult<Status> stopBleScan(GoogleApiClient paramGoogleApiClient, final BleScanCallback paramBleScanCallback)
+  {
+    return paramGoogleApiClient.a(new kk.c()
+    {
+      protected void a(kk paramAnonymouskk)
+      {
+        kk.b localb = new kk.b(this);
+        String str = paramAnonymouskk.getContext().getPackageName();
+        ad localad = new ad(paramBleScanCallback);
+        paramAnonymouskk.jb().a(localad, localb, str);
+      }
+    });
+  }
+
+  public PendingResult<Status> unclaimBleDevice(GoogleApiClient paramGoogleApiClient, BleDevice paramBleDevice)
+  {
+    return unclaimBleDevice(paramGoogleApiClient, paramBleDevice.getAddress());
+  }
+
+  public PendingResult<Status> unclaimBleDevice(GoogleApiClient paramGoogleApiClient, final String paramString)
+  {
+    return paramGoogleApiClient.b(new kk.c()
+    {
+      protected void a(kk paramAnonymouskk)
+      {
+        kk.b localb = new kk.b(this);
+        String str = paramAnonymouskk.getContext().getPackageName();
+        paramAnonymouskk.jb().a(new ah(paramString), localb, str);
+      }
+    });
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.kx
  * JD-Core Version:    0.6.2
  */

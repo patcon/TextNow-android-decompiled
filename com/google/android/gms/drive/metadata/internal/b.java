@@ -16,18 +16,18 @@ public class b extends a<Boolean>
     paramBundle.putBoolean(getName(), paramBoolean.booleanValue());
   }
 
-  protected Boolean d(DataHolder paramDataHolder, int paramInt1, int paramInt2)
+  protected Boolean e(DataHolder paramDataHolder, int paramInt1, int paramInt2)
   {
     return Boolean.valueOf(paramDataHolder.d(getName(), paramInt1, paramInt2));
   }
 
-  protected Boolean g(Bundle paramBundle)
+  protected Boolean h(Bundle paramBundle)
   {
     return Boolean.valueOf(paramBundle.getBoolean(getName()));
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.drive.metadata.internal.b
  * JD-Core Version:    0.6.2
  */

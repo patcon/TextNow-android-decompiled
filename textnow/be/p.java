@@ -1,0 +1,19 @@
+package textnow.be;
+
+import com.tremorvideo.sdk.android.videoad.bc;
+
+public abstract interface p
+{
+  public abstract void a(bc parambc);
+
+  public abstract boolean a();
+
+  public abstract void b();
+
+  public abstract void c();
+}
+
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
+ * Qualified Name:     textnow.be.p
+ * JD-Core Version:    0.6.2
+ */

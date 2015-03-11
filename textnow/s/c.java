@@ -1,312 +1,181 @@
 package textnow.s;
 
-import android.content.Context;
-import android.util.Log;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.net.URI;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
-import org.apache.http.Header;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.StatusLine;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpDelete;
-import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpHead;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpPut;
-import org.apache.http.client.methods.HttpRequestBase;
-import org.apache.http.conn.ClientConnectionManager;
-import org.apache.http.conn.params.ConnManagerParams;
-import org.apache.http.conn.scheme.PlainSocketFactory;
-import org.apache.http.conn.scheme.Scheme;
-import org.apache.http.conn.scheme.SchemeRegistry;
-import org.apache.http.conn.ssl.SSLSocketFactory;
-import org.apache.http.entity.AbstractHttpEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
-import org.apache.http.params.HttpProtocolParams;
-import textnow.q.n;
+import android.content.res.Resources;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import com.enflick.android.TextNow.activities.MainActivity;
+import com.enflick.android.TextNow.activities.av;
+import com.enflick.android.TextNow.tasks.GetUserInfoTask;
+import com.enflick.android.TextNow.tasks.PurchaseAdRemovalTask;
+import com.enflick.android.TextNow.tasks.PurchaseBarnesTask;
+import org.json.JSONException;
+import org.json.JSONObject;
+import textnow.z.l;
+import textnow.z.u;
 
-public abstract class c extends b
+public final class c extends av
+  implements View.OnClickListener
 {
-  private static final int DEFAULT_CONN_TIMEOUT_IN_MS = 20000;
-  private static final int DEFAULT_SO_TIMEOUT_IN_MS = 30000;
-  protected static final int MAX_CONNECTION_PER_ROUTE = 50;
-  protected static final int MAX_TOTAL_CONNECTION = 100;
-  public static final String METHOD_DELETE = "DELETE";
-  public static final String METHOD_GET = "GET";
-  public static final String METHOD_HEAD = "HEAD";
-  public static final String METHOD_PATCH = "PATCH";
-  public static final String METHOD_POST = "POST";
-  public static final String METHOD_PUT = "PUT";
-  private static final String TAG = "AbstractHttpCommand";
-  private static final Object clientLock = new Object();
-  private static volatile HttpClient mDefaultClient;
-  private static d sConnPerRoute = new d((byte)0);
-  protected Context mContext;
-  private HashMap<String, String> mHeaders = new HashMap();
-  private HttpRequestBase mRequest;
-  private URI mUri;
+  private u a;
+  private Button b;
+  private Button f;
 
-  public c(Context paramContext)
+  protected final boolean a(com.enflick.android.TextNow.tasks.c paramc, boolean paramBoolean)
   {
-    this.mContext = paramContext;
-  }
-
-  private void addHeadersToRequest()
-  {
-    Iterator localIterator = this.mHeaders.keySet().iterator();
-    while (localIterator.hasNext())
+    Class localClass = paramc.getClass();
+    paramc.j();
+    paramc.h();
+    paramc.i();
+    if ((!paramBoolean) && ((localClass == PurchaseAdRemovalTask.class) || (localClass == PurchaseBarnesTask.class)))
     {
-      String str = (String)localIterator.next();
-      this.mRequest.addHeader(str, (String)this.mHeaders.get(str));
-    }
-  }
-
-  private HttpClient createHttpClient(int paramInt1, int paramInt2)
-  {
-    SchemeRegistry localSchemeRegistry = new SchemeRegistry();
-    localSchemeRegistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
-    localSchemeRegistry.register(new Scheme("https", SSLSocketFactory.getSocketFactory(), 443));
-    BasicHttpParams localBasicHttpParams = new BasicHttpParams();
-    HttpConnectionParams.setConnectionTimeout(localBasicHttpParams, paramInt1);
-    HttpConnectionParams.setSoTimeout(localBasicHttpParams, paramInt2);
-    HttpProtocolParams.setUserAgent(localBasicHttpParams, getUserAgent());
-    ConnManagerParams.setMaxTotalConnections(localBasicHttpParams, 100);
-    ConnManagerParams.setMaxConnectionsPerRoute(localBasicHttpParams, sConnPerRoute);
-    return new DefaultHttpClient(new ThreadSafeClientConnManager(localBasicHttpParams, localSchemeRegistry), localBasicHttpParams);
-  }
-
-  private HttpClient getDefaultHttpClient()
-  {
-    if (mDefaultClient == null);
-    synchronized (clientLock)
-    {
-      if (mDefaultClient == null)
-        mDefaultClient = createHttpClient(20000, 30000);
-      return mDefaultClient;
-    }
-  }
-
-  protected final void addHeader(String paramString1, String paramString2)
-  {
-    this.mHeaders.put(paramString1, paramString2);
-  }
-
-  protected abstract URI buildURI();
-
-  protected void execute()
-  {
-    HttpClient localHttpClient = getHttpClient();
-    i locali = new i();
-    locali.a(getRequest().a());
-    locali.b(getRequest().c());
-    new StringBuilder().append(getClass().getSimpleName()).append(" request made").toString();
-    new StringBuilder().append("URI: ").append(this.mUri.toString()).toString();
-    long l = System.currentTimeMillis();
-    try
-    {
-      HttpResponse localHttpResponse = localHttpClient.execute(this.mRequest);
-      Header localHeader = localHttpResponse.getFirstHeader("Date");
-      if (localHeader != null)
-        locali.a(localHeader.getValue());
-      int i = localHttpResponse.getStatusLine().getStatusCode();
-      if (i == 200)
+      this.d.v();
+      if (paramc.h())
       {
-        localObject2 = getSuccessResponse(localHttpResponse);
-        new StringBuilder().append(getClass().getSimpleName()).append(" response ok").toString();
-        if (isDebugLogOn())
-          new StringBuilder().append(getClass().getSimpleName()).append(" response: ").append(localObject2).toString();
-        locali.a(false);
-        locali.a(200);
+        new StringBuilder().append("Could not purchase ad removal: ").append(paramc.i()).toString();
+        this.d.b(2131296746);
+        return true;
       }
-      while (true)
-      {
-        localHttpClient.getConnectionManager().closeIdleConnections(2L, TimeUnit.SECONDS);
-        locali.b(localObject2);
-        setResponse(locali);
-        new StringBuilder().append(getClass().getSimpleName()).append(" request completed").toString();
-        return;
-        localObject2 = getErrorResponse(localHttpResponse);
-        new StringBuilder().append(getClass().getSimpleName()).append(" response error, status: ").append(i).toString();
-        if (isDebugLogOn())
-          new StringBuilder().append(getClass().getSimpleName()).append(" response: ").append(localObject2).toString();
-        locali.a(true);
-        locali.a(i);
-      }
+      this.d.b(2131296747);
+      this.d.D();
+      return true;
     }
-    catch (Exception localException)
+    if ((!paramBoolean) && (localClass == GetUserInfoTask.class))
     {
-      while (true)
-      {
-        Log.getStackTraceString(localException);
-        new StringBuilder().append("Request took ").append(System.currentTimeMillis() - l).append("ms").toString();
-        Object localObject2 = getErrorResponse(localException);
-        locali.a(true);
-        locali.a(-1);
-        localHttpClient.getConnectionManager().closeIdleConnections(2L, TimeUnit.SECONDS);
-      }
+      this.d.v();
+      return true;
     }
-    finally
-    {
-      localHttpClient.getConnectionManager().closeIdleConnections(2L, TimeUnit.SECONDS);
-    }
+    return false;
   }
 
-  protected int getConnectionTimeOut()
+  public final String l()
   {
-    return 20000;
+    return "/Purchase_Ad_Removal";
   }
 
-  protected abstract String getContentType();
-
-  protected HttpEntity getEntityBody()
+  protected final String m()
   {
-    return null;
+    return this.d.getString(2131296731);
   }
 
-  protected Object getErrorResponse(Exception paramException)
+  public final int n()
   {
-    return paramException;
+    return 2131558823;
   }
 
-  protected Object getErrorResponse(HttpResponse paramHttpResponse)
-  {
-    return null;
-  }
-
-  protected HttpClient getHttpClient()
-  {
-    HttpClient localHttpClient = getDefaultHttpClient();
-    HttpParams localHttpParams = localHttpClient.getParams();
-    HttpConnectionParams.setConnectionTimeout(localHttpParams, getConnectionTimeOut());
-    HttpConnectionParams.setSoTimeout(localHttpParams, getSocketTimeOut());
-    ((DefaultHttpClient)localHttpClient).setParams(localHttpParams);
-    return localHttpClient;
-  }
-
-  protected HttpRequestBase getHttpRequest()
-  {
-    String str = getMethod();
-    if ("POST".equals(str))
-      return new HttpPost(this.mUri);
-    if ("DELETE".equals(str))
-      return new HttpDelete(this.mUri);
-    if ("PUT".equals(str))
-      return new HttpPut(this.mUri);
-    if ("PATCH".equals(str))
-      return new e(this.mUri);
-    if ("HEAD".equals(str))
-      return new HttpHead(this.mUri);
-    if ("GET".equals(str))
-      return new HttpGet(this.mUri);
-    new StringBuilder().append("Bad Http Method: ").append(str).toString();
-    return null;
-  }
-
-  protected final String getMethod()
-  {
-    return ((textnow.t.b)getClass().getAnnotation(textnow.t.b.class)).a();
-  }
-
-  protected String getResponseAsString(InputStream paramInputStream)
-  {
-    ByteArrayOutputStream localByteArrayOutputStream = new ByteArrayOutputStream();
-    n.a(paramInputStream, localByteArrayOutputStream, new byte[512]);
-    String str = localByteArrayOutputStream.toString("UTF-8");
-    localByteArrayOutputStream.close();
-    return str;
-  }
-
-  protected int getSocketTimeOut()
-  {
-    return 30000;
-  }
-
-  protected Object getSuccessResponse(HttpResponse paramHttpResponse)
-  {
-    Object localObject = null;
-    if (paramHttpResponse != null)
-    {
-      HttpEntity localHttpEntity = paramHttpResponse.getEntity();
-      localObject = null;
-      if (localHttpEntity == null);
-    }
-    try
-    {
-      InputStream localInputStream = paramHttpResponse.getEntity().getContent();
-      localObject = localInputStream;
-      return localObject;
-    }
-    catch (Exception localException)
-    {
-      localException.printStackTrace();
-      return getErrorResponse(localException);
-    }
-  }
-
-  public URI getURI()
-  {
-    return this.mUri;
-  }
-
-  protected String getUserAgent()
-  {
-    return "";
-  }
-
-  protected void initializeHeaders()
-  {
-  }
-
-  protected boolean isDebugLogOn()
+  protected final boolean o()
   {
     return true;
   }
 
-  protected final void onBeforeExecute()
+  public final void onActivityCreated(Bundle paramBundle)
   {
-    this.mUri = buildURI();
-    this.mRequest = getHttpRequest();
-    addHeadersToRequest();
-    String str = getContentType();
-    if (str != null)
-      this.mRequest.addHeader("Content-Type", str);
-    onBeforeExecute(this.mRequest);
+    super.onActivityCreated(paramBundle);
+    this.d.setTitle(2131296731);
   }
 
-  protected void onBeforeExecute(HttpRequestBase paramHttpRequestBase)
+  public final void onClick(View paramView)
   {
-    HttpEntity localHttpEntity = getEntityBody();
-    if (localHttpEntity != null)
+    String str1;
+    switch (paramView.getId())
     {
-      if ((localHttpEntity instanceof AbstractHttpEntity))
-        ((AbstractHttpEntity)localHttpEntity).setContentType(getContentType());
-      ((HttpEntityEnclosingRequestBase)paramHttpRequestBase).setEntity(localHttpEntity);
+    default:
+      this.d.b(2131296432);
+      return;
+    case 2131558921:
+      com.enflick.android.TextNow.ads.b.a("purchase_enhancements", "item", "1month_ad_expiry");
+      str1 = "adremoval1month";
+    case 2131558922:
+    }
+    while (true)
+    {
+      new StringBuilder().append("buying: ").append(str1).toString();
+      String str2 = this.a.b();
+      JSONObject localJSONObject = new JSONObject();
+      try
+      {
+        localJSONObject.put("username", str2);
+        this.d.b(str1, localJSONObject.toString());
+        return;
+        com.enflick.android.TextNow.ads.b.a("purchase_enhancements", "item", "1year_ad_expiry");
+        str1 = "adremoval1year";
+      }
+      catch (JSONException localJSONException)
+      {
+        while (true)
+          localJSONException.printStackTrace();
+      }
     }
   }
 
-  protected void prepare()
+  public final void onCreate(Bundle paramBundle)
   {
-    initializeHeaders();
+    super.onCreate(paramBundle);
+    this.a = new u(this.d);
   }
 
-  public void setURI(URI paramURI)
+  public final View onCreateView(LayoutInflater paramLayoutInflater, ViewGroup paramViewGroup, Bundle paramBundle)
   {
-    this.mUri = paramURI;
+    new StringBuilder().append(this).append(" onCreateView").toString();
+    l locall = new l(this.d);
+    View localView = paramLayoutInflater.inflate(2130903186, null);
+    this.b = ((Button)localView.findViewById(2131558921));
+    Button localButton1 = this.b;
+    MainActivity localMainActivity1 = this.d;
+    Object[] arrayOfObject1 = new Object[1];
+    arrayOfObject1[0] = locall.b("adremoval1month", "$0.99");
+    localButton1.setText(localMainActivity1.getString(2131296729, arrayOfObject1));
+    this.b.setOnClickListener(this);
+    this.f = ((Button)localView.findViewById(2131558922));
+    Button localButton2 = this.f;
+    MainActivity localMainActivity2 = this.d;
+    Object[] arrayOfObject2 = new Object[1];
+    arrayOfObject2[0] = locall.b("adremoval1year", "$5.99");
+    localButton2.setText(localMainActivity2.getString(2131296730, arrayOfObject2));
+    this.f.setOnClickListener(this);
+    TextView localTextView1 = (TextView)localView.findViewById(2131558924);
+    if (!this.d.n())
+      if (this.d.o())
+      {
+        MainActivity localMainActivity5 = this.d;
+        Object[] arrayOfObject5 = new Object[1];
+        arrayOfObject5[0] = this.d.getString(2131296737);
+        localTextView1.setText(localMainActivity5.getString(2131296735, arrayOfObject5));
+      }
+    TextView localTextView2;
+    while (true)
+    {
+      localTextView2 = (TextView)localView.findViewById(2131558920);
+      String str = this.a.W();
+      if ((this.a.W() == null) || (textnow.v.b.a(this.a.r(), this.a.W())))
+        break;
+      localTextView2.setText(String.format(this.d.getResources().getString(2131296689), new Object[] { str }));
+      return localView;
+      if (MainActivity.p())
+      {
+        MainActivity localMainActivity4 = this.d;
+        Object[] arrayOfObject4 = new Object[1];
+        arrayOfObject4[0] = this.d.getString(2131296738);
+        localTextView1.setText(localMainActivity4.getString(2131296735, arrayOfObject4));
+      }
+      else
+      {
+        MainActivity localMainActivity3 = this.d;
+        Object[] arrayOfObject3 = new Object[1];
+        arrayOfObject3[0] = this.d.getString(2131296736);
+        localTextView1.setText(localMainActivity3.getString(2131296735, arrayOfObject3));
+      }
+    }
+    localTextView2.setText(2131296733);
+    return localView;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.s.c
  * JD-Core Version:    0.6.2
  */

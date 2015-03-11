@@ -4,7 +4,7 @@ import com.enflick.android.TextNow.TextNowApp;
 import com.enflick.android.TextNow.api.SessionDelete;
 import com.enflick.android.TextNow.api.h;
 import com.facebook.Session;
-import textnow.q.o;
+import textnow.aa.a;
 
 public class LogoutTask extends c
 {
@@ -16,11 +16,12 @@ public class LogoutTask extends c
     if (Session.getActiveSession() != null)
       Session.getActiveSession().closeAndClearTokenInformation();
     TextNowApp.b();
-    o.a(this.a).d();
+    a.a(this.a).e();
+    a.a(this.a).d();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.LogoutTask
  * JD-Core Version:    0.6.2
  */

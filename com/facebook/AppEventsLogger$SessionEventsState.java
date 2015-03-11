@@ -1,6 +1,7 @@
 package com.facebook;
 
 import android.os.Bundle;
+import com.facebook.internal.AttributionIdentifiers;
 import com.facebook.internal.Utility;
 import com.facebook.model.GraphObject;
 import com.facebook.model.GraphObject.Factory;
@@ -17,17 +18,17 @@ class AppEventsLogger$SessionEventsState
   public static final String NUM_SKIPPED_KEY = "num_skipped";
   private final int MAX_ACCUMULATED_LOG_EVENTS = 1000;
   private List<AppEventsLogger.AppEvent> accumulatedEvents = new ArrayList();
-  private String attributionId;
+  private AttributionIdentifiers attributionIdentifiers;
   private String hashedDeviceAndAppId;
   private List<AppEventsLogger.AppEvent> inFlightEvents = new ArrayList();
   private int numSkippedEventsDueToFullBuffer;
   private String packageName;
 
-  public AppEventsLogger$SessionEventsState(String paramString1, String paramString2, String paramString3)
+  public AppEventsLogger$SessionEventsState(AttributionIdentifiers paramAttributionIdentifiers, String paramString1, String paramString2)
   {
-    this.attributionId = paramString1;
-    this.packageName = paramString2;
-    this.hashedDeviceAndAppId = paramString3;
+    this.attributionIdentifiers = paramAttributionIdentifiers;
+    this.packageName = paramString1;
+    this.hashedDeviceAndAppId = paramString2;
   }
 
   private byte[] getStringAsByteArray(String paramString)
@@ -51,19 +52,28 @@ class AppEventsLogger$SessionEventsState
     if (this.numSkippedEventsDueToFullBuffer > 0)
       localGraphObject.setProperty("num_skipped_events", Integer.valueOf(paramInt));
     if (paramBoolean1)
-      Utility.setAppEventAttributionParameters(localGraphObject, this.attributionId, this.hashedDeviceAndAppId, paramBoolean2);
-    localGraphObject.setProperty("application_package_name", this.packageName);
-    paramRequest.setGraphObject(localGraphObject);
-    Bundle localBundle = paramRequest.getParameters();
-    if (localBundle == null)
-      localBundle = new Bundle();
-    String str = paramJSONArray.toString();
-    if (str != null)
+      Utility.setAppEventAttributionParameters(localGraphObject, this.attributionIdentifiers, this.hashedDeviceAndAppId, paramBoolean2);
+    try
     {
-      localBundle.putByteArray("custom_events_file", getStringAsByteArray(str));
-      paramRequest.setTag(str);
+      Utility.setAppEventExtendedDeviceInfoParameters(localGraphObject, AppEventsLogger.access$1000());
+      label64: localGraphObject.setProperty("application_package_name", this.packageName);
+      paramRequest.setGraphObject(localGraphObject);
+      Bundle localBundle = paramRequest.getParameters();
+      if (localBundle == null)
+        localBundle = new Bundle();
+      String str = paramJSONArray.toString();
+      if (str != null)
+      {
+        localBundle.putByteArray("custom_events_file", getStringAsByteArray(str));
+        paramRequest.setTag(str);
+      }
+      paramRequest.setParameters(localBundle);
+      return;
     }
-    paramRequest.setParameters(localBundle);
+    catch (Exception localException)
+    {
+      break label64;
+    }
   }
 
   public void accumulatePersistedEvents(List<AppEventsLogger.AppEvent> paramList)
@@ -169,7 +179,7 @@ class AppEventsLogger$SessionEventsState
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.AppEventsLogger.SessionEventsState
  * JD-Core Version:    0.6.2
  */

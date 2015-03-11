@@ -1,84 +1,63 @@
 package com.google.android.gms.internal;
 
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.IBinder;
+import android.location.Location;
+import com.google.android.gms.ads.mediation.MediationAdRequest;
+import java.util.Date;
+import java.util.Set;
 
-public final class cw extends df.a
-  implements ServiceConnection
+@ez
+public final class cw
+  implements MediationAdRequest
 {
-  private Context mContext;
-  private cr oY;
-  private String pf;
-  private cv pj;
-  private boolean po = false;
-  private int pp;
-  private Intent pq;
+  private final Date d;
+  private final Set<String> f;
+  private final boolean g;
+  private final Location h;
+  private final int om;
+  private final int qD;
 
-  public cw(Context paramContext, String paramString, boolean paramBoolean, int paramInt, Intent paramIntent, cv paramcv)
+  public cw(Date paramDate, int paramInt1, Set<String> paramSet, Location paramLocation, boolean paramBoolean, int paramInt2)
   {
-    this.pf = paramString;
-    this.pp = paramInt;
-    this.pq = paramIntent;
-    this.po = paramBoolean;
-    this.mContext = paramContext;
-    this.pj = paramcv;
+    this.d = paramDate;
+    this.om = paramInt1;
+    this.f = paramSet;
+    this.h = paramLocation;
+    this.g = paramBoolean;
+    this.qD = paramInt2;
   }
 
-  public final void finishPurchase()
+  public final Date getBirthday()
   {
-    int i = cy.c(this.pq);
-    if ((this.pp != -1) || (i != 0))
-      return;
-    this.oY = new cr(this.mContext);
-    Context localContext = this.mContext;
-    Intent localIntent = new Intent("com.android.vending.billing.InAppBillingService.BIND");
-    localContext.bindService(localIntent, this, 1);
+    return this.d;
   }
 
-  public final String getProductId()
+  public final int getGender()
   {
-    return this.pf;
+    return this.om;
   }
 
-  public final Intent getPurchaseData()
+  public final Set<String> getKeywords()
   {
-    return this.pq;
+    return this.f;
   }
 
-  public final int getResultCode()
+  public final Location getLocation()
   {
-    return this.pp;
+    return this.h;
   }
 
-  public final boolean isVerified()
+  public final boolean isTesting()
   {
-    return this.po;
+    return this.g;
   }
 
-  public final void onServiceConnected(ComponentName paramComponentName, IBinder paramIBinder)
+  public final int taggedForChildDirectedTreatment()
   {
-    eu.B("In-app billing service connected.");
-    this.oY.o(paramIBinder);
-    String str = cy.q(cy.d(this.pq));
-    if (str == null)
-      return;
-    if (this.oY.a(this.mContext.getPackageName(), str) == 0)
-      cx.k(this.mContext).a(this.pj);
-    this.mContext.unbindService(this);
-    this.oY.destroy();
-  }
-
-  public final void onServiceDisconnected(ComponentName paramComponentName)
-  {
-    eu.B("In-app billing service disconnected.");
-    this.oY.destroy();
+    return this.qD;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.cw
  * JD-Core Version:    0.6.2
  */

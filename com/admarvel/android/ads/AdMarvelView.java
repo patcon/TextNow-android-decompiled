@@ -8,6 +8,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -21,50 +22,44 @@ import android.widget.FrameLayout.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.RelativeLayout.LayoutParams;
-import com.admarvel.android.a.a;
 import com.admarvel.android.util.Logging;
-import com.admarvel.android.util.e;
-import java.io.File;
+import com.admarvel.android.util.a.b;
+import com.admarvel.android.util.f;
+import com.admarvel.android.util.n;
 import java.lang.ref.WeakReference;
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class AdMarvelView extends LinearLayout
 {
-  static String a;
-  public static boolean b;
-  protected static boolean d = true;
-  private static boolean j = false;
-  private static boolean o = true;
-  private static boolean w = true;
-  private static com.admarvel.android.b.c x = null;
-  private static WeakReference<Activity> z;
-  private AdMarvelAd A;
-  private boolean B = false;
-  final String c = UUID.randomUUID().toString();
+  public static boolean a;
+  protected static boolean c = true;
+  private static boolean n = true;
+  private static WeakReference<Activity> u;
+  final String b = UUID.randomUUID().toString();
+  private int d;
   private int e;
   private int f;
   private int g;
-  private int h;
-  private final r i = new r();
-  private boolean k = false;
-  private boolean l;
-  private final AtomicLong m;
-  private boolean n = true;
-  private boolean p = false;
-  private final AdMarvelView.k q;
-  private final AdMarvelView.l r;
-  private final Handler s = new Handler();
-  private Map<String, String> t;
-  private boolean u = true;
-  private boolean v = false;
-  private boolean y = false;
+  private final l h = new l();
+  private boolean i = false;
+  private boolean j;
+  private final AtomicLong k;
+  private boolean l = true;
+  private int m = -1;
+  private boolean o = false;
+  private final AdMarvelView.h p;
+  private final AdMarvelView.i q;
+  private boolean r = true;
+  private boolean s = false;
+  private boolean t = false;
+  private AdMarvelAd v;
+  private boolean w = false;
+  private boolean x = false;
 
   public AdMarvelView(Context paramContext)
   {
@@ -74,8 +69,8 @@ public class AdMarvelView extends LinearLayout
   public AdMarvelView(Context paramContext, AttributeSet paramAttributeSet)
   {
     super(paramContext, paramAttributeSet);
-    b.a(this.c);
-    Logging.log(ac.b());
+    AdMarvelAdapterInstances.buildAdMarvelAdapterInstances(this.b);
+    Logging.log(Version.getVersionDump());
     setFocusable(true);
     setDescendantFocusability(262144);
     setClickable(true);
@@ -83,52 +78,52 @@ public class AdMarvelView extends LinearLayout
     if (paramAttributeSet != null)
       if (paramAttributeSet.getAttributeValue(str, "backgroundColor") != null)
         if (!"0".equals(paramAttributeSet.getAttributeValue(str, "backgroundColor")))
-          break label380;
-    label380: for (this.e = 0; ; this.e = Integer.parseInt(paramAttributeSet.getAttributeValue(str, "backgroundColor").replace("#", ""), 16))
+          break label379;
+    label379: for (this.d = 0; ; this.d = Integer.parseInt(paramAttributeSet.getAttributeValue(str, "backgroundColor").replace("#", ""), 16))
     {
       if (paramAttributeSet.getAttributeValue(str, "textBackgroundColor") != null)
-        this.f = Integer.parseInt(paramAttributeSet.getAttributeValue(str, "textBackgroundColor").replace("#", ""), 16);
+        this.e = Integer.parseInt(paramAttributeSet.getAttributeValue(str, "textBackgroundColor").replace("#", ""), 16);
       if (paramAttributeSet.getAttributeValue(str, "textFontColor") != null)
-        this.g = Integer.parseInt(paramAttributeSet.getAttributeValue(str, "textFontColor").replace("#", ""), 16);
+        this.f = Integer.parseInt(paramAttributeSet.getAttributeValue(str, "textFontColor").replace("#", ""), 16);
       if (paramAttributeSet.getAttributeValue(str, "textBorderColor") != null)
-        this.h = Integer.parseInt(paramAttributeSet.getAttributeValue(str, "textBorderColor").replace("#", ""), 16);
+        this.g = Integer.parseInt(paramAttributeSet.getAttributeValue(str, "textBorderColor").replace("#", ""), 16);
       if (paramAttributeSet.getAttributeValue(str, "disableAnimation") != null)
-        this.l = Boolean.parseBoolean(paramAttributeSet.getAttributeValue(str, "disableAnimation"));
+        this.j = Boolean.parseBoolean(paramAttributeSet.getAttributeValue(str, "disableAnimation"));
       if (paramAttributeSet.getAttributeValue(str, "enableClickRedirect") != null)
-        this.n = Boolean.parseBoolean(paramAttributeSet.getAttributeValue(str, "enableClickRedirect"));
-      setAdMarvelBackgroundColor(this.e);
-      this.m = new AtomicLong(0L);
-      this.q = new AdMarvelView.k(this);
-      this.r = new AdMarvelView.l(this);
+        this.l = Boolean.parseBoolean(paramAttributeSet.getAttributeValue(str, "enableClickRedirect"));
+      setAdMarvelBackgroundColor(this.d);
+      this.k = new AtomicLong(0L);
+      this.p = new AdMarvelView.h(this);
+      this.q = new AdMarvelView.i(this);
       return;
     }
   }
 
   private void a(View paramView)
   {
-    if ((paramView != null) && ((paramView instanceof AdMarvelWebView)))
+    if ((paramView != null) && ((paramView instanceof m)))
     {
-      AdMarvelWebView localAdMarvelWebView = (AdMarvelWebView)paramView;
-      localAdMarvelWebView.d();
-      localAdMarvelWebView.c();
+      m localm = (m)paramView;
+      localm.e();
+      localm.d();
     }
   }
 
   private void a(final View paramView, final AdMarvelAd paramAdMarvelAd)
   {
-    if (this.l)
+    if (this.j)
       return;
     setVisibility(8);
     setVisibility(0);
-    aa localaa = new aa(0.0F, -90.0F, getWidth() / 2.0F, getHeight() / 2.0F, -0.3F * getWidth(), true);
-    localaa.setDuration(700L);
-    localaa.setFillAfter(true);
-    localaa.setInterpolator(new AccelerateInterpolator());
-    localaa.setAnimationListener(new Animation.AnimationListener()
+    n localn = new n(0.0F, -90.0F, getWidth() / 2.0F, getHeight() / 2.0F, -0.3F * getWidth(), true);
+    localn.setDuration(700L);
+    localn.setFillAfter(true);
+    localn.setInterpolator(new AccelerateInterpolator());
+    localn.setAnimationListener(new Animation.AnimationListener()
     {
       public void onAnimationEnd(Animation paramAnonymousAnimation)
       {
-        AdMarvelView.this.post(new AdMarvelView.n(paramView, AdMarvelView.this, paramAdMarvelAd));
+        AdMarvelView.this.post(new AdMarvelView.k(paramView, AdMarvelView.this, paramAdMarvelAd));
       }
 
       public void onAnimationRepeat(Animation paramAnonymousAnimation)
@@ -139,100 +134,91 @@ public class AdMarvelView extends LinearLayout
       {
       }
     });
-    startAnimation(localaa);
+    startAnimation(localn);
+  }
+
+  public static boolean a()
+  {
+    return n;
   }
 
   private void b(View paramView)
   {
+    boolean bool = paramView instanceof FrameLayout;
+    View localView = null;
+    if (bool)
+      localView = ((FrameLayout)paramView).getChildAt(0);
     try
     {
-      b.a(this.c, "com.admarvel.android.admarvelgoogleplayadapter.AdMarvelGooglePlayAdapter").cleanupView(paramView);
-      Logging.log("com.admarvel.android.admarvelgoogleplayadapter.AdMarvelGooglePlayAdapter: cleanupView");
+      AdMarvelAdapterInstances.getInstance(this.b, "com.admarvel.android.admarvelgoogleplayadapter.AdMarvelGooglePlayAdapter").cleanupView(localView);
       try
       {
-        label20: b.a(this.c, "com.admarvel.android.admarvelrhythmadapter.AdMarvelRhythmAdapter").cleanupView(paramView);
-        Logging.log("com.admarvel.android.admarvelrhythmadapter.AdMarvelRhythmAdapter: cleanupView");
+        label34: AdMarvelAdapterInstances.getInstance(this.b, "com.admarvel.android.admarvelrhythmadapter.AdMarvelRhythmAdapter").cleanupView(localView);
         try
         {
-          label40: b.a(this.c, "com.admarvel.android.admarvelgreystripeadapter.AdMarvelGreystripeAdapter").cleanupView(paramView);
-          Logging.log("com.admarvel.android.admarvelgreystripeadapter.AdMarvelGreystripeAdapter: cleanupView");
+          label48: AdMarvelAdapterInstances.getInstance(this.b, "com.admarvel.android.admarvelmillennialadapter.AdMarvelMillennialAdapter").cleanupView(localView);
           try
           {
-            label60: b.a(this.c, "com.admarvel.android.admarvelmillennialadapter.AdMarvelMillennialAdapter").cleanupView(paramView);
-            Logging.log("com.admarvel.android.admarvelmillennialadapter.AdMarvelMillennialAdapter: cleanupView");
+            label62: AdMarvelAdapterInstances.getInstance(this.b, "com.admarvel.android.admarvelamazonadapter.AdMarvelAmazonAdapter").cleanupView(localView);
             try
             {
-              label80: b.a(this.c, "com.admarvel.android.admarvelamazonadapter.AdMarvelAmazonAdapter").cleanupView(paramView);
-              Logging.log("com.admarvel.android.admarvelamazonadapter.AdMarvelAmazonAdapter: cleanupView");
+              label76: AdMarvelAdapterInstances.getInstance(this.b, "com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter").cleanupView(localView);
               try
               {
-                label100: b.a(this.c, "com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter").cleanupView(paramView);
-                Logging.log("com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter: cleanupView");
+                label90: AdMarvelAdapterInstances.getInstance(this.b, "com.admarvel.android.admarvelpulse3dadapter.AdMarvelPulse3dAdapter").cleanupView(localView);
                 try
                 {
-                  label120: b.a(this.c, "com.admarvel.android.admarvelpulse3dadapter.AdMarvelPulse3dAdapter").cleanupView(paramView);
-                  Logging.log("com.admarvel.android.admarvelpulse3dadapter.AdMarvelPulse3dAdapter: cleanupView");
+                  label104: AdMarvelAdapterInstances.getInstance(this.b, "com.admarvel.android.admarvelfacebookadapter.AdMarvelFacebookAdapter").cleanupView(localView);
                   try
                   {
-                    label140: b.a(this.c, "com.admarvel.android.admarvelfacebookadapter.AdMarvelFacebookAdapter").cleanupView(paramView);
-                    Logging.log("com.admarvel.android.admarvelfacebookadapter.AdMarvelFacebookAdapter: cleanupView");
+                    label118: AdMarvelAdapterInstances.getInstance(this.b, "com.admarvel.android.admarvelinmobiadapter.AdMarvelInmobiAdapter").cleanupView(localView);
                     try
                     {
-                      label160: b.a(this.c, "com.admarvel.android.admarvelinmobiadapter.AdMarvelInmobiAdapter").cleanupView(paramView);
-                      Logging.log("com.admarvel.android.admarvelinmobiadapter.AdMarvelInmobiAdapter: cleanupView");
-                      try
-                      {
-                        label180: b.a(this.c, "com.admarvel.android.admarvelheyzapadapter.AdMarvelHeyzapAdapter").cleanupView(paramView);
-                        Logging.log("com.admarvel.android.admarvelheyzapadapter.AdMarvelHeyzapAdapter: cleanupView");
-                        return;
-                      }
-                      catch (Exception localException10)
-                      {
-                      }
+                      label132: AdMarvelAdapterInstances.getInstance(this.b, "com.admarvel.android.admarvelheyzapadapter.AdMarvelHeyzapAdapter").cleanupView(localView);
+                      return;
                     }
                     catch (Exception localException9)
                     {
-                      break label180;
                     }
                   }
                   catch (Exception localException8)
                   {
-                    break label160;
+                    break label132;
                   }
                 }
                 catch (Exception localException7)
                 {
-                  break label140;
+                  break label118;
                 }
               }
               catch (Exception localException6)
               {
-                break label120;
+                break label104;
               }
             }
             catch (Exception localException5)
             {
-              break label100;
+              break label90;
             }
           }
           catch (Exception localException4)
           {
-            break label80;
+            break label76;
           }
         }
         catch (Exception localException3)
         {
-          break label60;
+          break label62;
         }
       }
       catch (Exception localException2)
       {
-        break label40;
+        break label48;
       }
     }
     catch (Exception localException1)
     {
-      break label20;
+      break label34;
     }
   }
 
@@ -240,12 +226,7 @@ public class AdMarvelView extends LinearLayout
   {
     try
     {
-      w = false;
-      if ((x != null) && (!x.isCancelled()))
-      {
-        x.cancel(true);
-        x = null;
-      }
+      b.a();
       return;
     }
     finally
@@ -257,7 +238,7 @@ public class AdMarvelView extends LinearLayout
 
   private void e()
   {
-    if (this.l)
+    if (this.j)
       return;
     AlphaAnimation localAlphaAnimation = new AlphaAnimation(0.0F, 1.0F);
     localAlphaAnimation.setDuration(233L);
@@ -269,622 +250,151 @@ public class AdMarvelView extends LinearLayout
 
   public static void enableNetworkActivity(Activity paramActivity, String paramString)
   {
-    while (true)
+    try
     {
-      try
-      {
-        w = true;
-        if ((x != null) && (x.isCancelled()))
-        {
-          x = null;
-          if (ac.a() >= 11)
-          {
-            new AdMarvelView.g(paramActivity, paramString).run();
-            return;
-          }
-          x.execute(new Void[0]);
-          continue;
-        }
-      }
-      finally
-      {
-      }
-      if (ac.a() >= 11)
-        new AdMarvelView.g(paramActivity, paramString).run();
-      else
-        x.execute(new Void[0]);
+      b.b(paramActivity, paramString);
+      return;
+    }
+    finally
+    {
+      localObject = finally;
+      throw localObject;
     }
   }
 
-  public static void forceCloseFullScreenAd(Activity paramActivity, AdMarvelActivity paramAdMarvelActivity, AdMarvelVideoActivity paramAdMarvelVideoActivity)
+  private void h(AdMarvelView paramAdMarvelView)
   {
-    if (paramAdMarvelActivity != null)
-      paramAdMarvelActivity.finish();
-    if (paramAdMarvelVideoActivity != null)
-      paramAdMarvelVideoActivity.finish();
-    try
+    View localView1 = paramAdMarvelView.findViewWithTag("CURRENT");
+    if (localView1 == null)
+      return;
+    if ((localView1 instanceof FrameLayout));
+    for (View localView2 = ((FrameLayout)localView1).getChildAt(0); ; localView2 = null)
     {
-      b.a("ADMARVELGUID", "com.admarvel.android.admarvelgoogleplayadapter.AdMarvelGooglePlayAdapter").forceCloseFullScreenAd(paramActivity);
-      Logging.log("com.admarvel.android.admarvelgoogleplayadapter.AdMarvelGooglePlayAdapter: forceCloseFullScreenAd");
+      Logging.log("destroyAdapterView");
       try
       {
-        label35: b.a("ADMARVELGUID", "com.admarvel.android.admarvelrhythmadapter.AdMarvelRhythmAdapter").forceCloseFullScreenAd(paramActivity);
-        Logging.log("com.admarvel.android.admarvelrhythmadapter.AdMarvelRhythmAdapter: forceCloseFullScreenAd");
+        AdMarvelAdapterInstances.getInstance(this.b, "com.admarvel.android.admarvelgoogleplayadapter.AdMarvelGooglePlayAdapter").destroy(localView2);
         try
         {
-          label54: b.a("ADMARVELGUID", "com.admarvel.android.admarvelgreystripeadapter.AdMarvelGreystripeAdapter").forceCloseFullScreenAd(paramActivity);
-          Logging.log("com.admarvel.android.admarvelgreystripeadapter.AdMarvelGreystripeAdapter: forceCloseFullScreenAd");
+          label49: AdMarvelAdapterInstances.getInstance(this.b, "com.admarvel.android.admarvelrhythmadapter.AdMarvelRhythmAdapter").destroy(localView2);
           try
           {
-            label73: b.a("ADMARVELGUID", "com.admarvel.android.admarvelmillennialadapter.AdMarvelMillennialAdapter").forceCloseFullScreenAd(paramActivity);
-            Logging.log("com.admarvel.android.admarvelmillennialadapter.AdMarvelMillennialAdapter: forceCloseFullScreenAd");
+            label63: AdMarvelAdapterInstances.getInstance(this.b, "com.admarvel.android.admarvelmillennialadapter.AdMarvelMillennialAdapter").destroy(localView2);
             try
             {
-              label92: b.a("ADMARVELGUID", "com.admarvel.android.admarvelamazonadapter.AdMarvelAmazonAdapter").forceCloseFullScreenAd(paramActivity);
-              Logging.log("com.admarvel.android.admarvelamazonadapter.AdMarvelAmazonAdapter: forceCloseFullScreenAd");
+              label77: AdMarvelAdapterInstances.getInstance(this.b, "com.admarvel.android.admarvelamazonadapter.AdMarvelAmazonAdapter").destroy(localView2);
               try
               {
-                label111: b.a("ADMARVELGUID", "com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter").forceCloseFullScreenAd(paramActivity);
-                Logging.log("com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter: forceCloseFullScreenAd");
+                label91: AdMarvelAdapterInstances.getInstance(this.b, "com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter").destroy(localView2);
                 try
                 {
-                  label130: b.a("ADMARVELGUID", "com.admarvel.android.admarvelpulse3dadapter.AdMarvelPulse3dAdapter").forceCloseFullScreenAd(paramActivity);
-                  Logging.log("com.admarvel.android.admarvelpulse3dadapter.AdMarvelPulse3dAdapter: forceCloseFullScreenAd");
+                  label105: AdMarvelAdapterInstances.getInstance(this.b, "com.admarvel.android.admarvelpulse3dadapter.AdMarvelPulse3dAdapter").destroy(localView2);
                   try
                   {
-                    label149: b.a("ADMARVELGUID", "com.admarvel.android.admarvelfacebookadapter.AdMarvelFacebookAdapter").forceCloseFullScreenAd(paramActivity);
-                    Logging.log("com.admarvel.android.admarvelfacebookadapter.AdMarvelFacebookAdapter: forceCloseFullScreenAd");
+                    label119: AdMarvelAdapterInstances.getInstance(this.b, "com.admarvel.android.admarvelfacebookadapter.AdMarvelFacebookAdapter").destroy(localView2);
                     try
                     {
-                      label168: b.a("ADMARVELGUID", "com.admarvel.android.admarvelinmobiadapter.AdMarvelInmobiAdapter").forceCloseFullScreenAd(paramActivity);
-                      Logging.log("com.admarvel.android.admarvelinmobiadapter.AdMarvelInmobiAdapter: forceCloseFullScreenAd");
+                      label133: AdMarvelAdapterInstances.getInstance(this.b, "com.admarvel.android.admarvelinmobiadapter.AdMarvelInmobiAdapter").destroy(localView2);
                       try
                       {
-                        label187: b.a("ADMARVELGUID", "com.admarvel.android.admarvelheyzapadapter.AdMarvelHeyzapAdapter").forceCloseFullScreenAd(paramActivity);
-                        Logging.log("com.admarvel.android.admarvelheyzapadapter.AdMarvelHeyzapAdapter: forceCloseFullScreenAd");
+                        label147: AdMarvelAdapterInstances.getInstance(this.b, "com.admarvel.android.admarvelheyzapadapter.AdMarvelHeyzapAdapter").destroy(localView2);
                         return;
                       }
-                      catch (Exception localException10)
+                      catch (Exception localException9)
                       {
+                        return;
                       }
                     }
-                    catch (Exception localException9)
+                    catch (Exception localException8)
                     {
-                      break label187;
+                      break label147;
                     }
                   }
-                  catch (Exception localException8)
+                  catch (Exception localException7)
                   {
-                    break label168;
+                    break label133;
                   }
                 }
-                catch (Exception localException7)
+                catch (Exception localException6)
                 {
-                  break label149;
+                  break label119;
                 }
               }
-              catch (Exception localException6)
+              catch (Exception localException5)
               {
-                break label130;
+                break label105;
               }
             }
-            catch (Exception localException5)
+            catch (Exception localException4)
             {
-              break label111;
+              break label91;
             }
           }
-          catch (Exception localException4)
+          catch (Exception localException3)
           {
-            break label92;
+            break label77;
           }
         }
-        catch (Exception localException3)
+        catch (Exception localException2)
         {
-          break label73;
+          break label63;
         }
       }
-      catch (Exception localException2)
+      catch (Exception localException1)
       {
-        break label54;
+        break label49;
       }
-    }
-    catch (Exception localException1)
-    {
-      break label35;
-    }
-  }
-
-  public static void initialize(Activity paramActivity, Map<AdMarvelUtils.SDKAdNetwork, String> paramMap)
-  {
-    if ((ac.a() >= 11) && (o))
-      AdMarvelView.j.a(paramActivity);
-    new a(paramActivity).a();
-    try
-    {
-      b.a("ADMARVELGUID", "com.admarvel.android.admarvelgoogleplayadapter.AdMarvelGooglePlayAdapter").initialize(paramActivity, paramMap);
-      Logging.log("com.admarvel.android.admarvelgoogleplayadapter.AdMarvelGooglePlayAdapter: startActivity");
-      try
-      {
-        label49: b.a("ADMARVELGUID", "com.admarvel.android.admarvelrhythmadapter.AdMarvelRhythmAdapter").initialize(paramActivity, paramMap);
-        Logging.log("com.admarvel.android.admarvelrhythmadapter.AdMarvelRhythmAdapter: startActivity");
-        try
-        {
-          label69: b.a("ADMARVELGUID", "com.admarvel.android.admarvelgreystripeadapter.AdMarvelGreystripeAdapter").initialize(paramActivity, paramMap);
-          Logging.log("com.admarvel.android.admarvelgreystripeadapter.AdMarvelGreystripeAdapter: startActivity");
-          try
-          {
-            label89: b.a("ADMARVELGUID", "com.admarvel.android.admarvelmillennialadapter.AdMarvelMillennialAdapter").initialize(paramActivity, paramMap);
-            Logging.log("com.admarvel.android.admarvelmillennialadapter.AdMarvelMillennialAdapter: startActivity");
-            try
-            {
-              label109: b.a("ADMARVELGUID", "com.admarvel.android.admarvelamazonadapter.AdMarvelAmazonAdapter").initialize(paramActivity, paramMap);
-              Logging.log("com.admarvel.android.admarvelamazonadapter.AdMarvelAmazonAdapter: startActivity");
-              try
-              {
-                label129: b.a("ADMARVELGUID", "com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter").initialize(paramActivity, paramMap);
-                Logging.log("com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter: startActivity");
-                try
-                {
-                  label149: b.a("ADMARVELGUID", "com.admarvel.android.admarvelpulse3dadapter.AdMarvelPulse3dAdapter").initialize(paramActivity, paramMap);
-                  Logging.log("com.admarvel.android.admarvelpulse3dadapter.AdMarvelPulse3dAdapter: startActivity");
-                  try
-                  {
-                    label169: b.a("ADMARVELGUID", "com.admarvel.android.admarvelfacebookadapter.AdMarvelFacebookAdapter").initialize(paramActivity, paramMap);
-                    Logging.log("com.admarvel.android.admarvelfacebookadapter.AdMarvelFacebookAdapter: startActivity");
-                    try
-                    {
-                      label189: b.a("ADMARVELGUID", "com.admarvel.android.admarvelinmobiadapter.AdMarvelInmobiAdapter").initialize(paramActivity, paramMap);
-                      Logging.log("com.admarvel.android.admarvelinmobiadapter.AdMarvelInmobiAdapter: startActivity");
-                      try
-                      {
-                        label209: b.a("ADMARVELGUID", "com.admarvel.android.admarvelheyzapadapter.AdMarvelHeyzapAdapter").initialize(paramActivity, paramMap);
-                        Logging.log("com.admarvel.android.admarvelheyzapadapter.AdMarvelHeyzapAdapter: startActivity");
-                        try
-                        {
-                          label229: c.a("com.admarvel.android.admarvelmologiqadapter.AdMarvelMologiqAdapter", paramActivity).start();
-                          label239: new Thread(new Runnable()
-                          {
-                            public final void run()
-                            {
-                              ab.l(AdMarvelView.this);
-                            }
-                          }).start();
-                          ab.m(paramActivity);
-                          e.c(paramActivity);
-                          return;
-                        }
-                        catch (Exception localException11)
-                        {
-                          break label239;
-                        }
-                      }
-                      catch (Exception localException10)
-                      {
-                        break label229;
-                      }
-                    }
-                    catch (Exception localException9)
-                    {
-                      break label209;
-                    }
-                  }
-                  catch (Exception localException8)
-                  {
-                    break label189;
-                  }
-                }
-                catch (Exception localException7)
-                {
-                  break label169;
-                }
-              }
-              catch (Exception localException6)
-              {
-                break label149;
-              }
-            }
-            catch (Exception localException5)
-            {
-              break label129;
-            }
-          }
-          catch (Exception localException4)
-          {
-            break label109;
-          }
-        }
-        catch (Exception localException3)
-        {
-          break label89;
-        }
-      }
-      catch (Exception localException2)
-      {
-        break label69;
-      }
-    }
-    catch (Exception localException1)
-    {
-      break label49;
     }
   }
 
   public static void initializeOfflineSDK(Activity paramActivity, String paramString)
   {
-    b = true;
-    Logging.log("Offline SDK:initializeOfflineSDK ");
-    if ((w) && (ab.f(paramActivity)))
-    {
-      x = new com.admarvel.android.b.c(paramString, paramActivity);
-      if (ac.a() >= 11)
-        new AdMarvelView.g(paramActivity, paramString).run();
-    }
-    else
-    {
-      return;
-    }
-    x.execute(new Void[0]);
-  }
-
-  public static void pause(Activity paramActivity, Map<AdMarvelUtils.SDKAdNetwork, String> paramMap, AdMarvelView paramAdMarvelView)
-  {
-    if (paramAdMarvelView != null)
-    {
-      View localView = paramAdMarvelView.findViewWithTag("CURRENT");
-      if ((localView instanceof AdMarvelWebView))
-        ((AdMarvelWebView)localView).a();
-    }
-    Iterator localIterator = b.a().entrySet().iterator();
-    while (localIterator.hasNext())
-    {
-      Map localMap = (Map)((Map.Entry)localIterator.next()).getValue();
-      try
-      {
-        ((AdMarvelAdapter)localMap.get("com.admarvel.android.admarvelgoogleplayadapter.AdMarvelGooglePlayAdapter")).pause(paramActivity, paramMap);
-        Logging.log("com.admarvel.android.admarvelgoogleplayadapter.AdMarvelGooglePlayAdapter: pause");
-      }
-      catch (Exception localException11)
-      {
-      }
-    }
-    try
-    {
-      b.a("ADMARVELGUID", "com.admarvel.android.admarvelrhythmadapter.AdMarvelRhythmAdapter").pause(paramActivity, paramMap);
-      Logging.log("com.admarvel.android.admarvelrhythmadapter.AdMarvelRhythmAdapter: pause");
-      try
-      {
-        label123: b.a("ADMARVELGUID", "com.admarvel.android.admarvelgreystripeadapter.AdMarvelGreystripeAdapter").pause(paramActivity, paramMap);
-        Logging.log("com.admarvel.android.admarvelgreystripeadapter.AdMarvelGreystripeAdapter: pause");
-        try
-        {
-          label143: b.a("ADMARVELGUID", "com.admarvel.android.admarvelmillennialadapter.AdMarvelMillennialAdapter").pause(paramActivity, paramMap);
-          Logging.log("com.admarvel.android.admarvelmillennialadapter.AdMarvelMillennialAdapter: pause");
-          try
-          {
-            label163: b.a("ADMARVELGUID", "com.admarvel.android.admarvelamazonadapter.AdMarvelAmazonAdapter").pause(paramActivity, paramMap);
-            Logging.log("com.admarvel.android.admarvelamazonadapter.AdMarvelAmazonAdapter: pause");
-            try
-            {
-              label183: b.a("ADMARVELGUID", "com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter").pause(paramActivity, paramMap);
-              Logging.log("com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter: pause");
-              try
-              {
-                label203: b.a("ADMARVELGUID", "com.admarvel.android.admarvelpulse3dadapter.AdMarvelPulse3dAdapter").pause(paramActivity, paramMap);
-                Logging.log("com.admarvel.android.admarvelpulse3dadapter.AdMarvelPulse3dAdapter: pause");
-                try
-                {
-                  label223: b.a("ADMARVELGUID", "com.admarvel.android.admarvelfacebookadapter.AdMarvelFacebookAdapter").pause(paramActivity, paramMap);
-                  Logging.log("com.admarvel.android.admarvelfacebookadapter.AdMarvelFacebookAdapter: pause");
-                  try
-                  {
-                    label243: b.a("ADMARVELGUID", "com.admarvel.android.admarvelinmobiadapter.AdMarvelInmobiAdapter").pause(paramActivity, paramMap);
-                    Logging.log("com.admarvel.android.admarvelinmobiadapter.AdMarvelInmobiAdapter: pause");
-                    try
-                    {
-                      label263: b.a("ADMARVELGUID", "com.admarvel.android.admarvelheyzapadapter.AdMarvelHeyzapAdapter").pause(paramActivity, paramMap);
-                      Logging.log("com.admarvel.android.admarvelheyzapadapter.AdMarvelHeyzapAdapter: pause");
-                      try
-                      {
-                        label283: c.a("com.admarvel.android.admarvelmologiqadapter.AdMarvelMologiqAdapter", paramActivity).pause();
-                        return;
-                      }
-                      catch (Exception localException10)
-                      {
-                      }
-                    }
-                    catch (Exception localException9)
-                    {
-                      break label283;
-                    }
-                  }
-                  catch (Exception localException8)
-                  {
-                    break label263;
-                  }
-                }
-                catch (Exception localException7)
-                {
-                  break label243;
-                }
-              }
-              catch (Exception localException6)
-              {
-                break label223;
-              }
-            }
-            catch (Exception localException5)
-            {
-              break label203;
-            }
-          }
-          catch (Exception localException4)
-          {
-            break label183;
-          }
-        }
-        catch (Exception localException3)
-        {
-          break label163;
-        }
-      }
-      catch (Exception localException2)
-      {
-        break label143;
-      }
-    }
-    catch (Exception localException1)
-    {
-      break label123;
-    }
-  }
-
-  public static void resume(Activity paramActivity, Map<AdMarvelUtils.SDKAdNetwork, String> paramMap, AdMarvelView paramAdMarvelView)
-  {
-    if (paramAdMarvelView != null)
-    {
-      View localView = paramAdMarvelView.findViewWithTag("CURRENT");
-      if ((localView instanceof AdMarvelWebView))
-        ((AdMarvelWebView)localView).b();
-    }
-    Iterator localIterator = b.a().entrySet().iterator();
-    while (localIterator.hasNext())
-    {
-      Map localMap = (Map)((Map.Entry)localIterator.next()).getValue();
-      try
-      {
-        ((AdMarvelAdapter)localMap.get("com.admarvel.android.admarvelgoogleplayadapter.AdMarvelGooglePlayAdapter")).resume(paramActivity, paramMap);
-        Logging.log("com.admarvel.android.admarvelgoogleplayadapter.AdMarvelGooglePlayAdapter: resume");
-      }
-      catch (Exception localException11)
-      {
-      }
-    }
-    try
-    {
-      b.a("ADMARVELGUID", "com.admarvel.android.admarvelrhythmadapter.AdMarvelRhythmAdapter").resume(paramActivity, paramMap);
-      Logging.log("com.admarvel.android.admarvelrhythmadapter.AdMarvelRhythmAdapter: resume");
-      try
-      {
-        label123: b.a("ADMARVELGUID", "com.admarvel.android.admarvelgreystripeadapter.AdMarvelGreystripeAdapter").resume(paramActivity, paramMap);
-        Logging.log("com.admarvel.android.admarvelgreystripeadapter.AdMarvelGreystripeAdapter: resume");
-        try
-        {
-          label143: b.a("ADMARVELGUID", "com.admarvel.android.admarvelmillennialadapter.AdMarvelMillennialAdapter").resume(paramActivity, paramMap);
-          Logging.log("com.admarvel.android.admarvelmillennialadapter.AdMarvelMillennialAdapter: resume");
-          try
-          {
-            label163: b.a("ADMARVELGUID", "com.admarvel.android.admarvelamazonadapter.AdMarvelAmazonAdapter").resume(paramActivity, paramMap);
-            Logging.log("com.admarvel.android.admarvelamazonadapter.AdMarvelAmazonAdapter: resume");
-            try
-            {
-              label183: b.a("ADMARVELGUID", "com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter").resume(paramActivity, paramMap);
-              Logging.log("com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter: resume");
-              try
-              {
-                label203: b.a("ADMARVELGUID", "com.admarvel.android.admarvelpulse3dadapter.AdMarvelPulse3dAdapter").resume(paramActivity, paramMap);
-                Logging.log("com.admarvel.android.admarvelpulse3dadapter.AdMarvelPulse3dAdapter: resume");
-                try
-                {
-                  label223: b.a("ADMARVELGUID", "com.admarvel.android.admarvelfacebookadapter.AdMarvelFacebookAdapter").resume(paramActivity, paramMap);
-                  Logging.log("com.admarvel.android.admarvelfacebookadapter.AdMarvelFacebookAdapter: resume");
-                  try
-                  {
-                    label243: b.a("ADMARVELGUID", "com.admarvel.android.admarvelinmobiadapter.AdMarvelInmobiAdapter").resume(paramActivity, paramMap);
-                    Logging.log("com.admarvel.android.admarvelinmobiadapter.AdMarvelInmobiAdapter: resume");
-                    try
-                    {
-                      label263: b.a("ADMARVELGUID", "com.admarvel.android.admarvelheyzapadapter.AdMarvelHeyzapAdapter").resume(paramActivity, paramMap);
-                      Logging.log("com.admarvel.android.admarvelheyzapadapter.AdMarvelHeyzapAdapter: resume");
-                      try
-                      {
-                        label283: c.a("com.admarvel.android.admarvelmologiqadapter.AdMarvelMologiqAdapter", paramActivity).pause();
-                        return;
-                      }
-                      catch (Exception localException10)
-                      {
-                      }
-                    }
-                    catch (Exception localException9)
-                    {
-                      break label283;
-                    }
-                  }
-                  catch (Exception localException8)
-                  {
-                    break label263;
-                  }
-                }
-                catch (Exception localException7)
-                {
-                  break label243;
-                }
-              }
-              catch (Exception localException6)
-              {
-                break label223;
-              }
-            }
-            catch (Exception localException5)
-            {
-              break label203;
-            }
-          }
-          catch (Exception localException4)
-          {
-            break label183;
-          }
-        }
-        catch (Exception localException3)
-        {
-          break label163;
-        }
-      }
-      catch (Exception localException2)
-      {
-        break label143;
-      }
-    }
-    catch (Exception localException1)
-    {
-      break label123;
-    }
+    a = true;
+    b.a(paramActivity, paramString);
   }
 
   public static void setEnableHardwareAcceleration(boolean paramBoolean)
   {
-    o = paramBoolean;
-  }
-
-  public static void uninitialize(Activity paramActivity, Map<AdMarvelUtils.SDKAdNetwork, String> paramMap)
-  {
-    n localn = n.a();
-    if ((localn != null) && (localn.b()))
-      localn.c();
-    l locall = l.a();
-    if (locall != null)
-      locall.a(paramActivity);
-    try
-    {
-      b.a("ADMARVELGUID", "com.admarvel.android.admarvelgoogleplayadapter.AdMarvelGooglePlayAdapter").uninitialize(paramActivity, paramMap);
-      Logging.log("com.admarvel.android.admarvelgoogleplayadapter.AdMarvelGooglePlayAdapter: endActivity");
-      try
-      {
-        label52: b.a("ADMARVELGUID", "com.admarvel.android.admarvelrhythmadapter.AdMarvelRhythmAdapter").uninitialize(paramActivity, paramMap);
-        Logging.log("com.admarvel.android.admarvelrhythmadapter.AdMarvelRhythmAdapter: endActivity");
-        try
-        {
-          label72: b.a("ADMARVELGUID", "com.admarvel.android.admarvelgreystripeadapter.AdMarvelGreystripeAdapter").uninitialize(paramActivity, paramMap);
-          Logging.log("com.admarvel.android.admarvelgreystripeadapter.AdMarvelGreystripeAdapter: endActivity");
-          try
-          {
-            label92: b.a("ADMARVELGUID", "com.admarvel.android.admarvelmillennialadapter.AdMarvelMillennialAdapter").uninitialize(paramActivity, paramMap);
-            Logging.log("com.admarvel.android.admarvelmillennialadapter.AdMarvelMillennialAdapter: endActivity");
-            try
-            {
-              label112: b.a("ADMARVELGUID", "com.admarvel.android.admarvelamazonadapter.AdMarvelAmazonAdapter").uninitialize(paramActivity, paramMap);
-              Logging.log("com.admarvel.android.admarvelamazonadapter.AdMarvelAmazonAdapter: endActivity");
-              try
-              {
-                label132: b.a("ADMARVELGUID", "com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter").uninitialize(paramActivity, paramMap);
-                Logging.log("com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter: endActivity");
-                try
-                {
-                  label152: b.a("ADMARVELGUID", "com.admarvel.android.admarvelpulse3dadapter.AdMarvelPulse3dAdapter").uninitialize(paramActivity, paramMap);
-                  Logging.log("com.admarvel.android.admarvelpulse3dadapter.AdMarvelPulse3dAdapter: endActivity");
-                  try
-                  {
-                    label172: b.a("ADMARVELGUID", "com.admarvel.android.admarvelfacebookadapter.AdMarvelFacebookAdapter").uninitialize(paramActivity, paramMap);
-                    Logging.log("com.admarvel.android.admarvelfacebookadapter.AdMarvelFacebookAdapter: endActivity");
-                    try
-                    {
-                      label192: b.a("ADMARVELGUID", "com.admarvel.android.admarvelinmobiadapter.AdMarvelInmobiAdapter").uninitialize(paramActivity, paramMap);
-                      Logging.log("com.admarvel.android.admarvelinmobiadapter.AdMarvelInmobiAdapter: endActivity");
-                      try
-                      {
-                        label212: b.a("ADMARVELGUID", "com.admarvel.android.admarvelheyzapadapter.AdMarvelHeyzapAdapter").uninitialize(paramActivity, paramMap);
-                        Logging.log("com.admarvel.android.admarvelheyzapadapter.AdMarvelHeyzapAdapter: endActivity");
-                        try
-                        {
-                          label232: c.a("com.admarvel.android.admarvelmologiqadapter.AdMarvelMologiqAdapter", paramActivity).stop();
-                          label242: e.a();
-                          ab.m(paramActivity);
-                          return;
-                        }
-                        catch (Exception localException11)
-                        {
-                          break label242;
-                        }
-                      }
-                      catch (Exception localException10)
-                      {
-                        break label232;
-                      }
-                    }
-                    catch (Exception localException9)
-                    {
-                      break label212;
-                    }
-                  }
-                  catch (Exception localException8)
-                  {
-                    break label192;
-                  }
-                }
-                catch (Exception localException7)
-                {
-                  break label172;
-                }
-              }
-              catch (Exception localException6)
-              {
-                break label152;
-              }
-            }
-            catch (Exception localException5)
-            {
-              break label132;
-            }
-          }
-          catch (Exception localException4)
-          {
-            break label112;
-          }
-        }
-        catch (Exception localException3)
-        {
-          break label92;
-        }
-      }
-      catch (Exception localException2)
-      {
-        break label72;
-      }
-    }
-    catch (Exception localException1)
-    {
-      break label52;
-    }
+    Logging.log("AdMarvelView - setEnableHardwareAcceleration :" + paramBoolean);
+    n = paramBoolean;
   }
 
   protected void a(AdMarvelAd paramAdMarvelAd)
   {
-    View localView1 = findViewWithTag("CURRENT");
-    if ((localView1 instanceof AdMarvelWebView))
-      ((AdMarvelWebView)localView1).d();
-    String str = a;
-    File localFile = null;
-    if (str != null)
-      localFile = new File(a);
-    if ((z != null) && (z.get() != null));
-    for (AdMarvelWebView localAdMarvelWebView = new AdMarvelWebView((Context)z.get(), this.u, this.v, localFile, paramAdMarvelAd.getXml(), paramAdMarvelAd, this.s); ; localAdMarvelWebView = new AdMarvelWebView(getContext(), this.u, this.v, localFile, paramAdMarvelAd.getXml(), paramAdMarvelAd, this.s))
+    float f1;
+    boolean bool;
+    if (paramAdMarvelAd != null)
     {
-      localAdMarvelWebView.setLayoutParams(new LinearLayout.LayoutParams(-2, -2));
-      localAdMarvelWebView.setBackgroundColor(this.e);
-      localAdMarvelWebView.setEnableClickRedirect(this.n);
-      AdMarvelWebView.a(localAdMarvelWebView.e, this.r);
-      localAdMarvelWebView.setTag("PENDING");
-      localAdMarvelWebView.setVisibility(8);
-      localAdMarvelWebView.a(getTextFontColor(), getTextBorderColor(), getTextBackgroundColor(), getAdMarvelBackgroundColor(), this);
+      this.v = paramAdMarvelAd;
+      if (getAdContainerWidth() > 0)
+      {
+        f1 = getAdContainerWidth() / r.i(getContext());
+        paramAdMarvelAd.setAdMarvelViewWidth(f1);
+      }
+    }
+    else
+    {
+      View localView1 = findViewWithTag("CURRENT");
+      bool = false;
+      if (localView1 != null)
+      {
+        bool = true;
+        if ((localView1 instanceof m))
+          ((m)localView1).e();
+      }
+      if ((u == null) || (u.get() == null))
+        break label311;
+    }
+    label311: for (m localm = new m((Context)u.get(), this.r, this.s, paramAdMarvelAd.getXml(), paramAdMarvelAd, this.w, this.x, bool); ; localm = new m(getContext(), this.r, this.s, paramAdMarvelAd.getXml(), paramAdMarvelAd, this.w, this.x, bool))
+    {
+      localm.setLayoutParams(new LinearLayout.LayoutParams(-2, -2));
+      localm.setBackgroundColor(this.d);
+      localm.setEnableClickRedirect(this.l);
+      m.a(localm.s, this.q);
+      localm.setTag("PENDING");
+      if (bool)
+        localm.setVisibility(8);
+      localm.a(getTextFontColor(), getTextBorderColor(), getTextBackgroundColor(), getAdMarvelBackgroundColor(), this);
       while (true)
       {
         View localView2 = findViewWithTag("PENDING");
@@ -892,8 +402,19 @@ public class AdMarvelView extends LinearLayout
           break;
         removeView(localView2);
       }
+      if (getWidth() > 0)
+      {
+        f1 = getWidth() / r.i(getContext());
+        break;
+      }
+      if (r.g(getContext()) < r.h(getContext()));
+      for (int i1 = r.g(getContext()); ; i1 = r.h(getContext()))
+      {
+        f1 = i1 / r.i(getContext());
+        break;
+      }
     }
-    addView(localAdMarvelWebView);
+    addView(localm);
   }
 
   protected void a(String paramString, AdMarvelAd paramAdMarvelAd, Context paramContext)
@@ -911,12 +432,12 @@ public class AdMarvelView extends LinearLayout
       {
         if (localObject != null)
         {
-          SharedPreferences.Editor localEditor = paramContext.getSharedPreferences(ab.c("admarvel"), 0).edit();
+          SharedPreferences.Editor localEditor = paramContext.getSharedPreferences(r.d("admarvel"), 0).edit();
           String str1 = DateFormat.getDateTimeInstance().format(new Date(System.currentTimeMillis() + 1000 * Integer.parseInt(paramString)));
-          localEditor.putString(ab.c((String)localObject), str1);
+          localEditor.putString(r.d((String)localObject), str1);
           localEditor.commit();
           Logging.log("requestNewAd: AD REQUEST BLOCKED, IGNORING REQUEST");
-          this.i.a(getContext(), this, 304, ab.a(304), paramAdMarvelAd.getSiteId(), paramAdMarvelAd.getId(), paramAdMarvelAd.getTargetParams(), paramAdMarvelAd.getIpAddress());
+          this.h.a(getContext(), this, 304, r.a(304), paramAdMarvelAd.getSiteId(), paramAdMarvelAd.getId(), paramAdMarvelAd.getTargetParams(), paramAdMarvelAd.getIpAddress());
         }
         return;
         str4 = "duration" + i1 + AdMarvelUtils.getSDKVersion();
@@ -937,18 +458,24 @@ public class AdMarvelView extends LinearLayout
     if (paramAdMarvelAd != null);
     while (true)
     {
+      float f1;
       AdMarvelAdapter localAdMarvelAdapter;
+      View localView1;
       try
       {
-        this.A = paramAdMarvelAd;
-        localAdMarvelAdapter = b.a(this.c, paramString);
-        if ((z != null) && (z.get() != null))
+        this.v = paramAdMarvelAd;
+        if (getAdContainerWidth() > 0)
         {
-          localView1 = localAdMarvelAdapter.requestNewAd(this.q, (Context)z.get(), paramAdMarvelAd, paramMap, this.e, this.g);
-          break label380;
+          f1 = getAdContainerWidth() / r.i(getContext());
+          paramAdMarvelAd.setAdMarvelViewWidth(f1);
+          localAdMarvelAdapter = AdMarvelAdapterInstances.getInstance(this.b, paramString);
+          if ((u == null) || (u.get() == null))
+            break label245;
+          localView1 = localAdMarvelAdapter.requestNewAd(this.p, (Context)u.get(), paramAdMarvelAd, paramMap, this.d, this.f);
+          break label505;
           View localView2 = findViewWithTag("PENDING");
           if (localView2 == null)
-            break label164;
+            break label271;
           removeView(localView2);
           continue;
         }
@@ -956,77 +483,93 @@ public class AdMarvelView extends LinearLayout
       catch (Exception localException)
       {
         Logging.log(Log.getStackTraceString(localException));
-        this.i.a(getContext(), this, 304, ab.a(304), paramAdMarvelAd.getSiteId(), paramAdMarvelAd.getId(), paramAdMarvelAd.getTargetParams(), paramAdMarvelAd.getIpAddress());
+        this.h.a(getContext(), this, 304, r.a(304), paramAdMarvelAd.getSiteId(), paramAdMarvelAd.getId(), paramAdMarvelAd.getTargetParams(), paramAdMarvelAd.getIpAddress());
         return;
       }
-      View localView1 = localAdMarvelAdapter.requestNewAd(this.q, paramContext, paramAdMarvelAd, paramMap, this.e, this.g);
-      break label380;
-      label164: ViewGroup.LayoutParams localLayoutParams = getLayoutParams();
-      if (localLayoutParams.width < 0)
+      if (getWidth() > 0)
       {
-        localLayoutParams.width = -1;
-        setLayoutParams(localLayoutParams);
+        f1 = getWidth() / r.i(getContext());
       }
-      setGravity(1);
-      FrameLayout localFrameLayout = new FrameLayout(paramContext);
-      localFrameLayout.setLayoutParams(new FrameLayout.LayoutParams(-2, -2, 1));
-      if ((localView1.getLayoutParams() instanceof LinearLayout.LayoutParams))
+      else
       {
-        LinearLayout.LayoutParams localLayoutParams3 = (LinearLayout.LayoutParams)localView1.getLayoutParams();
-        localLayoutParams3.gravity = 1;
-        localFrameLayout.addView(localView1, localLayoutParams3);
-        localFrameLayout.setTag("PENDING");
-        if (!paramAdMarvelAd.isMustBeVisible())
-          break label370;
-        localFrameLayout.setVisibility(0);
-      }
-      while (true)
-      {
-        removeAllViews();
-        addView(localFrameLayout);
-        return;
-        if ((localView1.getLayoutParams() instanceof FrameLayout.LayoutParams))
+        if (r.g(getContext()) < r.h(getContext()));
+        for (int i1 = r.g(getContext()); ; i1 = r.h(getContext()))
         {
-          FrameLayout.LayoutParams localLayoutParams2 = (FrameLayout.LayoutParams)localView1.getLayoutParams();
-          localLayoutParams2.gravity = 1;
-          localFrameLayout.addView(localView1, localLayoutParams2);
+          f1 = i1 / r.i(getContext());
           break;
         }
-        if (!(localView1.getLayoutParams() instanceof RelativeLayout.LayoutParams))
+        label245: localView1 = localAdMarvelAdapter.requestNewAd(this.p, paramContext, paramAdMarvelAd, paramMap, this.d, this.f);
+        break label505;
+        label271: ViewGroup.LayoutParams localLayoutParams = getLayoutParams();
+        if (localLayoutParams.width < 0)
+        {
+          localLayoutParams.width = -1;
+          setLayoutParams(localLayoutParams);
+        }
+        setGravity(1);
+        FrameLayout localFrameLayout = new FrameLayout(paramContext);
+        localFrameLayout.setLayoutParams(new FrameLayout.LayoutParams(-2, -2, 1));
+        if ((localView1.getLayoutParams() instanceof LinearLayout.LayoutParams))
+        {
+          LinearLayout.LayoutParams localLayoutParams3 = (LinearLayout.LayoutParams)localView1.getLayoutParams();
+          localLayoutParams3.gravity = 1;
+          localFrameLayout.addView(localView1, localLayoutParams3);
+          localFrameLayout.setTag("PENDING");
+          if (!paramAdMarvelAd.isMustBeVisible())
+            break label495;
+          localFrameLayout.setVisibility(0);
+        }
+        while (true)
+        {
+          addView(localFrameLayout);
+          return;
+          if ((localView1.getLayoutParams() instanceof FrameLayout.LayoutParams))
+          {
+            FrameLayout.LayoutParams localLayoutParams2 = (FrameLayout.LayoutParams)localView1.getLayoutParams();
+            localLayoutParams2.gravity = 1;
+            localFrameLayout.addView(localView1, localLayoutParams2);
+            break;
+          }
+          if ((localView1.getLayoutParams() instanceof RelativeLayout.LayoutParams))
+          {
+            RelativeLayout.LayoutParams localLayoutParams1 = (RelativeLayout.LayoutParams)localView1.getLayoutParams();
+            localLayoutParams1.addRule(13);
+            localFrameLayout.addView(localView1, localLayoutParams1);
+            break;
+          }
+          localFrameLayout.addView(localView1, new FrameLayout.LayoutParams(-2, -2, 1));
           break;
-        RelativeLayout.LayoutParams localLayoutParams1 = (RelativeLayout.LayoutParams)localView1.getLayoutParams();
-        localLayoutParams1.addRule(13);
-        localFrameLayout.addView(localView1, localLayoutParams1);
-        break;
-        label370: localFrameLayout.setVisibility(8);
+          label495: localFrameLayout.setVisibility(8);
+        }
+        label505: if (localView1 == null);
       }
-      label380: if (localView1 == null);
     }
-  }
-
-  public boolean a()
-  {
-    return this.B;
   }
 
   public void adMarvelViewDisplayed()
   {
-    this.s.post(new AdMarvelView.h(this, this.s));
+    f.a().b().execute(new AdMarvelView.f(this));
   }
 
   public boolean b()
   {
-    return this.p;
+    return this.w;
+  }
+
+  public boolean c()
+  {
+    return this.o;
   }
 
   public void destroy()
   {
-    this.s.post(new AdMarvelView.d(this));
+    Logging.log("AdMarvelView - Destroy");
+    new Handler(Looper.getMainLooper()).post(new AdMarvelView.c(this));
   }
 
   public void displayAd(Context paramContext, AdMarvelAd paramAdMarvelAd)
   {
-    this.A = paramAdMarvelAd;
+    this.v = paramAdMarvelAd;
     if ((paramAdMarvelAd == null) || (paramContext == null));
     String str;
     do
@@ -1045,8 +588,8 @@ public class AdMarvelView extends LinearLayout
       catch (Exception localException)
       {
         Logging.log(Log.getStackTraceString(localException));
-        AdMarvelUtils.ErrorReason localErrorReason = ab.a(303);
-        int i1 = ab.a(localErrorReason);
+        AdMarvelUtils.ErrorReason localErrorReason = r.a(303);
+        int i1 = r.a(localErrorReason);
         getListenerImpl().a(paramContext, this, i1, localErrorReason, paramAdMarvelAd.getSiteId(), paramAdMarvelAd.getId(), paramAdMarvelAd.getTargetParams(), paramAdMarvelAd.getIpAddress());
         return;
       }
@@ -1062,7 +605,7 @@ public class AdMarvelView extends LinearLayout
 
   public void enableAdFetchedModel(boolean paramBoolean)
   {
-    this.B = paramBoolean;
+    this.w = paramBoolean;
   }
 
   public void fetchNewAd(Map<String, Object> paramMap, String paramString1, String paramString2)
@@ -1079,180 +622,470 @@ public class AdMarvelView extends LinearLayout
 
   public void focus()
   {
-    this.s.post(new AdMarvelView.i(this));
+    Logging.log("AdMarvelView - focus");
+    new Handler(Looper.getMainLooper()).post(new AdMarvelView.g(this));
+  }
+
+  public int getAdContainerWidth()
+  {
+    return this.m;
   }
 
   public int getAdMarvelBackgroundColor()
   {
-    return this.e;
+    return this.d;
   }
 
-  r getListenerImpl()
-  {
-    return this.i;
-  }
-
-  public int getTextBackgroundColor()
-  {
-    return this.f;
-  }
-
-  public int getTextBorderColor()
+  l getListenerImpl()
   {
     return this.h;
   }
 
-  public int getTextFontColor()
+  public int getTextBackgroundColor()
+  {
+    return this.e;
+  }
+
+  public int getTextBorderColor()
   {
     return this.g;
   }
 
-  public void requestNewAd(Map<String, Object> paramMap, String paramString1, String paramString2)
+  public int getTextFontColor()
   {
-    String str5;
+    return this.f;
+  }
+
+  public void notifyAddedToListView()
+  {
+    Logging.log("AdMarvelView - notifyAddedToListView ");
+    View localView1 = findViewWithTag("CURRENT");
+    if ((localView1 instanceof m))
+      ((m)localView1).c();
+    View localView2;
+    if ((localView1 instanceof FrameLayout))
+      localView2 = ((FrameLayout)localView1).getChildAt(0);
     try
     {
-      SharedPreferences localSharedPreferences = getContext().getSharedPreferences(ab.c("admarvel"), 0);
-      String str1 = getContext().getPackageManager().getPackageInfo(getContext().getPackageName(), 0).versionName;
-      int i1 = getContext().getPackageManager().getPackageInfo(getContext().getPackageName(), 0).versionCode;
-      if (str1 != null);
-      for (String str2 = "duration" + str1 + i1 + AdMarvelUtils.getSDKVersion(); str2 != null; str2 = "duration" + i1 + AdMarvelUtils.getSDKVersion())
-      {
-        String str3 = localSharedPreferences.getString(ab.c(str2), null);
-        if ((str3 == null) || (str3.length() <= 0))
-          break;
-        Date localDate = DateFormat.getDateTimeInstance().parse(str3);
-        String str8 = DateFormat.getDateTimeInstance().format(new Date(System.currentTimeMillis()));
-        if (!DateFormat.getDateTimeInstance().parse(str8).before(localDate))
-          break;
-        Logging.log("requestNewAd: AD REQUEST BLOCKED, IGNORING REQUEST");
-        this.i.a(getContext(), this, 304, ab.a(304), paramString2, 0, paramMap, "");
-        return;
-      }
-      new a(getContext()).a();
-      String str4 = paramString1.trim();
-      str5 = paramString2.trim();
-      n localn = n.a();
-      if ((localn != null) && (localn.b()))
-        localn.c();
-      l locall = l.a();
-      if (locall != null)
-        locall.a(getContext());
-      if (System.currentTimeMillis() - this.m.getAndSet(System.currentTimeMillis()) > 2000L)
-      {
-        this.i.a(this);
-        String str6 = a;
-        File localFile = null;
-        if (str6 != null)
-          localFile = new File(a);
-        String str7 = null;
-        if (paramMap != null)
-          str7 = (String)paramMap.get("UNIQUE_ID");
-        this.s.post(new AdMarvelView.b(localFile, getContext(), paramMap, str4, str5, str7, ab.d(getContext()), ab.a(getContext()), this, 0, "", this.s));
-        return;
-      }
+      AdMarvelAdapterInstances.getInstance(this.b, "com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter").notifyAddedToListView(localView2);
+      return;
     }
     catch (Exception localException)
     {
-      Logging.log(Log.getStackTraceString(localException));
-      return;
     }
-    Logging.log("requestNewAd: AD REQUEST PENDING, IGNORING REQUEST");
-    this.i.a(getContext(), this, 304, ab.a(304), str5, 0, paramMap, "");
+  }
+
+  public void pause(Activity paramActivity)
+  {
+    Logging.log("AdMarvelView - Pause");
+    View localView1 = findViewWithTag("CURRENT");
+    if ((localView1 instanceof m))
+      ((m)localView1).a();
+    boolean bool = localView1 instanceof FrameLayout;
+    View localView2 = null;
+    if (bool)
+      localView2 = ((FrameLayout)localView1).getChildAt(0);
+    try
+    {
+      AdMarvelAdapterInstances.getInstance(this.b, "com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter").pause(paramActivity, localView2);
+      try
+      {
+        label66: AdMarvelAdapterInstances.getInstance(this.b, "com.admarvel.android.admarvelgoogleplayadapter.AdMarvelGooglePlayAdapter").pause(paramActivity, localView2);
+        try
+        {
+          label82: AdMarvelAdapterInstances.getInstance("ADMARVELGUID", "com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter").pause(paramActivity, localView2);
+          try
+          {
+            label97: AdMarvelAnalyticsAdapterInstances.getInstance("com.admarvel.android.admarvelmologiqadapter.AdMarvelMologiqAdapter", paramActivity).pause();
+            return;
+          }
+          catch (Exception localException2)
+          {
+          }
+        }
+        catch (Exception localException1)
+        {
+          break label97;
+        }
+      }
+      catch (Exception localException4)
+      {
+        break label82;
+      }
+    }
+    catch (Exception localException3)
+    {
+      break label66;
+    }
+  }
+
+  // ERROR //
+  public void requestNewAd(Map<String, Object> paramMap, String paramString1, String paramString2)
+  {
+    // Byte code:
+    //   0: aconst_null
+    //   1: astore 4
+    //   3: aload_1
+    //   4: ifnull +13 -> 17
+    //   7: new 714	java/util/HashMap
+    //   10: dup
+    //   11: aload_1
+    //   12: invokespecial 717	java/util/HashMap:<init>	(Ljava/util/Map;)V
+    //   15: astore 4
+    //   17: aload_0
+    //   18: invokevirtual 368	com/admarvel/android/ads/AdMarvelView:getContext	()Landroid/content/Context;
+    //   21: ldc_w 477
+    //   24: invokestatic 480	com/admarvel/android/ads/r:d	(Ljava/lang/String;)Ljava/lang/String;
+    //   27: iconst_0
+    //   28: invokevirtual 484	android/content/Context:getSharedPreferences	(Ljava/lang/String;I)Landroid/content/SharedPreferences;
+    //   31: astore 6
+    //   33: aload_0
+    //   34: invokevirtual 368	com/admarvel/android/ads/AdMarvelView:getContext	()Landroid/content/Context;
+    //   37: invokevirtual 451	android/content/Context:getPackageManager	()Landroid/content/pm/PackageManager;
+    //   40: aload_0
+    //   41: invokevirtual 368	com/admarvel/android/ads/AdMarvelView:getContext	()Landroid/content/Context;
+    //   44: invokevirtual 128	android/content/Context:getPackageName	()Ljava/lang/String;
+    //   47: iconst_0
+    //   48: invokevirtual 457	android/content/pm/PackageManager:getPackageInfo	(Ljava/lang/String;I)Landroid/content/pm/PackageInfo;
+    //   51: getfield 462	android/content/pm/PackageInfo:versionName	Ljava/lang/String;
+    //   54: astore 7
+    //   56: aload_0
+    //   57: invokevirtual 368	com/admarvel/android/ads/AdMarvelView:getContext	()Landroid/content/Context;
+    //   60: invokevirtual 451	android/content/Context:getPackageManager	()Landroid/content/pm/PackageManager;
+    //   63: aload_0
+    //   64: invokevirtual 368	com/admarvel/android/ads/AdMarvelView:getContext	()Landroid/content/Context;
+    //   67: invokevirtual 128	android/content/Context:getPackageName	()Ljava/lang/String;
+    //   70: iconst_0
+    //   71: invokevirtual 457	android/content/pm/PackageManager:getPackageInfo	(Ljava/lang/String;I)Landroid/content/pm/PackageInfo;
+    //   74: getfield 465	android/content/pm/PackageInfo:versionCode	I
+    //   77: istore 8
+    //   79: aload 7
+    //   81: ifnull +148 -> 229
+    //   84: new 116	java/lang/StringBuilder
+    //   87: dup
+    //   88: invokespecial 117	java/lang/StringBuilder:<init>	()V
+    //   91: ldc_w 467
+    //   94: invokevirtual 123	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   97: aload 7
+    //   99: invokevirtual 123	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   102: iload 8
+    //   104: invokevirtual 470	java/lang/StringBuilder:append	(I)Ljava/lang/StringBuilder;
+    //   107: invokestatic 475	com/admarvel/android/ads/AdMarvelUtils:getSDKVersion	()Ljava/lang/String;
+    //   110: invokevirtual 123	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   113: invokevirtual 129	java/lang/StringBuilder:toString	()Ljava/lang/String;
+    //   116: astore 9
+    //   118: aload 9
+    //   120: ifnull +141 -> 261
+    //   123: aload 6
+    //   125: aload 9
+    //   127: invokestatic 480	com/admarvel/android/ads/r:d	(Ljava/lang/String;)Ljava/lang/String;
+    //   130: aconst_null
+    //   131: invokeinterface 720 3 0
+    //   136: astore 10
+    //   138: aload 10
+    //   140: ifnull +121 -> 261
+    //   143: aload 10
+    //   145: invokevirtual 723	java/lang/String:length	()I
+    //   148: ifle +113 -> 261
+    //   151: invokestatic 496	java/text/DateFormat:getDateTimeInstance	()Ljava/text/DateFormat;
+    //   154: aload 10
+    //   156: invokevirtual 727	java/text/DateFormat:parse	(Ljava/lang/String;)Ljava/util/Date;
+    //   159: astore 18
+    //   161: invokestatic 496	java/text/DateFormat:getDateTimeInstance	()Ljava/text/DateFormat;
+    //   164: new 498	java/util/Date
+    //   167: dup
+    //   168: invokestatic 504	java/lang/System:currentTimeMillis	()J
+    //   171: invokespecial 508	java/util/Date:<init>	(J)V
+    //   174: invokevirtual 512	java/text/DateFormat:format	(Ljava/util/Date;)Ljava/lang/String;
+    //   177: astore 19
+    //   179: invokestatic 496	java/text/DateFormat:getDateTimeInstance	()Ljava/text/DateFormat;
+    //   182: aload 19
+    //   184: invokevirtual 727	java/text/DateFormat:parse	(Ljava/lang/String;)Ljava/util/Date;
+    //   187: aload 18
+    //   189: invokevirtual 731	java/util/Date:before	(Ljava/util/Date;)Z
+    //   192: ifeq +69 -> 261
+    //   195: ldc_w 523
+    //   198: invokestatic 102	com/admarvel/android/util/Logging:log	(Ljava/lang/String;)V
+    //   201: aload_0
+    //   202: getfield 74	com/admarvel/android/ads/AdMarvelView:h	Lcom/admarvel/android/ads/l;
+    //   205: aload_0
+    //   206: invokevirtual 368	com/admarvel/android/ads/AdMarvelView:getContext	()Landroid/content/Context;
+    //   209: aload_0
+    //   210: sipush 304
+    //   213: sipush 304
+    //   216: invokestatic 526	com/admarvel/android/ads/r:a	(I)Lcom/admarvel/android/ads/AdMarvelUtils$ErrorReason;
+    //   219: aload_3
+    //   220: iconst_0
+    //   221: aload 4
+    //   223: ldc 153
+    //   225: invokevirtual 542	com/admarvel/android/ads/l:a	(Landroid/content/Context;Lcom/admarvel/android/ads/AdMarvelView;ILcom/admarvel/android/ads/AdMarvelUtils$ErrorReason;Ljava/lang/String;ILjava/util/Map;Ljava/lang/String;)V
+    //   228: return
+    //   229: new 116	java/lang/StringBuilder
+    //   232: dup
+    //   233: invokespecial 117	java/lang/StringBuilder:<init>	()V
+    //   236: ldc_w 467
+    //   239: invokevirtual 123	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   242: iload 8
+    //   244: invokevirtual 470	java/lang/StringBuilder:append	(I)Ljava/lang/StringBuilder;
+    //   247: invokestatic 475	com/admarvel/android/ads/AdMarvelUtils:getSDKVersion	()Ljava/lang/String;
+    //   250: invokevirtual 123	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   253: invokevirtual 129	java/lang/StringBuilder:toString	()Ljava/lang/String;
+    //   256: astore 9
+    //   258: goto -140 -> 118
+    //   261: aload_2
+    //   262: invokevirtual 734	java/lang/String:trim	()Ljava/lang/String;
+    //   265: astore 11
+    //   267: aload_3
+    //   268: invokevirtual 734	java/lang/String:trim	()Ljava/lang/String;
+    //   271: astore 12
+    //   273: invokestatic 739	com/admarvel/android/util/e:a	()Lcom/admarvel/android/util/e;
+    //   276: astore 13
+    //   278: aload 13
+    //   280: ifnull +16 -> 296
+    //   283: aload 13
+    //   285: invokevirtual 741	com/admarvel/android/util/e:b	()Z
+    //   288: ifeq +8 -> 296
+    //   291: aload 13
+    //   293: invokevirtual 742	com/admarvel/android/util/e:c	()V
+    //   296: invokestatic 747	com/admarvel/android/util/c:a	()Lcom/admarvel/android/util/c;
+    //   299: astore 14
+    //   301: aload 14
+    //   303: ifnull +12 -> 315
+    //   306: aload 14
+    //   308: aload_0
+    //   309: invokevirtual 368	com/admarvel/android/ads/AdMarvelView:getContext	()Landroid/content/Context;
+    //   312: invokevirtual 749	com/admarvel/android/util/c:a	(Landroid/content/Context;)V
+    //   315: aload_0
+    //   316: invokevirtual 368	com/admarvel/android/ads/AdMarvelView:getContext	()Landroid/content/Context;
+    //   319: invokevirtual 752	android/content/Context:getApplicationContext	()Landroid/content/Context;
+    //   322: invokestatic 757	com/admarvel/android/util/b:a	()Lcom/admarvel/android/util/b;
+    //   325: invokevirtual 761	android/content/Context:unregisterReceiver	(Landroid/content/BroadcastReceiver;)V
+    //   328: invokestatic 504	java/lang/System:currentTimeMillis	()J
+    //   331: aload_0
+    //   332: getfield 195	com/admarvel/android/ads/AdMarvelView:k	Ljava/util/concurrent/atomic/AtomicLong;
+    //   335: invokestatic 504	java/lang/System:currentTimeMillis	()J
+    //   338: invokevirtual 765	java/util/concurrent/atomic/AtomicLong:getAndSet	(J)J
+    //   341: lsub
+    //   342: ldc2_w 766
+    //   345: lcmp
+    //   346: ifle +97 -> 443
+    //   349: aload_0
+    //   350: getfield 74	com/admarvel/android/ads/AdMarvelView:h	Lcom/admarvel/android/ads/l;
+    //   353: aload_0
+    //   354: invokevirtual 769	com/admarvel/android/ads/l:a	(Lcom/admarvel/android/ads/AdMarvelView;)V
+    //   357: aconst_null
+    //   358: astore 16
+    //   360: aload 4
+    //   362: ifnull +18 -> 380
+    //   365: aload 4
+    //   367: ldc_w 771
+    //   370: invokeinterface 776 2 0
+    //   375: checkcast 141	java/lang/String
+    //   378: astore 16
+    //   380: new 616	android/os/Handler
+    //   383: dup
+    //   384: invokestatic 622	android/os/Looper:getMainLooper	()Landroid/os/Looper;
+    //   387: invokespecial 625	android/os/Handler:<init>	(Landroid/os/Looper;)V
+    //   390: new 778	com/admarvel/android/ads/AdMarvelView$a
+    //   393: dup
+    //   394: aload_0
+    //   395: invokevirtual 368	com/admarvel/android/ads/AdMarvelView:getContext	()Landroid/content/Context;
+    //   398: aload 4
+    //   400: aload 11
+    //   402: aload 12
+    //   404: aload 16
+    //   406: aload_0
+    //   407: invokevirtual 368	com/admarvel/android/ads/AdMarvelView:getContext	()Landroid/content/Context;
+    //   410: invokestatic 780	com/admarvel/android/ads/r:d	(Landroid/content/Context;)I
+    //   413: aload_0
+    //   414: invokevirtual 368	com/admarvel/android/ads/AdMarvelView:getContext	()Landroid/content/Context;
+    //   417: invokestatic 783	com/admarvel/android/ads/r:a	(Landroid/content/Context;)Ljava/lang/String;
+    //   420: aload_0
+    //   421: iconst_0
+    //   422: ldc 153
+    //   424: invokespecial 786	com/admarvel/android/ads/AdMarvelView$a:<init>	(Landroid/content/Context;Ljava/util/Map;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;Lcom/admarvel/android/ads/AdMarvelView;ILjava/lang/String;)V
+    //   427: invokevirtual 632	android/os/Handler:post	(Ljava/lang/Runnable;)Z
+    //   430: pop
+    //   431: return
+    //   432: astore 5
+    //   434: aload 5
+    //   436: invokestatic 548	android/util/Log:getStackTraceString	(Ljava/lang/Throwable;)Ljava/lang/String;
+    //   439: invokestatic 102	com/admarvel/android/util/Logging:log	(Ljava/lang/String;)V
+    //   442: return
+    //   443: ldc_w 788
+    //   446: invokestatic 102	com/admarvel/android/util/Logging:log	(Ljava/lang/String;)V
+    //   449: aload_0
+    //   450: getfield 74	com/admarvel/android/ads/AdMarvelView:h	Lcom/admarvel/android/ads/l;
+    //   453: aload_0
+    //   454: invokevirtual 368	com/admarvel/android/ads/AdMarvelView:getContext	()Landroid/content/Context;
+    //   457: aload_0
+    //   458: sipush 304
+    //   461: sipush 304
+    //   464: invokestatic 526	com/admarvel/android/ads/r:a	(I)Lcom/admarvel/android/ads/AdMarvelUtils$ErrorReason;
+    //   467: aload 12
+    //   469: iconst_0
+    //   470: aload 4
+    //   472: ldc 153
+    //   474: invokevirtual 542	com/admarvel/android/ads/l:a	(Landroid/content/Context;Lcom/admarvel/android/ads/AdMarvelView;ILcom/admarvel/android/ads/AdMarvelUtils$ErrorReason;Ljava/lang/String;ILjava/util/Map;Ljava/lang/String;)V
+    //   477: return
+    //   478: astore 15
+    //   480: goto -152 -> 328
+    //
+    // Exception table:
+    //   from	to	target	type
+    //   7	17	432	java/lang/Exception
+    //   17	79	432	java/lang/Exception
+    //   84	118	432	java/lang/Exception
+    //   123	138	432	java/lang/Exception
+    //   143	228	432	java/lang/Exception
+    //   229	258	432	java/lang/Exception
+    //   261	278	432	java/lang/Exception
+    //   283	296	432	java/lang/Exception
+    //   296	301	432	java/lang/Exception
+    //   306	315	432	java/lang/Exception
+    //   315	328	432	java/lang/Exception
+    //   328	357	432	java/lang/Exception
+    //   365	380	432	java/lang/Exception
+    //   380	431	432	java/lang/Exception
+    //   443	477	432	java/lang/Exception
+    //   315	328	478	java/lang/IllegalArgumentException
   }
 
   public void requestNewAd(Map<String, Object> paramMap, String paramString1, String paramString2, Activity paramActivity)
   {
-    z = new WeakReference(paramActivity);
+    u = new WeakReference(paramActivity);
     requestNewAd(paramMap, paramString1, paramString2);
+  }
+
+  public void resume(Activity paramActivity)
+  {
+    Logging.log("AdMarvelView - Resume");
+    View localView1 = findViewWithTag("CURRENT");
+    if ((localView1 instanceof m))
+      ((m)localView1).b();
+    boolean bool = localView1 instanceof FrameLayout;
+    View localView2 = null;
+    if (bool)
+      localView2 = ((FrameLayout)localView1).getChildAt(0);
+    try
+    {
+      AdMarvelAdapterInstances.getInstance(this.b, "com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter").resume(paramActivity, localView2);
+      try
+      {
+        label66: AdMarvelAdapterInstances.getInstance(this.b, "com.admarvel.android.admarvelgoogleplayadapter.AdMarvelGooglePlayAdapter").resume(paramActivity, localView2);
+        try
+        {
+          label82: AdMarvelAdapterInstances.getInstance("ADMARVELGUID", "com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter").resume(paramActivity, localView2);
+          try
+          {
+            label97: AdMarvelAnalyticsAdapterInstances.getInstance("com.admarvel.android.admarvelmologiqadapter.AdMarvelMologiqAdapter", paramActivity).resume();
+            return;
+          }
+          catch (Exception localException2)
+          {
+          }
+        }
+        catch (Exception localException1)
+        {
+          break label97;
+        }
+      }
+      catch (Exception localException4)
+      {
+        break label82;
+      }
+    }
+    catch (Exception localException3)
+    {
+      break label66;
+    }
+  }
+
+  public void setAdContainerWidth(int paramInt)
+  {
+    Logging.log("AdMarvelView - setAdContainerWidth :" + paramInt);
+    this.m = paramInt;
   }
 
   public void setAdMarvelBackgroundColor(int paramInt)
   {
+    Logging.log("AdMarvelView - setAdMarvelBackgroundColor :" + paramInt);
     if (paramInt == 0);
-    for (this.e = 0; ; this.e = (0xFF000000 | paramInt))
+    for (this.d = 0; ; this.d = (0xFF000000 | paramInt))
     {
-      setBackgroundColor(this.e);
+      setBackgroundColor(this.d);
       return;
     }
   }
 
   public void setAdmarvelWebViewAsSoftwareLayer(boolean paramBoolean)
   {
-    this.p = paramBoolean;
+    Logging.log("AdMarvelView - setAdmarvelWebViewAsSoftwareLayer :" + paramBoolean);
+    this.o = paramBoolean;
   }
 
   public void setDisableAnimation(boolean paramBoolean)
   {
-    this.l = paramBoolean;
+    Logging.log("AdMarvelView - setDisableAnimation :" + paramBoolean);
+    this.j = paramBoolean;
   }
 
   public void setDisableSDKImpressionTracking(boolean paramBoolean)
   {
-    this.y = paramBoolean;
+    Logging.log("AdMarvelView - setDisableSDKImpressionTracking :" + paramBoolean);
+    this.t = paramBoolean;
   }
 
   public void setEnableAutoScaling(boolean paramBoolean)
   {
-    this.u = paramBoolean;
+    Logging.log("AdMarvelView - setEnableAutoScaling :" + paramBoolean);
+    this.r = paramBoolean;
   }
 
   public void setEnableClickRedirect(boolean paramBoolean)
   {
-    this.n = paramBoolean;
+    Logging.log("AdMarvelView - setEnableClickRedirect :" + paramBoolean);
+    this.l = paramBoolean;
   }
 
   public void setEnableFitToScreenForTablets(boolean paramBoolean)
   {
-    this.v = paramBoolean;
+    Logging.log("AdMarvelView - setEnableFitToScreenForTablets :" + paramBoolean);
+    this.s = paramBoolean;
   }
 
   public void setExtendedListener(AdMarvelView.AdMarvelViewExtendedListener paramAdMarvelViewExtendedListener)
   {
-    this.i.a(paramAdMarvelViewExtendedListener);
+    this.h.a(paramAdMarvelViewExtendedListener);
   }
 
   public void setListener(AdMarvelView.AdMarvelViewListener paramAdMarvelViewListener)
   {
-    this.i.a(paramAdMarvelViewListener);
+    this.h.a(paramAdMarvelViewListener);
   }
 
-  public void setOptionalFlags(Map<String, String> paramMap)
+  public void setPostitialView(boolean paramBoolean)
   {
-    this.t = paramMap;
-    String str1 = a;
-    if (paramMap != null);
-    try
-    {
-      for (String str2 = (String)paramMap.get("cached_directory"); ; str2 = null)
-      {
-        a = str2;
-        if ((str2 != null) && (!j))
-        {
-          this.s.post(new AdMarvelView.a(getContext(), new File(a)));
-          j = true;
-        }
-        return;
-      }
-    }
-    finally
-    {
-    }
+    Logging.log("AdMarvelView - setPostitialView :" + paramBoolean);
+    this.x = paramBoolean;
   }
 
   public void setTextBackgroundColor(int paramInt)
   {
-    this.f = (0xFF000000 | paramInt);
+    Logging.log("AdMarvelView - setTextBackgroundColor :" + paramInt);
+    this.e = (0xFF000000 | paramInt);
   }
 
   public void setTextBorderColor(int paramInt)
   {
-    this.h = paramInt;
+    Logging.log("AdMarvelView - setTextBorderColor :" + paramInt);
+    this.g = paramInt;
   }
 
   public void setTextFontColor(int paramInt)
   {
-    this.g = (0xFF000000 | paramInt);
+    Logging.log("AdMarvelView - setTextFontColor :" + paramInt);
+    this.f = (0xFF000000 | paramInt);
   }
 
   public void setVisibility(int paramInt)
@@ -1263,14 +1096,40 @@ public class AdMarvelView extends LinearLayout
     requestLayout();
   }
 
+  public void start(Activity paramActivity)
+  {
+    try
+    {
+      AdMarvelAnalyticsAdapterInstances.getInstance("com.admarvel.android.admarvelmologiqadapter.AdMarvelMologiqAdapter", paramActivity).start();
+      return;
+    }
+    catch (Exception localException)
+    {
+    }
+  }
+
+  public void stop(Activity paramActivity)
+  {
+    Logging.log("AdMarvelView - Stop");
+    try
+    {
+      AdMarvelAnalyticsAdapterInstances.getInstance("com.admarvel.android.admarvelmologiqadapter.AdMarvelMologiqAdapter", paramActivity).stop();
+      return;
+    }
+    catch (Exception localException)
+    {
+    }
+  }
+
   public void updateCurrentActivity(Activity paramActivity)
   {
+    Logging.log("AdMarvelView - updateCurrentActivity");
     if (paramActivity != null)
-      z = new WeakReference(paramActivity);
+      u = new WeakReference(paramActivity);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.AdMarvelView
  * JD-Core Version:    0.6.2
  */

@@ -8,22 +8,22 @@ public final class FullWalletRequest
   implements SafeParcelable
 {
   public static final Parcelable.Creator<FullWalletRequest> CREATOR = new g();
-  String aiQ;
-  String aiR;
-  Cart aja;
-  private final int xM;
+  private final int BR;
+  String asB;
+  String asC;
+  Cart asL;
 
   FullWalletRequest()
   {
-    this.xM = 1;
+    this.BR = 1;
   }
 
   FullWalletRequest(int paramInt, String paramString1, String paramString2, Cart paramCart)
   {
-    this.xM = paramInt;
-    this.aiQ = paramString1;
-    this.aiR = paramString2;
-    this.aja = paramCart;
+    this.BR = paramInt;
+    this.asB = paramString1;
+    this.asC = paramString2;
+    this.asL = paramCart;
   }
 
   public static FullWalletRequest.Builder newBuilder()
@@ -40,22 +40,22 @@ public final class FullWalletRequest
 
   public final Cart getCart()
   {
-    return this.aja;
+    return this.asL;
   }
 
   public final String getGoogleTransactionId()
   {
-    return this.aiQ;
+    return this.asB;
   }
 
   public final String getMerchantTransactionId()
   {
-    return this.aiR;
+    return this.asC;
   }
 
   public final int getVersionCode()
   {
-    return this.xM;
+    return this.BR;
   }
 
   public final void writeToParcel(Parcel paramParcel, int paramInt)
@@ -64,7 +64,7 @@ public final class FullWalletRequest
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.FullWalletRequest
  * JD-Core Version:    0.6.2
  */

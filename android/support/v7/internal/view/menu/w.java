@@ -1,22 +1,13 @@
 package android.support.v7.internal.view.menu;
 
-import android.support.v4.view.j;
-import android.view.MenuItem;
-
-final class w extends s
+public abstract interface w
 {
-  w(MenuItem paramMenuItem)
-  {
-    super(paramMenuItem, false);
-  }
+  public abstract void a(i parami, boolean paramBoolean);
 
-  final t b(j paramj)
-  {
-    return new x(this, paramj);
-  }
+  public abstract boolean a(i parami);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v7.internal.view.menu.w
  * JD-Core Version:    0.6.2
  */

@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable.Creator;
 import com.google.android.gms.common.internal.safeparcel.a;
 import com.google.android.gms.common.internal.safeparcel.a.a;
-import com.google.android.gms.internal.ig;
+import com.google.android.gms.internal.jr;
 import java.util.ArrayList;
 
 public class e
@@ -12,25 +12,25 @@ public class e
 {
   static void a(d paramd, Parcel paramParcel, int paramInt)
   {
-    int i = com.google.android.gms.common.internal.safeparcel.b.C(paramParcel);
+    int i = com.google.android.gms.common.internal.safeparcel.b.D(paramParcel);
     com.google.android.gms.common.internal.safeparcel.b.c(paramParcel, 1, paramd.getVersionCode());
-    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 2, paramd.akP, false);
-    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 3, paramd.akQ, false);
-    com.google.android.gms.common.internal.safeparcel.b.b(paramParcel, 4, paramd.akR, false);
-    com.google.android.gms.common.internal.safeparcel.b.G(paramParcel, i);
+    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 2, paramd.auz, false);
+    com.google.android.gms.common.internal.safeparcel.b.a(paramParcel, 3, paramd.auA, false);
+    com.google.android.gms.common.internal.safeparcel.b.c(paramParcel, 4, paramd.auB, false);
+    com.google.android.gms.common.internal.safeparcel.b.H(paramParcel, i);
   }
 
-  public d cl(Parcel paramParcel)
+  public d dI(Parcel paramParcel)
   {
     String str1 = null;
-    int i = a.B(paramParcel);
-    ArrayList localArrayList = ig.ga();
+    int i = a.C(paramParcel);
+    ArrayList localArrayList = jr.hz();
     int j = 0;
     String str2 = null;
     while (paramParcel.dataPosition() < i)
     {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
       {
       default:
         a.b(paramParcel, k);
@@ -53,13 +53,13 @@ public class e
     return new d(j, str2, str1, localArrayList);
   }
 
-  public d[] dT(int paramInt)
+  public d[] fL(int paramInt)
   {
     return new d[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.wobs.e
  * JD-Core Version:    0.6.2
  */

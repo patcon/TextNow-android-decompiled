@@ -2,44 +2,63 @@ package android.support.v7.internal.widget;
 
 import android.content.Context;
 import android.content.res.Configuration;
-import android.content.res.Resources;
+import android.content.res.Resources.Theme;
 import android.content.res.TypedArray;
 import android.os.Build.VERSION;
-import android.support.v7.internal.view.menu.ActionMenuPresenter;
-import android.support.v7.internal.view.menu.ActionMenuView;
+import android.support.v4.view.av;
+import android.support.v4.view.cd;
+import android.support.v7.widget.ActionMenuPresenter;
+import android.support.v7.widget.ActionMenuView;
 import android.util.AttributeSet;
+import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import textnow.g.b;
-import textnow.g.c;
-import textnow.g.d;
-import textnow.g.k;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
+import textnow.g.l;
+import textnow.k.h;
 
 abstract class a extends ViewGroup
 {
-  protected ActionMenuView a;
-  protected ActionMenuPresenter b;
-  protected ActionBarContainer c;
-  protected boolean d;
-  protected boolean e;
-  protected int f;
+  private static final Interpolator i = new DecelerateInterpolator();
+  protected final b a = new b(this);
+  protected final Context b;
+  protected ActionMenuView c;
+  protected ActionMenuPresenter d;
+  protected ViewGroup e;
+  protected boolean f;
+  protected int g;
+  protected cd h;
 
   a(Context paramContext)
   {
-    super(paramContext);
+    this(paramContext, null);
   }
 
   a(Context paramContext, AttributeSet paramAttributeSet)
   {
-    super(paramContext, paramAttributeSet);
+    this(paramContext, paramAttributeSet, 0);
   }
 
   a(Context paramContext, AttributeSet paramAttributeSet, int paramInt)
   {
     super(paramContext, paramAttributeSet, paramInt);
+    TypedValue localTypedValue = new TypedValue();
+    if ((paramContext.getTheme().resolveAttribute(textnow.g.b.a, localTypedValue, true)) && (localTypedValue.resourceId != 0))
+    {
+      this.b = new ContextThemeWrapper(paramContext, localTypedValue.resourceId);
+      return;
+    }
+    this.b = paramContext;
+  }
+
+  protected static int a(int paramInt1, int paramInt2, boolean paramBoolean)
+  {
+    if (paramBoolean)
+      return paramInt1 - paramInt2;
+    return paramInt1 + paramInt2;
   }
 
   protected static int a(View paramView, int paramInt1, int paramInt2, int paramInt3)
@@ -48,132 +67,94 @@ abstract class a extends ViewGroup
     return Math.max(0, 0 + (paramInt1 - paramView.getMeasuredWidth()));
   }
 
-  protected static int b(View paramView, int paramInt1, int paramInt2, int paramInt3)
+  protected static int a(View paramView, int paramInt1, int paramInt2, int paramInt3, boolean paramBoolean)
   {
-    int i = paramView.getMeasuredWidth();
-    int j = paramView.getMeasuredHeight();
-    int k = paramInt2 + (paramInt3 - j) / 2;
-    paramView.layout(paramInt1, k, paramInt1 + i, j + k);
-    return i;
-  }
-
-  protected static int c(View paramView, int paramInt1, int paramInt2, int paramInt3)
-  {
-    int i = paramView.getMeasuredWidth();
-    int j = paramView.getMeasuredHeight();
-    int k = paramInt2 + (paramInt3 - j) / 2;
-    paramView.layout(paramInt1 - i, k, paramInt1, j + k);
-    return i;
-  }
-
-  public int a()
-  {
-    return getVisibility();
+    int j = paramView.getMeasuredWidth();
+    int k = paramView.getMeasuredHeight();
+    int m = paramInt2 + (paramInt3 - k) / 2;
+    if (paramBoolean)
+      paramView.layout(paramInt1 - j, m, paramInt1, k + m);
+    while (true)
+    {
+      if (paramBoolean)
+        j = -j;
+      return j;
+      paramView.layout(paramInt1, m, paramInt1 + j, k + m);
+    }
   }
 
   public void a(int paramInt)
   {
-    this.f = paramInt;
+    this.g = paramInt;
     requestLayout();
   }
 
-  public void a(ActionBarContainer paramActionBarContainer)
+  public boolean a()
   {
-    this.c = paramActionBarContainer;
-  }
-
-  public void a(boolean paramBoolean)
-  {
-    this.d = paramBoolean;
+    if (this.d != null)
+      return this.d.d();
+    return false;
   }
 
   public void b(int paramInt)
   {
-    clearAnimation();
-    Context localContext;
-    if (paramInt != getVisibility())
+    if (this.h != null)
+      this.h.a();
+    if (paramInt == 0)
     {
-      localContext = getContext();
-      if (paramInt != 0)
-        break label75;
-    }
-    label75: for (int i = b.a; ; i = b.b)
-    {
-      Animation localAnimation = AnimationUtils.loadAnimation(localContext, i);
-      startAnimation(localAnimation);
-      setVisibility(paramInt);
-      if ((this.c != null) && (this.a != null))
+      if (getVisibility() != 0)
       {
-        this.a.startAnimation(localAnimation);
-        this.a.setVisibility(paramInt);
+        av.c(this, 0.0F);
+        if ((this.e != null) && (this.c != null))
+          av.c(this.c, 0.0F);
       }
+      cd localcd3 = av.q(this).a(1.0F);
+      localcd3.a(200L);
+      localcd3.a(i);
+      if ((this.e != null) && (this.c != null))
+      {
+        h localh2 = new h();
+        cd localcd4 = av.q(this.c).a(1.0F);
+        localcd4.a(200L);
+        localh2.a(this.a.a(localcd3, paramInt));
+        localh2.a(localcd3).a(localcd4);
+        localh2.a();
+        return;
+      }
+      localcd3.a(this.a.a(localcd3, paramInt));
+      localcd3.b();
       return;
     }
-  }
-
-  public void b(boolean paramBoolean)
-  {
-    this.e = paramBoolean;
-  }
-
-  public boolean b()
-  {
-    if (this.b != null)
-      return this.b.b();
-    return false;
-  }
-
-  public void c()
-  {
-    post(new Runnable()
+    cd localcd1 = av.q(this).a(0.0F);
+    localcd1.a(200L);
+    localcd1.a(i);
+    if ((this.e != null) && (this.c != null))
     {
-      public final void run()
-      {
-        a.this.b();
-      }
-    });
-  }
-
-  public boolean d()
-  {
-    if (this.b != null)
-      return this.b.c();
-    return false;
-  }
-
-  public boolean e()
-  {
-    if (this.b != null)
-      return this.b.f();
-    return false;
-  }
-
-  public boolean f()
-  {
-    return (this.b != null) && (this.b.g());
+      h localh1 = new h();
+      cd localcd2 = av.q(this.c).a(0.0F);
+      localcd2.a(200L);
+      localh1.a(this.a.a(localcd1, paramInt));
+      localh1.a(localcd1).a(localcd2);
+      localh1.a();
+      return;
+    }
+    localcd1.a(this.a.a(localcd1, paramInt));
+    localcd1.b();
   }
 
   protected void onConfigurationChanged(Configuration paramConfiguration)
   {
     if (Build.VERSION.SDK_INT >= 8)
       super.onConfigurationChanged(paramConfiguration);
-    TypedArray localTypedArray = getContext().obtainStyledAttributes(null, k.a, c.b, 0);
-    a(localTypedArray.getLayoutDimension(1, 0));
+    TypedArray localTypedArray = getContext().obtainStyledAttributes(null, l.a, textnow.g.b.c, 0);
+    a(localTypedArray.getLayoutDimension(l.l, 0));
     localTypedArray.recycle();
-    if (this.e)
-      a(getContext().getResources().getBoolean(d.e));
-    if (this.b != null)
-      this.b.a();
-  }
-
-  public void setVisibility(int paramInt)
-  {
-    if (paramInt != getVisibility())
-      super.setVisibility(paramInt);
+    if (this.d != null)
+      this.d.c();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v7.internal.widget.a
  * JD-Core Version:    0.6.2
  */

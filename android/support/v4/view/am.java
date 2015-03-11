@@ -1,33 +1,13 @@
 package android.support.v4.view;
 
-import android.os.Build.VERSION;
-import android.view.VelocityTracker;
+import android.widget.TextView;
 
-public final class am
+abstract interface am
 {
-  static final ap a = new an();
-
-  static
-  {
-    if (Build.VERSION.SDK_INT >= 11)
-    {
-      a = new ao();
-      return;
-    }
-  }
-
-  public static float a(VelocityTracker paramVelocityTracker, int paramInt)
-  {
-    return a.a(paramVelocityTracker, paramInt);
-  }
-
-  public static float b(VelocityTracker paramVelocityTracker, int paramInt)
-  {
-    return a.b(paramVelocityTracker, paramInt);
-  }
+  public abstract void a(TextView paramTextView);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.view.am
  * JD-Core Version:    0.6.2
  */

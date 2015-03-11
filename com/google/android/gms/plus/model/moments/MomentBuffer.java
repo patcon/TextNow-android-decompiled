@@ -2,7 +2,7 @@ package com.google.android.gms.plus.model.moments;
 
 import com.google.android.gms.common.data.DataBuffer;
 import com.google.android.gms.common.data.DataHolder;
-import com.google.android.gms.internal.kr;
+import com.google.android.gms.internal.ny;
 
 public final class MomentBuffer extends DataBuffer<Moment>
 {
@@ -13,11 +13,11 @@ public final class MomentBuffer extends DataBuffer<Moment>
 
   public final Moment get(int paramInt)
   {
-    return new kr(this.DG, paramInt);
+    return new ny(this.II, paramInt);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.plus.model.moments.MomentBuffer
  * JD-Core Version:    0.6.2
  */

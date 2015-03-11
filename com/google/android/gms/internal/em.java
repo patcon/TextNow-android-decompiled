@@ -1,35 +1,24 @@
 package com.google.android.gms.internal;
 
-public abstract class em
+import com.google.android.gms.ads.purchase.InAppPurchaseListener;
+
+@ez
+public final class em extends eh.a
 {
-  private final Runnable lg = new Runnable()
-  {
-    public final void run()
-    {
-      em.a(em.this, Thread.currentThread());
-      em.this.bh();
-    }
-  };
-  private volatile Thread sf;
+  private final InAppPurchaseListener oC;
 
-  public abstract void bh();
-
-  public final void cancel()
+  public em(InAppPurchaseListener paramInAppPurchaseListener)
   {
-    onStop();
-    if (this.sf != null)
-      this.sf.interrupt();
+    this.oC = paramInAppPurchaseListener;
   }
 
-  public abstract void onStop();
-
-  public final void start()
+  public final void a(eg parameg)
   {
-    en.execute(this.lg);
+    this.oC.onInAppPurchaseRequested(new ep(parameg));
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.em
  * JD-Core Version:    0.6.2
  */

@@ -11,25 +11,25 @@ public class m
 {
   static void a(NotifyTransactionStatusRequest paramNotifyTransactionStatusRequest, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
-    b.c(paramParcel, 1, paramNotifyTransactionStatusRequest.xM);
-    b.a(paramParcel, 2, paramNotifyTransactionStatusRequest.aiQ, false);
+    int i = b.D(paramParcel);
+    b.c(paramParcel, 1, paramNotifyTransactionStatusRequest.BR);
+    b.a(paramParcel, 2, paramNotifyTransactionStatusRequest.asB, false);
     b.c(paramParcel, 3, paramNotifyTransactionStatusRequest.status);
-    b.a(paramParcel, 4, paramNotifyTransactionStatusRequest.ajR, false);
-    b.G(paramParcel, i);
+    b.a(paramParcel, 4, paramNotifyTransactionStatusRequest.atB, false);
+    b.H(paramParcel, i);
   }
 
-  public NotifyTransactionStatusRequest cb(Parcel paramParcel)
+  public NotifyTransactionStatusRequest dy(Parcel paramParcel)
   {
     String str1 = null;
     int i = 0;
-    int j = a.B(paramParcel);
+    int j = a.C(paramParcel);
     String str2 = null;
     int k = 0;
     while (paramParcel.dataPosition() < j)
     {
-      int m = a.A(paramParcel);
-      switch (a.ar(m))
+      int m = a.B(paramParcel);
+      switch (a.aD(m))
       {
       default:
         a.b(paramParcel, m);
@@ -52,13 +52,13 @@ public class m
     return new NotifyTransactionStatusRequest(k, str2, i, str1);
   }
 
-  public NotifyTransactionStatusRequest[] dH(int paramInt)
+  public NotifyTransactionStatusRequest[] fz(int paramInt)
   {
     return new NotifyTransactionStatusRequest[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.m
  * JD-Core Version:    0.6.2
  */

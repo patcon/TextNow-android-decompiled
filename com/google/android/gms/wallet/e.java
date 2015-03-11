@@ -11,23 +11,23 @@ public class e
 {
   static void a(d paramd, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
+    int i = b.D(paramParcel);
     b.c(paramParcel, 1, paramd.getVersionCode());
-    b.a(paramParcel, 2, paramd.aiO, paramInt, false);
-    b.a(paramParcel, 3, paramd.aiP, paramInt, false);
-    b.G(paramParcel, i);
+    b.a(paramParcel, 2, paramd.asz, paramInt, false);
+    b.a(paramParcel, 3, paramd.asA, paramInt, false);
+    b.H(paramParcel, i);
   }
 
-  public d bT(Parcel paramParcel)
+  public d dq(Parcel paramParcel)
   {
-    int i = a.B(paramParcel);
+    int i = a.C(paramParcel);
     LoyaltyWalletObject localLoyaltyWalletObject = null;
     int j = 0;
     OfferWalletObject localOfferWalletObject = null;
     while (paramParcel.dataPosition() < i)
     {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
       {
       default:
         a.b(paramParcel, k);
@@ -47,13 +47,13 @@ public class e
     return new d(j, localLoyaltyWalletObject, localOfferWalletObject);
   }
 
-  public d[] dz(int paramInt)
+  public d[] fr(int paramInt)
   {
     return new d[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.e
  * JD-Core Version:    0.6.2
  */

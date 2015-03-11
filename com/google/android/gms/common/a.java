@@ -9,27 +9,20 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class a
   implements ServiceConnection
 {
-  boolean CQ = false;
-  private final BlockingQueue<IBinder> CR = new LinkedBlockingQueue();
+  boolean HC = false;
+  private final BlockingQueue<IBinder> HD = new LinkedBlockingQueue();
 
-  public IBinder ew()
+  public IBinder fW()
   {
-    if (this.CQ)
+    if (this.HC)
       throw new IllegalStateException();
-    this.CQ = true;
-    return (IBinder)this.CR.take();
+    this.HC = true;
+    return (IBinder)this.HD.take();
   }
 
   public void onServiceConnected(ComponentName paramComponentName, IBinder paramIBinder)
   {
-    try
-    {
-      this.CR.put(paramIBinder);
-      return;
-    }
-    catch (InterruptedException localInterruptedException)
-    {
-    }
+    this.HD.add(paramIBinder);
   }
 
   public void onServiceDisconnected(ComponentName paramComponentName)
@@ -37,7 +30,7 @@ public class a
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.common.a
  * JD-Core Version:    0.6.2
  */

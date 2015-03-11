@@ -6,9 +6,8 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.widget.ImageView;
-import com.google.android.gms.internal.gw;
-import com.google.android.gms.internal.gx;
-import com.google.android.gms.internal.ip;
+import com.google.android.gms.internal.iz;
+import com.google.android.gms.internal.kc;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,16 +16,16 @@ import java.util.concurrent.Executors;
 
 public final class ImageManager
 {
-  private static final Object EX = new Object();
-  private static HashSet<Uri> EY = new HashSet();
-  private static ImageManager EZ;
-  private static ImageManager Fa;
-  private final ExecutorService Fb;
-  private final ImageManager.b Fc;
-  private final gw Fd;
-  private final Map<a, ImageManager.ImageReceiver> Fe;
-  private final Map<Uri, ImageManager.ImageReceiver> Ff;
-  private final Map<Uri, Long> Fg;
+  private static final Object Ks = new Object();
+  private static HashSet<Uri> Kt = new HashSet();
+  private static ImageManager Ku;
+  private static ImageManager Kv;
+  private final Map<Uri, ImageManager.ImageReceiver> KA;
+  private final Map<Uri, Long> KB;
+  private final ExecutorService Kw;
+  private final ImageManager.b Kx;
+  private final iz Ky;
+  private final Map<a, ImageManager.ImageReceiver> Kz;
   private final Context mContext;
   private final Handler mHandler;
 
@@ -34,57 +33,57 @@ public final class ImageManager
   {
     this.mContext = paramContext.getApplicationContext();
     this.mHandler = new Handler(Looper.getMainLooper());
-    this.Fb = Executors.newFixedThreadPool(4);
+    this.Kw = Executors.newFixedThreadPool(4);
     if (paramBoolean)
     {
-      this.Fc = new ImageManager.b(this.mContext);
-      if (ip.gf())
-        fc();
+      this.Kx = new ImageManager.b(this.mContext);
+      if (kc.hE())
+        gG();
     }
     while (true)
     {
-      this.Fd = new gw();
-      this.Fe = new HashMap();
-      this.Ff = new HashMap();
-      this.Fg = new HashMap();
+      this.Ky = new iz();
+      this.Kz = new HashMap();
+      this.KA = new HashMap();
+      this.KB = new HashMap();
       return;
-      this.Fc = null;
+      this.Kx = null;
     }
   }
 
   private Bitmap a(a.a parama)
   {
-    if (this.Fc == null)
+    if (this.Kx == null)
       return null;
-    return (Bitmap)this.Fc.get(parama);
+    return (Bitmap)this.Kx.get(parama);
   }
 
-  public static ImageManager a(Context paramContext, boolean paramBoolean)
+  public static ImageManager c(Context paramContext, boolean paramBoolean)
   {
     if (paramBoolean)
     {
-      if (Fa == null)
-        Fa = new ImageManager(paramContext, true);
-      return Fa;
+      if (Kv == null)
+        Kv = new ImageManager(paramContext, true);
+      return Kv;
     }
-    if (EZ == null)
-      EZ = new ImageManager(paramContext, false);
-    return EZ;
+    if (Ku == null)
+      Ku = new ImageManager(paramContext, false);
+    return Ku;
   }
 
   public static ImageManager create(Context paramContext)
   {
-    return a(paramContext, false);
+    return c(paramContext, false);
   }
 
-  private void fc()
+  private void gG()
   {
-    this.mContext.registerComponentCallbacks(new ImageManager.e(this.Fc));
+    this.mContext.registerComponentCallbacks(new ImageManager.e(this.Kx));
   }
 
   public final void a(a parama)
   {
-    gx.ay("ImageManager.loadImage() must be called in the main thread");
+    com.google.android.gms.common.internal.a.aT("ImageManager.loadImage() must be called in the main thread");
     new ImageManager.d(this, parama).run();
   }
 
@@ -101,7 +100,7 @@ public final class ImageManager
   public final void loadImage(ImageView paramImageView, Uri paramUri, int paramInt)
   {
     a.b localb = new a.b(paramImageView, paramUri);
-    localb.aj(paramInt);
+    localb.aw(paramInt);
     a(localb);
   }
 
@@ -113,12 +112,12 @@ public final class ImageManager
   public final void loadImage(ImageManager.OnImageLoadedListener paramOnImageLoadedListener, Uri paramUri, int paramInt)
   {
     a.c localc = new a.c(paramOnImageLoadedListener, paramUri);
-    localc.aj(paramInt);
+    localc.aw(paramInt);
     a(localc);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.common.images.ImageManager
  * JD-Core Version:    0.6.2
  */

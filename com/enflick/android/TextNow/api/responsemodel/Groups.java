@@ -1,6 +1,6 @@
 package com.enflick.android.TextNow.api.responsemodel;
 
-import textnow.q.b;
+import textnow.v.b;
 
 public class Groups
 {
@@ -15,7 +15,7 @@ public class Groups
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.api.responsemodel.Groups
  * JD-Core Version:    0.6.2
  */

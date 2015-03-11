@@ -1,28 +1,29 @@
 package android.support.v4.app;
 
-import android.app.Activity;
-import android.graphics.drawable.Drawable;
+import android.content.Context;
+import android.graphics.Matrix;
+import android.graphics.RectF;
+import android.os.Parcelable;
+import android.view.View;
+import java.util.List;
+import java.util.Map;
 
-final class d
-  implements b
+public abstract class d
 {
-  public final Drawable a(Activity paramActivity)
-  {
-    return i.a(paramActivity);
-  }
+  public abstract Parcelable a(View paramView, Matrix paramMatrix, RectF paramRectF);
 
-  public final Object a(Object paramObject, Activity paramActivity, int paramInt)
-  {
-    return i.a(paramObject, paramActivity, paramInt);
-  }
+  public abstract View a(Context paramContext, Parcelable paramParcelable);
 
-  public final Object a(Object paramObject, Activity paramActivity, Drawable paramDrawable, int paramInt)
-  {
-    return i.a(paramObject, paramActivity, paramDrawable, paramInt);
-  }
+  public abstract void a(List<View> paramList);
+
+  public abstract void a(List<String> paramList, List<View> paramList1, List<View> paramList2);
+
+  public abstract void a(List<String> paramList, Map<String, View> paramMap);
+
+  public abstract void b(List<String> paramList, List<View> paramList1, List<View> paramList2);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.app.d
  * JD-Core Version:    0.6.2
  */

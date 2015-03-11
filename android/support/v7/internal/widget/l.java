@@ -1,461 +1,260 @@
 package android.support.v7.internal.widget;
 
-import android.content.Context;
-import android.os.Parcelable;
-import android.os.SystemClock;
-import android.util.AttributeSet;
-import android.util.SparseArray;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewDebug.CapturedViewProperty;
-import android.view.ViewDebug.ExportedProperty;
-import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
-import android.view.accessibility.AccessibilityEvent;
-import android.widget.Adapter;
+import android.os.AsyncTask;
 
-abstract class l<T extends Adapter> extends ViewGroup
+final class l extends AsyncTask<Object, Void, Void>
 {
-  int A;
-  int B = -1;
-  long C = -9223372036854775808L;
-  boolean D = false;
-  private int a;
-  private View b;
-  private boolean c;
-  private boolean d;
-  private l<T>.q e;
-
-  @ViewDebug.ExportedProperty(category="scrolling")
-  int k = 0;
-  int l;
-  int m;
-  long n = -9223372036854775808L;
-  long o;
-  boolean p = false;
-  int q;
-  boolean r = false;
-  p s;
-  n t;
-  boolean u;
-
-  @ViewDebug.ExportedProperty(category="list")
-  int v = -1;
-  long w = -9223372036854775808L;
-
-  @ViewDebug.ExportedProperty(category="list")
-  int x = -1;
-  long y = -9223372036854775808L;
-
-  @ViewDebug.ExportedProperty(category="list")
-  int z;
-
-  l(Context paramContext, AttributeSet paramAttributeSet, int paramInt)
+  private l(g paramg)
   {
-    super(paramContext, paramAttributeSet, paramInt);
   }
 
-  private long a(int paramInt)
+  // ERROR //
+  private Void a(Object[] paramArrayOfObject)
   {
-    Adapter localAdapter = c();
-    if ((localAdapter == null) || (paramInt < 0))
-      return -9223372036854775808L;
-    return localAdapter.getItemId(paramInt);
-  }
-
-  private void a()
-  {
-    if (this.s == null)
-      return;
-    int i = this.v;
-    if (i >= 0)
-    {
-      b();
-      this.s.a(i, c().getItemId(i));
-      return;
-    }
-  }
-
-  public void a(n paramn)
-  {
-    this.t = paramn;
-  }
-
-  public final boolean a(View paramView, int paramInt, long paramLong)
-  {
-    if (this.t != null)
-    {
-      playSoundEffect(0);
-      if (paramView != null)
-        paramView.sendAccessibilityEvent(1);
-      this.t.a(paramView, paramInt);
-      return true;
-    }
-    return false;
-  }
-
-  public void addView(View paramView)
-  {
-    throw new UnsupportedOperationException("addView(View) is not supported in AdapterView");
-  }
-
-  public void addView(View paramView, int paramInt)
-  {
-    throw new UnsupportedOperationException("addView(View, int) is not supported in AdapterView");
-  }
-
-  public void addView(View paramView, int paramInt, ViewGroup.LayoutParams paramLayoutParams)
-  {
-    throw new UnsupportedOperationException("addView(View, int, LayoutParams) is not supported in AdapterView");
-  }
-
-  public void addView(View paramView, ViewGroup.LayoutParams paramLayoutParams)
-  {
-    throw new UnsupportedOperationException("addView(View, LayoutParams) is not supported in AdapterView");
-  }
-
-  public abstract View b();
-
-  final void b(int paramInt)
-  {
-    this.x = paramInt;
-    this.y = a(paramInt);
-  }
-
-  public abstract T c();
-
-  final void c(int paramInt)
-  {
-    this.v = paramInt;
-    this.w = a(paramInt);
-    if ((this.p) && (this.q == 0) && (paramInt >= 0))
-    {
-      this.m = paramInt;
-      this.n = this.w;
-    }
-  }
-
-  protected boolean canAnimate()
-  {
-    return (super.canAnimate()) && (this.z > 0);
-  }
-
-  @ViewDebug.CapturedViewProperty
-  public final int d()
-  {
-    return this.v;
-  }
-
-  public boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent paramAccessibilityEvent)
-  {
-    View localView = b();
-    return (localView != null) && (localView.getVisibility() == 0) && (localView.dispatchPopulateAccessibilityEvent(paramAccessibilityEvent));
-  }
-
-  protected void dispatchRestoreInstanceState(SparseArray<Parcelable> paramSparseArray)
-  {
-    dispatchThawSelfOnly(paramSparseArray);
-  }
-
-  protected void dispatchSaveInstanceState(SparseArray<Parcelable> paramSparseArray)
-  {
-    dispatchFreezeSelfOnly(paramSparseArray);
-  }
-
-  final void e()
-  {
-    boolean bool1 = true;
-    Adapter localAdapter = c();
-    int i;
-    int j;
-    label29: boolean bool2;
-    label44: boolean bool3;
-    if ((localAdapter == null) || (localAdapter.getCount() == 0))
-    {
-      i = bool1;
-      if (i != 0)
-        break label150;
-      j = bool1;
-      if ((j == 0) || (!this.d))
-        break label156;
-      bool2 = bool1;
-      super.setFocusableInTouchMode(bool2);
-      if ((j == 0) || (!this.c))
-        break label162;
-      bool3 = bool1;
-      label65: super.setFocusable(bool3);
-      if (this.b != null)
-      {
-        if ((localAdapter != null) && (!localAdapter.isEmpty()))
-          break label168;
-        label91: if (!bool1)
-          break label181;
-        if (this.b == null)
-          break label173;
-        this.b.setVisibility(0);
-        setVisibility(8);
-      }
-    }
-    while (true)
-    {
-      if (this.u)
-        onLayout(false, getLeft(), getTop(), getRight(), getBottom());
-      return;
-      i = 0;
-      break;
-      label150: j = 0;
-      break label29;
-      label156: bool2 = false;
-      break label44;
-      label162: bool3 = false;
-      break label65;
-      label168: bool1 = false;
-      break label91;
-      label173: setVisibility(0);
-    }
-    label181: if (this.b != null)
-      this.b.setVisibility(8);
-    setVisibility(0);
-  }
-
-  final void f()
-  {
-    int i = this.z;
-    int i2;
-    int i6;
-    int i7;
-    int i8;
-    int i3;
-    if (i > 0)
-      if (this.p)
-      {
-        this.p = false;
-        i2 = this.z;
-        if (i2 != 0)
-        {
-          long l1 = this.n;
-          int i4 = this.m;
-          if (l1 != -9223372036854775808L)
-          {
-            int i5 = Math.max(0, i4);
-            i6 = Math.min(i2 - 1, i5);
-            long l2 = 100L + SystemClock.uptimeMillis();
-            i7 = 0;
-            Adapter localAdapter = c();
-            if (localAdapter != null)
-            {
-              i8 = i6;
-              i3 = i6;
-              if (SystemClock.uptimeMillis() <= l2)
-                if (localAdapter.getItemId(i3) == l1)
-                {
-                  label127: if ((i3 < 0) || (i3 != i3))
-                    break label332;
-                  c(i3);
-                  j = 1;
-                  label147: if (j == 0)
-                  {
-                    int i1 = this.v;
-                    if (i1 >= i)
-                      i1 = i - 1;
-                    if (i1 < 0)
-                      i1 = 0;
-                    if ((i1 >= 0) || (i1 >= 0))
-                    {
-                      c(i1);
-                      g();
-                    }
-                  }
-                }
-            }
-          }
-        }
-      }
-    for (int j = 1; ; j = 0)
-    {
-      if (j == 0)
-      {
-        this.x = -1;
-        this.y = -9223372036854775808L;
-        this.v = -1;
-        this.w = -9223372036854775808L;
-        this.p = false;
-        g();
-      }
-      return;
-      int i9;
-      label240: int i10;
-      if (i6 == i2 - 1)
-      {
-        i9 = 1;
-        if (i8 != 0)
-          break label292;
-        i10 = 1;
-      }
-      while (true)
-        if ((i9 == 0) || (i10 == 0))
-        {
-          if ((i10 != 0) || ((i7 != 0) && (i9 == 0)))
-          {
-            i6++;
-            i3 = i6;
-            i7 = 0;
-            break;
-            i9 = 0;
-            break label240;
-            label292: i10 = 0;
-            continue;
-          }
-          if ((i9 == 0) && ((i7 != 0) || (i10 != 0)))
-            break;
-          i8--;
-          i7 = 1;
-          i3 = i8;
-          break;
-        }
-      i3 = -1;
-      break label127;
-      label332: j = 0;
-      break label147;
-    }
-  }
-
-  final void g()
-  {
-    if ((this.x != this.B) || (this.y != this.C))
-      if (this.s != null)
-      {
-        if ((!this.r) && (!this.D))
-          break label117;
-        if (this.e == null)
-          this.e = new q(this, (byte)0);
-        post(this.e);
-      }
-    while (true)
-    {
-      if ((this.x != -1) && (isShown()) && (!isInTouchMode()))
-        sendAccessibilityEvent(4);
-      this.B = this.x;
-      this.C = this.y;
-      return;
-      label117: a();
-    }
-  }
-
-  final void h()
-  {
-    if (getChildCount() > 0)
-    {
-      this.p = true;
-      this.o = this.a;
-      if (this.x >= 0)
-      {
-        View localView2 = getChildAt(this.x - this.k);
-        this.n = this.w;
-        this.m = this.v;
-        if (localView2 != null)
-          this.l = localView2.getTop();
-        this.q = 0;
-      }
-    }
-    else
-    {
-      return;
-    }
-    View localView1 = getChildAt(0);
-    Adapter localAdapter = c();
-    if ((this.k >= 0) && (this.k < localAdapter.getCount()));
-    for (this.n = localAdapter.getItemId(this.k); ; this.n = -1L)
-    {
-      this.m = this.k;
-      if (localView1 != null)
-        this.l = localView1.getTop();
-      this.q = 1;
-      return;
-    }
-  }
-
-  protected void onDetachedFromWindow()
-  {
-    super.onDetachedFromWindow();
-    removeCallbacks(this.e);
-  }
-
-  protected void onLayout(boolean paramBoolean, int paramInt1, int paramInt2, int paramInt3, int paramInt4)
-  {
-    this.a = getHeight();
-  }
-
-  public void removeAllViews()
-  {
-    throw new UnsupportedOperationException("removeAllViews() is not supported in AdapterView");
-  }
-
-  public void removeView(View paramView)
-  {
-    throw new UnsupportedOperationException("removeView(View) is not supported in AdapterView");
-  }
-
-  public void removeViewAt(int paramInt)
-  {
-    throw new UnsupportedOperationException("removeViewAt(int) is not supported in AdapterView");
-  }
-
-  public void setFocusable(boolean paramBoolean)
-  {
-    boolean bool1 = true;
-    Adapter localAdapter = c();
-    boolean bool2;
-    if ((localAdapter == null) || (localAdapter.getCount() == 0))
-    {
-      bool2 = bool1;
-      this.c = paramBoolean;
-      if (!paramBoolean)
-        this.d = false;
-      if ((!paramBoolean) || (bool2))
-        break label58;
-    }
-    while (true)
-    {
-      super.setFocusable(bool1);
-      return;
-      bool2 = false;
-      break;
-      label58: bool1 = false;
-    }
-  }
-
-  public void setFocusableInTouchMode(boolean paramBoolean)
-  {
-    boolean bool1 = true;
-    Adapter localAdapter = c();
-    boolean bool2;
-    if ((localAdapter == null) || (localAdapter.getCount() == 0))
-    {
-      bool2 = bool1;
-      this.d = paramBoolean;
-      if (paramBoolean)
-        this.c = bool1;
-      if ((!paramBoolean) || (bool2))
-        break label58;
-    }
-    while (true)
-    {
-      super.setFocusableInTouchMode(bool1);
-      return;
-      bool2 = false;
-      break;
-      label58: bool1 = false;
-    }
-  }
-
-  public void setOnClickListener(View.OnClickListener paramOnClickListener)
-  {
-    throw new RuntimeException("Don't call setOnClickListener for an AdapterView. You probably want setOnItemClickListener instead");
+    // Byte code:
+    //   0: iconst_0
+    //   1: istore_2
+    //   2: aload_1
+    //   3: iconst_0
+    //   4: aaload
+    //   5: checkcast 28	java/util/List
+    //   8: astore_3
+    //   9: aload_1
+    //   10: iconst_1
+    //   11: aaload
+    //   12: checkcast 30	java/lang/String
+    //   15: astore 4
+    //   17: aload_0
+    //   18: getfield 11	android/support/v7/internal/widget/l:a	Landroid/support/v7/internal/widget/g;
+    //   21: invokestatic 35	android/support/v7/internal/widget/g:a	(Landroid/support/v7/internal/widget/g;)Landroid/content/Context;
+    //   24: aload 4
+    //   26: iconst_0
+    //   27: invokevirtual 41	android/content/Context:openFileOutput	(Ljava/lang/String;I)Ljava/io/FileOutputStream;
+    //   30: astore 8
+    //   32: invokestatic 47	android/util/Xml:newSerializer	()Lorg/xmlpull/v1/XmlSerializer;
+    //   35: astore 9
+    //   37: aload 9
+    //   39: aload 8
+    //   41: aconst_null
+    //   42: invokeinterface 53 3 0
+    //   47: aload 9
+    //   49: ldc 55
+    //   51: iconst_1
+    //   52: invokestatic 61	java/lang/Boolean:valueOf	(Z)Ljava/lang/Boolean;
+    //   55: invokeinterface 65 3 0
+    //   60: aload 9
+    //   62: aconst_null
+    //   63: ldc 67
+    //   65: invokeinterface 71 3 0
+    //   70: pop
+    //   71: aload_3
+    //   72: invokeinterface 75 1 0
+    //   77: istore 29
+    //   79: iload_2
+    //   80: iload 29
+    //   82: if_icmpge +129 -> 211
+    //   85: aload_3
+    //   86: iconst_0
+    //   87: invokeinterface 79 2 0
+    //   92: checkcast 81	android/support/v7/internal/widget/j
+    //   95: astore 30
+    //   97: aload 9
+    //   99: aconst_null
+    //   100: ldc 83
+    //   102: invokeinterface 71 3 0
+    //   107: pop
+    //   108: aload 9
+    //   110: aconst_null
+    //   111: ldc 85
+    //   113: aload 30
+    //   115: getfield 88	android/support/v7/internal/widget/j:a	Landroid/content/ComponentName;
+    //   118: invokevirtual 94	android/content/ComponentName:flattenToString	()Ljava/lang/String;
+    //   121: invokeinterface 98 4 0
+    //   126: pop
+    //   127: aload 9
+    //   129: aconst_null
+    //   130: ldc 100
+    //   132: aload 30
+    //   134: getfield 104	android/support/v7/internal/widget/j:b	J
+    //   137: invokestatic 107	java/lang/String:valueOf	(J)Ljava/lang/String;
+    //   140: invokeinterface 98 4 0
+    //   145: pop
+    //   146: aload 9
+    //   148: aconst_null
+    //   149: ldc 109
+    //   151: aload 30
+    //   153: getfield 113	android/support/v7/internal/widget/j:c	F
+    //   156: invokestatic 116	java/lang/String:valueOf	(F)Ljava/lang/String;
+    //   159: invokeinterface 98 4 0
+    //   164: pop
+    //   165: aload 9
+    //   167: aconst_null
+    //   168: ldc 83
+    //   170: invokeinterface 119 3 0
+    //   175: pop
+    //   176: iinc 2 1
+    //   179: goto -100 -> 79
+    //   182: astore 5
+    //   184: invokestatic 122	android/support/v7/internal/widget/g:d	()Ljava/lang/String;
+    //   187: pop
+    //   188: new 124	java/lang/StringBuilder
+    //   191: dup
+    //   192: invokespecial 125	java/lang/StringBuilder:<init>	()V
+    //   195: ldc 127
+    //   197: invokevirtual 131	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   200: aload 4
+    //   202: invokevirtual 131	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   205: invokevirtual 134	java/lang/StringBuilder:toString	()Ljava/lang/String;
+    //   208: pop
+    //   209: aconst_null
+    //   210: areturn
+    //   211: aload 9
+    //   213: aconst_null
+    //   214: ldc 67
+    //   216: invokeinterface 119 3 0
+    //   221: pop
+    //   222: aload 9
+    //   224: invokeinterface 137 1 0
+    //   229: aload_0
+    //   230: getfield 11	android/support/v7/internal/widget/l:a	Landroid/support/v7/internal/widget/g;
+    //   233: iconst_1
+    //   234: invokestatic 140	android/support/v7/internal/widget/g:a	(Landroid/support/v7/internal/widget/g;Z)Z
+    //   237: pop
+    //   238: aload 8
+    //   240: ifnull -31 -> 209
+    //   243: aload 8
+    //   245: invokevirtual 145	java/io/FileOutputStream:close	()V
+    //   248: aconst_null
+    //   249: areturn
+    //   250: astore 38
+    //   252: aconst_null
+    //   253: areturn
+    //   254: astore 23
+    //   256: invokestatic 122	android/support/v7/internal/widget/g:d	()Ljava/lang/String;
+    //   259: pop
+    //   260: new 124	java/lang/StringBuilder
+    //   263: dup
+    //   264: invokespecial 125	java/lang/StringBuilder:<init>	()V
+    //   267: ldc 127
+    //   269: invokevirtual 131	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   272: aload_0
+    //   273: getfield 11	android/support/v7/internal/widget/l:a	Landroid/support/v7/internal/widget/g;
+    //   276: invokestatic 148	android/support/v7/internal/widget/g:b	(Landroid/support/v7/internal/widget/g;)Ljava/lang/String;
+    //   279: invokevirtual 131	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   282: invokevirtual 134	java/lang/StringBuilder:toString	()Ljava/lang/String;
+    //   285: pop
+    //   286: aload_0
+    //   287: getfield 11	android/support/v7/internal/widget/l:a	Landroid/support/v7/internal/widget/g;
+    //   290: iconst_1
+    //   291: invokestatic 140	android/support/v7/internal/widget/g:a	(Landroid/support/v7/internal/widget/g;Z)Z
+    //   294: pop
+    //   295: aload 8
+    //   297: ifnull -88 -> 209
+    //   300: aload 8
+    //   302: invokevirtual 145	java/io/FileOutputStream:close	()V
+    //   305: aconst_null
+    //   306: areturn
+    //   307: astore 27
+    //   309: aconst_null
+    //   310: areturn
+    //   311: astore 18
+    //   313: invokestatic 122	android/support/v7/internal/widget/g:d	()Ljava/lang/String;
+    //   316: pop
+    //   317: new 124	java/lang/StringBuilder
+    //   320: dup
+    //   321: invokespecial 125	java/lang/StringBuilder:<init>	()V
+    //   324: ldc 127
+    //   326: invokevirtual 131	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   329: aload_0
+    //   330: getfield 11	android/support/v7/internal/widget/l:a	Landroid/support/v7/internal/widget/g;
+    //   333: invokestatic 148	android/support/v7/internal/widget/g:b	(Landroid/support/v7/internal/widget/g;)Ljava/lang/String;
+    //   336: invokevirtual 131	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   339: invokevirtual 134	java/lang/StringBuilder:toString	()Ljava/lang/String;
+    //   342: pop
+    //   343: aload_0
+    //   344: getfield 11	android/support/v7/internal/widget/l:a	Landroid/support/v7/internal/widget/g;
+    //   347: iconst_1
+    //   348: invokestatic 140	android/support/v7/internal/widget/g:a	(Landroid/support/v7/internal/widget/g;Z)Z
+    //   351: pop
+    //   352: aload 8
+    //   354: ifnull -145 -> 209
+    //   357: aload 8
+    //   359: invokevirtual 145	java/io/FileOutputStream:close	()V
+    //   362: aconst_null
+    //   363: areturn
+    //   364: astore 22
+    //   366: aconst_null
+    //   367: areturn
+    //   368: astore 13
+    //   370: invokestatic 122	android/support/v7/internal/widget/g:d	()Ljava/lang/String;
+    //   373: pop
+    //   374: new 124	java/lang/StringBuilder
+    //   377: dup
+    //   378: invokespecial 125	java/lang/StringBuilder:<init>	()V
+    //   381: ldc 127
+    //   383: invokevirtual 131	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   386: aload_0
+    //   387: getfield 11	android/support/v7/internal/widget/l:a	Landroid/support/v7/internal/widget/g;
+    //   390: invokestatic 148	android/support/v7/internal/widget/g:b	(Landroid/support/v7/internal/widget/g;)Ljava/lang/String;
+    //   393: invokevirtual 131	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   396: invokevirtual 134	java/lang/StringBuilder:toString	()Ljava/lang/String;
+    //   399: pop
+    //   400: aload_0
+    //   401: getfield 11	android/support/v7/internal/widget/l:a	Landroid/support/v7/internal/widget/g;
+    //   404: iconst_1
+    //   405: invokestatic 140	android/support/v7/internal/widget/g:a	(Landroid/support/v7/internal/widget/g;Z)Z
+    //   408: pop
+    //   409: aload 8
+    //   411: ifnull -202 -> 209
+    //   414: aload 8
+    //   416: invokevirtual 145	java/io/FileOutputStream:close	()V
+    //   419: aconst_null
+    //   420: areturn
+    //   421: astore 17
+    //   423: aconst_null
+    //   424: areturn
+    //   425: astore 10
+    //   427: aload_0
+    //   428: getfield 11	android/support/v7/internal/widget/l:a	Landroid/support/v7/internal/widget/g;
+    //   431: iconst_1
+    //   432: invokestatic 140	android/support/v7/internal/widget/g:a	(Landroid/support/v7/internal/widget/g;Z)Z
+    //   435: pop
+    //   436: aload 8
+    //   438: ifnull +8 -> 446
+    //   441: aload 8
+    //   443: invokevirtual 145	java/io/FileOutputStream:close	()V
+    //   446: aload 10
+    //   448: athrow
+    //   449: astore 12
+    //   451: goto -5 -> 446
+    //
+    // Exception table:
+    //   from	to	target	type
+    //   17	32	182	java/io/FileNotFoundException
+    //   243	248	250	java/io/IOException
+    //   37	79	254	java/lang/IllegalArgumentException
+    //   85	176	254	java/lang/IllegalArgumentException
+    //   211	229	254	java/lang/IllegalArgumentException
+    //   300	305	307	java/io/IOException
+    //   37	79	311	java/lang/IllegalStateException
+    //   85	176	311	java/lang/IllegalStateException
+    //   211	229	311	java/lang/IllegalStateException
+    //   357	362	364	java/io/IOException
+    //   37	79	368	java/io/IOException
+    //   85	176	368	java/io/IOException
+    //   211	229	368	java/io/IOException
+    //   414	419	421	java/io/IOException
+    //   37	79	425	finally
+    //   85	176	425	finally
+    //   211	229	425	finally
+    //   256	286	425	finally
+    //   313	343	425	finally
+    //   370	400	425	finally
+    //   441	446	449	java/io/IOException
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v7.internal.widget.l
  * JD-Core Version:    0.6.2
  */

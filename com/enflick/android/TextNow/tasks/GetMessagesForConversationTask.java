@@ -8,14 +8,16 @@ import com.enflick.android.TextNow.api.responsemodel.Message;
 import com.enflick.android.TextNow.api.responsemodel.Messages;
 import com.enflick.android.TextNow.api.users.MessagesGet;
 import com.enflick.android.TextNow.api.users.n;
-import com.enflick.android.TextNow.persistence.contentproviders.f;
+import com.enflick.android.TextNow.persistence.contentproviders.g;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import textnow.q.b;
-import textnow.q.o;
-import textnow.s.i;
-import textnow.u.r;
+import textnow.aa.a;
+import textnow.v.b;
+import textnow.v.k;
+import textnow.x.i;
+import textnow.z.m;
+import textnow.z.u;
 
 public class GetMessagesForConversationTask extends c
 {
@@ -34,8 +36,8 @@ public class GetMessagesForConversationTask extends c
 
   public void run()
   {
-    r localr = new r(this.a);
-    n localn = new n(localr.b());
+    u localu = new u(this.a);
+    n localn = new n(localu.b());
     if (this.f > 0L)
     {
       localn.a = this.f;
@@ -69,7 +71,7 @@ public class GetMessagesForConversationTask extends c
     int i = 2;
     int j = -1;
     int k = -1;
-    long l1 = localr.k();
+    long l1 = localu.k();
     if (l1 == 0L)
       l1 = 1L;
     long l2 = l1;
@@ -78,19 +80,17 @@ public class GetMessagesForConversationTask extends c
     Message localMessage;
     int i1;
     int i2;
-    int i3;
     Object localObject5;
     Object localObject6;
     Object localObject7;
     if (m < n)
     {
       localMessage = arrayOfMessage[m];
-      if (!textnow.u.k.a(localMessage.messageType))
+      if (!m.a(localMessage.messageType))
       {
         new StringBuilder().append("Do not understand message type ").append(localMessage.messageType).toString();
         i1 = k;
-        i2 = j;
-        i3 = i;
+        i2 = i;
         localObject5 = localObject3;
         localObject6 = localObject2;
         localObject7 = localObject1;
@@ -98,21 +98,20 @@ public class GetMessagesForConversationTask extends c
     }
     while (true)
     {
-      int i4 = m + 1;
-      i = i3;
+      int i3 = m + 1;
+      i = i2;
       localObject3 = localObject5;
       localObject2 = localObject6;
       localObject1 = localObject7;
-      m = i4;
-      j = i2;
+      m = i3;
       k = i1;
       break;
       ContentValues localContentValues = new ContentValues();
       String str = localMessage.contactName;
       if (this.e == 5)
       {
-        str = textnow.q.k.b(g().getContentResolver(), str);
-        label388: localContentValues.put("message_id", Long.valueOf(localMessage.id));
+        str = k.b(g().getContentResolver(), str);
+        label380: localContentValues.put("message_id", Long.valueOf(localMessage.id));
         localContentValues.put("contact_value", this.d);
         localContentValues.put("contact_type", Integer.valueOf(this.e));
         localContentValues.put("contact_name", str);
@@ -123,10 +122,10 @@ public class GetMessagesForConversationTask extends c
         localContentValues.put("date", Long.valueOf(b.d(localMessage.date).getTime()));
         localContentValues.put("message_source", Integer.valueOf(0));
         if ((localMessage.messageDirection != 2) || (localMessage.messageType != 2))
-          break label705;
+          break label697;
         localHashMap.put(Long.valueOf(localMessage.id), localContentValues);
         if (localStringBuilder.length() != 0)
-          break label673;
+          break label665;
         localStringBuilder.append(localMessage.id);
       }
       while (true)
@@ -135,22 +134,22 @@ public class GetMessagesForConversationTask extends c
           l2 = localMessage.id;
           localObject7 = localMessage.message.trim();
           i1 = localMessage.messageDirection;
-          i2 = localMessage.messageType;
+          j = localMessage.messageType;
           localObject6 = localMessage.contactName;
           localObject5 = this.d;
-          i3 = this.e;
+          i2 = this.e;
           break;
           if (this.e != 2)
-            break label388;
-          str = textnow.q.k.a(g().getContentResolver(), this.d);
-          break label388;
-          label673: localStringBuilder.append("," + localMessage.id);
+            break label380;
+          str = k.a(g().getContentResolver(), this.d);
+          break label380;
+          label665: localStringBuilder.append("," + localMessage.id);
           continue;
-          label705: localArrayList.add(localContentValues);
+          label697: localArrayList.add(localContentValues);
           continue;
           if (!localHashMap.isEmpty())
           {
-            Cursor localCursor = this.a.getContentResolver().query(f.d, arrayOfString, "message_id IN " + "(" + localStringBuilder.toString() + ")", null, null);
+            Cursor localCursor = this.a.getContentResolver().query(g.d, arrayOfString, "message_id IN " + "(" + localStringBuilder.toString() + ")", null, null);
             if (localCursor != null)
               try
               {
@@ -165,15 +164,15 @@ public class GetMessagesForConversationTask extends c
           if (!localHashMap.isEmpty())
             localArrayList.addAll(localHashMap.values());
           if ((this.g) && (localObject1 != null) && (k == 1))
-            o.a(this.a).a(localObject3, localObject2, i, localObject1, j, 0, l2);
+            a.a(this.a).a(localObject3, localObject2, i, localObject1, j, 0, l2);
           new StringBuilder().append("Bulk inserting ").append(arrayOfMessage.length).append(" messages into database").toString();
-          this.a.getContentResolver().bulkInsert(f.d, (ContentValues[])localArrayList.toArray(new ContentValues[0]));
-          o.a(this.a).d();
+          this.a.getContentResolver().bulkInsert(g.d, (ContentValues[])localArrayList.toArray(new ContentValues[0]));
+          a.a(this.a).e();
+          a.a(this.a).d();
           return;
         }
       i1 = k;
-      i2 = j;
-      i3 = i;
+      i2 = i;
       localObject5 = localObject3;
       localObject6 = localObject2;
       localObject7 = localObject1;
@@ -181,7 +180,7 @@ public class GetMessagesForConversationTask extends c
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.GetMessagesForConversationTask
  * JD-Core Version:    0.6.2
  */

@@ -38,22 +38,22 @@ public class PasswordEditText extends CompoundEditText
   {
     boolean bool1 = true;
     boolean bool2;
-    if (!a(2131493071))
+    if (!a(2131296478))
       if (toString().length() < 8)
       {
         bool2 = bool1;
-        String str = getContext().getString(2131493071);
+        String str = getContext().getString(2131296478);
         Object[] arrayOfObject = new Object[bool1];
         arrayOfObject[0] = Integer.valueOf(8 - toString().length());
         a(bool2, String.format(str, arrayOfObject));
-        if ((bool2) || (a(toString(), 2131493070, 30)) || (a(toString(), 2131493072, "\\s")))
+        if ((bool2) || (a(toString(), 2131296477, 30)) || (a(toString(), 2131296479, "\\s")))
           break label125;
       }
     while (true)
     {
       if (bool1)
       {
-        a(c.c);
+        a(d.c);
         a(false);
       }
       return;
@@ -67,7 +67,7 @@ public class PasswordEditText extends CompoundEditText
   {
     super.onFinishInflate();
     this.e.setInputType(129);
-    this.e.setHint(2131493059);
+    this.e.setHint(2131296466);
     this.e.setSingleLine(true);
     EditText localEditText = this.e;
     InputFilter[] arrayOfInputFilter = new InputFilter[1];
@@ -100,7 +100,7 @@ public class PasswordEditText extends CompoundEditText
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.views.PasswordEditText
  * JD-Core Version:    0.6.2
  */

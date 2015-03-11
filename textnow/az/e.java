@@ -1,216 +1,246 @@
 package textnow.az;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.ViewGroup.LayoutParams;
+import android.os.Build.VERSION;
 import android.webkit.WebSettings;
-import android.webkit.WebSettings.LayoutAlgorithm;
-import android.webkit.WebSettings.PluginState;
-import android.webkit.WebView;
-import android.widget.RelativeLayout.LayoutParams;
+import com.tremorvideo.sdk.android.videoad.ba;
+import com.tremorvideo.sdk.android.videoad.bc;
 import com.tremorvideo.sdk.android.videoad.r;
-import java.lang.reflect.Field;
-import java.net.InetAddress;
-import java.net.Socket;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
-import org.apache.http.conn.scheme.LayeredSocketFactory;
-import org.apache.http.conn.ssl.SSLSocketFactory;
-import org.apache.http.params.HttpParams;
+import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
+import org.json.JSONArray;
 import org.json.JSONObject;
+import textnow.be.m;
 
-public final class e extends WebView
+public final class e
 {
-  f a;
-  c b;
-  public float c = 255.0F;
-  public boolean d = false;
-  private boolean e;
-  private JSONObject f;
-  private ArrayList<g> g;
-  private String h;
+  private File a;
+  private String b;
+  private String c;
+  private long d;
+  private int e;
+  private List<ba> f;
+  private File g;
+  private File h;
+  private l i;
 
-  public e(Context paramContext)
+  public e(JSONObject paramJSONObject)
   {
-    super(paramContext);
-    clearCache(true);
-    setScrollContainer(false);
-    setBackgroundColor(0);
-    setHorizontalScrollBarEnabled(false);
-    setHorizontalScrollbarOverlay(false);
-    setVerticalScrollBarEnabled(false);
-    setVerticalScrollbarOverlay(false);
-    WebSettings localWebSettings = getSettings();
-    localWebSettings.setSupportZoom(false);
+    this.b = paramJSONObject.getString("xml-url");
+    this.c = paramJSONObject.getString("template-url");
+    if (paramJSONObject.has("template-crc32"))
+    {
+      this.d = paramJSONObject.getLong("template-crc32");
+      if (!paramJSONObject.has("auto-skip-seconds"))
+        break label97;
+      this.e = (1000 * paramJSONObject.getInt("auto-skip-seconds"));
+      label68: if (paramJSONObject.has("events"))
+        break label105;
+      this.f = new ArrayList();
+    }
+    while (true)
+    {
+      return;
+      this.d = 0L;
+      break;
+      label97: this.e = 0;
+      break label68;
+      label105: JSONArray localJSONArray = paramJSONObject.getJSONArray("events");
+      this.f = new ArrayList(localJSONArray.length());
+      while (j < localJSONArray.length())
+      {
+        this.f.add(new ba(localJSONArray.getJSONObject(j)));
+        j++;
+      }
+    }
+  }
+
+  public final int a()
+  {
+    return this.e;
+  }
+
+  public final ba a(bc parambc)
+  {
+    Iterator localIterator = this.f.iterator();
+    while (localIterator.hasNext())
+    {
+      ba localba = (ba)localIterator.next();
+      if (localba.a() == parambc)
+        return localba;
+    }
+    return null;
+  }
+
+  public final ba a(String paramString)
+  {
+    Iterator localIterator = this.f.iterator();
+    while (localIterator.hasNext())
+    {
+      ba localba = (ba)localIterator.next();
+      if (localba.a().toString().equals(paramString))
+        return localba;
+    }
+    return null;
+  }
+
+  public final void a(Context paramContext)
+  {
+    FileInputStream localFileInputStream;
+    ZipInputStream localZipInputStream;
+    while (true)
+    {
+      String str1;
+      String str2;
+      try
+      {
+        localFileInputStream = new FileInputStream(this.h);
+        localZipInputStream = new ZipInputStream(new BufferedInputStream(localFileInputStream));
+        this.a = new File(paramContext.getFilesDir() + "/" + "BuyItNow");
+        if (this.a.exists())
+          m.a(this.a);
+        this.a.mkdir();
+        str1 = this.a.getAbsolutePath() + "/";
+        ZipEntry localZipEntry = localZipInputStream.getNextEntry();
+        if (localZipEntry == null)
+          break;
+        str2 = localZipEntry.getName();
+        if (localZipEntry.isDirectory())
+        {
+          File localFile1 = new File(str1 + str2);
+          if (localFile1.isDirectory())
+            continue;
+          localFile1.mkdirs();
+          continue;
+        }
+      }
+      catch (IOException localIOException)
+      {
+        r.a(localIOException);
+        return;
+      }
+      ByteArrayOutputStream localByteArrayOutputStream = new ByteArrayOutputStream();
+      byte[] arrayOfByte = new byte[1024];
+      File localFile2 = new File(str1 + str2);
+      if (!localFile2.exists())
+        localFile2.createNewFile();
+      FileOutputStream localFileOutputStream = new FileOutputStream(str1 + str2);
+      while (true)
+      {
+        int j = localZipInputStream.read(arrayOfByte);
+        if (j == -1)
+          break;
+        localByteArrayOutputStream.write(arrayOfByte, 0, j);
+        localByteArrayOutputStream.toByteArray();
+        localFileOutputStream.write(localByteArrayOutputStream.toByteArray());
+        localByteArrayOutputStream.reset();
+      }
+      localFileOutputStream.close();
+      localZipInputStream.closeEntry();
+      localByteArrayOutputStream.close();
+    }
+    localZipInputStream.close();
+    localFileInputStream.close();
+  }
+
+  public final void a(Context paramContext, n paramn)
+  {
+    this.i = new l(paramContext, paramn);
+    File localFile = new File(this.a.getAbsolutePath() + "/index.html");
+    WebSettings localWebSettings = this.i.getSettings();
     localWebSettings.setJavaScriptEnabled(true);
-    localWebSettings.setUseWideViewPort(true);
-    localWebSettings.setCacheMode(2);
-    if (r.p() >= 8)
-      localWebSettings.setPluginState(WebSettings.PluginState.ON);
     localWebSettings.setAllowFileAccess(true);
-    if (r.p() >= 16)
+    if (Build.VERSION.SDK_INT >= 16)
       localWebSettings.setAllowFileAccessFromFileURLs(true);
-    this.a = new f(this, (byte)0);
-    setWebViewClient(this.a);
-    setWebChromeClient(new h(this, (byte)0));
-    getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL);
-    this.g = new ArrayList();
-    this.e = false;
+    this.i.loadUrl("file://" + localFile.getAbsolutePath());
   }
 
-  private void d(String paramString)
+  public final void a(File paramFile)
   {
-    e("tremorcore.fireEvent('frameChange'," + paramString + ");");
+    this.g = paramFile;
   }
 
-  private void e(String paramString)
+  public final String b()
   {
-    if (paramString != null)
-      ((Activity)getContext()).runOnUiThread(new i(this, paramString));
+    return this.b;
   }
 
-  public final void a()
+  public final void b(File paramFile)
   {
-    setBackgroundColor(0);
-    if (r.p() > 10)
-      setLayerType(1, null);
-    onSizeChanged(getWidth(), getHeight(), 0, 0);
+    this.h = paramFile;
   }
 
-  public final void a(float paramFloat)
+  public final String c()
   {
-    if ((r.p() > 10) && (paramFloat != this.c))
-      setAlpha(paramFloat / 255.0F);
-    this.c = paramFloat;
+    return this.c;
   }
 
-  protected final void a(String paramString)
+  public final Long d()
   {
-    e("tremorcore.nativeCallComplete('" + paramString + "');");
+    return Long.valueOf(this.d);
   }
 
-  public final void a(String paramString, JSONObject paramJSONObject)
+  public final void e()
   {
-    Iterator localIterator = this.g.iterator();
-    while (localIterator.hasNext())
-      ((g)localIterator.next()).cancel(true);
-    this.g.clear();
-    this.e = false;
-    this.h = paramString;
-    this.f = paramJSONObject;
-    loadUrl(paramString);
-  }
-
-  public final void a(c paramc)
-  {
-    this.b = paramc;
-  }
-
-  public final void a(g paramg)
-  {
-    if ((this.g != null) && (this.g.contains(paramg)))
-      this.g.remove(paramg);
-  }
-
-  protected final void b()
-  {
-    JSONObject localJSONObject = new JSONObject();
+    File localFile = new File(this.a + "/source.xml");
+    FileInputStream localFileInputStream;
+    FileOutputStream localFileOutputStream;
     try
     {
-      ViewGroup.LayoutParams localLayoutParams = getLayoutParams();
-      if ((localLayoutParams instanceof RelativeLayout.LayoutParams))
+      localFileInputStream = new FileInputStream(this.g);
+      localFileOutputStream = new FileOutputStream(localFile);
+      byte[] arrayOfByte = new byte[1048576];
+      while (true)
       {
-        localJSONObject.put("x", ((RelativeLayout.LayoutParams)localLayoutParams).leftMargin);
-        localJSONObject.put("y", ((RelativeLayout.LayoutParams)localLayoutParams).topMargin);
-        localJSONObject.put("width", localLayoutParams.width);
-        localJSONObject.put("height", localLayoutParams.height);
-        if (r.p() < 14)
-          localJSONObject.put("Android2Fix", 1);
+        int j = localFileInputStream.read(arrayOfByte, 0, 1048576);
+        if (j == -1)
+          break;
+        localFileOutputStream.write(arrayOfByte, 0, j);
       }
-      d(localJSONObject.toString());
-      e("tremorcore.fireEvent('init'," + this.f + ");");
-      return;
     }
     catch (Exception localException)
     {
-      while (true)
-        r.a(localException);
-    }
-  }
-
-  protected final void b(String paramString)
-  {
-    e("tremorcore.urlRequestDidFinishLoading(" + paramString + ");");
-  }
-
-  protected final void c(String paramString)
-  {
-    e("tremorcore.urlRequestDidFailWithError(" + paramString + ");");
-  }
-
-  public final void destroy()
-  {
-    this.d = true;
-    Iterator localIterator = this.g.iterator();
-    while (localIterator.hasNext())
-      ((g)localIterator.next()).cancel(true);
-    this.g.clear();
-    this.g = null;
-    this.f = null;
-    this.e = false;
-    super.destroyDrawingCache();
-    super.destroy();
-  }
-
-  public final void draw(Canvas paramCanvas)
-  {
-    if (r.p() < 11)
-    {
-      paramCanvas.saveLayerAlpha(null, Math.round(this.c), 31);
-      super.draw(paramCanvas);
-      paramCanvas.restore();
+      localException.printStackTrace();
       return;
     }
-    super.draw(paramCanvas);
+    localFileInputStream.close();
+    localFileOutputStream.close();
   }
 
-  public final void loadUrl(String paramString)
+  public final void f()
   {
-    if (!this.d)
-      super.loadUrl(paramString);
+    if (this.i != null)
+    {
+      this.i.destroy();
+      this.i = null;
+      System.gc();
+    }
   }
 
-  protected final void onSizeChanged(int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+  public final void g()
   {
-    JSONObject localJSONObject;
-    if (this.e)
-      localJSONObject = new JSONObject();
-    try
-    {
-      ViewGroup.LayoutParams localLayoutParams = getLayoutParams();
-      if ((localLayoutParams instanceof RelativeLayout.LayoutParams))
-      {
-        localJSONObject.put("x", ((RelativeLayout.LayoutParams)localLayoutParams).leftMargin);
-        localJSONObject.put("y", ((RelativeLayout.LayoutParams)localLayoutParams).topMargin);
-      }
-      localJSONObject.put("width", paramInt1);
-      localJSONObject.put("height", paramInt2);
-      if (r.p() < 14)
-        localJSONObject.put("Android2Fix", 1);
-      d(localJSONObject.toString());
-      super.onSizeChanged(paramInt1, paramInt2, paramInt3, paramInt4);
-      return;
-    }
-    catch (Exception localException)
-    {
-      while (true)
-        r.a(localException);
-    }
+    m.a(this.a);
+    f();
+  }
+
+  public final File h()
+  {
+    return this.a;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.az.e
  * JD-Core Version:    0.6.2
  */

@@ -9,11 +9,11 @@ import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.ContentBody;
 import org.apache.http.entity.mime.content.StringBody;
-import textnow.s.h;
-import textnow.t.b;
-import textnow.t.d;
-import textnow.t.g;
-import textnow.u.c;
+import textnow.x.h;
+import textnow.y.b;
+import textnow.y.d;
+import textnow.y.g;
+import textnow.z.c;
 
 @b(a="POST")
 @d(a="users/{0}/messages")
@@ -62,7 +62,7 @@ public class MessagesPost extends TNHttpCommand
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.api.users.MessagesPost
  * JD-Core Version:    0.6.2
  */

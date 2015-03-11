@@ -1,7 +1,9 @@
 package com.facebook;
 
+import android.content.Context;
 import android.os.Bundle;
 import com.facebook.internal.Logger;
+import com.facebook.internal.Utility;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -18,55 +20,67 @@ class AppEventsLogger$AppEvent
   private JSONObject jsonObject;
   private String name;
 
-  public AppEventsLogger$AppEvent(String paramString, Double paramDouble, Bundle paramBundle, boolean paramBoolean)
+  public AppEventsLogger$AppEvent(Context paramContext, String paramString, Double paramDouble, Bundle paramBundle, boolean paramBoolean)
   {
-    validateIdentifier(paramString);
-    this.name = paramString;
-    this.isImplicit = paramBoolean;
-    this.jsonObject = new JSONObject();
     do
-      while (true)
+      try
       {
-        String str2;
-        Object localObject;
-        try
+        validateIdentifier(paramString);
+        this.name = paramString;
+        this.isImplicit = paramBoolean;
+        this.jsonObject = new JSONObject();
+        this.jsonObject.put("_eventName", paramString);
+        this.jsonObject.put("_logTime", System.currentTimeMillis() / 1000L);
+        this.jsonObject.put("_ui", Utility.getActivityName(paramContext));
+        if (paramDouble != null)
+          this.jsonObject.put("_valueToSum", paramDouble.doubleValue());
+        if (this.isImplicit)
+          this.jsonObject.put("_implicitlyLogged", "1");
+        String str1 = Settings.getAppVersion();
+        if (str1 != null)
+          this.jsonObject.put("_appVersion", str1);
+        if (paramBundle != null)
         {
-          this.jsonObject.put("_eventName", paramString);
-          this.jsonObject.put("_logTime", System.currentTimeMillis() / 1000L);
-          if (paramDouble != null)
-            this.jsonObject.put("_valueToSum", paramDouble.doubleValue());
-          if (this.isImplicit)
-            this.jsonObject.put("_implicitlyLogged", "1");
-          String str1 = Settings.getAppVersion();
-          if (str1 != null)
-            this.jsonObject.put("_appVersion", str1);
-          if (paramBundle == null)
-            break;
           Iterator localIterator = paramBundle.keySet().iterator();
-          if (!localIterator.hasNext())
-            break;
-          str2 = (String)localIterator.next();
-          validateIdentifier(str2);
-          localObject = paramBundle.get(str2);
-          if ((!(localObject instanceof String)) && (!(localObject instanceof Number)))
-            throw new FacebookException(String.format("Parameter value '%s' for key '%s' should be a string or a numeric type.", new Object[] { localObject, str2 }));
+          if (localIterator.hasNext())
+          {
+            str2 = (String)localIterator.next();
+            validateIdentifier(str2);
+            localObject = paramBundle.get(str2);
+            if ((!(localObject instanceof String)) && (!(localObject instanceof Number)))
+              throw new FacebookException(String.format("Parameter value '%s' for key '%s' should be a string or a numeric type.", new Object[] { localObject, str2 }));
+          }
         }
-        catch (JSONException localJSONException)
+      }
+      catch (JSONException localJSONException)
+      {
+        while (true)
         {
-          LoggingBehavior localLoggingBehavior1 = LoggingBehavior.APP_EVENTS;
-          Object[] arrayOfObject1 = new Object[1];
-          arrayOfObject1[0] = localJSONException.toString();
-          Logger.log(localLoggingBehavior1, "AppEvents", "JSON encoding for app event failed: '%s'", arrayOfObject1);
+          String str2;
+          Object localObject;
+          LoggingBehavior localLoggingBehavior2 = LoggingBehavior.APP_EVENTS;
+          Object[] arrayOfObject2 = new Object[1];
+          arrayOfObject2[0] = localJSONException.toString();
+          Logger.log(localLoggingBehavior2, "AppEvents", "JSON encoding for app event failed: '%s'", arrayOfObject2);
           this.jsonObject = null;
           return;
+          this.jsonObject.put(str2, localObject.toString());
         }
-        this.jsonObject.put(str2, localObject.toString());
+      }
+      catch (FacebookException localFacebookException)
+      {
+        LoggingBehavior localLoggingBehavior1 = LoggingBehavior.APP_EVENTS;
+        Object[] arrayOfObject1 = new Object[1];
+        arrayOfObject1[0] = localFacebookException.toString();
+        Logger.log(localLoggingBehavior1, "AppEvents", "Invalid app event name or parameter:", arrayOfObject1);
+        this.jsonObject = null;
+        return;
       }
     while (this.isImplicit);
-    LoggingBehavior localLoggingBehavior2 = LoggingBehavior.APP_EVENTS;
-    Object[] arrayOfObject2 = new Object[1];
-    arrayOfObject2[0] = this.jsonObject.toString();
-    Logger.log(localLoggingBehavior2, "AppEvents", "Created app event '%s'", arrayOfObject2);
+    LoggingBehavior localLoggingBehavior3 = LoggingBehavior.APP_EVENTS;
+    Object[] arrayOfObject3 = new Object[1];
+    arrayOfObject3[0] = this.jsonObject.toString();
+    Logger.log(localLoggingBehavior3, "AppEvents", "Created app event '%s'", arrayOfObject3);
   }
 
   private AppEventsLogger$AppEvent(String paramString, boolean paramBoolean)
@@ -133,7 +147,7 @@ class AppEventsLogger$AppEvent
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.AppEventsLogger.AppEvent
  * JD-Core Version:    0.6.2
  */

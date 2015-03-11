@@ -1,54 +1,67 @@
 package textnow.bd;
 
-abstract class u extends bo
+import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import com.tremorvideo.sdk.android.videoad.r;
+import java.net.URI;
+
+final class u extends WebViewClient
 {
-  protected final p a;
-  private final bu<?> b;
-
-  public u(p paramp, bu<?> parambu)
+  private u(q paramq)
   {
-    this.a = paramp;
-    this.b = parambu;
   }
 
-  public final int a()
+  public final void onPageFinished(WebView paramWebView, String paramString)
   {
-    ax localax = this.a.d();
-    switch (bq.1.a[localax.ordinal()])
+    if (!q.a(this.a))
     {
-    default:
-      throw new IllegalArgumentException("Unrecognized ImageRequestType!");
-    case 1:
-      return 0;
-    case 2:
-      return 1;
-    case 3:
-      return 2;
-    case 4:
-      return 3;
-    case 5:
-    case 6:
-    case 7:
-      return 4;
-    case 8:
-      return 5;
-    case 9:
+      q.a(this.a, true);
+      q.b(this.a).c();
+      this.a.a(new m(q.c(this.a)));
+      this.a.n();
+      if (this.a.j() != null)
+      {
+        aa localaa = this.a.j();
+        localaa.a();
+      }
+      q.b(this.a, true);
     }
-    return 6;
   }
 
-  public final bu<?> b()
+  public final void onReceivedError(WebView paramWebView, int paramInt, String paramString1, String paramString2)
   {
-    return this.b;
+    super.onReceivedError(paramWebView, paramInt, paramString1, paramString2);
   }
 
-  public final p c()
+  public final boolean shouldOverrideUrlLoading(WebView paramWebView, String paramString)
   {
-    return this.a;
+    if (Uri.parse(paramString).getScheme().equals("mraid"))
+    {
+      q.a(this.a, URI.create(paramString));
+      return true;
+    }
+    Intent localIntent = new Intent();
+    localIntent.setAction("android.intent.action.VIEW");
+    localIntent.setData(Uri.parse(paramString));
+    localIntent.addFlags(268435456);
+    try
+    {
+      this.a.getContext().startActivity(localIntent);
+      return true;
+    }
+    catch (ActivityNotFoundException localActivityNotFoundException)
+    {
+      r.a(localActivityNotFoundException);
+    }
+    return false;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.bd.u
  * JD-Core Version:    0.6.2
  */

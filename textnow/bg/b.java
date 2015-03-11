@@ -1,49 +1,51 @@
 package textnow.bg;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import textnow.be.ag;
+import textnow.be.y;
 
-public final class b
-  implements Serializable
+public final class b extends ag
 {
-  private String a;
-  private String b;
-  private int c;
-  private String d;
-  private ArrayList<c> e;
+  public float a;
+  public int b;
+  public float c;
+  public int d;
+  public float e;
+  public int f;
+  public float g;
+  public int h;
+  public float i;
+  public int j;
+  public boolean k;
 
-  public final ArrayList<c> a()
+  protected b(a parama)
   {
-    return this.e;
   }
 
-  public final void a(int paramInt)
+  public final void a(y paramy)
   {
-    this.c = paramInt;
-  }
-
-  public final void a(String paramString)
-  {
-    this.a = paramString;
-  }
-
-  public final void a(ArrayList<c> paramArrayList)
-  {
-    this.e = paramArrayList;
-  }
-
-  public final void b(String paramString)
-  {
-    this.b = paramString;
-  }
-
-  public final void c(String paramString)
-  {
-    this.d = paramString;
+    super.a(paramy);
+    try
+    {
+      this.a = paramy.d();
+      this.b = paramy.b();
+      this.c = paramy.d();
+      this.d = paramy.b();
+      this.e = paramy.d();
+      this.f = paramy.b();
+      this.g = paramy.d();
+      this.h = paramy.b();
+      this.i = paramy.d();
+      this.j = paramy.b();
+      this.k = paramy.e();
+      return;
+    }
+    catch (Exception localException)
+    {
+    }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.bg.b
  * JD-Core Version:    0.6.2
  */

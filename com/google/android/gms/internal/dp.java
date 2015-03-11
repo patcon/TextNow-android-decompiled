@@ -1,38 +1,52 @@
 package com.google.android.gms.internal;
 
-import android.content.Context;
-import com.google.android.gms.common.GooglePlayServicesUtil;
+import android.app.Activity;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.FrameLayout;
+import android.widget.FrameLayout.LayoutParams;
+import android.widget.ImageButton;
 
-public final class dp
+@ez
+public final class dp extends FrameLayout
+  implements View.OnClickListener
 {
-  public static em a(Context paramContext, ds paramds, dp.a parama)
+  private final Activity nr;
+  private final ImageButton sg;
+
+  public dp(Activity paramActivity, int paramInt)
   {
-    if (paramds.kQ.sz)
-      return b(paramContext, paramds, parama);
-    return c(paramContext, paramds, parama);
+    super(paramActivity);
+    this.nr = paramActivity;
+    setOnClickListener(this);
+    this.sg = new ImageButton(paramActivity);
+    this.sg.setImageResource(17301527);
+    this.sg.setBackgroundColor(0);
+    this.sg.setOnClickListener(this);
+    this.sg.setPadding(0, 0, 0, 0);
+    this.sg.setContentDescription("Interstitial close button");
+    int i = gr.a(paramActivity, paramInt);
+    addView(this.sg, new FrameLayout.LayoutParams(i, i, 17));
   }
 
-  private static em b(Context paramContext, ds paramds, dp.a parama)
+  public final void o(boolean paramBoolean)
   {
-    eu.z("Fetching ad response from local ad request service.");
-    dq.a locala = new dq.a(paramContext, paramds, parama);
-    locala.start();
-    return locala;
-  }
-
-  private static em c(Context paramContext, ds paramds, dp.a parama)
-  {
-    eu.z("Fetching ad response from remote ad request service.");
-    if (GooglePlayServicesUtil.isGooglePlayServicesAvailable(paramContext) != 0)
+    ImageButton localImageButton = this.sg;
+    if (paramBoolean);
+    for (int i = 4; ; i = 0)
     {
-      eu.D("Failed to connect to remote ad request service.");
-      return null;
+      localImageButton.setVisibility(i);
+      return;
     }
-    return new dq.b(paramContext, paramds, parama);
+  }
+
+  public final void onClick(View paramView)
+  {
+    this.nr.finish();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.dp
  * JD-Core Version:    0.6.2
  */

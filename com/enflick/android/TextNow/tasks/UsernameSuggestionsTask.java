@@ -4,8 +4,8 @@ import android.text.TextUtils;
 import com.enflick.android.TextNow.api.responsemodel.Suggestion;
 import com.enflick.android.TextNow.api.users.SuggestionsPost;
 import com.enflick.android.TextNow.api.users.r;
-import textnow.q.b;
-import textnow.s.i;
+import textnow.v.b;
+import textnow.x.i;
 
 public class UsernameSuggestionsTask extends c
 {
@@ -77,7 +77,7 @@ public class UsernameSuggestionsTask extends c
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.UsernameSuggestionsTask
  * JD-Core Version:    0.6.2
  */

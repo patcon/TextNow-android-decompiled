@@ -8,9 +8,8 @@ import android.util.DisplayMetrics;
 
 public enum AdMarvelBitmapDrawableUtils$a
 {
-  private final String p;
-  private BitmapDrawable q;
-  private int r;
+  private BitmapDrawable p;
+  private int q;
 
   static
   {
@@ -32,11 +31,6 @@ public enum AdMarvelBitmapDrawableUtils$a
     arrayOfa[14] = o;
   }
 
-  private AdMarvelBitmapDrawableUtils$a(String paramString)
-  {
-    this.p = paramString;
-  }
-
   private byte[] a(String paramString)
   {
     String[] arrayOfString = paramString.split(",");
@@ -44,36 +38,25 @@ public enum AdMarvelBitmapDrawableUtils$a
     byte[] arrayOfByte = new byte[i1];
     for (int i2 = 0; i2 < i1; i2++)
       arrayOfByte[i2] = Byte.parseByte(arrayOfString[i2]);
-    this.r = arrayOfByte.length;
+    this.q = arrayOfByte.length;
     return arrayOfByte;
-  }
-
-  public final BitmapDrawable a(Context paramContext)
-  {
-    if (this.q == null)
-    {
-      int i1 = d.b(paramContext.getResources().getDisplayMetrics().xdpi, paramContext);
-      this.q = new BitmapDrawable(BitmapFactory.decodeByteArray(a(this.p), 0, this.r));
-      this.q.setTargetDensity(i1);
-    }
-    return this.q;
   }
 
   public final BitmapDrawable a(Context paramContext, String paramString)
   {
     if (paramString == null)
       return null;
-    if (this.q == null)
+    if (this.p == null)
     {
-      int i1 = d.b(paramContext.getResources().getDisplayMetrics().xdpi, paramContext);
-      this.q = new BitmapDrawable(BitmapFactory.decodeByteArray(a(paramString), 0, this.r));
-      this.q.setTargetDensity(i1);
+      int i1 = j.b(paramContext.getResources().getDisplayMetrics().xdpi, paramContext);
+      this.p = new BitmapDrawable(paramContext.getResources(), BitmapFactory.decodeByteArray(a(paramString), 0, this.q));
+      this.p.setTargetDensity(i1);
     }
-    return this.q;
+    return this.p;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.util.AdMarvelBitmapDrawableUtils.a
  * JD-Core Version:    0.6.2
  */

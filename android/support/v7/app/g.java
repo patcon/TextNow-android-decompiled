@@ -1,32 +1,53 @@
 package android.support.v7.app;
 
-import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
-import android.support.v7.internal.widget.ActionBarView;
+import android.support.v7.internal.view.menu.i;
+import android.support.v7.internal.view.menu.w;
+import textnow.i.a;
 
 final class g
-  implements android.support.v4.app.f
+  implements w
 {
-  private g(f paramf)
+  private g(ActionBarActivityDelegateBase paramActionBarActivityDelegateBase)
   {
   }
 
-  public final Drawable a()
+  public final void a(i parami, boolean paramBoolean)
   {
-    TypedArray localTypedArray = this.a.a.obtainStyledAttributes(f.m());
-    Drawable localDrawable = localTypedArray.getDrawable(0);
-    localTypedArray.recycle();
-    return localDrawable;
+    i locali = parami.q();
+    if (locali != parami);
+    ActionBarActivityDelegateBase.PanelFeatureState localPanelFeatureState;
+    for (int i = 1; ; i = 0)
+    {
+      ActionBarActivityDelegateBase localActionBarActivityDelegateBase = this.a;
+      if (i != 0)
+        parami = locali;
+      localPanelFeatureState = ActionBarActivityDelegateBase.a(localActionBarActivityDelegateBase, parami);
+      if (localPanelFeatureState != null)
+      {
+        if (i == 0)
+          break;
+        ActionBarActivityDelegateBase.a(this.a, localPanelFeatureState.a, localPanelFeatureState, locali);
+        ActionBarActivityDelegateBase.a(this.a, localPanelFeatureState, true);
+      }
+      return;
+    }
+    this.a.a.closeOptionsMenu();
+    ActionBarActivityDelegateBase.a(this.a, localPanelFeatureState, paramBoolean);
   }
 
-  public final void a(Drawable paramDrawable)
+  public final boolean a(i parami)
   {
-    if (f.b(this.a) != null)
-      f.b(this.a).a(paramDrawable);
+    if ((parami == null) && (this.a.b))
+    {
+      a locala = this.a.j();
+      if ((locala != null) && (!this.a.l()))
+        locala.c(8, parami);
+    }
+    return true;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v7.app.g
  * JD-Core Version:    0.6.2
  */

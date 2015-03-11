@@ -3,7 +3,7 @@ package com.google.android.gms.cast;
 import android.os.Bundle;
 import android.text.TextUtils;
 import com.google.android.gms.common.images.WebImage;
-import com.google.android.gms.internal.gs;
+import com.google.android.gms.internal.iu;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -16,8 +16,8 @@ import org.json.JSONObject;
 
 public class MediaMetadata
 {
-  private static final String[] AC = { null, "String", "int", "double", "ISO-8601 date String" };
-  private static final MediaMetadata.a AD = new MediaMetadata.a().a("com.google.android.gms.cast.metadata.CREATION_DATE", "creationDateTime", 4).a("com.google.android.gms.cast.metadata.RELEASE_DATE", "releaseDate", 4).a("com.google.android.gms.cast.metadata.BROADCAST_DATE", "originalAirdate", 4).a("com.google.android.gms.cast.metadata.TITLE", "title", 1).a("com.google.android.gms.cast.metadata.SUBTITLE", "subtitle", 1).a("com.google.android.gms.cast.metadata.ARTIST", "artist", 1).a("com.google.android.gms.cast.metadata.ALBUM_ARTIST", "albumArtist", 1).a("com.google.android.gms.cast.metadata.ALBUM_TITLE", "albumName", 1).a("com.google.android.gms.cast.metadata.COMPOSER", "composer", 1).a("com.google.android.gms.cast.metadata.DISC_NUMBER", "discNumber", 2).a("com.google.android.gms.cast.metadata.TRACK_NUMBER", "trackNumber", 2).a("com.google.android.gms.cast.metadata.SEASON_NUMBER", "season", 2).a("com.google.android.gms.cast.metadata.EPISODE_NUMBER", "episode", 2).a("com.google.android.gms.cast.metadata.SERIES_TITLE", "seriesTitle", 1).a("com.google.android.gms.cast.metadata.STUDIO", "studio", 1).a("com.google.android.gms.cast.metadata.WIDTH", "width", 2).a("com.google.android.gms.cast.metadata.HEIGHT", "height", 2).a("com.google.android.gms.cast.metadata.LOCATION_NAME", "location", 1).a("com.google.android.gms.cast.metadata.LOCATION_LATITUDE", "latitude", 3).a("com.google.android.gms.cast.metadata.LOCATION_LONGITUDE", "longitude", 3);
+  private static final String[] Fn = { null, "String", "int", "double", "ISO-8601 date String" };
+  private static final MediaMetadata.a Fo = new MediaMetadata.a().a("com.google.android.gms.cast.metadata.CREATION_DATE", "creationDateTime", 4).a("com.google.android.gms.cast.metadata.RELEASE_DATE", "releaseDate", 4).a("com.google.android.gms.cast.metadata.BROADCAST_DATE", "originalAirdate", 4).a("com.google.android.gms.cast.metadata.TITLE", "title", 1).a("com.google.android.gms.cast.metadata.SUBTITLE", "subtitle", 1).a("com.google.android.gms.cast.metadata.ARTIST", "artist", 1).a("com.google.android.gms.cast.metadata.ALBUM_ARTIST", "albumArtist", 1).a("com.google.android.gms.cast.metadata.ALBUM_TITLE", "albumName", 1).a("com.google.android.gms.cast.metadata.COMPOSER", "composer", 1).a("com.google.android.gms.cast.metadata.DISC_NUMBER", "discNumber", 2).a("com.google.android.gms.cast.metadata.TRACK_NUMBER", "trackNumber", 2).a("com.google.android.gms.cast.metadata.SEASON_NUMBER", "season", 2).a("com.google.android.gms.cast.metadata.EPISODE_NUMBER", "episode", 2).a("com.google.android.gms.cast.metadata.SERIES_TITLE", "seriesTitle", 1).a("com.google.android.gms.cast.metadata.STUDIO", "studio", 1).a("com.google.android.gms.cast.metadata.WIDTH", "width", 2).a("com.google.android.gms.cast.metadata.HEIGHT", "height", 2).a("com.google.android.gms.cast.metadata.LOCATION_NAME", "location", 1).a("com.google.android.gms.cast.metadata.LOCATION_LATITUDE", "latitude", 3).a("com.google.android.gms.cast.metadata.LOCATION_LONGITUDE", "longitude", 3);
   public static final String KEY_ALBUM_ARTIST = "com.google.android.gms.cast.metadata.ALBUM_ARTIST";
   public static final String KEY_ALBUM_TITLE = "com.google.android.gms.cast.metadata.ALBUM_TITLE";
   public static final String KEY_ARTIST = "com.google.android.gms.cast.metadata.ARTIST";
@@ -44,9 +44,9 @@ public class MediaMetadata
   public static final int MEDIA_TYPE_PHOTO = 4;
   public static final int MEDIA_TYPE_TV_SHOW = 2;
   public static final int MEDIA_TYPE_USER = 100;
-  private final Bundle AE = new Bundle();
-  private int AF;
-  private final List<WebImage> zQ = new ArrayList();
+  private final List<WebImage> EA = new ArrayList();
+  private final Bundle Fp = new Bundle();
+  private int Fq;
 
   public MediaMetadata()
   {
@@ -55,7 +55,7 @@ public class MediaMetadata
 
   public MediaMetadata(int paramInt)
   {
-    this.AF = paramInt;
+    this.Fq = paramInt;
   }
 
   private void a(JSONObject paramJSONObject, String[] paramArrayOfString)
@@ -69,29 +69,29 @@ public class MediaMetadata
         if (j < i)
         {
           str1 = paramArrayOfString[j];
-          if (!this.AE.containsKey(str1));
+          if (!this.Fp.containsKey(str1));
         }
         else
         {
-          switch (AD.ag(str1))
+          switch (Fo.aB(str1))
           {
           case 1:
           case 4:
-            paramJSONObject.put(AD.ae(str1), this.AE.getString(str1));
+            paramJSONObject.put(Fo.az(str1), this.Fp.getString(str1));
             break;
           case 2:
-            paramJSONObject.put(AD.ae(str1), this.AE.getInt(str1));
+            paramJSONObject.put(Fo.az(str1), this.Fp.getInt(str1));
             break;
           case 3:
-            paramJSONObject.put(AD.ae(str1), this.AE.getDouble(str1));
+            paramJSONObject.put(Fo.az(str1), this.Fp.getDouble(str1));
             continue;
-            Iterator localIterator = this.AE.keySet().iterator();
+            Iterator localIterator = this.Fp.keySet().iterator();
             while (localIterator.hasNext())
             {
               String str2 = (String)localIterator.next();
               if (!str2.startsWith("com.google."))
               {
-                Object localObject = this.AE.get(str2);
+                Object localObject = this.Fp.get(str2);
                 if ((localObject instanceof String))
                   paramJSONObject.put(str2, localObject);
                 else if ((localObject instanceof Integer))
@@ -143,7 +143,7 @@ public class MediaMetadata
         String str1 = (String)localIterator.next();
         if (!"metadataType".equals(str1))
         {
-          String str2 = AD.af(str1);
+          String str2 = Fo.aA(str1);
           if (str2 != null)
           {
             boolean bool = localHashSet.contains(str2);
@@ -155,32 +155,32 @@ public class MediaMetadata
             {
               Object localObject1 = paramJSONObject.get(str1);
               if (localObject1 != null)
-                switch (AD.ag(str2))
+                switch (Fo.aB(str2))
                 {
                 case 1:
                   if ((localObject1 instanceof String))
-                    this.AE.putString(str2, (String)localObject1);
+                    this.Fp.putString(str2, (String)localObject1);
                   break;
                 case 4:
-                  if (((localObject1 instanceof String)) && (gs.aq((String)localObject1) != null))
-                    this.AE.putString(str2, (String)localObject1);
+                  if (((localObject1 instanceof String)) && (iu.aL((String)localObject1) != null))
+                    this.Fp.putString(str2, (String)localObject1);
                   break;
                 case 2:
                   if ((localObject1 instanceof Integer))
-                    this.AE.putInt(str2, ((Integer)localObject1).intValue());
+                    this.Fp.putInt(str2, ((Integer)localObject1).intValue());
                   break;
                 case 3:
                   if ((localObject1 instanceof Double))
                   {
-                    this.AE.putDouble(str2, ((Double)localObject1).doubleValue());
+                    this.Fp.putDouble(str2, ((Double)localObject1).doubleValue());
                     continue;
                     Object localObject2 = paramJSONObject.get(str1);
                     if ((localObject2 instanceof String))
-                      this.AE.putString(str1, (String)localObject2);
+                      this.Fp.putString(str1, (String)localObject2);
                     else if ((localObject2 instanceof Integer))
-                      this.AE.putInt(str1, ((Integer)localObject2).intValue());
+                      this.Fp.putInt(str1, ((Integer)localObject2).intValue());
                     else if ((localObject2 instanceof Double))
-                      this.AE.putDouble(str1, ((Double)localObject2).doubleValue());
+                      this.Fp.putDouble(str1, ((Double)localObject2).doubleValue());
                   }
                   break;
                 }
@@ -197,29 +197,64 @@ public class MediaMetadata
     }
   }
 
-  private void d(String paramString, int paramInt)
+  private void f(String paramString, int paramInt)
   {
     if (TextUtils.isEmpty(paramString))
       throw new IllegalArgumentException("null and empty keys are not allowed");
-    int i = AD.ag(paramString);
+    int i = Fo.aB(paramString);
     if ((i != paramInt) && (i != 0))
-      throw new IllegalArgumentException("Value for " + paramString + " must be a " + AC[paramInt]);
+      throw new IllegalArgumentException("Value for " + paramString + " must be a " + Fn[paramInt]);
   }
 
   public void addImage(WebImage paramWebImage)
   {
-    this.zQ.add(paramWebImage);
+    this.EA.add(paramWebImage);
   }
 
-  public void b(JSONObject paramJSONObject)
+  public JSONObject bK()
   {
-    clear();
-    this.AF = 0;
+    JSONObject localJSONObject = new JSONObject();
     try
     {
-      this.AF = paramJSONObject.getInt("metadataType");
-      label20: gs.a(this.zQ, paramJSONObject);
-      switch (this.AF)
+      localJSONObject.put("metadataType", this.Fq);
+      label20: iu.a(localJSONObject, this.EA);
+      switch (this.Fq)
+      {
+      default:
+        a(localJSONObject, new String[0]);
+        return localJSONObject;
+      case 0:
+        a(localJSONObject, new String[] { "com.google.android.gms.cast.metadata.TITLE", "com.google.android.gms.cast.metadata.ARTIST", "com.google.android.gms.cast.metadata.SUBTITLE", "com.google.android.gms.cast.metadata.RELEASE_DATE" });
+        return localJSONObject;
+      case 1:
+        a(localJSONObject, new String[] { "com.google.android.gms.cast.metadata.TITLE", "com.google.android.gms.cast.metadata.STUDIO", "com.google.android.gms.cast.metadata.SUBTITLE", "com.google.android.gms.cast.metadata.RELEASE_DATE" });
+        return localJSONObject;
+      case 2:
+        a(localJSONObject, new String[] { "com.google.android.gms.cast.metadata.TITLE", "com.google.android.gms.cast.metadata.SERIES_TITLE", "com.google.android.gms.cast.metadata.SEASON_NUMBER", "com.google.android.gms.cast.metadata.EPISODE_NUMBER", "com.google.android.gms.cast.metadata.BROADCAST_DATE" });
+        return localJSONObject;
+      case 3:
+        a(localJSONObject, new String[] { "com.google.android.gms.cast.metadata.TITLE", "com.google.android.gms.cast.metadata.ARTIST", "com.google.android.gms.cast.metadata.ALBUM_TITLE", "com.google.android.gms.cast.metadata.ALBUM_ARTIST", "com.google.android.gms.cast.metadata.COMPOSER", "com.google.android.gms.cast.metadata.TRACK_NUMBER", "com.google.android.gms.cast.metadata.DISC_NUMBER", "com.google.android.gms.cast.metadata.RELEASE_DATE" });
+        return localJSONObject;
+      case 4:
+      }
+      a(localJSONObject, new String[] { "com.google.android.gms.cast.metadata.TITLE", "com.google.android.gms.cast.metadata.ARTIST", "com.google.android.gms.cast.metadata.LOCATION_NAME", "com.google.android.gms.cast.metadata.LOCATION_LATITUDE", "com.google.android.gms.cast.metadata.LOCATION_LONGITUDE", "com.google.android.gms.cast.metadata.WIDTH", "com.google.android.gms.cast.metadata.HEIGHT", "com.google.android.gms.cast.metadata.CREATION_DATE" });
+      return localJSONObject;
+    }
+    catch (JSONException localJSONException)
+    {
+      break label20;
+    }
+  }
+
+  public void c(JSONObject paramJSONObject)
+  {
+    clear();
+    this.Fq = 0;
+    try
+    {
+      this.Fq = paramJSONObject.getInt("metadataType");
+      label20: iu.a(this.EA, paramJSONObject);
+      switch (this.Fq)
       {
       default:
         b(paramJSONObject, new String[0]);
@@ -249,53 +284,18 @@ public class MediaMetadata
 
   public void clear()
   {
-    this.AE.clear();
-    this.zQ.clear();
+    this.Fp.clear();
+    this.EA.clear();
   }
 
   public void clearImages()
   {
-    this.zQ.clear();
+    this.EA.clear();
   }
 
   public boolean containsKey(String paramString)
   {
-    return this.AE.containsKey(paramString);
-  }
-
-  public JSONObject dZ()
-  {
-    JSONObject localJSONObject = new JSONObject();
-    try
-    {
-      localJSONObject.put("metadataType", this.AF);
-      label20: gs.a(localJSONObject, this.zQ);
-      switch (this.AF)
-      {
-      default:
-        a(localJSONObject, new String[0]);
-        return localJSONObject;
-      case 0:
-        a(localJSONObject, new String[] { "com.google.android.gms.cast.metadata.TITLE", "com.google.android.gms.cast.metadata.ARTIST", "com.google.android.gms.cast.metadata.SUBTITLE", "com.google.android.gms.cast.metadata.RELEASE_DATE" });
-        return localJSONObject;
-      case 1:
-        a(localJSONObject, new String[] { "com.google.android.gms.cast.metadata.TITLE", "com.google.android.gms.cast.metadata.STUDIO", "com.google.android.gms.cast.metadata.SUBTITLE", "com.google.android.gms.cast.metadata.RELEASE_DATE" });
-        return localJSONObject;
-      case 2:
-        a(localJSONObject, new String[] { "com.google.android.gms.cast.metadata.TITLE", "com.google.android.gms.cast.metadata.SERIES_TITLE", "com.google.android.gms.cast.metadata.SEASON_NUMBER", "com.google.android.gms.cast.metadata.EPISODE_NUMBER", "com.google.android.gms.cast.metadata.BROADCAST_DATE" });
-        return localJSONObject;
-      case 3:
-        a(localJSONObject, new String[] { "com.google.android.gms.cast.metadata.TITLE", "com.google.android.gms.cast.metadata.ARTIST", "com.google.android.gms.cast.metadata.ALBUM_TITLE", "com.google.android.gms.cast.metadata.ALBUM_ARTIST", "com.google.android.gms.cast.metadata.COMPOSER", "com.google.android.gms.cast.metadata.TRACK_NUMBER", "com.google.android.gms.cast.metadata.DISC_NUMBER", "com.google.android.gms.cast.metadata.RELEASE_DATE" });
-        return localJSONObject;
-      case 4:
-      }
-      a(localJSONObject, new String[] { "com.google.android.gms.cast.metadata.TITLE", "com.google.android.gms.cast.metadata.ARTIST", "com.google.android.gms.cast.metadata.LOCATION_NAME", "com.google.android.gms.cast.metadata.LOCATION_LATITUDE", "com.google.android.gms.cast.metadata.LOCATION_LONGITUDE", "com.google.android.gms.cast.metadata.WIDTH", "com.google.android.gms.cast.metadata.HEIGHT", "com.google.android.gms.cast.metadata.CREATION_DATE" });
-      return localJSONObject;
-    }
-    catch (JSONException localJSONException)
-    {
-      break label20;
-    }
+    return this.Fp.containsKey(paramString);
   }
 
   public boolean equals(Object paramObject)
@@ -309,98 +309,98 @@ public class MediaMetadata
         return false;
       localMediaMetadata = (MediaMetadata)paramObject;
     }
-    while ((a(this.AE, localMediaMetadata.AE)) && (this.zQ.equals(localMediaMetadata.zQ)));
+    while ((a(this.Fp, localMediaMetadata.Fp)) && (this.EA.equals(localMediaMetadata.EA)));
     return false;
   }
 
   public Calendar getDate(String paramString)
   {
-    d(paramString, 4);
-    String str = this.AE.getString(paramString);
+    f(paramString, 4);
+    String str = this.Fp.getString(paramString);
     if (str != null)
-      return gs.aq(str);
+      return iu.aL(str);
     return null;
   }
 
   public String getDateAsString(String paramString)
   {
-    d(paramString, 4);
-    return this.AE.getString(paramString);
+    f(paramString, 4);
+    return this.Fp.getString(paramString);
   }
 
   public double getDouble(String paramString)
   {
-    d(paramString, 3);
-    return this.AE.getDouble(paramString);
+    f(paramString, 3);
+    return this.Fp.getDouble(paramString);
   }
 
   public List<WebImage> getImages()
   {
-    return this.zQ;
+    return this.EA;
   }
 
   public int getInt(String paramString)
   {
-    d(paramString, 2);
-    return this.AE.getInt(paramString);
+    f(paramString, 2);
+    return this.Fp.getInt(paramString);
   }
 
   public int getMediaType()
   {
-    return this.AF;
+    return this.Fq;
   }
 
   public String getString(String paramString)
   {
-    d(paramString, 1);
-    return this.AE.getString(paramString);
+    f(paramString, 1);
+    return this.Fp.getString(paramString);
   }
 
   public boolean hasImages()
   {
-    return (this.zQ != null) && (!this.zQ.isEmpty());
+    return (this.EA != null) && (!this.EA.isEmpty());
   }
 
   public int hashCode()
   {
-    Iterator localIterator = this.AE.keySet().iterator();
+    Iterator localIterator = this.Fp.keySet().iterator();
     String str;
-    for (int i = 17; localIterator.hasNext(); i = i * 31 + this.AE.get(str).hashCode())
+    for (int i = 17; localIterator.hasNext(); i = i * 31 + this.Fp.get(str).hashCode())
       str = (String)localIterator.next();
-    return i * 31 + this.zQ.hashCode();
+    return i * 31 + this.EA.hashCode();
   }
 
   public Set<String> keySet()
   {
-    return this.AE.keySet();
+    return this.Fp.keySet();
   }
 
   public void putDate(String paramString, Calendar paramCalendar)
   {
-    d(paramString, 4);
-    this.AE.putString(paramString, gs.a(paramCalendar));
+    f(paramString, 4);
+    this.Fp.putString(paramString, iu.a(paramCalendar));
   }
 
   public void putDouble(String paramString, double paramDouble)
   {
-    d(paramString, 3);
-    this.AE.putDouble(paramString, paramDouble);
+    f(paramString, 3);
+    this.Fp.putDouble(paramString, paramDouble);
   }
 
   public void putInt(String paramString, int paramInt)
   {
-    d(paramString, 2);
-    this.AE.putInt(paramString, paramInt);
+    f(paramString, 2);
+    this.Fp.putInt(paramString, paramInt);
   }
 
   public void putString(String paramString1, String paramString2)
   {
-    d(paramString1, 1);
-    this.AE.putString(paramString1, paramString2);
+    f(paramString1, 1);
+    this.Fp.putString(paramString1, paramString2);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.cast.MediaMetadata
  * JD-Core Version:    0.6.2
  */

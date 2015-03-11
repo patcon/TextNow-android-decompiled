@@ -1,16 +1,16 @@
 package com.google.android.gms.internal;
 
-import android.content.Context;
+import android.graphics.drawable.Drawable;
 
-public class iz
+public final class iz extends ja<iz.a, Drawable>
 {
-  public static iz a(Context paramContext, String paramString, jj<je> paramjj)
+  public iz()
   {
-    return null;
+    super(10);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.iz
  * JD-Core Version:    0.6.2
  */

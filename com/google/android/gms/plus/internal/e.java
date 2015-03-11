@@ -8,20 +8,17 @@ import android.os.Looper;
 import android.os.RemoteException;
 import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallbacks;
 import com.google.android.gms.common.GooglePlayServicesClient.OnConnectionFailedListener;
+import com.google.android.gms.common.api.BaseImplementation.b;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.common.api.a.d;
 import com.google.android.gms.common.data.DataHolder;
-import com.google.android.gms.internal.hb;
-import com.google.android.gms.internal.hb.c;
-import com.google.android.gms.internal.hb.e;
-import com.google.android.gms.internal.hb.g;
-import com.google.android.gms.internal.hg;
-import com.google.android.gms.internal.hi;
-import com.google.android.gms.internal.ie;
-import com.google.android.gms.internal.kp;
-import com.google.android.gms.internal.ks;
+import com.google.android.gms.common.internal.e.c;
+import com.google.android.gms.common.internal.j;
+import com.google.android.gms.common.internal.l;
+import com.google.android.gms.internal.jp;
+import com.google.android.gms.internal.nw;
+import com.google.android.gms.internal.nz;
 import com.google.android.gms.plus.Moments.LoadMomentsResult;
 import com.google.android.gms.plus.People.LoadPeopleResult;
 import com.google.android.gms.plus.model.moments.Moment;
@@ -31,35 +28,35 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-public class e extends hb<d>
+public class e extends com.google.android.gms.common.internal.e<d>
 {
-  private Person abJ;
-  private final h abK;
+  private Person alt;
+  private final h alu;
 
   public e(Context paramContext, Looper paramLooper, GoogleApiClient.ConnectionCallbacks paramConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener paramOnConnectionFailedListener, h paramh)
   {
-    super(paramContext, paramLooper, paramConnectionCallbacks, paramOnConnectionFailedListener, paramh.jZ());
-    this.abK = paramh;
+    super(paramContext, paramLooper, paramConnectionCallbacks, paramOnConnectionFailedListener, paramh.ng());
+    this.alu = paramh;
   }
 
   @Deprecated
   public e(Context paramContext, GooglePlayServicesClient.ConnectionCallbacks paramConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener paramOnConnectionFailedListener, h paramh)
   {
-    this(paramContext, paramContext.getMainLooper(), new hb.c(paramConnectionCallbacks), new hb.g(paramOnConnectionFailedListener), paramh);
+    this(paramContext, paramContext.getMainLooper(), new e.c(paramConnectionCallbacks), new com.google.android.gms.common.internal.e.g(paramOnConnectionFailedListener), paramh);
   }
 
-  public hg a(a.d<People.LoadPeopleResult> paramd, int paramInt, String paramString)
+  public j a(BaseImplementation.b<People.LoadPeopleResult> paramb, int paramInt, String paramString)
   {
-    cn();
-    e.e locale = new e.e(this, paramd);
+    dJ();
+    e.e locale = new e.e(this, paramb);
     try
     {
-      hg localhg = ((d)ft()).a(locale, 1, paramInt, -1, paramString);
-      return localhg;
+      j localj = ((d)gS()).a(locale, 1, paramInt, -1, paramString);
+      return localj;
     }
     catch (RemoteException localRemoteException)
     {
-      locale.a(DataHolder.af(8), null);
+      locale.a(DataHolder.as(8), null);
     }
     return null;
   }
@@ -67,43 +64,43 @@ public class e extends hb<d>
   protected void a(int paramInt, IBinder paramIBinder, Bundle paramBundle)
   {
     if ((paramInt == 0) && (paramBundle != null) && (paramBundle.containsKey("loaded_person")))
-      this.abJ = ks.i(paramBundle.getByteArray("loaded_person"));
+      this.alt = nz.i(paramBundle.getByteArray("loaded_person"));
     super.a(paramInt, paramIBinder, paramBundle);
   }
 
-  public void a(a.d<Moments.LoadMomentsResult> paramd, int paramInt, String paramString1, Uri paramUri, String paramString2, String paramString3)
+  public void a(BaseImplementation.b<Moments.LoadMomentsResult> paramb, int paramInt, String paramString1, Uri paramUri, String paramString2, String paramString3)
   {
-    cn();
+    dJ();
     e.b localb;
-    if (paramd != null)
-      localb = new e.b(this, paramd);
+    if (paramb != null)
+      localb = new e.b(this, paramb);
     try
     {
       while (true)
       {
-        ((d)ft()).a(localb, paramInt, paramString1, paramUri, paramString2, paramString3);
+        ((d)gS()).a(localb, paramInt, paramString1, paramUri, paramString2, paramString3);
         return;
         localb = null;
       }
     }
     catch (RemoteException localRemoteException)
     {
-      localb.a(DataHolder.af(8), null, null);
+      localb.a(DataHolder.as(8), null, null);
     }
   }
 
-  public void a(a.d<Status> paramd, Moment paramMoment)
+  public void a(BaseImplementation.b<Status> paramb, Moment paramMoment)
   {
-    cn();
+    dJ();
     e.a locala;
-    if (paramd != null)
-      locala = new e.a(this, paramd);
+    if (paramb != null)
+      locala = new e.a(this, paramb);
     try
     {
       while (true)
       {
-        ie localie = ie.a((kp)paramMoment);
-        ((d)ft()).a(locala, localie);
+        jp localjp = jp.a((nw)paramMoment);
+        ((d)gS()).a(locala, localjp);
         return;
         locala = null;
       }
@@ -112,59 +109,49 @@ public class e extends hb<d>
     {
       if (locala == null)
         throw new IllegalStateException(localRemoteException);
-      locala.am(new Status(8, null, null));
+      locala.aB(new Status(8, null, null));
     }
   }
 
-  public void a(a.d<People.LoadPeopleResult> paramd, Collection<String> paramCollection)
+  public void a(BaseImplementation.b<People.LoadPeopleResult> paramb, Collection<String> paramCollection)
   {
-    cn();
-    e.e locale = new e.e(this, paramd);
+    dJ();
+    e.e locale = new e.e(this, paramb);
     try
     {
-      ((d)ft()).a(locale, new ArrayList(paramCollection));
+      ((d)gS()).a(locale, new ArrayList(paramCollection));
       return;
     }
     catch (RemoteException localRemoteException)
     {
-      locale.a(DataHolder.af(8), null);
+      locale.a(DataHolder.as(8), null);
     }
   }
 
-  protected void a(hi paramhi, hb.e parame)
+  protected void a(l paraml, com.google.android.gms.common.internal.e.e parame)
   {
-    Bundle localBundle = this.abK.kh();
-    localBundle.putStringArray("request_visible_actions", this.abK.ka());
-    paramhi.a(parame, 5089000, this.abK.kd(), this.abK.kc(), fs(), this.abK.getAccountName(), localBundle);
+    Bundle localBundle = this.alu.no();
+    localBundle.putStringArray("request_visible_actions", this.alu.nh());
+    paraml.a(parame, 6171000, this.alu.nk(), this.alu.nj(), gR(), this.alu.getAccountName(), localBundle);
   }
 
-  protected d bn(IBinder paramIBinder)
+  protected d bH(IBinder paramIBinder)
   {
-    return d.a.bm(paramIBinder);
+    return d.a.bG(paramIBinder);
   }
 
-  protected String bu()
+  public boolean cg(String paramString)
   {
-    return "com.google.android.gms.plus.service.START";
-  }
-
-  protected String bv()
-  {
-    return "com.google.android.gms.plus.internal.IPlusService";
-  }
-
-  public boolean by(String paramString)
-  {
-    return Arrays.asList(fs()).contains(paramString);
+    return Arrays.asList(gR()).contains(paramString);
   }
 
   public void clearDefaultAccount()
   {
-    cn();
+    dJ();
     try
     {
-      this.abJ = null;
-      ((d)ft()).clearDefaultAccount();
+      this.alt = null;
+      ((d)gS()).clearDefaultAccount();
       return;
     }
     catch (RemoteException localRemoteException)
@@ -173,17 +160,17 @@ public class e extends hb<d>
     }
   }
 
-  public void d(a.d<People.LoadPeopleResult> paramd, String[] paramArrayOfString)
+  public void d(BaseImplementation.b<People.LoadPeopleResult> paramb, String[] paramArrayOfString)
   {
-    a(paramd, Arrays.asList(paramArrayOfString));
+    a(paramb, Arrays.asList(paramArrayOfString));
   }
 
   public String getAccountName()
   {
-    cn();
+    dJ();
     try
     {
-      String str = ((d)ft()).getAccountName();
+      String str = ((d)gS()).getAccountName();
       return str;
     }
     catch (RemoteException localRemoteException)
@@ -194,38 +181,48 @@ public class e extends hb<d>
 
   public Person getCurrentPerson()
   {
-    cn();
-    return this.abJ;
+    dJ();
+    return this.alt;
   }
 
-  public void k(a.d<Moments.LoadMomentsResult> paramd)
+  protected String getServiceDescriptor()
   {
-    a(paramd, 20, null, null, null, "me");
+    return "com.google.android.gms.plus.internal.IPlusService";
   }
 
-  public void l(a.d<People.LoadPeopleResult> paramd)
+  protected String getStartServiceAction()
   {
-    cn();
-    e.e locale = new e.e(this, paramd);
+    return "com.google.android.gms.plus.service.START";
+  }
+
+  public void k(BaseImplementation.b<Moments.LoadMomentsResult> paramb)
+  {
+    a(paramb, 20, null, null, null, "me");
+  }
+
+  public void l(BaseImplementation.b<People.LoadPeopleResult> paramb)
+  {
+    dJ();
+    e.e locale = new e.e(this, paramb);
     try
     {
-      ((d)ft()).a(locale, 2, 1, -1, null);
+      ((d)gS()).a(locale, 2, 1, -1, null);
       return;
     }
     catch (RemoteException localRemoteException)
     {
-      locale.a(DataHolder.af(8), null);
+      locale.a(DataHolder.as(8), null);
     }
   }
 
-  public void m(a.d<Status> paramd)
+  public void m(BaseImplementation.b<Status> paramb)
   {
-    cn();
+    dJ();
     clearDefaultAccount();
-    e.g localg = new e.g(this, paramd);
+    e.g localg = new e.g(this, paramb);
     try
     {
-      ((d)ft()).b(localg);
+      ((d)gS()).b(localg);
       return;
     }
     catch (RemoteException localRemoteException)
@@ -234,17 +231,17 @@ public class e extends hb<d>
     }
   }
 
-  public hg r(a.d<People.LoadPeopleResult> paramd, String paramString)
+  public j r(BaseImplementation.b<People.LoadPeopleResult> paramb, String paramString)
   {
-    return a(paramd, 0, paramString);
+    return a(paramb, 0, paramString);
   }
 
   public void removeMoment(String paramString)
   {
-    cn();
+    dJ();
     try
     {
-      ((d)ft()).removeMoment(paramString);
+      ((d)gS()).removeMoment(paramString);
       return;
     }
     catch (RemoteException localRemoteException)
@@ -254,7 +251,7 @@ public class e extends hb<d>
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.plus.internal.e
  * JD-Core Version:    0.6.2
  */

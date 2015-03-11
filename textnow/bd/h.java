@@ -1,17 +1,22 @@
 package textnow.bd;
 
-abstract interface h
+import java.util.Map;
+
+final class h extends e
 {
-  public abstract bo a(p paramp);
+  h(Map<String, String> paramMap, q paramq)
+  {
+    super(paramMap, paramq);
+  }
 
-  public abstract bo a(p paramp, s params, ba paramba);
-
-  public abstract bo b(p paramp);
-
-  public abstract int c(p paramp);
+  final void a()
+  {
+    String str = b("url");
+    this.b.f().a(str);
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.bd.h
  * JD-Core Version:    0.6.2
  */

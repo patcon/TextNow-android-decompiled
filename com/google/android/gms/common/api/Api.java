@@ -6,34 +6,34 @@ import java.util.List;
 
 public final class Api<O extends Api.ApiOptions>
 {
-  private final Api.b<?, O> Dm;
-  private final Api.c<?> Dn;
-  private final ArrayList<Scope> Do;
+  private final Api.b<?, O> Io;
+  private final Api.c<?> Ip;
+  private final ArrayList<Scope> Iq;
 
   public <C extends Api.a> Api(Api.b<C, O> paramb, Api.c<C> paramc, Scope[] paramArrayOfScope)
   {
-    this.Dm = paramb;
-    this.Dn = paramc;
-    this.Do = new ArrayList(Arrays.asList(paramArrayOfScope));
+    this.Io = paramb;
+    this.Ip = paramc;
+    this.Iq = new ArrayList(Arrays.asList(paramArrayOfScope));
   }
 
-  public final List<Scope> eA()
+  public final Api.b<?, O> gb()
   {
-    return this.Do;
+    return this.Io;
   }
 
-  public final Api.c<?> eB()
+  public final List<Scope> gd()
   {
-    return this.Dn;
+    return this.Iq;
   }
 
-  public final Api.b<?, O> ez()
+  public final Api.c<?> ge()
   {
-    return this.Dm;
+    return this.Ip;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.common.api.Api
  * JD-Core Version:    0.6.2
  */

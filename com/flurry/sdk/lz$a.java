@@ -34,7 +34,7 @@ public class lz$a extends mc<BigDecimal>
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.flurry.sdk.lz.a
  * JD-Core Version:    0.6.2
  */

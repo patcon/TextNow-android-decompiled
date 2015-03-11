@@ -12,11 +12,11 @@ public final class AppStateBuffer extends DataBuffer<AppState>
 
   public final AppState get(int paramInt)
   {
-    return new b(this.DG, paramInt);
+    return new b(this.II, paramInt);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.appstate.AppStateBuffer
  * JD-Core Version:    0.6.2
  */

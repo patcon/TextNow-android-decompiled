@@ -5,50 +5,52 @@ import android.os.Parcelable.Creator;
 import com.google.android.gms.common.internal.safeparcel.a;
 import com.google.android.gms.common.internal.safeparcel.a.a;
 import com.google.android.gms.common.internal.safeparcel.b;
+import com.google.android.gms.fitness.data.DataType;
+import java.util.ArrayList;
 
 public class lh
   implements Parcelable.Creator<lg>
 {
   static void a(lg paramlg, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
-    b.c(paramParcel, 1, paramlg.getVersionCode());
-    b.a(paramParcel, 2, paramlg.akd, false);
-    b.G(paramParcel, i);
+    int i = b.D(paramParcel);
+    b.c(paramParcel, 1, paramlg.getDataTypes(), false);
+    b.c(paramParcel, 1000, paramlg.getVersionCode());
+    b.H(paramParcel, i);
   }
 
-  public lg ce(Parcel paramParcel)
+  public lg by(Parcel paramParcel)
   {
-    int i = a.B(paramParcel);
+    int i = a.C(paramParcel);
     int j = 0;
-    int[] arrayOfInt = null;
+    ArrayList localArrayList = null;
     while (paramParcel.dataPosition() < i)
     {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
       {
       default:
         a.b(paramParcel, k);
         break;
       case 1:
-        j = a.g(paramParcel, k);
+        localArrayList = a.c(paramParcel, k, DataType.CREATOR);
         break;
-      case 2:
-        arrayOfInt = a.u(paramParcel, k);
+      case 1000:
+        j = a.g(paramParcel, k);
       }
     }
     if (paramParcel.dataPosition() != i)
       throw new a.a("Overread allowed size end=" + i, paramParcel);
-    return new lg(j, arrayOfInt);
+    return new lg(j, localArrayList);
   }
 
-  public lg[] dK(int paramInt)
+  public lg[] cP(int paramInt)
   {
     return new lg[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.lh
  * JD-Core Version:    0.6.2
  */

@@ -1,129 +1,48 @@
 package textnow.bd;
 
-import android.annotation.SuppressLint;
-import android.graphics.Bitmap;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
 import java.util.Map;
-import java.util.NoSuchElementException;
-import java.util.Set;
 
-@SuppressLint({"NewApi"})
-final class e
-  implements av
+abstract class e
 {
-  private long a = 20971520L;
-  private volatile long b = 0L;
-  private final Map<s, Bitmap> c = new HashMap();
-  private final Set<s> d = new LinkedHashSet();
+  protected Map<String, String> a;
+  protected q b;
 
-  private void b()
+  e(Map<String, String> paramMap, q paramq)
   {
-    try
-    {
-      while (true)
-      {
-        long l1 = this.b;
-        long l2 = this.a;
-        if (l1 <= l2)
-          break;
-        try
-        {
-          Iterator localIterator = this.d.iterator();
-          boolean bool = localIterator.hasNext();
-          s locals = null;
-          if (bool)
-            locals = (s)localIterator.next();
-          if (locals != null)
-            this.d.remove(locals);
-          Bitmap localBitmap = (Bitmap)this.c.remove(locals);
-          this.b -= localBitmap.getByteCount();
-        }
-        catch (NoSuchElementException localNoSuchElementException)
-        {
-          this.b = 0L;
-        }
-      }
-    }
-    finally
-    {
-    }
+    this.a = paramMap;
+    this.b = paramq;
   }
 
-  private void b(s params)
+  protected final int a(String paramString)
   {
+    String str = (String)this.a.get(paramString);
+    if (str == null)
+      return -1;
     try
     {
-      if (this.d.contains(params))
-      {
-        this.d.remove(params);
-        this.d.add(params);
-      }
-      while (true)
-      {
-        return;
-        this.d.add(params);
-        b();
-      }
+      int i = Integer.parseInt(str, 10);
+      return i;
     }
-    finally
+    catch (NumberFormatException localNumberFormatException)
     {
     }
+    return -1;
   }
 
-  public final Bitmap a(s params)
+  abstract void a();
+
+  protected final String b(String paramString)
   {
-    try
-    {
-      Bitmap localBitmap = (Bitmap)this.c.get(params);
-      if (localBitmap != null)
-        b(params);
-      while (true)
-      {
-        return localBitmap;
-        localBitmap = null;
-      }
-    }
-    finally
-    {
-    }
+    return (String)this.a.get(paramString);
   }
 
-  public final void a()
+  protected final boolean c(String paramString)
   {
-    try
-    {
-      this.b = 0L;
-      this.c.clear();
-      this.d.clear();
-      return;
-    }
-    finally
-    {
-      localObject = finally;
-      throw localObject;
-    }
-  }
-
-  public final void a(Bitmap paramBitmap, s params)
-  {
-    try
-    {
-      this.c.put(params, paramBitmap);
-      this.b += paramBitmap.getByteCount();
-      b(params);
-      return;
-    }
-    finally
-    {
-      localObject = finally;
-      throw localObject;
-    }
+    return "true".equals(this.a.get(paramString));
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.bd.e
  * JD-Core Version:    0.6.2
  */

@@ -30,9 +30,9 @@ public class ExtendedListView extends ListView
       super.dispatchDraw(paramCanvas);
       return;
     }
-    catch (IndexOutOfBoundsException localIndexOutOfBoundsException)
+    catch (Exception localException)
     {
-      localIndexOutOfBoundsException.printStackTrace();
+      localException.printStackTrace();
     }
   }
 
@@ -43,15 +43,15 @@ public class ExtendedListView extends ListView
       boolean bool = super.dispatchTouchEvent(paramMotionEvent);
       return bool;
     }
-    catch (IndexOutOfBoundsException localIndexOutOfBoundsException)
+    catch (Exception localException)
     {
-      localIndexOutOfBoundsException.printStackTrace();
+      localException.printStackTrace();
     }
     return false;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.views.ExtendedListView
  * JD-Core Version:    0.6.2
  */

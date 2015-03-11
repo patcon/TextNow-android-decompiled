@@ -1,31 +1,20 @@
 package textnow.f;
 
-class w
-  implements u
+import android.os.Bundle;
+import java.util.List;
+
+abstract interface w
 {
-  public Object a()
-  {
-    return null;
-  }
+  public abstract Object a(int paramInt);
 
-  public void a(Object paramObject, int paramInt)
-  {
-  }
+  public abstract List<Object> a(String paramString, int paramInt);
 
-  public void a(Object paramObject, boolean paramBoolean)
-  {
-  }
+  public abstract boolean a(int paramInt1, int paramInt2, Bundle paramBundle);
 
-  public void b(Object paramObject, int paramInt)
-  {
-  }
-
-  public void c(Object paramObject, int paramInt)
-  {
-  }
+  public abstract Object b(int paramInt);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.f.w
  * JD-Core Version:    0.6.2
  */

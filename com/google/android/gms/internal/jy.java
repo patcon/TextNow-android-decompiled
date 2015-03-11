@@ -1,18 +1,90 @@
 package com.google.android.gms.internal;
 
-import android.os.IInterface;
-import com.google.android.gms.common.data.DataHolder;
+import android.os.ParcelFileDescriptor;
+import java.io.ByteArrayOutputStream;
+import java.io.Closeable;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
-public abstract interface jy extends IInterface
+public final class jy
 {
-  public abstract void V(DataHolder paramDataHolder);
+  public static long a(InputStream paramInputStream, OutputStream paramOutputStream, boolean paramBoolean)
+  {
+    return a(paramInputStream, paramOutputStream, paramBoolean, 1024);
+  }
 
-  public abstract void W(DataHolder paramDataHolder);
+  public static long a(InputStream paramInputStream, OutputStream paramOutputStream, boolean paramBoolean, int paramInt)
+  {
+    byte[] arrayOfByte = new byte[paramInt];
+    long l = 0L;
+    try
+    {
+      while (true)
+      {
+        int i = paramInputStream.read(arrayOfByte, 0, arrayOfByte.length);
+        if (i == -1)
+          break;
+        l += i;
+        paramOutputStream.write(arrayOfByte, 0, i);
+      }
+    }
+    finally
+    {
+      if (paramBoolean)
+      {
+        b(paramInputStream);
+        b(paramOutputStream);
+      }
+    }
+    if (paramBoolean)
+    {
+      b(paramInputStream);
+      b(paramOutputStream);
+    }
+    return l;
+  }
 
-  public abstract void X(DataHolder paramDataHolder);
+  public static void a(ParcelFileDescriptor paramParcelFileDescriptor)
+  {
+    if (paramParcelFileDescriptor != null);
+    try
+    {
+      paramParcelFileDescriptor.close();
+      return;
+    }
+    catch (IOException localIOException)
+    {
+    }
+  }
+
+  public static byte[] a(InputStream paramInputStream, boolean paramBoolean)
+  {
+    ByteArrayOutputStream localByteArrayOutputStream = new ByteArrayOutputStream();
+    a(paramInputStream, localByteArrayOutputStream, paramBoolean);
+    return localByteArrayOutputStream.toByteArray();
+  }
+
+  public static void b(Closeable paramCloseable)
+  {
+    if (paramCloseable != null);
+    try
+    {
+      paramCloseable.close();
+      return;
+    }
+    catch (IOException localIOException)
+    {
+    }
+  }
+
+  public static byte[] d(InputStream paramInputStream)
+  {
+    return a(paramInputStream, true);
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.jy
  * JD-Core Version:    0.6.2
  */

@@ -10,7 +10,7 @@ public class Preferences$Key<Type> extends Preferences.ROKey<Type>
   public native void set(Type paramType);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     cz.acrobits.libsoftphone.Preferences.Key
  * JD-Core Version:    0.6.2
  */

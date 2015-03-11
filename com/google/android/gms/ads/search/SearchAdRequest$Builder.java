@@ -6,47 +6,47 @@ import android.os.Bundle;
 import com.google.android.gms.ads.mediation.MediationAdapter;
 import com.google.android.gms.ads.mediation.NetworkExtras;
 import com.google.android.gms.ads.mediation.customevent.CustomEvent;
-import com.google.android.gms.internal.at.a;
+import com.google.android.gms.internal.bg.a;
 
 public final class SearchAdRequest$Builder
 {
-  private final at.a kt = new at.a();
-  private int tc;
-  private int td;
-  private int te;
-  private int tf;
-  private int tg;
-  private int th;
-  private int ti = 0;
-  private int tj;
-  private String tk;
-  private int tl;
-  private String tm;
-  private int tn;
-  private int to;
-  private String tp;
+  private final bg.a le = new bg.a();
+  private int xl;
+  private int xm;
+  private int xn;
+  private int xo;
+  private int xp;
+  private int xq;
+  private int xr = 0;
+  private int xs;
+  private String xt;
+  private int xu;
+  private String xv;
+  private int xw;
+  private int xx;
+  private String xy;
 
   public final Builder addCustomEventExtrasBundle(Class<? extends CustomEvent> paramClass, Bundle paramBundle)
   {
-    this.kt.b(paramClass, paramBundle);
+    this.le.b(paramClass, paramBundle);
     return this;
   }
 
   public final Builder addNetworkExtras(NetworkExtras paramNetworkExtras)
   {
-    this.kt.a(paramNetworkExtras);
+    this.le.a(paramNetworkExtras);
     return this;
   }
 
   public final Builder addNetworkExtrasBundle(Class<? extends MediationAdapter> paramClass, Bundle paramBundle)
   {
-    this.kt.a(paramClass, paramBundle);
+    this.le.a(paramClass, paramBundle);
     return this;
   }
 
   public final Builder addTestDevice(String paramString)
   {
-    this.kt.h(paramString);
+    this.le.s(paramString);
     return this;
   }
 
@@ -57,100 +57,100 @@ public final class SearchAdRequest$Builder
 
   public final Builder setAnchorTextColor(int paramInt)
   {
-    this.tc = paramInt;
+    this.xl = paramInt;
     return this;
   }
 
   public final Builder setBackgroundColor(int paramInt)
   {
-    this.td = paramInt;
-    this.te = Color.argb(0, 0, 0, 0);
-    this.tf = Color.argb(0, 0, 0, 0);
+    this.xm = paramInt;
+    this.xn = Color.argb(0, 0, 0, 0);
+    this.xo = Color.argb(0, 0, 0, 0);
     return this;
   }
 
   public final Builder setBackgroundGradient(int paramInt1, int paramInt2)
   {
-    this.td = Color.argb(0, 0, 0, 0);
-    this.te = paramInt2;
-    this.tf = paramInt1;
+    this.xm = Color.argb(0, 0, 0, 0);
+    this.xn = paramInt2;
+    this.xo = paramInt1;
     return this;
   }
 
   public final Builder setBorderColor(int paramInt)
   {
-    this.tg = paramInt;
+    this.xp = paramInt;
     return this;
   }
 
   public final Builder setBorderThickness(int paramInt)
   {
-    this.th = paramInt;
+    this.xq = paramInt;
     return this;
   }
 
   public final Builder setBorderType(int paramInt)
   {
-    this.ti = paramInt;
+    this.xr = paramInt;
     return this;
   }
 
   public final Builder setCallButtonColor(int paramInt)
   {
-    this.tj = paramInt;
+    this.xs = paramInt;
     return this;
   }
 
   public final Builder setCustomChannels(String paramString)
   {
-    this.tk = paramString;
+    this.xt = paramString;
     return this;
   }
 
   public final Builder setDescriptionTextColor(int paramInt)
   {
-    this.tl = paramInt;
+    this.xu = paramInt;
     return this;
   }
 
   public final Builder setFontFace(String paramString)
   {
-    this.tm = paramString;
+    this.xv = paramString;
     return this;
   }
 
   public final Builder setHeaderTextColor(int paramInt)
   {
-    this.tn = paramInt;
+    this.xw = paramInt;
     return this;
   }
 
   public final Builder setHeaderTextSize(int paramInt)
   {
-    this.to = paramInt;
+    this.xx = paramInt;
     return this;
   }
 
   public final Builder setLocation(Location paramLocation)
   {
-    this.kt.a(paramLocation);
+    this.le.a(paramLocation);
     return this;
   }
 
   public final Builder setQuery(String paramString)
   {
-    this.tp = paramString;
+    this.xy = paramString;
     return this;
   }
 
   public final Builder tagForChildDirectedTreatment(boolean paramBoolean)
   {
-    this.kt.h(paramBoolean);
+    this.le.h(paramBoolean);
     return this;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.ads.search.SearchAdRequest.Builder
  * JD-Core Version:    0.6.2
  */

@@ -4,12 +4,12 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.Parcelable.Creator;
 import android.view.View.BaseSavedState;
-import textnow.d.a;
-import textnow.d.c;
+import textnow.c.b;
+import textnow.c.d;
 
 public class ViewPager$SavedState extends View.BaseSavedState
 {
-  public static final Parcelable.Creator<SavedState> CREATOR = a.a(new c()
+  public static final Parcelable.Creator<SavedState> CREATOR = b.a(new d()
   {
   });
   int a;
@@ -44,7 +44,7 @@ public class ViewPager$SavedState extends View.BaseSavedState
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.view.ViewPager.SavedState
  * JD-Core Version:    0.6.2
  */

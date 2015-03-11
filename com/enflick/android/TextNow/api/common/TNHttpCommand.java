@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
+import javax.net.ssl.SSLPeerUnverifiedException;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -30,15 +31,15 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import textnow.q.aa;
-import textnow.s.h;
-import textnow.s.i;
-import textnow.t.d;
-import textnow.t.e;
-import textnow.t.g;
-import textnow.u.r;
+import textnow.v.x;
+import textnow.x.h;
+import textnow.x.i;
+import textnow.y.d;
+import textnow.y.e;
+import textnow.y.g;
+import textnow.z.u;
 
-public abstract class TNHttpCommand extends textnow.s.c
+public abstract class TNHttpCommand extends textnow.x.c
 {
   private static final String TAG = "TNHttpCommand";
   private static final String USER_AGENT_FORMAT = "TextNow %1$s (%2$s; Android OS %3$s; %4$s)";
@@ -52,7 +53,7 @@ public abstract class TNHttpCommand extends textnow.s.c
   public static String buildUserAgent(Context paramContext)
   {
     Object[] arrayOfObject = new Object[4];
-    arrayOfObject[0] = textnow.q.b.a(paramContext);
+    arrayOfObject[0] = textnow.v.b.a(paramContext);
     arrayOfObject[1] = Build.MODEL;
     arrayOfObject[2] = Build.VERSION.RELEASE;
     arrayOfObject[3] = Locale.getDefault().toString();
@@ -66,7 +67,7 @@ public abstract class TNHttpCommand extends textnow.s.c
     Map localMap = localc.b();
     String str2 = a.a(this.mContext, localMap);
     String str3 = a.a(getMethod(), str1 + str2, localc.a());
-    return URI.create(aa.a + str1 + str2 + "&signature=" + str3);
+    return URI.create(x.a + str1 + str2 + "&signature=" + str3);
   }
 
   protected String getContentType()
@@ -99,6 +100,8 @@ public abstract class TNHttpCommand extends textnow.s.c
   {
     if (((paramException instanceof HttpHostConnectException)) || ((paramException instanceof UnknownHostException)))
       return "NO_NETWORK";
+    if ((paramException instanceof SSLPeerUnverifiedException))
+      return "CERT_ERROR";
     return super.getErrorResponse(paramException);
   }
 
@@ -256,19 +259,14 @@ public abstract class TNHttpCommand extends textnow.s.c
     }
   }
 
-  protected boolean isDebugLogOn()
-  {
-    return textnow.q.a.a;
-  }
-
   protected void onAfterExecute()
   {
     super.onAfterExecute();
     i locali = getResponse();
     long l = locali.f().getTime() - new Date().getTime();
-    r localr = new r(this.mContext);
-    localr.b(l);
-    localr.n();
+    u localu = new u(this.mContext);
+    localu.b(l);
+    localu.B();
     if (locali.e())
     {
       handleError(locali);
@@ -287,7 +285,7 @@ public abstract class TNHttpCommand extends textnow.s.c
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.api.common.TNHttpCommand
  * JD-Core Version:    0.6.2
  */

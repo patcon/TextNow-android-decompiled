@@ -5,48 +5,48 @@ import android.os.Bundle;
 import android.os.RemoteException;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
-import com.google.android.gms.internal.cm;
-import com.google.android.gms.internal.cn;
-import com.google.android.gms.internal.eu;
+import com.google.android.gms.internal.dr;
+import com.google.android.gms.internal.ds;
+import com.google.android.gms.internal.gs;
 
 public final class AdActivity extends Activity
 {
   public static final String CLASS_NAME = "com.google.android.gms.ads.AdActivity";
   public static final String SIMPLE_CLASS_NAME = "AdActivity";
-  private cn kr;
+  private ds lc;
 
-  private void S()
+  private void U()
   {
-    if (this.kr != null);
+    if (this.lc != null);
     try
     {
-      this.kr.S();
+      this.lc.U();
       return;
     }
     catch (RemoteException localRemoteException)
     {
-      eu.c("Could not forward setContentViewSet to ad overlay:", localRemoteException);
+      gs.d("Could not forward setContentViewSet to ad overlay:", localRemoteException);
     }
   }
 
   protected final void onCreate(Bundle paramBundle)
   {
     super.onCreate(paramBundle);
-    this.kr = cm.a(this);
-    if (this.kr == null)
+    this.lc = dr.b(this);
+    if (this.lc == null)
     {
-      eu.D("Could not create ad overlay.");
+      gs.W("Could not create ad overlay.");
       finish();
       return;
     }
     try
     {
-      this.kr.onCreate(paramBundle);
+      this.lc.onCreate(paramBundle);
       return;
     }
     catch (RemoteException localRemoteException)
     {
-      eu.c("Could not forward onCreate to ad overlay:", localRemoteException);
+      gs.d("Could not forward onCreate to ad overlay:", localRemoteException);
       finish();
     }
   }
@@ -55,15 +55,15 @@ public final class AdActivity extends Activity
   {
     try
     {
-      if (this.kr != null)
-        this.kr.onDestroy();
+      if (this.lc != null)
+        this.lc.onDestroy();
       super.onDestroy();
       return;
     }
     catch (RemoteException localRemoteException)
     {
       while (true)
-        eu.c("Could not forward onDestroy to ad overlay:", localRemoteException);
+        gs.d("Could not forward onDestroy to ad overlay:", localRemoteException);
     }
   }
 
@@ -71,8 +71,8 @@ public final class AdActivity extends Activity
   {
     try
     {
-      if (this.kr != null)
-        this.kr.onPause();
+      if (this.lc != null)
+        this.lc.onPause();
       super.onPause();
       return;
     }
@@ -80,7 +80,7 @@ public final class AdActivity extends Activity
     {
       while (true)
       {
-        eu.c("Could not forward onPause to ad overlay:", localRemoteException);
+        gs.d("Could not forward onPause to ad overlay:", localRemoteException);
         finish();
       }
     }
@@ -91,13 +91,13 @@ public final class AdActivity extends Activity
     super.onRestart();
     try
     {
-      if (this.kr != null)
-        this.kr.onRestart();
+      if (this.lc != null)
+        this.lc.onRestart();
       return;
     }
     catch (RemoteException localRemoteException)
     {
-      eu.c("Could not forward onRestart to ad overlay:", localRemoteException);
+      gs.d("Could not forward onRestart to ad overlay:", localRemoteException);
       finish();
     }
   }
@@ -107,13 +107,13 @@ public final class AdActivity extends Activity
     super.onResume();
     try
     {
-      if (this.kr != null)
-        this.kr.onResume();
+      if (this.lc != null)
+        this.lc.onResume();
       return;
     }
     catch (RemoteException localRemoteException)
     {
-      eu.c("Could not forward onResume to ad overlay:", localRemoteException);
+      gs.d("Could not forward onResume to ad overlay:", localRemoteException);
       finish();
     }
   }
@@ -122,8 +122,8 @@ public final class AdActivity extends Activity
   {
     try
     {
-      if (this.kr != null)
-        this.kr.onSaveInstanceState(paramBundle);
+      if (this.lc != null)
+        this.lc.onSaveInstanceState(paramBundle);
       super.onSaveInstanceState(paramBundle);
       return;
     }
@@ -131,7 +131,7 @@ public final class AdActivity extends Activity
     {
       while (true)
       {
-        eu.c("Could not forward onSaveInstanceState to ad overlay:", localRemoteException);
+        gs.d("Could not forward onSaveInstanceState to ad overlay:", localRemoteException);
         finish();
       }
     }
@@ -142,13 +142,13 @@ public final class AdActivity extends Activity
     super.onStart();
     try
     {
-      if (this.kr != null)
-        this.kr.onStart();
+      if (this.lc != null)
+        this.lc.onStart();
       return;
     }
     catch (RemoteException localRemoteException)
     {
-      eu.c("Could not forward onStart to ad overlay:", localRemoteException);
+      gs.d("Could not forward onStart to ad overlay:", localRemoteException);
       finish();
     }
   }
@@ -157,8 +157,8 @@ public final class AdActivity extends Activity
   {
     try
     {
-      if (this.kr != null)
-        this.kr.onStop();
+      if (this.lc != null)
+        this.lc.onStop();
       super.onStop();
       return;
     }
@@ -166,7 +166,7 @@ public final class AdActivity extends Activity
     {
       while (true)
       {
-        eu.c("Could not forward onStop to ad overlay:", localRemoteException);
+        gs.d("Could not forward onStop to ad overlay:", localRemoteException);
         finish();
       }
     }
@@ -175,23 +175,23 @@ public final class AdActivity extends Activity
   public final void setContentView(int paramInt)
   {
     super.setContentView(paramInt);
-    S();
+    U();
   }
 
   public final void setContentView(View paramView)
   {
     super.setContentView(paramView);
-    S();
+    U();
   }
 
   public final void setContentView(View paramView, ViewGroup.LayoutParams paramLayoutParams)
   {
     super.setContentView(paramView, paramLayoutParams);
-    S();
+    U();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.ads.AdActivity
  * JD-Core Version:    0.6.2
  */

@@ -1,371 +1,134 @@
 package textnow.al;
 
-import java.io.Closeable;
-import java.io.Flushable;
-import java.io.IOException;
-import java.io.Writer;
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Matrix;
+import android.graphics.drawable.Drawable;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
+import com.handmark.pulltorefresh.library.e;
 
-public class c
-  implements Closeable, Flushable
+public final class c extends FrameLayout
+  implements Animation.AnimationListener
 {
-  private static final String[] a = new String[''];
-  private static final String[] b;
-  private final Writer c;
-  private int[] d = new int[32];
-  private int e = 0;
-  private String f;
-  private String g;
-  private boolean h;
-  private boolean i;
-  private String j;
-  private boolean k;
+  private Animation a;
+  private Animation b;
+  private ImageView c;
+  private final Animation d;
+  private final Animation e;
 
-  static
+  public c(Context paramContext, e parame)
   {
-    for (int m = 0; m <= 31; m++)
+    super(paramContext);
+    this.c = new ImageView(paramContext);
+    Drawable localDrawable = getResources().getDrawable(2130837997);
+    this.c.setImageDrawable(localDrawable);
+    int i = getResources().getDimensionPixelSize(2131165260);
+    this.c.setPadding(i, i, i, i);
+    addView(this.c);
+    int j;
+    int k;
+    switch (1.a[parame.ordinal()])
     {
-      String[] arrayOfString2 = a;
-      Object[] arrayOfObject = new Object[1];
-      arrayOfObject[0] = Integer.valueOf(m);
-      arrayOfString2[m] = String.format("\\u%04x", arrayOfObject);
-    }
-    a[34] = "\\\"";
-    a[92] = "\\\\";
-    a[9] = "\\t";
-    a[8] = "\\b";
-    a[10] = "\\n";
-    a[13] = "\\r";
-    a[12] = "\\f";
-    String[] arrayOfString1 = (String[])a.clone();
-    b = arrayOfString1;
-    arrayOfString1[60] = "\\u003c";
-    b[62] = "\\u003e";
-    b[38] = "\\u0026";
-    b[61] = "\\u003d";
-    b[39] = "\\u0027";
-  }
-
-  public c(Writer paramWriter)
-  {
-    a(6);
-    this.g = ":";
-    this.k = true;
-    if (paramWriter == null)
-      throw new NullPointerException("out == null");
-    this.c = paramWriter;
-  }
-
-  private int a()
-  {
-    if (this.e == 0)
-      throw new IllegalStateException("JsonWriter is closed.");
-    return this.d[(-1 + this.e)];
-  }
-
-  private c a(int paramInt1, int paramInt2, String paramString)
-  {
-    int m = a();
-    if ((m != paramInt2) && (m != paramInt1))
-      throw new IllegalStateException("Nesting problem.");
-    if (this.j != null)
-      throw new IllegalStateException("Dangling name: " + this.j);
-    this.e = (-1 + this.e);
-    if (m == paramInt2)
-      k();
-    this.c.write(paramString);
-    return this;
-  }
-
-  private c a(int paramInt, String paramString)
-  {
-    e(true);
-    a(paramInt);
-    this.c.write(paramString);
-    return this;
-  }
-
-  private void a(int paramInt)
-  {
-    if (this.e == this.d.length)
-    {
-      int[] arrayOfInt2 = new int[2 * this.e];
-      System.arraycopy(this.d, 0, arrayOfInt2, 0, this.e);
-      this.d = arrayOfInt2;
-    }
-    int[] arrayOfInt1 = this.d;
-    int m = this.e;
-    this.e = (m + 1);
-    arrayOfInt1[m] = paramInt;
-  }
-
-  private void b(int paramInt)
-  {
-    this.d[(-1 + this.e)] = paramInt;
-  }
-
-  private void d(String paramString)
-  {
-    int m = 0;
-    if (this.i);
-    int n;
-    int i1;
-    int i2;
-    for (String[] arrayOfString = b; ; arrayOfString = a)
-    {
-      this.c.write("\"");
-      n = paramString.length();
-      for (i1 = 0; ; i1++)
-      {
-        if (i1 >= n)
-          break label141;
-        i2 = paramString.charAt(i1);
-        if (i2 >= 128)
-          break;
-        str = arrayOfString[i2];
-        if (str != null)
-          break label90;
-      }
-    }
-    if (i2 == 8232);
-    for (String str = "\\u2028"; ; str = "\\u2029")
-    {
-      label90: if (m < i1)
-        this.c.write(paramString, m, i1 - m);
-      this.c.write(str);
-      m = i1 + 1;
-      break;
-      if (i2 != 8233)
-        break;
-    }
-    label141: if (m < n)
-      this.c.write(paramString, m, n - m);
-    this.c.write("\"");
-  }
-
-  private void e(boolean paramBoolean)
-  {
-    switch (a())
-    {
-    case 3:
-    case 5:
     default:
-      throw new IllegalStateException("Nesting problem.");
-    case 7:
-      if (!this.h)
-        throw new IllegalStateException("JSON must have only one top-level value.");
-    case 6:
-      if ((!this.h) && (!paramBoolean))
-        throw new IllegalStateException("JSON must start with an array or an object.");
-      b(7);
-      return;
+      j = 2130968594;
+      k = 2130968600;
+      setBackgroundResource(2130837999);
     case 1:
-      b(2);
-      k();
-      return;
-    case 2:
-      this.c.append(',');
-      k();
-      return;
-    case 4:
     }
-    this.c.append(this.g);
-    b(5);
-  }
-
-  private void j()
-  {
-    int m;
-    if (this.j != null)
-    {
-      m = a();
-      if (m != 5)
-        break label49;
-      this.c.write(44);
-    }
-    label49: 
-    while (m == 3)
-    {
-      k();
-      b(4);
-      d(this.j);
-      this.j = null;
-      return;
-    }
-    throw new IllegalStateException("Nesting problem.");
-  }
-
-  private void k()
-  {
-    if (this.f == null);
     while (true)
     {
+      this.a = AnimationUtils.loadAnimation(paramContext, j);
+      this.a.setAnimationListener(this);
+      this.b = AnimationUtils.loadAnimation(paramContext, k);
+      this.b.setAnimationListener(this);
+      LinearInterpolator localLinearInterpolator = new LinearInterpolator();
+      this.d = new RotateAnimation(0.0F, -180.0F, 1, 0.5F, 1, 0.5F);
+      this.d.setInterpolator(localLinearInterpolator);
+      this.d.setDuration(150L);
+      this.d.setFillAfter(true);
+      this.e = new RotateAnimation(-180.0F, 0.0F, 1, 0.5F, 1, 0.5F);
+      this.e.setInterpolator(localLinearInterpolator);
+      this.e.setDuration(150L);
+      this.e.setFillAfter(true);
       return;
-      this.c.write("\n");
-      int m = 1;
-      int n = this.e;
-      while (m < n)
-      {
-        this.c.write(this.f);
-        m++;
-      }
+      j = 2130968593;
+      k = 2130968599;
+      setBackgroundResource(2130837998);
+      this.c.setScaleType(ImageView.ScaleType.MATRIX);
+      Matrix localMatrix = new Matrix();
+      localMatrix.setRotate(180.0F, localDrawable.getIntrinsicWidth() / 2.0F, localDrawable.getIntrinsicHeight() / 2.0F);
+      this.c.setImageMatrix(localMatrix);
     }
   }
 
-  public c a(long paramLong)
+  public final boolean a()
   {
-    j();
-    e(false);
-    this.c.write(Long.toString(paramLong));
-    return this;
-  }
-
-  public c a(Number paramNumber)
-  {
-    if (paramNumber == null)
-      return f();
-    j();
-    String str = paramNumber.toString();
-    if ((!this.h) && ((str.equals("-Infinity")) || (str.equals("Infinity")) || (str.equals("NaN"))))
-      throw new IllegalArgumentException("Numeric values must be finite, but was " + paramNumber);
-    e(false);
-    this.c.append(str);
-    return this;
-  }
-
-  public c a(String paramString)
-  {
-    if (paramString == null)
-      throw new NullPointerException("name == null");
-    if (this.j != null)
-      throw new IllegalStateException();
-    if (this.e == 0)
-      throw new IllegalStateException("JsonWriter is closed.");
-    this.j = paramString;
-    return this;
-  }
-
-  public c a(boolean paramBoolean)
-  {
-    j();
-    e(false);
-    Writer localWriter = this.c;
-    if (paramBoolean);
-    for (String str = "true"; ; str = "false")
+    Animation localAnimation = getAnimation();
+    if (localAnimation != null)
+      if (this.a != localAnimation);
+    while (getVisibility() == 0)
     {
-      localWriter.write(str);
-      return this;
+      return true;
+      return false;
     }
+    return false;
   }
 
-  public c b()
+  public final void b()
   {
-    j();
-    return a(1, "[");
+    startAnimation(this.b);
   }
 
-  public c b(String paramString)
+  public final void c()
   {
-    if (paramString == null)
-      return f();
-    j();
-    e(false);
-    d(paramString);
-    return this;
+    this.c.clearAnimation();
+    startAnimation(this.a);
   }
 
-  public final void b(boolean paramBoolean)
+  public final void d()
   {
-    this.h = paramBoolean;
+    this.c.startAnimation(this.d);
   }
 
-  public c c()
+  public final void e()
   {
-    return a(1, 2, "]");
+    this.c.startAnimation(this.e);
   }
 
-  public final void c(String paramString)
+  public final void onAnimationEnd(Animation paramAnimation)
   {
-    if (paramString.length() == 0)
+    if (paramAnimation == this.b)
     {
-      this.f = null;
-      this.g = ":";
+      this.c.clearAnimation();
+      setVisibility(8);
+    }
+    while (true)
+    {
+      clearAnimation();
       return;
+      if (paramAnimation == this.a)
+        setVisibility(0);
     }
-    this.f = paramString;
-    this.g = ": ";
   }
 
-  public final void c(boolean paramBoolean)
+  public final void onAnimationRepeat(Animation paramAnimation)
   {
-    this.i = paramBoolean;
   }
 
-  public void close()
+  public final void onAnimationStart(Animation paramAnimation)
   {
-    this.c.close();
-    int m = this.e;
-    if ((m > 1) || ((m == 1) && (this.d[(m - 1)] != 7)))
-      throw new IOException("Incomplete document");
-    this.e = 0;
-  }
-
-  public c d()
-  {
-    j();
-    return a(3, "{");
-  }
-
-  public final void d(boolean paramBoolean)
-  {
-    this.k = paramBoolean;
-  }
-
-  public c e()
-  {
-    return a(3, 5, "}");
-  }
-
-  public c f()
-  {
-    if (this.j != null)
-    {
-      if (this.k)
-        j();
-    }
-    else
-    {
-      e(false);
-      this.c.write("null");
-      return this;
-    }
-    this.j = null;
-    return this;
-  }
-
-  public void flush()
-  {
-    if (this.e == 0)
-      throw new IllegalStateException("JsonWriter is closed.");
-    this.c.flush();
-  }
-
-  public final boolean g()
-  {
-    return this.h;
-  }
-
-  public final boolean h()
-  {
-    return this.i;
-  }
-
-  public final boolean i()
-  {
-    return this.k;
+    setVisibility(0);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.al.c
  * JD-Core Version:    0.6.2
  */

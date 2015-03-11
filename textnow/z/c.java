@@ -1,20 +1,44 @@
 package textnow.z;
 
-import java.lang.reflect.Field;
-import textnow.ab.a;
+import android.content.Context;
+import android.text.TextUtils;
+import java.io.Serializable;
+import org.apache.http.entity.mime.content.ContentBody;
+import textnow.v.g;
 
-public final class c
+public abstract class c
+  implements Serializable
 {
-  private final Field a;
+  protected final String a;
 
-  public c(Field paramField)
+  protected c(String paramString)
   {
-    a.a(paramField);
-    this.a = paramField;
+    this.a = paramString;
   }
+
+  public static c a(Context paramContext, String paramString)
+  {
+    if (TextUtils.isEmpty(paramString))
+      return null;
+    if (paramString.startsWith("content://"))
+    {
+      String str = g.a(paramContext, paramString);
+      if ((TextUtils.isEmpty(str)) || (str.toLowerCase().startsWith("http")))
+        return new w(paramString);
+      return new a(paramString);
+    }
+    return new b(paramString);
+  }
+
+  public String a()
+  {
+    return this.a;
+  }
+
+  public abstract ContentBody b(Context paramContext);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.z.c
  * JD-Core Version:    0.6.2
  */

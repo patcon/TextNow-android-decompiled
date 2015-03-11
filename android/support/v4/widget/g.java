@@ -1,19 +1,27 @@
 package android.support.v4.widget;
 
-import android.database.Cursor;
+import android.database.ContentObserver;
+import android.os.Handler;
 
-abstract interface g
+final class g extends ContentObserver
 {
-  public abstract Cursor a();
+  public g(f paramf)
+  {
+    super(new Handler());
+  }
 
-  public abstract Cursor a(CharSequence paramCharSequence);
+  public final boolean deliverSelfNotifications()
+  {
+    return true;
+  }
 
-  public abstract void a(Cursor paramCursor);
-
-  public abstract CharSequence c(Cursor paramCursor);
+  public final void onChange(boolean paramBoolean)
+  {
+    this.a.b();
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.widget.g
  * JD-Core Version:    0.6.2
  */

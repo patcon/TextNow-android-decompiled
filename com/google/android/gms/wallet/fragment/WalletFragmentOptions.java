@@ -12,40 +12,40 @@ public final class WalletFragmentOptions
   implements SafeParcelable
 {
   public static final Parcelable.Creator<WalletFragmentOptions> CREATOR = new b();
-  private int Hy;
-  private WalletFragmentStyle akC;
-  private int akb;
+  final int BR;
+  private int MV;
+  private int atL;
+  private WalletFragmentStyle aum;
   private int mTheme;
-  final int xM;
 
   private WalletFragmentOptions()
   {
-    this.xM = 1;
+    this.BR = 1;
   }
 
   WalletFragmentOptions(int paramInt1, int paramInt2, int paramInt3, WalletFragmentStyle paramWalletFragmentStyle, int paramInt4)
   {
-    this.xM = paramInt1;
-    this.akb = paramInt2;
+    this.BR = paramInt1;
+    this.atL = paramInt2;
     this.mTheme = paramInt3;
-    this.akC = paramWalletFragmentStyle;
-    this.Hy = paramInt4;
+    this.aum = paramWalletFragmentStyle;
+    this.MV = paramInt4;
   }
 
   public static WalletFragmentOptions a(Context paramContext, AttributeSet paramAttributeSet)
   {
     TypedArray localTypedArray = paramContext.obtainStyledAttributes(paramAttributeSet, R.styleable.WalletFragmentOptions);
-    int i = localTypedArray.getInt(0, 0);
-    int j = localTypedArray.getInt(1, 1);
-    int k = localTypedArray.getResourceId(2, 0);
-    int m = localTypedArray.getInt(3, 1);
+    int i = localTypedArray.getInt(R.styleable.WalletFragmentOptions_appTheme, 0);
+    int j = localTypedArray.getInt(R.styleable.WalletFragmentOptions_environment, 1);
+    int k = localTypedArray.getResourceId(R.styleable.WalletFragmentOptions_fragmentStyle, 0);
+    int m = localTypedArray.getInt(R.styleable.WalletFragmentOptions_fragmentMode, 1);
     localTypedArray.recycle();
     WalletFragmentOptions localWalletFragmentOptions = new WalletFragmentOptions();
     localWalletFragmentOptions.mTheme = i;
-    localWalletFragmentOptions.akb = j;
-    localWalletFragmentOptions.akC = new WalletFragmentStyle().setStyleResourceId(k);
-    localWalletFragmentOptions.akC.Q(paramContext);
-    localWalletFragmentOptions.Hy = m;
+    localWalletFragmentOptions.atL = j;
+    localWalletFragmentOptions.aum = new WalletFragmentStyle().setStyleResourceId(k);
+    localWalletFragmentOptions.aum.aa(paramContext);
+    localWalletFragmentOptions.MV = m;
     return localWalletFragmentOptions;
   }
 
@@ -56,10 +56,10 @@ public final class WalletFragmentOptions
     return new WalletFragmentOptions.Builder(localWalletFragmentOptions, null);
   }
 
-  public final void Q(Context paramContext)
+  public final void aa(Context paramContext)
   {
-    if (this.akC != null)
-      this.akC.Q(paramContext);
+    if (this.aum != null)
+      this.aum.aa(paramContext);
   }
 
   public final int describeContents()
@@ -69,17 +69,17 @@ public final class WalletFragmentOptions
 
   public final int getEnvironment()
   {
-    return this.akb;
+    return this.atL;
   }
 
   public final WalletFragmentStyle getFragmentStyle()
   {
-    return this.akC;
+    return this.aum;
   }
 
   public final int getMode()
   {
-    return this.Hy;
+    return this.MV;
   }
 
   public final int getTheme()
@@ -93,7 +93,7 @@ public final class WalletFragmentOptions
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.fragment.WalletFragmentOptions
  * JD-Core Version:    0.6.2
  */

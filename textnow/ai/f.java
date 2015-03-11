@@ -1,221 +1,185 @@
 package textnow.ai;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.EnumSet;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
-import java.util.SortedMap;
-import java.util.SortedSet;
-import java.util.TreeMap;
-import java.util.TreeSet;
-import textnow.ag.g;
-import textnow.ag.k;
-import textnow.ak.a;
+import java.util.List;
+import textnow.af.j;
+import textnow.af.m;
+import textnow.af.o;
+import textnow.af.p;
+import textnow.af.r;
+import textnow.ak.c;
 
-public final class f
+public final class f extends c
 {
-  private final Map<Type, g<?>> a;
-
-  public f(Map<Type, g<?>> paramMap)
+  private static final Writer a = new Writer()
   {
-    this.a = paramMap;
+    public final void close()
+    {
+      throw new AssertionError();
+    }
+
+    public final void flush()
+    {
+      throw new AssertionError();
+    }
+
+    public final void write(char[] paramAnonymousArrayOfChar, int paramAnonymousInt1, int paramAnonymousInt2)
+    {
+      throw new AssertionError();
+    }
+  };
+  private static final r b = new r("closed");
+  private final List<m> c = new ArrayList();
+  private String d;
+  private m e = o.a;
+
+  public f()
+  {
+    super(a);
   }
 
-  private <T> q<T> a(Class<? super T> paramClass)
+  private void a(m paramm)
   {
-    try
+    if (this.d != null)
     {
-      final Constructor localConstructor = paramClass.getDeclaredConstructor(new Class[0]);
-      if (!localConstructor.isAccessible())
-        localConstructor.setAccessible(true);
-      q local6 = new q()
-      {
-        public final T a()
-        {
-          try
-          {
-            Object localObject = localConstructor.newInstance(null);
-            return localObject;
-          }
-          catch (InstantiationException localInstantiationException)
-          {
-            throw new RuntimeException("Failed to invoke " + localConstructor + " with no args", localInstantiationException);
-          }
-          catch (InvocationTargetException localInvocationTargetException)
-          {
-            throw new RuntimeException("Failed to invoke " + localConstructor + " with no args", localInvocationTargetException.getTargetException());
-          }
-          catch (IllegalAccessException localIllegalAccessException)
-          {
-            throw new AssertionError(localIllegalAccessException);
-          }
-        }
-      };
-      return local6;
+      if ((!paramm.k()) || (i()))
+        ((p)j()).a(this.d, paramm);
+      this.d = null;
+      return;
     }
-    catch (NoSuchMethodException localNoSuchMethodException)
+    if (this.c.isEmpty())
     {
+      this.e = paramm;
+      return;
     }
-    return null;
+    m localm = j();
+    if ((localm instanceof j))
+    {
+      ((j)localm).a(paramm);
+      return;
+    }
+    throw new IllegalStateException();
   }
 
-  public final <T> q<T> a(a<T> parama)
+  private m j()
   {
-    final Type localType = parama.b();
-    final Class localClass = parama.a();
-    final g localg1 = (g)this.a.get(localType);
-    Object localObject;
-    if (localg1 != null)
-      localObject = new q()
-      {
-        public final T a()
-        {
-          g localg = localg1;
-          return localg.a();
-        }
-      };
-    while (true)
-    {
-      return localObject;
-      final g localg2 = (g)this.a.get(localClass);
-      if (localg2 != null)
-        return new q()
-        {
-          public final T a()
-          {
-            g localg = localg2;
-            return localg.a();
-          }
-        };
-      localObject = a(localClass);
-      if (localObject == null)
-      {
-        if (Collection.class.isAssignableFrom(localClass))
-          if (SortedSet.class.isAssignableFrom(localClass))
-            localObject = new q()
-            {
-              public final T a()
-              {
-                return new TreeSet();
-              }
-            };
-        while (localObject == null)
-        {
-          return new q()
-          {
-            private final v d = v.a();
-
-            public final T a()
-            {
-              try
-              {
-                Object localObject = this.d.a(localClass);
-                return localObject;
-              }
-              catch (Exception localException)
-              {
-                throw new RuntimeException("Unable to invoke no-args constructor for " + localType + ". " + "Register an InstanceCreator with Gson for this type may fix this problem.", localException);
-              }
-            }
-          };
-          if (EnumSet.class.isAssignableFrom(localClass))
-          {
-            localObject = new q()
-            {
-              public final T a()
-              {
-                if ((localType instanceof ParameterizedType))
-                {
-                  Type localType = ((ParameterizedType)localType).getActualTypeArguments()[0];
-                  if ((localType instanceof Class))
-                    return EnumSet.noneOf((Class)localType);
-                  throw new k("Invalid EnumSet type: " + localType.toString());
-                }
-                throw new k("Invalid EnumSet type: " + localType.toString());
-              }
-            };
-          }
-          else if (Set.class.isAssignableFrom(localClass))
-          {
-            localObject = new q()
-            {
-              public final T a()
-              {
-                return new LinkedHashSet();
-              }
-            };
-          }
-          else if (Queue.class.isAssignableFrom(localClass))
-          {
-            localObject = new q()
-            {
-              public final T a()
-              {
-                return new LinkedList();
-              }
-            };
-          }
-          else
-          {
-            localObject = new q()
-            {
-              public final T a()
-              {
-                return new ArrayList();
-              }
-            };
-            continue;
-            if (Map.class.isAssignableFrom(localClass))
-            {
-              if (SortedMap.class.isAssignableFrom(localClass))
-                localObject = new q()
-                {
-                  public final T a()
-                  {
-                    return new TreeMap();
-                  }
-                };
-              else if (((localType instanceof ParameterizedType)) && (!String.class.isAssignableFrom(a.a(((ParameterizedType)localType).getActualTypeArguments()[0]).a())))
-                localObject = new q()
-                {
-                  public final T a()
-                  {
-                    return new LinkedHashMap();
-                  }
-                };
-              else
-                localObject = new q()
-                {
-                  public final T a()
-                  {
-                    return new j();
-                  }
-                };
-            }
-            else
-              localObject = null;
-          }
-        }
-      }
-    }
+    return (m)this.c.get(-1 + this.c.size());
   }
 
-  public final String toString()
+  public final m a()
   {
-    return this.a.toString();
+    if (!this.c.isEmpty())
+      throw new IllegalStateException("Expected one JSON element but was " + this.c);
+    return this.e;
+  }
+
+  public final c a(long paramLong)
+  {
+    a(new r(Long.valueOf(paramLong)));
+    return this;
+  }
+
+  public final c a(Number paramNumber)
+  {
+    if (paramNumber == null)
+      return f();
+    if (!g())
+    {
+      double d1 = paramNumber.doubleValue();
+      if ((Double.isNaN(d1)) || (Double.isInfinite(d1)))
+        throw new IllegalArgumentException("JSON forbids NaN and infinities: " + paramNumber);
+    }
+    a(new r(paramNumber));
+    return this;
+  }
+
+  public final c a(String paramString)
+  {
+    if ((this.c.isEmpty()) || (this.d != null))
+      throw new IllegalStateException();
+    if ((j() instanceof p))
+    {
+      this.d = paramString;
+      return this;
+    }
+    throw new IllegalStateException();
+  }
+
+  public final c a(boolean paramBoolean)
+  {
+    a(new r(Boolean.valueOf(paramBoolean)));
+    return this;
+  }
+
+  public final c b()
+  {
+    j localj = new j();
+    a(localj);
+    this.c.add(localj);
+    return this;
+  }
+
+  public final c b(String paramString)
+  {
+    if (paramString == null)
+      return f();
+    a(new r(paramString));
+    return this;
+  }
+
+  public final c c()
+  {
+    if ((this.c.isEmpty()) || (this.d != null))
+      throw new IllegalStateException();
+    if ((j() instanceof j))
+    {
+      this.c.remove(-1 + this.c.size());
+      return this;
+    }
+    throw new IllegalStateException();
+  }
+
+  public final void close()
+  {
+    if (!this.c.isEmpty())
+      throw new IOException("Incomplete document");
+    this.c.add(b);
+  }
+
+  public final c d()
+  {
+    p localp = new p();
+    a(localp);
+    this.c.add(localp);
+    return this;
+  }
+
+  public final c e()
+  {
+    if ((this.c.isEmpty()) || (this.d != null))
+      throw new IllegalStateException();
+    if ((j() instanceof p))
+    {
+      this.c.remove(-1 + this.c.size());
+      return this;
+    }
+    throw new IllegalStateException();
+  }
+
+  public final c f()
+  {
+    a(o.a);
+    return this;
+  }
+
+  public final void flush()
+  {
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.ai.f
  * JD-Core Version:    0.6.2
  */

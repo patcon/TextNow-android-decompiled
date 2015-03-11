@@ -6,11 +6,11 @@ import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.os.Bundle;
-import com.google.android.gms.internal.hm;
+import com.google.android.gms.common.internal.o;
 
 public class ErrorDialogFragment extends DialogFragment
 {
-  private DialogInterface.OnCancelListener CU = null;
+  private DialogInterface.OnCancelListener HG = null;
   private Dialog mDialog = null;
 
   public static ErrorDialogFragment newInstance(Dialog paramDialog)
@@ -21,19 +21,19 @@ public class ErrorDialogFragment extends DialogFragment
   public static ErrorDialogFragment newInstance(Dialog paramDialog, DialogInterface.OnCancelListener paramOnCancelListener)
   {
     ErrorDialogFragment localErrorDialogFragment = new ErrorDialogFragment();
-    Dialog localDialog = (Dialog)hm.b(paramDialog, "Cannot display null dialog");
+    Dialog localDialog = (Dialog)o.b(paramDialog, "Cannot display null dialog");
     localDialog.setOnCancelListener(null);
     localDialog.setOnDismissListener(null);
     localErrorDialogFragment.mDialog = localDialog;
     if (paramOnCancelListener != null)
-      localErrorDialogFragment.CU = paramOnCancelListener;
+      localErrorDialogFragment.HG = paramOnCancelListener;
     return localErrorDialogFragment;
   }
 
   public void onCancel(DialogInterface paramDialogInterface)
   {
-    if (this.CU != null)
-      this.CU.onCancel(paramDialogInterface);
+    if (this.HG != null)
+      this.HG.onCancel(paramDialogInterface);
   }
 
   public Dialog onCreateDialog(Bundle paramBundle)
@@ -49,7 +49,7 @@ public class ErrorDialogFragment extends DialogFragment
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.common.ErrorDialogFragment
  * JD-Core Version:    0.6.2
  */

@@ -5,7 +5,7 @@ import android.os.Handler;
 import android.os.SystemClock;
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
-import textnow.e.n;
+import textnow.e.q;
 
 public abstract class a<D> extends j<D>
 {
@@ -113,9 +113,9 @@ public abstract class a<D> extends j<D>
     {
       paramPrintWriter.print(paramString);
       paramPrintWriter.print("mUpdateThrottle=");
-      n.a(this.c, paramPrintWriter);
+      q.a(this.c, paramPrintWriter);
       paramPrintWriter.print(" mLastLoadCompleteTime=");
-      n.a(this.d, SystemClock.uptimeMillis(), paramPrintWriter);
+      q.a(this.d, SystemClock.uptimeMillis(), paramPrintWriter);
       paramPrintWriter.println();
     }
   }
@@ -129,7 +129,7 @@ public abstract class a<D> extends j<D>
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.content.a
  * JD-Core Version:    0.6.2
  */

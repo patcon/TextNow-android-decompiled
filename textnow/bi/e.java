@@ -1,110 +1,75 @@
 package textnow.bi;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.os.Build.VERSION;
+import java.io.PrintStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public final class e
+  implements m
 {
-  private SharedPreferences a;
-  private SharedPreferences.Editor b;
-  private SharedPreferences c;
-  private SharedPreferences.Editor d;
-
-  public static e a()
+  private void a(Map<String, List<String>> paramMap)
   {
-    return f.a;
-  }
-
-  public static void a(SharedPreferences.Editor paramEditor)
-  {
-    if (b().booleanValue())
+    if (paramMap != null)
     {
-      paramEditor.apply();
-      return;
-    }
-    paramEditor.commit();
-  }
-
-  private static Boolean b()
-  {
-    try
-    {
-      if (Build.VERSION.SDK_INT >= 9);
-      for (boolean bool = true; ; bool = false)
+      Iterator localIterator1 = paramMap.keySet().iterator();
+      while (localIterator1.hasNext())
       {
-        Boolean localBoolean = Boolean.valueOf(bool);
-        return localBoolean;
-      }
-    }
-    catch (NoClassDefFoundError localNoClassDefFoundError)
-    {
-    }
-    return Boolean.valueOf(false);
-  }
-
-  public final String a(Context paramContext)
-  {
-    if (paramContext == null);
-    do
-    {
-      return null;
-      this.a = paramContext.getSharedPreferences("net.hockeyapp.android.prefs_feedback_token", 0);
-    }
-    while (this.a == null);
-    return this.a.getString("net.hockeyapp.android.prefs_key_feedback_token", null);
-  }
-
-  public final void a(Context paramContext, String paramString)
-  {
-    if (paramContext != null)
-    {
-      this.a = paramContext.getSharedPreferences("net.hockeyapp.android.prefs_feedback_token", 0);
-      if (this.a != null)
-      {
-        this.b = this.a.edit();
-        this.b.putString("net.hockeyapp.android.prefs_key_feedback_token", paramString);
-        a(this.b);
+        String str1 = (String)localIterator1.next();
+        Iterator localIterator2 = ((List)paramMap.get(str1)).iterator();
+        while (localIterator2.hasNext())
+        {
+          String str2 = (String)localIterator2.next();
+          String str3 = str1 + ":" + str2;
+          System.out.println(str3);
+        }
       }
     }
   }
 
-  public final void a(Context paramContext, String paramString1, String paramString2, String paramString3)
+  public final void a(String paramString)
   {
-    if (paramContext != null)
+    System.out.println(paramString);
+  }
+
+  public final void a(HttpURLConnection paramHttpURLConnection, Object paramObject)
+  {
+    System.out.println("=== HTTP Request ===");
+    String str1 = paramHttpURLConnection.getRequestMethod() + " " + paramHttpURLConnection.getURL().toString();
+    System.out.println(str1);
+    if ((paramObject instanceof String))
     {
-      this.c = paramContext.getSharedPreferences("net.hockeyapp.android.prefs_name_email", 0);
-      if (this.c != null)
-      {
-        this.d = this.c.edit();
-        if ((paramString1 != null) && (paramString2 != null) && (paramString3 != null))
-          break label69;
-        this.d.putString("net.hockeyapp.android.prefs_key_name_email", null);
-      }
+      String str2 = "Content: " + (String)paramObject;
+      System.out.println(str2);
     }
-    while (true)
+    a(paramHttpURLConnection.getRequestProperties());
+  }
+
+  public final void a(j paramj)
+  {
+    if (paramj != null)
     {
-      a(this.d);
-      return;
-      label69: this.d.putString("net.hockeyapp.android.prefs_key_name_email", String.format("%s|%s|%s", new Object[] { paramString1, paramString2, paramString3 }));
+      System.out.println("=== HTTP Response ===");
+      String str1 = "Receive url: " + paramj.b();
+      System.out.println(str1);
+      String str2 = "Status: " + paramj.a();
+      System.out.println(str2);
+      a(paramj.c());
+      String str3 = "Content:\n" + paramj.d();
+      System.out.println(str3);
     }
   }
 
-  public final String b(Context paramContext)
+  public final boolean a()
   {
-    if (paramContext == null);
-    do
-    {
-      return null;
-      this.c = paramContext.getSharedPreferences("net.hockeyapp.android.prefs_name_email", 0);
-    }
-    while (this.c == null);
-    return this.c.getString("net.hockeyapp.android.prefs_key_name_email", null);
+    return true;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.bi.e
  * JD-Core Version:    0.6.2
  */

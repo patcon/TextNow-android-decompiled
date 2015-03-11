@@ -3,8 +3,8 @@ package com.google.android.gms.common.images;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable.Creator;
+import com.google.android.gms.common.internal.n;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-import com.google.android.gms.internal.hk;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -12,17 +12,17 @@ public final class WebImage
   implements SafeParcelable
 {
   public static final Parcelable.Creator<WebImage> CREATOR = new b();
-  private final Uri Fu;
-  private final int ku;
-  private final int kv;
-  private final int xM;
+  private final int BR;
+  private final Uri KQ;
+  private final int lf;
+  private final int lg;
 
   WebImage(int paramInt1, Uri paramUri, int paramInt2, int paramInt3)
   {
-    this.xM = paramInt1;
-    this.Fu = paramUri;
-    this.ku = paramInt2;
-    this.kv = paramInt3;
+    this.BR = paramInt1;
+    this.KQ = paramUri;
+    this.lf = paramInt2;
+    this.lg = paramInt3;
   }
 
   public WebImage(Uri paramUri)
@@ -41,10 +41,10 @@ public final class WebImage
 
   public WebImage(JSONObject paramJSONObject)
   {
-    this(c(paramJSONObject), paramJSONObject.optInt("width", 0), paramJSONObject.optInt("height", 0));
+    this(d(paramJSONObject), paramJSONObject.optInt("width", 0), paramJSONObject.optInt("height", 0));
   }
 
-  private static Uri c(JSONObject paramJSONObject)
+  private static Uri d(JSONObject paramJSONObject)
   {
     boolean bool = paramJSONObject.has("url");
     Object localObject = null;
@@ -61,14 +61,14 @@ public final class WebImage
     return null;
   }
 
-  public final JSONObject dZ()
+  public final JSONObject bK()
   {
     JSONObject localJSONObject = new JSONObject();
     try
     {
-      localJSONObject.put("url", this.Fu.toString());
-      localJSONObject.put("width", this.ku);
-      localJSONObject.put("height", this.kv);
+      localJSONObject.put("url", this.KQ.toString());
+      localJSONObject.put("width", this.lf);
+      localJSONObject.put("height", this.lg);
       return localJSONObject;
     }
     catch (JSONException localJSONException)
@@ -93,45 +93,45 @@ public final class WebImage
         return false;
       localWebImage = (WebImage)paramObject;
     }
-    while ((hk.equal(this.Fu, localWebImage.Fu)) && (this.ku == localWebImage.ku) && (this.kv == localWebImage.kv));
+    while ((n.equal(this.KQ, localWebImage.KQ)) && (this.lf == localWebImage.lf) && (this.lg == localWebImage.lg));
     return false;
   }
 
   public final int getHeight()
   {
-    return this.kv;
+    return this.lg;
   }
 
   public final Uri getUrl()
   {
-    return this.Fu;
+    return this.KQ;
   }
 
   final int getVersionCode()
   {
-    return this.xM;
+    return this.BR;
   }
 
   public final int getWidth()
   {
-    return this.ku;
+    return this.lf;
   }
 
   public final int hashCode()
   {
     Object[] arrayOfObject = new Object[3];
-    arrayOfObject[0] = this.Fu;
-    arrayOfObject[1] = Integer.valueOf(this.ku);
-    arrayOfObject[2] = Integer.valueOf(this.kv);
-    return hk.hashCode(arrayOfObject);
+    arrayOfObject[0] = this.KQ;
+    arrayOfObject[1] = Integer.valueOf(this.lf);
+    arrayOfObject[2] = Integer.valueOf(this.lg);
+    return n.hashCode(arrayOfObject);
   }
 
   public final String toString()
   {
     Object[] arrayOfObject = new Object[3];
-    arrayOfObject[0] = Integer.valueOf(this.ku);
-    arrayOfObject[1] = Integer.valueOf(this.kv);
-    arrayOfObject[2] = this.Fu.toString();
+    arrayOfObject[0] = Integer.valueOf(this.lf);
+    arrayOfObject[1] = Integer.valueOf(this.lg);
+    arrayOfObject[2] = this.KQ.toString();
     return String.format("Image %dx%d %s", arrayOfObject);
   }
 
@@ -141,7 +141,7 @@ public final class WebImage
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.common.images.WebImage
  * JD-Core Version:    0.6.2
  */

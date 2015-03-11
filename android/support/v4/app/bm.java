@@ -1,22 +1,10 @@
 package android.support.v4.app;
 
-import android.app.PendingIntent;
-import android.os.Bundle;
-
-public abstract class bm
+final class bm
 {
-  protected abstract int a();
-
-  protected abstract CharSequence b();
-
-  protected abstract PendingIntent c();
-
-  protected abstract Bundle d();
-
-  protected abstract bz[] e();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.app.bm
  * JD-Core Version:    0.6.2
  */

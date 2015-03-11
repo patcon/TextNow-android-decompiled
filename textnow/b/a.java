@@ -1,27 +1,12 @@
 package textnow.b;
 
-import java.util.Timer;
+import android.view.Menu;
 
-public abstract class a
+public abstract interface a extends Menu
 {
-  private Timer a;
-  private long b = 1000L;
-
-  public abstract void a();
-
-  public final void b()
-  {
-    if (this.a != null)
-    {
-      this.a.cancel();
-      this.a = null;
-    }
-    this.a = new Timer();
-    this.a.schedule(new b(this, (byte)0), this.b);
-  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.b.a
  * JD-Core Version:    0.6.2
  */

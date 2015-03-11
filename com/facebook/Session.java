@@ -14,6 +14,9 @@ import android.text.TextUtils;
 import com.facebook.internal.SessionAuthorizationType;
 import com.facebook.internal.Utility;
 import com.facebook.internal.Validate;
+import com.facebook.model.GraphMultiResult;
+import com.facebook.model.GraphObject;
+import com.facebook.model.GraphObjectList;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -22,7 +25,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -41,7 +43,6 @@ public class Session
   public static final String ACTION_ACTIVE_SESSION_OPENED = "com.facebook.sdk.ACTIVE_SESSION_OPENED";
   public static final String ACTION_ACTIVE_SESSION_SET = "com.facebook.sdk.ACTIVE_SESSION_SET";
   public static final String ACTION_ACTIVE_SESSION_UNSET = "com.facebook.sdk.ACTIVE_SESSION_UNSET";
-  public static final String APPLICATION_ID_PROPERTY = "com.facebook.sdk.ApplicationId";
   private static final String AUTH_BUNDLE_SAVE_KEY = "com.facebook.sdk.Session.authBundleKey";
   public static final int DEFAULT_AUTHORIZE_ACTIVITY_CODE = 64206;
   private static final String MANAGE_PERMISSION_PREFIX = "manage";
@@ -113,17 +114,30 @@ public class Session
       if ((localDate1 == null) || (localDate1.before(localDate2)))
       {
         paramTokenCachingStrategy.clear();
-        this.tokenInfo = AccessToken.createEmptyToken(Collections.emptyList());
+        this.tokenInfo = AccessToken.createEmptyToken();
         return;
       }
       this.tokenInfo = AccessToken.createFromCache(localBundle);
       this.state = SessionState.CREATED_TOKEN_LOADED;
       return;
     }
-    this.tokenInfo = AccessToken.createEmptyToken(Collections.emptyList());
+    this.tokenInfo = AccessToken.createEmptyToken();
   }
 
   private Session(String paramString, SessionState paramSessionState, AccessToken paramAccessToken, Date paramDate, boolean paramBoolean, Session.AuthorizationRequest paramAuthorizationRequest)
+  {
+    this.applicationId = paramString;
+    this.state = paramSessionState;
+    this.tokenInfo = paramAccessToken;
+    this.lastAttemptedTokenExtendDate = paramDate;
+    this.pendingAuthorizationRequest = paramAuthorizationRequest;
+    this.handler = new Handler(Looper.getMainLooper());
+    this.currentTokenRefreshRequest = null;
+    this.tokenCachingStrategy = null;
+    this.callbacks = new ArrayList();
+  }
+
+  private Session(String paramString, SessionState paramSessionState, AccessToken paramAccessToken, Date paramDate, boolean paramBoolean, Session.AuthorizationRequest paramAuthorizationRequest, Set<String> paramSet)
   {
     this.applicationId = paramString;
     this.state = paramSessionState;
@@ -271,6 +285,46 @@ public class Session
     }
   }
 
+  static Session.PermissionsPair handlePermissionResponse(Response paramResponse)
+  {
+    if (paramResponse.getError() != null)
+      return null;
+    GraphMultiResult localGraphMultiResult = (GraphMultiResult)paramResponse.getGraphObjectAs(GraphMultiResult.class);
+    if (localGraphMultiResult == null)
+      return null;
+    GraphObjectList localGraphObjectList = localGraphMultiResult.getData();
+    if ((localGraphObjectList == null) || (localGraphObjectList.size() == 0))
+      return null;
+    ArrayList localArrayList1 = new ArrayList(localGraphObjectList.size());
+    ArrayList localArrayList2 = new ArrayList(localGraphObjectList.size());
+    GraphObject localGraphObject1 = (GraphObject)localGraphObjectList.get(0);
+    if (localGraphObject1.getProperty("permission") != null)
+    {
+      Iterator localIterator2 = localGraphObjectList.iterator();
+      while (localIterator2.hasNext())
+      {
+        GraphObject localGraphObject2 = (GraphObject)localIterator2.next();
+        String str1 = (String)localGraphObject2.getProperty("permission");
+        if (!str1.equals("installed"))
+        {
+          String str2 = (String)localGraphObject2.getProperty("status");
+          if (str2.equals("granted"))
+            localArrayList1.add(str1);
+          else if (str2.equals("declined"))
+            localArrayList2.add(str1);
+        }
+      }
+    }
+    Iterator localIterator1 = localGraphObject1.asMap().entrySet().iterator();
+    while (localIterator1.hasNext())
+    {
+      Map.Entry localEntry = (Map.Entry)localIterator1.next();
+      if ((!((String)localEntry.getKey()).equals("installed")) && (((Integer)localEntry.getValue()).intValue() == 1))
+        localArrayList1.add(localEntry.getKey());
+    }
+    return new Session.PermissionsPair(localArrayList1, localArrayList2);
+  }
+
   static void initializeStaticContext(Context paramContext)
   {
     if ((paramContext != null) && (staticContext == null))
@@ -304,8 +358,8 @@ public class Session
       localBundle.putString("2_result", paramCode.getLoggingValue());
     if ((paramException != null) && (paramException.getMessage() != null))
       localBundle.putString("5_error_message", paramException.getMessage());
-    if (!Session.AuthorizationRequest.access$100(this.pendingAuthorizationRequest).isEmpty());
-    for (Object localObject1 = new JSONObject(Session.AuthorizationRequest.access$100(this.pendingAuthorizationRequest)); ; localObject1 = null)
+    if (!Session.AuthorizationRequest.access$500(this.pendingAuthorizationRequest).isEmpty());
+    for (Object localObject1 = new JSONObject(Session.AuthorizationRequest.access$500(this.pendingAuthorizationRequest)); ; localObject1 = null)
     {
       if (paramMap != null)
         if (localObject1 != null)
@@ -344,11 +398,11 @@ public class Session
     try
     {
       JSONObject localJSONObject = new JSONObject();
-      localJSONObject.put("login_behavior", Session.AuthorizationRequest.access$300(this.pendingAuthorizationRequest).toString());
-      localJSONObject.put("request_code", Session.AuthorizationRequest.access$400(this.pendingAuthorizationRequest));
-      localJSONObject.put("is_legacy", Session.AuthorizationRequest.access$200(this.pendingAuthorizationRequest));
-      localJSONObject.put("permissions", TextUtils.join(",", Session.AuthorizationRequest.access$500(this.pendingAuthorizationRequest)));
-      localJSONObject.put("default_audience", Session.AuthorizationRequest.access$600(this.pendingAuthorizationRequest).toString());
+      localJSONObject.put("login_behavior", Session.AuthorizationRequest.access$700(this.pendingAuthorizationRequest).toString());
+      localJSONObject.put("request_code", Session.AuthorizationRequest.access$800(this.pendingAuthorizationRequest));
+      localJSONObject.put("is_legacy", Session.AuthorizationRequest.access$600(this.pendingAuthorizationRequest));
+      localJSONObject.put("permissions", TextUtils.join(",", Session.AuthorizationRequest.access$900(this.pendingAuthorizationRequest)));
+      localJSONObject.put("default_audience", Session.AuthorizationRequest.access$1000(this.pendingAuthorizationRequest).toString());
       localBundle.putString("6_extras", localJSONObject.toString());
       label127: getAppEventsLogger().logSdkEvent("fb_mobile_login_start", null, localBundle);
       return;
@@ -372,7 +426,7 @@ public class Session
         return;
       }
       localSessionState1 = this.state;
-      switch (4.$SwitchMap$com$facebook$SessionState[this.state.ordinal()])
+      switch (5.$SwitchMap$com$facebook$SessionState[this.state.ordinal()])
       {
       case 2:
       default:
@@ -415,9 +469,19 @@ public class Session
     return openActiveSession(paramActivity, paramBoolean, new Session.OpenRequest(paramActivity).setCallback(paramStatusCallback));
   }
 
+  public static Session openActiveSession(Activity paramActivity, boolean paramBoolean, List<String> paramList, Session.StatusCallback paramStatusCallback)
+  {
+    return openActiveSession(paramActivity, paramBoolean, new Session.OpenRequest(paramActivity).setCallback(paramStatusCallback).setPermissions(paramList));
+  }
+
   public static Session openActiveSession(Context paramContext, Fragment paramFragment, boolean paramBoolean, Session.StatusCallback paramStatusCallback)
   {
     return openActiveSession(paramContext, paramBoolean, new Session.OpenRequest(paramFragment).setCallback(paramStatusCallback));
+  }
+
+  public static Session openActiveSession(Context paramContext, Fragment paramFragment, boolean paramBoolean, List<String> paramList, Session.StatusCallback paramStatusCallback)
+  {
+    return openActiveSession(paramContext, paramBoolean, new Session.OpenRequest(paramFragment).setCallback(paramStatusCallback).setPermissions(paramList));
   }
 
   private static Session openActiveSession(Context paramContext, boolean paramBoolean, Session.OpenRequest paramOpenRequest)
@@ -619,7 +683,7 @@ public class Session
 
   private void validateLoginBehavior(Session.AuthorizationRequest paramAuthorizationRequest)
   {
-    if ((paramAuthorizationRequest != null) && (!Session.AuthorizationRequest.access$200(paramAuthorizationRequest)))
+    if ((paramAuthorizationRequest != null) && (!Session.AuthorizationRequest.access$600(paramAuthorizationRequest)))
     {
       Intent localIntent = new Intent();
       localIntent.setClass(getStaticContext(), LoginActivity.class);
@@ -683,15 +747,15 @@ public class Session
     autoPublishAsync();
     logAuthorizationStart();
     boolean bool = tryLoginActivity(paramAuthorizationRequest);
-    Map localMap = Session.AuthorizationRequest.access$100(this.pendingAuthorizationRequest);
+    Map localMap = Session.AuthorizationRequest.access$500(this.pendingAuthorizationRequest);
     String str;
     if (bool)
     {
       str = "1";
       localMap.put("try_login_activity", str);
-      if ((bool) || (!Session.AuthorizationRequest.access$200(paramAuthorizationRequest)))
+      if ((bool) || (!Session.AuthorizationRequest.access$600(paramAuthorizationRequest)))
         break label209;
-      Session.AuthorizationRequest.access$100(this.pendingAuthorizationRequest).put("try_legacy", "1");
+      Session.AuthorizationRequest.access$500(this.pendingAuthorizationRequest).put("try_legacy", "1");
       tryLegacyAuth(paramAuthorizationRequest);
     }
     label209: for (int i = 1; ; i = bool)
@@ -701,7 +765,7 @@ public class Session
         synchronized (this.lock)
         {
           SessionState localSessionState = this.state;
-          switch (4.$SwitchMap$com$facebook$SessionState[this.state.ordinal()])
+          switch (5.$SwitchMap$com$facebook$SessionState[this.state.ordinal()])
           {
           default:
             this.state = SessionState.CLOSED_LOGIN_FAILED;
@@ -727,7 +791,7 @@ public class Session
       synchronized (this.lock)
       {
         localSessionState = this.state;
-        switch (4.$SwitchMap$com$facebook$SessionState[this.state.ordinal()])
+        switch (5.$SwitchMap$com$facebook$SessionState[this.state.ordinal()])
         {
         default:
           return;
@@ -795,7 +859,7 @@ public class Session
     synchronized (this.lock)
     {
       SessionState localSessionState = this.state;
-      switch (4.$SwitchMap$com$facebook$SessionState[this.state.ordinal()])
+      switch (5.$SwitchMap$com$facebook$SessionState[this.state.ordinal()])
       {
       default:
         new StringBuilder().append("refreshToken ignored in state ").append(this.state).toString();
@@ -823,7 +887,7 @@ public class Session
     {
       synchronized (this.lock)
       {
-        switch (4.$SwitchMap$com$facebook$SessionState[this.state.ordinal()])
+        switch (5.$SwitchMap$com$facebook$SessionState[this.state.ordinal()])
         {
         default:
           return;
@@ -868,6 +932,20 @@ public class Session
     {
       Bundle localBundle = this.authorizationBundle;
       return localBundle;
+    }
+  }
+
+  public final List<String> getDeclinedPermissions()
+  {
+    synchronized (this.lock)
+    {
+      if (this.tokenInfo == null)
+      {
+        localObject3 = null;
+        return localObject3;
+      }
+      List localList = this.tokenInfo.getDeclinedPermissions();
+      Object localObject3 = localList;
     }
   }
 
@@ -939,6 +1017,14 @@ public class Session
       boolean bool = this.state.isOpened();
       return bool;
     }
+  }
+
+  public boolean isPermissionGranted(String paramString)
+  {
+    List localList = getPermissions();
+    if (localList != null)
+      return localList.contains(paramString);
+    return false;
   }
 
   public final boolean onActivityResult(Activity paramActivity, int paramInt1, int paramInt2, Intent paramIntent)
@@ -1022,41 +1108,61 @@ public class Session
   void postStateChange(SessionState paramSessionState1, final SessionState paramSessionState2, final Exception paramException)
   {
     if ((paramSessionState1 == paramSessionState2) && (paramSessionState1 != SessionState.OPENED_TOKEN_UPDATED) && (paramException == null));
-    while (true)
+    do
     {
       return;
       if (paramSessionState2.isClosed())
-        this.tokenInfo = AccessToken.createEmptyToken(Collections.emptyList());
-      synchronized (this.callbacks)
+        this.tokenInfo = AccessToken.createEmptyToken();
+      Runnable local4 = new Runnable()
       {
-        Runnable local3 = new Runnable()
+        public void run()
         {
-          public void run()
+          synchronized (Session.this.callbacks)
           {
             Iterator localIterator = Session.this.callbacks.iterator();
-            while (localIterator.hasNext())
+            if (localIterator.hasNext())
             {
               Runnable local1 = new Runnable()
               {
                 public void run()
                 {
-                  this.val$callback.call(Session.this, Session.3.this.val$newState, Session.3.this.val$exception);
+                  this.val$callback.call(Session.this, Session.4.this.val$newState, Session.4.this.val$exception);
                 }
               };
               Session.runWithHandlerOrExecutor(Session.this.handler, local1);
             }
           }
-        };
-        runWithHandlerOrExecutor(this.handler, local3);
-        if ((this == activeSession) && (paramSessionState1.isOpened() != paramSessionState2.isOpened()))
-          if (paramSessionState2.isOpened())
-          {
-            postActiveSessionAction("com.facebook.sdk.ACTIVE_SESSION_OPENED");
-            return;
-          }
-      }
+        }
+      };
+      runWithHandlerOrExecutor(this.handler, local4);
+    }
+    while ((this != activeSession) || (paramSessionState1.isOpened() == paramSessionState2.isOpened()));
+    if (paramSessionState2.isOpened())
+    {
+      postActiveSessionAction("com.facebook.sdk.ACTIVE_SESSION_OPENED");
+      return;
     }
     postActiveSessionAction("com.facebook.sdk.ACTIVE_SESSION_CLOSED");
+  }
+
+  public final void refreshPermissions()
+  {
+    Request localRequest = new Request(this, "me/permissions");
+    localRequest.setCallback(new Request.Callback()
+    {
+      public void onCompleted(Response paramAnonymousResponse)
+      {
+        Session.PermissionsPair localPermissionsPair = Session.handlePermissionResponse(paramAnonymousResponse);
+        if (localPermissionsPair != null);
+        synchronized (Session.this.lock)
+        {
+          Session.access$302(Session.this, AccessToken.createFromTokenWithRefreshedPermissions(Session.this.tokenInfo, localPermissionsPair.getGrantedPermissions(), localPermissionsPair.getDeclinedPermissions()));
+          Session.this.postStateChange(Session.this.state, SessionState.OPENED_TOKEN_UPDATED, null);
+          return;
+        }
+      }
+    });
+    localRequest.executeAsync();
   }
 
   public final void removeCallback(Session.StatusCallback paramStatusCallback)
@@ -1127,7 +1233,7 @@ public class Session
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.Session
  * JD-Core Version:    0.6.2
  */

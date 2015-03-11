@@ -3,23 +3,23 @@ package com.google.android.gms.common.api;
 import android.os.Looper;
 import java.util.List;
 
-public final class Batch extends a.a<BatchResult>
+public final class Batch extends BaseImplementation.AbstractPendingResult<BatchResult>
 {
-  private boolean DA;
-  private boolean DB;
-  private final PendingResult<?>[] DC;
-  private int Dz;
-  private final Object ls = new Object();
+  private int IA;
+  private boolean IB;
+  private boolean IC;
+  private final PendingResult<?>[] IE;
+  private final Object mw = new Object();
 
   private Batch(List<PendingResult<?>> paramList, Looper paramLooper)
   {
-    super(new a.c(paramLooper));
-    this.Dz = paramList.size();
-    this.DC = new PendingResult[this.Dz];
+    super(new BaseImplementation.CallbackHandler(paramLooper));
+    this.IA = paramList.size();
+    this.IE = new PendingResult[this.IA];
     for (int i = 0; i < paramList.size(); i++)
     {
       PendingResult localPendingResult = (PendingResult)paramList.get(i);
-      this.DC[i] = localPendingResult;
+      this.IE[i] = localPendingResult;
       localPendingResult.a(new PendingResult.a()
       {
         public void n(Status paramAnonymousStatus)
@@ -47,7 +47,7 @@ public final class Batch extends a.a<BatchResult>
               Batch.b(Batch.this, true);
           }
           if (Batch.f(Batch.this));
-          for (Status localStatus = new Status(13); ; localStatus = Status.En)
+          for (Status localStatus = new Status(13); ; localStatus = Status.Jv)
           {
             Batch.this.b(new BatchResult(localStatus, Batch.g(Batch.this)));
             break;
@@ -60,7 +60,7 @@ public final class Batch extends a.a<BatchResult>
   public final void cancel()
   {
     super.cancel();
-    PendingResult[] arrayOfPendingResult = this.DC;
+    PendingResult[] arrayOfPendingResult = this.IE;
     int i = arrayOfPendingResult.length;
     for (int j = 0; j < i; j++)
       arrayOfPendingResult[j].cancel();
@@ -68,11 +68,11 @@ public final class Batch extends a.a<BatchResult>
 
   public final BatchResult createFailedResult(Status paramStatus)
   {
-    return new BatchResult(paramStatus, this.DC);
+    return new BatchResult(paramStatus, this.IE);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.common.api.Batch
  * JD-Core Version:    0.6.2
  */

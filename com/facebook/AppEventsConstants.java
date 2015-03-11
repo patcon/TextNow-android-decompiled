@@ -9,11 +9,14 @@ public class AppEventsConstants
   public static final String EVENT_NAME_ADDED_TO_WISHLIST = "fb_mobile_add_to_wishlist";
   public static final String EVENT_NAME_COMPLETED_REGISTRATION = "fb_mobile_complete_registration";
   public static final String EVENT_NAME_COMPLETED_TUTORIAL = "fb_mobile_tutorial_completion";
+  public static final String EVENT_NAME_DEACTIVATED_APP = "fb_mobile_deactivate_app";
   public static final String EVENT_NAME_INITIATED_CHECKOUT = "fb_mobile_initiated_checkout";
   public static final String EVENT_NAME_PURCHASED = "fb_mobile_purchase";
   public static final String EVENT_NAME_RATED = "fb_mobile_rate";
   public static final String EVENT_NAME_SEARCHED = "fb_mobile_search";
+  public static final String EVENT_NAME_SESSION_INTERRUPTIONS = "fb_mobile_app_interruptions";
   public static final String EVENT_NAME_SPENT_CREDITS = "fb_mobile_spent_credits";
+  public static final String EVENT_NAME_TIME_BETWEEN_SESSIONS = "fb_mobile_time_between_sessions";
   public static final String EVENT_NAME_UNLOCKED_ACHIEVEMENT = "fb_mobile_achievement_unlocked";
   public static final String EVENT_NAME_VIEWED_CONTENT = "fb_mobile_content_view";
   public static final String EVENT_PARAM_CONTENT_ID = "fb_content_id";
@@ -26,12 +29,13 @@ public class AppEventsConstants
   public static final String EVENT_PARAM_PAYMENT_INFO_AVAILABLE = "fb_payment_info_available";
   public static final String EVENT_PARAM_REGISTRATION_METHOD = "fb_registration_method";
   public static final String EVENT_PARAM_SEARCH_STRING = "fb_search_string";
+  public static final String EVENT_PARAM_SOURCE_APPLICATION = "fb_mobile_launch_source";
   public static final String EVENT_PARAM_SUCCESS = "fb_success";
   public static final String EVENT_PARAM_VALUE_NO = "0";
   public static final String EVENT_PARAM_VALUE_YES = "1";
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.AppEventsConstants
  * JD-Core Version:    0.6.2
  */

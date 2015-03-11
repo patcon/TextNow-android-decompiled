@@ -23,7 +23,7 @@ public class GraphObjectAdapter$SectionAndItem<T extends GraphObject>
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.widget.GraphObjectAdapter.SectionAndItem
  * JD-Core Version:    0.6.2
  */

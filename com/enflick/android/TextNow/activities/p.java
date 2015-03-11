@@ -1,36 +1,30 @@
 package com.enflick.android.TextNow.activities;
 
-import android.view.Menu;
-import android.view.MenuItem;
+import android.database.ContentObserver;
+import android.net.Uri;
+import android.os.Handler;
+import textnow.v.o;
 
-public final class p
+final class p extends ContentObserver
 {
-  private Menu a;
-
-  public p(Menu paramMenu)
+  public p(MainActivity paramMainActivity)
   {
-    this.a = paramMenu;
+    super(new Handler());
   }
 
-  public final void a()
+  public final void onChange(boolean paramBoolean)
   {
-    if (this.a != null)
-      for (int i = 0; i < this.a.size(); i++)
-        this.a.getItem(i).setVisible(true);
+    onChange(paramBoolean, null);
   }
 
-  public final void a(int paramInt)
+  public final void onChange(boolean paramBoolean, Uri paramUri)
   {
-    if (this.a != null)
-    {
-      MenuItem localMenuItem = this.a.findItem(paramInt);
-      if (localMenuItem != null)
-        localMenuItem.setVisible(false);
-    }
+    o.a(this.a).e();
+    MainActivity.d(this.a);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.activities.p
  * JD-Core Version:    0.6.2
  */

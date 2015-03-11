@@ -1,43 +1,61 @@
 package textnow.p;
 
-public final class j
+import android.content.ContentResolver;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.MergeCursor;
+import android.net.Uri;
+import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.support.v4.content.d;
+import android.support.v4.widget.f;
+import android.text.TextUtils;
+
+public abstract class j extends f
 {
-  int a;
-  String b;
+  protected static final String[] j = { "_id", "photo_id", "display_name", "data2", "data1", "contact_id", "data3" };
+  protected static final String[] k = { "_id", "data2", "data1", "data3" };
+  protected static final String[] l = { "_id", "photo_id", "display_name", "data2", "data1", "contact_id", "data3" };
+  protected static final String[] m = { "_id", "data2", "data1", "data3" };
 
-  public j(int paramInt, String paramString)
+  public j(Context paramContext, Cursor paramCursor)
   {
-    this.a = paramInt;
-    if ((paramString == null) || (paramString.trim().length() == 0))
-    {
-      this.b = d.a(paramInt);
-      return;
-    }
-    this.b = (paramString + " (response: " + d.a(paramInt) + ")");
+    super(paramContext, paramCursor, true);
   }
 
-  public final int a()
+  protected static int a(String paramString)
   {
-    return this.a;
+    if ((paramString == null) || (paramString.indexOf("@") >= 0))
+      return 2;
+    return 1;
   }
 
-  public final boolean b()
+  public static Cursor a(Context paramContext, String paramString)
   {
-    return this.a == 0;
+    if (TextUtils.isEmpty(paramString))
+      return new MergeCursor(new Cursor[] { paramContext.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, j, null, null, null), paramContext.getContentResolver().query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, l, null, null, null) });
+    return new MergeCursor(new Cursor[] { paramContext.getContentResolver().query(Uri.withAppendedPath(ContactsContract.CommonDataKinds.Phone.CONTENT_FILTER_URI, Uri.encode(paramString)), j, null, null, null), paramContext.getContentResolver().query(Uri.withAppendedPath(ContactsContract.CommonDataKinds.Email.CONTENT_FILTER_URI, Uri.encode(paramString)), l, null, null, null) });
   }
 
-  public final boolean c()
+  public static d a(Context paramContext, int paramInt, String paramString)
   {
-    return !b();
+    if (paramInt == 1)
+      return new d(paramContext, ContactsContract.CommonDataKinds.Phone.CONTENT_URI, k, "contact_id=?", new String[] { paramString }, null);
+    return new d(paramContext, ContactsContract.CommonDataKinds.Email.CONTENT_URI, m, "contact_id=?", new String[] { paramString }, null);
   }
 
-  public final String toString()
+  public final Cursor b(Cursor paramCursor)
   {
-    return "IabResult: " + this.b;
+    return super.b(d(paramCursor));
+  }
+
+  protected Cursor d(Cursor paramCursor)
+  {
+    return paramCursor;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.p.j
  * JD-Core Version:    0.6.2
  */

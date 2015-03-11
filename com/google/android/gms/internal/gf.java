@@ -1,54 +1,60 @@
 package com.google.android.gms.internal;
 
-import android.os.Parcel;
-import android.os.Parcelable.Creator;
-import com.google.android.gms.common.internal.safeparcel.a;
-import com.google.android.gms.common.internal.safeparcel.a.a;
-import com.google.android.gms.common.internal.safeparcel.b;
+import android.content.Context;
+import android.text.TextUtils;
+import java.math.BigInteger;
+import java.util.Locale;
 
-public class gf
-  implements Parcelable.Creator<ge>
+@ez
+public final class gf
 {
-  static void a(ge paramge, Parcel paramParcel, int paramInt)
-  {
-    int i = b.C(paramParcel);
-    b.c(paramParcel, 1, paramge.getVersionCode());
-    b.a(paramParcel, 2, paramge.ec(), false);
-    b.G(paramParcel, i);
-  }
+  private static final Object uf = new Object();
+  private static String we;
 
-  public ge[] S(int paramInt)
+  public static String a(Context paramContext, String paramString1, String paramString2)
   {
-    return new ge[paramInt];
-  }
-
-  public ge u(Parcel paramParcel)
-  {
-    int i = a.B(paramParcel);
-    int j = 0;
-    String str = null;
-    while (paramParcel.dataPosition() < i)
+    synchronized (uf)
     {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
-      {
-      default:
-        a.b(paramParcel, k);
-        break;
-      case 1:
-        j = a.g(paramParcel, k);
-        break;
-      case 2:
-        str = a.o(paramParcel, k);
-      }
+      if ((we == null) && (!TextUtils.isEmpty(paramString1)))
+        b(paramContext, paramString1, paramString2);
+      String str = we;
+      return str;
     }
-    if (paramParcel.dataPosition() != i)
-      throw new a.a("Overread allowed size end=" + i, paramParcel);
-    return new ge(j, str);
+  }
+
+  private static void b(Context paramContext, String paramString1, String paramString2)
+  {
+    BigInteger localBigInteger2;
+    try
+    {
+      ClassLoader localClassLoader = paramContext.createPackageContext(paramString2, 3).getClassLoader();
+      Class localClass = Class.forName("com.google.ads.mediation.MediationAdapter", false, localClassLoader);
+      BigInteger localBigInteger1 = new BigInteger(new byte[1]);
+      String[] arrayOfString = paramString1.split(",");
+      localBigInteger2 = localBigInteger1;
+      for (int i = 0; i < arrayOfString.length; i++)
+        if (gj.a(localClassLoader, localClass, arrayOfString[i]))
+          localBigInteger2 = localBigInteger2.setBit(i);
+    }
+    catch (Throwable localThrowable)
+    {
+      we = "err";
+      return;
+    }
+    we = String.format(Locale.US, "%X", new Object[] { localBigInteger2 });
+  }
+
+  public static String di()
+  {
+    synchronized (uf)
+    {
+      String str = we;
+      return str;
+    }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.gf
  * JD-Core Version:    0.6.2
  */

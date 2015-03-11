@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.google.android.gms.ads.mediation.MediationAdapter;
 import com.google.android.gms.ads.mediation.NetworkExtras;
 import com.google.android.gms.ads.mediation.customevent.CustomEvent;
-import com.google.android.gms.internal.at;
+import com.google.android.gms.internal.bg;
 
 public final class SearchAdRequest
 {
@@ -17,149 +17,149 @@ public final class SearchAdRequest
   public static final int CALL_BUTTON_COLOR_DARK = 2;
   public static final int CALL_BUTTON_COLOR_LIGHT = 0;
   public static final int CALL_BUTTON_COLOR_MEDIUM = 1;
-  public static final String DEVICE_ID_EMULATOR = at.DEVICE_ID_EMULATOR;
+  public static final String DEVICE_ID_EMULATOR = bg.DEVICE_ID_EMULATOR;
   public static final int ERROR_CODE_INTERNAL_ERROR = 0;
   public static final int ERROR_CODE_INVALID_REQUEST = 1;
   public static final int ERROR_CODE_NETWORK_ERROR = 2;
   public static final int ERROR_CODE_NO_FILL = 3;
-  private final at ks;
-  private final int tc;
-  private final int td;
-  private final int te;
-  private final int tf;
-  private final int tg;
-  private final int th;
-  private final int ti;
-  private final int tj;
-  private final String tk;
-  private final int tl;
-  private final String tm;
-  private final int tn;
-  private final int to;
-  private final String tp;
+  private final bg ld;
+  private final int xl;
+  private final int xm;
+  private final int xn;
+  private final int xo;
+  private final int xp;
+  private final int xq;
+  private final int xr;
+  private final int xs;
+  private final String xt;
+  private final int xu;
+  private final String xv;
+  private final int xw;
+  private final int xx;
+  private final String xy;
 
   private SearchAdRequest(SearchAdRequest.Builder paramBuilder)
   {
-    this.tc = SearchAdRequest.Builder.a(paramBuilder);
-    this.td = SearchAdRequest.Builder.b(paramBuilder);
-    this.te = SearchAdRequest.Builder.c(paramBuilder);
-    this.tf = SearchAdRequest.Builder.d(paramBuilder);
-    this.tg = SearchAdRequest.Builder.e(paramBuilder);
-    this.th = SearchAdRequest.Builder.f(paramBuilder);
-    this.ti = SearchAdRequest.Builder.g(paramBuilder);
-    this.tj = SearchAdRequest.Builder.h(paramBuilder);
-    this.tk = SearchAdRequest.Builder.i(paramBuilder);
-    this.tl = SearchAdRequest.Builder.j(paramBuilder);
-    this.tm = SearchAdRequest.Builder.k(paramBuilder);
-    this.tn = SearchAdRequest.Builder.l(paramBuilder);
-    this.to = SearchAdRequest.Builder.m(paramBuilder);
-    this.tp = SearchAdRequest.Builder.n(paramBuilder);
-    this.ks = new at(SearchAdRequest.Builder.o(paramBuilder), this);
+    this.xl = SearchAdRequest.Builder.a(paramBuilder);
+    this.xm = SearchAdRequest.Builder.b(paramBuilder);
+    this.xn = SearchAdRequest.Builder.c(paramBuilder);
+    this.xo = SearchAdRequest.Builder.d(paramBuilder);
+    this.xp = SearchAdRequest.Builder.e(paramBuilder);
+    this.xq = SearchAdRequest.Builder.f(paramBuilder);
+    this.xr = SearchAdRequest.Builder.g(paramBuilder);
+    this.xs = SearchAdRequest.Builder.h(paramBuilder);
+    this.xt = SearchAdRequest.Builder.i(paramBuilder);
+    this.xu = SearchAdRequest.Builder.j(paramBuilder);
+    this.xv = SearchAdRequest.Builder.k(paramBuilder);
+    this.xw = SearchAdRequest.Builder.l(paramBuilder);
+    this.xx = SearchAdRequest.Builder.m(paramBuilder);
+    this.xy = SearchAdRequest.Builder.n(paramBuilder);
+    this.ld = new bg(SearchAdRequest.Builder.o(paramBuilder), this);
   }
 
-  final at T()
+  final bg V()
   {
-    return this.ks;
+    return this.ld;
   }
 
   public final int getAnchorTextColor()
   {
-    return this.tc;
+    return this.xl;
   }
 
   public final int getBackgroundColor()
   {
-    return this.td;
+    return this.xm;
   }
 
   public final int getBackgroundGradientBottom()
   {
-    return this.te;
+    return this.xn;
   }
 
   public final int getBackgroundGradientTop()
   {
-    return this.tf;
+    return this.xo;
   }
 
   public final int getBorderColor()
   {
-    return this.tg;
+    return this.xp;
   }
 
   public final int getBorderThickness()
   {
-    return this.th;
+    return this.xq;
   }
 
   public final int getBorderType()
   {
-    return this.ti;
+    return this.xr;
   }
 
   public final int getCallButtonColor()
   {
-    return this.tj;
+    return this.xs;
   }
 
   public final String getCustomChannels()
   {
-    return this.tk;
+    return this.xt;
   }
 
   public final <T extends CustomEvent> Bundle getCustomEventExtrasBundle(Class<T> paramClass)
   {
-    return this.ks.getCustomEventExtrasBundle(paramClass);
+    return this.ld.getCustomEventExtrasBundle(paramClass);
   }
 
   public final int getDescriptionTextColor()
   {
-    return this.tl;
+    return this.xu;
   }
 
   public final String getFontFace()
   {
-    return this.tm;
+    return this.xv;
   }
 
   public final int getHeaderTextColor()
   {
-    return this.tn;
+    return this.xw;
   }
 
   public final int getHeaderTextSize()
   {
-    return this.to;
+    return this.xx;
   }
 
   public final Location getLocation()
   {
-    return this.ks.getLocation();
+    return this.ld.getLocation();
   }
 
   @Deprecated
   public final <T extends NetworkExtras> T getNetworkExtras(Class<T> paramClass)
   {
-    return this.ks.getNetworkExtras(paramClass);
+    return this.ld.getNetworkExtras(paramClass);
   }
 
   public final <T extends MediationAdapter> Bundle getNetworkExtrasBundle(Class<T> paramClass)
   {
-    return this.ks.getNetworkExtrasBundle(paramClass);
+    return this.ld.getNetworkExtrasBundle(paramClass);
   }
 
   public final String getQuery()
   {
-    return this.tp;
+    return this.xy;
   }
 
   public final boolean isTestDevice(Context paramContext)
   {
-    return this.ks.isTestDevice(paramContext);
+    return this.ld.isTestDevice(paramContext);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.ads.search.SearchAdRequest
  * JD-Core Version:    0.6.2
  */

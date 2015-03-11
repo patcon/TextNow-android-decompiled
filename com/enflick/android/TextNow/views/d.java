@@ -1,11 +1,18 @@
 package com.enflick.android.TextNow.views;
 
-public abstract interface d
+public enum d
 {
-  public abstract void y();
+  static
+  {
+    d[] arrayOfd = new d[4];
+    arrayOfd[0] = a;
+    arrayOfd[1] = b;
+    arrayOfd[2] = c;
+    arrayOfd[3] = d;
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.views.d
  * JD-Core Version:    0.6.2
  */

@@ -1,13 +1,16 @@
 package android.support.v4.view;
 
-import android.view.ViewGroup;
+import android.view.ViewConfiguration;
 
-abstract interface bm
+final class bm extends bl
 {
-  public abstract void a(ViewGroup paramViewGroup, boolean paramBoolean);
+  public final boolean b(ViewConfiguration paramViewConfiguration)
+  {
+    return paramViewConfiguration.hasPermanentMenuKey();
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.view.bm
  * JD-Core Version:    0.6.2
  */

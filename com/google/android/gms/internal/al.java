@@ -1,144 +1,100 @@
 package com.google.android.gms.internal;
 
-import android.content.Context;
-import android.content.res.Resources;
-import android.os.Parcel;
-import android.util.DisplayMetrics;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.a;
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
-public final class al
-  implements SafeParcelable
+@ez
+public class al
 {
-  public static final am CREATOR = new am();
-  public final int height;
-  public final int heightPixels;
-  public final String me;
-  public final boolean mf;
-  public final al[] mg;
-  public final int versionCode;
-  public final int width;
-  public final int widthPixels;
+  private final Object mw = new Object();
+  private int np;
+  private List<ak> nq = new LinkedList();
 
-  public al()
+  public boolean a(ak paramak)
   {
-    this(2, "interstitial_mb", 0, 0, true, 0, 0, null);
-  }
-
-  al(int paramInt1, String paramString, int paramInt2, int paramInt3, boolean paramBoolean, int paramInt4, int paramInt5, al[] paramArrayOfal)
-  {
-    this.versionCode = paramInt1;
-    this.me = paramString;
-    this.height = paramInt2;
-    this.heightPixels = paramInt3;
-    this.mf = paramBoolean;
-    this.width = paramInt4;
-    this.widthPixels = paramInt5;
-    this.mg = paramArrayOfal;
-  }
-
-  public al(Context paramContext, AdSize paramAdSize)
-  {
-    this(paramContext, new AdSize[] { paramAdSize });
-  }
-
-  public al(Context paramContext, AdSize[] paramArrayOfAdSize)
-  {
-    AdSize localAdSize = paramArrayOfAdSize[0];
-    this.versionCode = 2;
-    this.mf = false;
-    this.width = localAdSize.getWidth();
-    this.height = localAdSize.getHeight();
-    int j;
-    int k;
-    label62: DisplayMetrics localDisplayMetrics;
-    int n;
-    label99: int i1;
-    if (this.width == -1)
+    synchronized (this.mw)
     {
-      j = 1;
-      if (this.height != -2)
-        break label216;
-      k = 1;
-      localDisplayMetrics = paramContext.getResources().getDisplayMetrics();
-      if (j == 0)
-        break label222;
-      this.widthPixels = a(localDisplayMetrics);
-      n = (int)(this.widthPixels / localDisplayMetrics.density);
-      if (k == 0)
-        break label248;
-      i1 = c(localDisplayMetrics);
-      label111: this.heightPixels = et.a(localDisplayMetrics, i1);
-      if ((j == 0) && (k == 0))
-        break label257;
+      return this.nq.contains(paramak);
     }
-    label257: for (this.me = (n + "x" + i1 + "_as"); ; this.me = localAdSize.toString())
+  }
+
+  public ak aU()
+  {
+    Object localObject4;
+    for (Object localObject1 = null; ; localObject1 = localObject4)
     {
-      if (paramArrayOfAdSize.length <= 1)
-        break label269;
-      this.mg = new al[paramArrayOfAdSize.length];
-      while (i < paramArrayOfAdSize.length)
+      synchronized (this.mw)
       {
-        this.mg[i] = new al(paramContext, paramArrayOfAdSize[i]);
-        i++;
+        if (this.nq.size() == 0)
+        {
+          gs.S("Queue empty");
+          return null;
+        }
+        if (this.nq.size() >= 2)
+        {
+          i = -2147483648;
+          Iterator localIterator = this.nq.iterator();
+          if (localIterator.hasNext())
+          {
+            ak localak1 = (ak)localIterator.next();
+            int j = localak1.getScore();
+            if (j <= i)
+              break label150;
+            localObject4 = localak1;
+            k = j;
+            break label160;
+          }
+          this.nq.remove(localObject1);
+          return localObject1;
+        }
       }
-      j = 0;
-      break;
-      label216: k = 0;
-      break label62;
-      label222: int m = this.width;
-      this.widthPixels = et.a(localDisplayMetrics, this.width);
-      n = m;
-      break label99;
-      label248: i1 = this.height;
-      break label111;
+      ak localak2 = (ak)this.nq.get(0);
+      localak2.aP();
+      return localak2;
+      label150: int k = i;
+      localObject4 = localObject1;
+      label160: int i = k;
     }
-    label269: this.mg = null;
   }
 
-  public al(al paramal, al[] paramArrayOfal)
+  public boolean b(ak paramak)
   {
-    this(2, paramal.me, paramal.height, paramal.heightPixels, paramal.mf, paramal.width, paramal.widthPixels, paramArrayOfal);
+    synchronized (this.mw)
+    {
+      Iterator localIterator = this.nq.iterator();
+      while (localIterator.hasNext())
+      {
+        ak localak = (ak)localIterator.next();
+        if ((paramak != localak) && (localak.aO().equals(paramak.aO())))
+        {
+          this.nq.remove(paramak);
+          return true;
+        }
+      }
+      return false;
+    }
   }
 
-  public static int a(DisplayMetrics paramDisplayMetrics)
+  public void c(ak paramak)
   {
-    return paramDisplayMetrics.widthPixels;
-  }
-
-  public static int b(DisplayMetrics paramDisplayMetrics)
-  {
-    return (int)(c(paramDisplayMetrics) * paramDisplayMetrics.density);
-  }
-
-  private static int c(DisplayMetrics paramDisplayMetrics)
-  {
-    int i = (int)(paramDisplayMetrics.heightPixels / paramDisplayMetrics.density);
-    if (i <= 400)
-      return 32;
-    if (i <= 720)
-      return 50;
-    return 90;
-  }
-
-  public final AdSize aG()
-  {
-    return a.a(this.width, this.height, this.me);
-  }
-
-  public final int describeContents()
-  {
-    return 0;
-  }
-
-  public final void writeToParcel(Parcel paramParcel, int paramInt)
-  {
-    am.a(this, paramParcel, paramInt);
+    synchronized (this.mw)
+    {
+      if (this.nq.size() >= 10)
+      {
+        gs.S("Queue is full, current size = " + this.nq.size());
+        this.nq.remove(0);
+      }
+      int i = this.np;
+      this.np = (i + 1);
+      paramak.c(i);
+      this.nq.add(paramak);
+      return;
+    }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.al
  * JD-Core Version:    0.6.2
  */

@@ -1,22 +1,36 @@
 package textnow.j;
 
-import android.os.Bundle;
-import android.os.IInterface;
+import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.graphics.Rect;
+import android.text.method.TransformationMethod;
+import android.view.View;
+import java.util.Locale;
 
-public abstract interface a extends IInterface
+public final class a
+  implements TransformationMethod
 {
-  public abstract int a(int paramInt, String paramString1, String paramString2);
+  private Locale a;
 
-  public abstract Bundle a(int paramInt, String paramString1, String paramString2, Bundle paramBundle);
+  public a(Context paramContext)
+  {
+    this.a = paramContext.getResources().getConfiguration().locale;
+  }
 
-  public abstract Bundle a(int paramInt, String paramString1, String paramString2, String paramString3);
+  public final CharSequence getTransformation(CharSequence paramCharSequence, View paramView)
+  {
+    if (paramCharSequence != null)
+      return paramCharSequence.toString().toUpperCase(this.a);
+    return null;
+  }
 
-  public abstract Bundle a(int paramInt, String paramString1, String paramString2, String paramString3, String paramString4);
-
-  public abstract int b(int paramInt, String paramString1, String paramString2);
+  public final void onFocusChanged(View paramView, CharSequence paramCharSequence, boolean paramBoolean, int paramInt, Rect paramRect)
+  {
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.j.a
  * JD-Core Version:    0.6.2
  */

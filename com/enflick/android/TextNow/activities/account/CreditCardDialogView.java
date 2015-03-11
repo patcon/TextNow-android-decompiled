@@ -5,6 +5,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -105,18 +106,18 @@ public class CreditCardDialogView extends ScrollView
   protected void onFinishInflate()
   {
     super.onFinishInflate();
-    this.b = ((LinearLayout)findViewById(2131165465));
-    this.c = ((ImageView)findViewById(2131165457));
-    this.d = ((ImageView)findViewById(2131165458));
-    this.e = ((ImageView)findViewById(2131165459));
-    this.f = ((ImageView)findViewById(2131165460));
-    this.g = ((ImageView)findViewById(2131165461));
-    this.h = ((ImageView)findViewById(2131165462));
-    this.i = ((CreditCardNumberEditText)findViewById(2131165463));
-    this.j = ((EditText)findViewById(2131165466));
-    this.k = ((EditText)findViewById(2131165467));
-    this.l = ((EditText)findViewById(2131165468));
-    this.m = ((BillingAddressDialogView)findViewById(2131165310));
+    this.b = ((LinearLayout)findViewById(2131558735));
+    this.c = ((ImageView)findViewById(2131558727));
+    this.d = ((ImageView)findViewById(2131558728));
+    this.e = ((ImageView)findViewById(2131558729));
+    this.f = ((ImageView)findViewById(2131558730));
+    this.g = ((ImageView)findViewById(2131558731));
+    this.h = ((ImageView)findViewById(2131558732));
+    this.i = ((CreditCardNumberEditText)findViewById(2131558733));
+    this.j = ((EditText)findViewById(2131558736));
+    this.k = ((EditText)findViewById(2131558737));
+    this.l = ((EditText)findViewById(2131558738));
+    this.m = ((BillingAddressDialogView)findViewById(2131558544));
     this.a.put(i.d, this.c);
     this.a.put(i.c, this.d);
     this.a.put(i.b, this.e);
@@ -184,7 +185,7 @@ public class CreditCardDialogView extends ScrollView
           locald.setCVC(str);
         }
         while (!locald.validateCVC());
-        CreditCardDialogView.e(CreditCardDialogView.this).setVisibility(0);
+        CreditCardDialogView.this.findViewById(2131558716).requestFocus();
       }
 
       public final void beforeTextChanged(CharSequence paramAnonymousCharSequence, int paramAnonymousInt1, int paramAnonymousInt2, int paramAnonymousInt3)
@@ -195,12 +196,11 @@ public class CreditCardDialogView extends ScrollView
       {
       }
     });
-    this.m.setVisibility(8);
-    this.b.setVisibility(8);
+    this.i.requestFocus();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.activities.account.CreditCardDialogView
  * JD-Core Version:    0.6.2
  */

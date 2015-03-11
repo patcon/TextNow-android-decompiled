@@ -17,13 +17,13 @@ public abstract class j<T extends Parcelable> extends a<T>
     paramBundle.putParcelable(getName(), paramT);
   }
 
-  protected T l(Bundle paramBundle)
+  protected T m(Bundle paramBundle)
   {
     return paramBundle.getParcelable(getName());
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.drive.metadata.internal.j
  * JD-Core Version:    0.6.2
  */

@@ -2,10 +2,14 @@ package com.mopub.mobileads;
 
 import android.content.Context;
 import android.net.Uri;
+import com.enflick.android.TextNow.ads.a;
+import com.enflick.android.TextNow.ads.c;
+import com.enflick.android.TextNow.ads.d;
 import com.mopub.mobileads.factories.MraidViewFactory;
 import java.util.Map;
 
 class MraidBanner extends CustomEventBanner
+  implements d
 {
   private CustomEventBanner.CustomEventBannerListener mBannerListener;
   private MraidView mMraidView;
@@ -77,9 +81,15 @@ class MraidBanner extends CustomEventBanner
     this.mMraidView.setMraidListener(null);
   }
 
+  public void invalidate()
+  {
+    if (this.mMraidView != null)
+      this.mMraidView.destroy();
+  }
+
   protected void loadBanner(Context paramContext, CustomEventBanner.CustomEventBannerListener paramCustomEventBannerListener, Map<String, Object> paramMap, Map<String, String> paramMap1)
   {
-    this.mBannerListener = paramCustomEventBannerListener;
+    this.mBannerListener = new a(paramCustomEventBannerListener);
     if (extrasAreValid(paramMap1))
     {
       String str = Uri.decode((String)paramMap1.get("Html-Response-Body"));
@@ -94,14 +104,12 @@ class MraidBanner extends CustomEventBanner
   protected void onInvalidate()
   {
     if (this.mMraidView != null)
-    {
       resetMraidListener();
-      this.mMraidView.destroy();
-    }
+    c.a(this);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.mopub.mobileads.MraidBanner
  * JD-Core Version:    0.6.2
  */

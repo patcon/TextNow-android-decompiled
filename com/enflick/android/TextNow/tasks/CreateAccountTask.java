@@ -5,8 +5,8 @@ import com.enflick.android.TextNow.api.responsemodel.Session;
 import com.enflick.android.TextNow.api.users.UsersPut;
 import com.enflick.android.TextNow.api.users.ah;
 import java.util.Calendar;
-import textnow.s.i;
-import textnow.u.r;
+import textnow.x.i;
+import textnow.z.u;
 
 public class CreateAccountTask extends c
 {
@@ -39,29 +39,29 @@ public class CreateAccountTask extends c
     if (a(locali))
       return;
     String str1 = ((Session)locali.c()).sessionId;
-    r localr = new r(this.a);
-    String str2 = localr.b();
+    u localu = new u(this.a);
+    String str2 = localu.b();
     if ((!TextUtils.isEmpty(str2)) && (!this.d.equals(str2)))
     {
-      localr.a();
-      localr.n();
-      localr = new r(this.a);
+      localu.a();
+      localu.B();
+      localu = new u(this.a);
     }
-    localr.e(this.e);
+    localu.e(this.e);
     if (!TextUtils.isEmpty(this.d))
-      localr.a(this.d);
-    localr.g(this.g);
-    localr.j(this.h);
-    localr.c(this.j);
-    localr.b(k);
-    localr.l(str1);
-    localr.c(true);
-    localr.I();
-    localr.n();
+      localu.a(this.d);
+    localu.g(this.g);
+    localu.j(this.h);
+    localu.c(this.j);
+    localu.b(k);
+    localu.l(str1);
+    localu.c(true);
+    localu.K();
+    localu.B();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.CreateAccountTask
  * JD-Core Version:    0.6.2
  */

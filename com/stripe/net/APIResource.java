@@ -36,9 +36,9 @@ import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.Set;
 import javax.net.ssl.HttpsURLConnection;
-import textnow.z.d;
-import textnow.z.f;
-import textnow.z.h;
+import textnow.af.d;
+import textnow.af.f;
+import textnow.af.h;
 
 public abstract class APIResource extends StripeObject
 {
@@ -96,10 +96,10 @@ public abstract class APIResource extends StripeObject
     //   99: aload 10
     //   101: iload 9
     //   103: invokestatic 98	com/stripe/net/APIResource:handleAPIError	(Ljava/lang/String;I)V
-    //   106: getstatic 52	com/stripe/net/APIResource:GSON	Ltextnow/z/f;
+    //   106: getstatic 52	com/stripe/net/APIResource:GSON	Ltextnow/af/f;
     //   109: aload 10
     //   111: aload_3
-    //   112: invokevirtual 103	textnow/z/f:a	(Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
+    //   112: invokevirtual 103	textnow/af/f:a	(Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
     //   115: areturn
     //   116: astore 5
     //   118: new 105	com/stripe/exception/InvalidRequestException
@@ -630,7 +630,7 @@ public abstract class APIResource extends StripeObject
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.stripe.net.APIResource
  * JD-Core Version:    0.6.2
  */

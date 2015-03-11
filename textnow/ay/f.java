@@ -1,49 +1,97 @@
 package textnow.ay;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Bundle;
+import android.view.Window;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.Iterator;
+import android.widget.TextView;
 
-final class f extends WebViewClient
+public class f extends WebViewClient
 {
-  private f(d paramd)
+  protected f(e parame)
   {
   }
 
-  public final void onPageFinished(WebView paramWebView, String paramString)
+  protected final void a()
   {
-    if (!d.b(this.a))
+    e.b(this.a, false);
+    if (this.a.isShowing())
+      this.a.dismiss();
+  }
+
+  public void onPageFinished(WebView paramWebView, String paramString)
+  {
+    super.onPageFinished(paramWebView, paramString);
+    if ((e.b(this.a)) && (!e.c(this.a)))
     {
-      this.a.b();
-      Iterator localIterator = d.a(this.a).iterator();
-      while (localIterator.hasNext())
-        ((k)localIterator.next()).cancel(true);
-      d.a(this.a).clear();
-      this.a.a();
-      this.a.b("TMWI.fireEvent('init'," + d.c(this.a) + ");");
+      e.b(this.a, false);
+      this.a.getWindow().setFlags(1024, 1024);
+      this.a.show();
+      String str = e.d(this.a).getTitle();
+      if ((str != null) && (str.length() > 0))
+        e.e(this.a).setText(str);
+      paramWebView.forceLayout();
     }
+    if ((e.a(this.a) != null) && (e.a(this.a).isShowing()))
+      e.a(this.a).dismiss();
   }
 
-  public final void onReceivedError(WebView paramWebView, int paramInt, String paramString1, String paramString2)
+  public void onPageStarted(WebView paramWebView, String paramString, Bitmap paramBitmap)
+  {
+    new StringBuilder().append("Webview loading URL: ").append(paramString).toString();
+    super.onPageStarted(paramWebView, paramString, paramBitmap);
+    if (!e.a(this.a).isShowing())
+      e.a(this.a).show();
+  }
+
+  public void onReceivedError(WebView paramWebView, int paramInt, String paramString1, String paramString2)
   {
     super.onReceivedError(paramWebView, paramInt, paramString1, paramString2);
+    this.a.d.a(new a(paramString1, paramInt, paramString2));
+    a();
   }
 
-  public final boolean shouldOverrideUrlLoading(WebView paramWebView, String paramString)
+  public boolean shouldOverrideUrlLoading(WebView paramWebView, String paramString)
   {
-    if (Uri.parse(paramString).getScheme().equals("tmwi"))
+    new StringBuilder().append("Redirect URL: ").append(paramString).toString();
+    if (paramString.startsWith("fbconnect://success"))
     {
-      d.a(this.a, URI.create(paramString));
+      Bundle localBundle = j.a(paramString);
+      String str = localBundle.getString("error");
+      if (str == null)
+        str = localBundle.getString("error_type");
+      if (str == null)
+        this.a.d.a(localBundle);
+      while (true)
+      {
+        e.a(this.a, true);
+        this.a.dismiss();
+        return true;
+        if ((str.equals("access_denied")) || (str.equals("OAuthAccessDeniedException")))
+          this.a.d.a();
+        else
+          this.a.d.a(new d(str));
+      }
+    }
+    if (paramString.startsWith("fbconnect://cancel"))
+    {
+      this.a.d.a();
+      this.a.dismiss();
       return true;
     }
-    return false;
+    if (paramString.contains("touch"))
+      return false;
+    this.a.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse(paramString)));
+    return true;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.ay.f
  * JD-Core Version:    0.6.2
  */

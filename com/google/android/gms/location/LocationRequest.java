@@ -2,48 +2,51 @@ package com.google.android.gms.location;
 
 import android.os.Parcel;
 import android.os.SystemClock;
+import com.google.android.gms.common.internal.n;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-import com.google.android.gms.internal.hk;
 
 public final class LocationRequest
   implements SafeParcelable
 {
-  public static final LocationRequestCreator CREATOR = new LocationRequestCreator();
+  public static final b CREATOR = new b();
   public static final int PRIORITY_BALANCED_POWER_ACCURACY = 102;
   public static final int PRIORITY_HIGH_ACCURACY = 100;
   public static final int PRIORITY_LOW_POWER = 104;
   public static final int PRIORITY_NO_POWER = 105;
-  long Vb;
-  long Vl;
-  long Vm;
-  boolean Vn;
-  int Vo;
-  float Vp;
+  private final int BR;
+  boolean UK;
+  long aei;
+  long aes;
+  long aet;
+  int aeu;
+  float aev;
+  long aew;
   int mPriority;
-  private final int xM;
 
   public LocationRequest()
   {
-    this.xM = 1;
+    this.BR = 1;
     this.mPriority = 102;
-    this.Vl = 3600000L;
-    this.Vm = 600000L;
-    this.Vn = false;
-    this.Vb = 9223372036854775807L;
-    this.Vo = 2147483647;
-    this.Vp = 0.0F;
+    this.aes = 3600000L;
+    this.aet = 600000L;
+    this.UK = false;
+    this.aei = 9223372036854775807L;
+    this.aeu = 2147483647;
+    this.aev = 0.0F;
+    this.aew = 0L;
   }
 
-  LocationRequest(int paramInt1, int paramInt2, long paramLong1, long paramLong2, boolean paramBoolean, long paramLong3, int paramInt3, float paramFloat)
+  LocationRequest(int paramInt1, int paramInt2, long paramLong1, long paramLong2, boolean paramBoolean, long paramLong3, int paramInt3, float paramFloat, long paramLong4)
   {
-    this.xM = paramInt1;
+    this.BR = paramInt1;
     this.mPriority = paramInt2;
-    this.Vl = paramLong1;
-    this.Vm = paramLong2;
-    this.Vn = paramBoolean;
-    this.Vb = paramLong3;
-    this.Vo = paramInt3;
-    this.Vp = paramFloat;
+    this.aes = paramLong1;
+    this.aet = paramLong2;
+    this.UK = paramBoolean;
+    this.aei = paramLong3;
+    this.aeu = paramInt3;
+    this.aev = paramFloat;
+    this.aew = paramLong4;
   }
 
   private static void a(float paramFloat)
@@ -52,7 +55,12 @@ public final class LocationRequest
       throw new IllegalArgumentException("invalid displacement: " + paramFloat);
   }
 
-  private static void cG(int paramInt)
+  public static LocationRequest create()
+  {
+    return new LocationRequest();
+  }
+
+  private static void eb(int paramInt)
   {
     switch (paramInt)
     {
@@ -67,7 +75,7 @@ public final class LocationRequest
     }
   }
 
-  public static String cH(int paramInt)
+  public static String ec(int paramInt)
   {
     switch (paramInt)
     {
@@ -84,11 +92,6 @@ public final class LocationRequest
     case 105:
     }
     return "PRIORITY_NO_POWER";
-  }
-
-  public static LocationRequest create()
-  {
-    return new LocationRequest();
   }
 
   private static void v(long paramLong)
@@ -113,28 +116,28 @@ public final class LocationRequest
         return false;
       localLocationRequest = (LocationRequest)paramObject;
     }
-    while ((this.mPriority == localLocationRequest.mPriority) && (this.Vl == localLocationRequest.Vl) && (this.Vm == localLocationRequest.Vm) && (this.Vn == localLocationRequest.Vn) && (this.Vb == localLocationRequest.Vb) && (this.Vo == localLocationRequest.Vo) && (this.Vp == localLocationRequest.Vp));
+    while ((this.mPriority == localLocationRequest.mPriority) && (this.aes == localLocationRequest.aes) && (this.aet == localLocationRequest.aet) && (this.UK == localLocationRequest.UK) && (this.aei == localLocationRequest.aei) && (this.aeu == localLocationRequest.aeu) && (this.aev == localLocationRequest.aev));
     return false;
   }
 
   public final long getExpirationTime()
   {
-    return this.Vb;
+    return this.aei;
   }
 
   public final long getFastestInterval()
   {
-    return this.Vm;
+    return this.aet;
   }
 
   public final long getInterval()
   {
-    return this.Vl;
+    return this.aes;
   }
 
   public final int getNumUpdates()
   {
-    return this.Vo;
+    return this.aeu;
   }
 
   public final int getPriority()
@@ -144,61 +147,61 @@ public final class LocationRequest
 
   public final float getSmallestDisplacement()
   {
-    return this.Vp;
+    return this.aev;
   }
 
   final int getVersionCode()
   {
-    return this.xM;
+    return this.BR;
   }
 
   public final int hashCode()
   {
     Object[] arrayOfObject = new Object[7];
     arrayOfObject[0] = Integer.valueOf(this.mPriority);
-    arrayOfObject[1] = Long.valueOf(this.Vl);
-    arrayOfObject[2] = Long.valueOf(this.Vm);
-    arrayOfObject[3] = Boolean.valueOf(this.Vn);
-    arrayOfObject[4] = Long.valueOf(this.Vb);
-    arrayOfObject[5] = Integer.valueOf(this.Vo);
-    arrayOfObject[6] = Float.valueOf(this.Vp);
-    return hk.hashCode(arrayOfObject);
+    arrayOfObject[1] = Long.valueOf(this.aes);
+    arrayOfObject[2] = Long.valueOf(this.aet);
+    arrayOfObject[3] = Boolean.valueOf(this.UK);
+    arrayOfObject[4] = Long.valueOf(this.aei);
+    arrayOfObject[5] = Integer.valueOf(this.aeu);
+    arrayOfObject[6] = Float.valueOf(this.aev);
+    return n.hashCode(arrayOfObject);
   }
 
   public final LocationRequest setExpirationDuration(long paramLong)
   {
     long l = SystemClock.elapsedRealtime();
     if (paramLong > 9223372036854775807L - l);
-    for (this.Vb = 9223372036854775807L; ; this.Vb = (l + paramLong))
+    for (this.aei = 9223372036854775807L; ; this.aei = (l + paramLong))
     {
-      if (this.Vb < 0L)
-        this.Vb = 0L;
+      if (this.aei < 0L)
+        this.aei = 0L;
       return this;
     }
   }
 
   public final LocationRequest setExpirationTime(long paramLong)
   {
-    this.Vb = paramLong;
-    if (this.Vb < 0L)
-      this.Vb = 0L;
+    this.aei = paramLong;
+    if (this.aei < 0L)
+      this.aei = 0L;
     return this;
   }
 
   public final LocationRequest setFastestInterval(long paramLong)
   {
     v(paramLong);
-    this.Vn = true;
-    this.Vm = paramLong;
+    this.UK = true;
+    this.aet = paramLong;
     return this;
   }
 
   public final LocationRequest setInterval(long paramLong)
   {
     v(paramLong);
-    this.Vl = paramLong;
-    if (!this.Vn)
-      this.Vm = (()(this.Vl / 6.0D));
+    this.aes = paramLong;
+    if (!this.UK)
+      this.aet = (()(this.aes / 6.0D));
     return this;
   }
 
@@ -206,13 +209,13 @@ public final class LocationRequest
   {
     if (paramInt <= 0)
       throw new IllegalArgumentException("invalid numUpdates: " + paramInt);
-    this.Vo = paramInt;
+    this.aeu = paramInt;
     return this;
   }
 
   public final LocationRequest setPriority(int paramInt)
   {
-    cG(paramInt);
+    eb(paramInt);
     this.mPriority = paramInt;
     return this;
   }
@@ -220,40 +223,40 @@ public final class LocationRequest
   public final LocationRequest setSmallestDisplacement(float paramFloat)
   {
     a(paramFloat);
-    this.Vp = paramFloat;
+    this.aev = paramFloat;
     return this;
   }
 
   public final String toString()
   {
     StringBuilder localStringBuilder = new StringBuilder();
-    localStringBuilder.append("Request[").append(cH(this.mPriority));
+    localStringBuilder.append("Request[").append(ec(this.mPriority));
     if (this.mPriority != 105)
     {
       localStringBuilder.append(" requested=");
-      localStringBuilder.append(this.Vl + "ms");
+      localStringBuilder.append(this.aes + "ms");
     }
     localStringBuilder.append(" fastest=");
-    localStringBuilder.append(this.Vm + "ms");
-    if (this.Vb != 9223372036854775807L)
+    localStringBuilder.append(this.aet + "ms");
+    if (this.aei != 9223372036854775807L)
     {
-      long l = this.Vb - SystemClock.elapsedRealtime();
+      long l = this.aei - SystemClock.elapsedRealtime();
       localStringBuilder.append(" expireIn=");
       localStringBuilder.append(l + "ms");
     }
-    if (this.Vo != 2147483647)
-      localStringBuilder.append(" num=").append(this.Vo);
+    if (this.aeu != 2147483647)
+      localStringBuilder.append(" num=").append(this.aeu);
     localStringBuilder.append(']');
     return localStringBuilder.toString();
   }
 
   public final void writeToParcel(Parcel paramParcel, int paramInt)
   {
-    LocationRequestCreator.a(this, paramParcel, paramInt);
+    b.a(this, paramParcel, paramInt);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.location.LocationRequest
  * JD-Core Version:    0.6.2
  */

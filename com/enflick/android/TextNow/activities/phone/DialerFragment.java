@@ -32,6 +32,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -50,8 +51,8 @@ import android.widget.ToggleButton;
 import com.enflick.android.TextNow.TextNowApp;
 import com.enflick.android.TextNow.activities.ContactDetailsActivity;
 import com.enflick.android.TextNow.activities.MainActivity;
-import com.enflick.android.TextNow.activities.ah;
-import com.enflick.android.TextNow.activities.ao;
+import com.enflick.android.TextNow.activities.an;
+import com.enflick.android.TextNow.activities.av;
 import com.enflick.android.TextNow.tasks.GetContactInfoTask;
 import com.enflick.android.TextNow.tasks.GetContactProxyTask;
 import com.enflick.android.TextNow.tasks.SendMessageTask;
@@ -63,121 +64,121 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
-import textnow.q.ad;
-import textnow.q.b;
+import textnow.z.f;
+import textnow.z.g;
 
-public class DialerFragment extends ao
-  implements View.OnClickListener, f
+public class DialerFragment extends av
+  implements View.OnClickListener, View.OnLongClickListener, j
 {
   public static boolean a = false;
   private static final HashMap<String, String> b = new HashMap();
-  private static final HashMap<Character, Integer> g = new HashMap();
-  private static final HashMap<Integer, Character> h = new HashMap();
+  private static final HashMap<Character, Integer> f = new HashMap();
+  private static final HashMap<Integer, Character> g = new HashMap();
   private View A;
   private View B;
   private View C;
   private View D;
   private View E;
-  private View F;
+  private TextView F;
   private TextView G;
-  private TextView H;
+  private ToggleButton H;
   private ToggleButton I;
   private ToggleButton J;
   private ToggleButton K;
-  private ToggleButton L;
-  private Button M;
+  private Button L;
+  private ImageButton M;
   private ImageButton N;
-  private ImageButton O;
+  private Button O;
   private Button P;
   private Button Q;
-  private Button R;
+  private Dialog R;
   private Dialog S;
-  private Dialog T;
+  private View T;
   private View U;
   private View V;
   private View W;
   private View X;
   private View Y;
-  private View Z;
+  private TextView Z;
   private boolean aA = false;
   private boolean aB = false;
-  private boolean aC = false;
-  private textnow.u.d aD;
-  private textnow.u.f aE;
-  private d aF = d.a();
-  private textnow.u.r aG;
-  private ah aH = null;
-  private TextView aa;
+  private f aC;
+  private textnow.z.h aD;
+  private h aE = h.a();
+  private textnow.z.u aF;
+  private an aG = null;
+  private ImageView aa;
   private ImageView ab;
-  private ImageView ac;
-  private RelativeLayout ad;
+  private RelativeLayout ac;
+  private ImageView ad;
   private ImageView ae;
   private ImageView af;
-  private ImageView ag;
+  private View ag;
   private View ah;
   private View ai;
   private View aj;
   private View ak;
   private View al;
-  private View am;
-  private MenuItem an;
+  private MenuItem am;
+  private TextView an;
   private TextView ao;
-  private TextView ap;
-  private o aq;
-  private m ar = new m(this, (byte)0);
-  private n as = new n(this, (byte)0);
-  private PhoneNumberFormattingTextWatcher at = new PhoneNumberFormattingTextWatcher();
-  private p au = new p(this, (byte)0);
-  private AnimationSet av = new AnimationSet(true);
+  private s ap;
+  private q aq = new q(this, (byte)0);
+  private r ar = new r(this, (byte)0);
+  private PhoneNumberFormattingTextWatcher as = new PhoneNumberFormattingTextWatcher();
+  private t at = new t(this, (byte)0);
+  private AnimationSet au = new AnimationSet(true);
+  private boolean av = false;
   private boolean aw = false;
   private boolean ax = false;
   private boolean ay = false;
   private boolean az = false;
-  private l i;
-  private BroadcastReceiver j;
+  private p h;
+  private BroadcastReceiver i;
+  private boolean j;
   private boolean k;
-  private boolean l;
-  private ToneGenerator m;
-  private Object n = new Object();
-  private boolean o;
-  private textnow.y.a p;
-  private AlertDialog q;
-  private EditText r;
-  private TextView s;
-  private EditText t;
+  private ToneGenerator l;
+  private Object m = new Object();
+  private boolean n;
+  private textnow.ae.a o;
+  private AlertDialog p;
+  private EditText q;
+  private TextView r;
+  private EditText s;
+  private ImageButton t;
   private ImageButton u;
   private ImageButton v;
   private ImageButton w;
-  private ImageButton x;
+  private View x;
   private View y;
   private View z;
 
   static
   {
-    g.put(Character.valueOf('1'), Integer.valueOf(1));
-    g.put(Character.valueOf('2'), Integer.valueOf(2));
-    g.put(Character.valueOf('3'), Integer.valueOf(3));
-    g.put(Character.valueOf('4'), Integer.valueOf(4));
-    g.put(Character.valueOf('5'), Integer.valueOf(5));
-    g.put(Character.valueOf('6'), Integer.valueOf(6));
-    g.put(Character.valueOf('7'), Integer.valueOf(7));
-    g.put(Character.valueOf('8'), Integer.valueOf(8));
-    g.put(Character.valueOf('9'), Integer.valueOf(9));
-    g.put(Character.valueOf('0'), Integer.valueOf(0));
-    g.put(Character.valueOf('#'), Integer.valueOf(11));
-    g.put(Character.valueOf('*'), Integer.valueOf(10));
-    h.put(Integer.valueOf(2131165415), Character.valueOf('1'));
-    h.put(Integer.valueOf(2131165416), Character.valueOf('2'));
-    h.put(Integer.valueOf(2131165417), Character.valueOf('3'));
-    h.put(Integer.valueOf(2131165418), Character.valueOf('4'));
-    h.put(Integer.valueOf(2131165419), Character.valueOf('5'));
-    h.put(Integer.valueOf(2131165420), Character.valueOf('6'));
-    h.put(Integer.valueOf(2131165421), Character.valueOf('7'));
-    h.put(Integer.valueOf(2131165422), Character.valueOf('8'));
-    h.put(Integer.valueOf(2131165423), Character.valueOf('9'));
-    h.put(Integer.valueOf(2131165425), Character.valueOf('0'));
-    h.put(Integer.valueOf(2131165426), Character.valueOf('#'));
-    h.put(Integer.valueOf(2131165424), Character.valueOf('*'));
+    f.put(Character.valueOf('1'), Integer.valueOf(1));
+    f.put(Character.valueOf('2'), Integer.valueOf(2));
+    f.put(Character.valueOf('3'), Integer.valueOf(3));
+    f.put(Character.valueOf('4'), Integer.valueOf(4));
+    f.put(Character.valueOf('5'), Integer.valueOf(5));
+    f.put(Character.valueOf('6'), Integer.valueOf(6));
+    f.put(Character.valueOf('7'), Integer.valueOf(7));
+    f.put(Character.valueOf('8'), Integer.valueOf(8));
+    f.put(Character.valueOf('9'), Integer.valueOf(9));
+    f.put(Character.valueOf('0'), Integer.valueOf(0));
+    f.put(Character.valueOf('#'), Integer.valueOf(11));
+    f.put(Character.valueOf('*'), Integer.valueOf(10));
+    g.put(Integer.valueOf(2131558686), Character.valueOf('1'));
+    g.put(Integer.valueOf(2131558687), Character.valueOf('2'));
+    g.put(Integer.valueOf(2131558688), Character.valueOf('3'));
+    g.put(Integer.valueOf(2131558689), Character.valueOf('4'));
+    g.put(Integer.valueOf(2131558690), Character.valueOf('5'));
+    g.put(Integer.valueOf(2131558691), Character.valueOf('6'));
+    g.put(Integer.valueOf(2131558692), Character.valueOf('7'));
+    g.put(Integer.valueOf(2131558693), Character.valueOf('8'));
+    g.put(Integer.valueOf(2131558694), Character.valueOf('9'));
+    g.put(Integer.valueOf(2131558696), Character.valueOf('0'));
+    g.put(Integer.valueOf(2131558697), Character.valueOf('#'));
+    g.put(Integer.valueOf(2131558695), Character.valueOf('*'));
     b.put("##72786#", "android_secret_code://SCRTN");
     b.put("##786#", "android_secret_code://RTN");
     b.put("##3282#", "android_secret_code://DATA");
@@ -185,79 +186,284 @@ public class DialerFragment extends ao
     b.put("##33284#", "android_secret_code://DEBUG");
   }
 
-  private void A()
+  private void B()
   {
-    s locals = this.aF.p();
-    if ((locals != null) && (locals.c()) && (this.aw != locals.d()))
+    F();
+    if ((this.aC == null) && (TextUtils.isEmpty(this.q.getEditableText())))
     {
-      locals.a(this.aw);
-      if (locals.n() != null)
+      String str2 = this.aF.ac();
+      f localf;
+      if (!str2.isEmpty())
       {
-        AsyncTask local6 = new AsyncTask()
-        {
-        };
-        Uri[] arrayOfUri = new Uri[1];
-        arrayOfUri[0] = locals.n();
-        local6.execute(arrayOfUri);
+        new StringBuilder().append("populating dialer with number = ").append(str2).toString();
+        if (!str2.contains("@"))
+          break label114;
+        localf = new f(str2, 3, str2.substring(0, str2.indexOf("@")), null);
       }
+      while (true)
+      {
+        a(localf);
+        this.aC = localf;
+        return;
+        label114: if (TextUtils.isDigitsOnly(str2))
+          localf = new f(str2, 2, null, null);
+        else
+          localf = new f(str2, 1, str2, null);
+      }
+    }
+    if (this.aC.a().equals("911"))
+    {
+      if (this.k)
+      {
+        Intent localIntent = new Intent();
+        localIntent.setAction("android.intent.action.CALL_EMERGENCY");
+        localIntent.setData(Uri.parse("tel:911"));
+        this.aG.startActivity(localIntent);
+        return;
+      }
+      this.aG.b(2131296781);
+      return;
+    }
+    String str1 = this.aC.a();
+    if (this.aC.b() == 2)
+    {
+      str1 = textnow.v.b.b(str1);
+      if (str1 == null)
+      {
+        Toast.makeText(this.aG, 2131296779, 0).show();
+        return;
+      }
+      Set localSet = textnow.z.h.b(this.aG);
+      g localg = f.a(this.aG, localSet, this.aC.a(), this.aC.b());
+      if (localg != null)
+      {
+        this.aC.a(localg.b);
+        this.aC.a(localg.a);
+      }
+    }
+    if ((this.aF.Z()) && ("ACTIVE".equalsIgnoreCase(new textnow.z.s(this.aG).f())) && (!textnow.v.b.d(this.aG)) && ((textnow.v.b.n(this.aG)) || (textnow.v.a.a)) && (this.aE.l()))
+    {
+      this.aG.a(2131296428, true);
+      new SpeedTestTask(new textnow.z.p(this.aG), this.aC, null).b(this.aG);
+    }
+    while (true)
+    {
+      this.aF.C(str1);
+      this.aF.B();
+      return;
+      c(this.aC);
     }
   }
 
   private void D()
   {
-    final EditText localEditText = new EditText(this.aH);
-    new AlertDialog.Builder(this.aH).setTitle("Notes On the Call").setView(localEditText).setPositiveButton("Send", new DialogInterface.OnClickListener()
+    this.ay = false;
+    if (this.aC != null)
+    {
+      new StringBuilder().append("Accepting call for number: ").append(this.aC.a()).toString();
+      this.aE.a(this);
+      this.aE.a(this.aE.e(this.aC.a()));
+    }
+  }
+
+  private void E()
+  {
+    this.aE.b(this.aE.e(this.aC.a()));
+    new StringBuilder().append("Hung up call, new number of calls: ").append(this.aE.H()).toString();
+    if (this.aE.H() == 0)
+    {
+      if (this.d != null)
+        this.d.onBackPressed();
+    }
+    else
+      return;
+    this.aG.finish();
+  }
+
+  private void F()
+  {
+    String str2;
+    String str3;
+    if (this.q.getVisibility() == 0)
+    {
+      String str1 = this.q.getEditableText().toString();
+      if (!TextUtils.isEmpty(str1))
+      {
+        str2 = textnow.v.b.e(str1);
+        str3 = textnow.v.b.b(str2);
+        if (str3 == null)
+          break label80;
+      }
+    }
+    while (true)
+    {
+      if ((this.aC == null) || (!this.aC.a().equals(str3)))
+        this.aC = new f(str3, 2, null, null, true);
+      return;
+      label80: str3 = str2;
+    }
+  }
+
+  private void G()
+  {
+    int i1 = 255;
+    AudioRoute localAudioRoute = this.aE.o();
+    int i3;
+    int i2;
+    int i4;
+    int i5;
+    int i6;
+    label94: int i7;
+    label119: int i8;
+    label143: Drawable localDrawable4;
+    if (h.h())
+    {
+      this.I.setEnabled(true);
+      this.I.setChecked(false);
+      if (localAudioRoute == AudioRoute.BluetoothSCO)
+      {
+        i3 = 1;
+        i2 = 0;
+        i4 = 0;
+        i5 = 1;
+        LayerDrawable localLayerDrawable = (LayerDrawable)this.I.getBackground();
+        localLayerDrawable.findDrawableByLayerId(2131559043).setAlpha(0);
+        Drawable localDrawable1 = localLayerDrawable.findDrawableByLayerId(2131559044);
+        if (i5 == 0)
+          break label266;
+        i6 = i1;
+        localDrawable1.setAlpha(i6);
+        Drawable localDrawable2 = localLayerDrawable.findDrawableByLayerId(2131559045);
+        if (i3 == 0)
+          break label272;
+        i7 = i1;
+        localDrawable2.setAlpha(i7);
+        Drawable localDrawable3 = localLayerDrawable.findDrawableByLayerId(2131559047);
+        if (i2 == 0)
+          break label278;
+        i8 = i1;
+        localDrawable3.setAlpha(i8);
+        localDrawable4 = localLayerDrawable.findDrawableByLayerId(2131559046);
+        if (i4 == 0)
+          break label284;
+      }
+    }
+    while (true)
+    {
+      localDrawable4.setAlpha(i1);
+      return;
+      if (localAudioRoute == AudioRoute.Speaker)
+      {
+        i4 = 1;
+        i5 = 1;
+        i3 = 0;
+        i2 = 0;
+        break;
+      }
+      i2 = 1;
+      i5 = 1;
+      i3 = 0;
+      i4 = 0;
+      break;
+      this.I.setEnabled(true);
+      if (localAudioRoute == AudioRoute.Speaker)
+      {
+        this.I.setChecked(true);
+        i4 = 1;
+        i3 = 0;
+        i2 = 0;
+        i5 = 0;
+        break;
+      }
+      this.I.setChecked(false);
+      i2 = 1;
+      i3 = 0;
+      i4 = 0;
+      i5 = 0;
+      break;
+      label266: i6 = 0;
+      break label94;
+      label272: i7 = 0;
+      break label119;
+      label278: i8 = 0;
+      break label143;
+      label284: i1 = 0;
+    }
+  }
+
+  private void H()
+  {
+    w localw = this.aE.p();
+    if ((localw != null) && (localw.c()) && (this.av != localw.d()))
+    {
+      localw.a(this.av);
+      if (localw.o() != null)
+      {
+        AsyncTask local6 = new AsyncTask()
+        {
+        };
+        Uri[] arrayOfUri = new Uri[1];
+        arrayOfUri[0] = localw.o();
+        local6.execute(arrayOfUri);
+      }
+    }
+  }
+
+  private void I()
+  {
+    final EditText localEditText = new EditText(this.aG);
+    new AlertDialog.Builder(this.aG).setTitle("Notes On the Call").setView(localEditText).setPositiveButton("Send", new DialogInterface.OnClickListener()
     {
       public final void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt)
       {
-        b.a(DialerFragment.a(DialerFragment.this), "wei@enflick.com", "CDMA feedback", "", localEditText.getText().toString(), true);
+        textnow.v.b.a(DialerFragment.a(DialerFragment.this), "wei@enflick.com", "CDMA feedback", "", localEditText.getText().toString(), true);
       }
     }).setNegativeButton("Cancel", null).create().show();
   }
 
-  private boolean E()
+  private boolean J()
   {
-    return (!this.aF.J()) || (!this.aF.K());
+    return (!this.aE.K()) || (!this.aE.L());
   }
 
-  public static DialerFragment a(textnow.u.d paramd, DialerFragment.DialerState paramDialerState, boolean paramBoolean1, boolean paramBoolean2, l paraml)
+  public static DialerFragment a(f paramf, DialerFragment.DialerState paramDialerState, boolean paramBoolean1, boolean paramBoolean2, p paramp)
   {
     DialerFragment localDialerFragment = new DialerFragment();
     Bundle localBundle = new Bundle();
-    localBundle.putSerializable("param_contact", paramd);
+    localBundle.putSerializable("param_contact", paramf);
     localBundle.putBoolean("param_answer", paramBoolean1);
     localBundle.putBoolean("param_call", paramBoolean2);
     localBundle.putParcelable("dialer_state", paramDialerState);
     localDialerFragment.setArguments(localBundle);
-    localDialerFragment.i = paraml;
+    localDialerFragment.h = paramp;
     return localDialerFragment;
   }
 
   private void a(int paramInt)
   {
-    View localView1 = this.U;
+    View localView1 = this.T;
     int i1;
     int i2;
     label35: int i3;
     label58: View localView4;
     int i4;
-    if (paramInt == 2131165404)
+    if (paramInt == 2131558675)
     {
       i1 = 0;
       localView1.setVisibility(i1);
-      View localView2 = this.V;
-      if (paramInt != 2131165405)
+      View localView2 = this.U;
+      if (paramInt != 2131558676)
         break label95;
       i2 = 0;
       localView2.setVisibility(i2);
-      View localView3 = this.W;
-      if (paramInt != 2131165406)
+      View localView3 = this.V;
+      if (paramInt != 2131558677)
         break label102;
       i3 = 0;
       localView3.setVisibility(i3);
-      localView4 = this.X;
+      localView4 = this.W;
       i4 = 0;
-      if (paramInt != 2131165407)
+      if (paramInt != 2131558678)
         break label109;
     }
     while (true)
@@ -276,67 +482,71 @@ public class DialerFragment extends ao
 
   private void a(View paramView)
   {
-    Iterator localIterator = h.keySet().iterator();
+    Iterator localIterator = g.keySet().iterator();
     while (localIterator.hasNext())
     {
       View localView = paramView.findViewById(((Integer)localIterator.next()).intValue());
-      localView.setOnTouchListener(this.as);
+      localView.setOnTouchListener(this.ar);
       localView.setClickable(true);
-      localView.setOnKeyListener(this.ar);
+      localView.setOnKeyListener(this.aq);
     }
   }
 
   private void a(String paramString)
   {
-    new GetContactInfoTask(paramString).b(this.aH);
+    new GetContactInfoTask(paramString).b(this.aG);
   }
 
-  private void a(textnow.u.d paramd)
+  private void a(f paramf)
   {
-    if (paramd.b() == 2)
-    {
-      a(true);
-      this.r.getEditableText().replace(0, this.r.length(), paramd.a());
-    }
+    if (!this.j);
     do
     {
       return;
+      if (paramf.b() == 2)
+      {
+        a(true);
+        this.q.getEditableText().replace(0, this.q.length(), paramf.a());
+        return;
+      }
       a(false);
-      this.s.setText(paramd.c());
+      this.r.setText(paramf.c());
     }
-    while (!paramd.f());
-    this.aw = true;
-    r();
+    while (!paramf.f());
+    this.av = true;
+    u();
   }
 
   private void a(boolean paramBoolean)
   {
-    this.s.setText("");
+    if (!this.j)
+      return;
     this.r.setText("");
+    this.q.setText("");
     if (paramBoolean)
     {
-      this.s.setVisibility(8);
-      this.r.setVisibility(0);
+      this.r.setVisibility(8);
+      this.q.setVisibility(0);
       return;
     }
-    this.r.setVisibility(8);
-    this.s.setVisibility(0);
+    this.q.setVisibility(8);
+    this.r.setVisibility(0);
   }
 
-  private void b(final textnow.u.d paramd)
+  private void b(final f paramf)
   {
-    if (paramd.b() == 2)
+    if (paramf.b() == 2)
     {
-      str = getString(2131493373, new Object[] { b.f(paramd.a()) });
-      new AlertDialog.Builder(this.aH).setTitle(2131493348).setMessage(str).setPositiveButton(2131493017, new DialogInterface.OnClickListener()
+      str = getString(2131296776, new Object[] { textnow.v.b.f(paramf.a()) });
+      new AlertDialog.Builder(this.aG).setTitle(2131296751).setMessage(str).setPositiveButton(2131296423, new DialogInterface.OnClickListener()
       {
         public final void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt)
         {
-          new SendMessageTask(DialerFragment.a(DialerFragment.this), paramd.b(), paramd.a(), paramd.c(), paramd.d(), 1, 2, true, DialerFragment.a(DialerFragment.this).getString(2131493383), null).b(DialerFragment.a(DialerFragment.this));
+          new SendMessageTask(DialerFragment.a(DialerFragment.this), paramf.b(), paramf.a(), paramf.c(), paramf.d(), 1, 2, true, DialerFragment.a(DialerFragment.this).getString(2131296786), null).b(DialerFragment.a(DialerFragment.this));
         }
-      }).setNegativeButton(2131493019, null).setCancelable(true).create().show();
+      }).setNegativeButton(2131296425, null).setCancelable(true).create().show();
     }
-    while (paramd.b() != 3)
+    while (paramf.b() != 3)
     {
       String str;
       return;
@@ -344,10 +554,10 @@ public class DialerFragment extends ao
     Intent localIntent = new Intent("android.intent.action.SEND");
     localIntent.setType("text/html");
     String[] arrayOfString = new String[1];
-    arrayOfString[0] = paramd.a();
+    arrayOfString[0] = paramf.a();
     localIntent.putExtra("android.intent.extra.EMAIL", arrayOfString);
-    localIntent.putExtra("android.intent.extra.SUBJECT", getString(2131493384));
-    localIntent.putExtra("android.intent.extra.TEXT", getString(2131493385));
+    localIntent.putExtra("android.intent.extra.SUBJECT", getString(2131296787));
+    localIntent.putExtra("android.intent.extra.TEXT", getString(2131296788));
     startActivity(localIntent);
   }
 
@@ -355,89 +565,96 @@ public class DialerFragment extends ao
   {
     String str;
     if (paramBoolean)
-      str = getString(2131493363);
+      str = getString(2131296766);
     while (true)
     {
-      this.t.getEditableText().replace(0, this.t.length(), str);
+      this.s.getEditableText().replace(0, this.s.length(), str);
       return;
-      if (this.aD != null)
+      if (this.aC != null)
       {
-        str = this.aD.g();
+        str = this.aC.g();
         int i1 = str.indexOf("@textnow.me");
         if (i1 > 0)
           str = str.substring(0, i1);
       }
       else
       {
-        str = getString(2131493368);
+        str = getString(2131296771);
       }
     }
   }
 
-  private void c(textnow.u.d paramd)
+  private void c(f paramf)
   {
-    if ((!this.aw) && (this.aG.C() <= 1))
+    if ((!this.av) && (this.aF.E() <= 1))
     {
-      this.ax = true;
-      this.aH.a(2131493021, true);
-      a(paramd.a());
+      this.aw = true;
+      this.aG.a(2131296428, true);
+      a(paramf.a());
     }
     do
     {
       return;
-      this.aH.r();
-      if (this.aD.a().equals(this.aG.c()))
+      this.aG.v();
+      if (this.aC.a().equals(this.aF.c()))
       {
-        this.aH.c(2131493382);
+        this.aG.b(2131296785);
         return;
       }
-      boolean bool = this.aC;
-      this.aC = false;
-      if (!this.aF.a(this.aD, true, bool))
+      boolean bool = this.aB;
+      this.aB = false;
+      if (!this.aE.a(this.aC, true, bool))
       {
-        this.aH.c(2131493026);
+        this.aG.b(2131296433);
         return;
       }
     }
-    while (this.aw);
-    a(this.aD.a());
+    while (this.av);
+    a(this.aC.a());
   }
 
   private void c(boolean paramBoolean)
   {
+    int i1 = 8;
     if (paramBoolean)
     {
-      if ((this.aF.J()) && (this.aF.q().c(this.aF.p())))
+      if ((this.aE.K()) && (this.aE.q().c(this.aE.p())))
       {
-        this.ac.setVisibility(0);
-        this.ab.setVisibility(8);
-        this.B.setVisibility(0);
-        return;
+        this.ab.setVisibility(0);
+        this.aa.setVisibility(i1);
+        View localView = this.A;
+        if (this.d == null);
+        while (true)
+        {
+          localView.setVisibility(i1);
+          return;
+          i1 = 0;
+        }
       }
-      this.ac.setVisibility(8);
-      this.ab.setVisibility(0);
-      this.B.setVisibility(8);
+      this.ab.setVisibility(i1);
+      this.aa.setVisibility(0);
+      this.A.setVisibility(i1);
       return;
     }
-    this.ac.setVisibility(8);
-    this.ab.setVisibility(8);
-    this.B.setVisibility(8);
+    this.ab.setVisibility(i1);
+    this.aa.setVisibility(i1);
+    this.A.setVisibility(i1);
   }
 
-  private void o()
+  private void r()
   {
-    if (this.an != null)
+    if (this.am != null)
     {
-      View localView = android.support.v4.view.v.a(this.an);
-      this.ao = ((TextView)localView.findViewById(2131165282));
-      this.ap = ((TextView)localView.findViewById(2131165283));
+      View localView = android.support.v4.view.z.a(this.am);
+      this.an = ((TextView)localView.findViewById(2131558510));
+      this.ao = ((TextView)localView.findViewById(2131558511));
     }
   }
 
-  private void p()
+  private void s()
   {
-    s locals;
-    c localc;
+    w localw;
+    d locald;
     boolean bool3;
     label227: int i1;
     label365: Object localObject2;
@@ -459,156 +676,156 @@ public class DialerFragment extends ao
       {
         try
         {
-          boolean bool1 = this.k;
+          boolean bool1 = this.j;
           if (!bool1)
             return;
-          new StringBuilder().append("update UI for state: ").append(Call.State.getLabel(this.aF.y())).toString();
-          localState1 = this.aF.y();
-          locals = this.aF.p();
-          localc = this.aF.q();
-          if (this.az)
+          new StringBuilder().append("update UI for state: ").append(Call.State.getLabel(this.aE.y())).toString();
+          localState1 = this.aE.y();
+          localw = this.aE.p();
+          locald = this.aE.q();
+          if (this.ay)
           {
-            this.ah.startAnimation(this.av);
-            if (!this.az)
+            this.ag.startAnimation(this.au);
+            if (!this.ay)
               break;
-            a(2131165406);
-            s();
-            r();
-            if ((locals == null) || (!locals.i()))
+            a(2131558677);
+            v();
+            u();
+            if ((localw == null) || (!localw.i()))
               continue;
-            t();
+            w();
             continue;
           }
         }
         finally
         {
         }
-        this.av.cancel();
-        this.av.reset();
+        this.au.cancel();
+        this.au.reset();
       }
-      if ((!d.c(localState1)) || (locals == null) || (locals.i()))
+      if ((!h.c(localState1)) || (localw == null) || (localw.i()))
         break label1121;
-      if (!this.aC)
-        a(2131165405);
-      this.aD = locals.b();
-      if (this.aD != null)
+      if (!this.aB)
+        a(2131558676);
+      this.aC = localw.b();
+      if (this.aC != null)
       {
-        if ((!this.aF.J()) || (!localc.c(locals)))
+        if ((!this.aE.K()) || (!locald.c(localw)))
           break label1333;
         bool3 = true;
         b(bool3);
       }
       String str;
-      if ((locals != null) && (locals.m() != null) && (this.ab.getVisibility() == 0))
+      if ((localw != null) && (localw.n() != null) && (this.aa.getVisibility() == 0))
       {
-        str = locals.m().h();
-        new StringBuilder().append("Loading photo: ").append(str).append(" for ").append(locals.m().c()).toString();
-        new StringBuilder().append("Call: ").append(locals.toString()).toString();
-        if (!textnow.u.f.c(str))
+        str = localw.n().h();
+        new StringBuilder().append("Loading photo: ").append(str).append(" for ").append(localw.n().c()).toString();
+        new StringBuilder().append("Call: ").append(localw.toString()).toString();
+        if (!textnow.z.h.c(str))
           break label450;
-        this.ab.setImageResource(2130837596);
+        this.aa.setImageResource(2130837560);
       }
       while (true)
       {
-        if (!this.aF.J())
+        if (!this.aE.K())
           break label1320;
-        i1 = localc.e();
-        if (this.aF.H() - i1 <= 0)
+        i1 = locald.e();
+        if (this.aE.H() - i1 <= 0)
           break label1002;
         localObject2 = null;
-        if (!this.aF.J())
+        if (!this.aE.K())
           break label925;
-        if (!localc.c(locals))
+        if (!locald.c(localw))
           break;
-        Iterator localIterator2 = this.aF.G().iterator();
+        Iterator localIterator2 = this.aE.G().iterator();
         if (!localIterator2.hasNext())
           break label1339;
-        localObject5 = (s)localIterator2.next();
-        if (localc.c((s)localObject5))
+        localObject5 = (w)localIterator2.next();
+        if (locald.c((w)localObject5))
           break label1313;
         break label1326;
         Uri localUri = Uri.parse(str);
         if (Build.VERSION.SDK_INT >= 14)
         {
-          new textnow.q.j();
-          textnow.q.j.a(this.aH.getContentResolver(), localUri, this.ab, 2130837596);
+          new textnow.v.j();
+          textnow.v.j.a(this.aG.getContentResolver(), localUri, this.aa, 2130837560);
         }
         else
         {
-          textnow.q.q.a(this.aH).a(this.ab, localUri, this.au);
+          textnow.v.o.a(this.aG).a(this.aa, localUri, this.at);
         }
       }
-      new StringBuilder().append("notCurrentCall is ").append(((s)localObject3).b().a()).toString();
-      if (!((s)localObject3).a(locals))
+      new StringBuilder().append("notCurrentCall is ").append(((w)localObject3).b().a()).toString();
+      if (!((w)localObject3).a(localw))
         break label1293;
       i2 = 1;
       if (i2 == 0)
         break label977;
-      localView1 = this.ak;
-      localTextView = (TextView)localView1.findViewById(2131165414);
-      ad.a(localView1.findViewById(2131165413), this.aH);
-      if ((!this.aF.J()) || (!localc.c((s)localObject3)))
+      localView1 = this.aj;
+      localTextView = (TextView)localView1.findViewById(2131558685);
+      textnow.v.z.a(localView1.findViewById(2131558684), this.aG);
+      if ((!this.aE.K()) || (!locald.c((w)localObject3)))
         break label986;
-      localTextView.setText(getString(2131493363));
-      View localView2 = this.ak;
+      localTextView.setText(getString(2131296766));
+      View localView2 = this.aj;
       if (i2 == 0)
         break label1353;
       i3 = 0;
       localView2.setVisibility(i3);
-      View localView3 = this.aj;
+      View localView3 = this.ai;
       if (i2 == 0)
         break label1360;
       i4 = 0;
       localView3.setVisibility(i4);
-      View localView4 = this.al;
+      View localView4 = this.ak;
       if (i2 == 0)
         break label1367;
       i5 = 8;
       localView4.setVisibility(i5);
-      View localView5 = this.am;
+      View localView5 = this.al;
       if (i2 == 0)
         break label1373;
       i6 = 8;
       localView5.setVisibility(i6);
-      if (this.aA)
+      if (this.az)
         break label1379;
       bool2 = true;
       c(bool2);
-      localState2 = this.aF.y();
+      localState2 = this.aE.y();
     }
-    while (!d.c(localState2));
+    while (!h.c(localState2));
     View localView6;
-    if (d.b(localState2))
+    if (h.b(localState2))
     {
-      this.I.setEnabled(true);
-      this.L.setEnabled(true);
+      this.H.setEnabled(true);
       this.K.setEnabled(true);
-      this.L.setChecked(this.aF.z());
-      this.I.setChecked(this.aA);
-      localView6 = this.Z;
-      if (!this.aA)
+      this.J.setEnabled(true);
+      this.K.setChecked(this.aE.z());
+      this.H.setChecked(this.az);
+      localView6 = this.Y;
+      if (!this.az)
         break label1385;
     }
     label848: label977: label986: label1121: label1379: label1385: for (int i8 = 0; ; i8 = 8)
     {
       localView6.setVisibility(i8);
-      ToggleButton localToggleButton = this.K;
-      localToggleButton.setChecked(d.x());
-      z();
+      ToggleButton localToggleButton = this.J;
+      localToggleButton.setChecked(h.x());
+      G();
       int i7;
       label874: Iterator localIterator1;
-      if (this.aF.J())
+      if (this.aE.K())
       {
-        i7 = this.aF.q().e();
-        if (this.aF.H() - i7 > 0)
+        i7 = this.aE.q().e();
+        if (this.aE.H() - i7 > 0)
         {
-          this.M.setVisibility(0);
-          this.N.setVisibility(8);
-          this.O.setVisibility(0);
+          this.L.setVisibility(0);
+          this.M.setVisibility(8);
+          this.N.setVisibility(0);
           break;
-          localObject3 = localc.b();
+          localObject3 = locald.b();
           break label518;
-          localIterator1 = this.aF.G().iterator();
+          localIterator1 = this.aE.G().iterator();
         }
       }
       while (true)
@@ -616,54 +833,54 @@ public class DialerFragment extends ao
         Object localObject4;
         if (localIterator1.hasNext())
         {
-          localObject4 = (s)localIterator1.next();
-          if (((s)localObject4).a() != locals.a())
+          localObject4 = (w)localIterator1.next();
+          if (((w)localObject4).a() != localw.a())
           {
             break label1346;
-            localView1 = this.al;
+            localView1 = this.ak;
             break label570;
-            localTextView.setText(((s)localObject3).b().g());
+            localTextView.setText(((w)localObject3).b().g());
             break label630;
-            label1002: this.al.setVisibility(8);
-            this.am.setVisibility(8);
-            this.ak.setVisibility(8);
+            label1002: this.ak.setVisibility(8);
+            this.al.setVisibility(8);
             this.aj.setVisibility(8);
+            this.ai.setVisibility(8);
             break label716;
-            this.I.setChecked(false);
-            this.I.setEnabled(false);
-            this.Z.setVisibility(8);
-            this.L.setEnabled(false);
+            this.H.setChecked(false);
+            this.H.setEnabled(false);
+            this.Y.setVisibility(8);
             this.K.setEnabled(false);
+            this.J.setEnabled(false);
             break label848;
-            this.M.setVisibility(8);
-            if (this.e != null)
-              this.N.setVisibility(0);
-            this.O.setVisibility(8);
+            this.L.setVisibility(8);
+            if (this.d != null)
+              this.M.setVisibility(0);
+            this.N.setVisibility(8);
             break;
-            if ((locals != null) && (locals.i()))
+            if ((localw != null) && (localw.i()))
             {
-              a(2131165407);
+              a(2131558678);
               break;
             }
-            a(2131165404);
-            if (this.aD == null)
+            a(2131558675);
+            if (this.aC == null)
               break;
-            if (this.aD.b() == 2)
+            if (this.aC.b() == 2)
             {
               a(true);
-              this.r.getEditableText().replace(0, this.r.length(), this.aD.a());
+              this.q.getEditableText().replace(0, this.q.length(), this.aC.a());
               break;
             }
-            if (this.aD.b() == 3)
+            if (this.aC.b() == 3)
             {
               a(false);
-              this.s.setText(this.aD.a().substring(0, this.aD.a().indexOf("@")));
-              this.aw = true;
+              this.r.setText(this.aC.a().substring(0, this.aC.a().indexOf("@")));
+              this.av = true;
               break;
             }
             a(false);
-            this.s.setText(this.aD.a());
-            this.aw = true;
+            this.r.setText(this.aC.a());
+            this.av = true;
             break;
             i7 = 1;
             break label874;
@@ -700,14 +917,14 @@ public class DialerFragment extends ao
     }
   }
 
-  private void q()
+  private void t()
   {
-    if (this.aD == null);
-    while ((!TextUtils.isEmpty(this.aD.c())) || (this.aD.b() != 2))
+    if (this.aC == null);
+    while ((!TextUtils.isEmpty(this.aC.c())) || (this.aC.b() != 2))
       return;
     try
     {
-      this.aD.b(textnow.q.k.a(TextNowApp.a().getApplicationContext().getContentResolver(), this.aD.a()));
+      this.aC.b(textnow.v.k.a(TextNowApp.a().getApplicationContext().getContentResolver(), this.aC.a()));
       return;
     }
     catch (Exception localException)
@@ -715,26 +932,26 @@ public class DialerFragment extends ao
     }
   }
 
-  private void r()
+  private void u()
   {
     int i1 = 8;
-    Call.State localState = this.aF.y();
-    s locals = this.aF.p();
+    Call.State localState = this.aE.y();
+    w localw = this.aE.p();
     int i3;
-    if (d.a(localState))
+    if (h.a(localState))
     {
-      View localView3 = this.E;
-      if (!this.aw)
+      View localView3 = this.D;
+      if (!this.av)
       {
         i3 = i1;
         localView3.setVisibility(i3);
-        View localView4 = this.F;
-        if (!this.aw)
+        View localView4 = this.E;
+        if (!this.av)
           break label96;
         label62: localView4.setVisibility(i1);
         if (localState != Call.State.IncomingTrying)
           break label101;
-        this.G.setText(2131493357);
+        this.F.setText(2131296760);
       }
     }
     label96: label101: View localView2;
@@ -742,54 +959,54 @@ public class DialerFragment extends ao
     do
       while (true)
       {
-        s();
+        v();
         return;
         i3 = 0;
         break;
         i1 = 0;
         break label62;
-        this.G.setText(2131493355);
+        this.F.setText(2131296758);
         continue;
-        if (!d.b(localState))
+        if (!h.b(localState))
           break label144;
-        this.E.setVisibility(i1);
-        localView2 = this.F;
+        this.D.setVisibility(i1);
+        localView2 = this.E;
         localView2.setVisibility(i1);
       }
-    while ((locals != null) && (!locals.i()));
-    View localView1 = this.C;
-    if (this.aw);
+    while ((localw != null) && (!localw.i()));
+    View localView1 = this.B;
+    if (this.av);
     for (int i2 = 0; ; i2 = i1)
     {
       localView1.setVisibility(i2);
-      localView2 = this.D;
-      if (this.aw)
+      localView2 = this.C;
+      if (this.av)
         break;
       i1 = 0;
       break;
     }
   }
 
-  private void s()
+  private void v()
   {
-    if (this.ao == null)
-      o();
-    s locals;
+    if (this.an == null)
+      r();
+    w localw;
     int i1;
     TextView localTextView2;
     int i2;
-    if ((this.ao != null) && (this.ap != null))
+    if ((this.an != null) && (this.ao != null))
     {
-      locals = this.aF.p();
-      if ((locals == null) || (!locals.c()))
+      localw = this.aE.p();
+      if ((localw == null) || (!localw.c()))
         break label104;
-      TextView localTextView1 = this.ao;
-      if (!this.aw)
+      TextView localTextView1 = this.an;
+      if (!this.av)
         break label92;
       i1 = 8;
       localTextView1.setVisibility(i1);
-      localTextView2 = this.ap;
-      boolean bool = this.aw;
+      localTextView2 = this.ao;
+      boolean bool = this.av;
       i2 = 0;
       if (!bool)
         break label97;
@@ -802,22 +1019,22 @@ public class DialerFragment extends ao
       break;
       label97: i2 = 8;
     }
-    label104: if ((this.az) || (locals != null))
+    label104: if ((this.ay) || (localw != null))
     {
-      this.ao.setVisibility(8);
-      this.ap.setVisibility(0);
+      this.an.setVisibility(8);
+      this.ao.setVisibility(0);
       return;
     }
-    this.ao.setVisibility(0);
-    this.ap.setVisibility(8);
+    this.an.setVisibility(0);
+    this.ao.setVisibility(8);
   }
 
-  private void t()
+  private void w()
   {
-    int i1 = this.aG.C();
-    if (this.ao != null)
+    int i1 = this.aF.E();
+    if (this.an != null)
     {
-      TextView localTextView = this.ao;
+      TextView localTextView = this.an;
       Resources localResources = getActivity().getResources();
       Object[] arrayOfObject = new Object[1];
       arrayOfObject[0] = Integer.valueOf(i1);
@@ -825,288 +1042,107 @@ public class DialerFragment extends ao
     }
   }
 
-  private void u()
+  private void x()
   {
-    synchronized (this.n)
+    synchronized (this.m)
     {
-      if (this.m != null)
+      if (this.l != null)
       {
-        this.m.release();
-        this.aH.setVolumeControlStream(2);
-        this.m = null;
+        this.l.release();
+        this.l = null;
       }
       return;
-    }
-  }
-
-  private void v()
-  {
-    if (this.aF.y() == Call.State.Established)
-      this.aF.u();
-  }
-
-  private void w()
-  {
-    y();
-    if ((this.aD == null) && (TextUtils.isEmpty(this.r.getEditableText())))
-    {
-      String str2 = this.aG.ad();
-      textnow.u.d locald;
-      if (!str2.isEmpty())
-      {
-        new StringBuilder().append("populating dialer with number = ").append(str2).toString();
-        if (!str2.contains("@"))
-          break label114;
-        locald = new textnow.u.d(str2, 3, str2.substring(0, str2.indexOf("@")), null);
-      }
-      while (true)
-      {
-        a(locald);
-        this.aD = locald;
-        return;
-        label114: if (TextUtils.isDigitsOnly(str2))
-          locald = new textnow.u.d(str2, 2, null, null);
-        else
-          locald = new textnow.u.d(str2, 1, str2, null);
-      }
-    }
-    if (this.aD.a().equals("911"))
-    {
-      if (this.l)
-      {
-        Intent localIntent = new Intent();
-        localIntent.setAction("android.intent.action.CALL_EMERGENCY");
-        localIntent.setData(Uri.parse("tel:911"));
-        this.aH.startActivity(localIntent);
-        return;
-      }
-      this.aH.c(2131493378);
-      return;
-    }
-    String str1 = this.aD.a();
-    if (this.aD.b() == 2)
-    {
-      str1 = b.b(str1);
-      if (str1 == null)
-      {
-        Toast.makeText(this.aH, 2131493376, 0).show();
-        return;
-      }
-      Set localSet = textnow.u.f.b(this.aH);
-      textnow.u.e locale = textnow.u.d.a(this.aH, localSet, this.aD.a(), this.aD.b());
-      if (locale != null)
-      {
-        this.aD.a(locale.b);
-        this.aD.a(locale.a);
-      }
-    }
-    if ((this.aG.aa()) && ("ACTIVE".equalsIgnoreCase(new textnow.u.q(this.aH).d())) && (!b.e(this.aH)) && ((!b.d(this.aH)) || (textnow.q.a.a)) && (this.aF.l()))
-    {
-      this.aH.a(2131493021, true);
-      new SpeedTestTask(new textnow.u.n(this.aH), this.aD, null).b(this.aH);
-    }
-    while (true)
-    {
-      this.aG.F(str1);
-      this.aG.n();
-      return;
-      c(this.aD);
-    }
-  }
-
-  private void y()
-  {
-    String str2;
-    String str3;
-    if (this.r.getVisibility() == 0)
-    {
-      String str1 = this.r.getEditableText().toString();
-      if (!TextUtils.isEmpty(str1))
-      {
-        str2 = b.e(str1);
-        str3 = b.b(str2);
-        if (str3 == null)
-          break label80;
-      }
-    }
-    while (true)
-    {
-      if ((this.aD == null) || (!this.aD.a().equals(str3)))
-        this.aD = new textnow.u.d(str3, 2, null, null, true);
-      return;
-      label80: str3 = str2;
     }
   }
 
   private void z()
   {
-    int i1 = 255;
-    AudioRoute localAudioRoute = this.aF.o();
-    int i3;
-    int i2;
-    int i4;
-    int i5;
-    int i6;
-    label94: int i7;
-    label119: int i8;
-    label143: Drawable localDrawable4;
-    if (d.h())
-    {
-      this.J.setEnabled(true);
-      this.J.setChecked(false);
-      if (localAudioRoute == AudioRoute.BluetoothSCO)
-      {
-        i3 = 1;
-        i2 = 0;
-        i4 = 0;
-        i5 = 1;
-        LayerDrawable localLayerDrawable = (LayerDrawable)this.J.getBackground();
-        localLayerDrawable.findDrawableByLayerId(2131165748).setAlpha(0);
-        Drawable localDrawable1 = localLayerDrawable.findDrawableByLayerId(2131165749);
-        if (i5 == 0)
-          break label266;
-        i6 = i1;
-        localDrawable1.setAlpha(i6);
-        Drawable localDrawable2 = localLayerDrawable.findDrawableByLayerId(2131165750);
-        if (i3 == 0)
-          break label272;
-        i7 = i1;
-        localDrawable2.setAlpha(i7);
-        Drawable localDrawable3 = localLayerDrawable.findDrawableByLayerId(2131165752);
-        if (i2 == 0)
-          break label278;
-        i8 = i1;
-        localDrawable3.setAlpha(i8);
-        localDrawable4 = localLayerDrawable.findDrawableByLayerId(2131165751);
-        if (i4 == 0)
-          break label284;
-      }
-    }
-    while (true)
-    {
-      localDrawable4.setAlpha(i1);
-      return;
-      if (localAudioRoute == AudioRoute.Speaker)
-      {
-        i4 = 1;
-        i5 = 1;
-        i3 = 0;
-        i2 = 0;
-        break;
-      }
-      i2 = 1;
-      i5 = 1;
-      i3 = 0;
-      i4 = 0;
-      break;
-      this.J.setEnabled(true);
-      if (localAudioRoute == AudioRoute.Speaker)
-      {
-        this.J.setChecked(true);
-        i4 = 1;
-        i3 = 0;
-        i2 = 0;
-        i5 = 0;
-        break;
-      }
-      this.J.setChecked(false);
-      i2 = 1;
-      i3 = 0;
-      i4 = 0;
-      i5 = 0;
-      break;
-      label266: i6 = 0;
-      break label94;
-      label272: i7 = 0;
-      break label119;
-      label278: i8 = 0;
-      break label143;
-      label284: i1 = 0;
-    }
+    if (this.aE.y() == Call.State.Established)
+      this.aE.u();
   }
 
-  public final boolean B()
+  public final boolean C()
   {
-    if (this.aC)
+    if (this.aB)
     {
       d();
       return true;
     }
-    if ((this.aD != null) && (this.az) && (this.aF.H() > 0))
+    if ((this.aC != null) && (this.ay) && (this.aE.H() > 0))
     {
-      this.aF.B();
+      this.aE.B();
       return true;
     }
-    return super.B();
+    return super.C();
   }
 
   public final void a()
   {
-    p();
+    s();
   }
 
   public final void a(long paramLong)
   {
-    if (this.H == null)
+    if (this.G == null)
       return;
     if (paramLong == 0L)
     {
-      this.H.setText("00:00");
+      this.G.setText("00:00");
       return;
     }
-    s locals = this.aF.p();
-    if ((locals != null) && (locals.c()) && (!locals.d()))
+    w localw = this.aE.p();
+    if ((localw != null) && (localw.c()) && (!localw.d()))
     {
       int i1 = (int)(paramLong / 60L);
-      int i2 = this.aG.C() - i1;
-      if (this.ao != null)
+      int i2 = this.aF.E() - i1;
+      if (this.an != null)
       {
-        TextView localTextView = this.ao;
-        Resources localResources = this.aH.getResources();
+        TextView localTextView = this.an;
+        Resources localResources = this.aG.getResources();
         Object[] arrayOfObject = new Object[1];
         arrayOfObject[0] = Integer.valueOf(i2);
         localTextView.setText(localResources.getQuantityString(2131689478, i2, arrayOfObject));
       }
     }
     String str = DateUtils.formatElapsedTime(paramLong);
-    this.H.setText(str);
+    this.G.setText(str);
   }
 
-  public final void a(String paramString, e parame)
+  public final void a(String paramString, i parami)
   {
     int i1 = 1;
-    new StringBuilder().append("Call hold state changed for id: ").append(paramString).append(" to ").append(parame.name()).toString();
-    if (!this.k)
+    new StringBuilder().append("Call hold state changed for id: ").append(paramString).append(" to ").append(parami.name()).toString();
+    if (!this.j)
       label43: return;
-    if (this.aF.z())
-      this.L.setChecked(i1);
-    s locals;
+    if (this.aE.z())
+      this.K.setChecked(i1);
+    w localw;
     while (true)
     {
-      locals = this.aF.f(paramString);
-      if (locals == null)
+      localw = this.aE.f(paramString);
+      if (localw == null)
         break;
-      switch (8.a[parame.ordinal()])
+      switch (8.a[parami.ordinal()])
       {
       default:
-        this.az = false;
-        p();
-        if (this.i == null)
+        this.ay = false;
+        s();
+        if (this.h == null)
           break label43;
-        this.i.t();
+        this.h.s();
         return;
-        this.L.setChecked(false);
+        this.K.setChecked(false);
       case 1:
       }
     }
-    if (this.aF.H() <= i1)
+    if (this.aE.H() <= i1)
     {
+      this.aj.setVisibility(8);
       this.ak.setVisibility(8);
-      this.al.setVisibility(8);
     }
-    this.aD = locals.b();
-    q();
-    if ((this.aF.J()) && (this.aF.q().c(locals)));
+    this.aC = localw.b();
+    t();
+    if ((this.aE.K()) && (this.aE.q().c(localw)));
     while (true)
     {
       b(i1);
@@ -1115,38 +1151,43 @@ public class DialerFragment extends ao
     }
   }
 
-  public final void a(String paramString, textnow.u.f paramf, boolean paramBoolean)
+  public final void a(String paramString, textnow.z.h paramh, boolean paramBoolean)
   {
-    this.az = false;
-    this.aF.I();
-    if (this.aF.H() > 0)
+    this.ay = false;
+    this.aE.J();
+    if (this.aE.H() > 0)
       new StringBuilder().append("Call finished for callId: ").append(paramString).append(" Waiting for other calls to finish").toString();
     while (true)
     {
-      if (this.aB)
+      if (this.aA)
       {
-        this.aB = false;
-        this.p.a(paramString, paramf, paramBoolean);
-        String str = this.p.c();
-        b.a(this.aH, "enflick.support@enflick.com", "Call feedback for " + this.aG.b(), str, "", false);
+        this.aA = false;
+        this.o.a(paramString, paramh, paramBoolean);
+        String str = this.o.c();
+        textnow.v.b.a(this.aG, "enflick.support@enflick.com", "Call feedback for " + this.aF.b(), str, "", false);
       }
       if (a)
-        D();
+        I();
       return;
       if (paramBoolean)
       {
-        a(2131165407);
-        this.aE = paramf;
+        a(2131558678);
+        this.aD = paramh;
       }
-      else if (this.i != null)
+      else
       {
-        new StringBuilder().append("Call finished for callId: ").append(paramString).append(" Opening conversation screen").toString();
-        this.i.b(paramf);
-      }
-      else if (this.e != null)
-      {
-        new StringBuilder().append("Call finished for callId: ").append(paramString).append(" Opening home").toString();
-        this.e.h();
+        if ((this.d != null) && (!this.d.isFinishing()) && (com.enflick.android.TextNow.views.c.a(getActivity())))
+          new com.enflick.android.TextNow.views.c(getActivity()).a();
+        if (this.h != null)
+        {
+          new StringBuilder().append("Call finished for callId: ").append(paramString).append(" Opening conversation screen").toString();
+          this.h.b(paramh);
+        }
+        else if (this.d != null)
+        {
+          new StringBuilder().append("Call finished for callId: ").append(paramString).append(" Opening home").toString();
+          this.d.j();
+        }
       }
     }
   }
@@ -1156,31 +1197,32 @@ public class DialerFragment extends ao
     if (paramc.getClass() == GetContactInfoTask.class)
     {
       GetContactInfoTask localGetContactInfoTask = (GetContactInfoTask)paramc;
-      String str2 = localGetContactInfoTask.b();
-      if (((this.aD != null) && (this.aD.a().equals(str2))) || (str2.equals(b.b(this.r.getEditableText().toString()))))
-      {
-        if ((!localGetContactInfoTask.h()) && (localGetContactInfoTask.a()))
-          break label139;
-        this.aw = false;
-        r();
-        this.aH.r();
-        if (!this.ax)
-          break label179;
-        this.ax = false;
-        if ((this.aw) || (this.aG.C() > 0))
-          break label147;
-        this.aH.showDialog(5, null);
-      }
+      if ((this.aG == null) || (!this.j));
       while (true)
       {
         return true;
-        label139: this.aw = true;
-        break;
-        label147: boolean bool = this.aC;
-        this.aC = false;
-        this.aF.a(this.aD, this.aw, bool);
-        continue;
-        label179: A();
+        String str2 = localGetContactInfoTask.b();
+        if (((this.aC != null) && (this.aC.a().equals(str2))) || (str2.equals(textnow.v.b.b(this.q.getEditableText().toString()))))
+        {
+          if ((localGetContactInfoTask.h()) || (!localGetContactInfoTask.a()));
+          for (this.av = false; ; this.av = true)
+          {
+            u();
+            this.aG.v();
+            if (!this.aw)
+              break label196;
+            this.aw = false;
+            if ((this.av) || (this.aF.E() > 0))
+              break label164;
+            this.aG.showDialog(5, null);
+            break;
+          }
+          label164: boolean bool = this.aB;
+          this.aB = false;
+          this.aE.a(this.aC, this.av, bool);
+          continue;
+          label196: H();
+        }
       }
     }
     if (paramc.getClass() == SpeedTestTask.class)
@@ -1188,22 +1230,22 @@ public class DialerFragment extends ao
       if (((SpeedTestTask)paramc).b() != null)
       {
         SpeedTestTask localSpeedTestTask = (SpeedTestTask)paramc;
-        textnow.u.l locall;
-        if (this.aF.a(localSpeedTestTask.a()))
+        textnow.z.n localn;
+        if (this.aE.a(localSpeedTestTask.a()))
         {
-          locall = textnow.u.l.a(this.aH.getContentResolver(), localSpeedTestTask.b().a());
-          if ((locall == null) || (TextUtils.isEmpty(locall.a())) || (locall.b()))
-            new GetContactProxyTask(this.aG.b(), localSpeedTestTask.b()).b(this.aH);
+          localn = textnow.z.n.a(this.aG.getContentResolver(), localSpeedTestTask.b().a());
+          if ((localn == null) || (TextUtils.isEmpty(localn.a())) || (localn.b()))
+            new GetContactProxyTask(this.aF.b(), localSpeedTestTask.b()).b(this.aG);
         }
         while (true)
         {
           return true;
-          this.aH.r();
-          if (this.aF.a(this.aH, this.aD, locall.a()))
+          this.aG.v();
+          if (this.aE.a(this.aG, this.aC, localn.a()))
           {
-            this.aH.onBackPressed();
+            this.aG.onBackPressed();
             if (a)
-              D();
+              I();
           }
           else
           {
@@ -1217,13 +1259,13 @@ public class DialerFragment extends ao
     else if (paramc.getClass() == GetContactProxyTask.class)
     {
       GetContactProxyTask localGetContactProxyTask = (GetContactProxyTask)paramc;
-      this.aH.r();
+      this.aG.v();
       String str1 = localGetContactProxyTask.a();
-      if ((!TextUtils.isEmpty(str1)) && (this.aF.a(this.aH, localGetContactProxyTask.b(), str1)))
+      if ((!TextUtils.isEmpty(str1)) && (this.aE.a(this.aG, localGetContactProxyTask.b(), str1)))
       {
-        this.aH.onBackPressed();
+        this.aG.onBackPressed();
         if (a)
-          D();
+          I();
       }
       while (true)
       {
@@ -1236,67 +1278,77 @@ public class DialerFragment extends ao
 
   public final void b()
   {
-    p();
-    A();
+    s();
+    H();
   }
 
   public final boolean c()
   {
-    return this.aC;
+    return this.aB;
   }
 
   public final void d()
   {
-    this.aC = false;
-    a(2131165405);
+    this.aB = false;
+    a(2131558676);
   }
 
-  public final textnow.u.d e()
+  public final f f()
   {
-    return this.aD;
+    return this.aC;
   }
 
-  public final void f()
+  public final void g()
   {
-    if (this.o);
-    synchronized (this.n)
+    if (this.n);
+    synchronized (this.m)
     {
-      if (this.m != null)
-        this.m.stopTone();
+      if (this.l != null)
+        this.l.stopTone();
       Instance.Audio.dtmfOff();
       return;
     }
   }
 
-  public final void g()
+  public final void h()
   {
-    if ((this.aD != null) && (this.az) && (this.aF.H() > 0))
-      this.aF.B();
+    if ((this.aC != null) && (this.ay) && (this.aE.H() > 0))
+      this.aE.B();
   }
 
-  public final DialerFragment.DialerState h()
+  public final void i()
   {
-    if (this.k)
-      return new DialerFragment.DialerState(d.n());
+    D();
+  }
+
+  public final void j()
+  {
+    E();
+  }
+
+  public final DialerFragment.DialerState k()
+  {
+    if (this.j)
+      return new DialerFragment.DialerState(h.n());
     return DialerFragment.DialerState.a;
-  }
-
-  public final String k()
-  {
-    return "/Dialer";
   }
 
   public final String l()
   {
+    return "/Dialer";
+  }
+
+  public final String m()
+  {
     return null;
   }
 
-  public final int m()
+  public final int n()
   {
-    return 2131165537;
+    return 2131558814;
   }
 
-  public final boolean n()
+  public final boolean o()
   {
     return true;
   }
@@ -1304,7 +1356,7 @@ public class DialerFragment extends ao
   public void onActivityCreated(Bundle paramBundle)
   {
     super.onActivityCreated(paramBundle);
-    this.aH.setTitle("");
+    this.aG.setTitle("");
   }
 
   public void onActivityResult(int paramInt1, int paramInt2, Intent paramIntent)
@@ -1335,12 +1387,12 @@ public class DialerFragment extends ao
         }
         if (paramInt1 == 2)
         {
-          a((textnow.u.d)paramIntent.getSerializableExtra("extra_contact"));
+          a((f)paramIntent.getSerializableExtra("extra_contact"));
           return;
         }
       }
       while (paramInt1 != 4);
-      b((textnow.u.d)paramIntent.getSerializableExtra("extra_contact"));
+      b((f)paramIntent.getSerializableExtra("extra_contact"));
       return;
     }
     startActivityForResult(new Intent("android.intent.action.PICK", ContactsContract.Contacts.CONTENT_URI), 1);
@@ -1351,60 +1403,60 @@ public class DialerFragment extends ao
     boolean bool1 = true;
     switch (paramView.getId())
     {
-    case 2131165498:
+    case 2131558770:
     default:
-    case 2131165375:
-    case 2131165429:
-    case 2131165430:
-    case 2131165428:
-    case 2131165410:
-    case 2131165411:
-    case 2131165508:
-    case 2131165321:
-    case 2131165322:
-    case 2131165323:
-    case 2131165324:
-    case 2131165325:
-    case 2131165496:
-    case 2131165510:
-    case 2131165592:
-    case 2131165593:
-    case 2131165594:
-    case 2131165326:
-    case 2131165327:
-    case 2131165507:
+    case 2131558641:
+    case 2131558700:
+    case 2131558701:
+    case 2131558699:
+    case 2131558681:
+    case 2131558682:
+    case 2131558780:
+    case 2131558574:
+    case 2131558575:
+    case 2131558576:
+    case 2131558577:
+    case 2131558578:
+    case 2131558768:
+    case 2131558782:
+    case 2131558888:
+    case 2131558889:
+    case 2131558890:
+    case 2131558579:
+    case 2131558580:
+    case 2131558779:
     }
     while (true)
     {
       return;
-      if (this.r.getVisibility() == 0)
+      if (this.q.getVisibility() == 0)
       {
-        Editable localEditable = this.r.getText();
+        Editable localEditable = this.q.getText();
         if (localEditable.length() > 0)
         {
           localEditable.delete(-1 + localEditable.length(), localEditable.length());
           if (localEditable.length() == 0)
-            this.aD = null;
+            this.aC = null;
         }
       }
       else
       {
         a(bool1);
-        this.aD = null;
-        this.aw = false;
-        r();
+        this.aC = null;
+        this.av = false;
+        u();
         return;
-        w();
+        B();
         return;
-        y();
-        if (this.aD != null)
+        F();
+        if (this.aC != null)
         {
-          ah localah2 = this.aH;
-          String str = this.aD.a();
-          if (this.aD.b() == 2);
+          an localan2 = this.aG;
+          String str = this.aC.a();
+          if (this.aC.b() == 2);
           while (true)
           {
-            textnow.q.k.a(localah2, str, bool1);
+            textnow.v.k.a(localan2, str, bool1);
             return;
             bool1 = false;
           }
@@ -1417,15 +1469,14 @@ public class DialerFragment extends ao
           {
             return;
           }
-          com.enflick.android.TextNow.ads.a.b("tap_get_more_credits");
-          if (this.e != null)
+          com.enflick.android.TextNow.ads.b.b("tap_get_more_credits");
+          if (this.d != null)
           {
-            this.e.i();
-            this.e.f(2131165539);
+            this.d.b(bool1);
             return;
-            com.enflick.android.TextNow.ads.a.b("tap_invite_button");
-            y();
-            if (this.aD == null)
+            com.enflick.android.TextNow.ads.b.b("tap_invite_button");
+            F();
+            if (this.aC == null)
               try
               {
                 startActivityForResult(new Intent("android.intent.action.PICK", ContactsContract.Contacts.CONTENT_URI), 3);
@@ -1435,55 +1486,55 @@ public class DialerFragment extends ao
               {
                 return;
               }
-            if ((this.aD.b() == 2) && (b.b(this.aD.a()) == null))
+            if ((this.aC.b() == 2) && (textnow.v.b.b(this.aC.a()) == null))
             {
-              Toast.makeText(this.aH, 2131493135, 0).show();
+              Toast.makeText(this.aG, 2131296547, 0).show();
               return;
             }
-            b(this.aD);
+            b(this.aC);
             return;
-            this.aF.b(false);
+            this.aE.b(false);
             return;
-            if (this.aF.y() != Call.State.Established)
+            if (this.aE.y() != Call.State.Established)
             {
-              this.Z.setVisibility(8);
-              this.I.setChecked(false);
+              this.Y.setVisibility(8);
+              this.H.setChecked(false);
               c(bool1);
-              this.aA = false;
+              this.az = false;
               return;
             }
-            if (this.Z.getVisibility() == 0)
+            if (this.Y.getVisibility() == 0)
             {
-              this.Z.setVisibility(8);
-              this.I.setChecked(false);
+              this.Y.setVisibility(8);
+              this.H.setChecked(false);
               c(bool1);
-              this.aA = false;
-              r();
+              this.az = false;
+              u();
               return;
             }
-            this.Z.setVisibility(0);
-            this.I.setChecked(bool1);
+            this.Y.setVisibility(0);
+            this.H.setChecked(bool1);
             c(false);
-            this.F.setVisibility(8);
             this.E.setVisibility(8);
-            this.aA = bool1;
+            this.D.setVisibility(8);
+            this.az = bool1;
             return;
-            if (d.h())
+            if (h.h())
             {
-              ah localah1;
+              an localan1;
               int i1;
               String[] arrayOfString;
-              if (this.S == null)
+              if (this.R == null)
               {
-                localah1 = this.aH;
-                i1 = this.aG.ac().intValue();
+                localan1 = this.aG;
+                i1 = this.aF.ab().intValue();
                 arrayOfString = getResources().getStringArray(2131623948);
-                if ((this.aG.ac().intValue() >= 100) || (Build.VERSION.SDK_INT < 11))
-                  break label754;
+                if ((this.aF.ab().intValue() >= 100) || (Build.VERSION.SDK_INT < 11))
+                  break label745;
               }
-              label754: for (TypedArray localTypedArray = getResources().obtainTypedArray(2131623936); ; localTypedArray = getResources().obtainTypedArray(2131623937))
+              label745: for (TypedArray localTypedArray = getResources().obtainTypedArray(2131623936); ; localTypedArray = getResources().obtainTypedArray(2131623937))
               {
-                this.S = ad.a(localah1, i1, 2131493365, arrayOfString, localTypedArray, new DialogInterface.OnClickListener()
+                this.R = textnow.v.z.a(localan1, i1, 2131296768, arrayOfString, localTypedArray, new DialogInterface.OnClickListener()
                 {
                   public final void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt)
                   {
@@ -1498,73 +1549,73 @@ public class DialerFragment extends ao
                     {
                       return;
                       DialerFragment.b(DialerFragment.this).a(AudioRoute.Speaker);
-                      DialerFragment.q(DialerFragment.this);
+                      DialerFragment.o(DialerFragment.this);
                       return;
                       DialerFragment.b(DialerFragment.this).a(AudioRoute.Receiver);
-                      DialerFragment.q(DialerFragment.this);
+                      DialerFragment.o(DialerFragment.this);
                       return;
                     }
-                    while (!d.h());
+                    while (!h.h());
                     DialerFragment.b(DialerFragment.this).a(AudioRoute.BluetoothSCO);
-                    DialerFragment.q(DialerFragment.this);
+                    DialerFragment.o(DialerFragment.this);
                   }
                 });
-                if ((this.T != null) && (this.T.isShowing()))
-                  this.T.dismiss();
-                if (this.S.isShowing())
+                if ((this.S != null) && (this.S.isShowing()))
+                  this.S.dismiss();
+                if (this.R.isShowing())
                   break;
-                this.S.show();
+                this.R.show();
                 return;
               }
             }
-            this.aF.v();
-            z();
+            this.aE.v();
+            G();
             return;
-            if (this.aF.y() == Call.State.Established)
+            if (this.aE.y() == Call.State.Established)
             {
-              boolean bool2 = d.w();
-              this.K.setChecked(bool2);
+              boolean bool2 = h.w();
+              this.J.setChecked(bool2);
               return;
-              v();
+              z();
               return;
-              this.aF.r();
+              this.aE.r();
               return;
-              if (this.e != null)
+              if (this.d != null)
               {
-                this.e.i();
+                this.d.b(bool1);
                 return;
-                b(this.aD);
+                b(this.aC);
                 return;
-                a("", this.aE, false);
+                a("", this.aD, false);
                 return;
-                if (E())
+                if (J())
                 {
-                  this.aC = bool1;
-                  if (!this.aF.z())
-                    v();
-                  this.r.setText("");
-                  a(2131165404);
+                  this.aB = bool1;
+                  if (!this.aE.z())
+                    z();
+                  this.q.setText("");
+                  a(2131558675);
                   return;
                 }
-                this.aH.c(2131493381);
+                this.aG.b(2131296784);
                 return;
-                if (E())
+                if (J())
                 {
-                  this.aF.s();
-                  p();
+                  this.aE.s();
+                  s();
                   return;
                 }
-                this.aH.c(2131493381);
+                this.aG.b(2131296784);
                 return;
                 try
                 {
-                  if (this.e != null)
+                  if (this.d != null)
                   {
-                    this.e.a(new r());
+                    this.d.a(new v());
                     return;
                   }
                 }
-                catch (j localj)
+                catch (n localn)
                 {
                 }
               }
@@ -1578,150 +1629,148 @@ public class DialerFragment extends ao
   public void onCreate(Bundle paramBundle)
   {
     super.onCreate(paramBundle);
-    this.aH = ((ah)getActivity());
+    this.aG = ((an)getActivity());
     setHasOptionsMenu(true);
     Bundle localBundle = getArguments();
-    this.aD = ((textnow.u.d)localBundle.getSerializable("param_contact"));
-    this.ay = localBundle.getBoolean("param_call");
-    this.az = localBundle.getBoolean("param_answer");
-    if ((!this.az) && (!this.ay) && (this.aD == null))
-      com.enflick.android.TextNow.ads.a.b("press_dialer_button");
-    if (this.aD != null)
+    this.aC = ((f)localBundle.getSerializable("param_contact"));
+    this.ax = localBundle.getBoolean("param_call");
+    this.ay = localBundle.getBoolean("param_answer");
+    if ((!this.ay) && (!this.ax) && (this.aC == null))
+      com.enflick.android.TextNow.ads.b.b("press_dialer_button");
+    if (this.aC != null)
     {
-      Set localSet = textnow.u.f.b(this.aH);
-      textnow.u.e locale = textnow.u.d.a(this.aH, localSet, this.aD.a(), this.aD.b());
-      if (locale != null)
+      Set localSet = textnow.z.h.b(this.aG);
+      g localg = f.a(this.aG, localSet, this.aC.a(), this.aC.b());
+      if (localg != null)
       {
-        this.aD.a(locale.b);
-        this.aD.a(locale.a);
+        this.aC.a(localg.b);
+        this.aC.a(localg.a);
       }
     }
-    q();
-    if (!ad.c(this.aH))
-    {
-      this.aH.y();
-      this.aH.f(true);
-    }
-    this.aF.a(this);
-    if (this.aG == null)
-      this.aG = new textnow.u.r(getActivity());
-    this.l = b.i(this.aH);
-    new StringBuilder().append("Has system permissions: ").append(this.l).toString();
+    t();
+    this.aE.a(this);
+    if (this.aF == null)
+      this.aF = new textnow.z.u(getActivity());
+    this.k = textnow.v.b.h(this.aG);
+    new StringBuilder().append("Has system permissions: ").append(this.k).toString();
     if ((localBundle != null) && (localBundle.containsKey("dialer_state")))
     {
       DialerFragment.DialerState localDialerState = (DialerFragment.DialerState)localBundle.getParcelable("dialer_state");
       if (localDialerState != null)
-        this.aF.a(localDialerState.a());
+        this.aE.a(localDialerState.a());
     }
     while (true)
     {
-      this.j = new BroadcastReceiver()
+      this.i = new BroadcastReceiver()
       {
         public final void onReceive(Context paramAnonymousContext, Intent paramAnonymousIntent)
         {
-          DialerFragment.q(DialerFragment.this);
+          DialerFragment.o(DialerFragment.this);
         }
       };
-      getActivity().registerReceiver(this.j, new IntentFilter("android.bluetooth.device.action.BOND_STATE_CHANGED"));
+      getActivity().registerReceiver(this.i, new IntentFilter("android.bluetooth.device.action.BOND_STATE_CHANGED"));
       return;
-      this.aF.m();
+      this.aE.m();
       continue;
-      this.aF.m();
+      this.aE.m();
     }
   }
 
   public void onCreateOptionsMenu(Menu paramMenu, MenuInflater paramMenuInflater)
   {
     super.onCreateOptionsMenu(paramMenu, paramMenuInflater);
-    paramMenuInflater.inflate(2131755012, paramMenu);
-    this.an = paramMenu.findItem(2131165779);
-    o();
-    s();
-    if (this.aG == null)
-      this.aG = new textnow.u.r(getActivity());
-    t();
+    paramMenuInflater.inflate(2131755014, paramMenu);
+    this.am = paramMenu.findItem(2131559083);
+    if (this.d == null)
+      paramMenu.removeItem(2131559084);
+    r();
+    v();
+    if (this.aF == null)
+      this.aF = new textnow.z.u(getActivity());
+    w();
   }
 
   public View onCreateView(LayoutInflater paramLayoutInflater, ViewGroup paramViewGroup, Bundle paramBundle)
   {
     new StringBuilder().append(this).append(" onCreateView").toString();
-    View localView = paramLayoutInflater.inflate(2130903106, null);
-    this.U = localView.findViewById(2131165404);
-    this.V = localView.findViewById(2131165405);
-    this.W = localView.findViewById(2131165406);
-    this.X = localView.findViewById(2131165407);
-    this.Y = localView.findViewById(2131165412);
-    this.Z = localView.findViewById(2131165503);
-    this.aq = new o(this, (byte)0);
-    this.r = ((EditText)localView.findViewById(2131165431));
-    this.r.setKeyListener(this.aq);
-    this.r.addTextChangedListener(this.at);
-    this.r.addTextChangedListener(new q(this, (byte)0));
-    this.r.setLongClickable(false);
-    this.s = ((TextView)localView.findViewById(2131165432));
-    this.s.setVisibility(8);
-    this.t = ((EditText)localView.findViewById(2131165499));
-    this.t.addTextChangedListener(this.at);
-    this.t.setLongClickable(false);
-    this.aa = ((TextView)localView.findViewById(2131165512));
-    TextView localTextView = this.aa;
+    View localView = paramLayoutInflater.inflate(2130903118, null);
+    this.T = localView.findViewById(2131558675);
+    this.U = localView.findViewById(2131558676);
+    this.V = localView.findViewById(2131558677);
+    this.W = localView.findViewById(2131558678);
+    this.X = localView.findViewById(2131558683);
+    this.Y = localView.findViewById(2131558775);
+    this.ap = new s(this, (byte)0);
+    this.q = ((EditText)localView.findViewById(2131558702));
+    this.q.setKeyListener(this.ap);
+    this.q.addTextChangedListener(this.as);
+    this.q.addTextChangedListener(new u(this, (byte)0));
+    this.q.setLongClickable(false);
+    this.r = ((TextView)localView.findViewById(2131558703));
+    this.r.setVisibility(8);
+    this.s = ((EditText)localView.findViewById(2131558771));
+    this.s.addTextChangedListener(this.as);
+    this.s.setLongClickable(false);
+    this.Z = ((TextView)localView.findViewById(2131558784));
+    TextView localTextView = this.Z;
     String str1;
-    if (this.aD != null)
-      str1 = this.aD.g();
+    if (this.aC != null)
+      str1 = this.aC.g();
     while (true)
     {
       localTextView.setText(str1);
-      this.u = ((ImageButton)localView.findViewById(2131165375));
+      this.t = ((ImageButton)localView.findViewById(2131558641));
+      this.t.setOnClickListener(this);
+      this.t.setOnLongClickListener(this);
+      this.u = ((ImageButton)localView.findViewById(2131558700));
       this.u.setOnClickListener(this);
-      this.v = ((ImageButton)localView.findViewById(2131165429));
+      this.v = ((ImageButton)localView.findViewById(2131558701));
       this.v.setOnClickListener(this);
-      this.w = ((ImageButton)localView.findViewById(2131165430));
+      this.w = ((ImageButton)localView.findViewById(2131558699));
       this.w.setOnClickListener(this);
-      this.x = ((ImageButton)localView.findViewById(2131165428));
+      this.x = localView.findViewById(2131558681);
       this.x.setOnClickListener(this);
-      this.y = localView.findViewById(2131165410);
+      this.y = localView.findViewById(2131558682);
       this.y.setOnClickListener(this);
-      this.z = localView.findViewById(2131165411);
+      this.z = localView.findViewById(2131558780);
       this.z.setOnClickListener(this);
-      this.A = localView.findViewById(2131165508);
+      this.A = localView.findViewById(2131558779);
       this.A.setOnClickListener(this);
-      this.B = localView.findViewById(2131165507);
-      this.B.setOnClickListener(this);
-      this.C = localView.findViewById(2131165408);
-      this.D = localView.findViewById(2131165409);
-      this.F = localView.findViewById(2131165504);
-      this.G = ((TextView)localView.findViewById(2131165505));
-      this.E = localView.findViewById(2131165506);
-      this.H = ((TextView)localView.findViewById(2131165500));
-      this.ab = ((ImageView)localView.findViewById(2131165501));
-      this.ac = ((ImageView)localView.findViewById(2131165502));
-      this.ak = localView.findViewById(2131165496);
+      this.B = localView.findViewById(2131558679);
+      this.C = localView.findViewById(2131558680);
+      this.E = localView.findViewById(2131558776);
+      this.F = ((TextView)localView.findViewById(2131558777));
+      this.D = localView.findViewById(2131558778);
+      this.G = ((TextView)localView.findViewById(2131558772));
+      this.aa = ((ImageView)localView.findViewById(2131558773));
+      this.ab = ((ImageView)localView.findViewById(2131558774));
+      this.aj = localView.findViewById(2131558768);
+      this.aj.setOnClickListener(this);
+      this.ai = localView.findViewById(2131558769);
+      this.ak = localView.findViewById(2131558782);
       this.ak.setOnClickListener(this);
-      this.aj = localView.findViewById(2131165497);
-      this.al = localView.findViewById(2131165510);
-      this.al.setOnClickListener(this);
-      this.am = localView.findViewById(2131165509);
-      this.I = ((ToggleButton)localView.findViewById(2131165321));
+      this.al = localView.findViewById(2131558781);
+      this.H = ((ToggleButton)localView.findViewById(2131558574));
+      this.H.setOnClickListener(this);
+      this.I = ((ToggleButton)localView.findViewById(2131558575));
       this.I.setOnClickListener(this);
-      this.J = ((ToggleButton)localView.findViewById(2131165322));
+      this.J = ((ToggleButton)localView.findViewById(2131558576));
       this.J.setOnClickListener(this);
-      this.K = ((ToggleButton)localView.findViewById(2131165323));
+      this.K = ((ToggleButton)localView.findViewById(2131558577));
       this.K.setOnClickListener(this);
-      this.L = ((ToggleButton)localView.findViewById(2131165324));
+      this.L = ((Button)localView.findViewById(2131558578));
       this.L.setOnClickListener(this);
-      this.M = ((Button)localView.findViewById(2131165325));
+      this.M = ((ImageButton)localView.findViewById(2131558579));
       this.M.setOnClickListener(this);
-      this.N = ((ImageButton)localView.findViewById(2131165326));
+      this.N = ((ImageButton)localView.findViewById(2131558580));
       this.N.setOnClickListener(this);
-      this.O = ((ImageButton)localView.findViewById(2131165327));
+      this.O = ((Button)this.W.findViewById(2131558888));
       this.O.setOnClickListener(this);
-      this.P = ((Button)this.X.findViewById(2131165592));
+      this.P = ((Button)this.W.findViewById(2131558889));
       this.P.setOnClickListener(this);
-      this.Q = ((Button)this.X.findViewById(2131165593));
+      this.Q = ((Button)this.W.findViewById(2131558890));
       this.Q.setOnClickListener(this);
-      this.R = ((Button)this.X.findViewById(2131165594));
-      this.R.setOnClickListener(this);
-      this.ae = ((ImageView)this.W.findViewById(2131165516));
+      this.ad = ((ImageView)this.V.findViewById(2131558788));
       ScaleAnimation localScaleAnimation1 = new ScaleAnimation(1.0F, 2.0F, 1.0F, 2.0F, 1, 0.5F, 1, 0.5F);
       ScaleAnimation localScaleAnimation2 = new ScaleAnimation(1.0F, 2.0F, 1.0F, 2.0F, 1, 0.5F, 1, 0.5F);
       AlphaAnimation localAlphaAnimation1 = new AlphaAnimation(1.0F, 0.0F);
@@ -1730,16 +1779,16 @@ public class DialerFragment extends ao
       localScaleAnimation1.setRepeatCount(-1);
       localAlphaAnimation1.setRepeatCount(-1);
       localAlphaAnimation2.setRepeatCount(-1);
-      this.av.setInterpolator(new DecelerateInterpolator());
+      this.au.setInterpolator(new DecelerateInterpolator());
       final AnimationSet localAnimationSet = new AnimationSet(true);
       localAnimationSet.setInterpolator(new DecelerateInterpolator());
-      this.av.addAnimation(localAlphaAnimation1);
-      this.av.addAnimation(localScaleAnimation1);
-      this.av.setDuration(1500L);
+      this.au.addAnimation(localAlphaAnimation1);
+      this.au.addAnimation(localScaleAnimation1);
+      this.au.setDuration(1500L);
       localAnimationSet.addAnimation(localAlphaAnimation2);
       localAnimationSet.addAnimation(localScaleAnimation2);
       localAnimationSet.setDuration(1500L);
-      this.av.setAnimationListener(new Animation.AnimationListener()
+      this.au.setAnimationListener(new Animation.AnimationListener()
       {
         public final void onAnimationEnd(Animation paramAnonymousAnimation)
         {
@@ -1765,74 +1814,74 @@ public class DialerFragment extends ao
           , 500L);
         }
       });
-      this.ah = this.W.findViewById(2131165515);
-      this.ah.setVisibility(0);
-      this.ai = this.W.findViewById(2131165514);
-      this.af = ((ImageView)this.W.findViewById(2131165517));
-      this.ag = ((ImageView)this.W.findViewById(2131165508));
+      this.ag = this.V.findViewById(2131558787);
+      this.ag.setVisibility(0);
+      this.ah = this.V.findViewById(2131558786);
+      this.ae = ((ImageView)this.V.findViewById(2131558789));
+      this.af = ((ImageView)this.V.findViewById(2131558780));
+      this.ae.setVisibility(4);
       this.af.setVisibility(4);
-      this.ag.setVisibility(4);
-      this.ad = ((RelativeLayout)this.W.findViewById(2131165513));
-      this.ad.setOnTouchListener(new k(this, (byte)0));
-      if (this.e == null)
+      this.ac = ((RelativeLayout)this.V.findViewById(2131558785));
+      this.ac.setOnTouchListener(new o(this, (byte)0));
+      if (this.d == null)
       {
-        this.w.setEnabled(false);
-        this.N.setVisibility(8);
-        this.N.setEnabled(false);
-        this.B.setVisibility(8);
-        this.y.setEnabled(false);
+        this.v.setEnabled(false);
+        this.M.setVisibility(8);
+        this.M.setEnabled(false);
+        this.A.setVisibility(8);
         this.x.setEnabled(false);
+        this.w.setEnabled(false);
       }
+      a(this.X);
       a(this.Y);
-      a(this.Z);
-      this.k = true;
-      if ((this.az) && (this.aD != null));
+      this.j = true;
+      if ((this.ay) && (this.aC != null));
       try
       {
-        ContentResolver localContentResolver = this.aH.getContentResolver();
+        ContentResolver localContentResolver = this.aG.getContentResolver();
         String[] arrayOfString = new String[1];
-        arrayOfString[0] = this.aD.a();
-        textnow.u.f localf2 = textnow.u.f.a(localContentResolver, arrayOfString);
-        localf1 = localf2;
-        label1317: if (localf1 != null)
+        arrayOfString[0] = this.aC.a();
+        textnow.z.h localh2 = textnow.z.h.a(localContentResolver, arrayOfString);
+        localh1 = localh2;
+        label1325: if (localh1 != null)
         {
-          str2 = localf1.h();
+          str2 = localh1.h();
           if (str2 != null)
-            localImageView = (ImageView)this.W.findViewById(2131165511);
+            localImageView = (ImageView)this.V.findViewById(2131558783);
         }
       }
       catch (IllegalArgumentException localIllegalArgumentException1)
       {
         try
         {
-          textnow.u.f localf1;
+          textnow.z.h localh1;
           String str2;
           ImageView localImageView;
           if (Build.VERSION.SDK_INT >= 14)
           {
-            new textnow.q.j();
-            textnow.q.j.a(this.aH.getContentResolver(), Uri.parse(str2), localImageView, 2130837596);
+            new textnow.v.j();
+            textnow.v.j.a(this.aG.getContentResolver(), Uri.parse(str2), localImageView, 2130837560);
           }
           while (true)
           {
-            label1385: if (this.ay)
+            label1393: if (this.ax)
             {
-              w();
-              this.ay = false;
+              B();
+              this.ax = false;
             }
             return localView;
             str1 = "";
             break;
             localIllegalArgumentException1 = localIllegalArgumentException1;
-            new StringBuilder().append("Couldn't load avatar for contact: ").append(this.aD.a()).toString();
-            localf1 = null;
-            break label1317;
-            textnow.q.q.a(this.aH).a(localImageView, Uri.parse(str2), this.au);
+            new StringBuilder().append("Couldn't load avatar for contact: ").append(this.aC.a()).toString();
+            localh1 = null;
+            break label1325;
+            textnow.v.o.a(this.aG).a(localImageView, Uri.parse(str2), this.at);
           }
         }
         catch (IllegalArgumentException localIllegalArgumentException2)
         {
-          break label1385;
+          break label1393;
         }
       }
     }
@@ -1841,52 +1890,85 @@ public class DialerFragment extends ao
   public void onDestroy()
   {
     super.onDestroy();
-    this.aF.b(this);
-    getActivity().unregisterReceiver(this.j);
+    this.aE.b(this);
+    getActivity().unregisterReceiver(this.i);
   }
 
   public void onDestroyView()
   {
-    this.k = false;
-    if ((!ad.c(this.aH)) && (getActivity() != null))
+    this.j = false;
+    if ((!textnow.v.z.e(this.aG)) && (getActivity() != null))
     {
-      this.aH.z();
-      this.aH.f(false);
+      this.aG.E();
+      this.aG.i(false);
     }
     super.onDestroyView();
+  }
+
+  public boolean onLongClick(View paramView)
+  {
+    if ((paramView == this.t) && (this.q.getVisibility() == 0))
+    {
+      Editable localEditable = this.q.getText();
+      if (localEditable.length() > 0)
+      {
+        localEditable.clear();
+        this.aC = null;
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public boolean onOptionsItemSelected(MenuItem paramMenuItem)
+  {
+    switch (paramMenuItem.getItemId())
+    {
+    default:
+    case 2131559084:
+    }
+    while (true)
+    {
+      return super.onOptionsItemSelected(paramMenuItem);
+      if (this.d != null)
+        this.d.a(false);
+    }
   }
 
   public void onPause()
   {
     super.onPause();
-    u();
-    if (!ad.c(this.aH))
-      this.aH.setRequestedOrientation(-1);
+    x();
+    if (!textnow.v.z.e(this.aG))
+      this.aG.setRequestedOrientation(-1);
   }
 
   public void onResume()
   {
     super.onResume();
     boolean bool;
-    if (Settings.System.getInt(this.aH.getContentResolver(), "dtmf_tone", 1) == 1)
+    if (Settings.System.getInt(this.aG.getContentResolver(), "dtmf_tone", 1) == 1)
       bool = true;
     while (true)
     {
-      this.o = bool;
-      if (this.o);
-      synchronized (this.n)
+      this.n = bool;
+      if (this.n);
+      synchronized (this.m)
       {
-        ToneGenerator localToneGenerator = this.m;
+        ToneGenerator localToneGenerator = this.l;
         if (localToneGenerator == null);
         try
         {
-          this.m = new ToneGenerator(3, 80);
-          this.aH.setVolumeControlStream(3);
-          if (!ad.c(this.aH))
-            this.aH.setRequestedOrientation(1);
-          p();
-          if (this.aD != null)
-            a(this.aD.a());
+          this.l = new ToneGenerator(3, 80);
+          if (!textnow.v.z.e(this.aG))
+          {
+            this.aG.setRequestedOrientation(1);
+            this.aG.D();
+            this.aG.i(true);
+          }
+          s();
+          if (this.aC != null)
+            a(this.aC.a());
           return;
           bool = false;
         }
@@ -1895,7 +1977,7 @@ public class DialerFragment extends ao
           while (true)
           {
             new StringBuilder().append("Exception caught while creating local tone generator: ").append(localRuntimeException).toString();
-            this.m = null;
+            this.l = null;
           }
         }
       }
@@ -1905,36 +1987,36 @@ public class DialerFragment extends ao
   public void onStart()
   {
     super.onStart();
-    if ((!this.l) && (!this.aG.T()))
+    if ((!this.k) && (!this.aF.V()))
     {
-      if (this.q == null)
+      if (this.p == null)
       {
         AlertDialog.Builder localBuilder = new AlertDialog.Builder(getActivity());
-        localBuilder.setTitle(2131493377).setMessage(2131493378).setPositiveButton(2131493379, new DialogInterface.OnClickListener()
+        localBuilder.setTitle(2131296780).setMessage(2131296781).setPositiveButton(2131296782, new DialogInterface.OnClickListener()
         {
           public final void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt)
           {
-            DialerFragment.r(DialerFragment.this).g(true);
-            DialerFragment.r(DialerFragment.this).n();
+            DialerFragment.p(DialerFragment.this).g(true);
+            DialerFragment.p(DialerFragment.this).B();
           }
         }).setCancelable(false);
-        this.q = localBuilder.create();
+        this.p = localBuilder.create();
       }
-      if (!this.q.isShowing())
-        this.q.show();
+      if (!this.p.isShowing())
+        this.p.show();
     }
   }
 
   public void onStop()
   {
     super.onStop();
-    if ((this.q != null) && (this.q.isShowing()))
-      this.q.dismiss();
-    u();
+    if ((this.p != null) && (this.p.isShowing()))
+      this.p.dismiss();
+    x();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.activities.phone.DialerFragment
  * JD-Core Version:    0.6.2
  */

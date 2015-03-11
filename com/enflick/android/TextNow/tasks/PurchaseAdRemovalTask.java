@@ -1,8 +1,6 @@
 package com.enflick.android.TextNow.tasks;
 
 import com.enflick.android.TextNow.api.users.UsersExpiryPost;
-import com.enflick.android.TextNow.api.users.u;
-import textnow.u.r;
 
 public class PurchaseAdRemovalTask extends c
 {
@@ -21,15 +19,15 @@ public class PurchaseAdRemovalTask extends c
 
   public void run()
   {
-    r localr = new r(this.a);
-    u localu = new u(localr.b(), this.d, this.e, this.f, this.g);
-    if (a(new UsersExpiryPost(this.a).runSync(localu)))
+    textnow.z.u localu = new textnow.z.u(this.a);
+    com.enflick.android.TextNow.api.users.u localu1 = new com.enflick.android.TextNow.api.users.u(localu.b(), this.d, this.e, this.f, this.g);
+    if (a(new UsersExpiryPost(this.a).runSync(localu1)))
       return;
-    new GetUserInfoTask(localr.b()).c(this.a);
+    new GetUserInfoTask(localu.b()).c(this.a);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.PurchaseAdRemovalTask
  * JD-Core Version:    0.6.2
  */

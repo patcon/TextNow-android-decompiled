@@ -1,59 +1,42 @@
 package com.google.android.gms.internal;
 
-import android.os.Parcel;
-import android.os.Parcelable.Creator;
-import com.google.android.gms.common.internal.safeparcel.a;
-import com.google.android.gms.common.internal.safeparcel.a.a;
-import com.google.android.gms.common.internal.safeparcel.b;
-
 public class kb
-  implements Parcelable.Creator<ka>
 {
-  static void a(ka paramka, Parcel paramParcel, int paramInt)
+  public static int a(byte[] paramArrayOfByte, int paramInt1, int paramInt2, int paramInt3)
   {
-    int i = b.C(paramParcel);
-    b.a(paramParcel, 1, paramka.YV, false);
-    b.c(paramParcel, 1000, paramka.versionCode);
-    b.a(paramParcel, 2, paramka.YW, false);
-    b.G(paramParcel, i);
-  }
-
-  public ka bB(Parcel paramParcel)
-  {
-    String str1 = null;
-    int i = a.B(paramParcel);
-    int j = 0;
-    String str2 = null;
-    while (paramParcel.dataPosition() < i)
+    int i = paramInt1 + (paramInt2 & 0xFFFFFFFC);
+    int j = paramInt3;
+    while (paramInt1 < i)
     {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
-      {
-      default:
-        a.b(paramParcel, k);
-        break;
-      case 1:
-        str2 = a.o(paramParcel, k);
-        break;
-      case 1000:
-        j = a.g(paramParcel, k);
-        break;
-      case 2:
-        str1 = a.o(paramParcel, k);
-      }
+      int i5 = -862048943 * (0xFF & paramArrayOfByte[paramInt1] | (0xFF & paramArrayOfByte[(paramInt1 + 1)]) << 8 | (0xFF & paramArrayOfByte[(paramInt1 + 2)]) << 16 | paramArrayOfByte[(paramInt1 + 3)] << 24);
+      int i6 = j ^ 461845907 * (i5 << 15 | i5 >>> 17);
+      j = -430675100 + 5 * (i6 << 13 | i6 >>> 19);
+      paramInt1 += 4;
     }
-    if (paramParcel.dataPosition() != i)
-      throw new a.a("Overread allowed size end=" + i, paramParcel);
-    return new ka(j, str2, str1);
-  }
-
-  public ka[] cW(int paramInt)
-  {
-    return new ka[paramInt];
+    int k = paramInt2 & 0x3;
+    int m = 0;
+    switch (k)
+    {
+    default:
+    case 3:
+    case 2:
+    case 1:
+    }
+    int n;
+    for (int i1 = j; ; i1 = j ^ 461845907 * (n << 15 | n >>> 17))
+    {
+      int i2 = i1 ^ paramInt2;
+      int i3 = -2048144789 * (i2 ^ i2 >>> 16);
+      int i4 = -1028477387 * (i3 ^ i3 >>> 13);
+      return i4 ^ i4 >>> 16;
+      m = (0xFF & paramArrayOfByte[(i + 2)]) << 16;
+      m |= (0xFF & paramArrayOfByte[(i + 1)]) << 8;
+      n = -862048943 * (m | 0xFF & paramArrayOfByte[i]);
+    }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.kb
  * JD-Core Version:    0.6.2
  */

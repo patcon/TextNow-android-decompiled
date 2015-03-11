@@ -1,70 +1,208 @@
 package com.google.android.gms.internal;
 
-import android.os.IBinder;
-import android.os.Parcel;
-import android.os.Parcelable.Creator;
-import com.google.android.gms.common.internal.safeparcel.a;
-import com.google.android.gms.common.internal.safeparcel.a.a;
-import com.google.android.gms.common.internal.safeparcel.b;
+import android.content.Context;
+import android.os.Handler;
+import android.os.RemoteException;
+import android.os.SystemClock;
+import android.text.TextUtils;
+import com.google.android.gms.dynamic.e;
 
-public class cp
-  implements Parcelable.Creator<cq>
+@ez
+public final class cp
+  implements cq.a
 {
-  static void a(cq paramcq, Parcel paramParcel, int paramInt)
+  private final ct lq;
+  private final Context mContext;
+  private final av ml;
+  private final Object mw = new Object();
+  private final String qo;
+  private final long qp;
+  private final cl qq;
+  private final ay qr;
+  private final gt qs;
+  private cu qt;
+  private int qu = -2;
+
+  public cp(Context paramContext, String paramString, ct paramct, cm paramcm, cl paramcl, av paramav, ay paramay, gt paramgt)
   {
-    int i = b.C(paramParcel);
-    b.c(paramParcel, 1, paramcq.versionCode);
-    b.a(paramParcel, 2, paramcq.bd(), false);
-    b.a(paramParcel, 3, paramcq.be(), false);
-    b.a(paramParcel, 4, paramcq.bf(), false);
-    b.a(paramParcel, 5, paramcq.bg(), false);
-    b.G(paramParcel, i);
+    this.mContext = paramContext;
+    this.lq = paramct;
+    this.qq = paramcl;
+    if ("com.google.ads.mediation.customevent.CustomEventAdapter".equals(paramString))
+    {
+      this.qo = bE();
+      if (paramcm.qe == -1L)
+        break label106;
+    }
+    label106: for (long l = paramcm.qe; ; l = 10000L)
+    {
+      this.qp = l;
+      this.ml = paramav;
+      this.qr = paramay;
+      this.qs = paramgt;
+      return;
+      this.qo = paramString;
+      break;
+    }
   }
 
-  public cq g(Parcel paramParcel)
+  private void a(long paramLong1, long paramLong2, long paramLong3, long paramLong4)
   {
-    IBinder localIBinder1 = null;
-    int i = a.B(paramParcel);
-    int j = 0;
-    IBinder localIBinder2 = null;
-    IBinder localIBinder3 = null;
-    IBinder localIBinder4 = null;
-    while (paramParcel.dataPosition() < i)
+    while (true)
     {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
+      if (this.qu != -2)
+        return;
+      b(paramLong1, paramLong2, paramLong3, paramLong4);
+    }
+  }
+
+  private void a(co paramco)
+  {
+    try
+    {
+      if (this.qs.wF < 4100000)
       {
-      default:
-        a.b(paramParcel, k);
-        break;
-      case 1:
-        j = a.g(paramParcel, k);
-        break;
-      case 2:
-        localIBinder4 = a.p(paramParcel, k);
-        break;
-      case 3:
-        localIBinder3 = a.p(paramParcel, k);
-        break;
-      case 4:
-        localIBinder2 = a.p(paramParcel, k);
-        break;
-      case 5:
-        localIBinder1 = a.p(paramParcel, k);
+        if (this.qr.og)
+        {
+          this.qt.a(e.k(this.mContext), this.ml, this.qq.qc, paramco);
+          return;
+        }
+        this.qt.a(e.k(this.mContext), this.qr, this.ml, this.qq.qc, paramco);
+        return;
       }
     }
-    if (paramParcel.dataPosition() != i)
-      throw new a.a("Overread allowed size end=" + i, paramParcel);
-    return new cq(j, localIBinder4, localIBinder3, localIBinder2, localIBinder1);
+    catch (RemoteException localRemoteException)
+    {
+      gs.d("Could not request ad from mediation adapter.", localRemoteException);
+      j(5);
+      return;
+    }
+    if (this.qr.og)
+    {
+      this.qt.a(e.k(this.mContext), this.ml, this.qq.qc, this.qq.pW, paramco);
+      return;
+    }
+    this.qt.a(e.k(this.mContext), this.qr, this.ml, this.qq.qc, this.qq.pW, paramco);
   }
 
-  public cq[] k(int paramInt)
+  private void b(long paramLong1, long paramLong2, long paramLong3, long paramLong4)
   {
-    return new cq[paramInt];
+    long l1 = SystemClock.elapsedRealtime();
+    long l2 = paramLong2 - (l1 - paramLong1);
+    long l3 = paramLong4 - (l1 - paramLong3);
+    if ((l2 <= 0L) || (l3 <= 0L))
+    {
+      gs.U("Timed out waiting for adapter.");
+      this.qu = 3;
+      return;
+    }
+    try
+    {
+      this.mw.wait(Math.min(l2, l3));
+      return;
+    }
+    catch (InterruptedException localInterruptedException)
+    {
+      this.qu = -1;
+    }
+  }
+
+  private String bE()
+  {
+    try
+    {
+      if (!TextUtils.isEmpty(this.qq.qa))
+      {
+        if (this.lq.y(this.qq.qa))
+          return "com.google.android.gms.ads.mediation.customevent.CustomEventAdapter";
+        return "com.google.ads.mediation.customevent.CustomEventAdapter";
+      }
+    }
+    catch (RemoteException localRemoteException)
+    {
+      gs.W("Fail to determine the custom event's version, assuming the old one.");
+    }
+    return "com.google.ads.mediation.customevent.CustomEventAdapter";
+  }
+
+  private cu bF()
+  {
+    gs.U("Instantiating mediation adapter: " + this.qo);
+    try
+    {
+      cu localcu = this.lq.x(this.qo);
+      return localcu;
+    }
+    catch (RemoteException localRemoteException)
+    {
+      gs.a("Could not instantiate mediation adapter: " + this.qo, localRemoteException);
+    }
+    return null;
+  }
+
+  public final cq b(long paramLong1, long paramLong2)
+  {
+    synchronized (this.mw)
+    {
+      long l = SystemClock.elapsedRealtime();
+      final co localco = new co();
+      gr.wC.post(new Runnable()
+      {
+        public void run()
+        {
+          synchronized (cp.a(cp.this))
+          {
+            if (cp.b(cp.this) != -2)
+              return;
+            cp.a(cp.this, cp.c(cp.this));
+            if (cp.d(cp.this) == null)
+            {
+              cp.this.j(4);
+              return;
+            }
+          }
+          localco.a(cp.this);
+          cp.a(cp.this, localco);
+        }
+      });
+      a(l, this.qp, paramLong1, paramLong2);
+      cq localcq = new cq(this.qq, this.qt, this.qo, localco, this.qu);
+      return localcq;
+    }
+  }
+
+  public final void cancel()
+  {
+    synchronized (this.mw)
+    {
+      try
+      {
+        if (this.qt != null)
+          this.qt.destroy();
+        this.qu = -1;
+        this.mw.notify();
+        return;
+      }
+      catch (RemoteException localRemoteException)
+      {
+        while (true)
+          gs.d("Could not destroy mediation adapter.", localRemoteException);
+      }
+    }
+  }
+
+  public final void j(int paramInt)
+  {
+    synchronized (this.mw)
+    {
+      this.qu = paramInt;
+      this.mw.notify();
+      return;
+    }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.cp
  * JD-Core Version:    0.6.2
  */

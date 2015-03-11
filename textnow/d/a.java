@@ -1,19 +1,32 @@
 package textnow.d;
 
 import android.os.Build.VERSION;
-import android.os.Parcelable.Creator;
 
 public final class a
 {
-  public static <T> Parcelable.Creator<T> a(c<T> paramc)
+  private static final b a = new c();
+
+  static
   {
-    if (Build.VERSION.SDK_INT >= 13)
-      new d(paramc);
-    return new b(paramc);
+    if (Build.VERSION.SDK_INT >= 14)
+    {
+      a = new d();
+      return;
+    }
+  }
+
+  public static String a(String paramString)
+  {
+    return a.a(paramString);
+  }
+
+  public static String b(String paramString)
+  {
+    return a.b(paramString);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.d.a
  * JD-Core Version:    0.6.2
  */

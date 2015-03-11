@@ -15,7 +15,7 @@ public final class qa$d extends pw<AtomicReference<?>>
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.flurry.sdk.qa.d
  * JD-Core Version:    0.6.2
  */

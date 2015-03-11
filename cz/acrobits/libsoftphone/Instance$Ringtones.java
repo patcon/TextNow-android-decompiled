@@ -101,7 +101,7 @@ public final class Instance$Ringtones
   public static native void stopRingtonePreview();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     cz.acrobits.libsoftphone.Instance.Ringtones
  * JD-Core Version:    0.6.2
  */

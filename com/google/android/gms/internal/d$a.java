@@ -1,21 +1,19 @@
 package com.google.android.gms.internal;
 
-import java.util.List;
-
-public final class d$a extends ma<a>
+public final class d$a extends ph<a>
 {
-  private static volatile a[] fM;
-  public String fN;
-  public a[] fO;
-  public a[] fP;
-  public a[] fQ;
-  public String fR;
-  public String fS;
-  public long fT;
-  public boolean fU;
-  public a[] fV;
-  public int[] fW;
-  public boolean fX;
+  private static volatile a[] gu;
+  public String gA;
+  public long gB;
+  public boolean gC;
+  public a[] gD;
+  public int[] gE;
+  public boolean gF;
+  public String gv;
+  public a[] gw;
+  public a[] gx;
+  public a[] gy;
+  public String gz;
   public int type;
 
   public d$a()
@@ -25,200 +23,252 @@ public final class d$a extends ma<a>
 
   public static a[] r()
   {
-    if (fM == null);
-    synchronized (mc.ana)
+    if (gu == null);
+    synchronized (pl.awT)
     {
-      if (fM == null)
-        fM = new a[0];
-      return fM;
+      if (gu == null)
+        gu = new a[0];
+      return gu;
     }
   }
 
-  public final void a(lz paramlz)
+  public final void a(pg parampg)
   {
-    paramlz.p(1, this.type);
-    if (!this.fN.equals(""))
-      paramlz.b(2, this.fN);
-    if ((this.fO != null) && (this.fO.length > 0))
-      for (int i1 = 0; i1 < this.fO.length; i1++)
+    parampg.s(1, this.type);
+    if (!this.gv.equals(""))
+      parampg.b(2, this.gv);
+    if ((this.gw != null) && (this.gw.length > 0))
+      for (int i1 = 0; i1 < this.gw.length; i1++)
       {
-        a locala4 = this.fO[i1];
+        a locala4 = this.gw[i1];
         if (locala4 != null)
-          paramlz.a(3, locala4);
+          parampg.a(3, locala4);
       }
-    if ((this.fP != null) && (this.fP.length > 0))
-      for (int n = 0; n < this.fP.length; n++)
+    if ((this.gx != null) && (this.gx.length > 0))
+      for (int n = 0; n < this.gx.length; n++)
       {
-        a locala3 = this.fP[n];
+        a locala3 = this.gx[n];
         if (locala3 != null)
-          paramlz.a(4, locala3);
+          parampg.a(4, locala3);
       }
-    if ((this.fQ != null) && (this.fQ.length > 0))
-      for (int m = 0; m < this.fQ.length; m++)
+    if ((this.gy != null) && (this.gy.length > 0))
+      for (int m = 0; m < this.gy.length; m++)
       {
-        a locala2 = this.fQ[m];
+        a locala2 = this.gy[m];
         if (locala2 != null)
-          paramlz.a(5, locala2);
+          parampg.a(5, locala2);
       }
-    if (!this.fR.equals(""))
-      paramlz.b(6, this.fR);
-    if (!this.fS.equals(""))
-      paramlz.b(7, this.fS);
-    if (this.fT != 0L)
-      paramlz.b(8, this.fT);
-    if (this.fX)
-      paramlz.a(9, this.fX);
-    if ((this.fW != null) && (this.fW.length > 0))
-      for (int k = 0; k < this.fW.length; k++)
-        paramlz.p(10, this.fW[k]);
-    if (this.fV != null)
+    if (!this.gz.equals(""))
+      parampg.b(6, this.gz);
+    if (!this.gA.equals(""))
+      parampg.b(7, this.gA);
+    if (this.gB != 0L)
+      parampg.b(8, this.gB);
+    if (this.gF)
+      parampg.b(9, this.gF);
+    if ((this.gE != null) && (this.gE.length > 0))
+      for (int k = 0; k < this.gE.length; k++)
+        parampg.s(10, this.gE[k]);
+    if (this.gD != null)
     {
-      int i = this.fV.length;
+      int i = this.gD.length;
       int j = 0;
       if (i > 0)
-        while (j < this.fV.length)
+        while (j < this.gD.length)
         {
-          a locala1 = this.fV[j];
+          a locala1 = this.gD[j];
           if (locala1 != null)
-            paramlz.a(11, locala1);
+            parampg.a(11, locala1);
           j++;
         }
     }
-    if (this.fU)
-      paramlz.a(12, this.fU);
-    super.a(paramlz);
+    if (this.gC)
+      parampg.b(12, this.gC);
+    super.a(parampg);
   }
 
   protected final int c()
   {
-    int i = super.c() + lz.r(1, this.type);
-    if (!this.fN.equals(""))
-      i += lz.h(2, this.fN);
-    if ((this.fO != null) && (this.fO.length > 0))
+    int i = super.c() + pg.u(1, this.type);
+    if (!this.gv.equals(""))
+      i += pg.j(2, this.gv);
+    if ((this.gw != null) && (this.gw.length > 0))
     {
       int i5 = i;
-      for (int i6 = 0; i6 < this.fO.length; i6++)
+      for (int i6 = 0; i6 < this.gw.length; i6++)
       {
-        a locala4 = this.fO[i6];
+        a locala4 = this.gw[i6];
         if (locala4 != null)
-          i5 += lz.b(3, locala4);
+          i5 += pg.c(3, locala4);
       }
       i = i5;
     }
-    if ((this.fP != null) && (this.fP.length > 0))
+    if ((this.gx != null) && (this.gx.length > 0))
     {
       int i3 = i;
-      for (int i4 = 0; i4 < this.fP.length; i4++)
+      for (int i4 = 0; i4 < this.gx.length; i4++)
       {
-        a locala3 = this.fP[i4];
+        a locala3 = this.gx[i4];
         if (locala3 != null)
-          i3 += lz.b(4, locala3);
+          i3 += pg.c(4, locala3);
       }
       i = i3;
     }
-    if ((this.fQ != null) && (this.fQ.length > 0))
+    if ((this.gy != null) && (this.gy.length > 0))
     {
       int i1 = i;
-      for (int i2 = 0; i2 < this.fQ.length; i2++)
+      for (int i2 = 0; i2 < this.gy.length; i2++)
       {
-        a locala2 = this.fQ[i2];
+        a locala2 = this.gy[i2];
         if (locala2 != null)
-          i1 += lz.b(5, locala2);
+          i1 += pg.c(5, locala2);
       }
       i = i1;
     }
-    if (!this.fR.equals(""))
-      i += lz.h(6, this.fR);
-    if (!this.fS.equals(""))
-      i += lz.h(7, this.fS);
-    if (this.fT != 0L)
-      i += lz.d(8, this.fT);
-    if (this.fX)
-      i += lz.b(9, this.fX);
-    if ((this.fW != null) && (this.fW.length > 0))
+    if (!this.gz.equals(""))
+      i += pg.j(6, this.gz);
+    if (!this.gA.equals(""))
+      i += pg.j(7, this.gA);
+    if (this.gB != 0L)
+      i += pg.d(8, this.gB);
+    if (this.gF)
+      i += pg.c(9, this.gF);
+    if ((this.gE != null) && (this.gE.length > 0))
     {
       int m = 0;
       int n = 0;
-      while (m < this.fW.length)
+      while (m < this.gE.length)
       {
-        n += lz.eE(this.fW[m]);
+        n += pg.gw(this.gE[m]);
         m++;
       }
-      i = i + n + 1 * this.fW.length;
+      i = i + n + 1 * this.gE.length;
     }
-    if (this.fV != null)
+    if (this.gD != null)
     {
-      int j = this.fV.length;
+      int j = this.gD.length;
       int k = 0;
       if (j > 0)
-        while (k < this.fV.length)
+        while (k < this.gD.length)
         {
-          a locala1 = this.fV[k];
+          a locala1 = this.gD[k];
           if (locala1 != null)
-            i += lz.b(11, locala1);
+            i += pg.c(11, locala1);
           k++;
         }
     }
-    if (this.fU)
-      i += lz.b(12, this.fU);
+    if (this.gC)
+      i += pg.c(12, this.gC);
     return i;
   }
 
   public final boolean equals(Object paramObject)
   {
-    if (paramObject == this);
+    boolean bool2;
+    if (paramObject == this)
+      bool2 = true;
     a locala;
+    label69: 
     do
     {
-      return true;
-      if (!(paramObject instanceof a))
-        return false;
-      locala = (a)paramObject;
-      if (this.type != locala.type)
-        return false;
-      if (this.fN == null)
+      String str2;
+      do
       {
-        if (locala.fN != null)
-          return false;
+        boolean bool5;
+        do
+        {
+          boolean bool4;
+          do
+          {
+            boolean bool3;
+            do
+            {
+              String str3;
+              do
+              {
+                int i;
+                int j;
+                do
+                {
+                  boolean bool1;
+                  do
+                  {
+                    return bool2;
+                    bool1 = paramObject instanceof a;
+                    bool2 = false;
+                  }
+                  while (!bool1);
+                  locala = (a)paramObject;
+                  i = this.type;
+                  j = locala.type;
+                  bool2 = false;
+                }
+                while (i != j);
+                if (this.gv != null)
+                  break;
+                str3 = locala.gv;
+                bool2 = false;
+              }
+              while (str3 != null);
+              bool3 = pl.equals(this.gw, locala.gw);
+              bool2 = false;
+            }
+            while (!bool3);
+            bool4 = pl.equals(this.gx, locala.gx);
+            bool2 = false;
+          }
+          while (!bool4);
+          bool5 = pl.equals(this.gy, locala.gy);
+          bool2 = false;
+        }
+        while (!bool5);
+        if (this.gz != null)
+          break label303;
+        str2 = locala.gz;
+        bool2 = false;
       }
-      else if (!this.fN.equals(locala.fN))
-        return false;
-      if (!mc.equals(this.fO, locala.fO))
-        return false;
-      if (!mc.equals(this.fP, locala.fP))
-        return false;
-      if (!mc.equals(this.fQ, locala.fQ))
-        return false;
-      if (this.fR == null)
-      {
-        if (locala.fR != null)
-          return false;
-      }
-      else if (!this.fR.equals(locala.fR))
-        return false;
-      if (this.fS == null)
-      {
-        if (locala.fS != null)
-          return false;
-      }
-      else if (!this.fS.equals(locala.fS))
-        return false;
-      if (this.fT != locala.fT)
-        return false;
-      if (this.fU != locala.fU)
-        return false;
-      if (!mc.equals(this.fV, locala.fV))
-        return false;
-      if (!mc.equals(this.fW, locala.fW))
-        return false;
-      if (this.fX != locala.fX)
-        return false;
-      if ((this.amX != null) && (!this.amX.isEmpty()))
-        break;
+      while (str2 != null);
+      if (this.gA != null)
+        break label320;
+      str1 = locala.gA;
+      bool2 = false;
     }
-    while ((locala.amX == null) || (locala.amX.isEmpty()));
+    while (str1 != null);
+    label153: label303: label320: 
+    while (this.gA.equals(locala.gA))
+    {
+      String str1;
+      boolean bool6 = this.gB < locala.gB;
+      bool2 = false;
+      if (bool6)
+        break;
+      boolean bool7 = this.gC;
+      boolean bool8 = locala.gC;
+      bool2 = false;
+      if (bool7 != bool8)
+        break;
+      boolean bool9 = pl.equals(this.gD, locala.gD);
+      bool2 = false;
+      if (!bool9)
+        break;
+      boolean bool10 = pl.equals(this.gE, locala.gE);
+      bool2 = false;
+      if (!bool10)
+        break;
+      boolean bool11 = this.gF;
+      boolean bool12 = locala.gF;
+      bool2 = false;
+      if (bool11 != bool12)
+        break;
+      return a(locala);
+      if (this.gv.equals(locala.gv))
+        break label69;
+      return false;
+      if (this.gz.equals(locala.gz))
+        break label153;
+      return false;
+    }
     return false;
-    return this.amX.equals(locala.amX);
   }
 
   public final int hashCode()
@@ -228,69 +278,57 @@ public final class d$a extends ma<a>
     int k;
     int n;
     label76: int i2;
-    label96: int i4;
-    label133: label172: int i6;
-    int i7;
-    if (this.fN == null)
+    label100: int i4;
+    label137: int i5;
+    if (this.gv == null)
     {
       k = 0;
-      int m = 31 * (31 * (31 * (31 * (k + j) + mc.hashCode(this.fO)) + mc.hashCode(this.fP)) + mc.hashCode(this.fQ));
-      if (this.fR != null)
-        break label231;
+      int m = 31 * (31 * (31 * (31 * (k + j) + pl.hashCode(this.gw)) + pl.hashCode(this.gx)) + pl.hashCode(this.gy));
+      if (this.gz != null)
+        break label200;
       n = 0;
       int i1 = 31 * (n + m);
-      if (this.fS != null)
-        break label243;
+      String str = this.gA;
       i2 = 0;
-      int i3 = 31 * (31 * (i2 + i1) + (int)(this.fT ^ this.fT >>> 32));
-      if (!this.fU)
-        break label255;
+      if (str != null)
+        break label212;
+      int i3 = 31 * (31 * (i1 + i2) + (int)(this.gB ^ this.gB >>> 32));
+      if (!this.gC)
+        break label224;
       i4 = i;
-      int i5 = 31 * (31 * (31 * (i4 + i3) + mc.hashCode(this.fV)) + mc.hashCode(this.fW));
-      if (!this.fX)
-        break label263;
-      i6 = 31 * (i5 + i);
-      List localList = this.amX;
-      i7 = 0;
-      if (localList != null)
-      {
-        boolean bool = this.amX.isEmpty();
-        i7 = 0;
-        if (!bool)
-          break label270;
-      }
+      i5 = 31 * (31 * (31 * (i4 + i3) + pl.hashCode(this.gD)) + pl.hashCode(this.gE));
+      if (!this.gF)
+        break label232;
     }
     while (true)
     {
-      return i6 + i7;
-      k = this.fN.hashCode();
+      return 31 * (i5 + i) + qz();
+      k = this.gv.hashCode();
       break;
-      label231: n = this.fR.hashCode();
+      label200: n = this.gz.hashCode();
       break label76;
-      label243: i2 = this.fS.hashCode();
-      break label96;
-      label255: i4 = 1237;
-      break label133;
-      label263: i = 1237;
-      break label172;
-      label270: i7 = this.amX.hashCode();
+      label212: i2 = this.gA.hashCode();
+      break label100;
+      label224: i4 = 1237;
+      break label137;
+      label232: i = 1237;
     }
   }
 
-  public final a l(ly paramly)
+  public final a l(pf parampf)
   {
     while (true)
     {
-      int i = paramly.nB();
+      int i = parampf.qi();
       switch (i)
       {
       default:
-        if (a(paramly, i))
+        if (a(parampf, i))
           continue;
       case 0:
         return this;
       case 8:
-        int i17 = paramly.nE();
+        int i17 = parampf.ql();
         switch (i17)
         {
         default:
@@ -307,93 +345,93 @@ public final class d$a extends ma<a>
         this.type = i17;
         break;
       case 18:
-        this.fN = paramly.readString();
+        this.gv = parampf.readString();
         break;
       case 26:
-        int i15 = mh.b(paramly, 26);
-        if (this.fO == null);
+        int i15 = pq.b(parampf, 26);
+        if (this.gw == null);
         a[] arrayOfa4;
-        for (int i16 = 0; ; i16 = this.fO.length)
+        for (int i16 = 0; ; i16 = this.gw.length)
         {
           arrayOfa4 = new a[i15 + i16];
           if (i16 != 0)
-            System.arraycopy(this.fO, 0, arrayOfa4, 0, i16);
+            System.arraycopy(this.gw, 0, arrayOfa4, 0, i16);
           while (i16 < -1 + arrayOfa4.length)
           {
             arrayOfa4[i16] = new a();
-            paramly.a(arrayOfa4[i16]);
-            paramly.nB();
+            parampf.a(arrayOfa4[i16]);
+            parampf.qi();
             i16++;
           }
         }
         arrayOfa4[i16] = new a();
-        paramly.a(arrayOfa4[i16]);
-        this.fO = arrayOfa4;
+        parampf.a(arrayOfa4[i16]);
+        this.gw = arrayOfa4;
         break;
       case 34:
-        int i13 = mh.b(paramly, 34);
-        if (this.fP == null);
+        int i13 = pq.b(parampf, 34);
+        if (this.gx == null);
         a[] arrayOfa3;
-        for (int i14 = 0; ; i14 = this.fP.length)
+        for (int i14 = 0; ; i14 = this.gx.length)
         {
           arrayOfa3 = new a[i13 + i14];
           if (i14 != 0)
-            System.arraycopy(this.fP, 0, arrayOfa3, 0, i14);
+            System.arraycopy(this.gx, 0, arrayOfa3, 0, i14);
           while (i14 < -1 + arrayOfa3.length)
           {
             arrayOfa3[i14] = new a();
-            paramly.a(arrayOfa3[i14]);
-            paramly.nB();
+            parampf.a(arrayOfa3[i14]);
+            parampf.qi();
             i14++;
           }
         }
         arrayOfa3[i14] = new a();
-        paramly.a(arrayOfa3[i14]);
-        this.fP = arrayOfa3;
+        parampf.a(arrayOfa3[i14]);
+        this.gx = arrayOfa3;
         break;
       case 42:
-        int i11 = mh.b(paramly, 42);
-        if (this.fQ == null);
+        int i11 = pq.b(parampf, 42);
+        if (this.gy == null);
         a[] arrayOfa2;
-        for (int i12 = 0; ; i12 = this.fQ.length)
+        for (int i12 = 0; ; i12 = this.gy.length)
         {
           arrayOfa2 = new a[i11 + i12];
           if (i12 != 0)
-            System.arraycopy(this.fQ, 0, arrayOfa2, 0, i12);
+            System.arraycopy(this.gy, 0, arrayOfa2, 0, i12);
           while (i12 < -1 + arrayOfa2.length)
           {
             arrayOfa2[i12] = new a();
-            paramly.a(arrayOfa2[i12]);
-            paramly.nB();
+            parampf.a(arrayOfa2[i12]);
+            parampf.qi();
             i12++;
           }
         }
         arrayOfa2[i12] = new a();
-        paramly.a(arrayOfa2[i12]);
-        this.fQ = arrayOfa2;
+        parampf.a(arrayOfa2[i12]);
+        this.gy = arrayOfa2;
         break;
       case 50:
-        this.fR = paramly.readString();
+        this.gz = parampf.readString();
         break;
       case 58:
-        this.fS = paramly.readString();
+        this.gA = parampf.readString();
         break;
       case 64:
-        this.fT = paramly.nD();
+        this.gB = parampf.qk();
         break;
       case 72:
-        this.fX = paramly.nF();
+        this.gF = parampf.qm();
         break;
       case 80:
-        int i5 = mh.b(paramly, 80);
+        int i5 = pq.b(parampf, 80);
         int[] arrayOfInt2 = new int[i5];
         int i6 = 0;
         int i7 = 0;
         if (i6 < i5)
         {
           if (i6 != 0)
-            paramly.nB();
-          int i9 = paramly.nE();
+            parampf.qi();
+          int i9 = parampf.ql();
           int i10;
           switch (i9)
           {
@@ -428,26 +466,26 @@ public final class d$a extends ma<a>
         }
         if (i7 == 0)
           continue;
-        if (this.fW == null);
-        for (int i8 = 0; ; i8 = this.fW.length)
+        if (this.gE == null);
+        for (int i8 = 0; ; i8 = this.gE.length)
         {
           if ((i8 != 0) || (i7 != arrayOfInt2.length))
             break label849;
-          this.fW = arrayOfInt2;
+          this.gE = arrayOfInt2;
           break;
         }
         int[] arrayOfInt3 = new int[i8 + i7];
         if (i8 != 0)
-          System.arraycopy(this.fW, 0, arrayOfInt3, 0, i8);
+          System.arraycopy(this.gE, 0, arrayOfInt3, 0, i8);
         System.arraycopy(arrayOfInt2, 0, arrayOfInt3, i8, i7);
-        this.fW = arrayOfInt3;
+        this.gE = arrayOfInt3;
         break;
       case 82:
-        int m = paramly.ex(paramly.nI());
-        int n = paramly.getPosition();
+        int m = parampf.gp(parampf.qp());
+        int n = parampf.getPosition();
         int i1 = 0;
-        while (paramly.nN() > 0)
-          switch (paramly.nE())
+        while (parampf.qu() > 0)
+          switch (parampf.ql())
           {
           default:
             break;
@@ -472,17 +510,17 @@ public final class d$a extends ma<a>
           }
         if (i1 != 0)
         {
-          paramly.ez(n);
-          if (this.fW == null);
+          parampf.gr(n);
+          if (this.gE == null);
           int[] arrayOfInt1;
-          for (int i2 = 0; ; i2 = this.fW.length)
+          for (int i2 = 0; ; i2 = this.gE.length)
           {
             arrayOfInt1 = new int[i1 + i2];
             if (i2 != 0)
-              System.arraycopy(this.fW, 0, arrayOfInt1, 0, i2);
-            while (paramly.nN() > 0)
+              System.arraycopy(this.gE, 0, arrayOfInt1, 0, i2);
+            while (parampf.qu() > 0)
             {
-              int i3 = paramly.nE();
+              int i3 = parampf.ql();
               switch (i3)
               {
               default:
@@ -510,58 +548,58 @@ public final class d$a extends ma<a>
               }
             }
           }
-          this.fW = arrayOfInt1;
+          this.gE = arrayOfInt1;
         }
-        paramly.ey(m);
+        parampf.gq(m);
         break;
       case 90:
-        label849: int j = mh.b(paramly, 90);
-        if (this.fV == null);
+        label849: int j = pq.b(parampf, 90);
+        if (this.gD == null);
         a[] arrayOfa1;
-        for (int k = 0; ; k = this.fV.length)
+        for (int k = 0; ; k = this.gD.length)
         {
           arrayOfa1 = new a[j + k];
           if (k != 0)
-            System.arraycopy(this.fV, 0, arrayOfa1, 0, k);
+            System.arraycopy(this.gD, 0, arrayOfa1, 0, k);
           while (k < -1 + arrayOfa1.length)
           {
             arrayOfa1[k] = new a();
-            paramly.a(arrayOfa1[k]);
-            paramly.nB();
+            parampf.a(arrayOfa1[k]);
+            parampf.qi();
             k++;
           }
         }
         arrayOfa1[k] = new a();
-        paramly.a(arrayOfa1[k]);
-        this.fV = arrayOfa1;
+        parampf.a(arrayOfa1[k]);
+        this.gD = arrayOfa1;
         break;
       case 96:
       }
-      this.fU = paramly.nF();
+      this.gC = parampf.qm();
     }
   }
 
   public final a s()
   {
     this.type = 1;
-    this.fN = "";
-    this.fO = r();
-    this.fP = r();
-    this.fQ = r();
-    this.fR = "";
-    this.fS = "";
-    this.fT = 0L;
-    this.fU = false;
-    this.fV = r();
-    this.fW = mh.and;
-    this.fX = false;
-    this.amX = null;
-    this.anb = -1;
+    this.gv = "";
+    this.gw = r();
+    this.gx = r();
+    this.gy = r();
+    this.gz = "";
+    this.gA = "";
+    this.gB = 0L;
+    this.gC = false;
+    this.gD = r();
+    this.gE = pq.awW;
+    this.gF = false;
+    this.awJ = null;
+    this.awU = -1;
     return this;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.d.a
  * JD-Core Version:    0.6.2
  */

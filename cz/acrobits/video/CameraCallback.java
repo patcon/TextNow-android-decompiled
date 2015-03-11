@@ -16,7 +16,7 @@ public class CameraCallback
   public native void onPreviewFrame(byte[] paramArrayOfByte, Camera paramCamera);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     cz.acrobits.video.CameraCallback
  * JD-Core Version:    0.6.2
  */

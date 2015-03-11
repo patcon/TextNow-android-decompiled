@@ -13,10 +13,10 @@ public class k extends b<String>
 {
   public k(String paramString, int paramInt)
   {
-    super(paramString, paramInt);
+    super(paramString, Collections.singleton(paramString), Collections.emptySet(), paramInt);
   }
 
-  public static final Collection<String> aO(String paramString)
+  public static final Collection<String> bk(String paramString)
   {
     if (paramString == null)
       return null;
@@ -32,11 +32,11 @@ public class k extends b<String>
     paramBundle.putStringArrayList(getName(), new ArrayList(paramCollection));
   }
 
-  protected Collection<String> c(DataHolder paramDataHolder, int paramInt1, int paramInt2)
+  protected Collection<String> d(DataHolder paramDataHolder, int paramInt1, int paramInt2)
   {
     try
     {
-      Collection localCollection = aO(paramDataHolder.c(getName(), paramInt1, paramInt2));
+      Collection localCollection = bk(paramDataHolder.c(getName(), paramInt1, paramInt2));
       return localCollection;
     }
     catch (JSONException localJSONException)
@@ -45,13 +45,13 @@ public class k extends b<String>
     }
   }
 
-  protected Collection<String> k(Bundle paramBundle)
+  protected Collection<String> l(Bundle paramBundle)
   {
     return paramBundle.getStringArrayList(getName());
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.drive.metadata.internal.k
  * JD-Core Version:    0.6.2
  */

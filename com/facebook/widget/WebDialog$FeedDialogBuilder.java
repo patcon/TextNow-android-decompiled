@@ -16,6 +16,11 @@ public class WebDialog$FeedDialogBuilder extends WebDialog.BuilderBase<FeedDialo
   private static final String SOURCE_PARAM = "source";
   private static final String TO_PARAM = "to";
 
+  public WebDialog$FeedDialogBuilder(Context paramContext)
+  {
+    super(paramContext, "feed");
+  }
+
   public WebDialog$FeedDialogBuilder(Context paramContext, Session paramSession)
   {
     super(paramContext, paramSession, "feed", null);
@@ -24,6 +29,11 @@ public class WebDialog$FeedDialogBuilder extends WebDialog.BuilderBase<FeedDialo
   public WebDialog$FeedDialogBuilder(Context paramContext, Session paramSession, Bundle paramBundle)
   {
     super(paramContext, paramSession, "feed", paramBundle);
+  }
+
+  public WebDialog$FeedDialogBuilder(Context paramContext, String paramString, Bundle paramBundle)
+  {
+    super(paramContext, paramString, "feed", paramBundle);
   }
 
   public FeedDialogBuilder setCaption(String paramString)
@@ -75,7 +85,7 @@ public class WebDialog$FeedDialogBuilder extends WebDialog.BuilderBase<FeedDialo
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.widget.WebDialog.FeedDialogBuilder
  * JD-Core Version:    0.6.2
  */

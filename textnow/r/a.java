@@ -1,58 +1,30 @@
 package textnow.r;
 
+import android.content.ContentResolver;
 import android.content.Context;
-import android.content.res.Resources;
-import android.os.AsyncTask;
-import textnow.u.d;
-import textnow.u.r;
+import android.database.Cursor;
+import android.database.MergeCursor;
+import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.support.v4.content.d;
 
-public final class a extends AsyncTask<Void, Void, Boolean>
+public final class a extends d
 {
-  private Context a;
-  private r b;
-  private d c;
-  private b d;
-  private String e;
-  private String f;
-  private String g;
-  private String h;
-  private String i;
-  private String j;
-  private String k;
-  private String l;
-  private String m;
-  private String n;
-
-  public a(Context paramContext, b paramb)
+  public a(Context paramContext)
   {
-    this.a = paramContext;
-    this.d = paramb;
-    this.b = new r(paramContext);
-    this.e = this.a.getResources().getString(2131493545);
-    this.f = this.a.getResources().getString(2131493546);
-    this.g = this.a.getResources().getString(2131493547);
-    this.h = this.a.getResources().getString(2131493548);
-    this.i = this.a.getResources().getString(2131493549);
-    this.j = this.a.getResources().getString(2131493550);
-    this.k = this.a.getResources().getString(2131493551);
-    this.l = this.a.getResources().getString(2131493552);
-    this.m = this.a.getResources().getString(2131493553);
-    this.n = this.a.getResources().getString(2131493556);
+    super(paramContext);
   }
 
-  public final void a(d paramd)
+  public final Cursor d()
   {
-    this.c = paramd;
-    execute(new Void[0]);
-  }
-
-  protected final void onPreExecute()
-  {
-    this.d.w();
+    Context localContext = getContext();
+    String[] arrayOfString1 = { "_id", "photo_id", "display_name", "data2", "data1", "contact_id", "data3" };
+    String[] arrayOfString2 = { "_id", "photo_id", "data4", "data2", "data1", "contact_id", "data3" };
+    return new MergeCursor(new Cursor[] { localContext.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, arrayOfString1, null, null, null), localContext.getContentResolver().query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, arrayOfString2, null, null, null) });
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.r.a
  * JD-Core Version:    0.6.2
  */

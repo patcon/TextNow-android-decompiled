@@ -33,13 +33,13 @@ class Session$AutoPublishAsyncTask extends AsyncTask<Void, Void, Void>
   {
     synchronized (this.this$0)
     {
-      Session.access$1402(this.this$0, null);
+      Session.access$1802(this.this$0, null);
       return;
     }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.Session.AutoPublishAsyncTask
  * JD-Core Version:    0.6.2
  */

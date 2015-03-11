@@ -9,23 +9,23 @@ public final class Cart
   implements SafeParcelable
 {
   public static final Parcelable.Creator<Cart> CREATOR = new b();
-  String aiK;
-  String aiL;
-  ArrayList<LineItem> aiM;
-  private final int xM;
+  private final int BR;
+  String asv;
+  String asw;
+  ArrayList<LineItem> asx;
 
   Cart()
   {
-    this.xM = 1;
-    this.aiM = new ArrayList();
+    this.BR = 1;
+    this.asx = new ArrayList();
   }
 
   Cart(int paramInt, String paramString1, String paramString2, ArrayList<LineItem> paramArrayList)
   {
-    this.xM = paramInt;
-    this.aiK = paramString1;
-    this.aiL = paramString2;
-    this.aiM = paramArrayList;
+    this.BR = paramInt;
+    this.asv = paramString1;
+    this.asw = paramString2;
+    this.asx = paramArrayList;
   }
 
   public static Cart.Builder newBuilder()
@@ -42,22 +42,22 @@ public final class Cart
 
   public final String getCurrencyCode()
   {
-    return this.aiL;
+    return this.asw;
   }
 
   public final ArrayList<LineItem> getLineItems()
   {
-    return this.aiM;
+    return this.asx;
   }
 
   public final String getTotalPrice()
   {
-    return this.aiK;
+    return this.asv;
   }
 
   public final int getVersionCode()
   {
-    return this.xM;
+    return this.BR;
   }
 
   public final void writeToParcel(Parcel paramParcel, int paramInt)
@@ -66,7 +66,7 @@ public final class Cart
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.Cart
  * JD-Core Version:    0.6.2
  */

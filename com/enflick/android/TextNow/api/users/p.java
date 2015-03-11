@@ -1,7 +1,7 @@
 package com.enflick.android.TextNow.api.users;
 
 import com.enflick.android.TextNow.api.common.c;
-import textnow.t.e;
+import textnow.y.e;
 
 public final class p extends c
 {
@@ -15,7 +15,7 @@ public final class p extends c
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.api.users.p
  * JD-Core Version:    0.6.2
  */

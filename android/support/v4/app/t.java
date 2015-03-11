@@ -1,286 +1,184 @@
 package android.support.v4.app;
 
-import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnCancelListener;
-import android.content.DialogInterface.OnDismissListener;
-import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.graphics.Rect;
+import android.transition.Transition;
+import android.transition.Transition.EpicenterCallback;
 import android.view.View;
-import android.view.Window;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.ViewTreeObserver.OnPreDrawListener;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
-public class t extends Fragment
-  implements DialogInterface.OnCancelListener, DialogInterface.OnDismissListener
+final class t
 {
-  private static final String SAVED_BACK_STACK_ID = "android:backStackId";
-  private static final String SAVED_CANCELABLE = "android:cancelable";
-  private static final String SAVED_DIALOG_STATE_TAG = "android:savedDialogState";
-  private static final String SAVED_SHOWS_DIALOG = "android:showsDialog";
-  private static final String SAVED_STYLE = "android:style";
-  private static final String SAVED_THEME = "android:theme";
-  public static final int STYLE_NORMAL = 0;
-  public static final int STYLE_NO_FRAME = 2;
-  public static final int STYLE_NO_INPUT = 3;
-  public static final int STYLE_NO_TITLE = 1;
-  int mBackStackId = -1;
-  boolean mCancelable = true;
-  Dialog mDialog;
-  boolean mDismissed;
-  boolean mShownByMe;
-  boolean mShowsDialog = true;
-  int mStyle = 0;
-  int mTheme = 0;
-  boolean mViewDestroyed;
-
-  public void dismiss()
+  public static Object a(Object paramObject)
   {
-    dismissInternal(false);
+    if (paramObject != null)
+      paramObject = ((Transition)paramObject).clone();
+    return paramObject;
   }
 
-  public void dismissAllowingStateLoss()
+  public static Object a(Object paramObject, View paramView, ArrayList<View> paramArrayList, Map<String, View> paramMap)
   {
-    dismissInternal(true);
-  }
-
-  void dismissInternal(boolean paramBoolean)
-  {
-    if (this.mDismissed)
-      return;
-    this.mDismissed = true;
-    this.mShownByMe = false;
-    if (this.mDialog != null)
+    if (paramObject != null)
     {
-      this.mDialog.dismiss();
-      this.mDialog = null;
+      b(paramArrayList, paramView);
+      if (paramMap != null)
+        paramArrayList.removeAll(paramMap.values());
+      if (paramArrayList.isEmpty())
+        paramObject = null;
     }
-    this.mViewDestroyed = true;
-    if (this.mBackStackId >= 0)
+    else
     {
-      getFragmentManager().a(this.mBackStackId, 1);
-      this.mBackStackId = -1;
-      return;
+      return paramObject;
     }
-    ac localac = getFragmentManager().a();
-    localac.a(this);
-    if (paramBoolean)
+    b((Transition)paramObject, paramArrayList);
+    return paramObject;
+  }
+
+  public static void a(Object paramObject, View paramView)
+  {
+    ((Transition)paramObject).setEpicenterCallback(new Transition.EpicenterCallback()
     {
-      localac.b();
-      return;
-    }
-    localac.a();
-  }
-
-  public Dialog getDialog()
-  {
-    return this.mDialog;
-  }
-
-  public LayoutInflater getLayoutInflater(Bundle paramBundle)
-  {
-    if (!this.mShowsDialog)
-      return super.getLayoutInflater(paramBundle);
-    this.mDialog = onCreateDialog(paramBundle);
-    switch (this.mStyle)
-    {
-    default:
-    case 3:
-    case 1:
-    case 2:
-    }
-    while (this.mDialog != null)
-    {
-      return (LayoutInflater)this.mDialog.getContext().getSystemService("layout_inflater");
-      this.mDialog.getWindow().addFlags(24);
-      this.mDialog.requestWindowFeature(1);
-    }
-    return (LayoutInflater)this.mActivity.getSystemService("layout_inflater");
-  }
-
-  public boolean getShowsDialog()
-  {
-    return this.mShowsDialog;
-  }
-
-  public int getTheme()
-  {
-    return this.mTheme;
-  }
-
-  public boolean isCancelable()
-  {
-    return this.mCancelable;
-  }
-
-  public void onActivityCreated(Bundle paramBundle)
-  {
-    super.onActivityCreated(paramBundle);
-    if (!this.mShowsDialog);
-    Bundle localBundle;
-    do
-    {
-      do
+      public final Rect onGetEpicenter(Transition paramAnonymousTransition)
       {
-        return;
-        View localView = getView();
-        if (localView != null)
+        return t.this;
+      }
+    });
+  }
+
+  public static void a(Object paramObject, View paramView, boolean paramBoolean)
+  {
+    ((Transition)paramObject).excludeTarget(paramView, paramBoolean);
+  }
+
+  public static void a(Object paramObject1, Object paramObject2, View paramView1, final v paramv, View paramView2, u paramu, final Map<String, String> paramMap, final ArrayList<View> paramArrayList1, final Map<String, View> paramMap1, ArrayList<View> paramArrayList2)
+  {
+    if ((paramObject1 != null) || (paramObject2 != null))
+    {
+      final Transition localTransition = (Transition)paramObject1;
+      if (localTransition != null)
+        localTransition.addTarget(paramView2);
+      if (paramObject2 != null)
+        b((Transition)paramObject2, paramArrayList2);
+      if (paramv != null)
+        paramView1.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener()
         {
-          if (localView.getParent() != null)
-            throw new IllegalStateException("DialogFragment can not be attached to a container view");
-          this.mDialog.setContentView(localView);
-        }
-        this.mDialog.setOwnerActivity(getActivity());
-        this.mDialog.setCancelable(this.mCancelable);
-        this.mDialog.setOnCancelListener(this);
-        this.mDialog.setOnDismissListener(this);
-      }
-      while (paramBundle == null);
-      localBundle = paramBundle.getBundle("android:savedDialogState");
+          public final boolean onPreDraw()
+          {
+            t.this.getViewTreeObserver().removeOnPreDrawListener(this);
+            View localView1 = paramv.a();
+            if (localView1 != null)
+            {
+              if (!paramMap.isEmpty())
+              {
+                t.a(paramMap1, localView1);
+                paramMap1.keySet().retainAll(paramMap.values());
+                Iterator localIterator = paramMap.entrySet().iterator();
+                while (localIterator.hasNext())
+                {
+                  Map.Entry localEntry = (Map.Entry)localIterator.next();
+                  String str = (String)localEntry.getValue();
+                  View localView2 = (View)paramMap1.get(str);
+                  if (localView2 != null)
+                    localView2.setTransitionName((String)localEntry.getKey());
+                }
+              }
+              if (localTransition != null)
+              {
+                t.a(paramArrayList1, localView1);
+                paramArrayList1.removeAll(paramMap1.values());
+                t.b(localTransition, paramArrayList1);
+              }
+            }
+            return true;
+          }
+        });
+      if (localTransition != null)
+        localTransition.setEpicenterCallback(new Transition.EpicenterCallback()
+        {
+          private Rect b;
+
+          public final Rect onGetEpicenter(Transition paramAnonymousTransition)
+          {
+            if ((this.b == null) && (t.this.a != null))
+              this.b = t.a(t.this.a);
+            return this.b;
+          }
+        });
     }
-    while (localBundle == null);
-    this.mDialog.onRestoreInstanceState(localBundle);
   }
 
-  public void onAttach(Activity paramActivity)
+  public static void a(Object paramObject, ArrayList<View> paramArrayList)
   {
-    super.onAttach(paramActivity);
-    if (!this.mShownByMe)
-      this.mDismissed = false;
+    Transition localTransition = (Transition)paramObject;
+    int i = paramArrayList.size();
+    for (int j = 0; j < i; j++)
+      localTransition.removeTarget((View)paramArrayList.get(j));
   }
 
-  public void onCancel(DialogInterface paramDialogInterface)
+  public static void a(Map<String, View> paramMap, View paramView)
   {
-  }
-
-  public void onCreate(Bundle paramBundle)
-  {
-    super.onCreate(paramBundle);
-    if (this.mContainerId == 0);
-    for (boolean bool = true; ; bool = false)
+    if (paramView.getVisibility() == 0)
     {
-      this.mShowsDialog = bool;
-      if (paramBundle != null)
+      String str = paramView.getTransitionName();
+      if (str != null)
+        paramMap.put(str, paramView);
+      if ((paramView instanceof ViewGroup))
       {
-        this.mStyle = paramBundle.getInt("android:style", 0);
-        this.mTheme = paramBundle.getInt("android:theme", 0);
-        this.mCancelable = paramBundle.getBoolean("android:cancelable", true);
-        this.mShowsDialog = paramBundle.getBoolean("android:showsDialog", this.mShowsDialog);
-        this.mBackStackId = paramBundle.getInt("android:backStackId", -1);
+        ViewGroup localViewGroup = (ViewGroup)paramView;
+        int i = localViewGroup.getChildCount();
+        for (int j = 0; j < i; j++)
+          a(paramMap, localViewGroup.getChildAt(j));
       }
+    }
+  }
+
+  private static Rect b(View paramView)
+  {
+    Rect localRect = new Rect();
+    int[] arrayOfInt = new int[2];
+    paramView.getLocationOnScreen(arrayOfInt);
+    localRect.set(arrayOfInt[0], arrayOfInt[1], arrayOfInt[0] + paramView.getWidth(), arrayOfInt[1] + paramView.getHeight());
+    return localRect;
+  }
+
+  public static void b(Object paramObject, ArrayList<View> paramArrayList)
+  {
+    Transition localTransition = (Transition)paramObject;
+    int i = paramArrayList.size();
+    for (int j = 0; j < i; j++)
+      localTransition.addTarget((View)paramArrayList.get(j));
+  }
+
+  private static void b(ArrayList<View> paramArrayList, View paramView)
+  {
+    ViewGroup localViewGroup;
+    if (paramView.getVisibility() == 0)
+    {
+      if (!(paramView instanceof ViewGroup))
+        break label65;
+      localViewGroup = (ViewGroup)paramView;
+      if (!localViewGroup.isTransitionGroup())
+        break label33;
+      paramArrayList.add(localViewGroup);
+    }
+    while (true)
+    {
       return;
+      label33: int i = localViewGroup.getChildCount();
+      for (int j = 0; j < i; j++)
+        b(paramArrayList, localViewGroup.getChildAt(j));
     }
-  }
-
-  public Dialog onCreateDialog(Bundle paramBundle)
-  {
-    return new Dialog(getActivity(), getTheme());
-  }
-
-  public void onDestroyView()
-  {
-    super.onDestroyView();
-    if (this.mDialog != null)
-    {
-      this.mViewDestroyed = true;
-      this.mDialog.dismiss();
-      this.mDialog = null;
-    }
-  }
-
-  public void onDetach()
-  {
-    super.onDetach();
-    if ((!this.mShownByMe) && (!this.mDismissed))
-      this.mDismissed = true;
-  }
-
-  public void onDismiss(DialogInterface paramDialogInterface)
-  {
-    if (!this.mViewDestroyed)
-      dismissInternal(true);
-  }
-
-  public void onSaveInstanceState(Bundle paramBundle)
-  {
-    super.onSaveInstanceState(paramBundle);
-    if (this.mDialog != null)
-    {
-      Bundle localBundle = this.mDialog.onSaveInstanceState();
-      if (localBundle != null)
-        paramBundle.putBundle("android:savedDialogState", localBundle);
-    }
-    if (this.mStyle != 0)
-      paramBundle.putInt("android:style", this.mStyle);
-    if (this.mTheme != 0)
-      paramBundle.putInt("android:theme", this.mTheme);
-    if (!this.mCancelable)
-      paramBundle.putBoolean("android:cancelable", this.mCancelable);
-    if (!this.mShowsDialog)
-      paramBundle.putBoolean("android:showsDialog", this.mShowsDialog);
-    if (this.mBackStackId != -1)
-      paramBundle.putInt("android:backStackId", this.mBackStackId);
-  }
-
-  public void onStart()
-  {
-    super.onStart();
-    if (this.mDialog != null)
-    {
-      this.mViewDestroyed = false;
-      this.mDialog.show();
-    }
-  }
-
-  public void onStop()
-  {
-    super.onStop();
-    if (this.mDialog != null)
-      this.mDialog.hide();
-  }
-
-  public void setCancelable(boolean paramBoolean)
-  {
-    this.mCancelable = paramBoolean;
-    if (this.mDialog != null)
-      this.mDialog.setCancelable(paramBoolean);
-  }
-
-  public void setShowsDialog(boolean paramBoolean)
-  {
-    this.mShowsDialog = paramBoolean;
-  }
-
-  public void setStyle(int paramInt1, int paramInt2)
-  {
-    this.mStyle = paramInt1;
-    if ((this.mStyle == 2) || (this.mStyle == 3))
-      this.mTheme = 16973913;
-    if (paramInt2 != 0)
-      this.mTheme = paramInt2;
-  }
-
-  public int show(ac paramac, String paramString)
-  {
-    this.mDismissed = false;
-    this.mShownByMe = true;
-    paramac.a(this, paramString);
-    this.mViewDestroyed = false;
-    this.mBackStackId = paramac.a();
-    return this.mBackStackId;
-  }
-
-  public void show(y paramy, String paramString)
-  {
-    this.mDismissed = false;
-    this.mShownByMe = true;
-    ac localac = paramy.a();
-    localac.a(this, paramString);
-    localac.a();
+    label65: paramArrayList.add(paramView);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.app.t
  * JD-Core Version:    0.6.2
  */

@@ -1,19 +1,59 @@
 package textnow.bi;
 
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.GradientDrawable.Orientation;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.List;
+import java.util.Map;
 
 public final class j
 {
-  public static Drawable a()
+  private int a;
+  private String b;
+  private Map<String, List<String>> c;
+  private byte[] d;
+
+  public j(HttpURLConnection paramHttpURLConnection, byte[] paramArrayOfByte)
   {
-    int[] arrayOfInt = { -16777216, 0 };
-    return new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, arrayOfInt);
+    try
+    {
+      this.a = paramHttpURLConnection.getResponseCode();
+      this.b = paramHttpURLConnection.getURL().toString();
+      this.c = paramHttpURLConnection.getHeaderFields();
+      this.d = paramArrayOfByte;
+      return;
+    }
+    catch (IOException localIOException)
+    {
+      while (true)
+        localIOException.printStackTrace();
+    }
+  }
+
+  public final int a()
+  {
+    return this.a;
+  }
+
+  public final String b()
+  {
+    return this.b;
+  }
+
+  public final Map<String, List<String>> c()
+  {
+    return this.c;
+  }
+
+  public final String d()
+  {
+    if (this.d != null)
+      return new String(this.d);
+    return null;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.bi.j
  * JD-Core Version:    0.6.2
  */

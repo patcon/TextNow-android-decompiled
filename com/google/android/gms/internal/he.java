@@ -1,48 +1,57 @@
 package com.google.android.gms.internal;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.net.Uri.Builder;
+import android.accounts.Account;
+import android.os.Parcel;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
+import java.util.BitSet;
 
 public class he
+  implements SafeParcelable
 {
-  private static final Uri GG = localUri;
-  private static final Uri GH = localUri.buildUpon().appendPath("circles").appendPath("find").build();
+  public static final hf CREATOR = new hf();
+  final int BR;
+  final hi[] BS;
+  public final String BT;
+  public final boolean BU;
+  public final Account account;
 
-  static
+  he(int paramInt, hi[] paramArrayOfhi, String paramString, boolean paramBoolean, Account paramAccount)
   {
-    Uri localUri = Uri.parse("http://plus.google.com/");
+    this.BR = paramInt;
+    this.BS = paramArrayOfhi;
+    this.BT = paramString;
+    this.BU = paramBoolean;
+    this.account = paramAccount;
   }
 
-  public static Intent aB(String paramString)
+  he(String paramString, boolean paramBoolean, Account paramAccount, hi[] paramArrayOfhi)
   {
-    Uri localUri = Uri.fromParts("package", paramString, null);
-    Intent localIntent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-    localIntent.setData(localUri);
-    return localIntent;
+    this(1, paramArrayOfhi, paramString, paramBoolean, paramAccount);
+    BitSet localBitSet = new BitSet(hp.fl());
+    for (int i = 0; i < paramArrayOfhi.length; i++)
+    {
+      int j = paramArrayOfhi[i].Cg;
+      if (j != -1)
+      {
+        if (localBitSet.get(j))
+          throw new IllegalArgumentException("Duplicate global search section type " + hp.O(j));
+        localBitSet.set(j);
+      }
+    }
   }
 
-  private static Uri aC(String paramString)
+  public int describeContents()
   {
-    return Uri.parse("market://details").buildUpon().appendQueryParameter("id", paramString).build();
+    return 0;
   }
 
-  public static Intent aD(String paramString)
+  public void writeToParcel(Parcel paramParcel, int paramInt)
   {
-    Intent localIntent = new Intent("android.intent.action.VIEW");
-    localIntent.setData(aC(paramString));
-    localIntent.setPackage("com.android.vending");
-    localIntent.addFlags(524288);
-    return localIntent;
-  }
-
-  public static Intent fA()
-  {
-    return new Intent("android.settings.DATE_SETTINGS");
+    hf.a(this, paramParcel, paramInt);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.he
  * JD-Core Version:    0.6.2
  */

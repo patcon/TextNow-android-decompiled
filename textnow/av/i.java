@@ -1,11 +1,76 @@
 package textnow.av;
 
-public final class i
+import android.view.View;
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.HashMap;
+import textnow.at.a;
+import textnow.at.b;
+import textnow.at.o;
+import textnow.at.q;
+
+final class i
+  implements b, q
 {
-  public static final byte[] a = { -119, 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82, 0, 0, 0, 1, 0, 0, 0, 68, 8, 4, 0, 0, 0, -22, -119, -105, -35, 0, 0, 0, 69, 73, 68, 65, 84, 120, 94, -59, -50, 1, 10, 64, 64, 20, 64, -63, -41, -70, -8, 94, 84, -110, -110, -110, -110, 68, -84, -17, -87, -67, -124, -102, 3, 12, -54, 45, 69, 30, 9, -101, -100, 19, -96, -1, 120, 77, 64, -44, 76, -87, -79, 75, 78, 57, 100, -105, 77, 86, 89, 100, -106, 73, 70, 25, -92, -105, 78, 90, -47, 15, 65, -50, -127, 89, 75, 13, -13, -80, 0, 0, 0, 0, 73, 69, 78, 68, -82, 66, 96, -126 };
+  private i(h paramh)
+  {
+  }
+
+  public final void a(a parama)
+  {
+    if (h.b(this.a) != null)
+      h.b(this.a).a(parama);
+  }
+
+  public final void a(o paramo)
+  {
+    float f1 = paramo.f();
+    k localk = (k)h.c(this.a).get(paramo);
+    if ((0x1FF & localk.a) != 0)
+    {
+      View localView2 = (View)h.d(this.a).get();
+      if (localView2 != null)
+        localView2.invalidate();
+    }
+    ArrayList localArrayList = localk.b;
+    if (localArrayList != null)
+    {
+      int i = localArrayList.size();
+      for (int j = 0; j < i; j++)
+      {
+        j localj = (j)localArrayList.get(j);
+        float f2 = localj.b + f1 * localj.c;
+        h.a(this.a, localj.a, f2);
+      }
+    }
+    View localView1 = (View)h.d(this.a).get();
+    if (localView1 != null)
+      localView1.invalidate();
+  }
+
+  public final void b(a parama)
+  {
+    if (h.b(this.a) != null)
+      h.b(this.a).b(parama);
+    h.c(this.a).remove(parama);
+    if (h.c(this.a).isEmpty())
+      h.a(this.a, null);
+  }
+
+  public final void c(a parama)
+  {
+    if (h.b(this.a) != null)
+      h.b(this.a).c(parama);
+  }
+
+  public final void d(a parama)
+  {
+    if (h.b(this.a) != null)
+      h.b(this.a).d(parama);
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.av.i
  * JD-Core Version:    0.6.2
  */

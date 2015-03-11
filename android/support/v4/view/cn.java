@@ -1,0 +1,14 @@
+package android.support.v4.view;
+
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+
+final class cn
+{
+}
+
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
+ * Qualified Name:     android.support.v4.view.cn
+ * JD-Core Version:    0.6.2
+ */

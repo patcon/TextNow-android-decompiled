@@ -2,17 +2,18 @@ package com.google.android.gms.common;
 
 import android.app.Activity;
 import android.app.PendingIntent;
-import com.google.android.gms.internal.hk;
-import com.google.android.gms.internal.hk.a;
+import com.google.android.gms.common.internal.n;
+import com.google.android.gms.common.internal.n.a;
 
 public final class ConnectionResult
 {
   public static final int API_UNAVAILABLE = 16;
   public static final int CANCELED = 13;
-  public static final ConnectionResult CS = new ConnectionResult(0, null);
-  public static final int DATE_INVALID = 12;
   public static final int DEVELOPER_ERROR = 10;
+
+  @Deprecated
   public static final int DRIVE_EXTERNAL_STORAGE_REQUIRED = 1500;
+  public static final ConnectionResult HE = new ConnectionResult(0, null);
   public static final int INTERNAL_ERROR = 8;
   public static final int INTERRUPTED = 15;
   public static final int INVALID_ACCOUNT = 5;
@@ -26,22 +27,21 @@ public final class ConnectionResult
   public static final int SIGN_IN_REQUIRED = 4;
   public static final int SUCCESS = 0;
   public static final int TIMEOUT = 14;
-  private final int CT;
+  private final int HF;
   private final PendingIntent mPendingIntent;
 
   public ConnectionResult(int paramInt, PendingIntent paramPendingIntent)
   {
-    this.CT = paramInt;
+    this.HF = paramInt;
     this.mPendingIntent = paramPendingIntent;
   }
 
-  private String ex()
+  private String fX()
   {
-    switch (this.CT)
+    switch (this.HF)
     {
-    case 12:
     default:
-      return "unknown status code " + this.CT;
+      return "unknown status code " + this.HF;
     case 0:
       return "SUCCESS";
     case 1:
@@ -71,13 +71,17 @@ public final class ConnectionResult
     case 14:
       return "TIMEOUT";
     case 15:
+      return "INTERRUPTED";
+    case 16:
+      return "API_UNAVAILABLE";
+    case 42:
     }
-    return "INTERRUPTED";
+    return "UPDATE_ANDROID_WEAR";
   }
 
   public final int getErrorCode()
   {
-    return this.CT;
+    return this.HF;
   }
 
   public final PendingIntent getResolution()
@@ -87,12 +91,12 @@ public final class ConnectionResult
 
   public final boolean hasResolution()
   {
-    return (this.CT != 0) && (this.mPendingIntent != null);
+    return (this.HF != 0) && (this.mPendingIntent != null);
   }
 
   public final boolean isSuccess()
   {
-    return this.CT == 0;
+    return this.HF == 0;
   }
 
   public final void startResolutionForResult(Activity paramActivity, int paramInt)
@@ -104,11 +108,11 @@ public final class ConnectionResult
 
   public final String toString()
   {
-    return hk.e(this).a("statusCode", ex()).a("resolution", this.mPendingIntent).toString();
+    return n.h(this).a("statusCode", fX()).a("resolution", this.mPendingIntent).toString();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.common.ConnectionResult
  * JD-Core Version:    0.6.2
  */

@@ -1,20 +1,22 @@
 package textnow.ah;
 
-import java.lang.annotation.Annotation;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
-@Retention(RetentionPolicy.RUNTIME)
-@Target({java.lang.annotation.ElementType.FIELD})
-public @interface a
+public final class a
 {
-  public abstract boolean a();
+  public static <T> T a(T paramT)
+  {
+    if (paramT == null)
+      throw new NullPointerException();
+    return paramT;
+  }
 
-  public abstract boolean b();
+  public static void a(boolean paramBoolean)
+  {
+    if (!paramBoolean)
+      throw new IllegalArgumentException();
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.ah.a
  * JD-Core Version:    0.6.2
  */

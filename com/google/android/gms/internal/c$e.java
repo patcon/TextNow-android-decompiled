@@ -1,10 +1,8 @@
 package com.google.android.gms.internal;
 
-import java.util.List;
-
-public final class c$e extends ma<e>
+public final class c$e extends ph<e>
 {
-  private static volatile e[] eU;
+  private static volatile e[] fD;
   public int key;
   public int value;
 
@@ -15,89 +13,100 @@ public final class c$e extends ma<e>
 
   public static e[] i()
   {
-    if (eU == null);
-    synchronized (mc.ana)
+    if (fD == null);
+    synchronized (pl.awT)
     {
-      if (eU == null)
-        eU = new e[0];
-      return eU;
+      if (fD == null)
+        fD = new e[0];
+      return fD;
     }
   }
 
-  public final void a(lz paramlz)
+  public final void a(pg parampg)
   {
-    paramlz.p(1, this.key);
-    paramlz.p(2, this.value);
-    super.a(paramlz);
+    parampg.s(1, this.key);
+    parampg.s(2, this.value);
+    super.a(parampg);
   }
 
   protected final int c()
   {
-    return super.c() + lz.r(1, this.key) + lz.r(2, this.value);
+    return super.c() + pg.u(1, this.key) + pg.u(2, this.value);
   }
 
   public final boolean equals(Object paramObject)
   {
-    if (paramObject == this);
+    boolean bool2;
+    if (paramObject == this)
+      bool2 = true;
     e locale;
+    int k;
+    int m;
     do
     {
-      return true;
-      if (!(paramObject instanceof e))
-        return false;
-      locale = (e)paramObject;
-      if (this.key != locale.key)
-        return false;
-      if (this.value != locale.value)
-        return false;
-      if ((this.amX != null) && (!this.amX.isEmpty()))
-        break;
+      int i;
+      int j;
+      do
+      {
+        boolean bool1;
+        do
+        {
+          return bool2;
+          bool1 = paramObject instanceof e;
+          bool2 = false;
+        }
+        while (!bool1);
+        locale = (e)paramObject;
+        i = this.key;
+        j = locale.key;
+        bool2 = false;
+      }
+      while (i != j);
+      k = this.value;
+      m = locale.value;
+      bool2 = false;
     }
-    while ((locale.amX == null) || (locale.amX.isEmpty()));
-    return false;
-    return this.amX.equals(locale.amX);
+    while (k != m);
+    return a(locale);
   }
 
-  public final e f(ly paramly)
+  public final e f(pf parampf)
   {
     while (true)
     {
-      int i = paramly.nB();
+      int i = parampf.qi();
       switch (i)
       {
       default:
-        if (a(paramly, i))
+        if (a(parampf, i))
           continue;
       case 0:
         return this;
       case 8:
-        this.key = paramly.nE();
+        this.key = parampf.ql();
         break;
       case 16:
       }
-      this.value = paramly.nE();
+      this.value = parampf.ql();
     }
   }
 
   public final int hashCode()
   {
-    int i = 31 * (31 * (527 + this.key) + this.value);
-    if ((this.amX == null) || (this.amX.isEmpty()));
-    for (int j = 0; ; j = this.amX.hashCode())
-      return j + i;
+    return 31 * (31 * (527 + this.key) + this.value) + qz();
   }
 
   public final e j()
   {
     this.key = 0;
     this.value = 0;
-    this.amX = null;
-    this.anb = -1;
+    this.awJ = null;
+    this.awU = -1;
     return this;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.c.e
  * JD-Core Version:    0.6.2
  */

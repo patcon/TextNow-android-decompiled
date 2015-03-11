@@ -1,56 +1,99 @@
 package android.support.v4.view;
 
+import android.animation.ValueAnimator;
 import android.graphics.Paint;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
 
-abstract interface ba
+class ba extends az
 {
-  public abstract int a(View paramView);
+  public final int a(int paramInt1, int paramInt2, int paramInt3)
+  {
+    return View.resolveSizeAndState(paramInt1, paramInt2, paramInt3);
+  }
 
-  public abstract void a(View paramView, float paramFloat);
+  final long a()
+  {
+    return ValueAnimator.getFrameDelay();
+  }
 
-  public abstract void a(View paramView, int paramInt1, int paramInt2, int paramInt3, int paramInt4);
+  public final void a(View paramView, int paramInt, Paint paramPaint)
+  {
+    paramView.setLayerType(paramInt, paramPaint);
+  }
 
-  public abstract void a(View paramView, int paramInt, Paint paramPaint);
+  public void a(View paramView, Paint paramPaint)
+  {
+    a(paramView, paramView.getLayerType(), paramPaint);
+    paramView.invalidate();
+  }
 
-  public abstract void a(View paramView, Paint paramPaint);
+  public final void b(View paramView, float paramFloat)
+  {
+    paramView.setTranslationX(paramFloat);
+  }
 
-  public abstract void a(View paramView, a parama);
+  public final void c(View paramView, float paramFloat)
+  {
+    paramView.setTranslationY(paramFloat);
+  }
 
-  public abstract void a(View paramView, Runnable paramRunnable);
+  public final void d(View paramView, float paramFloat)
+  {
+    paramView.setAlpha(paramFloat);
+  }
 
-  public abstract void a(ViewGroup paramViewGroup, boolean paramBoolean);
+  public final void e(View paramView, float paramFloat)
+  {
+    paramView.setScaleX(paramFloat);
+  }
 
-  public abstract boolean a(View paramView, int paramInt);
+  public final void f(View paramView, float paramFloat)
+  {
+    paramView.setScaleY(paramFloat);
+  }
 
-  public abstract void b(View paramView);
+  public final float g(View paramView)
+  {
+    return paramView.getAlpha();
+  }
 
-  public abstract void b(View paramView, float paramFloat);
+  public final int h(View paramView)
+  {
+    return paramView.getLayerType();
+  }
 
-  public abstract boolean b(View paramView, int paramInt);
+  public final int l(View paramView)
+  {
+    return paramView.getMeasuredWidthAndState();
+  }
 
-  public abstract int c(View paramView);
+  public final int m(View paramView)
+  {
+    return paramView.getMeasuredState();
+  }
 
-  public abstract void c(View paramView, float paramFloat);
+  public final float n(View paramView)
+  {
+    return paramView.getTranslationX();
+  }
 
-  public abstract void c(View paramView, int paramInt);
+  public final float o(View paramView)
+  {
+    return paramView.getTranslationY();
+  }
 
-  public abstract int d(View paramView);
+  public final float p(View paramView)
+  {
+    return paramView.getScaleX();
+  }
 
-  public abstract int e(View paramView);
-
-  public abstract ViewParent f(View paramView);
-
-  public abstract boolean g(View paramView);
-
-  public abstract float h(View paramView);
-
-  public abstract boolean i(View paramView);
+  public final void v(View paramView)
+  {
+    paramView.jumpDrawablesToCurrentState();
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.view.ba
  * JD-Core Version:    0.6.2
  */

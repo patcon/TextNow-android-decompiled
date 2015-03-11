@@ -13,7 +13,7 @@ public abstract interface Cast$ApplicationConnectionResult extends Result
   public abstract boolean getWasLaunched();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.cast.Cast.ApplicationConnectionResult
  * JD-Core Version:    0.6.2
  */

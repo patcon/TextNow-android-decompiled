@@ -1,93 +1,67 @@
 package com.google.android.gms.internal;
 
-import java.util.ArrayList;
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import com.google.android.gms.common.internal.n;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
-public final class ig
+public class ig
+  implements SafeParcelable
 {
-  public static void a(StringBuilder paramStringBuilder, double[] paramArrayOfDouble)
+  public static final Parcelable.Creator<ig> CREATOR = new ih();
+  private final int BR;
+  private String Gn;
+
+  public ig()
   {
-    int i = paramArrayOfDouble.length;
-    for (int j = 0; j < i; j++)
-    {
-      if (j != 0)
-        paramStringBuilder.append(",");
-      paramStringBuilder.append(Double.toString(paramArrayOfDouble[j]));
-    }
+    this(1, null);
   }
 
-  public static void a(StringBuilder paramStringBuilder, float[] paramArrayOfFloat)
+  ig(int paramInt, String paramString)
   {
-    int i = paramArrayOfFloat.length;
-    for (int j = 0; j < i; j++)
-    {
-      if (j != 0)
-        paramStringBuilder.append(",");
-      paramStringBuilder.append(Float.toString(paramArrayOfFloat[j]));
-    }
+    this.BR = paramInt;
+    this.Gn = paramString;
   }
 
-  public static void a(StringBuilder paramStringBuilder, int[] paramArrayOfInt)
+  public int describeContents()
   {
-    int i = paramArrayOfInt.length;
-    for (int j = 0; j < i; j++)
-    {
-      if (j != 0)
-        paramStringBuilder.append(",");
-      paramStringBuilder.append(Integer.toString(paramArrayOfInt[j]));
-    }
+    return 0;
   }
 
-  public static void a(StringBuilder paramStringBuilder, long[] paramArrayOfLong)
+  public boolean equals(Object paramObject)
   {
-    int i = paramArrayOfLong.length;
-    for (int j = 0; j < i; j++)
-    {
-      if (j != 0)
-        paramStringBuilder.append(",");
-      paramStringBuilder.append(Long.toString(paramArrayOfLong[j]));
-    }
+    if (paramObject == this)
+      return true;
+    if (!(paramObject instanceof ig))
+      return false;
+    ig localig = (ig)paramObject;
+    return ik.a(this.Gn, localig.Gn);
   }
 
-  public static <T> void a(StringBuilder paramStringBuilder, T[] paramArrayOfT)
+  public String fy()
   {
-    int i = paramArrayOfT.length;
-    for (int j = 0; j < i; j++)
-    {
-      if (j != 0)
-        paramStringBuilder.append(",");
-      paramStringBuilder.append(paramArrayOfT[j].toString());
-    }
+    return this.Gn;
   }
 
-  public static void a(StringBuilder paramStringBuilder, String[] paramArrayOfString)
+  public int getVersionCode()
   {
-    int i = paramArrayOfString.length;
-    for (int j = 0; j < i; j++)
-    {
-      if (j != 0)
-        paramStringBuilder.append(",");
-      paramStringBuilder.append("\"").append(paramArrayOfString[j]).append("\"");
-    }
+    return this.BR;
   }
 
-  public static void a(StringBuilder paramStringBuilder, boolean[] paramArrayOfBoolean)
+  public int hashCode()
   {
-    int i = paramArrayOfBoolean.length;
-    for (int j = 0; j < i; j++)
-    {
-      if (j != 0)
-        paramStringBuilder.append(",");
-      paramStringBuilder.append(Boolean.toString(paramArrayOfBoolean[j]));
-    }
+    Object[] arrayOfObject = new Object[1];
+    arrayOfObject[0] = this.Gn;
+    return n.hashCode(arrayOfObject);
   }
 
-  public static <T> ArrayList<T> ga()
+  public void writeToParcel(Parcel paramParcel, int paramInt)
   {
-    return new ArrayList();
+    ih.a(this, paramParcel, paramInt);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ig
  * JD-Core Version:    0.6.2
  */

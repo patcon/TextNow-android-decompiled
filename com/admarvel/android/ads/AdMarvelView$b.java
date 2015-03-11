@@ -1,73 +1,65 @@
 package com.admarvel.android.ads;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Handler;
-import java.io.File;
+import android.os.AsyncTask;
 import java.lang.ref.WeakReference;
 import java.util.Map;
+import java.util.concurrent.Executor;
 
 class AdMarvelView$b
   implements Runnable
 {
-  private final File a;
-  private final WeakReference<Context> b;
-  private final Map<String, Object> c;
+  private final WeakReference<Context> a;
+  private final Map<String, Object> b;
+  private final String c;
   private final String d;
   private final String e;
-  private final String f;
-  private final int g;
-  private final String h;
-  private final WeakReference<AdMarvelView> i;
-  private final int j;
-  private final String k;
-  private final Handler l;
+  private final int f;
+  private final String g;
+  private final WeakReference<AdMarvelView> h;
+  private final int i;
+  private final String j;
 
-  public AdMarvelView$b(File paramFile, Context paramContext, Map<String, Object> paramMap, String paramString1, String paramString2, String paramString3, int paramInt1, String paramString4, AdMarvelView paramAdMarvelView, int paramInt2, String paramString5, Handler paramHandler)
+  public AdMarvelView$b(Context paramContext, Map<String, Object> paramMap, String paramString1, String paramString2, String paramString3, int paramInt1, String paramString4, AdMarvelView paramAdMarvelView, int paramInt2, String paramString5)
   {
-    this.b = new WeakReference(paramContext);
-    this.a = paramFile;
-    this.c = paramMap;
-    this.d = paramString1;
-    this.e = paramString2;
-    this.f = paramString3;
-    this.g = paramInt1;
-    this.h = paramString4;
-    this.i = new WeakReference(paramAdMarvelView);
-    this.j = paramInt2;
-    this.k = paramString5;
-    this.l = paramHandler;
+    this.a = new WeakReference(paramContext);
+    this.b = paramMap;
+    this.c = paramString1;
+    this.d = paramString2;
+    this.e = paramString3;
+    this.f = paramInt1;
+    this.g = paramString4;
+    this.h = new WeakReference(paramAdMarvelView);
+    this.i = paramInt2;
+    this.j = paramString5;
   }
 
+  @SuppressLint({"NewApi"})
   public void run()
   {
-    Context localContext = (Context)this.b.get();
-    AdMarvelView localAdMarvelView = (AdMarvelView)this.i.get();
-    if ((localContext != null) && (localAdMarvelView != null))
+    if ((this.a.get() != null) && (this.h.get() != null))
     {
-      if (ac.a() >= 11)
-        this.l.post(new AdMarvelView.c(this.a, localContext, this.c, this.d, this.e, this.f, this.g, this.h, localAdMarvelView, this.j, this.k, this.l));
+      k localk = new k((Context)this.a.get());
+      Executor localExecutor = AsyncTask.THREAD_POOL_EXECUTOR;
+      Object[] arrayOfObject = new Object[11];
+      arrayOfObject[0] = this.b;
+      arrayOfObject[1] = this.c;
+      arrayOfObject[2] = this.d;
+      arrayOfObject[3] = this.e;
+      arrayOfObject[4] = Integer.valueOf(this.f);
+      arrayOfObject[5] = this.g;
+      arrayOfObject[6] = this.h.get();
+      arrayOfObject[7] = Integer.valueOf(this.i);
+      arrayOfObject[8] = this.j;
+      arrayOfObject[9] = Boolean.valueOf(((AdMarvelView)this.h.get()).c());
+      arrayOfObject[10] = Boolean.valueOf(AdMarvelView.g((AdMarvelView)this.h.get()));
+      localk.executeOnExecutor(localExecutor, arrayOfObject);
     }
-    else
-      return;
-    q localq = new q(this.a, localContext);
-    Object[] arrayOfObject = new Object[12];
-    arrayOfObject[0] = this.c;
-    arrayOfObject[1] = this.d;
-    arrayOfObject[2] = this.e;
-    arrayOfObject[3] = this.f;
-    arrayOfObject[4] = Integer.valueOf(this.g);
-    arrayOfObject[5] = this.h;
-    arrayOfObject[6] = localAdMarvelView;
-    arrayOfObject[7] = Integer.valueOf(this.j);
-    arrayOfObject[8] = this.k;
-    arrayOfObject[9] = this.l;
-    arrayOfObject[10] = Boolean.valueOf(localAdMarvelView.b());
-    arrayOfObject[11] = Boolean.valueOf(AdMarvelView.h(localAdMarvelView));
-    localq.execute(arrayOfObject);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.AdMarvelView.b
  * JD-Core Version:    0.6.2
  */

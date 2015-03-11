@@ -19,7 +19,7 @@ public abstract class jc
   public abstract jl c(iy paramiy, sh paramsh, is paramis);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.flurry.sdk.jc
  * JD-Core Version:    0.6.2
  */

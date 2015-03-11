@@ -1,22 +1,32 @@
 package textnow.ax;
 
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLSession;
 
-final class c extends WebViewClient
+public final class c
+  implements HostnameVerifier
 {
-  private c(a parama)
+  private i a;
+
+  public c(i parami)
   {
+    this.a = parami;
   }
 
-  public final void onPageFinished(WebView paramWebView, String paramString)
+  public final boolean verify(String paramString, SSLSession paramSSLSession)
   {
-    this.a.d = true;
-    this.a.b.m();
+    boolean bool = true;
+    if (!HttpsURLConnection.getDefaultHostnameVerifier().verify(paramString, paramSSLSession))
+    {
+      this.a.b = bool;
+      bool = false;
+    }
+    return bool;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.ax.c
  * JD-Core Version:    0.6.2
  */

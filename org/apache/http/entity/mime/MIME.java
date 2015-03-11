@@ -12,7 +12,7 @@ public final class MIME
   public static final String ENC_BINARY = "binary";
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     org.apache.http.entity.mime.MIME
  * JD-Core Version:    0.6.2
  */

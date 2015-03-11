@@ -8,24 +8,24 @@ public final class f
   implements SafeParcelable
 {
   public static final Parcelable.Creator<f> CREATOR = new i();
-  l ajs;
-  g akS;
+  private final int BR;
+  l atc;
+  g auC;
   String label;
   String type;
-  private final int xM;
 
   f()
   {
-    this.xM = 1;
+    this.BR = 1;
   }
 
   f(int paramInt, String paramString1, g paramg, String paramString2, l paraml)
   {
-    this.xM = paramInt;
+    this.BR = paramInt;
     this.label = paramString1;
-    this.akS = paramg;
+    this.auC = paramg;
     this.type = paramString2;
-    this.ajs = paraml;
+    this.atc = paraml;
   }
 
   public final int describeContents()
@@ -35,7 +35,7 @@ public final class f
 
   public final int getVersionCode()
   {
-    return this.xM;
+    return this.BR;
   }
 
   public final void writeToParcel(Parcel paramParcel, int paramInt)
@@ -44,7 +44,7 @@ public final class f
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.wobs.f
  * JD-Core Version:    0.6.2
  */

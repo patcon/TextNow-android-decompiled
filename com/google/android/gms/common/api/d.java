@@ -1,38 +1,156 @@
 package com.google.android.gms.common.api;
 
+import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
-import android.content.IntentSender.SendIntentException;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.v;
-import android.support.v4.app.y;
+import android.support.v4.app.aa;
+import android.support.v4.app.k;
+import android.support.v4.app.n;
+import android.support.v4.app.s;
+import android.support.v4.app.z;
+import android.support.v4.content.j;
+import android.util.SparseArray;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-import java.util.List;
+import com.google.android.gms.common.internal.o;
 
 public class d extends Fragment
-  implements DialogInterface.OnCancelListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener
+  implements DialogInterface.OnCancelListener, aa<ConnectionResult>
 {
-  private GoogleApiClient.OnConnectionFailedListener DN;
-  private GoogleApiClient Et;
-  private ConnectionResult Eu;
-  private boolean Ev;
+  private boolean JB;
+  private int JC = -1;
+  private ConnectionResult JD;
+  private final Handler JE = new Handler(Looper.getMainLooper());
+  private final SparseArray<d.b> JF = new SparseArray();
 
-  public void a(GoogleApiClient paramGoogleApiClient, GoogleApiClient.OnConnectionFailedListener paramOnConnectionFailedListener)
+  public static d a(k paramk)
   {
-    this.Et = paramGoogleApiClient;
-    this.Et.registerConnectionCallbacks(this);
-    this.DN = paramOnConnectionFailedListener;
-    this.Et.registerConnectionCallbacks(this);
-    this.Et.registerConnectionFailedListener(this);
+    o.aT("Must be called from main thread of process");
+    n localn = paramk.getSupportFragmentManager();
+    try
+    {
+      d locald = (d)localn.a("GmsSupportLifecycleFragment");
+      if ((locald == null) || (locald.isRemoving()))
+      {
+        locald = new d();
+        localn.a().a(locald, "GmsSupportLifecycleFragment").a();
+        localn.b();
+      }
+      return locald;
+    }
+    catch (ClassCastException localClassCastException)
+    {
+      throw new IllegalStateException("Fragment with tag GmsSupportLifecycleFragment is not a SupportLifecycleFragment", localClassCastException);
+    }
   }
 
-  public boolean isInitialized()
+  private void a(int paramInt, ConnectionResult paramConnectionResult)
   {
-    return this.Et != null;
+    if (!this.JB)
+    {
+      this.JB = true;
+      this.JC = paramInt;
+      this.JD = paramConnectionResult;
+      this.JE.post(new d.c(this, paramInt, paramConnectionResult));
+    }
+  }
+
+  private void an(int paramInt)
+  {
+    if (paramInt == this.JC)
+      gu();
+  }
+
+  private void b(int paramInt, ConnectionResult paramConnectionResult)
+  {
+    d.b localb = (d.b)this.JF.get(paramInt);
+    if (localb != null)
+    {
+      al(paramInt);
+      GoogleApiClient.OnConnectionFailedListener localOnConnectionFailedListener = localb.JJ;
+      if (localOnConnectionFailedListener != null)
+        localOnConnectionFailedListener.onConnectionFailed(paramConnectionResult);
+    }
+    gu();
+  }
+
+  private void gu()
+  {
+    int i = 0;
+    this.JB = false;
+    this.JC = -1;
+    this.JD = null;
+    z localz = getLoaderManager();
+    while (i < this.JF.size())
+    {
+      int j = this.JF.keyAt(i);
+      d.a locala = am(j);
+      if (locala != null)
+        locala.gv();
+      localz.a(j, null, this);
+      i++;
+    }
+  }
+
+  public void a(int paramInt, GoogleApiClient paramGoogleApiClient, GoogleApiClient.OnConnectionFailedListener paramOnConnectionFailedListener)
+  {
+    o.b(paramGoogleApiClient, "GoogleApiClient instance cannot be null");
+    if (this.JF.indexOfKey(paramInt) < 0);
+    for (boolean bool = true; ; bool = false)
+    {
+      o.a(bool, "Already managing a GoogleApiClient with id " + paramInt);
+      d.b localb = new d.b(paramGoogleApiClient, paramOnConnectionFailedListener, null);
+      this.JF.put(paramInt, localb);
+      if (getActivity() != null)
+        getLoaderManager().a(paramInt, null, this);
+      return;
+    }
+  }
+
+  public void a(j<ConnectionResult> paramj, ConnectionResult paramConnectionResult)
+  {
+    if (paramConnectionResult.isSuccess())
+    {
+      an(paramj.getId());
+      return;
+    }
+    a(paramj.getId(), paramConnectionResult);
+  }
+
+  public GoogleApiClient ak(int paramInt)
+  {
+    if (getActivity() != null)
+    {
+      d.a locala = am(paramInt);
+      if (locala != null)
+        return locala.JG;
+    }
+    return null;
+  }
+
+  public void al(int paramInt)
+  {
+    getLoaderManager().a(paramInt);
+    this.JF.remove(paramInt);
+  }
+
+  d.a am(int paramInt)
+  {
+    try
+    {
+      d.a locala = (d.a)getLoaderManager().b(paramInt);
+      return locala;
+    }
+    catch (ClassCastException localClassCastException)
+    {
+      throw new IllegalStateException("Unknown loader in SupportLifecycleFragment", localClassCastException);
+    }
   }
 
   public void onActivityResult(int paramInt1, int paramInt2, Intent paramIntent)
@@ -48,9 +166,8 @@ public class d extends Fragment
     while (true)
     {
       if (i == 0)
-        break label72;
-      this.Et.connect();
-      this.Ev = false;
+        break label62;
+      gu();
       return;
       if (GooglePlayServicesUtil.isGooglePlayServicesAvailable(getActivity()) != 0)
         break;
@@ -58,50 +175,31 @@ public class d extends Fragment
       if (paramInt2 != -1)
         break;
     }
-    label72: this.DN.onConnectionFailed(this.Eu);
+    label62: b(this.JC, this.JD);
+  }
+
+  public void onAttach(Activity paramActivity)
+  {
+    super.onAttach(paramActivity);
+    int i = 0;
+    if (i < this.JF.size())
+    {
+      int j = this.JF.keyAt(i);
+      d.a locala = am(j);
+      if ((locala != null) && (((d.b)this.JF.valueAt(i)).JG != locala.JG))
+        getLoaderManager().b(j, null, this);
+      while (true)
+      {
+        i++;
+        break;
+        getLoaderManager().a(j, null, this);
+      }
+    }
   }
 
   public void onCancel(DialogInterface paramDialogInterface)
   {
-    this.Ev = false;
-    this.DN.onConnectionFailed(this.Eu);
-  }
-
-  public void onConnected(Bundle paramBundle)
-  {
-    this.Ev = false;
-  }
-
-  public void onConnectionFailed(ConnectionResult paramConnectionResult)
-  {
-    this.Eu = paramConnectionResult;
-    if (this.Ev)
-      return;
-    int i = getActivity().getSupportFragmentManager().c().indexOf(this);
-    if (paramConnectionResult.hasResolution())
-    {
-      int j = 1 + (i + 1 << 16);
-      try
-      {
-        paramConnectionResult.startResolutionForResult(getActivity(), j);
-        return;
-      }
-      catch (IntentSender.SendIntentException localSendIntentException)
-      {
-        this.Et.connect();
-        return;
-      }
-    }
-    if (GooglePlayServicesUtil.isUserRecoverableError(paramConnectionResult.getErrorCode()))
-    {
-      GooglePlayServicesUtil.b(paramConnectionResult.getErrorCode(), getActivity(), this, 2, this);
-      return;
-    }
-    this.DN.onConnectionFailed(this.Eu);
-  }
-
-  public void onConnectionSuspended(int paramInt)
-  {
+    b(this.JC, this.JD);
   }
 
   public void onCreate(Bundle paramBundle)
@@ -109,40 +207,46 @@ public class d extends Fragment
     super.onCreate(paramBundle);
     if (paramBundle != null)
     {
-      this.Ev = paramBundle.getBoolean("resolving_error", false);
-      int i = paramBundle.getInt("connection_result_status");
-      if (i != 0)
-        this.Eu = new ConnectionResult(i, (PendingIntent)paramBundle.getParcelable("resolution_pending_intent"));
+      this.JB = paramBundle.getBoolean("resolving_error", false);
+      this.JC = paramBundle.getInt("failed_client_id", -1);
+      if (this.JC >= 0)
+        this.JD = new ConnectionResult(paramBundle.getInt("failed_status"), (PendingIntent)paramBundle.getParcelable("failed_resolution"));
     }
+  }
+
+  public j<ConnectionResult> onCreateLoader(int paramInt, Bundle paramBundle)
+  {
+    return new d.a(getActivity(), ((d.b)this.JF.get(paramInt)).JG);
+  }
+
+  public void onLoaderReset(j<ConnectionResult> paramj)
+  {
+    if (paramj.getId() == this.JC)
+      gu();
   }
 
   public void onSaveInstanceState(Bundle paramBundle)
   {
     super.onSaveInstanceState(paramBundle);
-    paramBundle.putBoolean("resolving_error", this.Ev);
-    if (this.Eu != null)
+    paramBundle.putBoolean("resolving_error", this.JB);
+    if (this.JC >= 0)
     {
-      paramBundle.putInt("connection_result_status", this.Eu.getErrorCode());
-      paramBundle.putParcelable("resolution_pending_intent", this.Eu.getResolution());
+      paramBundle.putInt("failed_client_id", this.JC);
+      paramBundle.putInt("failed_status", this.JD.getErrorCode());
+      paramBundle.putParcelable("failed_resolution", this.JD.getResolution());
     }
   }
 
   public void onStart()
   {
     super.onStart();
-    if ((!this.Ev) && (this.Et != null))
-      this.Et.connect();
-  }
-
-  public void onStop()
-  {
-    super.onStop();
-    if (this.Et != null)
-      this.Et.disconnect();
+    if (!this.JB)
+      for (int i = 0; i < this.JF.size(); i++)
+        getLoaderManager().a(this.JF.keyAt(i), null, this);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.common.api.d
  * JD-Core Version:    0.6.2
  */

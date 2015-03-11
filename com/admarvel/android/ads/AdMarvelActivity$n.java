@@ -1,35 +1,43 @@
 package com.admarvel.android.ads;
 
-import android.app.Activity;
 import android.util.Log;
-import android.view.Display;
-import android.view.WindowManager;
+import android.widget.RelativeLayout;
 import com.admarvel.android.util.Logging;
 import java.lang.ref.WeakReference;
 
 class AdMarvelActivity$n
   implements Runnable
 {
-  private static int a = -2147483648;
-  private final WeakReference<Activity> b;
+  private final WeakReference<AdMarvelActivity> a;
+  private final WeakReference<d> b;
 
-  public AdMarvelActivity$n(Activity paramActivity)
+  public AdMarvelActivity$n(AdMarvelActivity paramAdMarvelActivity, d paramd)
   {
-    this.b = new WeakReference(paramActivity);
-  }
-
-  private int a()
-  {
-    return a;
+    this.a = new WeakReference(paramAdMarvelActivity);
+    this.b = new WeakReference(paramd);
   }
 
   public void run()
   {
     try
     {
-      if (this.b.get() != null)
-        a = ((WindowManager)((Activity)this.b.get()).getSystemService("window")).getDefaultDisplay().getRotation();
-      return;
+      AdMarvelActivity localAdMarvelActivity = (AdMarvelActivity)this.a.get();
+      d locald = (d)this.b.get();
+      if (localAdMarvelActivity != null)
+      {
+        if (locald == null)
+          return;
+        j localj = (j)((RelativeLayout)localAdMarvelActivity.findViewById(AdMarvelActivity.a)).findViewWithTag(localAdMarvelActivity.e + "BR_VIDEO");
+        if ((localj != null) && (localj.isPlaying()))
+        {
+          localj.pause();
+          if ((localAdMarvelActivity.g) && (localAdMarvelActivity.m != null) && (localAdMarvelActivity.m.length() > 0))
+          {
+            locald.loadUrl("javascript:" + localAdMarvelActivity.m + "()");
+            return;
+          }
+        }
+      }
     }
     catch (Exception localException)
     {
@@ -38,7 +46,7 @@ class AdMarvelActivity$n
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.AdMarvelActivity.n
  * JD-Core Version:    0.6.2
  */

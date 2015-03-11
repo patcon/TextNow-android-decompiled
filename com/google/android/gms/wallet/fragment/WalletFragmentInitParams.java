@@ -10,25 +10,25 @@ public final class WalletFragmentInitParams
   implements SafeParcelable
 {
   public static final Parcelable.Creator<WalletFragmentInitParams> CREATOR = new a();
-  private int akA;
-  private MaskedWalletRequest akm;
-  private MaskedWallet akn;
-  final int xM;
-  private String yQ;
+  final int BR;
+  private String Dd;
+  private MaskedWalletRequest atW;
+  private MaskedWallet atX;
+  private int auk;
 
   private WalletFragmentInitParams()
   {
-    this.xM = 1;
-    this.akA = -1;
+    this.BR = 1;
+    this.auk = -1;
   }
 
   WalletFragmentInitParams(int paramInt1, String paramString, MaskedWalletRequest paramMaskedWalletRequest, int paramInt2, MaskedWallet paramMaskedWallet)
   {
-    this.xM = paramInt1;
-    this.yQ = paramString;
-    this.akm = paramMaskedWalletRequest;
-    this.akA = paramInt2;
-    this.akn = paramMaskedWallet;
+    this.BR = paramInt1;
+    this.Dd = paramString;
+    this.atW = paramMaskedWalletRequest;
+    this.auk = paramInt2;
+    this.atX = paramMaskedWallet;
   }
 
   public static WalletFragmentInitParams.Builder newBuilder()
@@ -45,22 +45,22 @@ public final class WalletFragmentInitParams
 
   public final String getAccountName()
   {
-    return this.yQ;
+    return this.Dd;
   }
 
   public final MaskedWallet getMaskedWallet()
   {
-    return this.akn;
+    return this.atX;
   }
 
   public final MaskedWalletRequest getMaskedWalletRequest()
   {
-    return this.akm;
+    return this.atW;
   }
 
   public final int getMaskedWalletRequestCode()
   {
-    return this.akA;
+    return this.auk;
   }
 
   public final void writeToParcel(Parcel paramParcel, int paramInt)
@@ -69,7 +69,7 @@ public final class WalletFragmentInitParams
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.fragment.WalletFragmentInitParams
  * JD-Core Version:    0.6.2
  */

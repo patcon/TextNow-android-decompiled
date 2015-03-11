@@ -6,6 +6,9 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
 import android.os.Parcelable.Creator;
+import com.google.android.gms.auth.AccountChangeEventsRequest;
+import com.google.android.gms.auth.AccountChangeEventsRequestCreator;
+import com.google.android.gms.auth.AccountChangeEventsResponse;
 
 public abstract class r$a extends Binder
   implements r
@@ -33,9 +36,9 @@ public abstract class r$a extends Binder
       paramParcel1.enforceInterface("com.google.android.auth.IAuthManagerService");
       String str2 = paramParcel1.readString();
       String str3 = paramParcel1.readString();
-      int j = paramParcel1.readInt();
+      int k = paramParcel1.readInt();
       Bundle localBundle3 = null;
-      if (j != 0)
+      if (k != 0)
         localBundle3 = (Bundle)Bundle.CREATOR.createFromParcel(paramParcel1);
       Bundle localBundle4 = a(str2, str3, localBundle3);
       paramParcel2.writeNoException();
@@ -50,19 +53,37 @@ public abstract class r$a extends Binder
         paramParcel2.writeInt(0);
       }
     case 2:
+      paramParcel1.enforceInterface("com.google.android.auth.IAuthManagerService");
+      String str1 = paramParcel1.readString();
+      int j = paramParcel1.readInt();
+      Bundle localBundle1 = null;
+      if (j != 0)
+        localBundle1 = (Bundle)Bundle.CREATOR.createFromParcel(paramParcel1);
+      Bundle localBundle2 = a(str1, localBundle1);
+      paramParcel2.writeNoException();
+      if (localBundle2 != null)
+      {
+        paramParcel2.writeInt(1);
+        localBundle2.writeToParcel(paramParcel2, 1);
+      }
+      while (true)
+      {
+        return true;
+        paramParcel2.writeInt(0);
+      }
+    case 3:
     }
     paramParcel1.enforceInterface("com.google.android.auth.IAuthManagerService");
-    String str1 = paramParcel1.readString();
     int i = paramParcel1.readInt();
-    Bundle localBundle1 = null;
+    AccountChangeEventsRequest localAccountChangeEventsRequest = null;
     if (i != 0)
-      localBundle1 = (Bundle)Bundle.CREATOR.createFromParcel(paramParcel1);
-    Bundle localBundle2 = a(str1, localBundle1);
+      localAccountChangeEventsRequest = AccountChangeEventsRequest.CREATOR.createFromParcel(paramParcel1);
+    AccountChangeEventsResponse localAccountChangeEventsResponse = a(localAccountChangeEventsRequest);
     paramParcel2.writeNoException();
-    if (localBundle2 != null)
+    if (localAccountChangeEventsResponse != null)
     {
       paramParcel2.writeInt(1);
-      localBundle2.writeToParcel(paramParcel2, 1);
+      localAccountChangeEventsResponse.writeToParcel(paramParcel2, 1);
     }
     while (true)
     {
@@ -72,7 +93,7 @@ public abstract class r$a extends Binder
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.r.a
  * JD-Core Version:    0.6.2
  */

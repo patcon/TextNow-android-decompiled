@@ -2,8 +2,8 @@ package com.google.android.gms.drive.metadata.internal;
 
 import android.os.Parcel;
 import android.os.Parcelable.Creator;
+import com.google.android.gms.common.internal.o;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-import com.google.android.gms.internal.hm;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -13,15 +13,15 @@ public final class AppVisibleCustomProperties
   implements SafeParcelable, Iterable<CustomProperty>
 {
   public static final Parcelable.Creator<AppVisibleCustomProperties> CREATOR = new a();
-  public static final AppVisibleCustomProperties JN = new AppVisibleCustomProperties.a().gD();
-  final List<CustomProperty> JO;
-  final int xM;
+  public static final AppVisibleCustomProperties PG = new AppVisibleCustomProperties.a().im();
+  final int BR;
+  final List<CustomProperty> PH;
 
   AppVisibleCustomProperties(int paramInt, Collection<CustomProperty> paramCollection)
   {
-    this.xM = paramInt;
-    hm.f(paramCollection);
-    this.JO = new ArrayList(paramCollection);
+    this.BR = paramInt;
+    o.i(paramCollection);
+    this.PH = new ArrayList(paramCollection);
   }
 
   private AppVisibleCustomProperties(Collection<CustomProperty> paramCollection)
@@ -36,7 +36,7 @@ public final class AppVisibleCustomProperties
 
   public final Iterator<CustomProperty> iterator()
   {
-    return this.JO.iterator();
+    return this.PH.iterator();
   }
 
   public final void writeToParcel(Parcel paramParcel, int paramInt)
@@ -45,7 +45,7 @@ public final class AppVisibleCustomProperties
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.drive.metadata.internal.AppVisibleCustomProperties
  * JD-Core Version:    0.6.2
  */

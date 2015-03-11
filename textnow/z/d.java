@@ -1,22 +1,44 @@
 package textnow.z;
 
-import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
 
-public enum d
-  implements e
+public final class d
 {
-  static
+  private static d b;
+  private Map<String, String> a = new HashMap();
+
+  public static d a()
   {
-    d[] arrayOfd = new d[5];
-    arrayOfd[0] = a;
-    arrayOfd[1] = b;
-    arrayOfd[2] = c;
-    arrayOfd[3] = d;
-    arrayOfd[4] = e;
+    if (b == null)
+    {
+      d locald = new d();
+      b = locald;
+      return locald;
+    }
+    return b;
+  }
+
+  public final String a(String paramString)
+  {
+    String str = (String)this.a.get(paramString);
+    if (str == null)
+      str = "";
+    return str;
+  }
+
+  public final void a(String paramString1, String paramString2)
+  {
+    this.a.put(paramString1, paramString2);
+  }
+
+  public final void b(String paramString)
+  {
+    this.a.remove(paramString);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.z.d
  * JD-Core Version:    0.6.2
  */

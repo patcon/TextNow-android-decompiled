@@ -11,8 +11,8 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build.VERSION;
 import android.os.Parcelable;
-import android.support.v4.view.ab;
-import android.support.v4.view.aq;
+import android.support.v4.view.af;
+import android.support.v4.view.av;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class SlidingPaneLayout extends ViewGroup
 {
-  static final aj a = new ak();
+  static final ar a = new as();
   private int b = -858993460;
   private int c;
   private Drawable d;
@@ -41,24 +41,24 @@ public class SlidingPaneLayout extends ViewGroup
   private int m;
   private float n;
   private float o;
-  private ai p;
-  private final ao q;
+  private aq p;
+  private final aw q;
   private boolean r;
   private boolean s = true;
   private final Rect t = new Rect();
-  private final ArrayList<ag> u = new ArrayList();
+  private final ArrayList<ao> u = new ArrayList();
 
   static
   {
     int i1 = Build.VERSION.SDK_INT;
     if (i1 >= 17)
     {
-      a = new am();
+      a = new au();
       return;
     }
     if (i1 >= 16)
     {
-      a = new al();
+      a = new at();
       return;
     }
   }
@@ -75,9 +75,9 @@ public class SlidingPaneLayout extends ViewGroup
     this.f = ((int)(0.5F + 32.0F * f1));
     ViewConfiguration.get(paramContext);
     setWillNotDraw(false);
-    aq.a(this, new af(this));
-    aq.c(this, 1);
-    this.q = ao.a(this, 0.5F, new ah(this, (byte)0));
+    av.a(this, new an(this));
+    av.c(this, 1);
+    this.q = aw.a(this, 0.5F, new ap(this, (byte)0));
     this.q.a(f1 * 400.0F);
   }
 
@@ -90,20 +90,20 @@ public class SlidingPaneLayout extends ViewGroup
       if (localLayoutParams.d == null)
         localLayoutParams.d = new Paint();
       localLayoutParams.d.setColorFilter(new PorterDuffColorFilter(i1, PorterDuff.Mode.SRC_OVER));
-      if (aq.d(paramView) != 2)
-        aq.a(paramView, 2, localLayoutParams.d);
+      if (av.g(paramView) != 2)
+        av.a(paramView, 2, localLayoutParams.d);
       e(paramView);
     }
-    while (aq.d(paramView) == 0)
+    while (av.g(paramView) == 0)
     {
       int i1;
       return;
     }
     if (localLayoutParams.d != null)
       localLayoutParams.d.setColorFilter(null);
-    ag localag = new ag(this, paramView);
-    this.u.add(localag);
-    aq.a(this, localag);
+    ao localao = new ao(this, paramView);
+    this.u.add(localao);
+    av.a(this, localao);
   }
 
   private boolean a(float paramFloat)
@@ -122,7 +122,7 @@ public class SlidingPaneLayout extends ViewGroup
     for (int i1 = (int)(getWidth() - (i2 + paramFloat * this.k + i3)); this.q.a(this.h, i1, this.h.getTop()); i1 = (int)(getPaddingLeft() + localLayoutParams.leftMargin + paramFloat * this.k))
     {
       a();
-      aq.b(this);
+      av.d(this);
       return true;
     }
     return false;
@@ -192,7 +192,7 @@ public class SlidingPaneLayout extends ViewGroup
 
   private boolean b()
   {
-    return aq.e(this) == 1;
+    return av.h(this) == 1;
   }
 
   private void e(View paramView)
@@ -247,7 +247,7 @@ public class SlidingPaneLayout extends ViewGroup
       int i4 = getHeight() - getPaddingBottom();
       if (paramView == null)
         break label294;
-      if (!aq.g(paramView))
+      if (!av.j(paramView))
         break label248;
       i18 = 1;
       if (i18 == 0)
@@ -327,7 +327,7 @@ public class SlidingPaneLayout extends ViewGroup
     }
     else
       return;
-    aq.b(this);
+    av.d(this);
   }
 
   final boolean d(View paramView)
@@ -448,18 +448,18 @@ public class SlidingPaneLayout extends ViewGroup
     this.s = true;
     int i1 = this.u.size();
     for (int i2 = 0; i2 < i1; i2++)
-      ((ag)this.u.get(i2)).run();
+      ((ao)this.u.get(i2)).run();
     this.u.clear();
   }
 
   public boolean onInterceptTouchEvent(MotionEvent paramMotionEvent)
   {
-    int i1 = ab.a(paramMotionEvent);
+    int i1 = af.a(paramMotionEvent);
     if ((!this.g) && (i1 == 0) && (getChildCount() > 1))
     {
       View localView = getChildAt(1);
       if (localView != null)
-        if (ao.b(localView, (int)paramMotionEvent.getX(), (int)paramMotionEvent.getY()))
+        if (aw.b(localView, (int)paramMotionEvent.getX(), (int)paramMotionEvent.getY()))
           break label101;
     }
     boolean bool1;
@@ -502,7 +502,7 @@ public class SlidingPaneLayout extends ViewGroup
         float f6 = paramMotionEvent.getY();
         this.n = f5;
         this.o = f6;
-        if ((!ao.b(this.h, (int)f5, (int)f6)) || (!d(this.h)))
+        if ((!aw.b(this.h, (int)f5, (int)f6)) || (!d(this.h)))
           break label152;
       }
       float f1 = paramMotionEvent.getX();
@@ -945,7 +945,7 @@ public class SlidingPaneLayout extends ViewGroup
         float f3 = f1 - this.n;
         float f4 = f2 - this.o;
         int i1 = this.q.d();
-        if ((f3 * f3 + f4 * f4 < i1 * i1) && (ao.b(this.h, (int)f1, (int)f2)))
+        if ((f3 * f3 + f4 * f4 < i1 * i1) && (aw.b(this.h, (int)f1, (int)f2)))
           a(0);
       }
     }
@@ -965,7 +965,7 @@ public class SlidingPaneLayout extends ViewGroup
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.widget.SlidingPaneLayout
  * JD-Core Version:    0.6.2
  */

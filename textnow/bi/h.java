@@ -1,32 +1,45 @@
 package textnow.bi;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-
-public final class h
+public abstract class h
 {
-  private static String a = "versionInfo";
+  protected String a = "";
+  protected g b;
+  protected String c;
+  protected byte[] d;
 
-  public static String a(Context paramContext)
+  public h(String paramString, k paramk)
   {
-    if (paramContext != null)
-      return paramContext.getSharedPreferences("HockeyApp", 0).getString(a, "[]");
-    return "[]";
+    if (paramString != null)
+      this.a = paramString;
+    if (paramk != null)
+    {
+      String str = paramk.a();
+      this.a = (this.a + "?" + str);
+    }
   }
 
-  public static void a(Context paramContext, String paramString)
+  public final String a()
   {
-    if (paramContext != null)
-    {
-      SharedPreferences.Editor localEditor = paramContext.getSharedPreferences("HockeyApp", 0).edit();
-      localEditor.putString(a, paramString);
-      e.a(localEditor);
-    }
+    return this.a;
+  }
+
+  public final g b()
+  {
+    return this.b;
+  }
+
+  public final String c()
+  {
+    return this.c;
+  }
+
+  public final byte[] d()
+  {
+    return this.d;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.bi.h
  * JD-Core Version:    0.6.2
  */

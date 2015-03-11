@@ -1,252 +1,80 @@
 package com.google.android.gms.internal;
 
-import java.util.LinkedHashMap;
+import android.os.Parcel;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
-public class hq<K, V>
+public class hq
+  implements SafeParcelable
 {
-  private final LinkedHashMap<K, V> GM;
-  private int GN;
-  private int GO;
-  private int GP;
-  private int GQ;
-  private int GR;
-  private int GS;
-  private int size;
+  public static final hr CREATOR = new hr();
+  final int BR;
+  public final String Co;
+  public final boolean Cp;
+  public final boolean Cq;
+  public final String Cr;
+  public final hk[] Cs;
+  final int[] Ct;
+  public final String Cu;
+  public final String name;
+  public final int weight;
 
-  public hq(int paramInt)
+  hq(int paramInt1, String paramString1, String paramString2, boolean paramBoolean1, int paramInt2, boolean paramBoolean2, String paramString3, hk[] paramArrayOfhk, int[] paramArrayOfInt, String paramString4)
   {
-    if (paramInt <= 0)
-      throw new IllegalArgumentException("maxSize <= 0");
-    this.GN = paramInt;
-    this.GM = new LinkedHashMap(0, 0.75F, true);
+    this.BR = paramInt1;
+    this.name = paramString1;
+    this.Co = paramString2;
+    this.Cp = paramBoolean1;
+    this.weight = paramInt2;
+    this.Cq = paramBoolean2;
+    this.Cr = paramString3;
+    this.Cs = paramArrayOfhk;
+    this.Ct = paramArrayOfInt;
+    this.Cu = paramString4;
   }
 
-  private int c(K paramK, V paramV)
+  hq(String paramString1, String paramString2, boolean paramBoolean1, int paramInt, boolean paramBoolean2, String paramString3, hk[] paramArrayOfhk, int[] paramArrayOfInt, String paramString4)
   {
-    int i = sizeOf(paramK, paramV);
-    if (i < 0)
-      throw new IllegalStateException("Negative size: " + paramK + "=" + paramV);
-    return i;
+    this(2, paramString1, paramString2, paramBoolean1, paramInt, paramBoolean2, paramString3, paramArrayOfhk, paramArrayOfInt, paramString4);
   }
 
-  protected V create(K paramK)
+  public int describeContents()
   {
-    return null;
+    return 0;
   }
 
-  protected void entryRemoved(boolean paramBoolean, K paramK, V paramV1, V paramV2)
+  public boolean equals(Object paramObject)
   {
-  }
-
-  public final void evictAll()
-  {
-    trimToSize(-1);
-  }
-
-  public final V get(K paramK)
-  {
-    if (paramK == null)
-      throw new NullPointerException("key == null");
-    Object localObject3;
-    try
+    boolean bool1 = paramObject instanceof hq;
+    boolean bool2 = false;
+    if (bool1)
     {
-      Object localObject2 = this.GM.get(paramK);
-      if (localObject2 != null)
+      hq localhq = (hq)paramObject;
+      boolean bool3 = this.name.equals(localhq.name);
+      bool2 = false;
+      if (bool3)
       {
-        this.GR = (1 + this.GR);
-        return localObject2;
-      }
-      this.GS = (1 + this.GS);
-      localObject3 = create(paramK);
-      if (localObject3 == null)
-        return null;
-    }
-    finally
-    {
-    }
-    try
-    {
-      this.GP = (1 + this.GP);
-      Object localObject5 = this.GM.put(paramK, localObject3);
-      if (localObject5 != null)
-        this.GM.put(paramK, localObject5);
-      while (true)
-      {
-        if (localObject5 == null)
-          break;
-        entryRemoved(false, paramK, localObject3, localObject5);
-        return localObject5;
-        this.size += c(paramK, localObject3);
+        boolean bool4 = this.Co.equals(localhq.Co);
+        bool2 = false;
+        if (bool4)
+        {
+          boolean bool5 = this.Cp;
+          boolean bool6 = localhq.Cp;
+          bool2 = false;
+          if (bool5 == bool6)
+            bool2 = true;
+        }
       }
     }
-    finally
-    {
-    }
-    trimToSize(this.GN);
-    return localObject3;
+    return bool2;
   }
 
-  public final V put(K paramK, V paramV)
+  public void writeToParcel(Parcel paramParcel, int paramInt)
   {
-    if ((paramK == null) || (paramV == null))
-      throw new NullPointerException("key == null || value == null");
-    try
-    {
-      this.GO = (1 + this.GO);
-      this.size += c(paramK, paramV);
-      Object localObject2 = this.GM.put(paramK, paramV);
-      if (localObject2 != null)
-        this.size -= c(paramK, localObject2);
-      if (localObject2 != null)
-        entryRemoved(false, paramK, localObject2, paramV);
-      trimToSize(this.GN);
-      return localObject2;
-    }
-    finally
-    {
-    }
-  }
-
-  public final int size()
-  {
-    try
-    {
-      int i = this.size;
-      return i;
-    }
-    finally
-    {
-      localObject = finally;
-      throw localObject;
-    }
-  }
-
-  protected int sizeOf(K paramK, V paramV)
-  {
-    return 1;
-  }
-
-  public final String toString()
-  {
-    try
-    {
-      int i = this.GR + this.GS;
-      int j = 0;
-      if (i != 0)
-        j = 100 * this.GR / i;
-      Object[] arrayOfObject = new Object[4];
-      arrayOfObject[0] = Integer.valueOf(this.GN);
-      arrayOfObject[1] = Integer.valueOf(this.GR);
-      arrayOfObject[2] = Integer.valueOf(this.GS);
-      arrayOfObject[3] = Integer.valueOf(j);
-      String str = String.format("LruCache[maxSize=%d,hits=%d,misses=%d,hitRate=%d%%]", arrayOfObject);
-      return str;
-    }
-    finally
-    {
-    }
-  }
-
-  // ERROR //
-  public void trimToSize(int paramInt)
-  {
-    // Byte code:
-    //   0: aload_0
-    //   1: monitorenter
-    //   2: aload_0
-    //   3: getfield 96	com/google/android/gms/internal/hq:size	I
-    //   6: iflt +20 -> 26
-    //   9: aload_0
-    //   10: getfield 38	com/google/android/gms/internal/hq:GM	Ljava/util/LinkedHashMap;
-    //   13: invokevirtual 121	java/util/LinkedHashMap:isEmpty	()Z
-    //   16: ifeq +48 -> 64
-    //   19: aload_0
-    //   20: getfield 96	com/google/android/gms/internal/hq:size	I
-    //   23: ifeq +41 -> 64
-    //   26: new 45	java/lang/IllegalStateException
-    //   29: dup
-    //   30: new 47	java/lang/StringBuilder
-    //   33: dup
-    //   34: invokespecial 48	java/lang/StringBuilder:<init>	()V
-    //   37: aload_0
-    //   38: invokevirtual 125	java/lang/Object:getClass	()Ljava/lang/Class;
-    //   41: invokevirtual 130	java/lang/Class:getName	()Ljava/lang/String;
-    //   44: invokevirtual 54	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   47: ldc 132
-    //   49: invokevirtual 54	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   52: invokevirtual 63	java/lang/StringBuilder:toString	()Ljava/lang/String;
-    //   55: invokespecial 64	java/lang/IllegalStateException:<init>	(Ljava/lang/String;)V
-    //   58: athrow
-    //   59: astore_2
-    //   60: aload_0
-    //   61: monitorexit
-    //   62: aload_2
-    //   63: athrow
-    //   64: aload_0
-    //   65: getfield 96	com/google/android/gms/internal/hq:size	I
-    //   68: iload_1
-    //   69: if_icmple +13 -> 82
-    //   72: aload_0
-    //   73: getfield 38	com/google/android/gms/internal/hq:GM	Ljava/util/LinkedHashMap;
-    //   76: invokevirtual 121	java/util/LinkedHashMap:isEmpty	()Z
-    //   79: ifeq +6 -> 85
-    //   82: aload_0
-    //   83: monitorexit
-    //   84: return
-    //   85: aload_0
-    //   86: getfield 38	com/google/android/gms/internal/hq:GM	Ljava/util/LinkedHashMap;
-    //   89: invokevirtual 136	java/util/LinkedHashMap:entrySet	()Ljava/util/Set;
-    //   92: invokeinterface 142 1 0
-    //   97: invokeinterface 148 1 0
-    //   102: checkcast 150	java/util/Map$Entry
-    //   105: astore_3
-    //   106: aload_3
-    //   107: invokeinterface 153 1 0
-    //   112: astore 4
-    //   114: aload_3
-    //   115: invokeinterface 156 1 0
-    //   120: astore 5
-    //   122: aload_0
-    //   123: getfield 38	com/google/android/gms/internal/hq:GM	Ljava/util/LinkedHashMap;
-    //   126: aload 4
-    //   128: invokevirtual 159	java/util/LinkedHashMap:remove	(Ljava/lang/Object;)Ljava/lang/Object;
-    //   131: pop
-    //   132: aload_0
-    //   133: aload_0
-    //   134: getfield 96	com/google/android/gms/internal/hq:size	I
-    //   137: aload_0
-    //   138: aload 4
-    //   140: aload 5
-    //   142: invokespecial 98	com/google/android/gms/internal/hq:c	(Ljava/lang/Object;Ljava/lang/Object;)I
-    //   145: isub
-    //   146: putfield 96	com/google/android/gms/internal/hq:size	I
-    //   149: aload_0
-    //   150: iconst_1
-    //   151: aload_0
-    //   152: getfield 161	com/google/android/gms/internal/hq:GQ	I
-    //   155: iadd
-    //   156: putfield 161	com/google/android/gms/internal/hq:GQ	I
-    //   159: aload_0
-    //   160: monitorexit
-    //   161: aload_0
-    //   162: iconst_1
-    //   163: aload 4
-    //   165: aload 5
-    //   167: aconst_null
-    //   168: invokevirtual 94	com/google/android/gms/internal/hq:entryRemoved	(ZLjava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)V
-    //   171: goto -171 -> 0
-    //
-    // Exception table:
-    //   from	to	target	type
-    //   2	26	59	finally
-    //   26	59	59	finally
-    //   64	82	59	finally
-    //   82	84	59	finally
-    //   85	161	59	finally
+    hr.a(this, paramParcel, paramInt);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.hq
  * JD-Core Version:    0.6.2
  */

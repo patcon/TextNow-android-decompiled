@@ -23,17 +23,17 @@ class AdMarvelActivity$d
       AdMarvelActivity localAdMarvelActivity = (AdMarvelActivity)this.a.get();
       if (localAdMarvelActivity == null)
         return;
-      localAdMarvelActivity.c = false;
-      RelativeLayout localRelativeLayout = (RelativeLayout)localAdMarvelActivity.findViewById(AdMarvelActivity.b);
-      p localp = (p)localRelativeLayout.findViewWithTag(AdMarvelActivity.c(localAdMarvelActivity) + "BR_VIDEO");
-      if (localp != null)
+      localAdMarvelActivity.f = false;
+      RelativeLayout localRelativeLayout = (RelativeLayout)localAdMarvelActivity.findViewById(AdMarvelActivity.a);
+      j localj = (j)localRelativeLayout.findViewWithTag(localAdMarvelActivity.e + "BR_VIDEO");
+      if (localj != null)
       {
-        localp.a();
-        localRelativeLayout.removeView(localp);
+        localj.a();
+        localRelativeLayout.removeView(localj);
       }
-      if (AdMarvelActivity.z(localAdMarvelActivity) != null)
+      if (AdMarvelActivity.q(localAdMarvelActivity) != null)
       {
-        AdMarvelActivity.f(localAdMarvelActivity).removeCallbacks(AdMarvelActivity.z(localAdMarvelActivity));
+        localAdMarvelActivity.d.removeCallbacks(AdMarvelActivity.q(localAdMarvelActivity));
         AdMarvelActivity.a(localAdMarvelActivity, null);
         return;
       }
@@ -45,7 +45,7 @@ class AdMarvelActivity$d
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.AdMarvelActivity.d
  * JD-Core Version:    0.6.2
  */

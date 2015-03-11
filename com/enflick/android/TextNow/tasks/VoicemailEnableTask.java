@@ -5,8 +5,8 @@ import android.net.Uri;
 import com.enflick.android.TextNow.api.users.UsersPhoneVoiceVoicemailPut;
 import com.enflick.android.TextNow.api.users.ae;
 import java.io.File;
-import textnow.q.g;
-import textnow.u.r;
+import textnow.v.g;
+import textnow.z.u;
 
 public class VoicemailEnableTask extends c
 {
@@ -32,18 +32,18 @@ public class VoicemailEnableTask extends c
 
   public void run()
   {
-    r localr = new r(this.a);
+    u localu = new u(this.a);
     if (this.f == 2);
-    for (ae localae = new ae(localr.b(), this.f, this.d); a(new UsersPhoneVoiceVoicemailPut(this.a).runSync(localae)); localae = new ae(localr.b(), this.f))
+    for (ae localae = new ae(localu.b(), this.f, this.d); a(new UsersPhoneVoiceVoicemailPut(this.a).runSync(localae)); localae = new ae(localu.b(), this.f))
       return;
-    localr.x(String.valueOf(this.f));
+    localu.x(String.valueOf(this.f));
     new StringBuilder().append("Saving to user info object uri: ").append(this.e).toString();
-    localr.y(this.e);
-    localr.n();
+    localu.y(this.e);
+    localu.B();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.VoicemailEnableTask
  * JD-Core Version:    0.6.2
  */

@@ -9,12 +9,12 @@ class AdMarvelActivity$r
   implements Runnable
 {
   private final WeakReference<AdMarvelActivity> a;
-  private final WeakReference<AdMarvelInternalWebView> b;
+  private final WeakReference<d> b;
 
-  public AdMarvelActivity$r(AdMarvelActivity paramAdMarvelActivity, AdMarvelInternalWebView paramAdMarvelInternalWebView)
+  public AdMarvelActivity$r(AdMarvelActivity paramAdMarvelActivity, d paramd)
   {
     this.a = new WeakReference(paramAdMarvelActivity);
-    this.b = new WeakReference(paramAdMarvelInternalWebView);
+    this.b = new WeakReference(paramd);
   }
 
   public void run()
@@ -22,20 +22,17 @@ class AdMarvelActivity$r
     try
     {
       AdMarvelActivity localAdMarvelActivity = (AdMarvelActivity)this.a.get();
-      AdMarvelInternalWebView localAdMarvelInternalWebView = (AdMarvelInternalWebView)this.b.get();
+      d locald = (d)this.b.get();
       if (localAdMarvelActivity != null)
       {
-        if (localAdMarvelInternalWebView == null)
+        if (locald == null)
           return;
-        p localp = (p)((RelativeLayout)localAdMarvelActivity.findViewById(AdMarvelActivity.b)).findViewWithTag(AdMarvelActivity.c(localAdMarvelActivity) + "BR_VIDEO");
-        if ((localp != null) && (localp.isPlaying()))
+        j localj = (j)((RelativeLayout)localAdMarvelActivity.findViewById(AdMarvelActivity.a)).findViewWithTag(localAdMarvelActivity.e + "BR_VIDEO");
+        if ((localj != null) && (localj.isPlaying()))
         {
-          localp.pause();
-          if ((localAdMarvelActivity.d) && (AdMarvelActivity.B(localAdMarvelActivity) != null) && (AdMarvelActivity.B(localAdMarvelActivity).length() > 0))
-          {
-            localAdMarvelInternalWebView.loadUrl("javascript:" + AdMarvelActivity.B(localAdMarvelActivity) + "()");
-            return;
-          }
+          localj.a();
+          locald.loadUrl("javascript:stop()");
+          return;
         }
       }
     }
@@ -46,7 +43,7 @@ class AdMarvelActivity$r
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.AdMarvelActivity.r
  * JD-Core Version:    0.6.2
  */

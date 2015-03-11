@@ -1,33 +1,16 @@
 package com.google.android.gms.internal;
 
-import android.content.Intent;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.panorama.PanoramaApi.PanoramaResult;
+import com.google.android.gms.drive.metadata.MetadataField;
+import com.google.android.gms.drive.metadata.internal.b;
+import com.google.android.gms.drive.metadata.internal.f;
 
-class kh
-  implements PanoramaApi.PanoramaResult
+public class kh
 {
-  private final Intent abo;
-  private final Status yz;
-
-  public kh(Status paramStatus, Intent paramIntent)
-  {
-    this.yz = ((Status)hm.f(paramStatus));
-    this.abo = paramIntent;
-  }
-
-  public Status getStatus()
-  {
-    return this.yz;
-  }
-
-  public Intent getViewerIntent()
-  {
-    return this.abo;
-  }
+  public static final MetadataField<Boolean> QA = new b("isPinnable", 4300000);
+  public static final MetadataField<Integer> Qz = new f("contentAvailability", 4300000);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.kh
  * JD-Core Version:    0.6.2
  */

@@ -11,36 +11,36 @@ public final class Cart$Builder
 
   public final Builder addLineItem(LineItem paramLineItem)
   {
-    this.aiN.aiM.add(paramLineItem);
+    this.asy.asx.add(paramLineItem);
     return this;
   }
 
   public final Cart build()
   {
-    return this.aiN;
+    return this.asy;
   }
 
   public final Builder setCurrencyCode(String paramString)
   {
-    this.aiN.aiL = paramString;
+    this.asy.asw = paramString;
     return this;
   }
 
   public final Builder setLineItems(List<LineItem> paramList)
   {
-    this.aiN.aiM.clear();
-    this.aiN.aiM.addAll(paramList);
+    this.asy.asx.clear();
+    this.asy.asx.addAll(paramList);
     return this;
   }
 
   public final Builder setTotalPrice(String paramString)
   {
-    this.aiN.aiK = paramString;
+    this.asy.asv = paramString;
     return this;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.Cart.Builder
  * JD-Core Version:    0.6.2
  */

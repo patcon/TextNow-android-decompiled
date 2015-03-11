@@ -23,15 +23,15 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 import net.hockeyapp.android.views.UpdateView;
-import textnow.bh.b;
+import textnow.bo.b;
 
 public class UpdateActivity extends Activity
   implements View.OnClickListener, h
 {
   protected b a;
-  protected textnow.bi.i b;
+  protected textnow.bp.i b;
   private final int c = 0;
-  private textnow.bg.a d;
+  private textnow.bn.a d;
   private Context e;
 
   private String c()
@@ -50,7 +50,7 @@ public class UpdateActivity extends Activity
 
   protected final void a()
   {
-    this.a = new b(this, getIntent().getStringExtra("url"), new textnow.bf.a()
+    this.a = new b(this, getIntent().getStringExtra("url"), new textnow.bm.a()
     {
       public final String a(int paramAnonymousInt)
       {
@@ -101,7 +101,7 @@ public class UpdateActivity extends Activity
     if (this.e.checkCallingOrSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") == 0);
     for (int i = 1; i == 0; i = 0)
     {
-      this.d = new textnow.bg.a();
+      this.d = new textnow.bn.a();
       this.d.a("The permission to access the external storage permission is not set. Please contact the developer.");
       runOnUiThread(new Runnable()
       {
@@ -127,7 +127,7 @@ public class UpdateActivity extends Activity
     {
       if (j != 0)
         break label211;
-      this.d = new textnow.bg.a();
+      this.d = new textnow.bn.a();
       this.d.a("The installation from unknown sources is not enabled. Please check the device settings.");
       runOnUiThread(new Runnable()
       {
@@ -153,7 +153,7 @@ public class UpdateActivity extends Activity
     setTitle("App Update");
     setContentView(new UpdateView(this));
     this.e = this;
-    this.b = new textnow.bi.i(getIntent().getStringExtra("json"), this);
+    this.b = new textnow.bp.i(getIntent().getStringExtra("json"), this);
     ((TextView)findViewById(4098)).setText(c());
     ((TextView)findViewById(4099)).setText("Version " + this.b.a() + "\n" + this.b.b());
     ((Button)findViewById(4100)).setOnClickListener(this);
@@ -209,7 +209,7 @@ public class UpdateActivity extends Activity
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     net.hockeyapp.android.UpdateActivity
  * JD-Core Version:    0.6.2
  */

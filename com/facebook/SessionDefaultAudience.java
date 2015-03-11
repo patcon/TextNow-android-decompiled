@@ -6,8 +6,8 @@ public enum SessionDefaultAudience
 
   static
   {
-    FRIENDS = new SessionDefaultAudience("FRIENDS", 2, "ALL_FRIENDS");
-    EVERYONE = new SessionDefaultAudience("EVERYONE", 3, "EVERYONE");
+    FRIENDS = new SessionDefaultAudience("FRIENDS", 2, "friends");
+    EVERYONE = new SessionDefaultAudience("EVERYONE", 3, "everyone");
     SessionDefaultAudience[] arrayOfSessionDefaultAudience = new SessionDefaultAudience[4];
     arrayOfSessionDefaultAudience[0] = NONE;
     arrayOfSessionDefaultAudience[1] = ONLY_ME;
@@ -20,13 +20,13 @@ public enum SessionDefaultAudience
     this.nativeProtocolAudience = paramString;
   }
 
-  final String getNativeProtocolAudience()
+  public final String getNativeProtocolAudience()
   {
     return this.nativeProtocolAudience;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.SessionDefaultAudience
  * JD-Core Version:    0.6.2
  */

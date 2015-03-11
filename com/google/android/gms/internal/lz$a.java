@@ -1,16 +1,34 @@
 package com.google.android.gms.internal;
 
-import java.io.IOException;
+import com.google.android.gms.common.internal.e;
+import com.google.android.gms.common.internal.e.b;
+import com.google.android.gms.location.LocationClient.OnAddGeofencesResultListener;
+import com.google.android.gms.location.LocationStatusCodes;
 
-public class lz$a extends IOException
+final class lz$a extends e<lx>.b<LocationClient.OnAddGeofencesResultListener>
 {
-  lz$a(int paramInt1, int paramInt2)
+  private final int HF;
+  private final String[] afb;
+
+  public lz$a(lz paramlz, LocationClient.OnAddGeofencesResultListener paramOnAddGeofencesResultListener, int paramInt, String[] paramArrayOfString)
   {
-    super("CodedOutputStream was writing to a flat byte array and ran out of space (pos " + paramInt1 + " limit " + paramInt2 + ").");
+    super(paramlz, paramOnAddGeofencesResultListener);
+    this.HF = LocationStatusCodes.ef(paramInt);
+    this.afb = paramArrayOfString;
+  }
+
+  protected final void a(LocationClient.OnAddGeofencesResultListener paramOnAddGeofencesResultListener)
+  {
+    if (paramOnAddGeofencesResultListener != null)
+      paramOnAddGeofencesResultListener.onAddGeofencesResult(this.HF, this.afb);
+  }
+
+  protected final void gT()
+  {
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.lz.a
  * JD-Core Version:    0.6.2
  */

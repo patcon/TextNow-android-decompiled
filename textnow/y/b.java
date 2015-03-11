@@ -1,21 +1,18 @@
 package textnow.y;
 
-import android.telephony.PhoneStateListener;
-import android.telephony.SignalStrength;
+import java.lang.annotation.Annotation;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-final class b extends PhoneStateListener
+@Retention(RetentionPolicy.RUNTIME)
+@Target({java.lang.annotation.ElementType.TYPE, java.lang.annotation.ElementType.METHOD})
+public @interface b
 {
-  private b(a parama)
-  {
-  }
-
-  public final void onSignalStrengthsChanged(SignalStrength paramSignalStrength)
-  {
-    a.a(this.a, paramSignalStrength);
-  }
+  public abstract String a();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.y.b
  * JD-Core Version:    0.6.2
  */

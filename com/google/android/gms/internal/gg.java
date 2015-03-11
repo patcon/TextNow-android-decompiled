@@ -1,59 +1,36 @@
 package com.google.android.gms.internal;
 
-import android.text.TextUtils;
-
+@ez
 public abstract class gg
 {
-  protected final gn BD;
-  private final String BE;
-  private gp BF;
-
-  protected gg(String paramString1, String paramString2, String paramString3)
+  private final Runnable mk = new Runnable()
   {
-    gi.ak(paramString1);
-    this.BE = paramString1;
-    this.BD = new gn(paramString2);
-    if (!TextUtils.isEmpty(paramString3))
-      this.BD.ap(paramString3);
+    public final void run()
+    {
+      gg.a(gg.this, Thread.currentThread());
+      gg.this.co();
+    }
+  };
+  private volatile Thread wf;
+
+  public final void cancel()
+  {
+    onStop();
+    if (this.wf != null)
+      this.wf.interrupt();
   }
 
-  public void a(long paramLong, int paramInt)
-  {
-  }
+  public abstract void co();
 
-  public final void a(gp paramgp)
-  {
-    this.BF = paramgp;
-    if (this.BF == null)
-      ee();
-  }
+  public abstract void onStop();
 
-  protected final void a(String paramString1, long paramLong, String paramString2)
+  public final void start()
   {
-    this.BD.a("Sending text message: %s to: %s", new Object[] { paramString1, paramString2 });
-    this.BF.a(this.BE, paramString1, paramLong, paramString2);
-  }
-
-  public void ai(String paramString)
-  {
-  }
-
-  protected final long ed()
-  {
-    return this.BF.eb();
-  }
-
-  public void ee()
-  {
-  }
-
-  public final String getNamespace()
-  {
-    return this.BE;
+    gi.a(this.mk);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.gg
  * JD-Core Version:    0.6.2
  */

@@ -1,138 +1,98 @@
 package com.google.android.gms.internal;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.IBinder;
 import android.os.Parcel;
-import android.os.Parcelable.Creator;
-import com.google.android.gms.common.internal.safeparcel.a;
-import com.google.android.gms.common.internal.safeparcel.a.a;
-import com.google.android.gms.common.internal.safeparcel.b;
-import java.util.ArrayList;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
+import com.google.android.gms.dynamic.d;
+import com.google.android.gms.dynamic.d.a;
+import com.google.android.gms.dynamic.e;
 
-public class dv
-  implements Parcelable.Creator<du>
+@ez
+public final class dv
+  implements SafeParcelable
 {
-  static void a(du paramdu, Parcel paramParcel, int paramInt)
+  public static final du CREATOR = new du();
+  public final el lM;
+  public final ee lT;
+  public final eg si;
+  public final Context sj;
+  public final int versionCode;
+
+  dv(int paramInt, IBinder paramIBinder1, IBinder paramIBinder2, IBinder paramIBinder3, IBinder paramIBinder4)
   {
-    int i = b.C(paramParcel);
-    b.c(paramParcel, 1, paramdu.versionCode);
-    b.a(paramParcel, 2, paramdu.oA, false);
-    b.a(paramParcel, 3, paramdu.qe, false);
-    b.a(paramParcel, 4, paramdu.nt, false);
-    b.c(paramParcel, 5, paramdu.errorCode);
-    b.a(paramParcel, 6, paramdu.nu, false);
-    b.a(paramParcel, 7, paramdu.qf);
-    b.a(paramParcel, 8, paramdu.qg);
-    b.a(paramParcel, 9, paramdu.qh);
-    b.a(paramParcel, 10, paramdu.qi, false);
-    b.a(paramParcel, 11, paramdu.nx);
-    b.c(paramParcel, 12, paramdu.orientation);
-    b.a(paramParcel, 13, paramdu.qj, false);
-    b.a(paramParcel, 14, paramdu.qk);
-    b.a(paramParcel, 15, paramdu.ql, false);
-    b.a(paramParcel, 19, paramdu.qn, false);
-    b.a(paramParcel, 18, paramdu.qm);
-    b.a(paramParcel, 21, paramdu.qo, false);
-    b.G(paramParcel, i);
+    this.versionCode = paramInt;
+    this.lM = ((el)e.f(d.a.am(paramIBinder1)));
+    this.lT = ((ee)e.f(d.a.am(paramIBinder2)));
+    this.si = ((eg)e.f(d.a.am(paramIBinder3)));
+    this.sj = ((Context)e.f(d.a.am(paramIBinder4)));
   }
 
-  public du i(Parcel paramParcel)
+  public dv(eg parameg, el paramel, ee paramee, Context paramContext)
   {
-    int i = a.B(paramParcel);
-    int j = 0;
-    String str1 = null;
-    String str2 = null;
-    ArrayList localArrayList1 = null;
-    int k = 0;
-    ArrayList localArrayList2 = null;
-    long l1 = 0L;
-    boolean bool1 = false;
-    long l2 = 0L;
-    ArrayList localArrayList3 = null;
-    long l3 = 0L;
-    int m = 0;
-    String str3 = null;
-    long l4 = 0L;
-    String str4 = null;
-    boolean bool2 = false;
-    String str5 = null;
-    String str6 = null;
-    while (paramParcel.dataPosition() < i)
+    this.versionCode = 1;
+    this.si = parameg;
+    this.lM = paramel;
+    this.lT = paramee;
+    this.sj = paramContext;
+  }
+
+  public static void a(Intent paramIntent, dv paramdv)
+  {
+    Bundle localBundle = new Bundle(1);
+    localBundle.putParcelable("com.google.android.gms.ads.internal.purchase.InAppPurchaseManagerInfo", paramdv);
+    paramIntent.putExtra("com.google.android.gms.ads.internal.purchase.InAppPurchaseManagerInfo", localBundle);
+  }
+
+  public static dv c(Intent paramIntent)
+  {
+    try
     {
-      int n = a.A(paramParcel);
-      switch (a.ar(n))
-      {
-      case 16:
-      case 17:
-      case 20:
-      default:
-        a.b(paramParcel, n);
-        break;
-      case 1:
-        j = a.g(paramParcel, n);
-        break;
-      case 2:
-        str1 = a.o(paramParcel, n);
-        break;
-      case 3:
-        str2 = a.o(paramParcel, n);
-        break;
-      case 4:
-        localArrayList1 = a.B(paramParcel, n);
-        break;
-      case 5:
-        k = a.g(paramParcel, n);
-        break;
-      case 6:
-        localArrayList2 = a.B(paramParcel, n);
-        break;
-      case 7:
-        l1 = a.i(paramParcel, n);
-        break;
-      case 8:
-        bool1 = a.c(paramParcel, n);
-        break;
-      case 9:
-        l2 = a.i(paramParcel, n);
-        break;
-      case 10:
-        localArrayList3 = a.B(paramParcel, n);
-        break;
-      case 11:
-        l3 = a.i(paramParcel, n);
-        break;
-      case 12:
-        m = a.g(paramParcel, n);
-        break;
-      case 13:
-        str3 = a.o(paramParcel, n);
-        break;
-      case 14:
-        l4 = a.i(paramParcel, n);
-        break;
-      case 15:
-        str4 = a.o(paramParcel, n);
-        break;
-      case 19:
-        str5 = a.o(paramParcel, n);
-        break;
-      case 18:
-        bool2 = a.c(paramParcel, n);
-        break;
-      case 21:
-        str6 = a.o(paramParcel, n);
-      }
+      Bundle localBundle = paramIntent.getBundleExtra("com.google.android.gms.ads.internal.purchase.InAppPurchaseManagerInfo");
+      localBundle.setClassLoader(dv.class.getClassLoader());
+      dv localdv = (dv)localBundle.getParcelable("com.google.android.gms.ads.internal.purchase.InAppPurchaseManagerInfo");
+      return localdv;
     }
-    if (paramParcel.dataPosition() != i)
-      throw new a.a("Overread allowed size end=" + i, paramParcel);
-    return new du(j, str1, str2, localArrayList1, k, localArrayList2, l1, bool1, l2, localArrayList3, l3, m, str3, l4, str4, bool2, str5, str6);
+    catch (Exception localException)
+    {
+    }
+    return null;
   }
 
-  public du[] n(int paramInt)
+  final IBinder ck()
   {
-    return new du[paramInt];
+    return e.k(this.lM).asBinder();
+  }
+
+  final IBinder cl()
+  {
+    return e.k(this.lT).asBinder();
+  }
+
+  final IBinder cm()
+  {
+    return e.k(this.si).asBinder();
+  }
+
+  final IBinder cn()
+  {
+    return e.k(this.sj).asBinder();
+  }
+
+  public final int describeContents()
+  {
+    return 0;
+  }
+
+  public final void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    du.a(this, paramParcel, paramInt);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.dv
  * JD-Core Version:    0.6.2
  */

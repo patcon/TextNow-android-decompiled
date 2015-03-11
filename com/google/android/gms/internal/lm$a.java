@@ -1,165 +1,82 @@
 package com.google.android.gms.internal;
 
-import android.os.Binder;
+import android.app.Activity;
+import android.app.PendingIntent;
+import android.app.PendingIntent.CanceledException;
+import android.content.Intent;
+import android.content.IntentSender.SendIntentException;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Parcel;
-import android.os.Parcelable.Creator;
-import com.google.android.gms.wallet.FullWalletRequest;
-import com.google.android.gms.wallet.MaskedWalletRequest;
-import com.google.android.gms.wallet.NotifyTransactionStatusRequest;
-import com.google.android.gms.wallet.d;
+import com.google.android.gms.common.ConnectionResult;
 
-public abstract class lm$a extends Binder
-  implements lm
+public final class lm$a extends ln.a
 {
-  public static lm bq(IBinder paramIBinder)
+  private final int Lu;
+  private Activity nr;
+
+  public lm$a(int paramInt, Activity paramActivity)
   {
-    if (paramIBinder == null)
-      return null;
-    IInterface localIInterface = paramIBinder.queryLocalInterface("com.google.android.gms.wallet.internal.IOwService");
-    if ((localIInterface != null) && ((localIInterface instanceof lm)))
-      return (lm)localIInterface;
-    return new lm.a.a(paramIBinder);
+    this.Lu = paramInt;
+    this.nr = paramActivity;
   }
 
-  public boolean onTransact(int paramInt1, Parcel paramParcel1, Parcel paramParcel2, int paramInt2)
+  private void setActivity(Activity paramActivity)
   {
-    switch (paramInt1)
+    this.nr = paramActivity;
+  }
+
+  public final void g(int paramInt, Bundle paramBundle)
+  {
+    PendingIntent localPendingIntent1;
+    if (paramInt == 1)
     {
-    default:
-      return super.onTransact(paramInt1, paramParcel1, paramParcel2, paramInt2);
-    case 1598968902:
-      paramParcel2.writeString("com.google.android.gms.wallet.internal.IOwService");
-      return true;
-    case 1:
-      paramParcel1.enforceInterface("com.google.android.gms.wallet.internal.IOwService");
-      MaskedWalletRequest localMaskedWalletRequest2;
-      if (paramParcel1.readInt() != 0)
-      {
-        localMaskedWalletRequest2 = (MaskedWalletRequest)MaskedWalletRequest.CREATOR.createFromParcel(paramParcel1);
-        if (paramParcel1.readInt() == 0)
-          break label181;
-      }
-      for (Bundle localBundle9 = (Bundle)Bundle.CREATOR.createFromParcel(paramParcel1); ; localBundle9 = null)
-      {
-        a(localMaskedWalletRequest2, localBundle9, lp.a.bt(paramParcel1.readStrongBinder()));
-        return true;
-        localMaskedWalletRequest2 = null;
-        break;
-      }
-    case 2:
-      paramParcel1.enforceInterface("com.google.android.gms.wallet.internal.IOwService");
-      FullWalletRequest localFullWalletRequest;
-      if (paramParcel1.readInt() != 0)
-      {
-        localFullWalletRequest = (FullWalletRequest)FullWalletRequest.CREATOR.createFromParcel(paramParcel1);
-        if (paramParcel1.readInt() == 0)
-          break label258;
-      }
-      for (Bundle localBundle8 = (Bundle)Bundle.CREATOR.createFromParcel(paramParcel1); ; localBundle8 = null)
-      {
-        a(localFullWalletRequest, localBundle8, lp.a.bt(paramParcel1.readStrongBinder()));
-        return true;
-        localFullWalletRequest = null;
-        break;
-      }
-    case 3:
-      paramParcel1.enforceInterface("com.google.android.gms.wallet.internal.IOwService");
-      String str1 = paramParcel1.readString();
-      String str2 = paramParcel1.readString();
-      if (paramParcel1.readInt() != 0);
-      for (Bundle localBundle7 = (Bundle)Bundle.CREATOR.createFromParcel(paramParcel1); ; localBundle7 = null)
-      {
-        a(str1, str2, localBundle7, lp.a.bt(paramParcel1.readStrongBinder()));
-        return true;
-      }
-    case 4:
-      paramParcel1.enforceInterface("com.google.android.gms.wallet.internal.IOwService");
-      NotifyTransactionStatusRequest localNotifyTransactionStatusRequest;
-      if (paramParcel1.readInt() != 0)
-      {
-        localNotifyTransactionStatusRequest = (NotifyTransactionStatusRequest)NotifyTransactionStatusRequest.CREATOR.createFromParcel(paramParcel1);
-        if (paramParcel1.readInt() == 0)
-          break label392;
-      }
-      for (Bundle localBundle6 = (Bundle)Bundle.CREATOR.createFromParcel(paramParcel1); ; localBundle6 = null)
-      {
-        a(localNotifyTransactionStatusRequest, localBundle6);
-        return true;
-        localNotifyTransactionStatusRequest = null;
-        break;
-      }
-    case 5:
-      paramParcel1.enforceInterface("com.google.android.gms.wallet.internal.IOwService");
-      if (paramParcel1.readInt() != 0);
-      for (Bundle localBundle5 = (Bundle)Bundle.CREATOR.createFromParcel(paramParcel1); ; localBundle5 = null)
-      {
-        a(localBundle5, lp.a.bt(paramParcel1.readStrongBinder()));
-        return true;
-      }
-    case 6:
-      paramParcel1.enforceInterface("com.google.android.gms.wallet.internal.IOwService");
-      d locald;
-      if (paramParcel1.readInt() != 0)
-      {
-        locald = (d)d.CREATOR.createFromParcel(paramParcel1);
-        if (paramParcel1.readInt() == 0)
-          break label517;
-      }
-      for (Bundle localBundle4 = (Bundle)Bundle.CREATOR.createFromParcel(paramParcel1); ; localBundle4 = null)
-      {
-        a(locald, localBundle4, lp.a.bt(paramParcel1.readStrongBinder()));
-        return true;
-        locald = null;
-        break;
-      }
-    case 7:
-      paramParcel1.enforceInterface("com.google.android.gms.wallet.internal.IOwService");
-      MaskedWalletRequest localMaskedWalletRequest1;
-      if (paramParcel1.readInt() != 0)
-      {
-        localMaskedWalletRequest1 = (MaskedWalletRequest)MaskedWalletRequest.CREATOR.createFromParcel(paramParcel1);
-        if (paramParcel1.readInt() == 0)
-          break label594;
-      }
-      for (Bundle localBundle3 = (Bundle)Bundle.CREATOR.createFromParcel(paramParcel1); ; localBundle3 = null)
-      {
-        a(localMaskedWalletRequest1, localBundle3, lo.a.bs(paramParcel1.readStrongBinder()));
-        return true;
-        localMaskedWalletRequest1 = null;
-        break;
-      }
-    case 8:
-      label181: label594: paramParcel1.enforceInterface("com.google.android.gms.wallet.internal.IOwService");
-      label258: label392: lg locallg;
-      label517: if (paramParcel1.readInt() != 0)
-      {
-        locallg = (lg)lg.CREATOR.createFromParcel(paramParcel1);
-        if (paramParcel1.readInt() == 0)
-          break label671;
-      }
-      label671: for (Bundle localBundle2 = (Bundle)Bundle.CREATOR.createFromParcel(paramParcel1); ; localBundle2 = null)
-      {
-        a(locallg, localBundle2, lp.a.bt(paramParcel1.readStrongBinder()));
-        return true;
-        locallg = null;
-        break;
-      }
-    case 9:
+      Intent localIntent = new Intent();
+      localIntent.putExtras(paramBundle);
+      localPendingIntent1 = this.nr.createPendingResult(this.Lu, localIntent, 1073741824);
+      if (localPendingIntent1 != null);
     }
-    paramParcel1.enforceInterface("com.google.android.gms.wallet.internal.IOwService");
-    if (paramParcel1.readInt() != 0);
-    for (Bundle localBundle1 = (Bundle)Bundle.CREATOR.createFromParcel(paramParcel1); ; localBundle1 = null)
+    while (true)
     {
-      o(localBundle1);
-      return true;
+      return;
+      try
+      {
+        localPendingIntent1.send(1);
+        return;
+      }
+      catch (PendingIntent.CanceledException localCanceledException1)
+      {
+        return;
+      }
+      PendingIntent localPendingIntent2 = null;
+      if (paramBundle != null)
+        localPendingIntent2 = (PendingIntent)paramBundle.getParcelable("com.google.android.gms.identity.intents.EXTRA_PENDING_INTENT");
+      ConnectionResult localConnectionResult = new ConnectionResult(paramInt, localPendingIntent2);
+      if (localConnectionResult.hasResolution())
+        try
+        {
+          localConnectionResult.startResolutionForResult(this.nr, this.Lu);
+          return;
+        }
+        catch (IntentSender.SendIntentException localSendIntentException)
+        {
+          return;
+        }
+      try
+      {
+        PendingIntent localPendingIntent3 = this.nr.createPendingResult(this.Lu, new Intent(), 1073741824);
+        if (localPendingIntent3 != null)
+        {
+          localPendingIntent3.send(1);
+          return;
+        }
+      }
+      catch (PendingIntent.CanceledException localCanceledException2)
+      {
+      }
     }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.lm.a
  * JD-Core Version:    0.6.2
  */

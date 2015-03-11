@@ -1,25 +1,29 @@
 package android.support.v4.app;
 
-import java.util.ArrayList;
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.Context;
 
-public final class aw extends bg
+final class aw extends av
 {
-  ArrayList<CharSequence> a = new ArrayList();
-
-  public final aw a(CharSequence paramCharSequence)
+  public final Notification a(ap paramap)
   {
-    this.e = av.e(paramCharSequence);
-    return this;
-  }
-
-  public final aw b(CharSequence paramCharSequence)
-  {
-    this.a.add(av.e(paramCharSequence));
-    return this;
+    Notification localNotification = paramap.B;
+    localNotification.setLatestEventInfo(paramap.a, paramap.b, paramap.c, paramap.d);
+    Context localContext = paramap.a;
+    CharSequence localCharSequence1 = paramap.b;
+    CharSequence localCharSequence2 = paramap.c;
+    PendingIntent localPendingIntent1 = paramap.d;
+    PendingIntent localPendingIntent2 = paramap.e;
+    localNotification.setLatestEventInfo(localContext, localCharSequence1, localCharSequence2, localPendingIntent1);
+    localNotification.fullScreenIntent = localPendingIntent2;
+    if (paramap.j > 0)
+      localNotification.flags = (0x80 | localNotification.flags);
+    return localNotification;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.app.aw
  * JD-Core Version:    0.6.2
  */

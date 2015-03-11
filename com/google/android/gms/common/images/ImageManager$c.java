@@ -6,13 +6,13 @@ import android.os.ParcelFileDescriptor;
 final class ImageManager$c
   implements Runnable
 {
-  private final ParcelFileDescriptor Fj;
+  private final ParcelFileDescriptor KE;
   private final Uri mUri;
 
   public ImageManager$c(ImageManager paramImageManager, Uri paramUri, ParcelFileDescriptor paramParcelFileDescriptor)
   {
     this.mUri = paramUri;
-    this.Fj = paramParcelFileDescriptor;
+    this.KE = paramParcelFileDescriptor;
   }
 
   // ERROR //
@@ -20,9 +20,9 @@ final class ImageManager$c
   {
     // Byte code:
     //   0: ldc 32
-    //   2: invokestatic 38	com/google/android/gms/internal/gx:az	(Ljava/lang/String;)V
+    //   2: invokestatic 38	com/google/android/gms/common/internal/a:aU	(Ljava/lang/String;)V
     //   5: aload_0
-    //   6: getfield 23	com/google/android/gms/common/images/ImageManager$c:Fj	Landroid/os/ParcelFileDescriptor;
+    //   6: getfield 23	com/google/android/gms/common/images/ImageManager$c:KE	Landroid/os/ParcelFileDescriptor;
     //   9: astore_1
     //   10: aconst_null
     //   11: astore_2
@@ -31,14 +31,14 @@ final class ImageManager$c
     //   14: aload_1
     //   15: ifnull +25 -> 40
     //   18: aload_0
-    //   19: getfield 23	com/google/android/gms/common/images/ImageManager$c:Fj	Landroid/os/ParcelFileDescriptor;
+    //   19: getfield 23	com/google/android/gms/common/images/ImageManager$c:KE	Landroid/os/ParcelFileDescriptor;
     //   22: invokevirtual 44	android/os/ParcelFileDescriptor:getFileDescriptor	()Ljava/io/FileDescriptor;
     //   25: invokestatic 50	android/graphics/BitmapFactory:decodeFileDescriptor	(Ljava/io/FileDescriptor;)Landroid/graphics/Bitmap;
     //   28: astore 11
     //   30: aload 11
     //   32: astore_2
     //   33: aload_0
-    //   34: getfield 23	com/google/android/gms/common/images/ImageManager$c:Fj	Landroid/os/ParcelFileDescriptor;
+    //   34: getfield 23	com/google/android/gms/common/images/ImageManager$c:KE	Landroid/os/ParcelFileDescriptor;
     //   37: invokevirtual 53	android/os/ParcelFileDescriptor:close	()V
     //   40: new 55	java/util/concurrent/CountDownLatch
     //   43: dup
@@ -46,12 +46,12 @@ final class ImageManager$c
     //   45: invokespecial 58	java/util/concurrent/CountDownLatch:<init>	(I)V
     //   48: astore 4
     //   50: aload_0
-    //   51: getfield 16	com/google/android/gms/common/images/ImageManager$c:Fi	Lcom/google/android/gms/common/images/ImageManager;
+    //   51: getfield 16	com/google/android/gms/common/images/ImageManager$c:KD	Lcom/google/android/gms/common/images/ImageManager;
     //   54: invokestatic 64	com/google/android/gms/common/images/ImageManager:g	(Lcom/google/android/gms/common/images/ImageManager;)Landroid/os/Handler;
     //   57: new 66	com/google/android/gms/common/images/ImageManager$f
     //   60: dup
     //   61: aload_0
-    //   62: getfield 16	com/google/android/gms/common/images/ImageManager$c:Fi	Lcom/google/android/gms/common/images/ImageManager;
+    //   62: getfield 16	com/google/android/gms/common/images/ImageManager$c:KD	Lcom/google/android/gms/common/images/ImageManager;
     //   65: aload_0
     //   66: getfield 21	com/google/android/gms/common/images/ImageManager$c:mUri	Landroid/net/Uri;
     //   69: aload_2
@@ -102,7 +102,7 @@ final class ImageManager$c
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.common.images.ImageManager.c
  * JD-Core Version:    0.6.2
  */

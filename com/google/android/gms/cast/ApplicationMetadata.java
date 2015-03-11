@@ -4,9 +4,9 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable.Creator;
 import com.google.android.gms.common.images.WebImage;
+import com.google.android.gms.common.internal.n;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-import com.google.android.gms.internal.gi;
-import com.google.android.gms.internal.hk;
+import com.google.android.gms.internal.ik;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,40 +14,35 @@ public final class ApplicationMetadata
   implements SafeParcelable
 {
   public static final Parcelable.Creator<ApplicationMetadata> CREATOR = new a();
+  private final int BR;
+  List<WebImage> EA;
+  List<String> EB;
+  String EC;
+  Uri ED;
+  String Ez;
   String mName;
-  private final int xM;
-  String zP;
-  List<WebImage> zQ;
-  List<String> zR;
-  String zS;
-  Uri zT;
 
   private ApplicationMetadata()
   {
-    this.xM = 1;
-    this.zQ = new ArrayList();
-    this.zR = new ArrayList();
+    this.BR = 1;
+    this.EA = new ArrayList();
+    this.EB = new ArrayList();
   }
 
   ApplicationMetadata(int paramInt, String paramString1, String paramString2, List<WebImage> paramList, List<String> paramList1, String paramString3, Uri paramUri)
   {
-    this.xM = paramInt;
-    this.zP = paramString1;
+    this.BR = paramInt;
+    this.Ez = paramString1;
     this.mName = paramString2;
-    this.zQ = paramList;
-    this.zR = paramList1;
-    this.zS = paramString3;
-    this.zT = paramUri;
+    this.EA = paramList;
+    this.EB = paramList1;
+    this.EC = paramString3;
+    this.ED = paramUri;
   }
 
   public final boolean areNamespacesSupported(List<String> paramList)
   {
-    return (this.zR != null) && (this.zR.containsAll(paramList));
-  }
-
-  public final Uri dX()
-  {
-    return this.zT;
+    return (this.EB != null) && (this.EB.containsAll(paramList));
   }
 
   public final int describeContents()
@@ -66,18 +61,23 @@ public final class ApplicationMetadata
         return false;
       localApplicationMetadata = (ApplicationMetadata)paramObject;
     }
-    while ((gi.a(this.zP, localApplicationMetadata.zP)) && (gi.a(this.zQ, localApplicationMetadata.zQ)) && (gi.a(this.mName, localApplicationMetadata.mName)) && (gi.a(this.zR, localApplicationMetadata.zR)) && (gi.a(this.zS, localApplicationMetadata.zS)) && (gi.a(this.zT, localApplicationMetadata.zT)));
+    while ((ik.a(this.Ez, localApplicationMetadata.Ez)) && (ik.a(this.EA, localApplicationMetadata.EA)) && (ik.a(this.mName, localApplicationMetadata.mName)) && (ik.a(this.EB, localApplicationMetadata.EB)) && (ik.a(this.EC, localApplicationMetadata.EC)) && (ik.a(this.ED, localApplicationMetadata.ED)));
     return false;
+  }
+
+  public final Uri fu()
+  {
+    return this.ED;
   }
 
   public final String getApplicationId()
   {
-    return this.zP;
+    return this.Ez;
   }
 
   public final List<WebImage> getImages()
   {
-    return this.zQ;
+    return this.EA;
   }
 
   public final String getName()
@@ -87,30 +87,30 @@ public final class ApplicationMetadata
 
   public final String getSenderAppIdentifier()
   {
-    return this.zS;
+    return this.EC;
   }
 
   final int getVersionCode()
   {
-    return this.xM;
+    return this.BR;
   }
 
   public final int hashCode()
   {
     Object[] arrayOfObject = new Object[7];
-    arrayOfObject[0] = Integer.valueOf(this.xM);
-    arrayOfObject[1] = this.zP;
+    arrayOfObject[0] = Integer.valueOf(this.BR);
+    arrayOfObject[1] = this.Ez;
     arrayOfObject[2] = this.mName;
-    arrayOfObject[3] = this.zQ;
-    arrayOfObject[4] = this.zR;
-    arrayOfObject[5] = this.zS;
-    arrayOfObject[6] = this.zT;
-    return hk.hashCode(arrayOfObject);
+    arrayOfObject[3] = this.EA;
+    arrayOfObject[4] = this.EB;
+    arrayOfObject[5] = this.EC;
+    arrayOfObject[6] = this.ED;
+    return n.hashCode(arrayOfObject);
   }
 
   public final boolean isNamespaceSupported(String paramString)
   {
-    return (this.zR != null) && (this.zR.contains(paramString));
+    return (this.EB != null) && (this.EB.contains(paramString));
   }
 
   public final String toString()
@@ -124,7 +124,7 @@ public final class ApplicationMetadata
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.cast.ApplicationMetadata
  * JD-Core Version:    0.6.2
  */

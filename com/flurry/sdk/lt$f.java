@@ -15,7 +15,7 @@ public class lt$f extends lt<TimeZone>
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.flurry.sdk.lt.f
  * JD-Core Version:    0.6.2
  */

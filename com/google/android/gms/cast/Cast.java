@@ -8,24 +8,20 @@ import com.google.android.gms.common.api.Api.c;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 import com.google.android.gms.common.api.Scope;
-import com.google.android.gms.internal.gh;
-import com.google.android.gms.internal.gy;
-import com.google.android.gms.internal.hm;
+import com.google.android.gms.common.internal.ClientSettings;
+import com.google.android.gms.common.internal.o;
+import com.google.android.gms.internal.ij;
 
 public final class Cast
 {
-  public static final Api<Cast.CastOptions> API = new Api(yI, yH, new Scope[0]);
-  public static final Cast.CastApi CastApi = new Cast.CastApi.a();
-  public static final String EXTRA_APP_NO_LONGER_RUNNING = "com.google.android.gms.cast.EXTRA_APP_NO_LONGER_RUNNING";
-  public static final int MAX_MESSAGE_LENGTH = 65536;
-  public static final int MAX_NAMESPACE_LENGTH = 128;
-  static final Api.c<gh> yH = new Api.c();
-  private static final Api.b<gh, Cast.CastOptions> yI = new Api.b()
+  public static final Api<Cast.CastOptions> API = new Api(CV, CU, new Scope[0]);
+  static final Api.c<ij> CU = new Api.c();
+  private static final Api.b<ij, Cast.CastOptions> CV = new Api.b()
   {
-    public final gh a(Context paramAnonymousContext, Looper paramAnonymousLooper, gy paramAnonymousgy, Cast.CastOptions paramAnonymousCastOptions, GoogleApiClient.ConnectionCallbacks paramAnonymousConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener paramAnonymousOnConnectionFailedListener)
+    public final ij a(Context paramAnonymousContext, Looper paramAnonymousLooper, ClientSettings paramAnonymousClientSettings, Cast.CastOptions paramAnonymousCastOptions, GoogleApiClient.ConnectionCallbacks paramAnonymousConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener paramAnonymousOnConnectionFailedListener)
     {
-      hm.b(paramAnonymousCastOptions, "Setting the API options is required.");
-      return new gh(paramAnonymousContext, paramAnonymousLooper, paramAnonymousCastOptions.Aa, Cast.CastOptions.a(paramAnonymousCastOptions), paramAnonymousCastOptions.Ab, paramAnonymousConnectionCallbacks, paramAnonymousOnConnectionFailedListener);
+      o.b(paramAnonymousCastOptions, "Setting the API options is required.");
+      return new ij(paramAnonymousContext, paramAnonymousLooper, paramAnonymousCastOptions.EK, Cast.CastOptions.a(paramAnonymousCastOptions), paramAnonymousCastOptions.EL, paramAnonymousConnectionCallbacks, paramAnonymousOnConnectionFailedListener);
     }
 
     public final int getPriority()
@@ -33,9 +29,13 @@ public final class Cast
       return 2147483647;
     }
   };
+  public static final Cast.CastApi CastApi = new Cast.CastApi.a();
+  public static final String EXTRA_APP_NO_LONGER_RUNNING = "com.google.android.gms.cast.EXTRA_APP_NO_LONGER_RUNNING";
+  public static final int MAX_MESSAGE_LENGTH = 65536;
+  public static final int MAX_NAMESPACE_LENGTH = 128;
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.cast.Cast
  * JD-Core Version:    0.6.2
  */

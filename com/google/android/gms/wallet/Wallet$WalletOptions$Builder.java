@@ -4,7 +4,7 @@ import java.util.Locale;
 
 public final class Wallet$WalletOptions$Builder
 {
-  private int akb = 0;
+  private int atL = 0;
   private int mTheme = 0;
 
   public final Wallet.WalletOptions build()
@@ -16,7 +16,7 @@ public final class Wallet$WalletOptions$Builder
   {
     if ((paramInt == 0) || (paramInt == 2) || (paramInt == 1))
     {
-      this.akb = paramInt;
+      this.atL = paramInt;
       return this;
     }
     Locale localLocale = Locale.US;
@@ -39,7 +39,7 @@ public final class Wallet$WalletOptions$Builder
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.Wallet.WalletOptions.Builder
  * JD-Core Version:    0.6.2
  */

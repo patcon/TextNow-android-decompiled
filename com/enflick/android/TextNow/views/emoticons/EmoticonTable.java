@@ -1,7 +1,6 @@
 package com.enflick.android.TextNow.views.emoticons;
 
 import android.content.Context;
-import android.graphics.BitmapFactory;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +23,7 @@ public class EmoticonTable extends LinearLayout
     super(paramContext);
     this.f = null;
     this.b = LayoutInflater.from(paramContext);
-    this.b.inflate(2130903117, this);
+    this.b.inflate(2130903131, this);
   }
 
   public EmoticonTable(Context paramContext, AttributeSet paramAttributeSet)
@@ -32,7 +31,7 @@ public class EmoticonTable extends LinearLayout
     super(paramContext, paramAttributeSet);
     this.f = paramAttributeSet;
     this.b = LayoutInflater.from(paramContext);
-    this.b.inflate(2130903117, this);
+    this.b.inflate(2130903131, this);
   }
 
   public final void a(e parame)
@@ -69,8 +68,8 @@ public class EmoticonTable extends LinearLayout
         this.c = ((ImageView)findViewWithTag(String.valueOf(i1)));
         this.c.setVisibility(0);
         if (i1 >= this.d)
-          break label279;
-        this.c.setImageBitmap(BitmapFactory.decodeResource(getContext().getResources(), ((a)this.e.get(i1)).a()));
+          break label269;
+        this.c.setImageResource(((a)this.e.get(i1)).a());
         this.c.setTag(((a)this.e.get(i1)).b());
         this.c.setOnClickListener(new View.OnClickListener()
         {
@@ -86,7 +85,7 @@ public class EmoticonTable extends LinearLayout
         break label143;
         m = 2;
         break;
-        label279: this.c.setImageResource(2130837859);
+        label269: this.c.setImageResource(2130837815);
         this.c.setFocusable(false);
         this.c.setBackgroundDrawable(null);
         this.c.setOnClickListener(new View.OnClickListener()
@@ -100,7 +99,7 @@ public class EmoticonTable extends LinearLayout
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.views.emoticons.EmoticonTable
  * JD-Core Version:    0.6.2
  */

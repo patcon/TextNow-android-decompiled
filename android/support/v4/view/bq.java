@@ -1,15 +1,16 @@
 package android.support.v4.view;
 
-final class bq
+import android.view.ViewGroup;
+
+class bq extends bu
 {
-  Object a;
-  int b;
-  boolean c;
-  float d;
-  float e;
+  public final void a(ViewGroup paramViewGroup, boolean paramBoolean)
+  {
+    paramViewGroup.setMotionEventSplittingEnabled(paramBoolean);
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.view.bq
  * JD-Core Version:    0.6.2
  */

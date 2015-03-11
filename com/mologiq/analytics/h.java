@@ -1,58 +1,42 @@
 package com.mologiq.analytics;
 
-import android.content.Context;
-import com.google.android.gms.ads.identifier.AdvertisingIdClient;
-import com.google.android.gms.ads.identifier.AdvertisingIdClient.Info;
+import android.content.ComponentName;
+import android.content.ServiceConnection;
+import android.os.IBinder;
+import java.util.concurrent.LinkedBlockingQueue;
 
-public final class h
+final class h
+  implements ServiceConnection
 {
-  private final Context b;
+  boolean a = false;
+  private final LinkedBlockingQueue<IBinder> b = new LinkedBlockingQueue(1);
 
-  public h(e parame, Context paramContext)
+  final IBinder a()
   {
-    this.b = paramContext;
+    if (this.a)
+      throw new IllegalStateException();
+    this.a = true;
+    return (IBinder)this.b.take();
   }
 
-  private String b()
+  public final void onServiceConnected(ComponentName paramComponentName, IBinder paramIBinder)
   {
     try
     {
-      AdvertisingIdClient.Info localInfo = AdvertisingIdClient.getAdvertisingIdInfo(this.b.getApplicationContext());
-      Object localObject = null;
-      if (localInfo != null)
-      {
-        String str = localInfo.getId();
-        localObject = str;
-      }
-      return localObject;
+      this.b.put(paramIBinder);
+      return;
     }
-    catch (Exception localException)
+    catch (InterruptedException localInterruptedException)
     {
     }
-    return null;
   }
 
-  public final boolean a()
+  public final void onServiceDisconnected(ComponentName paramComponentName)
   {
-    try
-    {
-      AdvertisingIdClient.Info localInfo = AdvertisingIdClient.getAdvertisingIdInfo(this.b.getApplicationContext());
-      boolean bool1 = false;
-      if (localInfo != null)
-      {
-        boolean bool2 = localInfo.isLimitAdTrackingEnabled();
-        bool1 = bool2;
-      }
-      return bool1;
-    }
-    catch (Exception localException)
-    {
-    }
-    return false;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.mologiq.analytics.h
  * JD-Core Version:    0.6.2
  */

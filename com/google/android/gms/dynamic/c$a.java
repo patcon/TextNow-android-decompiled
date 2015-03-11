@@ -16,7 +16,7 @@ public abstract class c$a extends Binder
     attachInterface(this, "com.google.android.gms.dynamic.IFragmentWrapper");
   }
 
-  public static c af(IBinder paramIBinder)
+  public static c al(IBinder paramIBinder)
   {
     if (paramIBinder == null)
       return null;
@@ -42,7 +42,7 @@ public abstract class c$a extends Binder
       return true;
     case 2:
       paramParcel1.enforceInterface("com.google.android.gms.dynamic.IFragmentWrapper");
-      d locald3 = gI();
+      d locald3 = iu();
       paramParcel2.writeNoException();
       IBinder localIBinder5 = null;
       if (locald3 != null)
@@ -69,7 +69,7 @@ public abstract class c$a extends Binder
       return true;
     case 5:
       paramParcel1.enforceInterface("com.google.android.gms.dynamic.IFragmentWrapper");
-      c localc2 = gJ();
+      c localc2 = iv();
       paramParcel2.writeNoException();
       IBinder localIBinder4 = null;
       if (localc2 != null)
@@ -78,7 +78,7 @@ public abstract class c$a extends Binder
       return true;
     case 6:
       paramParcel1.enforceInterface("com.google.android.gms.dynamic.IFragmentWrapper");
-      d locald2 = gK();
+      d locald2 = iw();
       paramParcel2.writeNoException();
       IBinder localIBinder3 = null;
       if (locald2 != null)
@@ -103,7 +103,7 @@ public abstract class c$a extends Binder
       return true;
     case 9:
       paramParcel1.enforceInterface("com.google.android.gms.dynamic.IFragmentWrapper");
-      c localc1 = gL();
+      c localc1 = ix();
       paramParcel2.writeNoException();
       IBinder localIBinder2 = null;
       if (localc1 != null)
@@ -199,7 +199,7 @@ public abstract class c$a extends Binder
       return true;
     case 20:
       paramParcel1.enforceInterface("com.google.android.gms.dynamic.IFragmentWrapper");
-      c(d.a.ag(paramParcel1.readStrongBinder()));
+      d(d.a.am(paramParcel1.readStrongBinder()));
       paramParcel2.writeNoException();
       return true;
     case 21:
@@ -259,13 +259,13 @@ public abstract class c$a extends Binder
     case 27:
     }
     paramParcel1.enforceInterface("com.google.android.gms.dynamic.IFragmentWrapper");
-    d(d.a.ag(paramParcel1.readStrongBinder()));
+    e(d.a.am(paramParcel1.readStrongBinder()));
     paramParcel2.writeNoException();
     return true;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.dynamic.c.a
  * JD-Core Version:    0.6.2
  */

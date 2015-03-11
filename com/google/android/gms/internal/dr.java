@@ -1,49 +1,78 @@
 package com.google.android.gms.internal;
 
-import android.content.Context;
-import android.os.Bundle;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.IBinder;
-import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallbacks;
-import com.google.android.gms.common.GooglePlayServicesClient.OnConnectionFailedListener;
+import android.os.RemoteException;
+import com.google.android.gms.dynamic.d;
+import com.google.android.gms.dynamic.e;
+import com.google.android.gms.dynamic.g;
+import com.google.android.gms.dynamic.g.a;
 
-public class dr extends hb<dw>
+@ez
+public final class dr extends g<dt>
 {
-  final int pV;
+  private static final dr sh = new dr();
 
-  public dr(Context paramContext, GooglePlayServicesClient.ConnectionCallbacks paramConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener paramOnConnectionFailedListener, int paramInt)
+  private dr()
   {
-    super(paramContext, paramConnectionCallbacks, paramOnConnectionFailedListener, new String[0]);
-    this.pV = paramInt;
+    super("com.google.android.gms.ads.AdOverlayCreatorImpl");
   }
 
-  protected void a(hi paramhi, hb.e parame)
+  public static ds b(Activity paramActivity)
   {
-    Bundle localBundle = new Bundle();
-    paramhi.g(parame, this.pV, getContext().getPackageName(), localBundle);
+    try
+    {
+      if (c(paramActivity))
+      {
+        gs.S("Using AdOverlay from the client jar.");
+        return new dk(paramActivity);
+      }
+      ds localds = sh.d(paramActivity);
+      return localds;
+    }
+    catch (dr.a locala)
+    {
+      gs.W(locala.getMessage());
+    }
+    return null;
   }
 
-  protected String bu()
+  private static boolean c(Activity paramActivity)
   {
-    return "com.google.android.gms.ads.service.START";
+    Intent localIntent = paramActivity.getIntent();
+    if (!localIntent.hasExtra("com.google.android.gms.ads.internal.overlay.useClientJar"))
+      throw new dr.a("Ad overlay requires the useClientJar flag in intent extras.");
+    return localIntent.getBooleanExtra("com.google.android.gms.ads.internal.overlay.useClientJar", false);
   }
 
-  protected String bv()
+  private ds d(Activity paramActivity)
   {
-    return "com.google.android.gms.ads.internal.request.IAdRequestService";
+    try
+    {
+      d locald = e.k(paramActivity);
+      ds localds = ds.a.p(((dt)L(paramActivity)).a(locald));
+      return localds;
+    }
+    catch (RemoteException localRemoteException)
+    {
+      gs.d("Could not create remote AdOverlay.", localRemoteException);
+      return null;
+    }
+    catch (g.a locala)
+    {
+      gs.d("Could not create remote AdOverlay.", locala);
+    }
+    return null;
   }
 
-  public dw bw()
+  protected final dt o(IBinder paramIBinder)
   {
-    return (dw)super.ft();
-  }
-
-  protected dw w(IBinder paramIBinder)
-  {
-    return dw.a.y(paramIBinder);
+    return dt.a.q(paramIBinder);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.dr
  * JD-Core Version:    0.6.2
  */

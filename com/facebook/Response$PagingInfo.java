@@ -9,7 +9,7 @@ abstract interface Response$PagingInfo extends GraphObject
   public abstract String getPrevious();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.Response.PagingInfo
  * JD-Core Version:    0.6.2
  */

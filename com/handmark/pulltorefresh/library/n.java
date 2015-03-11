@@ -7,7 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import textnow.af.a;
+import textnow.al.a;
 
 public class n extends ListView
   implements a
@@ -67,7 +67,7 @@ public class n extends ListView
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.handmark.pulltorefresh.library.n
  * JD-Core Version:    0.6.2
  */

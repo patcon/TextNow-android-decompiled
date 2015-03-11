@@ -1,39 +1,26 @@
 package textnow.p;
 
-import org.json.JSONObject;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import textnow.z.f;
 
 public final class n
 {
-  String a;
-  String b;
-  String c;
-  String d;
-  String e;
-  String f;
+  public f a;
+  public ImageView b;
+  public TextView c;
+  public TextView d;
 
-  public n(String paramString)
+  public n(View paramView)
   {
-    this.f = paramString;
-    JSONObject localJSONObject = new JSONObject(this.f);
-    this.a = localJSONObject.optString("productId");
-    this.b = localJSONObject.optString("type");
-    this.c = localJSONObject.optString("price");
-    this.d = localJSONObject.optString("title");
-    this.e = localJSONObject.optString("description");
-  }
-
-  public final String a()
-  {
-    return this.c;
-  }
-
-  public final String toString()
-  {
-    return "SkuDetails:" + this.f;
+    this.b = ((ImageView)paramView.findViewById(2131558557));
+    this.c = ((TextView)paramView.findViewById(2131558628));
+    this.d = ((TextView)paramView.findViewById(2131558629));
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.p.n
  * JD-Core Version:    0.6.2
  */

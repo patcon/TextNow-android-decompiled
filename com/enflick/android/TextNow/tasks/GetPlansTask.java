@@ -3,8 +3,8 @@ package com.enflick.android.TextNow.tasks;
 import com.enflick.android.TextNow.api.PlansGet;
 import com.enflick.android.TextNow.api.g;
 import com.enflick.android.TextNow.api.responsemodel.Plan;
-import textnow.s.i;
-import textnow.u.q;
+import textnow.x.i;
+import textnow.z.s;
 
 public class GetPlansTask extends c
 {
@@ -15,15 +15,15 @@ public class GetPlansTask extends c
     if (a(locali))
       return;
     Plan[] arrayOfPlan = (Plan[])locali.c();
-    q localq = new q(this.a);
+    s locals = new s(this.a);
     int i = arrayOfPlan.length;
     for (int j = 0; j < i; j++)
-      localq.a(arrayOfPlan[j]);
-    localq.n();
+      locals.a(arrayOfPlan[j]);
+    locals.B();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.GetPlansTask
  * JD-Core Version:    0.6.2
  */

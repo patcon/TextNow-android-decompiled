@@ -1,68 +1,76 @@
 package textnow.ad;
 
-import java.lang.reflect.Type;
-import textnow.ab.b;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 
-public class a<T>
+public final class a extends Drawable
 {
-  final Class<? super T> b;
-  final Type c;
-  final int d;
+  protected Bitmap a;
+  protected Paint b;
+  protected int c;
+  protected int d;
 
-  protected a()
+  public a(Bitmap paramBitmap)
   {
-    Type localType = getClass().getGenericSuperclass();
-    if ((localType instanceof Class))
-      throw new RuntimeException("Missing type parameter.");
-    this.c = b.a(((java.lang.reflect.ParameterizedType)localType).getActualTypeArguments()[0]);
-    this.b = b.b(this.c);
-    this.d = this.c.hashCode();
+    this.a = paramBitmap;
+    if (this.a != null)
+      this.c = this.a.getWidth();
+    for (this.d = this.a.getHeight(); ; this.d = 0)
+    {
+      this.b = new Paint();
+      this.b.setDither(true);
+      this.b.setFilterBitmap(true);
+      return;
+      this.c = 0;
+    }
   }
 
-  private a(Type paramType)
+  public final void draw(Canvas paramCanvas)
   {
-    this.c = b.a((Type)textnow.ab.a.a(paramType));
-    this.b = b.b(this.c);
-    this.d = this.c.hashCode();
+    if ((this.a != null) && (!this.a.isRecycled()))
+      paramCanvas.drawBitmap(this.a, 0.0F, 0.0F, this.b);
   }
 
-  public static <T> a<T> a(Class<T> paramClass)
-  {
-    return new a(paramClass);
-  }
-
-  public static a<?> a(Type paramType)
-  {
-    return new a(paramType);
-  }
-
-  public final Class<? super T> a()
-  {
-    return this.b;
-  }
-
-  public final Type b()
-  {
-    return this.c;
-  }
-
-  public final boolean equals(Object paramObject)
-  {
-    return ((paramObject instanceof a)) && (b.a(this.c, ((a)paramObject).c));
-  }
-
-  public final int hashCode()
+  public final int getIntrinsicHeight()
   {
     return this.d;
   }
 
-  public final String toString()
+  public final int getIntrinsicWidth()
   {
-    return b.c(this.c);
+    return this.c;
+  }
+
+  public final int getMinimumHeight()
+  {
+    return this.d;
+  }
+
+  public final int getMinimumWidth()
+  {
+    return this.c;
+  }
+
+  public final int getOpacity()
+  {
+    return -3;
+  }
+
+  public final void setAlpha(int paramInt)
+  {
+    this.b.setAlpha(paramInt);
+  }
+
+  public final void setColorFilter(ColorFilter paramColorFilter)
+  {
+    this.b.setColorFilter(paramColorFilter);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.ad.a
  * JD-Core Version:    0.6.2
  */

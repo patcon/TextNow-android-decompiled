@@ -1,223 +1,249 @@
 package com.admarvel.android.util;
 
 import android.content.Context;
-import com.admarvel.android.ads.AdMarvelUtils;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import com.admarvel.android.ads.d;
 import java.lang.ref.WeakReference;
+import java.util.List;
 
 public class e
 {
-  public static e a;
-  private String b = "VALUE_NOT_DEFINED";
-  private int c;
-  private final WeakReference<Context> d;
-
-  private e(Context paramContext)
+  private static e m = null;
+  private int a = 1000;
+  private float b = 2.0F;
+  private Sensor c;
+  private Sensor d;
+  private SensorManager e;
+  private WeakReference<d> f;
+  private Boolean g;
+  private boolean h = false;
+  private String i = null;
+  private String j = null;
+  private String k = null;
+  private boolean l = false;
+  private SensorEventListener n = new SensorEventListener()
   {
-    this.d = new WeakReference(paramContext);
-    try
+    final float a = 0.8F;
+    private long c = 0L;
+    private long d = 0L;
+    private long e = 0L;
+    private long f = 0L;
+    private float g = 0.0F;
+    private float[] h;
+    private float[] i;
+    private float[] j;
+    private final float[] k = { 0.0F, 0.0F, 0.0F };
+    private final float[] l = { 0.0F, 0.0F, 0.0F };
+    private final float[] m = { 0.0F, 0.0F, 0.0F };
+
+    public void onAccuracyChanged(Sensor paramAnonymousSensor, int paramAnonymousInt)
     {
-      Class.forName("com.google.android.gms.ads.identifier.AdvertisingIdClient");
-      Class.forName("com.google.android.gms.common.GooglePlayServicesNotAvailableException");
-      Class.forName("com.google.android.gms.common.GooglePlayServicesRepairableException");
-      j = i;
-      if (j != 0)
+    }
+
+    public void onSensorChanged(SensorEvent paramAnonymousSensorEvent)
+    {
+      this.c = System.currentTimeMillis();
+      if (paramAnonymousSensorEvent.sensor.getType() == 1)
+        this.h = ((float[])paramAnonymousSensorEvent.values.clone());
+      if (paramAnonymousSensorEvent.sensor.getType() == 2)
+        this.j = ((float[])paramAnonymousSensorEvent.values.clone());
+      if ((this.h != null) && (this.j != null))
       {
-        e.e locale = new e.e(this, paramContext);
-        String str = e.e.a(locale);
-        boolean bool = locale.a();
-        if ((str != null) && (str.length() > 0))
+        float[] arrayOfFloat1 = new float[9];
+        if (SensorManager.getRotationMatrix(arrayOfFloat1, new float[9], this.h, this.j))
         {
-          a(str);
-          if (bool == i)
-          {
-            int m = i;
-            a(m);
-            if ((this.b == null) || (!this.b.equals("VALUE_NOT_DEFINED")))
-              break label263;
-            Logging.log("Not able to fetch GoogleAdv Id form google service library trying form gms IAdvertisingIdService" + this.b);
-            k = 0;
-            if (k == 0)
-            {
-              b();
-              Logging.log("Fetching from IAdvertisingIdService ");
-              a(AdMarvelUtils.getPreferenceValueString(paramContext, "google_advid_preference", "google_adv_id_from_service"));
-              Logging.log("GoogleAdv Id form google gms IAdvertisingIdService " + this.b);
-              if (AdMarvelUtils.getPreferenceValueBoolean(paramContext, "google_advid_preference", "google_play_service_opt_out_id") != i)
-                break label378;
-              this.c = i;
-              Logging.log("OptOut form google gms IAdvertisingIdService" + this.c);
-            }
-          }
+          float[] arrayOfFloat2 = new float[3];
+          SensorManager.getOrientation(arrayOfFloat1, arrayOfFloat2);
+          float f1 = (float)Math.round(2.0D * Math.toDegrees(arrayOfFloat2[0])) / 2.0F;
+          if (f1 < 0.0D)
+            f1 += 360.0F;
+          e.a(e.this, f1);
         }
       }
-    }
-    catch (ClassNotFoundException localClassNotFoundException)
-    {
-      while (true)
+      if (this.h != null)
       {
-        int j = 0;
-        continue;
-        int n = 0;
-        continue;
-        label263: if (AdMarvelUtils.getPreferenceValueBoolean(paramContext, "google_advid_preference", "google_play_service_opt_out_id") == i);
-        for (int i1 = i; ; i1 = 0)
-        {
-          this.c = i1;
-          Logging.log("GoogleAdv Id form google service library " + this.b);
-          Logging.log("OptOut form google service library " + this.c);
-          k = j;
-          break;
-        }
-        Logging.log("Not able to fetch GoogleAdv Id form google service library trying form gms IAdvertisingIdService" + this.b);
-        int k = 0;
-        continue;
-        label378: i = 0;
-        continue;
-        k = j;
+        if (this.e != 0L)
+          break label195;
+        this.e = this.c;
+        this.f = this.c;
+        this.i = ((float[])this.h.clone());
       }
+      label195: 
+      do
+      {
+        return;
+        this.d = (this.c - this.e);
+      }
+      while (this.d <= 0L);
+      if (this.c - this.f >= e.a(e.this))
+      {
+        this.g = (100.0F * (Math.abs(this.h[0] + this.h[1] + this.h[2] - this.i[0] - this.i[1] - this.i[2]) / (float)(this.c - this.f)));
+        this.f = this.c;
+        if (this.g > e.b(e.this))
+          e.b(e.this, this.g);
+      }
+      this.m[0] = (0.8F * this.m[0] + 0.2F * this.h[0]);
+      this.m[1] = (0.8F * this.m[1] + 0.2F * this.h[1]);
+      this.m[2] = (0.8F * this.m[2] + 0.2F * this.h[2]);
+      this.k[0] = (this.h[0] - this.m[0]);
+      this.k[1] = (this.h[1] - this.m[1]);
+      this.k[2] = (this.h[2] - this.m[2]);
+      this.l[0] = (this.h[0] - this.i[0]);
+      this.l[1] = (this.h[1] - this.i[1]);
+      this.l[2] = (this.h[2] - this.i[2]);
+      e.a(e.this, this.h[0], this.h[1], this.h[2], this.k[0], this.k[1], this.k[2], this.l[0], this.l[1], this.l[2]);
+      this.i = ((float[])this.h.clone());
+      this.e = this.c;
     }
+  };
+
+  public static e a()
+  {
+    if (m == null)
+      m = new e();
+    return m;
   }
 
-  public static void a()
+  private void a(float paramFloat)
   {
-    a = null;
+    d locald = (d)this.f.get();
+    if ((locald != null) && (this.i != null))
+      locald.e(this.i + "()");
   }
 
-  public static e c(Context paramContext)
+  private void a(float paramFloat1, float paramFloat2, float paramFloat3, float paramFloat4, float paramFloat5, float paramFloat6, float paramFloat7, float paramFloat8, float paramFloat9)
   {
-    if ((a == null) || ((a != null) && (a.b.equals("VALUE_NOT_DEFINED"))))
+    d locald = (d)this.f.get();
+    if ((locald != null) && (this.j != null))
+      locald.e(this.j + "(" + paramFloat1 + "," + paramFloat2 + "," + paramFloat3 + "," + paramFloat4 + "," + paramFloat5 + "," + paramFloat6 + "," + paramFloat7 + "," + paramFloat8 + "," + paramFloat9 + ")");
+  }
+
+  private void b(float paramFloat)
+  {
+    d locald = (d)this.f.get();
+    if ((locald != null) && (this.k != null))
+      locald.e(this.k + "(" + paramFloat + ")");
+  }
+
+  private void d()
+  {
+    this.i = null;
+    this.j = null;
+    this.k = null;
+  }
+
+  public void a(Context paramContext, d paramd)
+  {
+    this.f = new WeakReference(paramd);
+    if (!this.h)
     {
-      a = null;
-      a = new e(paramContext);
+      this.e = ((SensorManager)paramContext.getSystemService("sensor"));
+      this.c = this.e.getDefaultSensor(1);
+      this.d = this.e.getDefaultSensor(2);
+      this.h = this.e.registerListener(this.n, this.c, 3);
     }
-    if (a.b.equals("VALUE_NOT_DEFINED"))
-      a.b = AdMarvelUtils.getPreferenceValueString(paramContext, "google_advid_preference", "google_adv_id_from_service");
-    return a;
-  }
-
-  // ERROR //
-  private static void e(Context paramContext)
-  {
-    // Byte code:
-    //   0: invokestatic 137	android/os/Looper:myLooper	()Landroid/os/Looper;
-    //   3: invokestatic 140	android/os/Looper:getMainLooper	()Landroid/os/Looper;
-    //   6: if_acmpne +13 -> 19
-    //   9: new 142	java/lang/IllegalStateException
-    //   12: dup
-    //   13: ldc 144
-    //   15: invokespecial 146	java/lang/IllegalStateException:<init>	(Ljava/lang/String;)V
-    //   18: athrow
-    //   19: aload_0
-    //   20: invokevirtual 152	android/content/Context:getPackageManager	()Landroid/content/pm/PackageManager;
-    //   23: ldc 154
-    //   25: iconst_0
-    //   26: invokevirtual 160	android/content/pm/PackageManager:getPackageInfo	(Ljava/lang/String;I)Landroid/content/pm/PackageInfo;
-    //   29: pop
-    //   30: new 162	com/admarvel/android/util/e$b
-    //   33: dup
-    //   34: aconst_null
-    //   35: invokespecial 165	com/admarvel/android/util/e$b:<init>	(Lcom/admarvel/android/util/e$1;)V
-    //   38: astore_3
-    //   39: new 167	android/content/Intent
-    //   42: dup
-    //   43: ldc 169
-    //   45: invokespecial 170	android/content/Intent:<init>	(Ljava/lang/String;)V
-    //   48: astore 4
-    //   50: aload 4
-    //   52: ldc 172
-    //   54: invokevirtual 176	android/content/Intent:setPackage	(Ljava/lang/String;)Landroid/content/Intent;
-    //   57: pop
-    //   58: aload_0
-    //   59: aload 4
-    //   61: aload_3
-    //   62: iconst_1
-    //   63: invokevirtual 180	android/content/Context:bindService	(Landroid/content/Intent;Landroid/content/ServiceConnection;I)Z
-    //   66: ifeq +72 -> 138
-    //   69: new 182	com/admarvel/android/util/e$c
-    //   72: dup
-    //   73: aload_3
-    //   74: invokevirtual 185	com/admarvel/android/util/e$b:a	()Landroid/os/IBinder;
-    //   77: invokespecial 188	com/admarvel/android/util/e$c:<init>	(Landroid/os/IBinder;)V
-    //   80: astore 6
-    //   82: new 190	com/admarvel/android/util/e$a
-    //   85: dup
-    //   86: aload 6
-    //   88: invokevirtual 192	com/admarvel/android/util/e$c:a	()Ljava/lang/String;
-    //   91: aload 6
-    //   93: iconst_1
-    //   94: aload_0
-    //   95: invokevirtual 195	com/admarvel/android/util/e$c:a	(ZLandroid/content/Context;)Z
-    //   98: invokespecial 198	com/admarvel/android/util/e$a:<init>	(Ljava/lang/String;Z)V
-    //   101: astore 7
-    //   103: getstatic 123	com/admarvel/android/util/e:a	Lcom/admarvel/android/util/e;
-    //   106: aload 7
-    //   108: invokevirtual 199	com/admarvel/android/util/e$a:a	()Ljava/lang/String;
-    //   111: invokevirtual 63	com/admarvel/android/util/e:a	(Ljava/lang/String;)V
-    //   114: aload_0
-    //   115: aload_3
-    //   116: invokevirtual 203	android/content/Context:unbindService	(Landroid/content/ServiceConnection;)V
-    //   119: return
-    //   120: astore_1
-    //   121: aload_1
-    //   122: athrow
-    //   123: astore 9
-    //   125: aload 9
-    //   127: athrow
-    //   128: astore 8
-    //   130: aload_0
-    //   131: aload_3
-    //   132: invokevirtual 203	android/content/Context:unbindService	(Landroid/content/ServiceConnection;)V
-    //   135: aload 8
-    //   137: athrow
-    //   138: new 205	java/io/IOException
-    //   141: dup
-    //   142: ldc 207
-    //   144: invokespecial 208	java/io/IOException:<init>	(Ljava/lang/String;)V
-    //   147: athrow
-    //
-    // Exception table:
-    //   from	to	target	type
-    //   19	30	120	java/lang/Exception
-    //   69	114	123	java/lang/Exception
-    //   69	114	128	finally
-    //   125	128	128	finally
-  }
-
-  public int a(Context paramContext)
-  {
-    return this.c;
-  }
-
-  public void a(int paramInt)
-  {
-    this.c = paramInt;
+    if (this.l)
+    {
+      this.e.registerListener(this.n, this.d, 3);
+      this.l = false;
+    }
   }
 
   public void a(String paramString)
   {
-    this.b = paramString;
+    if (paramString != null)
+      this.i = paramString;
   }
 
-  public String b(Context paramContext)
+  public void a(String paramString1, String paramString2)
   {
-    if (this.b != null)
-      return this.b;
-    return "VALUE_NOT_DEFINED";
+    if (paramString1 != null)
+      this.b = new Float(paramString1).floatValue();
+    if (paramString2 != null)
+      this.a = (1000 * Integer.parseInt(paramString2));
   }
 
-  public void b()
+  public boolean a(Context paramContext)
   {
-    if (this.d != null);
-    for (Context localContext = (Context)this.d.get(); ; localContext = null)
+    boolean bool;
+    if (this.g == null)
     {
-      if (localContext != null)
-        new Thread(new e.d(this, localContext)).start();
+      if (paramContext == null)
+        break label67;
+      this.e = ((SensorManager)paramContext.getSystemService("sensor"));
+      if (this.e.getSensorList(1).size() <= 0)
+        break label62;
+      bool = true;
+    }
+    label62: label67: for (this.g = new Boolean(bool); ; this.g = Boolean.FALSE)
+    {
+      return this.g.booleanValue();
+      bool = false;
+      break;
+    }
+  }
+
+  public void b(String paramString)
+  {
+    if (paramString != null)
+      this.j = paramString;
+  }
+
+  public boolean b()
+  {
+    return this.h;
+  }
+
+  public boolean b(Context paramContext)
+  {
+    boolean bool;
+    if (this.g == null)
+    {
+      if (paramContext == null)
+        break label67;
+      this.e = ((SensorManager)paramContext.getSystemService("sensor"));
+      if (this.e.getSensorList(2).size() <= 0)
+        break label62;
+      bool = true;
+    }
+    label62: label67: for (this.g = new Boolean(bool); ; this.g = Boolean.FALSE)
+    {
+      return this.g.booleanValue();
+      bool = false;
+      break;
+    }
+  }
+
+  public void c()
+  {
+    this.h = false;
+    try
+    {
+      if ((this.e != null) && (this.n != null))
+        this.e.unregisterListener(this.n);
+      label30: d();
       return;
+    }
+    catch (Exception localException)
+    {
+      break label30;
+    }
+  }
+
+  public void c(String paramString)
+  {
+    if (paramString != null)
+    {
+      this.l = true;
+      this.k = paramString;
     }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.util.e
  * JD-Core Version:    0.6.2
  */

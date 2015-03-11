@@ -1,15 +1,20 @@
 package textnow.d;
 
-import android.os.Parcel;
-
-public abstract interface c<T>
+final class c
+  implements b
 {
-  public abstract T a(Parcel paramParcel, ClassLoader paramClassLoader);
+  public final String a(String paramString)
+  {
+    return null;
+  }
 
-  public abstract T[] a(int paramInt);
+  public final String b(String paramString)
+  {
+    return paramString;
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.d.c
  * JD-Core Version:    0.6.2
  */

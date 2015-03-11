@@ -1,22 +1,17 @@
 package android.support.v4.view;
 
-import android.view.VelocityTracker;
+import android.widget.TextView;
 
 final class ao
-  implements ap
+  implements am
 {
-  public final float a(VelocityTracker paramVelocityTracker, int paramInt)
+  public final void a(TextView paramTextView)
   {
-    return paramVelocityTracker.getXVelocity(paramInt);
-  }
-
-  public final float b(VelocityTracker paramVelocityTracker, int paramInt)
-  {
-    return paramVelocityTracker.getYVelocity(paramInt);
+    paramTextView.setTransformationMethod(new aq(paramTextView.getContext()));
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.view.ao
  * JD-Core Version:    0.6.2
  */

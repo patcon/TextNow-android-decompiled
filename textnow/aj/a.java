@@ -1,76 +1,68 @@
 package textnow.aj;
 
-import java.lang.reflect.Array;
-import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
-import textnow.ag.e;
-import textnow.ag.s;
-import textnow.ag.t;
-import textnow.al.c;
+import textnow.ah.b;
 
-public final class a<E> extends s<Object>
+public class a<T>
 {
-  public static final t a = new t()
-  {
-    public final <T> s<T> a(e paramAnonymouse, textnow.ak.a<T> paramAnonymousa)
-    {
-      Type localType1 = paramAnonymousa.b();
-      if ((!(localType1 instanceof GenericArrayType)) && ((!(localType1 instanceof Class)) || (!((Class)localType1).isArray())))
-        return null;
-      Type localType2 = textnow.ai.b.d(localType1);
-      return new a(paramAnonymouse, paramAnonymouse.a(textnow.ak.a.a(localType2)), textnow.ai.b.b(localType2));
-    }
-  };
-  private final Class<E> b;
-  private final s<E> c;
+  final Class<? super T> b;
+  final Type c;
+  final int d;
 
-  public a(e parame, s<E> params, Class<E> paramClass)
+  protected a()
   {
-    this.c = new o(parame, params, paramClass);
-    this.b = paramClass;
+    Type localType = getClass().getGenericSuperclass();
+    if ((localType instanceof Class))
+      throw new RuntimeException("Missing type parameter.");
+    this.c = b.a(((java.lang.reflect.ParameterizedType)localType).getActualTypeArguments()[0]);
+    this.b = b.b(this.c);
+    this.d = this.c.hashCode();
   }
 
-  public final Object a(textnow.al.a parama)
+  private a(Type paramType)
   {
-    if (parama.f() == textnow.al.b.i)
-    {
-      parama.j();
-      return null;
-    }
-    ArrayList localArrayList = new ArrayList();
-    parama.a();
-    while (parama.e())
-      localArrayList.add(this.c.a(parama));
-    parama.b();
-    Object localObject = Array.newInstance(this.b, localArrayList.size());
-    for (int i = 0; i < localArrayList.size(); i++)
-      Array.set(localObject, i, localArrayList.get(i));
-    return localObject;
+    this.c = b.a((Type)textnow.ah.a.a(paramType));
+    this.b = b.b(this.c);
+    this.d = this.c.hashCode();
   }
 
-  public final void a(c paramc, Object paramObject)
+  public static <T> a<T> a(Class<T> paramClass)
   {
-    if (paramObject == null)
-    {
-      paramc.f();
-      return;
-    }
-    paramc.b();
-    int i = 0;
-    int j = Array.getLength(paramObject);
-    while (i < j)
-    {
-      Object localObject = Array.get(paramObject, i);
-      this.c.a(paramc, localObject);
-      i++;
-    }
-    paramc.c();
+    return new a(paramClass);
+  }
+
+  public static a<?> a(Type paramType)
+  {
+    return new a(paramType);
+  }
+
+  public final Class<? super T> a()
+  {
+    return this.b;
+  }
+
+  public final Type b()
+  {
+    return this.c;
+  }
+
+  public final boolean equals(Object paramObject)
+  {
+    return ((paramObject instanceof a)) && (b.a(this.c, ((a)paramObject).c));
+  }
+
+  public final int hashCode()
+  {
+    return this.d;
+  }
+
+  public final String toString()
+  {
+    return b.c(this.c);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.aj.a
  * JD-Core Version:    0.6.2
  */

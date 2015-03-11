@@ -16,11 +16,11 @@ import android.widget.TextView;
 import java.lang.ref.WeakReference;
 
 public class PagerTitleStrip extends ViewGroup
-  implements bp
+  implements bv
 {
   private static final int[] n = { 16842804, 16842901, 16842904, 16842927 };
   private static final int[] o = { 16843660 };
-  private static final ah q = new ai();
+  private static final am q = new an();
   ViewPager a;
   TextView b;
   TextView c;
@@ -32,15 +32,15 @@ public class PagerTitleStrip extends ViewGroup
   private int i;
   private boolean j;
   private boolean k;
-  private final ag l = new ag(this, (byte)0);
-  private WeakReference<af> m;
+  private final al l = new al(this, (byte)0);
+  private WeakReference<ak> m;
   private int p;
 
   static
   {
     if (Build.VERSION.SDK_INT >= 14)
     {
-      q = new aj();
+      q = new ao();
       return;
     }
   }
@@ -110,27 +110,6 @@ public class PagerTitleStrip extends ViewGroup
       this.b.setSingleLine();
       this.c.setSingleLine();
       this.d.setSingleLine();
-    }
-  }
-
-  private void a(af paramaf1, af paramaf2)
-  {
-    if (paramaf1 != null)
-    {
-      paramaf1.b(this.l);
-      this.m = null;
-    }
-    if (paramaf2 != null)
-    {
-      paramaf2.a(this.l);
-      this.m = new WeakReference(paramaf2);
-    }
-    if (this.a != null)
-    {
-      this.f = -1;
-      this.g = -1.0F;
-      a(this.a.b(), paramaf2);
-      requestLayout();
     }
   }
 
@@ -241,27 +220,70 @@ public class PagerTitleStrip extends ViewGroup
     }
   }
 
-  final void a(int paramInt, af paramaf)
+  final void a(int paramInt, ak paramak)
   {
-    if (paramaf != null)
-      paramaf.a();
-    this.j = true;
-    this.b.setText(null);
-    TextView localTextView = this.c;
-    if (paramaf != null);
-    localTextView.setText(null);
-    this.d.setText(null);
-    int i1 = getWidth() - getPaddingLeft() - getPaddingRight();
-    int i2 = getHeight() - getPaddingTop() - getPaddingBottom();
-    int i3 = View.MeasureSpec.makeMeasureSpec((int)(0.8F * i1), -2147483648);
-    int i4 = View.MeasureSpec.makeMeasureSpec(i2, -2147483648);
-    this.b.measure(i3, i4);
-    this.c.measure(i3, i4);
-    this.d.measure(i3, i4);
-    this.f = paramInt;
-    if (!this.k)
-      a(paramInt, this.g, false);
-    this.j = false;
+    int i1;
+    if (paramak != null)
+    {
+      i1 = paramak.b();
+      this.j = true;
+      if ((paramInt <= 0) || (paramak == null))
+        break label238;
+    }
+    label238: for (CharSequence localCharSequence1 = paramak.b(paramInt - 1); ; localCharSequence1 = null)
+    {
+      this.b.setText(localCharSequence1);
+      TextView localTextView = this.c;
+      if ((paramak != null) && (paramInt < i1));
+      for (CharSequence localCharSequence2 = paramak.b(paramInt); ; localCharSequence2 = null)
+      {
+        localTextView.setText(localCharSequence2);
+        int i2 = paramInt + 1;
+        CharSequence localCharSequence3 = null;
+        if (i2 < i1)
+        {
+          localCharSequence3 = null;
+          if (paramak != null)
+            localCharSequence3 = paramak.b(paramInt + 1);
+        }
+        this.d.setText(localCharSequence3);
+        int i3 = getWidth() - getPaddingLeft() - getPaddingRight();
+        int i4 = getHeight() - getPaddingTop() - getPaddingBottom();
+        int i5 = View.MeasureSpec.makeMeasureSpec((int)(0.8F * i3), -2147483648);
+        int i6 = View.MeasureSpec.makeMeasureSpec(i4, -2147483648);
+        this.b.measure(i5, i6);
+        this.c.measure(i5, i6);
+        this.d.measure(i5, i6);
+        this.f = paramInt;
+        if (!this.k)
+          a(paramInt, this.g, false);
+        this.j = false;
+        return;
+        i1 = 0;
+        break;
+      }
+    }
+  }
+
+  final void a(ak paramak1, ak paramak2)
+  {
+    if (paramak1 != null)
+    {
+      paramak1.b(this.l);
+      this.m = null;
+    }
+    if (paramak2 != null)
+    {
+      paramak2.a(this.l);
+      this.m = new WeakReference(paramak2);
+    }
+    if (this.a != null)
+    {
+      this.f = -1;
+      this.g = -1.0F;
+      a(this.a.b(), paramak2);
+      requestLayout();
+    }
   }
 
   public final int b()
@@ -276,14 +298,14 @@ public class PagerTitleStrip extends ViewGroup
     if (!(localViewParent instanceof ViewPager))
       throw new IllegalStateException("PagerTitleStrip must be a direct child of a ViewPager.");
     ViewPager localViewPager = (ViewPager)localViewParent;
-    af localaf1 = localViewPager.a();
-    localViewPager.a(this.l);
+    ak localak1 = localViewPager.a();
+    localViewPager.b(this.l);
     localViewPager.a(this.l);
     this.a = localViewPager;
     if (this.m != null);
-    for (af localaf2 = (af)this.m.get(); ; localaf2 = null)
+    for (ak localak2 = (ak)this.m.get(); ; localak2 = null)
     {
-      a(localaf2, localaf1);
+      a(localak2, localak1);
       return;
     }
   }
@@ -294,7 +316,7 @@ public class PagerTitleStrip extends ViewGroup
     if (this.a != null)
     {
       a(this.a.a(), null);
-      this.a.a(null);
+      this.a.b(null);
       this.a.a(null);
       this.a = null;
     }
@@ -343,7 +365,7 @@ public class PagerTitleStrip extends ViewGroup
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.view.PagerTitleStrip
  * JD-Core Version:    0.6.2
  */

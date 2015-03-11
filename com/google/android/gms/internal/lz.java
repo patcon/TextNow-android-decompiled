@@ -1,415 +1,236 @@
 package com.google.android.gms.internal;
 
-import java.io.UnsupportedEncodingException;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.location.Location;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.os.Looper;
+import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallbacks;
+import com.google.android.gms.common.GooglePlayServicesClient.OnConnectionFailedListener;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.common.internal.e;
+import com.google.android.gms.common.internal.e.e;
+import com.google.android.gms.common.internal.l;
+import com.google.android.gms.common.internal.o;
+import com.google.android.gms.location.LocationClient.OnAddGeofencesResultListener;
+import com.google.android.gms.location.LocationClient.OnRemoveGeofencesResultListener;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import java.util.List;
 
-public final class lz
+public class lz extends e<lx>
 {
-  private final int amW;
-  private final byte[] buffer;
-  private int position;
+  private final me<lx> Dh = new lz.c(this, null);
+  private final ly aeW = new ly(paramContext, this.Dh);
+  private final mw aeX;
+  private final lp aeY;
+  private final ie aeZ;
+  private final String afa;
 
-  private lz(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+  public lz(Context paramContext, Looper paramLooper, String paramString1, GoogleApiClient.ConnectionCallbacks paramConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener paramOnConnectionFailedListener, String paramString2)
   {
-    this.buffer = paramArrayOfByte;
-    this.position = paramInt1;
-    this.amW = (paramInt1 + paramInt2);
+    this(paramContext, paramLooper, paramString1, paramConnectionCallbacks, paramOnConnectionFailedListener, paramString2, null);
   }
 
-  public static int D(long paramLong)
+  public lz(Context paramContext, Looper paramLooper, String paramString1, GoogleApiClient.ConnectionCallbacks paramConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener paramOnConnectionFailedListener, String paramString2, String paramString3)
   {
-    return G(paramLong);
+    this(paramContext, paramLooper, paramString1, paramConnectionCallbacks, paramOnConnectionFailedListener, paramString2, paramString3, null);
   }
 
-  public static int E(long paramLong)
+  public lz(Context paramContext, Looper paramLooper, String paramString1, GoogleApiClient.ConnectionCallbacks paramConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener paramOnConnectionFailedListener, String paramString2, String paramString3, String paramString4)
   {
-    return G(I(paramLong));
+    super(paramContext, paramLooper, paramConnectionCallbacks, paramOnConnectionFailedListener, new String[0]);
+    this.afa = paramString2;
+    this.aeX = new mw(paramString1, this.Dh, paramString3);
+    this.aeY = lp.a(paramContext, paramString3, paramString4, this.Dh);
+    this.aeZ = ie.a(paramContext, this.Dh);
   }
 
-  public static int G(long paramLong)
+  public lz(Context paramContext, GooglePlayServicesClient.ConnectionCallbacks paramConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener paramOnConnectionFailedListener, String paramString)
   {
-    if ((0xFFFFFF80 & paramLong) == 0L)
-      return 1;
-    if ((0xFFFFC000 & paramLong) == 0L)
-      return 2;
-    if ((0xFFE00000 & paramLong) == 0L)
-      return 3;
-    if ((0xF0000000 & paramLong) == 0L)
-      return 4;
-    if ((0x0 & paramLong) == 0L)
-      return 5;
-    if ((0x0 & paramLong) == 0L)
-      return 6;
-    if ((0x0 & paramLong) == 0L)
-      return 7;
-    if ((0x0 & paramLong) == 0L)
-      return 8;
-    if ((0x0 & paramLong) == 0L)
-      return 9;
-    return 10;
+    super(paramContext, paramConnectionCallbacks, paramOnConnectionFailedListener, new String[0]);
+    this.afa = paramString;
+    this.aeX = new mw(paramContext.getPackageName(), this.Dh, null);
+    this.aeY = lp.a(paramContext, null, null, this.Dh);
+    this.aeZ = ie.a(paramContext, this.Dh);
   }
 
-  public static long I(long paramLong)
+  protected void a(l paraml, e.e parame)
   {
-    return paramLong << 1 ^ paramLong >> 63;
+    Bundle localBundle = new Bundle();
+    localBundle.putString("client_name", this.afa);
+    paraml.e(parame, 6171000, getContext().getPackageName(), localBundle);
   }
 
-  public static int J(boolean paramBoolean)
+  public void a(ma paramma, LocationListener paramLocationListener)
   {
-    return 1;
+    a(paramma, paramLocationListener, null);
   }
 
-  public static int b(int paramInt, double paramDouble)
+  public void a(ma paramma, LocationListener paramLocationListener, Looper paramLooper)
   {
-    return eH(paramInt) + f(paramDouble);
-  }
-
-  public static int b(int paramInt, me paramme)
-  {
-    return eH(paramInt) + c(paramme);
-  }
-
-  public static int b(int paramInt, boolean paramBoolean)
-  {
-    return eH(paramInt) + J(paramBoolean);
-  }
-
-  public static int b(int paramInt, byte[] paramArrayOfByte)
-  {
-    return eH(paramInt) + s(paramArrayOfByte);
-  }
-
-  public static lz b(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
-  {
-    return new lz(paramArrayOfByte, paramInt1, paramInt2);
-  }
-
-  public static int c(int paramInt, float paramFloat)
-  {
-    return eH(paramInt) + e(paramFloat);
-  }
-
-  public static int c(me paramme)
-  {
-    int i = paramme.oa();
-    return i + eJ(i);
-  }
-
-  public static int cz(String paramString)
-  {
-    try
+    synchronized (this.aeW)
     {
-      byte[] arrayOfByte = paramString.getBytes("UTF-8");
-      int i = eJ(arrayOfByte.length);
-      int j = arrayOfByte.length;
-      return j + i;
+      this.aeW.a(paramma, paramLocationListener, paramLooper);
+      return;
     }
-    catch (UnsupportedEncodingException localUnsupportedEncodingException)
+  }
+
+  protected lx aL(IBinder paramIBinder)
+  {
+    return lx.a.aK(paramIBinder);
+  }
+
+  public void addGeofences(List<mc> paramList, PendingIntent paramPendingIntent, LocationClient.OnAddGeofencesResultListener paramOnAddGeofencesResultListener)
+  {
+    dJ();
+    boolean bool;
+    if ((paramList != null) && (paramList.size() > 0))
     {
+      bool = true;
+      o.b(bool, "At least one geofence must be specified.");
+      o.b(paramPendingIntent, "PendingIntent must be specified.");
+      o.b(paramOnAddGeofencesResultListener, "OnAddGeofencesResultListener not provided.");
+      if (paramOnAddGeofencesResultListener != null)
+        break label78;
     }
-    throw new RuntimeException("UTF-8 not supported.");
-  }
-
-  public static int d(int paramInt, long paramLong)
-  {
-    return eH(paramInt) + D(paramLong);
-  }
-
-  public static int e(float paramFloat)
-  {
-    return 4;
-  }
-
-  public static int e(int paramInt, long paramLong)
-  {
-    return eH(paramInt) + E(paramLong);
-  }
-
-  public static int eE(int paramInt)
-  {
-    if (paramInt >= 0)
-      return eJ(paramInt);
-    return 10;
-  }
-
-  public static int eF(int paramInt)
-  {
-    return eJ(eL(paramInt));
-  }
-
-  public static int eH(int paramInt)
-  {
-    return eJ(mh.u(paramInt, 0));
-  }
-
-  public static int eJ(int paramInt)
-  {
-    if ((paramInt & 0xFFFFFF80) == 0)
-      return 1;
-    if ((paramInt & 0xFFFFC000) == 0)
-      return 2;
-    if ((0xFFE00000 & paramInt) == 0)
-      return 3;
-    if ((0xF0000000 & paramInt) == 0)
-      return 4;
-    return 5;
-  }
-
-  public static int eL(int paramInt)
-  {
-    return paramInt << 1 ^ paramInt >> 31;
-  }
-
-  public static int f(double paramDouble)
-  {
-    return 8;
-  }
-
-  public static int h(int paramInt, String paramString)
-  {
-    return eH(paramInt) + cz(paramString);
-  }
-
-  public static lz q(byte[] paramArrayOfByte)
-  {
-    return b(paramArrayOfByte, 0, paramArrayOfByte.length);
-  }
-
-  public static int r(int paramInt1, int paramInt2)
-  {
-    return eH(paramInt1) + eE(paramInt2);
-  }
-
-  public static int s(int paramInt1, int paramInt2)
-  {
-    return eH(paramInt1) + eF(paramInt2);
-  }
-
-  public static int s(byte[] paramArrayOfByte)
-  {
-    return eJ(paramArrayOfByte.length) + paramArrayOfByte.length;
-  }
-
-  public final void B(long paramLong)
-  {
-    F(paramLong);
-  }
-
-  public final void C(long paramLong)
-  {
-    F(I(paramLong));
-  }
-
-  public final void F(long paramLong)
-  {
-    while (true)
+    label78: for (Object localObject = null; ; localObject = new lz.b(paramOnAddGeofencesResultListener, this))
     {
-      if ((0xFFFFFF80 & paramLong) == 0L)
+      ((lx)gS()).a(paramList, paramPendingIntent, (lw)localObject, getContext().getPackageName());
+      return;
+      bool = false;
+      break;
+    }
+  }
+
+  public void b(ma paramma, PendingIntent paramPendingIntent)
+  {
+    this.aeW.b(paramma, paramPendingIntent);
+  }
+
+  public void disconnect()
+  {
+    synchronized (this.aeW)
+    {
+      if (isConnected())
       {
-        b((byte)(int)paramLong);
-        return;
+        this.aeW.removeAllListeners();
+        this.aeW.lY();
       }
-      b((byte)(0x80 | 0x7F & (int)paramLong));
-      paramLong >>>= 7;
-    }
-  }
-
-  public final void H(long paramLong)
-  {
-    b((byte)(0xFF & (int)paramLong));
-    b((byte)(0xFF & (int)(paramLong >> 8)));
-    b((byte)(0xFF & (int)(paramLong >> 16)));
-    b((byte)(0xFF & (int)(paramLong >> 24)));
-    b((byte)(0xFF & (int)(paramLong >> 32)));
-    b((byte)(0xFF & (int)(paramLong >> 40)));
-    b((byte)(0xFF & (int)(paramLong >> 48)));
-    b((byte)(0xFF & (int)(paramLong >> 56)));
-  }
-
-  public final void I(boolean paramBoolean)
-  {
-    if (paramBoolean);
-    for (int i = 1; ; i = 0)
-    {
-      b((byte)i);
+      super.disconnect();
       return;
     }
   }
 
-  public final void a(int paramInt, double paramDouble)
+  public Location getLastLocation()
   {
-    t(paramInt, 1);
-    e(paramDouble);
+    return this.aeW.getLastLocation();
   }
 
-  public final void a(int paramInt, me paramme)
+  protected String getServiceDescriptor()
   {
-    t(paramInt, 2);
-    b(paramme);
+    return "com.google.android.gms.location.internal.IGoogleLocationManagerService";
   }
 
-  public final void a(int paramInt, boolean paramBoolean)
+  protected String getStartServiceAction()
   {
-    t(paramInt, 0);
-    I(paramBoolean);
+    return "com.google.android.location.internal.GoogleLocationManagerService.START";
   }
 
-  public final void a(int paramInt, byte[] paramArrayOfByte)
+  public void removeActivityUpdates(PendingIntent paramPendingIntent)
   {
-    t(paramInt, 2);
-    r(paramArrayOfByte);
+    dJ();
+    o.i(paramPendingIntent);
+    ((lx)gS()).removeActivityUpdates(paramPendingIntent);
   }
 
-  public final void b(byte paramByte)
+  public void removeGeofences(PendingIntent paramPendingIntent, LocationClient.OnRemoveGeofencesResultListener paramOnRemoveGeofencesResultListener)
   {
-    if (this.position == this.amW)
-      throw new lz.a(this.position, this.amW);
-    byte[] arrayOfByte = this.buffer;
-    int i = this.position;
-    this.position = (i + 1);
-    arrayOfByte[i] = paramByte;
-  }
-
-  public final void b(int paramInt, float paramFloat)
-  {
-    t(paramInt, 5);
-    d(paramFloat);
-  }
-
-  public final void b(int paramInt, long paramLong)
-  {
-    t(paramInt, 0);
-    F(paramLong);
-  }
-
-  public final void b(int paramInt, String paramString)
-  {
-    t(paramInt, 2);
-    cy(paramString);
-  }
-
-  public final void b(me paramme)
-  {
-    eI(paramme.nZ());
-    paramme.a(this);
-  }
-
-  public final void c(int paramInt, long paramLong)
-  {
-    t(paramInt, 0);
-    C(paramLong);
-  }
-
-  public final void c(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
-  {
-    if (this.amW - this.position >= paramInt2)
+    dJ();
+    o.b(paramPendingIntent, "PendingIntent must be specified.");
+    o.b(paramOnRemoveGeofencesResultListener, "OnRemoveGeofencesResultListener not provided.");
+    if (paramOnRemoveGeofencesResultListener == null);
+    for (Object localObject = null; ; localObject = new lz.b(paramOnRemoveGeofencesResultListener, this))
     {
-      System.arraycopy(paramArrayOfByte, paramInt1, this.buffer, this.position, paramInt2);
-      this.position = (paramInt2 + this.position);
+      ((lx)gS()).a(paramPendingIntent, (lw)localObject, getContext().getPackageName());
       return;
     }
-    throw new lz.a(this.position, this.amW);
   }
 
-  public final void cy(String paramString)
+  public void removeGeofences(List<String> paramList, LocationClient.OnRemoveGeofencesResultListener paramOnRemoveGeofencesResultListener)
   {
-    byte[] arrayOfByte = paramString.getBytes("UTF-8");
-    eI(arrayOfByte.length);
-    t(arrayOfByte);
-  }
-
-  public final void d(float paramFloat)
-  {
-    eK(Float.floatToIntBits(paramFloat));
-  }
-
-  public final void e(double paramDouble)
-  {
-    H(Double.doubleToLongBits(paramDouble));
-  }
-
-  public final void eC(int paramInt)
-  {
-    if (paramInt >= 0)
+    dJ();
+    boolean bool;
+    String[] arrayOfString;
+    if ((paramList != null) && (paramList.size() > 0))
     {
-      eI(paramInt);
+      bool = true;
+      o.b(bool, "geofenceRequestIds can't be null nor empty.");
+      o.b(paramOnRemoveGeofencesResultListener, "OnRemoveGeofencesResultListener not provided.");
+      arrayOfString = (String[])paramList.toArray(new String[0]);
+      if (paramOnRemoveGeofencesResultListener != null)
+        break label83;
+    }
+    label83: for (Object localObject = null; ; localObject = new lz.b(paramOnRemoveGeofencesResultListener, this))
+    {
+      ((lx)gS()).a(arrayOfString, (lw)localObject, getContext().getPackageName());
+      return;
+      bool = false;
+      break;
+    }
+  }
+
+  public void removeLocationUpdates(PendingIntent paramPendingIntent)
+  {
+    this.aeW.removeLocationUpdates(paramPendingIntent);
+  }
+
+  public void removeLocationUpdates(LocationListener paramLocationListener)
+  {
+    this.aeW.removeLocationUpdates(paramLocationListener);
+  }
+
+  public void requestActivityUpdates(long paramLong, PendingIntent paramPendingIntent)
+  {
+    dJ();
+    o.i(paramPendingIntent);
+    if (paramLong >= 0L);
+    for (boolean bool = true; ; bool = false)
+    {
+      o.b(bool, "detectionIntervalMillis must be >= 0");
+      ((lx)gS()).a(paramLong, true, paramPendingIntent);
       return;
     }
-    F(paramInt);
   }
 
-  public final void eD(int paramInt)
+  public void requestLocationUpdates(LocationRequest paramLocationRequest, PendingIntent paramPendingIntent)
   {
-    eI(eL(paramInt));
+    this.aeW.requestLocationUpdates(paramLocationRequest, paramPendingIntent);
   }
 
-  public final void eG(int paramInt)
+  public void requestLocationUpdates(LocationRequest paramLocationRequest, LocationListener paramLocationListener, Looper paramLooper)
   {
-    b((byte)paramInt);
-  }
-
-  public final void eI(int paramInt)
-  {
-    while (true)
+    synchronized (this.aeW)
     {
-      if ((paramInt & 0xFFFFFF80) == 0)
-      {
-        b((byte)paramInt);
-        return;
-      }
-      b((byte)(0x80 | paramInt & 0x7F));
-      paramInt >>>= 7;
+      this.aeW.requestLocationUpdates(paramLocationRequest, paramLocationListener, paramLooper);
+      return;
     }
   }
 
-  public final void eK(int paramInt)
+  public void setMockLocation(Location paramLocation)
   {
-    b((byte)(paramInt & 0xFF));
-    b((byte)(0xFF & paramInt >> 8));
-    b((byte)(0xFF & paramInt >> 16));
-    b((byte)(0xFF & paramInt >> 24));
+    this.aeW.setMockLocation(paramLocation);
   }
 
-  public final int nQ()
+  public void setMockMode(boolean paramBoolean)
   {
-    return this.amW - this.position;
-  }
-
-  public final void nR()
-  {
-    if (nQ() != 0)
-      throw new IllegalStateException("Did not write as much data as expected.");
-  }
-
-  public final void p(int paramInt1, int paramInt2)
-  {
-    t(paramInt1, 0);
-    eC(paramInt2);
-  }
-
-  public final void q(int paramInt1, int paramInt2)
-  {
-    t(paramInt1, 0);
-    eD(paramInt2);
-  }
-
-  public final void r(byte[] paramArrayOfByte)
-  {
-    eI(paramArrayOfByte.length);
-    t(paramArrayOfByte);
-  }
-
-  public final void t(int paramInt1, int paramInt2)
-  {
-    eI(mh.u(paramInt1, paramInt2));
-  }
-
-  public final void t(byte[] paramArrayOfByte)
-  {
-    c(paramArrayOfByte, 0, paramArrayOfByte.length);
+    this.aeW.setMockMode(paramBoolean);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.lz
  * JD-Core Version:    0.6.2
  */

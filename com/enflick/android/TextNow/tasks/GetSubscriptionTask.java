@@ -1,10 +1,10 @@
 package com.enflick.android.TextNow.tasks;
 
 import com.enflick.android.TextNow.api.responsemodel.Subscription;
-import com.enflick.android.TextNow.api.users.SubscriptionsGet;
+import com.enflick.android.TextNow.api.users.SubscriptionGet;
 import com.enflick.android.TextNow.api.users.p;
-import textnow.s.i;
-import textnow.u.q;
+import textnow.x.i;
+import textnow.z.s;
 
 public class GetSubscriptionTask extends c
 {
@@ -18,26 +18,25 @@ public class GetSubscriptionTask extends c
   public void run()
   {
     p localp = new p(this.d);
-    i locali = new SubscriptionsGet(this.a).runSync(localp);
-    if (a(locali));
-    while (true)
+    i locali = new SubscriptionGet(this.a).runSync(localp);
+    s locals = new s(this.a);
+    if (a(locali))
     {
+      if ("NOT_FOUND".equals(j()))
+        locals.a();
       return;
-      Subscription[] arrayOfSubscription = (Subscription[])locali.c();
-      if (arrayOfSubscription != null)
-      {
-        if (arrayOfSubscription.length > 0);
-        for (Subscription localSubscription = arrayOfSubscription[0]; localSubscription != null; localSubscription = null)
-        {
-          new q(this.a).a(localSubscription);
-          return;
-        }
-      }
     }
+    Subscription localSubscription = (Subscription)locali.c();
+    if (localSubscription == null)
+    {
+      locals.a();
+      return;
+    }
+    locals.a(localSubscription);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.GetSubscriptionTask
  * JD-Core Version:    0.6.2
  */

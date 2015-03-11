@@ -1,90 +1,51 @@
 package com.google.android.gms.internal;
 
-import android.content.Intent;
-import android.os.RemoteException;
-import com.google.android.gms.ads.purchase.InAppPurchaseResult;
+import android.os.Parcel;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
-public class dj
-  implements InAppPurchaseResult
+@ez
+public final class dj
+  implements SafeParcelable
 {
-  private final df pw;
+  public static final di CREATOR = new di();
+  public final String mimeType;
+  public final String packageName;
+  public final String rp;
+  public final String rq;
+  public final String rr;
+  public final String rs;
+  public final String rt;
+  public final int versionCode;
 
-  public dj(df paramdf)
+  public dj(int paramInt, String paramString1, String paramString2, String paramString3, String paramString4, String paramString5, String paramString6, String paramString7)
   {
-    this.pw = paramdf;
+    this.versionCode = paramInt;
+    this.rp = paramString1;
+    this.rq = paramString2;
+    this.mimeType = paramString3;
+    this.packageName = paramString4;
+    this.rr = paramString5;
+    this.rs = paramString6;
+    this.rt = paramString7;
   }
 
-  public void finishPurchase()
+  public dj(String paramString1, String paramString2, String paramString3, String paramString4, String paramString5, String paramString6, String paramString7)
   {
-    try
-    {
-      this.pw.finishPurchase();
-      return;
-    }
-    catch (RemoteException localRemoteException)
-    {
-      eu.c("Could not forward finishPurchase to InAppPurchaseResult", localRemoteException);
-    }
+    this(1, paramString1, paramString2, paramString3, paramString4, paramString5, paramString6, paramString7);
   }
 
-  public String getProductId()
+  public final int describeContents()
   {
-    try
-    {
-      String str = this.pw.getProductId();
-      return str;
-    }
-    catch (RemoteException localRemoteException)
-    {
-      eu.c("Could not forward getProductId to InAppPurchaseResult", localRemoteException);
-    }
-    return null;
-  }
-
-  public Intent getPurchaseData()
-  {
-    try
-    {
-      Intent localIntent = this.pw.getPurchaseData();
-      return localIntent;
-    }
-    catch (RemoteException localRemoteException)
-    {
-      eu.c("Could not forward getPurchaseData to InAppPurchaseResult", localRemoteException);
-    }
-    return null;
-  }
-
-  public int getResultCode()
-  {
-    try
-    {
-      int i = this.pw.getResultCode();
-      return i;
-    }
-    catch (RemoteException localRemoteException)
-    {
-      eu.c("Could not forward getPurchaseData to InAppPurchaseResult", localRemoteException);
-    }
     return 0;
   }
 
-  public boolean isVerified()
+  public final void writeToParcel(Parcel paramParcel, int paramInt)
   {
-    try
-    {
-      boolean bool = this.pw.isVerified();
-      return bool;
-    }
-    catch (RemoteException localRemoteException)
-    {
-      eu.c("Could not forward isVerified to InAppPurchaseResult", localRemoteException);
-    }
-    return false;
+    di.a(this, paramParcel, paramInt);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.dj
  * JD-Core Version:    0.6.2
  */

@@ -3,9 +3,9 @@ package com.enflick.android.TextNow.tasks;
 import android.net.Uri;
 import com.enflick.android.TextNow.api.common.TNDownloadCommand;
 import java.io.InputStream;
-import textnow.q.g;
-import textnow.q.h;
-import textnow.u.r;
+import textnow.v.g;
+import textnow.v.h;
+import textnow.z.u;
 
 public class DownloadVoicemailTask extends c
 {
@@ -23,11 +23,11 @@ public class DownloadVoicemailTask extends c
 
   public void run()
   {
-    textnow.s.i locali = new TNDownloadCommand(this.a, this.d).a();
+    textnow.x.i locali = new TNDownloadCommand(this.a, this.d).a();
     if (a(locali));
     do
     {
-      textnow.q.i locali1;
+      textnow.v.i locali1;
       do
       {
         return;
@@ -38,14 +38,14 @@ public class DownloadVoicemailTask extends c
       this.f = locali1.b().toString();
     }
     while (this.f == null);
-    r localr = new r(this.a);
-    localr.z(this.e);
-    localr.y(this.f);
-    localr.n();
+    u localu = new u(this.a);
+    localu.z(this.e);
+    localu.y(this.f);
+    localu.B();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.DownloadVoicemailTask
  * JD-Core Version:    0.6.2
  */

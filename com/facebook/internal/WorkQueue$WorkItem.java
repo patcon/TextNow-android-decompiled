@@ -9,7 +9,7 @@ abstract interface WorkQueue$WorkItem
   public abstract void moveToFront();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.internal.WorkQueue.WorkItem
  * JD-Core Version:    0.6.2
  */

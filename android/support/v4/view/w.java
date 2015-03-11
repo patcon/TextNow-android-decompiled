@@ -1,32 +1,15 @@
 package android.support.v4.view;
 
-import android.view.MenuItem;
-import android.view.View;
+import android.view.ViewGroup.MarginLayoutParams;
 
-final class w
-  implements z
+abstract interface w
 {
-  public final MenuItem a(MenuItem paramMenuItem, View paramView)
-  {
-    return paramMenuItem;
-  }
+  public abstract int a(ViewGroup.MarginLayoutParams paramMarginLayoutParams);
 
-  public final View a(MenuItem paramMenuItem)
-  {
-    return null;
-  }
-
-  public final void a(MenuItem paramMenuItem, int paramInt)
-  {
-  }
-
-  public final MenuItem b(MenuItem paramMenuItem, int paramInt)
-  {
-    return paramMenuItem;
-  }
+  public abstract int b(ViewGroup.MarginLayoutParams paramMarginLayoutParams);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.view.w
  * JD-Core Version:    0.6.2
  */

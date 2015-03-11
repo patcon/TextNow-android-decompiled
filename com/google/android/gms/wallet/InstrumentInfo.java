@@ -8,15 +8,15 @@ public final class InstrumentInfo
   implements SafeParcelable
 {
   public static final Parcelable.Creator<InstrumentInfo> CREATOR = new h();
-  private String ajc;
-  private String ajd;
-  private final int xM;
+  private final int BR;
+  private String asN;
+  private String asO;
 
   InstrumentInfo(int paramInt, String paramString1, String paramString2)
   {
-    this.xM = paramInt;
-    this.ajc = paramString1;
-    this.ajd = paramString2;
+    this.BR = paramInt;
+    this.asN = paramString1;
+    this.asO = paramString2;
   }
 
   public final int describeContents()
@@ -26,17 +26,17 @@ public final class InstrumentInfo
 
   public final String getInstrumentDetails()
   {
-    return this.ajd;
+    return this.asO;
   }
 
   public final String getInstrumentType()
   {
-    return this.ajc;
+    return this.asN;
   }
 
   public final int getVersionCode()
   {
-    return this.xM;
+    return this.BR;
   }
 
   public final void writeToParcel(Parcel paramParcel, int paramInt)
@@ -45,7 +45,7 @@ public final class InstrumentInfo
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.InstrumentInfo
  * JD-Core Version:    0.6.2
  */

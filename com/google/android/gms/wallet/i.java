@@ -11,22 +11,22 @@ public class i
 {
   static void a(LineItem paramLineItem, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
+    int i = b.D(paramParcel);
     b.c(paramParcel, 1, paramLineItem.getVersionCode());
     b.a(paramParcel, 2, paramLineItem.description, false);
-    b.a(paramParcel, 3, paramLineItem.aje, false);
-    b.a(paramParcel, 4, paramLineItem.ajf, false);
-    b.a(paramParcel, 5, paramLineItem.aiK, false);
-    b.c(paramParcel, 6, paramLineItem.ajg);
-    b.a(paramParcel, 7, paramLineItem.aiL, false);
-    b.G(paramParcel, i);
+    b.a(paramParcel, 3, paramLineItem.asP, false);
+    b.a(paramParcel, 4, paramLineItem.asQ, false);
+    b.a(paramParcel, 5, paramLineItem.asv, false);
+    b.c(paramParcel, 6, paramLineItem.asR);
+    b.a(paramParcel, 7, paramLineItem.asw, false);
+    b.H(paramParcel, i);
   }
 
-  public LineItem bX(Parcel paramParcel)
+  public LineItem du(Parcel paramParcel)
   {
     int i = 0;
     String str1 = null;
-    int j = a.B(paramParcel);
+    int j = a.C(paramParcel);
     String str2 = null;
     String str3 = null;
     String str4 = null;
@@ -34,8 +34,8 @@ public class i
     int k = 0;
     while (paramParcel.dataPosition() < j)
     {
-      int m = a.A(paramParcel);
-      switch (a.ar(m))
+      int m = a.B(paramParcel);
+      switch (a.aD(m))
       {
       default:
         a.b(paramParcel, m);
@@ -67,13 +67,13 @@ public class i
     return new LineItem(k, str5, str4, str3, str2, i, str1);
   }
 
-  public LineItem[] dD(int paramInt)
+  public LineItem[] fv(int paramInt)
   {
     return new LineItem[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.i
  * JD-Core Version:    0.6.2
  */

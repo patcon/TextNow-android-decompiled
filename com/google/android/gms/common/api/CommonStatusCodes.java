@@ -3,7 +3,6 @@ package com.google.android.gms.common.api;
 public class CommonStatusCodes
 {
   public static final int CANCELED = 16;
-  public static final int DATE_INVALID = 12;
   public static final int DEVELOPER_ERROR = 10;
   public static final int ERROR = 13;
   public static final int INTERNAL_ERROR = 8;
@@ -53,6 +52,14 @@ public class CommonStatusCodes
       return "DEVELOPER_ERROR";
     case 11:
       return "LICENSE_CHECK_FAILED";
+    case 13:
+      return "ERROR";
+    case 14:
+      return "INTERRUPTED";
+    case 15:
+      return "TIMEOUT";
+    case 16:
+      return "CANCELED";
     case 3000:
       return "AUTH_API_INVALID_CREDENTIALS";
     case 3001:
@@ -69,7 +76,7 @@ public class CommonStatusCodes
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.common.api.CommonStatusCodes
  * JD-Core Version:    0.6.2
  */

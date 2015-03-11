@@ -15,12 +15,12 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import com.enflick.android.TextNow.tasks.AssignPhoneNumberTask;
 import com.enflick.android.TextNow.tasks.c;
-import textnow.u.r;
+import textnow.z.u;
 
-public class AreaCodeActivity extends ah
+public class AreaCodeActivity extends an
 {
-  private EditText b;
-  private Button c;
+  private EditText a;
+  private Button b;
 
   public static void a(Activity paramActivity, int paramInt, boolean paramBoolean)
   {
@@ -39,7 +39,7 @@ public class AreaCodeActivity extends ah
       boolean bool = paramc.h();
       paramc.i();
       str = paramc.j();
-      r();
+      v();
       if (bool)
         break label48;
       setResult(-1);
@@ -48,16 +48,16 @@ public class AreaCodeActivity extends ah
     label48: 
     while (c(str))
       return;
-    c(2131493025);
+    b(2131296432);
   }
 
   public void onCreate(Bundle paramBundle)
   {
     super.onCreate(paramBundle);
-    setContentView(2130903066);
-    b(false);
-    this.b = ((EditText)findViewById(2131165287));
-    this.b.setOnEditorActionListener(new TextView.OnEditorActionListener()
+    setContentView(2130903070);
+    d(false);
+    this.a = ((EditText)findViewById(2131558523));
+    this.a.setOnEditorActionListener(new TextView.OnEditorActionListener()
     {
       public final boolean onEditorAction(TextView paramAnonymousTextView, int paramAnonymousInt, KeyEvent paramAnonymousKeyEvent)
       {
@@ -69,8 +69,8 @@ public class AreaCodeActivity extends ah
         return false;
       }
     });
-    this.c = ((Button)findViewById(2131165288));
-    this.c.setOnClickListener(new View.OnClickListener()
+    this.b = ((Button)findViewById(2131558524));
+    this.b.setOnClickListener(new View.OnClickListener()
     {
       public final void onClick(View paramAnonymousView)
       {
@@ -89,13 +89,13 @@ public class AreaCodeActivity extends ah
       return super.onCreateDialog(paramInt);
     case 1:
     }
-    return new AlertDialog.Builder(this).setTitle(2131493092).setMessage(2131493093).setPositiveButton(2131493020, null).setCancelable(false).create();
+    return new AlertDialog.Builder(this).setTitle(2131296499).setMessage(2131296500).setPositiveButton(2131296427, null).setCancelable(false).create();
   }
 
   protected void onResume()
   {
     super.onResume();
-    if (!TextUtils.isEmpty(new r(this).c()))
+    if (!TextUtils.isEmpty(new u(this).c()))
     {
       setResult(-1);
       finish();
@@ -105,11 +105,11 @@ public class AreaCodeActivity extends ah
   protected void onStart()
   {
     super.onStart();
-    this.b.requestFocus();
+    this.a.requestFocus();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.activities.AreaCodeActivity
  * JD-Core Version:    0.6.2
  */

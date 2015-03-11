@@ -1,27 +1,27 @@
 package textnow.ay;
 
-import android.widget.RelativeLayout.LayoutParams;
-import java.util.List;
-import org.apache.http.NameValuePair;
+import android.net.http.SslError;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebView;
 
-public abstract interface i
+final class i extends f
 {
-  public abstract void a();
+  private i(h paramh)
+  {
+    super(paramh);
+  }
 
-  public abstract void a(float paramFloat, int paramInt);
-
-  public abstract void a(int paramInt);
-
-  public abstract void a(RelativeLayout.LayoutParams paramLayoutParams, int paramInt);
-
-  public abstract void a(String paramString1, String paramString2, int paramInt);
-
-  public abstract void a(String paramString, List<NameValuePair> paramList);
-
-  public abstract void a(l paraml);
+  public final void onReceivedSslError(WebView paramWebView, SslErrorHandler paramSslErrorHandler, SslError paramSslError)
+  {
+    super.onReceivedSslError(paramWebView, paramSslErrorHandler, paramSslError);
+    this.b.d.a(new a("An SSL Error Occured.", -1, ""));
+    super.a();
+    paramWebView.clearView();
+    paramWebView.loadUrl("about:blank");
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.ay.i
  * JD-Core Version:    0.6.2
  */

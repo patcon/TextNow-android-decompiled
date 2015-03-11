@@ -1,54 +1,35 @@
 package com.google.android.gms.internal;
 
-import android.os.Parcel;
-import android.os.Parcelable.Creator;
-import com.google.android.gms.common.internal.safeparcel.a;
-import com.google.android.gms.common.internal.safeparcel.a.a;
-import com.google.android.gms.common.internal.safeparcel.b;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import java.util.regex.Pattern;
 
-public class jt
-  implements Parcelable.Creator<js>
+public final class jt
 {
-  static void a(js paramjs, Parcel paramParcel, int paramInt)
+  private static Pattern MR = null;
+
+  public static boolean K(Context paramContext)
   {
-    int i = b.C(paramParcel);
-    b.a(paramParcel, 1, paramjs.qX, false);
-    b.c(paramParcel, 1000, paramjs.xM);
-    b.G(paramParcel, i);
+    return paramContext.getPackageManager().hasSystemFeature("android.hardware.type.watch");
   }
 
-  public js by(Parcel paramParcel)
+  public static int aN(int paramInt)
   {
-    int i = a.B(paramParcel);
-    int j = 0;
-    String str = null;
-    while (paramParcel.dataPosition() < i)
-    {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
-      {
-      default:
-        a.b(paramParcel, k);
-        break;
-      case 1:
-        str = a.o(paramParcel, k);
-        break;
-      case 1000:
-        j = a.g(paramParcel, k);
-      }
-    }
-    if (paramParcel.dataPosition() != i)
-      throw new a.a("Overread allowed size end=" + i, paramParcel);
-    return new js(j, str);
+    return paramInt / 1000;
   }
 
-  public js[] cT(int paramInt)
+  public static int aO(int paramInt)
   {
-    return new js[paramInt];
+    return paramInt % 1000 / 100;
+  }
+
+  public static boolean aP(int paramInt)
+  {
+    return aO(paramInt) == 3;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.jt
  * JD-Core Version:    0.6.2
  */

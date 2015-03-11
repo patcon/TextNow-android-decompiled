@@ -3,44 +3,50 @@ package com.google.android.gms.internal;
 import android.os.Parcel;
 import android.os.Parcelable.Creator;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
+import com.google.android.gms.fitness.data.DataSource;
 
-public final class li
+public class li
   implements SafeParcelable
 {
   public static final Parcelable.Creator<li> CREATOR = new lj();
-  String[] ake;
-  byte[][] akf;
-  private final int xM;
+  private final int BR;
+  private final DataSource Sq;
 
-  li()
+  li(int paramInt, DataSource paramDataSource)
   {
-    this(1, new String[0], new byte[0][]);
+    this.BR = paramInt;
+    this.Sq = paramDataSource;
   }
 
-  li(int paramInt, String[] paramArrayOfString, byte[][] paramArrayOfByte)
-  {
-    this.xM = paramInt;
-    this.ake = paramArrayOfString;
-    this.akf = paramArrayOfByte;
-  }
-
-  public final int describeContents()
+  public int describeContents()
   {
     return 0;
   }
 
-  public final int getVersionCode()
+  public DataSource getDataSource()
   {
-    return this.xM;
+    return this.Sq;
   }
 
-  public final void writeToParcel(Parcel paramParcel, int paramInt)
+  int getVersionCode()
+  {
+    return this.BR;
+  }
+
+  public String toString()
+  {
+    Object[] arrayOfObject = new Object[1];
+    arrayOfObject[0] = this.Sq;
+    return String.format("ApplicationUnregistrationRequest{%s}", arrayOfObject);
+  }
+
+  public void writeToParcel(Parcel paramParcel, int paramInt)
   {
     lj.a(this, paramParcel, paramInt);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.li
  * JD-Core Version:    0.6.2
  */

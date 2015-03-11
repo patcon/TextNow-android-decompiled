@@ -1,9 +1,9 @@
 package com.stripe.model;
 
 import java.lang.reflect.Type;
-import textnow.z.k;
-import textnow.z.l;
-import textnow.z.m;
+import textnow.af.k;
+import textnow.af.l;
+import textnow.af.m;
 
 public class StripeRawJsonObjectDeserializer
   implements l<StripeRawJsonObject>
@@ -16,7 +16,7 @@ public class StripeRawJsonObjectDeserializer
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.stripe.model.StripeRawJsonObjectDeserializer
  * JD-Core Version:    0.6.2
  */

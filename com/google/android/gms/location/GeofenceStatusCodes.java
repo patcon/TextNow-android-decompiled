@@ -9,7 +9,7 @@ public final class GeofenceStatusCodes extends CommonStatusCodes
   public static final int GEOFENCE_TOO_MANY_PENDING_INTENTS = 1002;
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.location.GeofenceStatusCodes
  * JD-Core Version:    0.6.2
  */

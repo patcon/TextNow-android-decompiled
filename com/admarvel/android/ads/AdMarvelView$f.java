@@ -1,37 +1,47 @@
 package com.admarvel.android.ads;
 
-import android.app.Activity;
 import android.content.Context;
-import com.admarvel.android.util.a;
+import android.os.Handler;
+import android.view.View;
+import com.admarvel.android.util.a.b;
 import java.lang.ref.WeakReference;
 
 class AdMarvelView$f
   implements Runnable
 {
-  private final AdMarvelAd a;
-  private final Context b;
+  private final WeakReference<AdMarvelView> a;
 
-  public AdMarvelView$f(AdMarvelAd paramAdMarvelAd, Context paramContext)
+  public AdMarvelView$f(AdMarvelView paramAdMarvelView)
   {
-    this.a = paramAdMarvelAd;
-    if ((!(paramContext instanceof Activity)) && (AdMarvelView.d() != null) && (AdMarvelView.d().get() != null))
-      paramContext = (Context)AdMarvelView.d().get();
-    this.b = paramContext;
+    this.a = new WeakReference(paramAdMarvelView);
   }
 
   public void run()
   {
-    a locala = a.b(this.b);
-    if (locala != null)
+    AdMarvelView localAdMarvelView = (AdMarvelView)this.a.get();
+    if (localAdMarvelView == null);
+    Handler localHandler;
+    Context localContext;
+    AdMarvelAd localAdMarvelAd;
+    do
     {
-      int i = locala.a(this.b);
-      this.a.setAdHistoryCounter(i);
-      locala.a(this.a.getAdHistoryDumpString(), i);
+      View localView;
+      do
+      {
+        return;
+        localHandler = new Handler();
+        localContext = localAdMarvelView.getContext();
+        localView = localAdMarvelView.findViewWithTag("CURRENT");
+      }
+      while ((localView == null) || (!(localView instanceof m)));
+      localAdMarvelAd = ((m)localView).getAdMarvelAd();
     }
+    while (localAdMarvelAd == null);
+    new b().a(localAdMarvelAd, localContext, localHandler);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.AdMarvelView.f
  * JD-Core Version:    0.6.2
  */

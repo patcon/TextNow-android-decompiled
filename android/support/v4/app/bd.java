@@ -1,63 +1,60 @@
 package android.support.v4.app;
 
-import android.app.Notification;
+import android.app.Notification.Action;
+import android.app.Notification.Action.Builder;
 import android.app.Notification.Builder;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.widget.RemoteViews;
+import android.app.RemoteInput;
+import android.os.Parcelable;
+import java.util.ArrayList;
 
-final class bd extends ba
+final class bd
 {
-  public final Notification a(av paramav)
+  private static Notification.Action a(bi parambi)
   {
-    Context localContext = paramav.a;
-    Notification localNotification = paramav.B;
-    CharSequence localCharSequence1 = paramav.b;
-    CharSequence localCharSequence2 = paramav.c;
-    CharSequence localCharSequence3 = paramav.h;
-    RemoteViews localRemoteViews = paramav.f;
-    int i = paramav.i;
-    PendingIntent localPendingIntent1 = paramav.d;
-    PendingIntent localPendingIntent2 = paramav.e;
-    Bitmap localBitmap = paramav.g;
-    int j = paramav.o;
-    int k = paramav.p;
-    boolean bool1 = paramav.q;
-    Notification.Builder localBuilder1 = new Notification.Builder(localContext).setWhen(localNotification.when).setSmallIcon(localNotification.icon, localNotification.iconLevel).setContent(localNotification.contentView).setTicker(localNotification.tickerText, localRemoteViews).setSound(localNotification.sound, localNotification.audioStreamType).setVibrate(localNotification.vibrate).setLights(localNotification.ledARGB, localNotification.ledOnMS, localNotification.ledOffMS);
-    boolean bool2;
-    boolean bool3;
-    label187: boolean bool4;
-    label209: Notification.Builder localBuilder4;
-    if ((0x2 & localNotification.flags) != 0)
+    Notification.Action.Builder localBuilder = new Notification.Action.Builder(parambi.a(), parambi.b(), parambi.c()).addExtras(parambi.d());
+    ch[] arrayOfch = parambi.e();
+    if (arrayOfch != null)
     {
-      bool2 = true;
-      Notification.Builder localBuilder2 = localBuilder1.setOngoing(bool2);
-      if ((0x8 & localNotification.flags) == 0)
-        break label304;
-      bool3 = true;
-      Notification.Builder localBuilder3 = localBuilder2.setOnlyAlertOnce(bool3);
-      if ((0x10 & localNotification.flags) == 0)
-        break label310;
-      bool4 = true;
-      localBuilder4 = localBuilder3.setAutoCancel(bool4).setDefaults(localNotification.defaults).setContentTitle(localCharSequence1).setContentText(localCharSequence2).setContentInfo(localCharSequence3).setContentIntent(localPendingIntent1).setDeleteIntent(localNotification.deleteIntent);
-      if ((0x80 & localNotification.flags) == 0)
-        break label316;
+      RemoteInput[] arrayOfRemoteInput = cf.a(arrayOfch);
+      int i = arrayOfRemoteInput.length;
+      for (int j = 0; j < i; j++)
+        localBuilder.addRemoteInput(arrayOfRemoteInput[j]);
     }
-    label304: label310: label316: for (boolean bool5 = true; ; bool5 = false)
+    return localBuilder.build();
+  }
+
+  public static ArrayList<Parcelable> a(bi[] paramArrayOfbi)
+  {
+    Object localObject;
+    if (paramArrayOfbi == null)
+      localObject = null;
+    while (true)
     {
-      return localBuilder4.setFullScreenIntent(localPendingIntent2, bool5).setLargeIcon(localBitmap).setNumber(i).setProgress(j, k, bool1).getNotification();
-      bool2 = false;
-      break;
-      bool3 = false;
-      break label187;
-      bool4 = false;
-      break label209;
+      return localObject;
+      localObject = new ArrayList(paramArrayOfbi.length);
+      int i = paramArrayOfbi.length;
+      for (int j = 0; j < i; j++)
+        ((ArrayList)localObject).add(a(paramArrayOfbi[j]));
     }
+  }
+
+  public static void a(Notification.Builder paramBuilder, bi parambi)
+  {
+    Notification.Action.Builder localBuilder = new Notification.Action.Builder(parambi.a(), parambi.b(), parambi.c());
+    if (parambi.e() != null)
+    {
+      RemoteInput[] arrayOfRemoteInput = cf.a(parambi.e());
+      int i = arrayOfRemoteInput.length;
+      for (int j = 0; j < i; j++)
+        localBuilder.addRemoteInput(arrayOfRemoteInput[j]);
+    }
+    if (parambi.d() != null)
+      localBuilder.addExtras(parambi.d());
+    paramBuilder.addAction(localBuilder.build());
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.app.bd
  * JD-Core Version:    0.6.2
  */

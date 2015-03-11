@@ -1,117 +1,164 @@
 package com.admarvel.android.ads;
 
 import android.content.Context;
-import android.location.Location;
-import android.location.LocationManager;
-import java.lang.ref.WeakReference;
-import java.util.List;
+import com.admarvel.android.util.Logging;
+import java.util.HashMap;
+import java.util.Map;
 
-class l
+public class l
 {
-  private static l a = null;
-  private static l.a b = null;
-  private static l.a c = null;
-  private String d;
-  private String e;
-  private WeakReference<AdMarvelInternalWebView> f;
+  private AdMarvelView.AdMarvelViewListener a;
+  private AdMarvelView.AdMarvelViewExtendedListener b;
 
-  public static l a()
+  public void a()
   {
-    if (a == null)
-      a = new l();
-    return a;
+    if (this.a != null)
+    {
+      Logging.log("onExpand");
+      this.a.onExpand();
+      return;
+    }
+    Logging.log("onExpand - No listener found");
   }
 
-  private boolean a(Context paramContext, String paramString)
+  public void a(Context paramContext, AdMarvelView paramAdMarvelView, int paramInt1, AdMarvelUtils.ErrorReason paramErrorReason, String paramString1, int paramInt2, Map<String, Object> paramMap, String paramString2)
   {
-    LocationManager localLocationManager = (LocationManager)paramContext.getSystemService("location");
     try
     {
-      List localList = localLocationManager.getAllProviders();
-      for (int i = 0; ; i++)
+      AdMarvelAnalyticsAdapter localAdMarvelAnalyticsAdapter = AdMarvelAnalyticsAdapterInstances.getInstance("com.admarvel.android.admarvelmologiqadapter.AdMarvelMologiqAdapter", paramContext);
+      if (paramMap == null)
+        paramMap = new HashMap();
+      localAdMarvelAnalyticsAdapter.onFailedToReceiveAd(paramString1, paramInt2, paramMap, paramString2);
+      label35: if (this.a != null)
       {
-        int j = localList.size();
-        boolean bool = false;
-        if (i < j)
-        {
-          if (paramString.equals((String)localList.get(i)))
-            bool = true;
-        }
-        else
-          return bool;
+        Logging.log("onFailedToReceiveAd : Error Code " + paramInt1);
+        this.a.onFailedToReceiveAd(paramAdMarvelView, paramInt1, paramErrorReason);
+        return;
       }
-    }
-    catch (Throwable localThrowable)
-    {
-    }
-    return false;
-  }
-
-  public Location a(AdMarvelInternalWebView paramAdMarvelInternalWebView)
-  {
-    Location localLocation = null;
-    if ((!ab.d(paramAdMarvelInternalWebView.getContext(), "android.permission.ACCESS_COARSE_LOCATION")) && (!ab.d(paramAdMarvelInternalWebView.getContext(), "android.permission.ACCESS_FINE_LOCATION")))
-      return null;
-    LocationManager localLocationManager = (LocationManager)paramAdMarvelInternalWebView.getContext().getSystemService("location");
-    List localList = localLocationManager.getProviders(true);
-    for (int i = -1 + localList.size(); i >= 0; i--)
-    {
-      localLocation = localLocationManager.getLastKnownLocation((String)localList.get(i));
-      if (localLocation != null)
-        break;
-    }
-    return localLocation;
-  }
-
-  public void a(Context paramContext)
-  {
-    LocationManager localLocationManager = (LocationManager)paramContext.getSystemService("location");
-    if (c != null)
-      localLocationManager.removeUpdates(c);
-    if (b != null)
-      localLocationManager.removeUpdates(b);
-    c = null;
-    b = null;
-  }
-
-  public void a(AdMarvelInternalWebView paramAdMarvelInternalWebView, String paramString)
-  {
-    if ((!ab.d(paramAdMarvelInternalWebView.getContext(), "android.permission.ACCESS_COARSE_LOCATION")) && (!ab.d(paramAdMarvelInternalWebView.getContext(), "android.permission.ACCESS_FINE_LOCATION")));
-    while (true)
-    {
+      Logging.log("onFailedToReceiveAd - No listener found");
       return;
-      LocationManager localLocationManager = (LocationManager)paramAdMarvelInternalWebView.getContext().getSystemService("location");
-      this.f = new WeakReference(paramAdMarvelInternalWebView);
-      this.e = paramString;
-      try
+    }
+    catch (Exception localException)
+    {
+      break label35;
+    }
+  }
+
+  public void a(Context paramContext, AdMarvelView paramAdMarvelView, String paramString1, int paramInt, Map<String, Object> paramMap, String paramString2)
+  {
+    try
+    {
+      AdMarvelAnalyticsAdapter localAdMarvelAnalyticsAdapter = AdMarvelAnalyticsAdapterInstances.getInstance("com.admarvel.android.admarvelmologiqadapter.AdMarvelMologiqAdapter", paramContext);
+      if (paramMap == null)
+        paramMap = new HashMap();
+      localAdMarvelAnalyticsAdapter.onReceiveAd(paramString1, paramInt, paramMap, paramString2);
+      label34: if (this.a != null)
       {
-        if ((a(paramAdMarvelInternalWebView.getContext(), "gps")) && (localLocationManager.getProvider("gps") != null))
-          b = new l.a(this, "gps", localLocationManager);
-        try
-        {
-          label91: if ((a(paramAdMarvelInternalWebView.getContext(), "network")) && (localLocationManager.getProvider("network") != null))
-            c = new l.a(this, "network", localLocationManager);
-          label127: if (c != null)
-            c.a();
-          if (b == null)
-            continue;
-          b.a();
-          return;
-        }
-        catch (Exception localException2)
-        {
-          break label127;
-        }
+        Logging.log("onReceiveAd");
+        this.a.onReceiveAd(paramAdMarvelView);
+        return;
       }
-      catch (Exception localException1)
+      Logging.log("onReceiveAd - No listener found");
+      return;
+    }
+    catch (Exception localException)
+    {
+      break label34;
+    }
+  }
+
+  public void a(Context paramContext, AdMarvelView paramAdMarvelView, String paramString1, String paramString2, int paramInt, Map<String, Object> paramMap, String paramString3)
+  {
+    try
+    {
+      AdMarvelAnalyticsAdapter localAdMarvelAnalyticsAdapter = AdMarvelAnalyticsAdapterInstances.getInstance("com.admarvel.android.admarvelmologiqadapter.AdMarvelMologiqAdapter", paramContext);
+      if (paramMap == null);
+      for (Object localObject = new HashMap(); ; localObject = paramMap)
       {
-        break label91;
+        localAdMarvelAnalyticsAdapter.onAdClick(paramString2, paramInt, (Map)localObject, paramString1, paramString3);
+        label36: if (this.a == null)
+          break;
+        Logging.log("onClickAd");
+        this.a.onClickAd(paramAdMarvelView, paramString1);
+        return;
       }
+      Logging.log("onClickAd - No listener found");
+      return;
+    }
+    catch (Exception localException)
+    {
+      break label36;
+    }
+  }
+
+  public void a(AdMarvelView.AdMarvelViewExtendedListener paramAdMarvelViewExtendedListener)
+  {
+    this.b = paramAdMarvelViewExtendedListener;
+  }
+
+  public void a(AdMarvelView.AdMarvelViewListener paramAdMarvelViewListener)
+  {
+    this.a = paramAdMarvelViewListener;
+  }
+
+  public void a(AdMarvelView paramAdMarvelView)
+  {
+    if (this.a != null)
+    {
+      Logging.log("onRequestAd");
+      this.a.onRequestAd(paramAdMarvelView);
+      return;
+    }
+    Logging.log("onRequestAd - No listener found");
+  }
+
+  public void a(AdMarvelView paramAdMarvelView, AdMarvelAd paramAdMarvelAd)
+  {
+    if (this.b != null)
+    {
+      Logging.log("onAdFetched");
+      this.b.onAdFetched(paramAdMarvelView, paramAdMarvelAd);
+      return;
+    }
+    Logging.log("onAdFetched - No listener found");
+  }
+
+  public void b()
+  {
+    if (this.a != null)
+    {
+      Logging.log("onClose");
+      this.a.onClose();
+      return;
+    }
+    Logging.log("onClose - No listener found");
+  }
+
+  public void b(Context paramContext, AdMarvelView paramAdMarvelView, String paramString1, int paramInt, Map<String, Object> paramMap, String paramString2)
+  {
+    try
+    {
+      AdMarvelAnalyticsAdapter localAdMarvelAnalyticsAdapter = AdMarvelAnalyticsAdapterInstances.getInstance("com.admarvel.android.admarvelmologiqadapter.AdMarvelMologiqAdapter", paramContext);
+      if (paramMap == null)
+        paramMap = new HashMap();
+      localAdMarvelAnalyticsAdapter.onReceiveAd(paramString1, paramInt, paramMap, paramString2);
+      label34: if (this.b != null)
+      {
+        Logging.log("onDisplayedAd");
+        this.b.onAdDisplayed(paramAdMarvelView);
+        return;
+      }
+      Logging.log("onDisplayedAd - No listener found");
+      return;
+    }
+    catch (Exception localException)
+    {
+      break label34;
     }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.l
  * JD-Core Version:    0.6.2
  */

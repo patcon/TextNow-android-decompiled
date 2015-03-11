@@ -1,132 +1,44 @@
 package com.admarvel.android.ads;
 
-import android.content.Context;
-import android.content.res.Resources;
-import android.util.TypedValue;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.RelativeLayout.LayoutParams;
-import android.widget.TextView;
-import java.lang.ref.WeakReference;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.ImageView;
+import com.admarvel.android.util.Logging;
+import java.net.URL;
 
-public class AdMarvelVideoActivity$b extends RelativeLayout
+class AdMarvelVideoActivity$b extends AsyncTask<String, Void, Bitmap>
 {
-  TextView a;
-  ProgressBar b;
-  private final Context c;
-  private boolean d = false;
-  private boolean e = true;
-  private boolean f = true;
-  private int g = 0;
-  private final WeakReference<AdMarvelVideoActivity> h;
+  ImageView a;
 
-  public AdMarvelVideoActivity$b(Context paramContext, AdMarvelVideoActivity paramAdMarvelVideoActivity)
+  public AdMarvelVideoActivity$b(AdMarvelVideoActivity paramAdMarvelVideoActivity, ImageView paramImageView)
   {
-    super(paramContext);
-    this.h = new WeakReference(paramAdMarvelVideoActivity);
-    this.c = paramContext;
-    RelativeLayout.LayoutParams localLayoutParams1 = new RelativeLayout.LayoutParams(-1, -1);
-    localLayoutParams1.addRule(13);
-    setLayoutParams(localLayoutParams1);
-    setBackgroundColor(getResources().getColor(17170445));
-    new RelativeLayout.LayoutParams(-1, a(100.0F));
-    this.a = new TextView(paramContext);
-    RelativeLayout.LayoutParams localLayoutParams2 = new RelativeLayout.LayoutParams(-2, -2);
-    this.a.setLayoutParams(localLayoutParams2);
-    if (ac.a() < 9)
-      this.b = new ProgressBar(this.c, null, 16842872);
-    for (RelativeLayout.LayoutParams localLayoutParams3 = new RelativeLayout.LayoutParams(-2, -2); ; localLayoutParams3 = new RelativeLayout.LayoutParams(a(50.0F), a(50.0F)))
+    this.a = paramImageView;
+  }
+
+  protected Bitmap a(String[] paramArrayOfString)
+  {
+    String str = paramArrayOfString[0];
+    try
     {
-      this.b.setId(189523436);
-      this.b.setVisibility(0);
-      localLayoutParams3.addRule(13);
-      addView(this.b, localLayoutParams3);
-      localLayoutParams2.addRule(3, this.b.getId());
-      localLayoutParams2.addRule(14);
-      localLayoutParams2.addRule(13);
-      addView(this.a);
-      return;
-      this.b = new ProgressBar(this.c, null, 16843401);
+      Bitmap localBitmap = BitmapFactory.decodeStream(new URL(str).openStream());
+      return localBitmap;
     }
-  }
-
-  private int a(float paramFloat)
-  {
-    return (int)TypedValue.applyDimension(1, paramFloat, getResources().getDisplayMetrics());
-  }
-
-  private void e()
-  {
-    AdMarvelVideoActivity localAdMarvelVideoActivity = (AdMarvelVideoActivity)this.h.get();
-    if (localAdMarvelVideoActivity == null);
-    do
+    catch (Exception localException)
     {
-      return;
-      LinearLayout localLinearLayout = (LinearLayout)localAdMarvelVideoActivity.findViewById(AdMarvelVideoActivity.c);
-      if (localLinearLayout != null)
-        localLinearLayout.setVisibility(0);
+      Logging.log(Log.getStackTraceString(localException));
     }
-    while (((LinearLayout)localAdMarvelVideoActivity.findViewById(AdMarvelVideoActivity.b) == null) || (!AdMarvelVideoActivity.r(localAdMarvelVideoActivity)) || (!AdMarvelVideoActivity.g(localAdMarvelVideoActivity)));
-    localAdMarvelVideoActivity.b(true);
+    return null;
   }
 
-  public boolean a()
+  protected void a(Bitmap paramBitmap)
   {
-    return this.f;
-  }
-
-  public void b()
-  {
-    setShowing(true);
-    this.b.setVisibility(0);
-    setVisibility(0);
-  }
-
-  public void c()
-  {
-    this.d = true;
-  }
-
-  public void d()
-  {
-    setShowing(false);
-    this.b.setVisibility(8);
-    setVisibility(8);
-  }
-
-  public int getProgress()
-  {
-    return this.g;
-  }
-
-  public void setCancelable(boolean paramBoolean)
-  {
-    this.e = paramBoolean;
-  }
-
-  public void setMessage(String paramString)
-  {
-    this.a.setText(paramString);
-  }
-
-  public void setProgress(int paramInt)
-  {
-    this.g = paramInt;
-    this.b.setProgress(paramInt);
-    if (paramInt >= 100)
-      d();
-    this.a.setText("Loading..." + paramInt + "% ");
-    this.a.invalidate();
-  }
-
-  public void setShowing(boolean paramBoolean)
-  {
-    this.f = paramBoolean;
+    this.a.setImageBitmap(paramBitmap);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.AdMarvelVideoActivity.b
  * JD-Core Version:    0.6.2
  */

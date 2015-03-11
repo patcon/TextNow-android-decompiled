@@ -6,13 +6,13 @@ import android.os.Bundle;
 import com.google.android.gms.ads.mediation.MediationAdapter;
 import com.google.android.gms.ads.mediation.NetworkExtras;
 import com.google.android.gms.ads.mediation.customevent.CustomEvent;
-import com.google.android.gms.internal.at;
+import com.google.android.gms.internal.bg;
 import java.util.Date;
 import java.util.Set;
 
 public final class PublisherAdRequest
 {
-  public static final String DEVICE_ID_EMULATOR = at.DEVICE_ID_EMULATOR;
+  public static final String DEVICE_ID_EMULATOR = bg.DEVICE_ID_EMULATOR;
   public static final int ERROR_CODE_INTERNAL_ERROR = 0;
   public static final int ERROR_CODE_INVALID_REQUEST = 1;
   public static final int ERROR_CODE_NETWORK_ERROR = 2;
@@ -20,76 +20,76 @@ public final class PublisherAdRequest
   public static final int GENDER_FEMALE = 2;
   public static final int GENDER_MALE = 1;
   public static final int GENDER_UNKNOWN;
-  private final at ks;
+  private final bg ld;
 
   private PublisherAdRequest(PublisherAdRequest.Builder paramBuilder)
   {
-    this.ks = new at(PublisherAdRequest.Builder.a(paramBuilder));
+    this.ld = new bg(PublisherAdRequest.Builder.a(paramBuilder));
   }
 
-  final at T()
+  public final bg V()
   {
-    return this.ks;
+    return this.ld;
   }
 
   public final Date getBirthday()
   {
-    return this.ks.getBirthday();
+    return this.ld.getBirthday();
   }
 
   public final String getContentUrl()
   {
-    return this.ks.getContentUrl();
+    return this.ld.getContentUrl();
   }
 
   public final <T extends CustomEvent> Bundle getCustomEventExtrasBundle(Class<T> paramClass)
   {
-    return this.ks.getCustomEventExtrasBundle(paramClass);
+    return this.ld.getCustomEventExtrasBundle(paramClass);
   }
 
   public final int getGender()
   {
-    return this.ks.getGender();
+    return this.ld.getGender();
   }
 
   public final Set<String> getKeywords()
   {
-    return this.ks.getKeywords();
+    return this.ld.getKeywords();
   }
 
   public final Location getLocation()
   {
-    return this.ks.getLocation();
+    return this.ld.getLocation();
   }
 
   public final boolean getManualImpressionsEnabled()
   {
-    return this.ks.getManualImpressionsEnabled();
+    return this.ld.getManualImpressionsEnabled();
   }
 
   @Deprecated
   public final <T extends NetworkExtras> T getNetworkExtras(Class<T> paramClass)
   {
-    return this.ks.getNetworkExtras(paramClass);
+    return this.ld.getNetworkExtras(paramClass);
   }
 
   public final <T extends MediationAdapter> Bundle getNetworkExtrasBundle(Class<T> paramClass)
   {
-    return this.ks.getNetworkExtrasBundle(paramClass);
+    return this.ld.getNetworkExtrasBundle(paramClass);
   }
 
   public final String getPublisherProvidedId()
   {
-    return this.ks.getPublisherProvidedId();
+    return this.ld.getPublisherProvidedId();
   }
 
   public final boolean isTestDevice(Context paramContext)
   {
-    return this.ks.isTestDevice(paramContext);
+    return this.ld.isTestDevice(paramContext);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.ads.doubleclick.PublisherAdRequest
  * JD-Core Version:    0.6.2
  */

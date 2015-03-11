@@ -1,26 +1,43 @@
 package textnow.bi;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-
-public final class g
+public enum g
 {
-  public static String a(String paramString)
+  private boolean f;
+  private boolean g;
+
+  static
   {
-    try
-    {
-      String str = URLEncoder.encode(paramString, "UTF-8");
-      return str;
-    }
-    catch (UnsupportedEncodingException localUnsupportedEncodingException)
-    {
-      localUnsupportedEncodingException.printStackTrace();
-    }
-    return "";
+    g[] arrayOfg = new g[5];
+    arrayOfg[0] = a;
+    arrayOfg[1] = b;
+    arrayOfg[2] = c;
+    arrayOfg[3] = d;
+    arrayOfg[4] = e;
+  }
+
+  private g(boolean paramBoolean1, boolean paramBoolean2)
+  {
+    this.f = paramBoolean1;
+    this.g = paramBoolean2;
+  }
+
+  public final boolean a()
+  {
+    return this.f;
+  }
+
+  public final boolean b()
+  {
+    return this.g;
+  }
+
+  public final String c()
+  {
+    return toString();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.bi.g
  * JD-Core Version:    0.6.2
  */

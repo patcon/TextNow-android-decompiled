@@ -13,8 +13,8 @@ import android.widget.ListView;
 
 public class PullToRefreshListView extends PullToRefreshAdapterViewBase<ListView>
 {
-  private textnow.af.d b;
-  private textnow.af.d c;
+  private textnow.al.d b;
+  private textnow.al.d c;
   private FrameLayout d;
   private boolean e;
   private Animation f;
@@ -63,7 +63,7 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<ListView
       {
       }
     });
-    this.g = AnimationUtils.loadAnimation(getContext(), 2130968583);
+    this.g = AnimationUtils.loadAnimation(getContext(), 2130968584);
     this.g.setDuration(200L);
     this.g.setAnimationListener(new Animation.AnimationListener()
     {
@@ -132,7 +132,7 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<ListView
       return;
     }
     super.b(false);
-    textnow.af.d locald1;
+    textnow.al.d locald1;
     int n;
     Object localObject;
     int k;
@@ -140,7 +140,7 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<ListView
     {
     default:
       locald1 = t();
-      textnow.af.d locald3 = this.c;
+      textnow.al.d locald3 = this.c;
       n = -u();
       localObject = locald3;
       k = 0;
@@ -151,7 +151,7 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<ListView
     for (int m = n; ; m = j)
     {
       locald1.h();
-      ((textnow.af.d)localObject).setVisibility(8);
+      ((textnow.al.d)localObject).setVisibility(8);
       if (!paramBoolean)
         break;
       q();
@@ -159,7 +159,7 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<ListView
       b(m);
       return;
       locald1 = r();
-      textnow.af.d locald2 = this.b;
+      textnow.al.d locald2 = this.b;
       int i = -1 + ((ListView)this.a).getCount();
       j = s();
       localObject = locald2;
@@ -176,8 +176,8 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<ListView
       super.c();
       return;
     }
-    textnow.af.d locald3;
-    textnow.af.d locald4;
+    textnow.al.d locald3;
+    textnow.al.d locald4;
     int i2;
     switch (3.a[g().ordinal()])
     {
@@ -196,10 +196,10 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<ListView
       int i1 = i2;
       Object localObject1 = locald4;
       Object localObject2 = locald3;
-      if (((textnow.af.d)localObject1).getVisibility() == 0)
+      if (((textnow.al.d)localObject1).getVisibility() == 0)
       {
-        ((textnow.af.d)localObject2).k();
-        ((textnow.af.d)localObject1).setVisibility(8);
+        ((textnow.al.d)localObject2).k();
+        ((textnow.al.d)localObject1).setVisibility(8);
         if ((n != 0) && (k() != m.e))
         {
           ((ListView)this.a).setSelection(i);
@@ -208,8 +208,8 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<ListView
       }
       super.c();
       return;
-      textnow.af.d locald1 = r();
-      textnow.af.d locald2 = this.c;
+      textnow.al.d locald1 = r();
+      textnow.al.d locald2 = this.c;
       int k = -1 + ((ListView)this.a).getCount();
       int m = s();
       if (Math.abs(((ListView)this.a).getLastVisiblePosition() - k) <= j);
@@ -246,7 +246,7 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<ListView
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.handmark.pulltorefresh.library.PullToRefreshListView
  * JD-Core Version:    0.6.2
  */

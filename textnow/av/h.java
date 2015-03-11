@@ -1,11 +1,167 @@
 package textnow.av;
 
-public final class h
+import android.view.View;
+import android.view.animation.Interpolator;
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
+
+final class h extends b
 {
-  public static final byte[] a = { -119, 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82, 0, 0, 0, 6, 0, 0, 0, 68, 8, 4, 0, 0, 0, 8, 85, -116, -92, 0, 0, 0, -74, 73, 68, 65, 84, 120, 94, -19, -109, -63, 9, -62, 80, 16, 68, 39, 49, -28, 98, 9, -42, -32, 85, 72, 31, -126, 29, -28, 106, 11, 105, -57, 46, 108, 64, -124, -100, -43, -101, 71, -15, 22, 99, -44, 63, 46, -77, -4, 36, -92, 4, 113, -105, -123, 121, 59, -61, 63, -3, 77, 8, -85, 28, 37, -42, 40, 64, 112, -63, 99, -57, -106, 15, -126, 57, -21, 39, 27, -109, 45, 83, -108, -81, -27, 27, 64, 98, -99, 98, -13, -111, 112, 88, 5, -19, -83, 12, 114, -105, -18, -88, -94, -29, 34, 2, 126, 27, -2, -64, -87, -61, 1, -88, -95, 98, -67, -109, 25, 56, 78, 99, -39, 36, 22, -112, 106, 20, -93, 58, 104, -31, 34, 62, 29, 122, 103, 86, 85, 13, 98, -55, -119, 61, 6, 127, 58, 81, 99, 0, -24, 43, 119, 28, -59, 14, 89, -47, 105, 15, 115, 118, 115, 115, -88, -47, -55, -36, 120, -74, -66, -48, -113, -87, -66, -13, -54, -109, -64, 92, 110, -71, 39, -65, 25, -36, 114, -93, 46, 95, -118, 74, 0, 0, 0, 0, 73, 69, 78, 68, -82, 66, 96, -126 };
+  ArrayList<j> a = new ArrayList();
+  private final textnow.aw.a b;
+  private final WeakReference<View> c;
+  private long d;
+  private boolean e = false;
+  private long f = 0L;
+  private boolean g = false;
+  private Interpolator h;
+  private boolean i = false;
+  private textnow.at.b j = null;
+  private i k = new i(this, (byte)0);
+  private Runnable l = new Runnable()
+  {
+    public final void run()
+    {
+      h.a(h.this);
+    }
+  };
+  private HashMap<textnow.at.a, k> m = new HashMap();
+
+  h(View paramView)
+  {
+    this.c = new WeakReference(paramView);
+    this.b = textnow.aw.a.a(paramView);
+  }
+
+  private void a(int paramInt, float paramFloat)
+  {
+    float f1;
+    float f2;
+    textnow.at.a locala;
+    int i2;
+    label190: int n;
+    switch (paramInt)
+    {
+    default:
+      f1 = 0.0F;
+      f2 = paramFloat - f1;
+      if (this.m.size() > 0)
+      {
+        Iterator localIterator = this.m.keySet().iterator();
+        k localk;
+        label245: 
+        do
+        {
+          if (!localIterator.hasNext())
+            break label451;
+          locala = (textnow.at.a)localIterator.next();
+          localk = (k)this.m.get(locala);
+          if (((paramInt & localk.a) == 0) || (localk.b == null))
+            break label445;
+          int i1 = localk.b.size();
+          i2 = 0;
+          if (i2 >= i1)
+            break label445;
+          if (((j)localk.b.get(i2)).a != paramInt)
+            break;
+          localk.b.remove(i2);
+          localk.a &= (paramInt ^ 0xFFFFFFFF);
+          n = 1;
+        }
+        while ((n == 0) || (localk.a != 0));
+      }
+      break;
+    case 1:
+    case 2:
+    case 16:
+    case 32:
+    case 64:
+    case 4:
+    case 8:
+    case 128:
+    case 256:
+    case 512:
+    }
+    while (true)
+    {
+      if (locala != null)
+        locala.b();
+      j localj = new j(paramInt, f1, f2);
+      this.a.add(localj);
+      View localView = (View)this.c.get();
+      if (localView != null)
+      {
+        localView.removeCallbacks(this.l);
+        localView.post(this.l);
+      }
+      return;
+      f1 = this.b.g();
+      break;
+      f1 = this.b.h();
+      break;
+      f1 = this.b.b();
+      break;
+      f1 = this.b.c();
+      break;
+      f1 = this.b.d();
+      break;
+      f1 = this.b.e();
+      break;
+      f1 = this.b.f();
+      break;
+      f1 = this.b.i();
+      break;
+      f1 = this.b.j();
+      break;
+      f1 = this.b.a();
+      break;
+      i2++;
+      break label190;
+      label445: n = 0;
+      break label245;
+      label451: locala = null;
+    }
+  }
+
+  public final b a(float paramFloat)
+  {
+    a(1, paramFloat);
+    return this;
+  }
+
+  public final b a(long paramLong)
+  {
+    if (paramLong < 0L)
+      throw new IllegalArgumentException("Animators cannot have negative duration: " + paramLong);
+    this.e = true;
+    this.d = paramLong;
+    return this;
+  }
+
+  public final b a(Interpolator paramInterpolator)
+  {
+    this.i = true;
+    this.h = paramInterpolator;
+    return this;
+  }
+
+  public final b a(textnow.at.b paramb)
+  {
+    this.j = paramb;
+    return this;
+  }
+
+  public final b b(float paramFloat)
+  {
+    a(2, paramFloat);
+    return this;
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.av.h
  * JD-Core Version:    0.6.2
  */

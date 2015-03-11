@@ -15,17 +15,17 @@ import android.text.TextUtils;
 public final class d extends a
   implements b
 {
-  public static final Uri d = Uri.parse("content://com.enflick.android.TextNow.TNContentProvider/group_members");
+  public static final Uri d = Uri.parse("content://com.enflick.android.TextNow.TNContentProvider/conversations");
 
-  public d(TNContentProvider paramTNContentProvider, Context paramContext, textnow.v.a parama)
+  public d(TNContentProvider paramTNContentProvider, Context paramContext, textnow.ab.a parama)
   {
     super(paramTNContentProvider, paramContext, parama);
   }
 
   public static void a(UriMatcher paramUriMatcher)
   {
-    paramUriMatcher.addURI("com.enflick.android.TextNow.TNContentProvider", "group_members", 108);
-    paramUriMatcher.addURI("com.enflick.android.TextNow.TNContentProvider", "group_members/#", 109);
+    paramUriMatcher.addURI("com.enflick.android.TextNow.TNContentProvider", "conversations", 104);
+    paramUriMatcher.addURI("com.enflick.android.TextNow.TNContentProvider", "conversations/#", 105);
   }
 
   public final int a(Uri paramUri, ContentValues paramContentValues, String paramString, String[] paramArrayOfString, int paramInt)
@@ -37,15 +37,15 @@ public final class d extends a
     {
     default:
       throw new IllegalArgumentException("Unknown URI");
-    case 109:
+    case 105:
       String str = paramUri.getLastPathSegment();
       localStringBuilder = new StringBuilder("_id=" + str);
       if (!TextUtils.isEmpty(paramString))
         localStringBuilder.append(" AND " + paramString);
       break;
-    case 108:
+    case 104:
     }
-    for (int i = localSQLiteDatabase.update("group_members", paramContentValues, localStringBuilder.toString(), paramArrayOfString); ; i = localSQLiteDatabase.update("group_members", paramContentValues, paramString, paramArrayOfString))
+    for (int i = localSQLiteDatabase.update("conversations", paramContentValues, localStringBuilder.toString(), null); ; i = localSQLiteDatabase.update("conversations", paramContentValues, paramString, paramArrayOfString))
     {
       if (bool)
         this.b.getContentResolver().notifyChange(paramUri, null);
@@ -61,9 +61,9 @@ public final class d extends a
     {
     default:
       throw new IllegalArgumentException("Unknown or Invalid URI " + paramUri);
-    case 108:
-      i = localSQLiteDatabase.delete("group_members", paramString, paramArrayOfString);
-    case 109:
+    case 104:
+      i = localSQLiteDatabase.delete("conversations", paramString, paramArrayOfString);
+    case 105:
     }
     while (true)
     {
@@ -71,9 +71,9 @@ public final class d extends a
       return i;
       String str = paramUri.getLastPathSegment();
       if (TextUtils.isEmpty(paramString))
-        i = localSQLiteDatabase.delete("group_members", "_id=" + str, null);
+        i = localSQLiteDatabase.delete("conversations", "_id=" + str, null);
       else
-        i = localSQLiteDatabase.delete("group_members", paramString + " and " + "_id" + "=" + str, paramArrayOfString);
+        i = localSQLiteDatabase.delete("conversations", paramString + " and " + "_id" + "=" + str, paramArrayOfString);
     }
   }
 
@@ -81,24 +81,26 @@ public final class d extends a
   {
     SQLiteDatabase localSQLiteDatabase = this.c.getWritableDatabase();
     SQLiteQueryBuilder localSQLiteQueryBuilder = new SQLiteQueryBuilder();
-    localSQLiteQueryBuilder.setTables("group_members");
-    if (paramInt == 109)
-      localSQLiteQueryBuilder.appendWhere("_id=" + paramUri.getLastPathSegment());
-    while (paramInt == 108)
+    localSQLiteQueryBuilder.setTables("view_conversations");
+    switch (paramInt)
     {
-      Cursor localCursor = localSQLiteQueryBuilder.query(localSQLiteDatabase, paramArrayOfString1, paramString1, paramArrayOfString2, null, null, paramString2);
-      localCursor.setNotificationUri(this.b.getContentResolver(), paramUri);
-      return localCursor;
+    default:
+      throw new IllegalArgumentException("Unknown URI");
+    case 105:
+      localSQLiteQueryBuilder.appendWhere("_id=" + paramUri.getLastPathSegment());
+    case 104:
     }
-    throw new IllegalArgumentException("Unknown URI");
+    Cursor localCursor = localSQLiteQueryBuilder.query(localSQLiteDatabase, paramArrayOfString1, paramString1, paramArrayOfString2, null, null, paramString2);
+    localCursor.setNotificationUri(this.b.getContentResolver(), paramUri);
+    return localCursor;
   }
 
   public final Uri a(Uri paramUri, ContentValues paramContentValues, int paramInt)
   {
-    if (paramInt != 108)
+    if (paramInt != 104)
       throw new IllegalArgumentException("Invalid URI for insert");
     boolean bool = a(paramContentValues);
-    long l = this.c.getWritableDatabase().insertWithOnConflict("group_members", null, paramContentValues, 5);
+    long l = this.c.getWritableDatabase().insertWithOnConflict("conversations", null, paramContentValues, 5);
     if (l > 0L)
     {
       Uri localUri = ContentUris.withAppendedId(paramUri, l);
@@ -115,21 +117,21 @@ public final class d extends a
     {
     default:
       return null;
-    case 108:
+    case 104:
       return "vnd.android.cursor.dir/com.enflick.android.TextNow-message";
-    case 109:
+    case 105:
     }
     return "vnd.android.cursor.item/com.enflick.android.TextNow-message";
   }
 
   public final void a()
   {
-    TNContentProvider.a(108, this);
-    TNContentProvider.a(109, this);
+    TNContentProvider.a(104, this);
+    TNContentProvider.a(105, this);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.persistence.contentproviders.d
  * JD-Core Version:    0.6.2
  */

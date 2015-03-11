@@ -19,7 +19,7 @@ public class SomaMopubAdapter extends CustomEventBanner
       this.a = ((ISmaato)CustomLoader.newBannerLoader(paramContext, "com.enflick.android.TextNow.customloader.wrappers.banner.SmaatoWrapper").loadWrapper(ISmaato.class, "com.enflick.android.TextNow.customloader.wrappers.banner.SmaatoWrapper"));
       label27: if (this.a == null)
         return;
-      this.a.fetchAd(paramContext, 923856987, 65831114, paramCustomEventBannerListener);
+      this.a.fetchAd(paramContext, 923856987, 65831114, new a(paramCustomEventBannerListener));
       return;
     }
     catch (Throwable localThrowable)
@@ -33,7 +33,7 @@ public class SomaMopubAdapter extends CustomEventBanner
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.ads.SomaMopubAdapter
  * JD-Core Version:    0.6.2
  */

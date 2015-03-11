@@ -1,66 +1,51 @@
 package com.google.android.gms.internal;
 
-import android.os.Parcel;
-import android.os.Parcelable.Creator;
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
+import android.os.Bundle;
 
+@ez
 public class ge
-  implements SafeParcelable
 {
-  public static final Parcelable.Creator<ge> CREATOR = new gf();
-  private String BC;
-  private final int xM;
+  private final Object mw = new Object();
+  private final String vA;
+  private final gb vx;
+  private int wc;
+  private int wd;
 
-  public ge()
+  ge(gb paramgb, String paramString)
   {
-    this(1, null);
+    this.vx = paramgb;
+    this.vA = paramString;
   }
 
-  ge(int paramInt, String paramString)
+  public ge(String paramString)
   {
-    this.xM = paramInt;
-    this.BC = paramString;
+    this(gb.cU(), paramString);
   }
 
-  public int describeContents()
+  public void d(int paramInt1, int paramInt2)
   {
-    return 0;
+    synchronized (this.mw)
+    {
+      this.wc = paramInt1;
+      this.wd = paramInt2;
+      this.vx.a(this.vA, this);
+      return;
+    }
   }
 
-  public String ec()
+  public Bundle toBundle()
   {
-    return this.BC;
-  }
-
-  public boolean equals(Object paramObject)
-  {
-    if (paramObject == this)
-      return true;
-    if (!(paramObject instanceof ge))
-      return false;
-    ge localge = (ge)paramObject;
-    return gi.a(this.BC, localge.BC);
-  }
-
-  public int getVersionCode()
-  {
-    return this.xM;
-  }
-
-  public int hashCode()
-  {
-    Object[] arrayOfObject = new Object[1];
-    arrayOfObject[0] = this.BC;
-    return hk.hashCode(arrayOfObject);
-  }
-
-  public void writeToParcel(Parcel paramParcel, int paramInt)
-  {
-    gf.a(this, paramParcel, paramInt);
+    synchronized (this.mw)
+    {
+      Bundle localBundle = new Bundle();
+      localBundle.putInt("pmnli", this.wc);
+      localBundle.putInt("pmnll", this.wd);
+      return localBundle;
+    }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ge
  * JD-Core Version:    0.6.2
  */

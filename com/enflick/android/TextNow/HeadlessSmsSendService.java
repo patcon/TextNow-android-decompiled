@@ -7,7 +7,7 @@ import android.os.Build.VERSION;
 import android.text.TextUtils;
 import com.enflick.android.TextNow.activities.MainActivity;
 import com.enflick.android.TextNow.tasks.SendSMSTask;
-import textnow.q.b;
+import textnow.v.b;
 
 public class HeadlessSmsSendService extends IntentService
 {
@@ -19,7 +19,7 @@ public class HeadlessSmsSendService extends IntentService
   protected void onHandleIntent(Intent paramIntent)
   {
     Uri localUri2;
-    if ((Build.VERSION.SDK_INT >= 19) && (b.k(this)) && ("android.intent.action.RESPOND_VIA_MESSAGE".equals(paramIntent.getAction())))
+    if ((Build.VERSION.SDK_INT >= 19) && (b.j(this)) && ("android.intent.action.RESPOND_VIA_MESSAGE".equals(paramIntent.getAction())))
     {
       Uri localUri1 = paramIntent.getData();
       new StringBuilder().append("received send via message intent: ").append(localUri1).toString();
@@ -45,7 +45,7 @@ public class HeadlessSmsSendService extends IntentService
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.HeadlessSmsSendService
  * JD-Core Version:    0.6.2
  */

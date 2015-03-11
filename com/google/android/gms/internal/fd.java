@@ -1,84 +1,22 @@
 package com.google.android.gms.internal;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.os.Parcelable.Creator;
+import android.content.Context;
 
-public class fd
-  implements Parcelable
+@ez
+public final class fd
 {
-
-  @Deprecated
-  public static final Parcelable.Creator<fd> CREATOR = new Parcelable.Creator()
+  public static gg a(Context paramContext, u paramu, fz.a parama, gv paramgv, ct paramct, fd.a parama1)
   {
-    @Deprecated
-    public final fd[] C(int paramAnonymousInt)
+    if (parama.vw.tS);
+    for (Object localObject = new fn(paramContext, paramu, new ai(), parama, parama1); ; localObject = new fe(paramContext, parama, paramgv, paramct, parama1))
     {
-      return new fd[paramAnonymousInt];
+      ((gg)localObject).start();
+      return localObject;
     }
-
-    @Deprecated
-    public final fd k(Parcel paramAnonymousParcel)
-    {
-      return new fd(paramAnonymousParcel);
-    }
-  };
-  private String mValue;
-  private String xG;
-  private String xH;
-
-  @Deprecated
-  public fd()
-  {
-  }
-
-  @Deprecated
-  fd(Parcel paramParcel)
-  {
-    readFromParcel(paramParcel);
-  }
-
-  public fd(String paramString1, String paramString2, String paramString3)
-  {
-    this.xG = paramString1;
-    this.xH = paramString2;
-    this.mValue = paramString3;
-  }
-
-  @Deprecated
-  private void readFromParcel(Parcel paramParcel)
-  {
-    this.xG = paramParcel.readString();
-    this.xH = paramParcel.readString();
-    this.mValue = paramParcel.readString();
-  }
-
-  @Deprecated
-  public int describeContents()
-  {
-    return 0;
-  }
-
-  public String getId()
-  {
-    return this.xG;
-  }
-
-  public String getValue()
-  {
-    return this.mValue;
-  }
-
-  @Deprecated
-  public void writeToParcel(Parcel paramParcel, int paramInt)
-  {
-    paramParcel.writeString(this.xG);
-    paramParcel.writeString(this.xH);
-    paramParcel.writeString(this.mValue);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.fd
  * JD-Core Version:    0.6.2
  */

@@ -1,35 +1,36 @@
 package android.support.v7.internal.widget;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.ActionMode;
 import android.view.ActionMode.Callback;
 import android.view.View;
-import android.widget.LinearLayout;
 
-public class NativeActionModeAwareLayout extends LinearLayout
+@TargetApi(11)
+public class NativeActionModeAwareLayout extends ContentFrameLayout
 {
-  private y a;
+  private z a;
 
   public NativeActionModeAwareLayout(Context paramContext, AttributeSet paramAttributeSet)
   {
     super(paramContext, paramAttributeSet);
   }
 
-  public final void a(y paramy)
+  public final void a(z paramz)
   {
-    this.a = paramy;
+    this.a = paramz;
   }
 
   public ActionMode startActionModeForChild(View paramView, ActionMode.Callback paramCallback)
   {
     if (this.a != null)
-      paramCallback = this.a.a(paramCallback);
+      return this.a.a(paramView, paramCallback);
     return super.startActionModeForChild(paramView, paramCallback);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v7.internal.widget.NativeActionModeAwareLayout
  * JD-Core Version:    0.6.2
  */

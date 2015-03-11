@@ -1,46 +1,107 @@
 package textnow.bg;
 
-import java.io.Serializable;
+import android.widget.RelativeLayout.LayoutParams;
+import com.tremorvideo.sdk.android.videoad.bc;
+import com.tremorvideo.sdk.android.videoad.dn;
 
 public final class d
-  implements Serializable
+  implements c
 {
-  private String a;
-  private b b;
+  private dn a;
+  private e b;
   private String c;
 
-  public final String a()
+  public d(dn paramdn, e parame, String paramString)
   {
-    return this.a;
+    this.a = paramdn;
+    this.b = parame;
+    this.c = paramString;
+  }
+
+  public final void a()
+  {
+    this.a.n();
+  }
+
+  public final void a(float paramFloat)
+  {
+    if (this.b != null)
+      this.b.a(paramFloat);
+  }
+
+  public final void a(RelativeLayout.LayoutParams paramLayoutParams)
+  {
+    this.a.a(paramLayoutParams);
+  }
+
+  public final void a(bc parambc, String paramString)
+  {
+    this.a.a(parambc, paramString);
   }
 
   public final void a(String paramString)
   {
-    this.a = paramString;
+    this.a.b(paramString);
   }
 
-  public final void a(b paramb)
+  // ERROR //
+  public final void a(String paramString1, String paramString2)
   {
-    this.b = paramb;
+    // Byte code:
+    //   0: aload_0
+    //   1: getfield 21	textnow/bg/d:b	Ltextnow/bg/e;
+    //   4: invokevirtual 48	textnow/bg/e:clearView	()V
+    //   7: new 50	org/json/JSONObject
+    //   10: dup
+    //   11: aload_2
+    //   12: invokespecial 52	org/json/JSONObject:<init>	(Ljava/lang/String;)V
+    //   15: astore_3
+    //   16: aload_3
+    //   17: ldc 54
+    //   19: aload_0
+    //   20: getfield 23	textnow/bg/d:c	Ljava/lang/String;
+    //   23: invokevirtual 58	org/json/JSONObject:put	(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
+    //   26: pop
+    //   27: aload_0
+    //   28: getfield 21	textnow/bg/d:b	Ltextnow/bg/e;
+    //   31: aload_1
+    //   32: aload_3
+    //   33: invokevirtual 61	textnow/bg/e:a	(Ljava/lang/String;Lorg/json/JSONObject;)V
+    //   36: return
+    //   37: astore 6
+    //   39: aconst_null
+    //   40: astore_3
+    //   41: aload 6
+    //   43: astore 4
+    //   45: aload 4
+    //   47: invokestatic 66	com/tremorvideo/sdk/android/videoad/r:a	(Ljava/lang/Throwable;)V
+    //   50: goto -23 -> 27
+    //   53: astore 4
+    //   55: goto -10 -> 45
+    //
+    // Exception table:
+    //   from	to	target	type
+    //   7	16	37	java/lang/Exception
+    //   16	27	53	java/lang/Exception
   }
 
-  public final b b()
+  public final void b()
   {
-    return this.b;
+    this.a.o();
   }
 
-  public final void b(String paramString)
+  public final void c()
   {
-    this.c = paramString;
-  }
-
-  public final String c()
-  {
-    return this.c;
+    if (this.b != null)
+    {
+      this.b.destroy();
+      this.b = null;
+      System.gc();
+    }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.bg.d
  * JD-Core Version:    0.6.2
  */

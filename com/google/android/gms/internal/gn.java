@@ -1,90 +1,55 @@
 package com.google.android.gms.internal;
 
-import android.text.TextUtils;
+import android.content.Context;
+import android.view.View;
+import android.view.Window;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import java.io.File;
 
-public class gn
+@ez
+public final class gn
 {
-  private static boolean Cl = false;
-  private boolean Cm;
-  private boolean Cn;
-  private String Co;
-  private final String mTag;
-
-  public gn(String paramString)
+  public static void a(Context paramContext, WebSettings paramWebSettings)
   {
-    this(paramString, es());
+    paramWebSettings.setAppCachePath(paramContext.getCacheDir().getAbsolutePath());
+    paramWebSettings.setAppCacheMaxSize(0L);
+    paramWebSettings.setAppCacheEnabled(true);
+    paramWebSettings.setDatabasePath(paramContext.getDatabasePath("com.google.android.gms.ads.db").getAbsolutePath());
+    paramWebSettings.setDatabaseEnabled(true);
+    paramWebSettings.setDomStorageEnabled(true);
+    paramWebSettings.setDisplayZoomControls(false);
+    paramWebSettings.setBuiltInZoomControls(true);
+    paramWebSettings.setSupportZoom(true);
   }
 
-  public gn(String paramString, boolean paramBoolean)
+  public static void a(Window paramWindow)
   {
-    this.mTag = paramString;
-    this.Cm = paramBoolean;
-    this.Cn = false;
+    paramWindow.setFlags(16777216, 16777216);
   }
 
-  private String e(String paramString, Object[] paramArrayOfObject)
+  public static void a(WebView paramWebView)
   {
-    String str = String.format(paramString, paramArrayOfObject);
-    if (!TextUtils.isEmpty(this.Co))
-      str = this.Co + str;
-    return str;
+    paramWebView.onPause();
   }
 
-  public static boolean es()
+  public static void b(WebView paramWebView)
   {
-    return Cl;
+    paramWebView.onResume();
   }
 
-  public void a(String paramString, Object[] paramArrayOfObject)
+  public static void i(View paramView)
   {
-    if (er())
-      e(paramString, paramArrayOfObject);
+    paramView.setLayerType(1, null);
   }
 
-  public void a(Throwable paramThrowable, String paramString, Object[] paramArrayOfObject)
+  public static void j(View paramView)
   {
-    if ((eq()) || (Cl))
-      e(paramString, paramArrayOfObject);
-  }
-
-  public void ap(String paramString)
-  {
-    if (TextUtils.isEmpty(paramString));
-    for (String str = null; ; str = String.format("[%s] ", new Object[] { paramString }))
-    {
-      this.Co = str;
-      return;
-    }
-  }
-
-  public void b(String paramString, Object[] paramArrayOfObject)
-  {
-    if ((eq()) || (Cl))
-      e(paramString, paramArrayOfObject);
-  }
-
-  public void c(String paramString, Object[] paramArrayOfObject)
-  {
-    e(paramString, paramArrayOfObject);
-  }
-
-  public void d(String paramString, Object[] paramArrayOfObject)
-  {
-    e(paramString, paramArrayOfObject);
-  }
-
-  public boolean eq()
-  {
-    return this.Cm;
-  }
-
-  public boolean er()
-  {
-    return this.Cn;
+    paramView.setLayerType(0, null);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.gn
  * JD-Core Version:    0.6.2
  */

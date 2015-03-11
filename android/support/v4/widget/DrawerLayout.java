@@ -8,9 +8,9 @@ import android.graphics.drawable.Drawable;
 import android.os.Build.VERSION;
 import android.os.Parcelable;
 import android.os.SystemClock;
-import android.support.v4.view.ab;
-import android.support.v4.view.aq;
-import android.support.v4.view.bi;
+import android.support.v4.view.af;
+import android.support.v4.view.av;
+import android.support.v4.view.bo;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
@@ -22,21 +22,21 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.ViewGroup.MarginLayoutParams;
 
 public class DrawerLayout extends ViewGroup
-  implements q
+  implements t
 {
-  static final j a = new l();
+  static final m a = new o();
   private static final int[] b = { 16842931 };
   private Object A;
   private boolean B;
-  private final i c = new i(this);
+  private final l c = new l(this);
   private int d;
   private int e = -1728053248;
   private float f;
   private Paint g = new Paint();
-  private final ao h;
-  private final ao i;
-  private final n j;
-  private final n k;
+  private final aw h;
+  private final aw i;
+  private final q j;
+  private final q k;
   private int l;
   private boolean m;
   private boolean n = true;
@@ -44,7 +44,7 @@ public class DrawerLayout extends ViewGroup
   private int p;
   private boolean q;
   private boolean r;
-  private m s;
+  private p s;
   private float t;
   private float u;
   private Drawable v;
@@ -57,7 +57,7 @@ public class DrawerLayout extends ViewGroup
   {
     if (Build.VERSION.SDK_INT >= 21)
     {
-      a = new k();
+      a = new n();
       return;
     }
   }
@@ -79,21 +79,21 @@ public class DrawerLayout extends ViewGroup
     float f1 = getResources().getDisplayMetrics().density;
     this.d = ((int)(0.5F + 64.0F * f1));
     float f2 = f1 * 400.0F;
-    this.j = new n(this, 3);
-    this.k = new n(this, 5);
-    this.h = ao.a(this, 1.0F, this.j);
+    this.j = new q(this, 3);
+    this.k = new q(this, 5);
+    this.h = aw.a(this, 1.0F, this.j);
     this.h.a(1);
     this.h.a(f2);
     this.j.a(this.h);
-    this.i = ao.a(this, 1.0F, this.k);
+    this.i = aw.a(this, 1.0F, this.k);
     this.i.a(2);
     this.i.a(f2);
     this.k.a(this.i);
     setFocusableInTouchMode(true);
-    aq.c(this, 1);
-    aq.a(this, new h(this));
-    bi.a(this, false);
-    if (aq.i(this))
+    av.c(this, 1);
+    av.a(this, new k(this));
+    bo.a(this, false);
+    if (av.u(this))
       a.a(this);
   }
 
@@ -134,8 +134,8 @@ public class DrawerLayout extends ViewGroup
 
   private void b(int paramInt1, int paramInt2)
   {
-    int i1 = android.support.v4.view.m.a(paramInt2, aq.e(this));
-    ao localao;
+    int i1 = android.support.v4.view.m.a(paramInt2, av.h(this));
+    aw localaw;
     if (i1 == 3)
     {
       this.o = paramInt1;
@@ -143,8 +143,8 @@ public class DrawerLayout extends ViewGroup
       {
         if (i1 != 3)
           break label78;
-        localao = this.h;
-        label34: localao.e();
+        localaw = this.h;
+        label34: localaw.e();
       }
       switch (paramInt1)
       {
@@ -164,7 +164,7 @@ public class DrawerLayout extends ViewGroup
           break;
         this.p = paramInt1;
         break;
-        localao = this.i;
+        localaw = this.i;
         break label34;
         localView2 = b(i1);
       }
@@ -191,7 +191,7 @@ public class DrawerLayout extends ViewGroup
 
   static boolean d(View paramView)
   {
-    return (0x7 & android.support.v4.view.m.a(((DrawerLayout.LayoutParams)paramView.getLayoutParams()).a, aq.e(paramView))) != 0;
+    return (0x7 & android.support.v4.view.m.a(((DrawerLayout.LayoutParams)paramView.getLayoutParams()).a, av.h(paramView))) != 0;
   }
 
   private static String g(int paramInt)
@@ -219,8 +219,8 @@ public class DrawerLayout extends ViewGroup
       localLayoutParams.d = true;
       View localView = getChildAt(0);
       if (localView != null)
-        aq.c(localView, 4);
-      aq.c(paramView, 1);
+        av.c(localView, 4);
+      av.c(paramView, 1);
     }
     while (true)
     {
@@ -252,7 +252,7 @@ public class DrawerLayout extends ViewGroup
 
   public final CharSequence a(int paramInt)
   {
-    int i1 = android.support.v4.view.m.a(paramInt, aq.e(this));
+    int i1 = android.support.v4.view.m.a(paramInt, av.h(this));
     if (i1 == 3)
       return this.y;
     if (i1 == 5)
@@ -280,8 +280,8 @@ public class DrawerLayout extends ViewGroup
 
   public final void a(int paramInt1, int paramInt2)
   {
-    Drawable localDrawable = getResources().getDrawable(2130837857);
-    int i1 = android.support.v4.view.m.a(8388611, aq.e(this));
+    Drawable localDrawable = getResources().getDrawable(2130837812);
+    int i1 = android.support.v4.view.m.a(8388611, av.h(this));
     if ((i1 & 0x3) == 3)
     {
       this.v = localDrawable;
@@ -316,8 +316,8 @@ public class DrawerLayout extends ViewGroup
             this.s.b(paramView);
           View localView2 = getChildAt(0);
           if (localView2 != null)
-            aq.c(localView2, 1);
-          aq.c(paramView, 4);
+            av.c(localView2, 1);
+          av.c(paramView, 4);
           if (hasWindowFocus())
           {
             View localView3 = getRootView();
@@ -352,8 +352,8 @@ public class DrawerLayout extends ViewGroup
             this.s.a(paramView);
           View localView1 = getChildAt(0);
           if (localView1 != null)
-            aq.c(localView1, 4);
-          aq.c(paramView, 1);
+            av.c(localView1, 4);
+          av.c(paramView, 1);
           sendAccessibilityEvent(32);
           paramView.requestFocus();
         }
@@ -361,9 +361,9 @@ public class DrawerLayout extends ViewGroup
     }
   }
 
-  public final void a(m paramm)
+  public final void a(p paramp)
   {
-    this.s = paramm;
+    this.s = paramp;
   }
 
   final void a(View paramView, float paramFloat)
@@ -379,6 +379,19 @@ public class DrawerLayout extends ViewGroup
     this.s.a(paramFloat);
   }
 
+  public final void a(Object paramObject, boolean paramBoolean)
+  {
+    this.A = paramObject;
+    this.B = paramBoolean;
+    if ((!paramBoolean) && (getBackground() == null));
+    for (boolean bool = true; ; bool = false)
+    {
+      setWillNotDraw(bool);
+      requestLayout();
+      return;
+    }
+  }
+
   final boolean a(View paramView, int paramInt)
   {
     return (paramInt & c(paramView)) == paramInt;
@@ -388,20 +401,20 @@ public class DrawerLayout extends ViewGroup
   {
     if ((paramInt > 0) || ((paramInt < 0) && (getChildCount() > 0)))
     {
-      aq.c(paramView, 4);
-      aq.a(paramView, this.c);
+      av.c(paramView, 4);
+      av.a(paramView, this.c);
     }
     while (true)
     {
       super.addView(paramView, paramInt, paramLayoutParams);
       return;
-      aq.c(paramView, 1);
+      av.c(paramView, 1);
     }
   }
 
   final View b(int paramInt)
   {
-    int i1 = 0x7 & android.support.v4.view.m.a(paramInt, aq.e(this));
+    int i1 = 0x7 & android.support.v4.view.m.a(paramInt, av.h(this));
     int i2 = getChildCount();
     for (int i3 = 0; i3 < i2; i3++)
     {
@@ -414,7 +427,7 @@ public class DrawerLayout extends ViewGroup
 
   final int c(View paramView)
   {
-    return android.support.v4.view.m.a(((DrawerLayout.LayoutParams)paramView.getLayoutParams()).a, aq.e(this));
+    return android.support.v4.view.m.a(((DrawerLayout.LayoutParams)paramView.getLayoutParams()).a, av.h(this));
   }
 
   public final void c(int paramInt)
@@ -438,7 +451,7 @@ public class DrawerLayout extends ViewGroup
       f1 = Math.max(f1, ((DrawerLayout.LayoutParams)getChildAt(i2).getLayoutParams()).b);
     this.f = f1;
     if ((this.h.a(true) | this.i.a(true)))
-      aq.b(this);
+      av.d(this);
   }
 
   public final void d(int paramInt)
@@ -632,7 +645,7 @@ public class DrawerLayout extends ViewGroup
 
   public boolean onInterceptTouchEvent(MotionEvent paramMotionEvent)
   {
-    int i1 = ab.a(paramMotionEvent);
+    int i1 = af.a(paramMotionEvent);
     boolean bool1 = this.h.a(paramMotionEvent) | this.i.a(paramMotionEvent);
     label59: int i4;
     label77: int i5;
@@ -818,10 +831,10 @@ public class DrawerLayout extends ViewGroup
       label119: View localView;
       DrawerLayout.LayoutParams localLayoutParams;
       int i11;
-      if ((this.A != null) && (aq.i(this)))
+      if ((this.A != null) && (av.u(this)))
       {
         i7 = 1;
-        int i8 = aq.e(this);
+        int i8 = av.h(this);
         int i9 = getChildCount();
         if (i2 >= i9)
           break label476;
@@ -832,7 +845,7 @@ public class DrawerLayout extends ViewGroup
           if (i7 != 0)
           {
             i11 = android.support.v4.view.m.a(localLayoutParams.a, i8);
-            if (!aq.i(localView))
+            if (!av.u(localView))
               break label270;
             a.a(localView, this.A, i11);
           }
@@ -985,7 +998,7 @@ public class DrawerLayout extends ViewGroup
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.widget.DrawerLayout
  * JD-Core Version:    0.6.2
  */

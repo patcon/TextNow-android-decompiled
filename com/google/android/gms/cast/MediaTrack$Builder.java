@@ -1,67 +1,67 @@
 package com.google.android.gms.cast;
 
-import com.google.android.gms.internal.gi;
+import com.google.android.gms.internal.ik;
 import java.util.Locale;
 import org.json.JSONObject;
 
 public class MediaTrack$Builder
 {
-  private final MediaTrack AV;
+  private final MediaTrack FF;
 
   public MediaTrack$Builder(long paramLong, int paramInt)
   {
-    this.AV = new MediaTrack(paramLong, paramInt);
+    this.FF = new MediaTrack(paramLong, paramInt);
   }
 
   public MediaTrack build()
   {
-    return this.AV;
+    return this.FF;
   }
 
   public Builder setContentId(String paramString)
   {
-    this.AV.setContentId(paramString);
+    this.FF.setContentId(paramString);
     return this;
   }
 
   public Builder setContentType(String paramString)
   {
-    this.AV.setContentType(paramString);
+    this.FF.setContentType(paramString);
     return this;
   }
 
   public Builder setCustomData(JSONObject paramJSONObject)
   {
-    this.AV.setCustomData(paramJSONObject);
+    this.FF.setCustomData(paramJSONObject);
     return this;
   }
 
   public Builder setLanguage(String paramString)
   {
-    this.AV.setLanguage(paramString);
+    this.FF.setLanguage(paramString);
     return this;
   }
 
   public Builder setLanguage(Locale paramLocale)
   {
-    this.AV.setLanguage(gi.b(paramLocale));
+    this.FF.setLanguage(ik.b(paramLocale));
     return this;
   }
 
   public Builder setName(String paramString)
   {
-    this.AV.setName(paramString);
+    this.FF.setName(paramString);
     return this;
   }
 
   public Builder setSubtype(int paramInt)
   {
-    this.AV.R(paramInt);
+    this.FF.aa(paramInt);
     return this;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.cast.MediaTrack.Builder
  * JD-Core Version:    0.6.2
  */

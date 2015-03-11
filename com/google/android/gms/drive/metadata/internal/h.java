@@ -12,21 +12,21 @@ public class h
 {
   static void a(MetadataBundle paramMetadataBundle, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
-    b.c(paramParcel, 1, paramMetadataBundle.xM);
-    b.a(paramParcel, 2, paramMetadataBundle.JS, false);
-    b.G(paramParcel, i);
+    int i = b.D(paramParcel);
+    b.c(paramParcel, 1, paramMetadataBundle.BR);
+    b.a(paramParcel, 2, paramMetadataBundle.PL, false);
+    b.H(paramParcel, i);
   }
 
-  public MetadataBundle aC(Parcel paramParcel)
+  public MetadataBundle aH(Parcel paramParcel)
   {
-    int i = a.B(paramParcel);
+    int i = a.C(paramParcel);
     int j = 0;
     Bundle localBundle = null;
     while (paramParcel.dataPosition() < i)
     {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
       {
       default:
         a.b(paramParcel, k);
@@ -43,13 +43,13 @@ public class h
     return new MetadataBundle(j, localBundle);
   }
 
-  public MetadataBundle[] by(int paramInt)
+  public MetadataBundle[] bT(int paramInt)
   {
     return new MetadataBundle[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.drive.metadata.internal.h
  * JD-Core Version:    0.6.2
  */

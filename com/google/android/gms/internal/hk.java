@@ -1,26 +1,36 @@
 package com.google.android.gms.internal;
 
-import java.util.Arrays;
+import android.os.Bundle;
+import android.os.Parcel;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
-public final class hk
+public class hk
+  implements SafeParcelable
 {
-  public static hk.a e(Object paramObject)
+  public static final hl CREATOR = new hl();
+  final int BR;
+  final Bundle Ci;
+  public final int id;
+
+  hk(int paramInt1, int paramInt2, Bundle paramBundle)
   {
-    return new hk.a(paramObject, null);
+    this.BR = paramInt1;
+    this.id = paramInt2;
+    this.Ci = paramBundle;
   }
 
-  public static boolean equal(Object paramObject1, Object paramObject2)
+  public int describeContents()
   {
-    return (paramObject1 == paramObject2) || ((paramObject1 != null) && (paramObject1.equals(paramObject2)));
+    return 0;
   }
 
-  public static int hashCode(Object[] paramArrayOfObject)
+  public void writeToParcel(Parcel paramParcel, int paramInt)
   {
-    return Arrays.hashCode(paramArrayOfObject);
+    hl.a(this, paramParcel, paramInt);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.hk
  * JD-Core Version:    0.6.2
  */

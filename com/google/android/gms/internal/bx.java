@@ -1,214 +1,161 @@
 package com.google.android.gms.internal;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.os.RemoteException;
-import com.google.ads.mediation.admob.AdMobAdapter;
-import com.google.android.gms.ads.a;
-import com.google.android.gms.ads.mediation.MediationAdapter;
-import com.google.android.gms.ads.mediation.MediationBannerAdapter;
-import com.google.android.gms.ads.mediation.MediationInterstitialAdapter;
-import com.google.android.gms.dynamic.d;
-import com.google.android.gms.dynamic.e;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Iterator;
-import org.json.JSONObject;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.text.TextUtils;
+import java.util.HashMap;
+import java.util.Map;
 
-public final class bx extends bu.a
+@ez
+public final class bx
 {
-  private final MediationAdapter nS;
-
-  public bx(MediationAdapter paramMediationAdapter)
+  public static final by pA = new by()
   {
-    this.nS = paramMediationAdapter;
-  }
-
-  private Bundle a(String paramString1, int paramInt, String paramString2)
-  {
-    eu.D("Server parameters: " + paramString1);
-    Bundle localBundle;
-    try
+    public final void a(gv paramAnonymousgv, Map<String, String> paramAnonymousMap)
     {
-      localObject = new Bundle();
-      if (paramString1 == null)
-        break label121;
-      JSONObject localJSONObject = new JSONObject(paramString1);
-      localBundle = new Bundle();
-      Iterator localIterator = localJSONObject.keys();
-      while (localIterator.hasNext())
+    }
+  };
+  public static final by pB = new by()
+  {
+    public final void a(gv paramAnonymousgv, Map<String, String> paramAnonymousMap)
+    {
+      String str1 = (String)paramAnonymousMap.get("urls");
+      if (TextUtils.isEmpty(str1))
       {
-        String str = (String)localIterator.next();
-        localBundle.putString(str, localJSONObject.getString(str));
-      }
-    }
-    catch (Throwable localThrowable)
-    {
-      eu.c("Could not get Server Parameters Bundle.", localThrowable);
-      throw new RemoteException();
-    }
-    Object localObject = localBundle;
-    label121: if ((this.nS instanceof AdMobAdapter))
-    {
-      ((Bundle)localObject).putString("adJson", paramString2);
-      ((Bundle)localObject).putInt("tagForChildDirectedTreatment", paramInt);
-    }
-    return localObject;
-  }
-
-  public final void a(d paramd, ai paramai, String paramString, bv parambv)
-  {
-    a(paramd, paramai, paramString, null, parambv);
-  }
-
-  public final void a(d paramd, ai paramai, String paramString1, String paramString2, bv parambv)
-  {
-    if (!(this.nS instanceof MediationInterstitialAdapter))
-    {
-      eu.D("MediationAdapter is not a MediationInterstitialAdapter: " + this.nS.getClass().getCanonicalName());
-      throw new RemoteException();
-    }
-    eu.z("Requesting interstitial ad from adapter.");
-    try
-    {
-      MediationInterstitialAdapter localMediationInterstitialAdapter = (MediationInterstitialAdapter)this.nS;
-      if (paramai.lU != null);
-      for (HashSet localHashSet = new HashSet(paramai.lU); ; localHashSet = null)
-      {
-        bw localbw = new bw(new Date(paramai.lS), paramai.lT, localHashSet, paramai.lV, paramai.lW);
-        Bundle localBundle1 = paramai.mc;
-        Bundle localBundle2 = null;
-        if (localBundle1 != null)
-          localBundle2 = paramai.mc.getBundle(localMediationInterstitialAdapter.getClass().getName());
-        localMediationInterstitialAdapter.requestInterstitialAd((Context)e.e(paramd), new by(parambv), a(paramString1, paramai.lW, paramString2), localbw, localBundle2);
+        gs.W("URLs missing in canOpenURLs GMSG.");
         return;
       }
-    }
-    catch (Throwable localThrowable)
-    {
-      eu.c("Could not request interstitial ad from adapter.", localThrowable);
-    }
-    throw new RemoteException();
-  }
-
-  public final void a(d paramd, al paramal, ai paramai, String paramString, bv parambv)
-  {
-    a(paramd, paramal, paramai, paramString, null, parambv);
-  }
-
-  public final void a(d paramd, al paramal, ai paramai, String paramString1, String paramString2, bv parambv)
-  {
-    if (!(this.nS instanceof MediationBannerAdapter))
-    {
-      eu.D("MediationAdapter is not a MediationBannerAdapter: " + this.nS.getClass().getCanonicalName());
-      throw new RemoteException();
-    }
-    eu.z("Requesting banner ad from adapter.");
-    try
-    {
-      MediationBannerAdapter localMediationBannerAdapter = (MediationBannerAdapter)this.nS;
-      if (paramai.lU != null);
-      for (HashSet localHashSet = new HashSet(paramai.lU); ; localHashSet = null)
+      String[] arrayOfString1 = str1.split(",");
+      HashMap localHashMap = new HashMap();
+      PackageManager localPackageManager = paramAnonymousgv.getContext().getPackageManager();
+      int i = arrayOfString1.length;
+      int j = 0;
+      if (j < i)
       {
-        bw localbw = new bw(new Date(paramai.lS), paramai.lT, localHashSet, paramai.lV, paramai.lW);
-        Bundle localBundle1 = paramai.mc;
-        Bundle localBundle2 = null;
-        if (localBundle1 != null)
-          localBundle2 = paramai.mc.getBundle(localMediationBannerAdapter.getClass().getName());
-        localMediationBannerAdapter.requestBannerAd((Context)e.e(paramd), new by(parambv), a(paramString1, paramai.lW, paramString2), a.a(paramal.width, paramal.height, paramal.me), localbw, localBundle2);
+        String str2 = arrayOfString1[j];
+        String[] arrayOfString2 = str2.split(";", 2);
+        String str3 = arrayOfString2[0].trim();
+        String str4;
+        if (arrayOfString2.length > 1)
+        {
+          str4 = arrayOfString2[1].trim();
+          label108: if (localPackageManager.resolveActivity(new Intent(str4, Uri.parse(str3)), 65536) == null)
+            break label161;
+        }
+        label161: for (boolean bool = true; ; bool = false)
+        {
+          localHashMap.put(str2, Boolean.valueOf(bool));
+          j++;
+          break;
+          str4 = "android.intent.action.VIEW";
+          break label108;
+        }
+      }
+      paramAnonymousgv.a("openableURLs", localHashMap);
+    }
+  };
+  public static final by pC = new by()
+  {
+    public final void a(gv paramAnonymousgv, Map<String, String> paramAnonymousMap)
+    {
+      String str1 = (String)paramAnonymousMap.get("u");
+      if (str1 == null)
+      {
+        gs.W("URL missing from click GMSG.");
         return;
       }
+      Uri localUri1 = Uri.parse(str1);
+      try
+      {
+        k localk = paramAnonymousgv.dw();
+        if ((localk != null) && (localk.b(localUri1)))
+        {
+          Uri localUri3 = localk.a(localUri1, paramAnonymousgv.getContext());
+          localUri2 = localUri3;
+          String str2 = localUri2.toString();
+          new gq(paramAnonymousgv.getContext(), paramAnonymousgv.dx().wD, str2).start();
+          return;
+        }
+      }
+      catch (l locall)
+      {
+        while (true)
+        {
+          gs.W("Unable to append parameter to URL: " + str1);
+          Uri localUri2 = localUri1;
+        }
+      }
     }
-    catch (Throwable localThrowable)
-    {
-      eu.c("Could not request banner ad from adapter.", localThrowable);
-    }
-    throw new RemoteException();
-  }
-
-  public final void destroy()
+  };
+  public static final by pD = new by()
   {
-    try
+    public final void a(gv paramAnonymousgv, Map<String, String> paramAnonymousMap)
     {
-      this.nS.onDestroy();
-      return;
+      dk localdk = paramAnonymousgv.dt();
+      if (localdk == null)
+      {
+        gs.W("A GMSG tried to close something that wasn't an overlay.");
+        return;
+      }
+      localdk.close();
     }
-    catch (Throwable localThrowable)
-    {
-      eu.c("Could not destroy adapter.", localThrowable);
-    }
-    throw new RemoteException();
-  }
-
-  public final d getView()
+  };
+  public static final by pE = new by()
   {
-    if (!(this.nS instanceof MediationBannerAdapter))
+    public final void a(gv paramAnonymousgv, Map<String, String> paramAnonymousMap)
     {
-      eu.D("MediationAdapter is not a MediationBannerAdapter: " + this.nS.getClass().getCanonicalName());
-      throw new RemoteException();
+      paramAnonymousgv.o("1".equals(paramAnonymousMap.get("custom_close")));
     }
-    try
-    {
-      d locald = e.h(((MediationBannerAdapter)this.nS).getBannerView());
-      return locald;
-    }
-    catch (Throwable localThrowable)
-    {
-      eu.c("Could not get banner view from adapter.", localThrowable);
-    }
-    throw new RemoteException();
-  }
-
-  public final void pause()
+  };
+  public static final by pF = new by()
   {
-    try
+    public final void a(gv paramAnonymousgv, Map<String, String> paramAnonymousMap)
     {
-      this.nS.onPause();
-      return;
+      String str = (String)paramAnonymousMap.get("u");
+      if (str == null)
+      {
+        gs.W("URL missing from httpTrack GMSG.");
+        return;
+      }
+      new gq(paramAnonymousgv.getContext(), paramAnonymousgv.dx().wD, str).start();
     }
-    catch (Throwable localThrowable)
-    {
-      eu.c("Could not pause adapter.", localThrowable);
-    }
-    throw new RemoteException();
-  }
-
-  public final void resume()
+  };
+  public static final by pG = new by()
   {
-    try
+    public final void a(gv paramAnonymousgv, Map<String, String> paramAnonymousMap)
     {
-      this.nS.onResume();
-      return;
+      gs.U("Received log message: " + (String)paramAnonymousMap.get("string"));
     }
-    catch (Throwable localThrowable)
-    {
-      eu.c("Could not resume adapter.", localThrowable);
-    }
-    throw new RemoteException();
-  }
-
-  public final void showInterstitial()
+  };
+  public static final by pH = new by()
   {
-    if (!(this.nS instanceof MediationInterstitialAdapter))
+    public final void a(gv paramAnonymousgv, Map<String, String> paramAnonymousMap)
     {
-      eu.D("MediationAdapter is not a MediationInterstitialAdapter: " + this.nS.getClass().getCanonicalName());
-      throw new RemoteException();
+      String str1 = (String)paramAnonymousMap.get("tx");
+      String str2 = (String)paramAnonymousMap.get("ty");
+      String str3 = (String)paramAnonymousMap.get("td");
+      try
+      {
+        int i = Integer.parseInt(str1);
+        int j = Integer.parseInt(str2);
+        int k = Integer.parseInt(str3);
+        k localk = paramAnonymousgv.dw();
+        if (localk != null)
+          localk.z().a(i, j, k);
+        return;
+      }
+      catch (NumberFormatException localNumberFormatException)
+      {
+        gs.W("Could not parse touch parameters from gmsg.");
+      }
     }
-    eu.z("Showing interstitial from adapter.");
-    try
-    {
-      ((MediationInterstitialAdapter)this.nS).showInterstitial();
-      return;
-    }
-    catch (Throwable localThrowable)
-    {
-      eu.c("Could not show interstitial from adapter.", localThrowable);
-    }
-    throw new RemoteException();
-  }
+  };
+  public static final by pI = new ce();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.bx
  * JD-Core Version:    0.6.2
  */

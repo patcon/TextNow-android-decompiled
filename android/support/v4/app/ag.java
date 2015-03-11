@@ -1,28 +1,40 @@
 package android.support.v4.app;
 
-import android.os.Bundle;
-import android.support.v4.content.j;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
 
-public abstract class ag
+final class ag extends af
 {
-  public static void a(boolean paramBoolean)
+  public final Intent a(Activity paramActivity)
   {
-    ai.a = true;
+    Intent localIntent = paramActivity.getParentActivityIntent();
+    if (localIntent == null)
+      localIntent = super.a(paramActivity);
+    return localIntent;
   }
 
-  public abstract <D> j<D> a(int paramInt, Bundle paramBundle, ah<D> paramah);
-
-  public abstract void a(int paramInt);
-
-  public boolean a()
+  public final String a(Context paramContext, ActivityInfo paramActivityInfo)
   {
-    return false;
+    String str = paramActivityInfo.parentActivityName;
+    if (str == null)
+      str = super.a(paramContext, paramActivityInfo);
+    return str;
   }
 
-  public abstract <D> j<D> b(int paramInt, Bundle paramBundle, ah<D> paramah);
+  public final boolean a(Activity paramActivity, Intent paramIntent)
+  {
+    return paramActivity.shouldUpRecreateTask(paramIntent);
+  }
+
+  public final void b(Activity paramActivity, Intent paramIntent)
+  {
+    paramActivity.navigateUpTo(paramIntent);
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.app.ag
  * JD-Core Version:    0.6.2
  */

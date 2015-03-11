@@ -1,11 +1,15 @@
 package textnow.bi;
 
-final class f
+public final class f extends h
 {
-  public static final e a = new e((byte)0);
+  public f(String paramString, k paramk)
+  {
+    super(paramString, paramk);
+    this.b = g.a;
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.bi.f
  * JD-Core Version:    0.6.2
  */

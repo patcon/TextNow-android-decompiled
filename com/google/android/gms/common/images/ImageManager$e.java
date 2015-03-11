@@ -6,11 +6,11 @@ import android.content.res.Configuration;
 final class ImageManager$e
   implements ComponentCallbacks2
 {
-  private final ImageManager.b Fc;
+  private final ImageManager.b Kx;
 
   public ImageManager$e(ImageManager.b paramb)
   {
-    this.Fc = paramb;
+    this.Kx = paramb;
   }
 
   public final void onConfigurationChanged(Configuration paramConfiguration)
@@ -19,20 +19,20 @@ final class ImageManager$e
 
   public final void onLowMemory()
   {
-    this.Fc.evictAll();
+    this.Kx.evictAll();
   }
 
   public final void onTrimMemory(int paramInt)
   {
     if (paramInt >= 60)
-      this.Fc.evictAll();
+      this.Kx.evictAll();
     while (paramInt < 20)
       return;
-    this.Fc.trimToSize(this.Fc.size() / 2);
+    this.Kx.trimToSize(this.Kx.size() / 2);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.common.images.ImageManager.e
  * JD-Core Version:    0.6.2
  */

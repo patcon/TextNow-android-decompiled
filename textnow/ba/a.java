@@ -1,89 +1,288 @@
 package textnow.ba;
 
+import android.app.Activity;
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningAppProcessInfo;
+import android.app.KeyguardManager;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Process;
+import com.tremorvideo.sdk.android.videoad.Playvideo;
+import com.tremorvideo.sdk.android.videoad.ba;
+import com.tremorvideo.sdk.android.videoad.bc;
+import com.tremorvideo.sdk.android.videoad.cv;
+import com.tremorvideo.sdk.android.videoad.dx;
+import com.tremorvideo.sdk.android.videoad.i;
+import com.tremorvideo.sdk.android.videoad.j;
 import com.tremorvideo.sdk.android.videoad.r;
-import java.io.StringReader;
-import java.util.Collections;
-import java.util.Comparator;
+import com.tremorvideo.sdk.android.videoad.s;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Iterator;
 import java.util.List;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-import org.xml.sax.InputSource;
-import org.xml.sax.XMLReader;
+import java.util.Timer;
 
-public final class a
+public final class a extends i
 {
-  b a;
-  d b;
+  cv a;
+  Timer b;
+  private e e;
+  private boolean f;
+  private boolean g = false;
+  private boolean h;
+  private boolean i = false;
+  private long j = -1L;
+  private long k = -1L;
 
-  public a(String paramString)
+  public a(j paramj, Activity paramActivity, dx paramdx)
   {
-    XMLReader localXMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-    localXMLReader.setContentHandler(new b(this, (byte)0));
-    localXMLReader.parse(new InputSource(new StringReader(paramString)));
-    this.a = ((b)localXMLReader.getContentHandler());
-    if (!this.a.g)
+    super(paramj, paramActivity);
+    this.e = paramdx.z();
+    this.f = false;
+    this.a = paramdx.q();
+  }
+
+  private void n()
+  {
+    try
     {
-      List localList = this.a.e;
-      Collections.sort(localList, new Comparator()
+      if (!this.f)
       {
-      });
-      if (localList.size() > 0);
-      for (d locald = (d)localList.get(0); ; locald = null)
-      {
-        this.b = locald;
-        if (this.b != null)
-          break;
-        throw new Exception("No valid media file found.");
+        this.f = true;
+        ba localba = this.e.a(bc.aa);
+        if (localba != null)
+        {
+          int m = this.d.a(localba);
+          this.d.a(m);
+        }
+        this.d.a(this);
       }
-      if (this.b.a <= 0)
-        throw new Exception("Invalid width: " + this.b.a);
-      if (this.b.b <= 0)
-        throw new Exception("Invalid height: " + this.b.b);
+      return;
+    }
+    finally
+    {
     }
   }
 
-  public final List<e> a()
+  public final void a()
   {
-    return this.a.c;
+    if (!this.g)
+    {
+      this.g = true;
+      this.h = false;
+    }
+    try
+    {
+      int m = this.d.a(this.e.a(bc.Y));
+      this.d.a(m);
+      return;
+    }
+    catch (Exception localException)
+    {
+      r.a(localException);
+      this.d.a(this);
+    }
   }
 
-  public final boolean b()
+  public final void a(bc parambc)
   {
-    return this.a.g;
+    ba localba = this.e.a(parambc);
+    if (localba != null)
+    {
+      int m = this.d.a(localba);
+      this.d.a(m);
+    }
   }
 
-  public final String c()
+  public final void a(bc parambc, String paramString)
   {
-    return this.b.c;
+    try
+    {
+      a(parambc);
+      Intent localIntent = new Intent(this.c, Playvideo.class);
+      localIntent.putExtra("tremorVideoType", "webview");
+      localIntent.putExtra("tremorVideoURL", paramString);
+      this.c.startActivityForResult(localIntent, 3232);
+      return;
+    }
+    finally
+    {
+      localObject = finally;
+      throw localObject;
+    }
   }
 
-  public final String d()
+  public final void a(bc parambc, String paramString1, String paramString2, String paramString3)
   {
-    return this.a.h;
+    try
+    {
+      a(parambc);
+      Double localDouble1 = Double.valueOf(Double.parseDouble(paramString1));
+      Double localDouble2 = Double.valueOf(Double.parseDouble(paramString2));
+      String str1;
+      Intent localIntent1;
+      if ((localDouble2.doubleValue() == 0.0D) && (localDouble1.doubleValue() == 0.0D))
+      {
+        str1 = "0,0";
+        String str2 = str1 + "?z=20";
+        String str3 = str2 + "&q=" + paramString3 + "(" + paramString3 + ")";
+        Uri localUri = Uri.parse("geo:" + str3);
+        r.a(s.b, "Map URL: " + localUri.toString());
+        localIntent1 = new Intent("android.intent.action.VIEW", localUri);
+        if (this.c.getPackageManager().resolveActivity(localIntent1, 0) != null)
+          break label323;
+        String str4 = "http://maps.google.com/?q=" + paramString3 + "&ll=" + localDouble2 + "," + localDouble1;
+        Intent localIntent2 = new Intent(this.c, Playvideo.class);
+        localIntent2.putExtra("tremorVideoType", "webview");
+        localIntent2.putExtra("tremorVideoURL", str4);
+        this.c.startActivityForResult(localIntent2, 3232);
+      }
+      while (true)
+      {
+        return;
+        str1 = "" + localDouble2 + "," + localDouble1;
+        break;
+        label323: this.c.startActivityForResult(localIntent1, 11);
+      }
+    }
+    finally
+    {
+    }
   }
 
-  public final int e()
+  public final void b()
   {
-    return this.b.a;
+    if (this.b != null)
+    {
+      this.k = (GregorianCalendar.getInstance().getTimeInMillis() - this.j + this.k);
+      this.i = true;
+      this.b.cancel();
+      this.b.purge();
+      this.b = null;
+    }
+    super.b();
   }
 
-  public final int f()
+  public final void c()
   {
-    return this.b.b;
+    if ((this.i) && (!((KeyguardManager)this.c.getSystemService("keyguard")).inKeyguardRestrictedInputMode()))
+    {
+      long l = this.e.a() - this.k;
+      if (l > 0L)
+      {
+        this.b = new Timer();
+        this.b.schedule(new b(this), l);
+        this.j = GregorianCalendar.getInstance().getTimeInMillis();
+      }
+      this.i = false;
+    }
+    super.c();
   }
 
-  public final String g()
+  public final void d()
   {
-    return this.a.d;
+    if (this.i)
+      super.d();
+    try
+    {
+      Iterator localIterator = ((ActivityManager)this.c.getSystemService("activity")).getRunningAppProcesses().iterator();
+      ActivityManager.RunningAppProcessInfo localRunningAppProcessInfo;
+      do
+      {
+        if (!localIterator.hasNext())
+          break;
+        localRunningAppProcessInfo = (ActivityManager.RunningAppProcessInfo)localIterator.next();
+      }
+      while (localRunningAppProcessInfo.pid != Process.myPid());
+      int n = localRunningAppProcessInfo.importance;
+      if (n == 100)
+      {
+        m = 1;
+        if (m != 0)
+          c();
+        return;
+      }
+    }
+    catch (Exception localException)
+    {
+      while (true)
+      {
+        r.a(localException);
+        int m = 0;
+      }
+    }
   }
 
-  public final int h()
+  public final void e()
   {
-    return this.a.i;
+    try
+    {
+      if (!this.f)
+      {
+        this.f = true;
+        ba localba = this.e.a(bc.aa);
+        if (localba != null)
+        {
+          int m = this.d.a(localba);
+          this.d.a(m);
+        }
+        this.d.a(this);
+      }
+      return;
+    }
+    finally
+    {
+    }
+  }
+
+  public final void f()
+  {
+    try
+    {
+      if (!this.f)
+      {
+        this.f = true;
+        ba localba = this.e.a(bc.Z);
+        if (localba != null)
+        {
+          int m = this.d.a(localba);
+          this.d.a(m);
+        }
+        this.d.a(this);
+      }
+      return;
+    }
+    finally
+    {
+    }
+  }
+
+  public final void g()
+  {
+    if ((!this.h) && (this.e.a() > 0))
+    {
+      this.j = GregorianCalendar.getInstance().getTimeInMillis();
+      this.k = 0L;
+      this.b = new Timer();
+      this.b.schedule(new b(this), this.e.a());
+      this.h = true;
+    }
+  }
+
+  public final void h()
+  {
+    this.h = true;
+    if (this.b != null)
+    {
+      this.b.cancel();
+      this.b.purge();
+      this.b = null;
+    }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.ba.a
  * JD-Core Version:    0.6.2
  */

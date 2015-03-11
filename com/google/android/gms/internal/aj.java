@@ -1,112 +1,95 @@
 package com.google.android.gms.internal;
 
-import android.location.Location;
-import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable.Creator;
-import com.google.android.gms.common.internal.safeparcel.a;
-import com.google.android.gms.common.internal.safeparcel.a.a;
-import com.google.android.gms.common.internal.safeparcel.b;
-import java.util.ArrayList;
+import android.content.Context;
+import android.os.Handler;
+import org.json.JSONObject;
 
+@ez
 public class aj
-  implements Parcelable.Creator<ai>
+  implements ah
 {
-  static void a(ai paramai, Parcel paramParcel, int paramInt)
+  private final gv md;
+
+  public aj(Context paramContext, gt paramgt)
   {
-    int i = b.C(paramParcel);
-    b.c(paramParcel, 1, paramai.versionCode);
-    b.a(paramParcel, 2, paramai.lS);
-    b.a(paramParcel, 3, paramai.extras, false);
-    b.c(paramParcel, 4, paramai.lT);
-    b.a(paramParcel, 5, paramai.lU, false);
-    b.a(paramParcel, 6, paramai.lV);
-    b.c(paramParcel, 7, paramai.lW);
-    b.a(paramParcel, 8, paramai.lX);
-    b.a(paramParcel, 9, paramai.lY, false);
-    b.a(paramParcel, 10, paramai.lZ, paramInt, false);
-    b.a(paramParcel, 11, paramai.ma, paramInt, false);
-    b.a(paramParcel, 12, paramai.mb, false);
-    b.a(paramParcel, 13, paramai.mc, false);
-    b.G(paramParcel, i);
+    this.md = gv.a(paramContext, new ay(), false, false, null, paramgt);
   }
 
-  public ai b(Parcel paramParcel)
+  private void runOnUiThread(Runnable paramRunnable)
   {
-    int i = a.B(paramParcel);
-    int j = 0;
-    long l = 0L;
-    Bundle localBundle1 = null;
-    int k = 0;
-    ArrayList localArrayList = null;
-    boolean bool1 = false;
-    int m = 0;
-    boolean bool2 = false;
-    String str1 = null;
-    aw localaw = null;
-    Location localLocation = null;
-    String str2 = null;
-    Bundle localBundle2 = null;
-    while (paramParcel.dataPosition() < i)
+    if (gr.ds())
     {
-      int n = a.A(paramParcel);
-      switch (a.ar(n))
-      {
-      default:
-        a.b(paramParcel, n);
-        break;
-      case 1:
-        j = a.g(paramParcel, n);
-        break;
-      case 2:
-        l = a.i(paramParcel, n);
-        break;
-      case 3:
-        localBundle1 = a.q(paramParcel, n);
-        break;
-      case 4:
-        k = a.g(paramParcel, n);
-        break;
-      case 5:
-        localArrayList = a.B(paramParcel, n);
-        break;
-      case 6:
-        bool1 = a.c(paramParcel, n);
-        break;
-      case 7:
-        m = a.g(paramParcel, n);
-        break;
-      case 8:
-        bool2 = a.c(paramParcel, n);
-        break;
-      case 9:
-        str1 = a.o(paramParcel, n);
-        break;
-      case 10:
-        localaw = (aw)a.a(paramParcel, n, aw.CREATOR);
-        break;
-      case 11:
-        localLocation = (Location)a.a(paramParcel, n, Location.CREATOR);
-        break;
-      case 12:
-        str2 = a.o(paramParcel, n);
-        break;
-      case 13:
-        localBundle2 = a.q(paramParcel, n);
-      }
+      paramRunnable.run();
+      return;
     }
-    if (paramParcel.dataPosition() != i)
-      throw new a.a("Overread allowed size end=" + i, paramParcel);
-    return new ai(j, l, localBundle1, k, localArrayList, bool1, m, bool2, str1, localaw, localLocation, str2, localBundle2);
+    gr.wC.post(paramRunnable);
   }
 
-  public ai[] c(int paramInt)
+  public void a(final ah.a parama)
   {
-    return new ai[paramInt];
+    this.md.du().a(new gw.a()
+    {
+      public void a(gv paramAnonymousgv)
+      {
+        parama.aM();
+      }
+    });
+  }
+
+  public void a(t paramt, dn paramdn, bw parambw, dq paramdq, boolean paramBoolean, bz parambz)
+  {
+    this.md.du().a(paramt, paramdn, parambw, paramdq, paramBoolean, parambz, new v(false));
+  }
+
+  public void a(String paramString, by paramby)
+  {
+    this.md.du().a(paramString, paramby);
+  }
+
+  public void a(final String paramString, final JSONObject paramJSONObject)
+  {
+    runOnUiThread(new Runnable()
+    {
+      public void run()
+      {
+        aj.a(aj.this).a(paramString, paramJSONObject);
+      }
+    });
+  }
+
+  public void destroy()
+  {
+    this.md.destroy();
+  }
+
+  public void f(final String paramString)
+  {
+    runOnUiThread(new Runnable()
+    {
+      public void run()
+      {
+        aj.a(aj.this).loadUrl(paramString);
+      }
+    });
+  }
+
+  public void g(String paramString)
+  {
+    this.md.du().a(paramString, null);
+  }
+
+  public void pause()
+  {
+    gj.a(this.md);
+  }
+
+  public void resume()
+  {
+    gj.b(this.md);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.aj
  * JD-Core Version:    0.6.2
  */

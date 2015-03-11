@@ -149,7 +149,7 @@ public final class Instance$Calls
   public static native boolean webCallback(String paramString, Callee paramCallee);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     cz.acrobits.libsoftphone.Instance.Calls
  * JD-Core Version:    0.6.2
  */

@@ -9,36 +9,36 @@ public final class FullWallet
   implements SafeParcelable
 {
   public static final Parcelable.Creator<FullWallet> CREATOR = new f();
-  String aiQ;
-  String aiR;
-  ProxyCard aiS;
-  String aiT;
-  Address aiU;
-  Address aiV;
-  String[] aiW;
-  UserAddress aiX;
-  UserAddress aiY;
-  InstrumentInfo[] aiZ;
-  private final int xM;
+  private final int BR;
+  String asB;
+  String asC;
+  ProxyCard asD;
+  String asE;
+  Address asF;
+  Address asG;
+  String[] asH;
+  UserAddress asI;
+  UserAddress asJ;
+  InstrumentInfo[] asK;
 
   private FullWallet()
   {
-    this.xM = 1;
+    this.BR = 1;
   }
 
   FullWallet(int paramInt, String paramString1, String paramString2, ProxyCard paramProxyCard, String paramString3, Address paramAddress1, Address paramAddress2, String[] paramArrayOfString, UserAddress paramUserAddress1, UserAddress paramUserAddress2, InstrumentInfo[] paramArrayOfInstrumentInfo)
   {
-    this.xM = paramInt;
-    this.aiQ = paramString1;
-    this.aiR = paramString2;
-    this.aiS = paramProxyCard;
-    this.aiT = paramString3;
-    this.aiU = paramAddress1;
-    this.aiV = paramAddress2;
-    this.aiW = paramArrayOfString;
-    this.aiX = paramUserAddress1;
-    this.aiY = paramUserAddress2;
-    this.aiZ = paramArrayOfInstrumentInfo;
+    this.BR = paramInt;
+    this.asB = paramString1;
+    this.asC = paramString2;
+    this.asD = paramProxyCard;
+    this.asE = paramString3;
+    this.asF = paramAddress1;
+    this.asG = paramAddress2;
+    this.asH = paramArrayOfString;
+    this.asI = paramUserAddress1;
+    this.asJ = paramUserAddress2;
+    this.asK = paramArrayOfInstrumentInfo;
   }
 
   public final int describeContents()
@@ -49,58 +49,58 @@ public final class FullWallet
   @Deprecated
   public final Address getBillingAddress()
   {
-    return this.aiU;
+    return this.asF;
   }
 
   public final UserAddress getBuyerBillingAddress()
   {
-    return this.aiX;
+    return this.asI;
   }
 
   public final UserAddress getBuyerShippingAddress()
   {
-    return this.aiY;
+    return this.asJ;
   }
 
   public final String getEmail()
   {
-    return this.aiT;
+    return this.asE;
   }
 
   public final String getGoogleTransactionId()
   {
-    return this.aiQ;
+    return this.asB;
   }
 
   public final InstrumentInfo[] getInstrumentInfos()
   {
-    return this.aiZ;
+    return this.asK;
   }
 
   public final String getMerchantTransactionId()
   {
-    return this.aiR;
+    return this.asC;
   }
 
   public final String[] getPaymentDescriptions()
   {
-    return this.aiW;
+    return this.asH;
   }
 
   public final ProxyCard getProxyCard()
   {
-    return this.aiS;
+    return this.asD;
   }
 
   @Deprecated
   public final Address getShippingAddress()
   {
-    return this.aiV;
+    return this.asG;
   }
 
   public final int getVersionCode()
   {
-    return this.xM;
+    return this.BR;
   }
 
   public final void writeToParcel(Parcel paramParcel, int paramInt)
@@ -109,7 +109,7 @@ public final class FullWallet
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.FullWallet
  * JD-Core Version:    0.6.2
  */

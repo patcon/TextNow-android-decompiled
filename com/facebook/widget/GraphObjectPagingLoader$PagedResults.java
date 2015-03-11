@@ -8,7 +8,7 @@ abstract interface GraphObjectPagingLoader$PagedResults extends GraphObject
   public abstract GraphObjectList<GraphObject> getData();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.widget.GraphObjectPagingLoader.PagedResults
  * JD-Core Version:    0.6.2
  */

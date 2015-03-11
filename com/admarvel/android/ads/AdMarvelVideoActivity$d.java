@@ -1,36 +1,35 @@
 package com.admarvel.android.ads;
 
-import android.os.AsyncTask;
-import android.widget.ImageView;
-import java.lang.ref.WeakReference;
-import java.util.concurrent.Executor;
+import android.content.Context;
+import com.admarvel.android.util.a;
 
-class AdMarvelVideoActivity$d
+public class AdMarvelVideoActivity$d
   implements Runnable
 {
-  private final WeakReference<String> b;
-  private final WeakReference<ImageView> c;
+  private final AdMarvelAd a;
+  private final Context b;
 
-  public AdMarvelVideoActivity$d(AdMarvelVideoActivity paramAdMarvelVideoActivity, ImageView paramImageView, String paramString)
+  public AdMarvelVideoActivity$d(AdMarvelAd paramAdMarvelAd, Context paramContext)
   {
-    this.b = new WeakReference(paramString);
-    this.c = new WeakReference(paramImageView);
+    this.a = paramAdMarvelAd;
+    this.b = paramContext;
   }
 
   public void run()
   {
-    if ((this.c.get() != null) && (this.b.get() != null))
+    if (this.a != null)
+      this.a.setResponseJson();
+    a locala = a.b(this.b);
+    if ((locala != null) && (this.a != null))
     {
-      AdMarvelVideoActivity.c localc = new AdMarvelVideoActivity.c(this.a, (ImageView)this.c.get());
-      Executor localExecutor = AsyncTask.THREAD_POOL_EXECUTOR;
-      String[] arrayOfString = new String[1];
-      arrayOfString[0] = ((String)this.b.get());
-      localc.executeOnExecutor(localExecutor, arrayOfString);
+      int i = locala.a(this.b);
+      this.a.setAdHistoryCounter(i);
+      locala.a(this.a.getAdHistoryDumpString(), i);
     }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.AdMarvelVideoActivity.d
  * JD-Core Version:    0.6.2
  */

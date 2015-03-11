@@ -5,9 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.util.AttributeSet;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import com.facebook.FacebookException;
 import com.facebook.FacebookRequestError;
@@ -25,6 +29,7 @@ import com.facebook.android.R.string;
 import com.facebook.android.R.styleable;
 import com.facebook.internal.SessionTracker;
 import com.facebook.internal.Utility;
+import com.facebook.internal.Utility.FetchedAppSettings;
 import com.facebook.model.GraphUser;
 import java.util.Arrays;
 import java.util.List;
@@ -35,9 +40,15 @@ public class LoginButton extends Button
   private String applicationId = null;
   private boolean confirmLogout;
   private boolean fetchUserInfo;
+  private View.OnClickListener listenerCallback;
   private String loginLogoutEventName = "fb_login_view_usage";
   private String loginText;
   private String logoutText;
+  private boolean nuxChecked;
+  private long nuxDisplayTime = 6000L;
+  private LoginButton.ToolTipMode nuxMode = LoginButton.ToolTipMode.DEFAULT;
+  private ToolTipPopup nuxPopup;
+  private ToolTipPopup.Style nuxStyle = ToolTipPopup.Style.BLUE;
   private Fragment parentFragment;
   private LoginButton.LoginButtonProperties properties = new LoginButton.LoginButtonProperties();
   private SessionTracker sessionTracker;
@@ -62,7 +73,7 @@ public class LoginButton extends Button
       setTextSize(0, getResources().getDimension(R.dimen.com_facebook_loginview_text_size));
       setTypeface(Typeface.DEFAULT_BOLD);
       if (!isInEditMode())
-        break label135;
+        break label156;
       setBackgroundColor(getResources().getColor(R.color.com_facebook_blue));
       this.loginText = "Log in with Facebook";
     }
@@ -72,7 +83,7 @@ public class LoginButton extends Button
       if (!isInEditMode())
         initializeActiveSessionWithCachedToken(paramContext);
       return;
-      label135: setBackgroundResource(R.drawable.com_facebook_button_blue);
+      label156: setBackgroundResource(R.drawable.com_facebook_button_blue);
       setCompoundDrawablesWithIntrinsicBounds(R.drawable.com_facebook_inverse_icon, 0, 0, 0);
       setCompoundDrawablePadding(getResources().getDimensionPixelSize(R.dimen.com_facebook_loginview_compound_drawable_padding));
       setPadding(getResources().getDimensionPixelSize(R.dimen.com_facebook_loginview_padding_left), getResources().getDimensionPixelSize(R.dimen.com_facebook_loginview_padding_top), getResources().getDimensionPixelSize(R.dimen.com_facebook_loginview_padding_right), getResources().getDimensionPixelSize(R.dimen.com_facebook_loginview_padding_bottom));
@@ -84,6 +95,36 @@ public class LoginButton extends Button
     super(paramContext, paramAttributeSet, paramInt);
     parseAttributes(paramAttributeSet);
     initializeActiveSessionWithCachedToken(paramContext);
+  }
+
+  private void checkNuxSettings()
+  {
+    if (this.nuxMode == LoginButton.ToolTipMode.DISPLAY_ALWAYS)
+    {
+      displayNux(getResources().getString(R.string.com_facebook_tooltip_default));
+      return;
+    }
+    new AsyncTask()
+    {
+      protected Utility.FetchedAppSettings doInBackground(Void[] paramAnonymousArrayOfVoid)
+      {
+        return Utility.queryAppSettings(this.val$appId, false);
+      }
+
+      protected void onPostExecute(Utility.FetchedAppSettings paramAnonymousFetchedAppSettings)
+      {
+        LoginButton.this.showNuxPerSettings(paramAnonymousFetchedAppSettings);
+      }
+    }
+    .execute(null);
+  }
+
+  private void displayNux(String paramString)
+  {
+    this.nuxPopup = new ToolTipPopup(paramString, this);
+    this.nuxPopup.setStyle(this.nuxStyle);
+    this.nuxPopup.setNuxDisplayTime(this.nuxDisplayTime);
+    this.nuxPopup.show();
   }
 
   private void fetchUserInfo()
@@ -101,7 +142,7 @@ public class LoginButton extends Button
           {
             if (localSession == LoginButton.this.sessionTracker.getOpenSession())
             {
-              LoginButton.access$402(LoginButton.this, paramAnonymousGraphUser);
+              LoginButton.access$502(LoginButton.this, paramAnonymousGraphUser);
               if (LoginButton.this.userInfoChangedCallback != null)
                 LoginButton.this.userInfoChangedCallback.onUserInfoFetched(LoginButton.this.user);
             }
@@ -124,7 +165,7 @@ public class LoginButton extends Button
 
   private void finishInit()
   {
-    setOnClickListener(new LoginButton.LoginClickListener(this, null));
+    super.setOnClickListener(new LoginButton.LoginClickListener(this, null));
     setButtonText();
     if (!isInEditMode())
     {
@@ -150,10 +191,10 @@ public class LoginButton extends Button
   private void parseAttributes(AttributeSet paramAttributeSet)
   {
     TypedArray localTypedArray = getContext().obtainStyledAttributes(paramAttributeSet, R.styleable.com_facebook_login_view);
-    this.confirmLogout = localTypedArray.getBoolean(0, true);
-    this.fetchUserInfo = localTypedArray.getBoolean(1, true);
-    this.loginText = localTypedArray.getString(2);
-    this.logoutText = localTypedArray.getString(3);
+    this.confirmLogout = localTypedArray.getBoolean(R.styleable.com_facebook_login_view_confirm_logout, true);
+    this.fetchUserInfo = localTypedArray.getBoolean(R.styleable.com_facebook_login_view_fetch_user_info, true);
+    this.loginText = localTypedArray.getString(R.styleable.com_facebook_login_view_login_text);
+    this.logoutText = localTypedArray.getString(R.styleable.com_facebook_login_view_logout_text);
     localTypedArray.recycle();
   }
 
@@ -176,9 +217,24 @@ public class LoginButton extends Button
     }
   }
 
+  private void showNuxPerSettings(Utility.FetchedAppSettings paramFetchedAppSettings)
+  {
+    if ((paramFetchedAppSettings != null) && (paramFetchedAppSettings.getNuxEnabled()) && (getVisibility() == 0))
+      displayNux(paramFetchedAppSettings.getNuxContent());
+  }
+
   public void clearPermissions()
   {
     this.properties.clearPermissions();
+  }
+
+  public void dismissToolTip()
+  {
+    if (this.nuxPopup != null)
+    {
+      this.nuxPopup.dismiss();
+      this.nuxPopup = null;
+    }
   }
 
   public SessionDefaultAudience getDefaultAudience()
@@ -206,6 +262,16 @@ public class LoginButton extends Button
     return this.properties.getSessionStatusCallback();
   }
 
+  public long getToolTipDisplayTime()
+  {
+    return this.nuxDisplayTime;
+  }
+
+  public LoginButton.ToolTipMode getToolTipMode()
+  {
+    return this.nuxMode;
+  }
+
   public LoginButton.UserInfoChangedCallback getUserInfoChangedCallback()
   {
     return this.userInfoChangedCallback;
@@ -213,14 +279,14 @@ public class LoginButton extends Button
 
   void handleError(Exception paramException)
   {
-    if (LoginButton.LoginButtonProperties.access$1800(this.properties) != null)
+    if (LoginButton.LoginButtonProperties.access$2000(this.properties) != null)
     {
       if ((paramException instanceof FacebookException))
-        LoginButton.LoginButtonProperties.access$1800(this.properties).onError((FacebookException)paramException);
+        LoginButton.LoginButtonProperties.access$2000(this.properties).onError((FacebookException)paramException);
     }
     else
       return;
-    LoginButton.LoginButtonProperties.access$1800(this.properties).onError(new FacebookException(paramException));
+    LoginButton.LoginButtonProperties.access$2000(this.properties).onError(new FacebookException(paramException));
   }
 
   public boolean onActivityResult(int paramInt1, int paramInt2, Intent paramIntent)
@@ -247,12 +313,30 @@ public class LoginButton extends Button
     super.onDetachedFromWindow();
     if (this.sessionTracker != null)
       this.sessionTracker.stopTracking();
+    dismissToolTip();
+  }
+
+  protected void onDraw(Canvas paramCanvas)
+  {
+    super.onDraw(paramCanvas);
+    if ((!this.nuxChecked) && (this.nuxMode != LoginButton.ToolTipMode.NEVER_DISPLAY) && (!isInEditMode()))
+    {
+      this.nuxChecked = true;
+      checkNuxSettings();
+    }
   }
 
   public void onFinishInflate()
   {
     super.onFinishInflate();
     finishInit();
+  }
+
+  protected void onVisibilityChanged(View paramView, int paramInt)
+  {
+    super.onVisibilityChanged(paramView, paramInt);
+    if (paramInt != 0)
+      dismissToolTip();
   }
 
   public void setApplicationId(String paramString)
@@ -278,6 +362,11 @@ public class LoginButton extends Button
   void setLoginLogoutEventName(String paramString)
   {
     this.loginLogoutEventName = paramString;
+  }
+
+  public void setOnClickListener(View.OnClickListener paramOnClickListener)
+  {
+    this.listenerCallback = paramOnClickListener;
   }
 
   public void setOnErrorListener(LoginButton.OnErrorListener paramOnErrorListener)
@@ -322,13 +411,28 @@ public class LoginButton extends Button
     this.properties.setSessionStatusCallback(paramStatusCallback);
   }
 
+  public void setToolTipDisplayTime(long paramLong)
+  {
+    this.nuxDisplayTime = paramLong;
+  }
+
+  public void setToolTipMode(LoginButton.ToolTipMode paramToolTipMode)
+  {
+    this.nuxMode = paramToolTipMode;
+  }
+
+  public void setToolTipStyle(ToolTipPopup.Style paramStyle)
+  {
+    this.nuxStyle = paramStyle;
+  }
+
   public void setUserInfoChangedCallback(LoginButton.UserInfoChangedCallback paramUserInfoChangedCallback)
   {
     this.userInfoChangedCallback = paramUserInfoChangedCallback;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.widget.LoginButton
  * JD-Core Version:    0.6.2
  */

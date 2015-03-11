@@ -1,6 +1,6 @@
 package com.enflick.android.TextNow.api.responsemodel;
 
-import textnow.t.c;
+import textnow.y.c;
 
 public class Settings$AndroidSettings$CDMA
 {
@@ -18,7 +18,7 @@ public class Settings$AndroidSettings$CDMA
   public String testFileUrl;
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.api.responsemodel.Settings.AndroidSettings.CDMA
  * JD-Core Version:    0.6.2
  */

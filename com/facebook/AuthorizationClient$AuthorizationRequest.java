@@ -11,6 +11,7 @@ class AuthorizationClient$AuthorizationRequest
   private final String authId;
   private final SessionDefaultAudience defaultAudience;
   private boolean isLegacy = false;
+  private boolean isRerequest = false;
   private final SessionLoginBehavior loginBehavior;
   private List<String> permissions;
   private final String previousAccessToken;
@@ -75,6 +76,11 @@ class AuthorizationClient$AuthorizationRequest
     return this.isLegacy;
   }
 
+  boolean isRerequest()
+  {
+    return this.isRerequest;
+  }
+
   boolean needsNewTokenValidation()
   {
     return (this.previousAccessToken != null) && (!this.isLegacy);
@@ -89,9 +95,14 @@ class AuthorizationClient$AuthorizationRequest
   {
     this.permissions = paramList;
   }
+
+  void setRerequest(boolean paramBoolean)
+  {
+    this.isRerequest = paramBoolean;
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.AuthorizationClient.AuthorizationRequest
  * JD-Core Version:    0.6.2
  */

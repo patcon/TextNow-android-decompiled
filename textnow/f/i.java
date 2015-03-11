@@ -1,64 +1,41 @@
 package textnow.f;
 
-import android.os.Build.VERSION;
-import java.util.List;
+import android.view.accessibility.AccessibilityNodeInfo;
 
-public final class i
+class i extends g
 {
-  private static final j a = new m();
-  private final Object b;
-
-  static
+  public final void b(Object paramObject, int paramInt)
   {
-    if (Build.VERSION.SDK_INT >= 19)
-    {
-      a = new l();
-      return;
-    }
-    if (Build.VERSION.SDK_INT >= 16)
-    {
-      a = new k();
-      return;
-    }
+    ((AccessibilityNodeInfo)paramObject).setMovementGranularities(paramInt);
   }
 
-  public i()
+  public final void h(Object paramObject, boolean paramBoolean)
   {
-    this.b = a.a(this);
+    ((AccessibilityNodeInfo)paramObject).setVisibleToUser(paramBoolean);
   }
 
-  public i(Object paramObject)
+  public final void i(Object paramObject, boolean paramBoolean)
   {
-    this.b = paramObject;
+    ((AccessibilityNodeInfo)paramObject).setAccessibilityFocused(paramBoolean);
   }
 
-  public static a b()
+  public final int r(Object paramObject)
   {
-    return null;
+    return ((AccessibilityNodeInfo)paramObject).getMovementGranularities();
   }
 
-  public static boolean c()
+  public final boolean s(Object paramObject)
   {
-    return false;
+    return ((AccessibilityNodeInfo)paramObject).isVisibleToUser();
   }
 
-  public static List<a> d()
+  public final boolean t(Object paramObject)
   {
-    return null;
-  }
-
-  public static a e()
-  {
-    return null;
-  }
-
-  public final Object a()
-  {
-    return this.b;
+    return ((AccessibilityNodeInfo)paramObject).isAccessibilityFocused();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.f.i
  * JD-Core Version:    0.6.2
  */

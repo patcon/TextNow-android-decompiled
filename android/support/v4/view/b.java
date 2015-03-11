@@ -24,7 +24,7 @@ class b extends e
 
       public final void a(View paramAnonymousView, Object paramAnonymousObject)
       {
-        parama.a(paramAnonymousView, new textnow.f.a(paramAnonymousObject));
+        parama.a(paramAnonymousView, new textnow.f.e(paramAnonymousObject));
       }
 
       public final boolean a(View paramAnonymousView, AccessibilityEvent paramAnonymousAccessibilityEvent)
@@ -59,9 +59,9 @@ class b extends e
     ((View.AccessibilityDelegate)paramObject).sendAccessibilityEvent(paramView, paramInt);
   }
 
-  public final void a(Object paramObject, View paramView, textnow.f.a parama)
+  public final void a(Object paramObject, View paramView, textnow.f.e parame)
   {
-    Object localObject = parama.a();
+    Object localObject = parame.a();
     ((View.AccessibilityDelegate)paramObject).onInitializeAccessibilityNodeInfo(paramView, (AccessibilityNodeInfo)localObject);
   }
 
@@ -91,7 +91,7 @@ class b extends e
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.view.b
  * JD-Core Version:    0.6.2
  */

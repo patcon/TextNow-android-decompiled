@@ -1,9 +1,10 @@
 package com.admarvel.android.ads;
 
+import android.content.Context;
 import android.location.Location;
-import com.admarvel.android.b.a;
-import com.admarvel.android.util.Logging;
-import java.io.File;
+import com.admarvel.android.util.a.a;
+import com.admarvel.android.util.a.c.a;
+import com.admarvel.android.util.i;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,23 +26,23 @@ public class AdMarvelAd
 {
   private String A = null;
   private String B = null;
-  private String C = null;
+  private long C = 0L;
   private String D = null;
-  private String E;
+  private String E = null;
   private String F;
   private String G;
   private String H;
   private String I;
-  private Boolean J;
-  private String K;
-  private int L;
-  private String M;
-  private int N;
-  private boolean O = false;
-  private String P;
+  private String J;
+  private Boolean K;
+  private String L;
+  private int M;
+  private String N;
+  private int O;
+  private boolean P = false;
   private String Q;
   private String R;
-  private final boolean S;
+  private String S;
   private final String T;
   private final String U;
   private boolean V = false;
@@ -49,72 +50,81 @@ public class AdMarvelAd
   private String X;
   private String Y;
   private String Z;
-  private final String a = "/data/com.admarvel.android.admarvelcachedads";
-  private boolean aa;
-  private int ab;
-  private String ac;
-  private String ad;
-  private String ae;
-  private String af;
-  private AdMarvelAd.RhythmVideoAdType ag = null;
-  private AdMarvelAd.HeyzapAdType ah = null;
-  private boolean ai;
-  private boolean aj;
+  private int a;
+  private final String aA;
+  private final String aB;
+  private final int aC;
+  private final String aD;
+  private String aE;
+  private String aa;
+  private String ab;
+  private boolean ac;
+  private int ad;
+  private float ae = -1.0F;
+  private boolean af = false;
+  private boolean ag = false;
+  private String ah;
+  private String ai;
+  private String aj;
   private String ak;
-  private String al;
-  private String am;
-  private String an;
-  private String ao;
+  private AdMarvelAd.RhythmVideoAdType al = null;
+  private AdMarvelAd.HeyzapAdType am = null;
+  private boolean an;
+  private boolean ao;
   private String ap;
-  private boolean aq;
-  private Integer ar = Integer.valueOf(0);
+  private String aq;
+  private String ar;
   private String as;
-  private final Map<String, Object> at;
-  private final String au;
-  private final String av;
-  private final String aw;
-  private final int ax;
-  private final String ay;
-  private String az;
-  private int b;
+  private String at;
+  private String au;
+  private boolean av;
+  private Integer aw = Integer.valueOf(0);
+  private String ax;
+  private final Map<String, Object> ay;
+  private final String az;
+  private String b;
   private String c;
   private String d;
   private String e;
-  private String f;
+  private int f = -1;
   private int g = -1;
-  private int h = -1;
+  private String h;
   private String i;
-  private String j;
-  private AdMarvelAd.AdType k;
-  private String l;
-  private List<String> m;
-  private int n;
+  private AdMarvelAd.AdType j;
+  private String k;
+  private List<String> l;
+  private int m;
+  private String n;
   private String o;
-  private String p;
-  private AdMarvelUtils.SDKAdNetwork q;
+  private AdMarvelUtils.SDKAdNetwork p;
+  private String q;
   private String r;
   private String s;
-  private String t;
-  private boolean u;
-  private String v;
+  private boolean t;
+  private String u;
+  private String[] v;
   private String[] w;
-  private String[] x;
+  private String x = null;
   private String y = null;
   private String z = null;
 
-  public AdMarvelAd(String paramString1, Map<String, Object> paramMap, String paramString2, String paramString3, String paramString4, int paramInt, String paramString5, boolean paramBoolean, String paramString6)
+  public AdMarvelAd(String paramString1, Map<String, Object> paramMap, String paramString2, String paramString3, String paramString4, int paramInt, String paramString5, String paramString6)
   {
     this.U = paramString1;
-    this.at = paramMap;
-    this.au = paramString2;
-    this.av = paramString3;
-    this.aw = paramString4;
-    this.ax = paramInt;
-    this.ay = paramString5;
-    this.S = paramBoolean;
+    this.ay = paramMap;
+    this.az = paramString2;
+    this.aA = paramString3;
+    this.aB = paramString4;
+    this.aC = paramInt;
+    this.aD = paramString5;
     this.T = paramString6;
     if ((paramString4 != null) && (paramMap.get("UNIQUE_ID") == null))
       paramMap.put("UNIQUE_ID", paramString4);
+  }
+
+  public void allowInteractionInExpandableAds()
+  {
+    this.ag = true;
   }
 
   public String getAdColonyAppVersion()
@@ -122,14 +132,24 @@ public class AdMarvelAd
     return this.B;
   }
 
+  public long getAdColonyDelayAfterInitInMs()
+  {
+    return this.C;
+  }
+
+  public String getAdColonyMuted()
+  {
+    return this.Z;
+  }
+
   public String getAdFormat()
   {
-    return this.D;
+    return this.E;
   }
 
   public int getAdHistoryCounter()
   {
-    return this.ar.intValue();
+    return this.aw.intValue();
   }
 
   public String getAdHistoryDumpString()
@@ -138,15 +158,15 @@ public class AdMarvelAd
     {
       JSONObject localJSONObject = new JSONObject();
       localJSONObject.put("appname", this.T);
-      localJSONObject.put("partnerid", this.au);
-      if (this.ak != null)
-        localJSONObject.put("request", new JSONObject(this.ak));
-      if (this.al != null)
-        localJSONObject.put("response", new JSONObject(this.al));
-      if (this.am != null)
-        localJSONObject.put("html", new JSONObject(this.am));
-      this.an = localJSONObject.toString(1);
-      return this.an;
+      localJSONObject.put("partnerid", this.az);
+      if (this.ap != null)
+        localJSONObject.put("request", new JSONObject(this.ap));
+      if (this.aq != null)
+        localJSONObject.put("response", new JSONObject(this.aq));
+      if (this.ar != null)
+        localJSONObject.put("html", new JSONObject(this.ar));
+      this.as = localJSONObject.toString(1);
+      return this.as;
     }
     catch (JSONException localJSONException)
     {
@@ -162,7 +182,12 @@ public class AdMarvelAd
 
   public String getAdId()
   {
-    return this.P;
+    return this.Q;
+  }
+
+  public float getAdMarvelViewWidth()
+  {
+    return this.ae;
   }
 
   public String getAdMobExtras()
@@ -172,92 +197,92 @@ public class AdMarvelAd
 
   public AdMarvelAd.AdType getAdType()
   {
-    return this.k;
+    return this.j;
   }
 
   public String getAdmobAdFormat()
   {
-    return this.az;
+    return this.aE;
   }
 
   public String getAdmobTestAction()
   {
-    return this.az;
+    return this.aE;
   }
 
   public String[] getAdmobTestDeviceId()
   {
-    return this.w;
+    return this.v;
   }
 
   public String getAmazonAdRequestAdvancedOptions()
   {
-    return this.Z;
+    return this.ab;
   }
 
   public int getAmazonAdTimeOut()
   {
-    return this.ab;
+    return this.ad;
   }
 
   public String getAmazonAdvancedOptions()
   {
-    return this.Y;
+    return this.aa;
   }
 
   public String getAndroidId()
   {
-    return this.aw;
+    return this.aB;
   }
 
   public String getAppId()
   {
-    return this.as;
+    return this.ax;
   }
 
   public String getAppName()
   {
-    return this.R;
+    return this.S;
   }
 
   public String getBannerid()
   {
-    return this.K;
+    return this.L;
   }
 
   public String getChannelId()
   {
-    return this.s;
+    return this.r;
   }
 
   public String getClickURL()
   {
-    return this.j;
+    return this.i;
   }
 
   public String getCloseFunction()
   {
-    return this.v;
+    return this.u;
   }
 
   public String getCompanyName()
   {
-    return this.t;
+    return this.s;
   }
 
   public String getCountdowntext()
   {
-    return this.ao;
+    return this.at;
   }
 
   public String getCreativeType()
   {
-    return this.l;
+    return this.k;
   }
 
   public String getDeviceConnectivity()
   {
-    return this.ay;
+    return this.aD;
   }
 
   public String getDisableAdDuration()
@@ -267,32 +292,37 @@ public class AdMarvelAd
 
   public int getErrorCode()
   {
-    return this.n;
+    return this.m;
   }
 
   public String getErrorReason()
   {
-    return this.o;
+    return this.n;
   }
 
   public String getExcluded()
   {
-    return this.M;
+    return this.N;
   }
 
   public String getExpandDirection()
   {
-    return this.C;
+    return this.D;
   }
 
-  public String getFacebookChildDirectedFlag()
+  public String getFacebookAdSize()
   {
     return this.y;
   }
 
-  public String[] getFacebookTestDeviceId()
+  public String getFacebookChildDirectedFlag()
   {
     return this.x;
+  }
+
+  public String[] getFacebookTestDeviceId()
+  {
+    return this.w;
   }
 
   public String getGooglePlayLocation()
@@ -302,167 +332,172 @@ public class AdMarvelAd
 
   public String getHeight()
   {
-    return this.E;
+    return this.F;
   }
 
   public AdMarvelAd.HeyzapAdType getHeyzapAdType()
   {
-    return this.ah;
+    return this.am;
   }
 
   public int getId()
   {
-    return this.b;
+    return this.a;
   }
 
   public String getImageAlt()
   {
-    return this.i;
+    return this.h;
   }
 
   public int getImageHeight()
   {
-    return this.h;
+    return this.g;
   }
 
   public String getImageURL()
   {
-    return this.f;
+    return this.e;
   }
 
   public int getImageWidth()
   {
-    return this.g;
+    return this.f;
   }
 
   public String getInterstitialAction()
   {
-    return this.H;
+    return this.I;
   }
 
   public String getIpAddress()
   {
-    return this.c;
+    return this.b;
   }
 
   public String getKeywordsContentUrl()
   {
-    return this.I;
+    return this.J;
   }
 
   public int getMaxretries()
   {
-    return this.N;
+    return this.O;
   }
 
   public String getOfflineBaseUrl()
   {
-    return this.ac;
+    return this.ah;
   }
 
   public String getOfflinekeyUrl()
   {
-    return this.ad;
+    return this.ai;
   }
 
   public int getOrientation()
   {
-    return this.ax;
+    return this.aC;
   }
 
   public String getPartnerId()
   {
-    return this.au;
+    return this.az;
   }
 
   public List<String> getPixels()
   {
-    return this.m;
+    return this.l;
   }
 
   public String getPubId()
   {
-    return this.r;
+    return this.q;
   }
 
   public Boolean getRetry()
   {
-    return this.J;
+    return this.K;
   }
 
   public int getRetrynum()
   {
-    return this.L;
+    return this.M;
   }
 
   public AdMarvelAd.RhythmVideoAdType getRhythmVideoAdType()
   {
-    return this.ag;
+    return this.al;
   }
 
   public String getRhythmVideoUrl()
   {
-    return this.af;
+    return this.ak;
   }
 
   public String getScene()
   {
-    return this.ae;
+    return this.aj;
   }
 
   public AdMarvelUtils.SDKAdNetwork getSdkAdNetwork()
   {
-    return this.q;
+    return this.p;
   }
 
   public String getSdkNetwork()
   {
-    return this.p;
+    return this.o;
   }
 
   public String getSiteId()
   {
-    return this.av;
+    return this.aA;
   }
 
   public String getSlotName()
   {
-    return this.Q;
+    return this.R;
   }
 
   public String getSource()
   {
-    return this.G;
+    return this.H;
   }
 
   public Map<String, Object> getTargetParams()
   {
-    return this.at;
+    return this.ay;
+  }
+
+  public String getTargetZoneId()
+  {
+    return this.Y;
   }
 
   public String getText()
   {
-    return this.e;
+    return this.d;
   }
 
   public String getVideoplacement()
   {
-    return this.ap;
+    return this.au;
   }
 
   public String getWidth()
   {
-    return this.F;
+    return this.G;
   }
 
   public String getXHTML()
   {
-    return this.d;
+    return this.c;
   }
 
   public String getXhtml()
   {
-    return this.d;
+    return this.c;
   }
 
   public String getXml()
@@ -477,17 +512,22 @@ public class AdMarvelAd
 
   public boolean hasImage()
   {
-    return this.f != null;
+    return this.e != null;
   }
 
   public boolean isAmazonEnableGeoLocation()
   {
-    return this.aa;
+    return this.ac;
+  }
+
+  public boolean isAppInteractionAllowedForExpandableAds()
+  {
+    return this.ag;
   }
 
   public boolean isCachingEnabled()
   {
-    return this.ai;
+    return this.an;
   }
 
   public boolean isDisableAdrequest()
@@ -495,27 +535,32 @@ public class AdMarvelAd
     return this.V;
   }
 
+  public boolean isHoverAd()
+  {
+    return this.af;
+  }
+
   public boolean isMustBeVisible()
   {
-    return this.O;
+    return this.P;
   }
 
   public boolean isTest()
   {
-    return this.u;
+    return this.t;
   }
 
   public boolean isTimercountdownEnabled()
   {
-    return this.aq;
+    return this.av;
   }
 
   public boolean isTrackingIdSet()
   {
-    return this.aj;
+    return this.ao;
   }
 
-  public AdMarvelXMLReader loadAd(File paramFile)
+  public AdMarvelXMLReader loadAd(Context paramContext)
   {
     if (this.U == null);
     AdMarvelXMLReader localAdMarvelXMLReader;
@@ -528,285 +573,305 @@ public class AdMarvelAd
       localAdMarvelXMLElement1 = localAdMarvelXMLReader.getParsedXMLData();
     }
     while (localAdMarvelXMLElement1 == null);
-    String str14;
-    if (localAdMarvelXMLElement1.a().equals("ad"))
+    String str13;
+    String str15;
+    if (localAdMarvelXMLElement1.getName().equals("ad"))
     {
-      String str11 = (String)localAdMarvelXMLElement1.getAttributes().get("id");
+      String str10 = (String)localAdMarvelXMLElement1.getAttributes().get("id");
+      if ((str10 != null) && (str10.length() > 0))
+      {
+        this.a = Integer.parseInt(str10);
+        this.L = str10;
+      }
+      String str11 = (String)localAdMarvelXMLElement1.getAttributes().get("ip");
       if ((str11 != null) && (str11.length() > 0))
-      {
-        this.b = Integer.parseInt(str11);
-        this.K = str11;
-      }
-      String str12 = (String)localAdMarvelXMLElement1.getAttributes().get("ip");
-      if ((str12 != null) && (str12.length() > 0))
-        this.c = str12;
-      String str13 = (String)localAdMarvelXMLElement1.getAttributes().get("dah");
-      if ((str13 != null) && (str13.length() > 0) && (str13.equalsIgnoreCase("true")))
+        this.b = str11;
+      String str12 = (String)localAdMarvelXMLElement1.getAttributes().get("dah");
+      if ((str12 != null) && (str12.length() > 0) && (str12.equalsIgnoreCase("true")))
         AdMarvelUtils.disableLogDump();
-      str14 = (String)localAdMarvelXMLElement1.getAttributes().get("type");
-      if ("text".equals(str14))
+      str13 = (String)localAdMarvelXMLElement1.getAttributes().get("type");
+      if ("text".equals(str13))
       {
-        this.k = AdMarvelAd.AdType.TEXT;
-        String str15 = (String)localAdMarvelXMLElement1.getAttributes().get("source");
-        if ((str15 != null) && (str15.length() > 0))
-          this.G = str15;
+        this.j = AdMarvelAd.AdType.TEXT;
+        String str14 = (String)localAdMarvelXMLElement1.getAttributes().get("source");
+        if ((str14 != null) && (str14.length() > 0))
+          this.H = str14;
+        str15 = (String)localAdMarvelXMLElement1.getAttributes().get("ave");
+        if ((str15 == null) || (str15.length() <= 0));
       }
     }
     while (true)
     {
-      if (!localAdMarvelXMLElement1.c().containsKey("pixels"))
-        break label546;
-      AdMarvelXMLElement localAdMarvelXMLElement14 = (AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement1.c().get("pixels")).get(0);
-      if (!localAdMarvelXMLElement14.c().containsKey("pixel"))
-        break label546;
-      int i1 = ((ArrayList)localAdMarvelXMLElement14.c().get("pixel")).size();
-      for (int i2 = 0; i2 < i1; i2++)
+      try
       {
-        AdMarvelXMLElement localAdMarvelXMLElement15 = (AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement14.c().get("pixel")).get(i2);
-        if (localAdMarvelXMLElement15 != null)
+        AdMarvelAnalyticsAdapter localAdMarvelAnalyticsAdapter = AdMarvelAnalyticsAdapterInstances.getInstance("com.admarvel.android.admarvelmologiqadapter.AdMarvelMologiqAdapter", paramContext);
+        if (str15.equals("1"))
         {
-          String str10 = localAdMarvelXMLElement15.b();
-          if ((AdMarvelView.b) || (AdMarvelInterstitialAds.enableOfflineSDK))
-            str10 = str10.replaceAll("\\{siteid\\}", getSiteId()).replaceAll("\\{random\\}", String.valueOf(System.currentTimeMillis())).replaceAll("\\{uniqueid\\}", getAndroidId());
-          if (this.m == null)
-            this.m = new ArrayList();
-          this.m.add(str10);
+          localAdMarvelAnalyticsAdapter.enableAppInstallCheck(true);
+          String str16 = (String)localAdMarvelXMLElement1.getAttributes().get("iha");
+          if ((str16 != null) && (str16.length() > 0) && (str16.equals("1")))
+            setAsHoverAd();
+          String str17 = (String)localAdMarvelXMLElement1.getAttributes().get("aie");
+          if ((str17 != null) && (str17.length() > 0) && (str17.equals("1")))
+            allowInteractionInExpandableAds();
+          if (!localAdMarvelXMLElement1.getChildren().containsKey("pixels"))
+            break label711;
+          AdMarvelXMLElement localAdMarvelXMLElement14 = (AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement1.getChildren().get("pixels")).get(0);
+          if (!localAdMarvelXMLElement14.getChildren().containsKey("pixel"))
+            break label711;
+          int i1 = ((ArrayList)localAdMarvelXMLElement14.getChildren().get("pixel")).size();
+          int i2 = 0;
+          if (i2 >= i1)
+            break label711;
+          AdMarvelXMLElement localAdMarvelXMLElement15 = (AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement14.getChildren().get("pixel")).get(i2);
+          if (localAdMarvelXMLElement15 != null)
+          {
+            String str9 = localAdMarvelXMLElement15.getData();
+            if ((AdMarvelView.a) || (AdMarvelInterstitialAds.enableOfflineSDK))
+              str9 = str9.replaceAll("\\{siteid\\}", getSiteId()).replaceAll("\\{random\\}", String.valueOf(System.currentTimeMillis())).replaceAll("\\{uniqueid\\}", getAndroidId());
+            if (this.l == null)
+              this.l = new ArrayList();
+            this.l.add(str9);
+          }
+          i2++;
+          continue;
+          if ("image".equals(str13))
+          {
+            this.j = AdMarvelAd.AdType.IMAGE;
+            break;
+          }
+          if ("javascript".equals(str13))
+          {
+            this.j = AdMarvelAd.AdType.JAVASCRIPT;
+            break;
+          }
+          if ("error".equals(str13))
+          {
+            this.j = AdMarvelAd.AdType.ERROR;
+            break;
+          }
+          if ("sdkcall".equals(str13))
+          {
+            this.j = AdMarvelAd.AdType.SDKCALL;
+            break;
+          }
+          if (!"custom".equals(str13))
+            break;
+          this.j = AdMarvelAd.AdType.CUSTOM;
+          break;
         }
+        if (!str15.equals("0"))
+          continue;
+        localAdMarvelAnalyticsAdapter.enableAppInstallCheck(false);
+        continue;
       }
-      if ("image".equals(str14))
+      catch (Exception localException2)
       {
-        this.k = AdMarvelAd.AdType.IMAGE;
-        break;
+        continue;
       }
-      if ("javascript".equals(str14))
-      {
-        this.k = AdMarvelAd.AdType.JAVASCRIPT;
-        break;
-      }
-      if ("error".equals(str14))
-      {
-        this.k = AdMarvelAd.AdType.ERROR;
-        break;
-      }
-      if ("sdkcall".equals(str14))
-      {
-        this.k = AdMarvelAd.AdType.SDKCALL;
-        break;
-      }
-      if (!"custom".equals(str14))
-        break;
-      this.k = AdMarvelAd.AdType.CUSTOM;
-      break;
-      this.k = AdMarvelAd.AdType.ERROR;
+      this.j = AdMarvelAd.AdType.ERROR;
     }
-    label546: if (((AdMarvelView.b) || (AdMarvelInterstitialAds.enableOfflineSDK)) && (localAdMarvelXMLElement1.c().containsKey("file")))
+    label711: String str8;
+    if (((AdMarvelView.a) || (AdMarvelInterstitialAds.enableOfflineSDK)) && (localAdMarvelXMLElement1.getChildren().containsKey("file")))
     {
-      String str9 = ((AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement1.c().get("file")).get(0)).b();
-      if (this.k.equals(AdMarvelAd.AdType.JAVASCRIPT))
-      {
-        this.d = a.a(this.ad, str9);
-        if (this.d != null)
-          this.d = this.d.replaceAll("\\{siteid\\}", getSiteId());
-      }
-      this.ad = (this.ad + "/" + str9);
+      str8 = ((AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement1.getChildren().get("file")).get(0)).getData();
+      if (!this.j.equals(AdMarvelAd.AdType.JAVASCRIPT));
     }
-    AdMarvelXMLElement localAdMarvelXMLElement2;
-    String str3;
-    if ((this.k.equals(AdMarvelAd.AdType.SDKCALL)) && (localAdMarvelXMLElement1.c().containsKey("xhtml")))
+    try
     {
-      AdMarvelXMLElement localAdMarvelXMLElement13 = (AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement1.c().get("xhtml")).get(0);
-      if (localAdMarvelXMLElement13 != null)
+      c.a locala = a.a(Class.forName("com.admarvel.android.offlinesdk.AdmarvelOfflineUtils").newInstance(), "readData");
+      locala.a(String.class, this.ai);
+      locala.a(String.class, str8);
+      this.c = ((String)locala.a());
+      if (this.c != null)
+        this.c = this.c.replaceAll("\\{siteid\\}", getSiteId());
+      this.ai = (this.ai + "/" + str8);
+      if ((this.j.equals(AdMarvelAd.AdType.SDKCALL)) && (localAdMarvelXMLElement1.getChildren().containsKey("xhtml")))
       {
-        String str2 = localAdMarvelXMLElement13.b();
-        localAdMarvelXMLReader.parseXMLString(new v().a(str2));
-        localAdMarvelXMLElement2 = localAdMarvelXMLReader.getParsedXMLData();
-        str3 = (String)localAdMarvelXMLElement2.getAttributes().get("network");
-        if (("googleplay".equals(str3)) || ("admob".equals(str3)))
+        AdMarvelXMLElement localAdMarvelXMLElement13 = (AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement1.getChildren().get("xhtml")).get(0);
+        if (localAdMarvelXMLElement13 != null)
         {
-          this.p = "com.admarvel.android.admarvelgoogleplayadapter.AdMarvelGooglePlayAdapter";
-          this.q = AdMarvelUtils.SDKAdNetwork.GOOGLEPLAY;
-          if (!"YES".equals((String)localAdMarvelXMLElement2.getAttributes().get("retry")))
-            break label2235;
-          this.J = Boolean.valueOf(true);
-          label844: String str4 = (String)localAdMarvelXMLElement2.getAttributes().get("bannerid");
-          if ((str4 != null) && (str4.length() > 0))
-            this.K = str4;
-          String str5 = (String)localAdMarvelXMLElement2.getAttributes().get("retrynum");
-          if ((str5 != null) && (str5.length() > 0))
-            this.L = Integer.parseInt(str5);
-          String str6 = (String)localAdMarvelXMLElement2.getAttributes().get("excluded");
-          if ((str6 != null) && (str6.length() > 0))
-            this.M = str6;
-          String str7 = (String)localAdMarvelXMLElement2.getAttributes().get("maxretries");
-          if ((str7 == null) || (str7.length() <= 0))
-            break label2246;
-          this.N = Integer.parseInt(str7);
+          String str1 = localAdMarvelXMLElement13.getData();
+          localAdMarvelXMLReader.parseXMLString(new i().a(str1));
+          localAdMarvelXMLElement2 = localAdMarvelXMLReader.getParsedXMLData();
+          str2 = (String)localAdMarvelXMLElement2.getAttributes().get("network");
+          if (("googleplay".equals(str2)) || ("admob".equals(str2)))
+          {
+            this.o = "com.admarvel.android.admarvelgoogleplayadapter.AdMarvelGooglePlayAdapter";
+            this.p = AdMarvelUtils.SDKAdNetwork.GOOGLEPLAY;
+            if (!"YES".equals((String)localAdMarvelXMLElement2.getAttributes().get("retry")))
+              break label2294;
+            this.K = Boolean.valueOf(true);
+            String str3 = (String)localAdMarvelXMLElement2.getAttributes().get("bannerid");
+            if ((str3 != null) && (str3.length() > 0))
+              this.L = str3;
+            String str4 = (String)localAdMarvelXMLElement2.getAttributes().get("retrynum");
+            if ((str4 != null) && (str4.length() > 0))
+              this.M = Integer.parseInt(str4);
+            String str5 = (String)localAdMarvelXMLElement2.getAttributes().get("excluded");
+            if ((str5 != null) && (str5.length() > 0))
+              this.N = str5;
+            String str6 = (String)localAdMarvelXMLElement2.getAttributes().get("maxretries");
+            if ((str6 == null) || (str6.length() <= 0))
+              break label2305;
+            this.O = Integer.parseInt(str6);
+            if ((this.j.equals(AdMarvelAd.AdType.JAVASCRIPT)) && (localAdMarvelXMLElement2.getChildren().containsKey("customdata")))
+            {
+              AdMarvelXMLElement localAdMarvelXMLElement12 = (AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.getChildren().get("customdata")).get(0);
+              if (localAdMarvelXMLElement12.getChildren().containsKey("close_func"))
+                this.u = ((AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement12.getChildren().get("close_func")).get(0)).getData();
+            }
+            if (localAdMarvelXMLElement2.getChildren().containsKey("errorCode"))
+            {
+              AdMarvelXMLElement localAdMarvelXMLElement11 = (AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.getChildren().get("errorCode")).get(0);
+              if (localAdMarvelXMLElement11 != null)
+                this.m = Integer.parseInt(localAdMarvelXMLElement11.getData());
+            }
+            if (localAdMarvelXMLElement2.getChildren().containsKey("errorReason"))
+            {
+              AdMarvelXMLElement localAdMarvelXMLElement10 = (AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.getChildren().get("errorReason")).get(0);
+              if (localAdMarvelXMLElement10 != null)
+                this.n = localAdMarvelXMLElement10.getData();
+            }
+            if (localAdMarvelXMLElement2.getChildren().containsKey("xhtml"))
+            {
+              AdMarvelXMLElement localAdMarvelXMLElement9 = (AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.getChildren().get("xhtml")).get(0);
+              if (localAdMarvelXMLElement9 != null)
+                this.c = localAdMarvelXMLElement9.getData();
+            }
+            if (localAdMarvelXMLElement2.getChildren().containsKey("clickurl"))
+            {
+              AdMarvelXMLElement localAdMarvelXMLElement8 = (AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.getChildren().get("clickurl")).get(0);
+              if (localAdMarvelXMLElement8 != null)
+              {
+                this.i = localAdMarvelXMLElement8.getData();
+                if (((AdMarvelView.a) || (AdMarvelInterstitialAds.enableOfflineSDK)) && (this.i != null))
+                  this.i = this.i.replaceAll("\\{siteid\\}", getSiteId());
+              }
+            }
+            if (localAdMarvelXMLElement2.getChildren().containsKey("image"))
+            {
+              if (((AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.getChildren().get("image")).get(0)).getChildren().containsKey("url"))
+              {
+                AdMarvelXMLElement localAdMarvelXMLElement7 = (AdMarvelXMLElement)((ArrayList)((AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.getChildren().get("image")).get(0)).getChildren().get("url")).get(0);
+                if (localAdMarvelXMLElement7 != null)
+                  this.e = localAdMarvelXMLElement7.getData();
+              }
+              if (((AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.getChildren().get("image")).get(0)).getChildren().containsKey("alt"))
+              {
+                AdMarvelXMLElement localAdMarvelXMLElement6 = (AdMarvelXMLElement)((ArrayList)((AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.getChildren().get("image")).get(0)).getChildren().get("alt")).get(0);
+                if (localAdMarvelXMLElement6 != null)
+                  this.h = localAdMarvelXMLElement6.getData();
+              }
+              if (((AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.getChildren().get("image")).get(0)).getChildren().containsKey("width"))
+              {
+                AdMarvelXMLElement localAdMarvelXMLElement5 = (AdMarvelXMLElement)((ArrayList)((AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.getChildren().get("image")).get(0)).getChildren().get("width")).get(0);
+                if (localAdMarvelXMLElement5 != null)
+                  this.f = Integer.parseInt(localAdMarvelXMLElement5.getData());
+              }
+              if (((AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.getChildren().get("image")).get(0)).getChildren().containsKey("height"))
+              {
+                AdMarvelXMLElement localAdMarvelXMLElement4 = (AdMarvelXMLElement)((ArrayList)((AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.getChildren().get("image")).get(0)).getChildren().get("height")).get(0);
+                if (localAdMarvelXMLElement4 != null)
+                  this.g = Integer.parseInt(localAdMarvelXMLElement4.getData());
+              }
+            }
+            if (localAdMarvelXMLElement2.getChildren().containsKey("text"))
+            {
+              AdMarvelXMLElement localAdMarvelXMLElement3 = (AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.getChildren().get("text")).get(0);
+              if (localAdMarvelXMLElement3 != null)
+                this.d = localAdMarvelXMLElement3.getData();
+            }
+            return localAdMarvelXMLReader;
+          }
         }
       }
     }
-    while (true)
+    catch (InstantiationException localInstantiationException)
     {
-      label990: if ((this.k.equals(AdMarvelAd.AdType.JAVASCRIPT)) && (localAdMarvelXMLElement2.c().containsKey("customdata")))
-      {
-        AdMarvelXMLElement localAdMarvelXMLElement12 = (AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.c().get("customdata")).get(0);
-        if (localAdMarvelXMLElement12.c().containsKey("close_func"))
-          this.v = ((AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement12.c().get("close_func")).get(0)).b();
-      }
-      if (localAdMarvelXMLElement2.c().containsKey("errorCode"))
-      {
-        AdMarvelXMLElement localAdMarvelXMLElement11 = (AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.c().get("errorCode")).get(0);
-        if (localAdMarvelXMLElement11 != null)
-          this.n = Integer.parseInt(localAdMarvelXMLElement11.b());
-      }
-      if (localAdMarvelXMLElement2.c().containsKey("errorReason"))
-      {
-        AdMarvelXMLElement localAdMarvelXMLElement10 = (AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.c().get("errorReason")).get(0);
-        if (localAdMarvelXMLElement10 != null)
-          this.o = localAdMarvelXMLElement10.b();
-      }
-      if (localAdMarvelXMLElement2.c().containsKey("xhtml"))
-      {
-        AdMarvelXMLElement localAdMarvelXMLElement9 = (AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.c().get("xhtml")).get(0);
-        if (localAdMarvelXMLElement9 != null)
-          this.d = localAdMarvelXMLElement9.b();
-      }
-      if (localAdMarvelXMLElement2.c().containsKey("clickurl"))
-      {
-        AdMarvelXMLElement localAdMarvelXMLElement8 = (AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.c().get("clickurl")).get(0);
-        if (localAdMarvelXMLElement8 != null)
-        {
-          this.j = localAdMarvelXMLElement8.b();
-          if (((AdMarvelView.b) || (AdMarvelInterstitialAds.enableOfflineSDK)) && (this.j != null))
-            this.j = this.j.replaceAll("\\{siteid\\}", getSiteId());
-        }
-      }
-      if (localAdMarvelXMLElement2.c().containsKey("image"))
-      {
-        if (((AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.c().get("image")).get(0)).c().containsKey("url"))
-        {
-          AdMarvelXMLElement localAdMarvelXMLElement7 = (AdMarvelXMLElement)((ArrayList)((AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.c().get("image")).get(0)).c().get("url")).get(0);
-          if (localAdMarvelXMLElement7 != null)
-            this.f = localAdMarvelXMLElement7.b();
-        }
-        if (((AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.c().get("image")).get(0)).c().containsKey("alt"))
-        {
-          AdMarvelXMLElement localAdMarvelXMLElement6 = (AdMarvelXMLElement)((ArrayList)((AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.c().get("image")).get(0)).c().get("alt")).get(0);
-          if (localAdMarvelXMLElement6 != null)
-            this.i = localAdMarvelXMLElement6.b();
-        }
-        if (((AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.c().get("image")).get(0)).c().containsKey("width"))
-        {
-          AdMarvelXMLElement localAdMarvelXMLElement5 = (AdMarvelXMLElement)((ArrayList)((AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.c().get("image")).get(0)).c().get("width")).get(0);
-          if (localAdMarvelXMLElement5 != null)
-            this.g = Integer.parseInt(localAdMarvelXMLElement5.b());
-        }
-        if (((AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.c().get("image")).get(0)).c().containsKey("height"))
-        {
-          AdMarvelXMLElement localAdMarvelXMLElement4 = (AdMarvelXMLElement)((ArrayList)((AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.c().get("image")).get(0)).c().get("height")).get(0);
-          if (localAdMarvelXMLElement4 != null)
-            this.h = Integer.parseInt(localAdMarvelXMLElement4.b());
-        }
-      }
-      if (localAdMarvelXMLElement2.c().containsKey("text"))
-      {
-        AdMarvelXMLElement localAdMarvelXMLElement3 = (AdMarvelXMLElement)((ArrayList)localAdMarvelXMLElement2.c().get("text")).get(0);
-        if (localAdMarvelXMLElement3 != null)
-          this.e = localAdMarvelXMLElement3.b();
-      }
-      if ((this.S == true) && (!this.k.equals(AdMarvelAd.AdType.ERROR)))
-      {
-        if (!localAdMarvelXMLElement2.c().containsKey("image"))
-          break label2278;
-        String str1 = this.f.replace("http://admarvel.s3.amazonaws.com", "");
-        File localFile = new File(paramFile, "/data/com.admarvel.android.admarvelcachedads" + str1);
-        Logging.log("AdMarvelAd::loadAd: " + localFile.getAbsolutePath());
-        if (!localFile.exists())
-          break label2254;
-        this.f = this.f.replace("http://admarvel.s3.amazonaws.com", "content://" + this.T + ".AdMarvelCachedImageLocalFileContentProvider");
-      }
+      while (true)
+        localInstantiationException.printStackTrace();
+    }
+    catch (IllegalAccessException localIllegalAccessException)
+    {
+      while (true)
+        localIllegalAccessException.printStackTrace();
+    }
+    catch (ClassNotFoundException localClassNotFoundException)
+    {
+      while (true)
+        localClassNotFoundException.printStackTrace();
+    }
+    catch (Exception localException1)
+    {
       while (true)
       {
-        return localAdMarvelXMLReader;
-        if ("rhythm".equals(str3))
-        {
-          this.p = "com.admarvel.android.admarvelrhythmadapter.AdMarvelRhythmAdapter";
-          this.q = AdMarvelUtils.SDKAdNetwork.RHYTHM;
-          break;
-        }
-        if ("greystripe".equals(str3))
-        {
-          this.p = "com.admarvel.android.admarvelgreystripeadapter.AdMarvelGreystripeAdapter";
-          this.q = AdMarvelUtils.SDKAdNetwork.GREYSTRIPE;
-          break;
-        }
-        if ("millennial".equals(str3))
-        {
-          this.p = "com.admarvel.android.admarvelmillennialadapter.AdMarvelMillennialAdapter";
-          this.q = AdMarvelUtils.SDKAdNetwork.MILLENNIAL;
-          break;
-        }
-        if ("amazon".equals(str3))
-        {
-          this.p = "com.admarvel.android.admarvelamazonadapter.AdMarvelAmazonAdapter";
-          this.q = AdMarvelUtils.SDKAdNetwork.AMAZON;
-          break;
-        }
-        if ("adcolony".equals(str3))
-        {
-          this.p = "com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter";
-          this.q = AdMarvelUtils.SDKAdNetwork.ADCOLONY;
-          break;
-        }
-        if ("pulse3d".equals(str3))
-        {
-          this.p = "com.admarvel.android.admarvelpulse3dadapter.AdMarvelPulse3dAdapter";
-          this.q = AdMarvelUtils.SDKAdNetwork.PULSE3D;
-          break;
-        }
-        if ("facebook".equals(str3))
-        {
-          this.p = "com.admarvel.android.admarvelfacebookadapter.AdMarvelFacebookAdapter";
-          this.q = AdMarvelUtils.SDKAdNetwork.FACEBOOK;
-          break;
-        }
-        if ("inmobi".equals(str3))
-        {
-          this.p = "com.admarvel.android.admarvelinmobiadapter.AdMarvelInmobiAdapter";
-          this.q = AdMarvelUtils.SDKAdNetwork.INMOBI;
-          break;
-        }
-        if ("heyzap".equals(str3))
-        {
-          this.p = "com.admarvel.android.admarvelheyzapadapter.AdMarvelHeyzapAdapter";
-          this.q = AdMarvelUtils.SDKAdNetwork.HEYZAP;
-          break;
-        }
-        if ("disable_ad_request".equals(str3))
-        {
-          String str8 = (String)localAdMarvelXMLElement2.getAttributes().get("durationinseconds");
-          if (str8 == null)
-            break;
-          this.V = true;
-          this.W = str8;
-          break;
-        }
-        this.k = AdMarvelAd.AdType.ERROR;
-        this.n = 307;
-        this.o = "Missing SDK ad network";
-        break;
-        label2235: this.J = Boolean.valueOf(false);
-        break label844;
-        label2246: this.N = 1;
-        break label990;
-        label2254: this.k = AdMarvelAd.AdType.ERROR;
-        this.n = 205;
-        this.o = "Cached Ad Unable to render";
+        AdMarvelXMLElement localAdMarvelXMLElement2;
+        String str2;
+        localException1.printStackTrace();
         continue;
-        label2278: this.k = AdMarvelAd.AdType.ERROR;
-        this.n = 205;
-        this.o = "Cached Ad Unable to render: Only images are supported.  server-side configuration error";
+        if ("rhythm".equals(str2))
+        {
+          this.o = "com.admarvel.android.admarvelrhythmadapter.AdMarvelRhythmAdapter";
+          this.p = AdMarvelUtils.SDKAdNetwork.RHYTHM;
+        }
+        else if ("millennial".equals(str2))
+        {
+          this.o = "com.admarvel.android.admarvelmillennialadapter.AdMarvelMillennialAdapter";
+          this.p = AdMarvelUtils.SDKAdNetwork.MILLENNIAL;
+        }
+        else if ("amazon".equals(str2))
+        {
+          this.o = "com.admarvel.android.admarvelamazonadapter.AdMarvelAmazonAdapter";
+          this.p = AdMarvelUtils.SDKAdNetwork.AMAZON;
+        }
+        else if ("adcolony".equals(str2))
+        {
+          this.o = "com.admarvel.android.admarveladcolonyadapter.AdMarvelAdColonyAdapter";
+          this.p = AdMarvelUtils.SDKAdNetwork.ADCOLONY;
+        }
+        else if ("pulse3d".equals(str2))
+        {
+          this.o = "com.admarvel.android.admarvelpulse3dadapter.AdMarvelPulse3dAdapter";
+          this.p = AdMarvelUtils.SDKAdNetwork.PULSE3D;
+        }
+        else if ("facebook".equals(str2))
+        {
+          this.o = "com.admarvel.android.admarvelfacebookadapter.AdMarvelFacebookAdapter";
+          this.p = AdMarvelUtils.SDKAdNetwork.FACEBOOK;
+        }
+        else if ("inmobi".equals(str2))
+        {
+          this.o = "com.admarvel.android.admarvelinmobiadapter.AdMarvelInmobiAdapter";
+          this.p = AdMarvelUtils.SDKAdNetwork.INMOBI;
+        }
+        else if ("heyzap".equals(str2))
+        {
+          this.o = "com.admarvel.android.admarvelheyzapadapter.AdMarvelHeyzapAdapter";
+          this.p = AdMarvelUtils.SDKAdNetwork.HEYZAP;
+        }
+        else if ("disable_ad_request".equals(str2))
+        {
+          String str7 = (String)localAdMarvelXMLElement2.getAttributes().get("durationinseconds");
+          if (str7 != null)
+          {
+            this.V = true;
+            this.W = str7;
+          }
+        }
+        else
+        {
+          this.j = AdMarvelAd.AdType.ERROR;
+          this.m = 307;
+          this.n = "Missing SDK ad network";
+          continue;
+          label2294: this.K = Boolean.valueOf(false);
+          continue;
+          label2305: this.O = 1;
+          continue;
+          localAdMarvelXMLElement2 = localAdMarvelXMLElement1;
+        }
       }
-      localAdMarvelXMLElement2 = localAdMarvelXMLElement1;
     }
   }
 
@@ -818,12 +883,12 @@ public class AdMarvelAd
       try
       {
         ConcurrentHashMap localConcurrentHashMap1 = new ConcurrentHashMap();
-        localConcurrentHashMap1.putAll(this.at);
+        localConcurrentHashMap1.putAll(this.ay);
         Map.Entry localEntry;
         try
         {
           localConcurrentHashMap2 = new ConcurrentHashMap();
-          localConcurrentHashMap2.putAll(this.at);
+          localConcurrentHashMap2.putAll(this.ay);
           Iterator localIterator = localConcurrentHashMap2.entrySet().iterator();
           if (!localIterator.hasNext())
             break label234;
@@ -842,8 +907,8 @@ public class AdMarvelAd
         }
         catch (Exception localException)
         {
-          this.at.clear();
-          this.at.putAll(localConcurrentHashMap1);
+          this.ay.clear();
+          this.ay.putAll(localConcurrentHashMap1);
           localException.printStackTrace();
         }
         return;
@@ -853,8 +918,8 @@ public class AdMarvelAd
       finally
       {
       }
-      label234: this.at.clear();
-      this.at.putAll(localConcurrentHashMap2);
+      label234: this.ay.clear();
+      this.ay.putAll(localConcurrentHashMap2);
     }
   }
 
@@ -863,19 +928,34 @@ public class AdMarvelAd
     this.B = paramString;
   }
 
+  public void setAdColonyDelayAfterInitInMs(long paramLong)
+  {
+    this.C = paramLong;
+  }
+
+  public void setAdColonyMuted()
+  {
+    this.Z = "true";
+  }
+
   public void setAdFormat(String paramString)
   {
-    this.D = paramString;
+    this.E = paramString;
   }
 
   public void setAdHistoryCounter(int paramInt)
   {
-    this.ar = Integer.valueOf(paramInt);
+    this.aw = Integer.valueOf(paramInt);
   }
 
   public void setAdId(String paramString)
   {
-    this.P = paramString;
+    this.Q = paramString;
+  }
+
+  public void setAdMarvelViewWidth(float paramFloat)
+  {
+    this.ae = paramFloat;
   }
 
   public void setAdMobExtras(String paramString)
@@ -885,117 +965,127 @@ public class AdMarvelAd
 
   public void setAdType(AdMarvelAd.AdType paramAdType)
   {
-    this.k = paramAdType;
+    this.j = paramAdType;
   }
 
   public void setAdmobTestAction(String paramString)
   {
-    this.az = paramString;
+    this.aE = paramString;
   }
 
   public void setAdmobTestDeviceId(String[] paramArrayOfString)
   {
-    this.w = paramArrayOfString;
+    this.v = paramArrayOfString;
   }
 
   public void setAmazonAdRequestAdvancedOptions(String paramString)
   {
-    this.Z = paramString;
+    this.ab = paramString;
   }
 
   public void setAmazonAdTimeOut(int paramInt)
   {
-    this.ab = paramInt;
+    this.ad = paramInt;
   }
 
   public void setAmazonAdvancedOptions(String paramString)
   {
-    this.Y = paramString;
+    this.aa = paramString;
   }
 
   public void setAmazonEnableGeoLocation(boolean paramBoolean)
   {
-    this.aa = paramBoolean;
+    this.ac = paramBoolean;
   }
 
   public void setAppId(String paramString)
   {
-    this.as = paramString;
+    this.ax = paramString;
   }
 
   public void setAppName(String paramString)
   {
-    this.R = paramString;
+    this.S = paramString;
+  }
+
+  public void setAsHoverAd()
+  {
+    this.af = true;
   }
 
   public void setBannerid(String paramString)
   {
-    this.K = paramString;
+    this.L = paramString;
   }
 
   public void setCachingEnabled(boolean paramBoolean)
   {
-    this.ai = paramBoolean;
+    this.an = paramBoolean;
   }
 
   public void setChannelId(String paramString)
   {
-    this.s = paramString;
+    this.r = paramString;
   }
 
   public void setClickURL(String paramString)
   {
-    this.j = paramString;
+    this.i = paramString;
   }
 
   public void setCloseFunction(String paramString)
   {
-    this.v = paramString;
+    this.u = paramString;
   }
 
   public void setCompanyName(String paramString)
   {
-    this.t = paramString;
+    this.s = paramString;
   }
 
   public void setCountdowntext(String paramString)
   {
-    this.ao = paramString;
+    this.at = paramString;
   }
 
   public void setCreativeType(String paramString)
   {
-    this.l = paramString;
+    this.k = paramString;
   }
 
   public void setErrorCode(int paramInt)
   {
-    this.n = paramInt;
+    this.m = paramInt;
   }
 
   public void setErrorReason(String paramString)
   {
-    this.o = paramString;
+    this.n = paramString;
   }
 
   public void setExcluded(String paramString)
   {
-    this.M = paramString;
+    this.N = paramString;
   }
 
   public void setExpandDirection(String paramString)
   {
-    this.C = paramString;
+    this.D = paramString;
   }
 
-  public void setFacebookChildDirectedFlag(String paramString)
+  public void setFacebookAdSize(String paramString)
   {
     this.y = paramString;
   }
 
+  public void setFacebookChildDirectedFlag(String paramString)
+  {
+    this.x = paramString;
+  }
+
   public void setFacebookTestDeviceId(String[] paramArrayOfString)
   {
-    this.x = paramArrayOfString;
+    this.w = paramArrayOfString;
   }
 
   public void setGooglePlayLocation(String paramString)
@@ -1005,12 +1095,12 @@ public class AdMarvelAd
 
   public void setHeight(String paramString)
   {
-    this.E = paramString;
+    this.F = paramString;
   }
 
   public void setHeyzapAdType(AdMarvelAd.HeyzapAdType paramHeyzapAdType)
   {
-    this.ah = paramHeyzapAdType;
+    this.am = paramHeyzapAdType;
   }
 
   public void setHtmlJson(String paramString)
@@ -1027,7 +1117,7 @@ public class AdMarvelAd
       localJSONObject.put("timestamp", String.valueOf(localLong));
       localJSONObject.put("utc", localSimpleDateFormat1.format(localDate));
       localJSONObject.put("local", localSimpleDateFormat2.format(localDate));
-      this.am = localJSONObject.toString(1);
+      this.ar = localJSONObject.toString(1);
       return;
     }
     catch (Exception localException)
@@ -1038,67 +1128,67 @@ public class AdMarvelAd
 
   public void setId(int paramInt)
   {
-    this.b = paramInt;
+    this.a = paramInt;
   }
 
   public void setImageAlt(String paramString)
   {
-    this.i = paramString;
+    this.h = paramString;
   }
 
   public void setImageHeight(int paramInt)
   {
-    this.h = paramInt;
+    this.g = paramInt;
   }
 
   public void setImageURL(String paramString)
   {
-    this.f = paramString;
+    this.e = paramString;
   }
 
   public void setImageWidth(int paramInt)
   {
-    this.g = paramInt;
+    this.f = paramInt;
   }
 
   public void setInterstitialAction(String paramString)
   {
-    this.H = paramString;
+    this.I = paramString;
   }
 
   public void setIpAddress(String paramString)
   {
-    this.c = paramString;
+    this.b = paramString;
   }
 
   public void setKeywordsContentUrl(String paramString)
   {
-    this.I = paramString;
+    this.J = paramString;
   }
 
   public void setMustBeVisible(boolean paramBoolean)
   {
-    this.O = paramBoolean;
+    this.P = paramBoolean;
   }
 
   public void setOfflineBaseUrl(String paramString)
   {
-    this.ac = paramString;
+    this.ah = paramString;
   }
 
   public void setOfflinekeyUrl(String paramString)
   {
-    this.ad = paramString;
+    this.ai = paramString;
   }
 
   public void setPixels(List<String> paramList)
   {
-    this.m = paramList;
+    this.l = paramList;
   }
 
   public void setPubId(String paramString)
   {
-    this.r = paramString;
+    this.q = paramString;
   }
 
   public void setRequestJson(JSONObject paramJSONObject)
@@ -1106,7 +1196,7 @@ public class AdMarvelAd
     if (paramJSONObject != null);
     try
     {
-      this.ak = paramJSONObject.toString(1);
+      this.ap = paramJSONObject.toString(1);
       return;
     }
     catch (Exception localException)
@@ -1129,7 +1219,7 @@ public class AdMarvelAd
       localJSONObject.put("timestamp", String.valueOf(localLong));
       localJSONObject.put("utc", localSimpleDateFormat1.format(localDate));
       localJSONObject.put("local", localSimpleDateFormat2.format(localDate));
-      this.al = localJSONObject.toString(1);
+      this.aq = localJSONObject.toString(1);
       return;
     }
     catch (Exception localException)
@@ -1140,77 +1230,82 @@ public class AdMarvelAd
 
   public void setRetry(Boolean paramBoolean)
   {
-    this.J = paramBoolean;
+    this.K = paramBoolean;
   }
 
   public void setRetrynum(int paramInt)
   {
-    this.L = paramInt;
+    this.M = paramInt;
   }
 
   public void setRhythmVideoAdType(AdMarvelAd.RhythmVideoAdType paramRhythmVideoAdType)
   {
-    this.ag = paramRhythmVideoAdType;
+    this.al = paramRhythmVideoAdType;
   }
 
   public void setRhythmVideoUrl(String paramString)
   {
-    this.af = paramString;
+    this.ak = paramString;
   }
 
   public void setScene(String paramString)
   {
-    this.ae = paramString;
+    this.aj = paramString;
   }
 
   public void setSdkNetwork(String paramString)
   {
-    this.p = paramString;
+    this.o = paramString;
   }
 
   public void setSetTrackingId(boolean paramBoolean)
   {
-    this.aj = paramBoolean;
+    this.ao = paramBoolean;
   }
 
   public void setSlotName(String paramString)
   {
-    this.Q = paramString;
+    this.R = paramString;
   }
 
   public void setSource(String paramString)
   {
-    this.G = paramString;
+    this.H = paramString;
+  }
+
+  public void setTargetZoneId(String paramString)
+  {
+    this.Y = paramString;
   }
 
   public void setTest(boolean paramBoolean)
   {
-    this.u = paramBoolean;
+    this.t = paramBoolean;
   }
 
   public void setText(String paramString)
   {
-    this.e = paramString;
+    this.d = paramString;
   }
 
   public void setTimercountdown(boolean paramBoolean)
   {
-    this.aq = paramBoolean;
+    this.av = paramBoolean;
   }
 
   public void setVideoplacement(String paramString)
   {
-    this.ap = paramString;
+    this.au = paramString;
   }
 
   public void setWidth(String paramString)
   {
-    this.F = paramString;
+    this.G = paramString;
   }
 
   public void setXhtml(String paramString)
   {
-    this.d = paramString;
+    this.c = paramString;
   }
 
   public void setZoneId(String paramString)
@@ -1219,7 +1314,7 @@ public class AdMarvelAd
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.ads.AdMarvelAd
  * JD-Core Version:    0.6.2
  */

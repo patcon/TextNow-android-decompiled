@@ -4,8 +4,8 @@ import com.enflick.android.TextNow.api.common.b;
 import com.enflick.android.TextNow.api.common.c;
 import com.enflick.android.TextNow.api.responsemodel.Group.GroupMember;
 import org.json.JSONObject;
-import textnow.t.a;
-import textnow.t.e;
+import textnow.y.a;
+import textnow.y.e;
 
 public final class k extends c
 {
@@ -30,7 +30,7 @@ public final class k extends c
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.api.users.k
  * JD-Core Version:    0.6.2
  */

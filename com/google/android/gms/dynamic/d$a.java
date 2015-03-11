@@ -13,7 +13,7 @@ public abstract class d$a extends Binder
     attachInterface(this, "com.google.android.gms.dynamic.IObjectWrapper");
   }
 
-  public static d ag(IBinder paramIBinder)
+  public static d am(IBinder paramIBinder)
   {
     if (paramIBinder == null)
       return null;
@@ -41,7 +41,7 @@ public abstract class d$a extends Binder
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.dynamic.d.a
  * JD-Core Version:    0.6.2
  */

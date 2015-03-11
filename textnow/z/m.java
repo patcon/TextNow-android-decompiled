@@ -1,102 +1,276 @@
 package textnow.z;
 
-import java.io.IOException;
-import java.io.StringWriter;
-import textnow.ab.q;
-import textnow.ae.c;
+import android.content.ContentResolver;
+import android.content.ContentUris;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.support.v4.content.d;
+import android.text.TextUtils;
+import com.enflick.android.TextNow.persistence.contentproviders.g;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 
-public abstract class m
+public final class m
 {
-  public Number b()
+  private static final Set<Integer> a;
+  private static String[] b = { "_id", "message_text", "message_type", "message_id", "message_direction", "contact_value", "contact_name", "contact_type", "date", "state", "attach", "message_source" };
+  private long c;
+  private String d;
+  private String e;
+  private int f;
+  private String g;
+  private long h;
+  private int i;
+  private int j;
+  private long k;
+  private int l;
+  private String m;
+  private int n;
+
+  static
   {
-    throw new UnsupportedOperationException(getClass().getSimpleName());
+    HashSet localHashSet = new HashSet();
+    a = localHashSet;
+    localHashSet.add(Integer.valueOf(0));
+    a.add(Integer.valueOf(1));
+    a.add(Integer.valueOf(2));
+    a.add(Integer.valueOf(3));
+    a.add(Integer.valueOf(4));
+    a.add(Integer.valueOf(5));
+    a.add(Integer.valueOf(7));
+    a.add(Integer.valueOf(8));
+    a.add(Integer.valueOf(9));
+    a.add(Integer.valueOf(10));
   }
 
-  public String c()
+  public m(Cursor paramCursor)
   {
-    throw new UnsupportedOperationException(getClass().getSimpleName());
+    this.c = paramCursor.getLong(0);
+    this.g = paramCursor.getString(1);
+    this.i = paramCursor.getInt(2);
+    this.h = paramCursor.getLong(3);
+    this.j = paramCursor.getInt(4);
+    this.d = paramCursor.getString(5);
+    this.e = paramCursor.getString(6);
+    this.f = paramCursor.getInt(7);
+    this.k = paramCursor.getLong(8);
+    this.l = paramCursor.getInt(9);
+    this.m = paramCursor.getString(10);
+    this.n = paramCursor.getInt(11);
   }
 
-  public double d()
+  public static Uri a(Context paramContext, int paramInt1, String paramString1, String paramString2, int paramInt2, int paramInt3, boolean paramBoolean, String paramString3, String paramString4, int paramInt4)
   {
-    throw new UnsupportedOperationException(getClass().getSimpleName());
+    ContentValues localContentValues = new ContentValues();
+    u localu = new u(paramContext);
+    String str = localu.s();
+    if ((paramInt2 == 1) && (paramInt4 != 1) && (!TextUtils.isEmpty(str)))
+      paramString3 = paramString3 + "\n" + str;
+    localContentValues.put("message_id", Long.valueOf(UUID.randomUUID().getMostSignificantBits()));
+    localContentValues.put("contact_value", paramString1);
+    localContentValues.put("contact_type", Integer.valueOf(paramInt1));
+    if (paramString2 == null)
+      paramString2 = "";
+    localContentValues.put("contact_name", paramString2);
+    localContentValues.put("message_direction", Integer.valueOf(paramInt3));
+    localContentValues.put("message_type", Integer.valueOf(paramInt2));
+    localContentValues.put("message_text", paramString3);
+    localContentValues.put("read", Boolean.valueOf(paramBoolean));
+    localContentValues.put("date", Long.valueOf(new Date().getTime() + localu.r()));
+    localContentValues.put("state", Integer.valueOf(0));
+    if (paramString4 == null)
+      paramString4 = "";
+    localContentValues.put("attach", paramString4);
+    localContentValues.put("message_source", Integer.valueOf(paramInt4));
+    return paramContext.getContentResolver().insert(g.d, localContentValues);
   }
 
-  public long e()
+  public static d a(Context paramContext, String paramString)
   {
-    throw new UnsupportedOperationException(getClass().getSimpleName());
+    String[] arrayOfString = { paramString };
+    return new d(paramContext, g.d, b, "contact_value = ?", arrayOfString, "date");
   }
 
-  public int f()
+  public static ArrayList<m> a(Context paramContext, String paramString, int paramInt)
   {
-    throw new UnsupportedOperationException(getClass().getSimpleName());
+    ArrayList localArrayList = new ArrayList();
+    String[] arrayOfString = { paramString };
+    String str = "date DESC LIMIT " + 10;
+    Cursor localCursor = paramContext.getContentResolver().query(g.d, b, "contact_value = ?", arrayOfString, str);
+    if (localCursor != null)
+      try
+      {
+        if (localCursor.moveToNext())
+          localArrayList.add(new m(localCursor));
+      }
+      finally
+      {
+        localCursor.close();
+      }
+    return localArrayList;
   }
 
-  public boolean g()
+  public static ArrayList<m> a(Context paramContext, String paramString, int paramInt, boolean paramBoolean)
   {
-    throw new UnsupportedOperationException(getClass().getSimpleName());
+    ArrayList localArrayList = new ArrayList();
+    String[] arrayOfString = new String[2];
+    arrayOfString[0] = paramString;
+    arrayOfString[1] = String.valueOf(2);
+    String str1;
+    if (paramBoolean)
+    {
+      str1 = " DESC";
+      if (paramInt <= 0)
+        break label167;
+    }
+    label157: label167: for (String str2 = str1 + " LIMIT " + paramInt; ; str2 = str1)
+    {
+      Cursor localCursor = paramContext.getContentResolver().query(g.d, b, "contact_value=? AND message_type=?", arrayOfString, "date" + str2);
+      if (localCursor != null)
+      {
+        try
+        {
+          if (!localCursor.moveToNext())
+            break label157;
+          localArrayList.add(new m(localCursor));
+        }
+        finally
+        {
+          localCursor.close();
+        }
+        break;
+        localCursor.close();
+      }
+      return localArrayList;
+    }
   }
 
-  public final boolean h()
+  public static m a(Context paramContext, long paramLong)
   {
-    return this instanceof j;
-  }
-
-  public final boolean i()
-  {
-    return this instanceof p;
-  }
-
-  public final boolean j()
-  {
-    return this instanceof r;
-  }
-
-  public final boolean k()
-  {
-    return this instanceof o;
-  }
-
-  public final p l()
-  {
-    if ((this instanceof p))
-      return (p)this;
-    throw new IllegalStateException("Not a JSON Object: " + this);
-  }
-
-  public final j m()
-  {
-    if ((this instanceof j))
-      return (j)this;
-    throw new IllegalStateException("This is not a JSON Array.");
-  }
-
-  public final r n()
-  {
-    if ((this instanceof r))
-      return (r)this;
-    throw new IllegalStateException("This is not a JSON Primitive.");
-  }
-
-  public String toString()
-  {
+    String[] arrayOfString = new String[1];
+    arrayOfString[0] = String.valueOf(paramLong);
+    Cursor localCursor = paramContext.getContentResolver().query(g.d, b, "message_id = ?", arrayOfString, null);
+    m localm = null;
+    if (localCursor != null);
     try
     {
-      StringWriter localStringWriter = new StringWriter();
-      c localc = new c(localStringWriter);
-      localc.b(true);
-      q.a(this, localc);
-      String str = localStringWriter.toString();
-      return str;
+      if (localCursor.moveToFirst())
+      {
+        localm = new m(localCursor);
+        return localm;
+      }
+      return null;
     }
-    catch (IOException localIOException)
+    finally
     {
-      throw new AssertionError(localIOException);
+      localCursor.close();
     }
+  }
+
+  public static void a(Context paramContext, final int paramInt)
+  {
+    new AsyncTask()
+    {
+    }
+    .execute(new Void[0]);
+  }
+
+  public static boolean a(int paramInt)
+  {
+    return a.contains(Integer.valueOf(paramInt));
+  }
+
+  public static ArrayList<m> b(Context paramContext, String paramString)
+  {
+    ArrayList localArrayList = new ArrayList();
+    String[] arrayOfString = { paramString };
+    Cursor localCursor = paramContext.getContentResolver().query(g.d, b, "contact_value = ?", arrayOfString, "date");
+    if (localCursor != null)
+      try
+      {
+        if (localCursor.moveToNext())
+          localArrayList.add(new m(localCursor));
+      }
+      finally
+      {
+        localCursor.close();
+      }
+    return localArrayList;
+  }
+
+  public final String a()
+  {
+    return ContentUris.withAppendedId(g.d, this.c).toString();
+  }
+
+  public final void a(String paramString)
+  {
+    this.m = paramString;
+  }
+
+  public final String b()
+  {
+    return this.d;
+  }
+
+  public final String c()
+  {
+    return this.e;
+  }
+
+  public final int d()
+  {
+    return this.f;
+  }
+
+  public final String e()
+  {
+    return this.g;
+  }
+
+  public final long f()
+  {
+    return this.h;
+  }
+
+  public final int g()
+  {
+    return this.i;
+  }
+
+  public final int h()
+  {
+    return this.j;
+  }
+
+  public final long i()
+  {
+    return this.k;
+  }
+
+  public final int j()
+  {
+    return this.l;
+  }
+
+  public final String k()
+  {
+    return this.m;
+  }
+
+  public final int l()
+  {
+    return this.n;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.z.m
  * JD-Core Version:    0.6.2
  */

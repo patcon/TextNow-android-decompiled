@@ -11,23 +11,23 @@ public class c
 {
   static void a(CustomPropertyKey paramCustomPropertyKey, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
-    b.c(paramParcel, 1, paramCustomPropertyKey.xM);
-    b.a(paramParcel, 2, paramCustomPropertyKey.JL, false);
-    b.c(paramParcel, 3, paramCustomPropertyKey.JM);
-    b.G(paramParcel, i);
+    int i = b.D(paramParcel);
+    b.c(paramParcel, 1, paramCustomPropertyKey.BR);
+    b.a(paramParcel, 2, paramCustomPropertyKey.JO, false);
+    b.c(paramParcel, 3, paramCustomPropertyKey.mVisibility);
+    b.H(paramParcel, i);
   }
 
-  public CustomPropertyKey az(Parcel paramParcel)
+  public CustomPropertyKey aE(Parcel paramParcel)
   {
     int i = 0;
-    int j = a.B(paramParcel);
+    int j = a.C(paramParcel);
     String str = null;
     int k = 0;
     while (paramParcel.dataPosition() < j)
     {
-      int m = a.A(paramParcel);
-      switch (a.ar(m))
+      int m = a.B(paramParcel);
+      switch (a.aD(m))
       {
       default:
         a.b(paramParcel, m);
@@ -47,13 +47,13 @@ public class c
     return new CustomPropertyKey(k, str, i);
   }
 
-  public CustomPropertyKey[] bv(int paramInt)
+  public CustomPropertyKey[] bQ(int paramInt)
   {
     return new CustomPropertyKey[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.drive.metadata.c
  * JD-Core Version:    0.6.2
  */

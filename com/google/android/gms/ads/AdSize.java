@@ -2,8 +2,8 @@ package com.google.android.gms.ads;
 
 import android.content.Context;
 import android.content.res.Resources;
-import com.google.android.gms.internal.al;
-import com.google.android.gms.internal.et;
+import com.google.android.gms.internal.ay;
+import com.google.android.gms.internal.gr;
 
 public final class AdSize
 {
@@ -16,9 +16,9 @@ public final class AdSize
   public static final AdSize MEDIUM_RECTANGLE = new AdSize(300, 250, "300x250_as");
   public static final AdSize SMART_BANNER = new AdSize(-1, -2, "smart_banner");
   public static final AdSize WIDE_SKYSCRAPER = new AdSize(160, 600, "160x600_as");
-  private final int ku;
-  private final int kv;
-  private final String kw;
+  private final int lf;
+  private final int lg;
+  private final String lh;
 
   public AdSize(int paramInt1, int paramInt2)
   {
@@ -30,9 +30,9 @@ public final class AdSize
       throw new IllegalArgumentException("Invalid width for AdSize: " + paramInt1);
     if ((paramInt2 < 0) && (paramInt2 != -2))
       throw new IllegalArgumentException("Invalid height for AdSize: " + paramInt2);
-    this.ku = paramInt1;
-    this.kv = paramInt2;
-    this.kw = paramString;
+    this.lf = paramInt1;
+    this.lg = paramInt2;
+    this.lh = paramString;
   }
 
   public final boolean equals(Object paramObject)
@@ -46,56 +46,56 @@ public final class AdSize
         return false;
       localAdSize = (AdSize)paramObject;
     }
-    while ((this.ku == localAdSize.ku) && (this.kv == localAdSize.kv) && (this.kw.equals(localAdSize.kw)));
+    while ((this.lf == localAdSize.lf) && (this.lg == localAdSize.lg) && (this.lh.equals(localAdSize.lh)));
     return false;
   }
 
   public final int getHeight()
   {
-    return this.kv;
+    return this.lg;
   }
 
   public final int getHeightInPixels(Context paramContext)
   {
-    if (this.kv == -2)
-      return al.b(paramContext.getResources().getDisplayMetrics());
-    return et.a(paramContext, this.kv);
+    if (this.lg == -2)
+      return ay.b(paramContext.getResources().getDisplayMetrics());
+    return gr.a(paramContext, this.lg);
   }
 
   public final int getWidth()
   {
-    return this.ku;
+    return this.lf;
   }
 
   public final int getWidthInPixels(Context paramContext)
   {
-    if (this.ku == -1)
-      return al.a(paramContext.getResources().getDisplayMetrics());
-    return et.a(paramContext, this.ku);
+    if (this.lf == -1)
+      return ay.a(paramContext.getResources().getDisplayMetrics());
+    return gr.a(paramContext, this.lf);
   }
 
   public final int hashCode()
   {
-    return this.kw.hashCode();
+    return this.lh.hashCode();
   }
 
   public final boolean isAutoHeight()
   {
-    return this.kv == -2;
+    return this.lg == -2;
   }
 
   public final boolean isFullWidth()
   {
-    return this.ku == -1;
+    return this.lf == -1;
   }
 
   public final String toString()
   {
-    return this.kw;
+    return this.lh;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.ads.AdSize
  * JD-Core Version:    0.6.2
  */

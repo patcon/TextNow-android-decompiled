@@ -1,27 +1,46 @@
 package textnow.at;
 
-import android.webkit.ConsoleMessage;
-import android.webkit.WebChromeClient;
+import android.view.animation.Interpolator;
 
-final class g extends WebChromeClient
+public abstract class g
+  implements Cloneable
 {
-  private g(f paramf)
+  float a;
+  Class b;
+  boolean c = false;
+  private Interpolator d = null;
+
+  public static g a(float paramFloat1, float paramFloat2)
   {
+    return new h(paramFloat1, paramFloat2);
   }
 
-  public final void onConsoleMessage(String paramString1, int paramInt, String paramString2)
+  public static g a(float paramFloat, int paramInt)
   {
-    new StringBuilder().append("MSG: ").append(paramString1).append("; Line: ").append(paramInt).append("; Source: ").append(paramString2).toString();
+    return new i(paramFloat, paramInt);
   }
 
-  public final boolean onConsoleMessage(ConsoleMessage paramConsoleMessage)
+  public abstract Object a();
+
+  public final void a(Interpolator paramInterpolator)
   {
-    new StringBuilder().append("MSG: ").append(paramConsoleMessage.message()).append("; Line: ").append(paramConsoleMessage.lineNumber()).append("; Source: ").append(paramConsoleMessage.sourceId()).toString();
-    return true;
+    this.d = paramInterpolator;
   }
+
+  public final float b()
+  {
+    return this.a;
+  }
+
+  public final Interpolator c()
+  {
+    return this.d;
+  }
+
+  public abstract g d();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.at.g
  * JD-Core Version:    0.6.2
  */

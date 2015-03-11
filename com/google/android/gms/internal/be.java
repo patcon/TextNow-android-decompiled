@@ -1,25 +1,15 @@
 package com.google.android.gms.internal;
 
-import java.util.Map;
+import android.os.IBinder;
+import android.os.IInterface;
+import com.google.android.gms.dynamic.d;
 
-public class be
-  implements bc
+public abstract interface be extends IInterface
 {
-  private final bf nc;
-
-  public be(bf parambf)
-  {
-    this.nc = parambf;
-  }
-
-  public void b(ex paramex, Map<String, String> paramMap)
-  {
-    boolean bool = "1".equals(paramMap.get("transparentBackground"));
-    this.nc.b(bool);
-  }
+  public abstract IBinder a(d paramd, ay paramay, String paramString, ct paramct, int paramInt);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.be
  * JD-Core Version:    0.6.2
  */

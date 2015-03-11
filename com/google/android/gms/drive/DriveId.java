@@ -3,30 +3,31 @@ package com.google.android.gms.drive;
 import android.os.Parcel;
 import android.os.Parcelable.Creator;
 import android.util.Base64;
+import com.google.android.gms.common.internal.o;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-import com.google.android.gms.drive.internal.af;
-import com.google.android.gms.internal.hm;
-import com.google.android.gms.internal.md;
-import com.google.android.gms.internal.me;
+import com.google.android.gms.drive.internal.ah;
+import com.google.android.gms.drive.internal.v;
+import com.google.android.gms.internal.pm;
+import com.google.android.gms.internal.pn;
 
 public class DriveId
   implements SafeParcelable
 {
   public static final Parcelable.Creator<DriveId> CREATOR = new c();
-  final String HN;
-  final long HO;
-  final long HP;
-  private volatile String HQ = null;
-  final int xM;
+  final int BR;
+  final String Ni;
+  final long Nj;
+  final long Nk;
+  private volatile String Nl = null;
 
   DriveId(int paramInt, String paramString, long paramLong1, long paramLong2)
   {
-    this.xM = paramInt;
-    this.HN = paramString;
+    this.BR = paramInt;
+    this.Ni = paramString;
     if (!"".equals(paramString));
     for (boolean bool1 = true; ; bool1 = false)
     {
-      hm.C(bool1);
+      o.K(bool1);
       boolean bool2;
       if (paramString == null)
       {
@@ -38,9 +39,9 @@ public class DriveId
       {
         bool2 = true;
       }
-      hm.C(bool2);
-      this.HO = paramLong1;
-      this.HP = paramLong2;
+      o.K(bool2);
+      this.Nj = paramLong1;
+      this.Nk = paramLong2;
       return;
     }
   }
@@ -50,15 +51,15 @@ public class DriveId
     this(1, paramString, paramLong1, paramLong2);
   }
 
-  public static DriveId aL(String paramString)
+  public static DriveId bg(String paramString)
   {
-    hm.f(paramString);
+    o.i(paramString);
     return new DriveId(paramString, -1L, -1L);
   }
 
   public static DriveId decodeFromString(String paramString)
   {
-    hm.b(paramString.startsWith("DriveId:"), "Invalid DriveId: " + paramString);
+    o.b(paramString.startsWith("DriveId:"), "Invalid DriveId: " + paramString);
     return f(Base64.decode(paramString.substring("DriveId:".length()), 10));
   }
 
@@ -66,21 +67,21 @@ public class DriveId
   {
     while (true)
     {
-      af localaf;
+      ah localah;
       try
       {
-        localaf = af.g(paramArrayOfByte);
-        if ("".equals(localaf.Jt))
+        localah = ah.g(paramArrayOfByte);
+        if ("".equals(localah.Pl))
         {
           str = null;
-          return new DriveId(localaf.versionCode, str, localaf.Ju, localaf.Jv);
+          return new DriveId(localah.versionCode, str, localah.Pm, localah.Pn);
         }
       }
-      catch (md localmd)
+      catch (pm localpm)
       {
         throw new IllegalArgumentException();
       }
-      String str = localaf.Jt;
+      String str = localah.Pl;
     }
   }
 
@@ -91,12 +92,12 @@ public class DriveId
 
   public final String encodeToString()
   {
-    if (this.HQ == null)
+    if (this.Nl == null)
     {
-      String str = Base64.encodeToString(gk(), 10);
-      this.HQ = ("DriveId:" + str);
+      String str = Base64.encodeToString(hN(), 10);
+      this.Nl = ("DriveId:" + str);
     }
-    return this.HQ;
+    return this.Nl;
   }
 
   public boolean equals(Object paramObject)
@@ -105,43 +106,44 @@ public class DriveId
     DriveId localDriveId;
     do
     {
-      do
+      return false;
+      localDriveId = (DriveId)paramObject;
+      if (localDriveId.Nk != this.Nk)
       {
+        v.p("DriveId", "Attempt to compare invalid DriveId detected. Has local storage been cleared?");
         return false;
-        localDriveId = (DriveId)paramObject;
       }
-      while (localDriveId.HP != this.HP);
-      if ((localDriveId.HO == -1L) && (this.HO == -1L))
-        return localDriveId.HN.equals(this.HN);
+      if ((localDriveId.Nj == -1L) && (this.Nj == -1L))
+        return localDriveId.Ni.equals(this.Ni);
     }
-    while (localDriveId.HO != this.HO);
+    while (localDriveId.Nj != this.Nj);
     return true;
   }
 
   public String getResourceId()
   {
-    return this.HN;
+    return this.Ni;
   }
 
-  final byte[] gk()
+  final byte[] hN()
   {
-    af localaf = new af();
-    localaf.versionCode = this.xM;
-    if (this.HN == null);
-    for (String str = ""; ; str = this.HN)
+    ah localah = new ah();
+    localah.versionCode = this.BR;
+    if (this.Ni == null);
+    for (String str = ""; ; str = this.Ni)
     {
-      localaf.Jt = str;
-      localaf.Ju = this.HO;
-      localaf.Jv = this.HP;
-      return me.d(localaf);
+      localah.Pl = str;
+      localah.Pm = this.Nj;
+      localah.Pn = this.Nk;
+      return pn.f(localah);
     }
   }
 
   public int hashCode()
   {
-    if (this.HO == -1L)
-      return this.HN.hashCode();
-    return (String.valueOf(this.HP) + String.valueOf(this.HO)).hashCode();
+    if (this.Nj == -1L)
+      return this.Ni.hashCode();
+    return (String.valueOf(this.Nk) + String.valueOf(this.Nj)).hashCode();
   }
 
   public String toString()
@@ -155,7 +157,7 @@ public class DriveId
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.drive.DriveId
  * JD-Core Version:    0.6.2
  */

@@ -1,89 +1,81 @@
 package com.google.android.gms.internal;
 
-import android.os.Parcel;
-import android.os.Parcelable.Creator;
-import com.google.android.gms.common.internal.safeparcel.a;
-import com.google.android.gms.common.internal.safeparcel.a.a;
-import com.google.android.gms.common.internal.safeparcel.b;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.net.Uri.Builder;
+import android.os.ParcelFileDescriptor;
+import com.google.android.gms.appindexing.AppIndexApi;
+import com.google.android.gms.appindexing.AppIndexApi.AppIndexingLink;
+import com.google.android.gms.common.api.BaseImplementation.b;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.Status;
+import java.util.List;
 
-public class hz
-  implements Parcelable.Creator<hy.a>
+public final class hz
+  implements AppIndexApi, hu
 {
-  static void a(hy.a parama, Parcel paramParcel, int paramInt)
+  public static Uri a(String paramString, Uri paramUri)
   {
-    int i = b.C(paramParcel);
-    b.c(paramParcel, 1, parama.getVersionCode());
-    b.c(paramParcel, 2, parama.fE());
-    b.a(paramParcel, 3, parama.fK());
-    b.c(paramParcel, 4, parama.fF());
-    b.a(paramParcel, 5, parama.fL());
-    b.a(paramParcel, 6, parama.fM(), false);
-    b.c(paramParcel, 7, parama.fN());
-    b.a(paramParcel, 8, parama.fP(), false);
-    b.a(paramParcel, 9, parama.fR(), paramInt, false);
-    b.G(paramParcel, i);
-  }
-
-  public hy.a H(Parcel paramParcel)
-  {
-    ht localht = null;
-    int i = 0;
-    int j = a.B(paramParcel);
-    String str1 = null;
-    String str2 = null;
-    boolean bool1 = false;
-    int k = 0;
-    boolean bool2 = false;
-    int m = 0;
-    int n = 0;
-    while (paramParcel.dataPosition() < j)
+    if (!"android-app".equals(paramUri.getScheme()))
+      throw new IllegalArgumentException("Uri scheme must be android-app: " + paramUri);
+    if (!paramString.equals(paramUri.getHost()))
+      throw new IllegalArgumentException("Uri host must match package name: " + paramUri);
+    List localList = paramUri.getPathSegments();
+    if ((localList.isEmpty()) || (((String)localList.get(0)).isEmpty()))
+      throw new IllegalArgumentException("Uri path must exist: " + paramUri);
+    String str = (String)localList.get(0);
+    Uri.Builder localBuilder = new Uri.Builder();
+    localBuilder.scheme(str);
+    if (localList.size() > 1)
     {
-      int i1 = a.A(paramParcel);
-      switch (a.ar(i1))
-      {
-      default:
-        a.b(paramParcel, i1);
-        break;
-      case 1:
-        n = a.g(paramParcel, i1);
-        break;
-      case 2:
-        m = a.g(paramParcel, i1);
-        break;
-      case 3:
-        bool2 = a.c(paramParcel, i1);
-        break;
-      case 4:
-        k = a.g(paramParcel, i1);
-        break;
-      case 5:
-        bool1 = a.c(paramParcel, i1);
-        break;
-      case 6:
-        str2 = a.o(paramParcel, i1);
-        break;
-      case 7:
-        i = a.g(paramParcel, i1);
-        break;
-      case 8:
-        str1 = a.o(paramParcel, i1);
-        break;
-      case 9:
-        localht = (ht)a.a(paramParcel, i1, ht.CREATOR);
-      }
+      localBuilder.authority((String)localList.get(1));
+      for (int i = 2; i < localList.size(); i++)
+        localBuilder.appendPath((String)localList.get(i));
     }
-    if (paramParcel.dataPosition() != j)
-      throw new a.a("Overread allowed size end=" + j, paramParcel);
-    return new hy.a(n, m, bool2, k, bool1, str2, i, str1, localht);
+    localBuilder.encodedQuery(paramUri.getEncodedQuery());
+    localBuilder.encodedFragment(paramUri.getEncodedFragment());
+    return localBuilder.build();
   }
 
-  public hy.a[] aw(int paramInt)
+  public final PendingResult<Status> a(GoogleApiClient paramGoogleApiClient, final hs[] paramArrayOfhs)
   {
-    return new hy.a[paramInt];
+    return paramGoogleApiClient.a(new hz.d(((hy)paramGoogleApiClient.a(hd.BN)).getContext().getPackageName())
+    {
+      protected void a(hv paramAnonymoushv)
+      {
+        paramAnonymoushv.a(new hz.e(this), this.CJ, paramArrayOfhs);
+      }
+    });
+  }
+
+  public final PendingResult<Status> view(GoogleApiClient paramGoogleApiClient, Activity paramActivity, Intent paramIntent, String paramString, Uri paramUri, List<AppIndexApi.AppIndexingLink> paramList)
+  {
+    String str = ((hy)paramGoogleApiClient.a(hd.BN)).getContext().getPackageName();
+    hs[] arrayOfhs = new hs[1];
+    arrayOfhs[0] = new hs(str, paramIntent, paramString, paramUri, null, paramList);
+    return a(paramGoogleApiClient, arrayOfhs);
+  }
+
+  public final PendingResult<Status> view(GoogleApiClient paramGoogleApiClient, Activity paramActivity, Uri paramUri1, String paramString, Uri paramUri2, List<AppIndexApi.AppIndexingLink> paramList)
+  {
+    return view(paramGoogleApiClient, paramActivity, new Intent("android.intent.action.VIEW", a(((hy)paramGoogleApiClient.a(hd.BN)).getContext().getPackageName(), paramUri1)), paramString, paramUri2, paramList);
+  }
+
+  public final PendingResult<Status> viewEnd(GoogleApiClient paramGoogleApiClient, Activity paramActivity, Intent paramIntent)
+  {
+    return a(paramGoogleApiClient, new hs[] { new hs(hs.a(((hy)paramGoogleApiClient.a(hd.BN)).getContext().getPackageName(), paramIntent), System.currentTimeMillis(), 3) });
+  }
+
+  public final PendingResult<Status> viewEnd(GoogleApiClient paramGoogleApiClient, Activity paramActivity, Uri paramUri)
+  {
+    return viewEnd(paramGoogleApiClient, paramActivity, new Intent("android.intent.action.VIEW", a(((hy)paramGoogleApiClient.a(hd.BN)).getContext().getPackageName(), paramUri)));
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.hz
  * JD-Core Version:    0.6.2
  */

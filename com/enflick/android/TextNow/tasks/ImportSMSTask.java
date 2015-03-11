@@ -8,7 +8,9 @@ import android.database.sqlite.SQLiteException;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
-import com.enflick.android.TextNow.activities.phone.t;
+import com.enflick.android.TextNow.activities.phone.x;
+import com.enflick.android.TextNow.persistence.contentproviders.d;
+import com.enflick.android.TextNow.persistence.contentproviders.g;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -16,10 +18,11 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Set;
-import textnow.q.b;
-import textnow.q.k;
-import textnow.u.g;
-import textnow.u.r;
+import textnow.v.b;
+import textnow.v.k;
+import textnow.z.h;
+import textnow.z.i;
+import textnow.z.u;
 
 public class ImportSMSTask extends c
 {
@@ -44,7 +47,7 @@ public class ImportSMSTask extends c
     try
     {
       String[] arrayOfString = { "view_conversations.contact_value" };
-      Uri localUri = com.enflick.android.TextNow.persistence.contentproviders.c.d;
+      Uri localUri = d.d;
       localCursor = this.a.getContentResolver().query(localUri, arrayOfString, null, null, null);
       if (localCursor != null)
         try
@@ -74,8 +77,8 @@ public class ImportSMSTask extends c
   {
     Set localSet = a();
     HashMap localHashMap = new HashMap();
-    r localr = new r(this.a);
-    long l1 = localr.R();
+    u localu = new u(this.a);
+    long l1 = localu.T();
     long l2;
     Cursor localCursor;
     if (l1 < 0L)
@@ -115,7 +118,7 @@ public class ImportSMSTask extends c
                 if (localCursor.getInt(4) != 2)
                   break label716;
                 j = 2;
-                str4 = t.a(this.a, localSet, str3);
+                str4 = x.a(this.a, localSet, str3);
                 ContentValues localContentValues = new ContentValues();
                 localContentValues.put("message_id", Integer.valueOf(localCursor.getInt(0)));
                 if (str4 != null)
@@ -139,7 +142,7 @@ public class ImportSMSTask extends c
                 localArrayList.add(localContentValues);
                 if (str4 != null)
                   break label729;
-                Uri localUri = textnow.u.f.a(this.a.getContentResolver(), 2, str3, b.f(str3));
+                Uri localUri = h.a(this.a.getContentResolver(), 2, str3, b.f(str3));
                 k.a(this.a.getContentResolver(), localUri, str3, 2);
                 localSet.add(str3);
                 break label729;
@@ -153,8 +156,8 @@ public class ImportSMSTask extends c
               continue;
             }
             new StringBuilder().append("Bulk inserting ").append(localArrayList.size()).append(" messages into database").toString();
-            this.a.getContentResolver().bulkInsert(com.enflick.android.TextNow.persistence.contentproviders.f.d, (ContentValues[])localArrayList.toArray(new ContentValues[0]));
-            localr.n();
+            this.a.getContentResolver().bulkInsert(g.d, (ContentValues[])localArrayList.toArray(new ContentValues[0]));
+            localu.B();
           }
       }
       finally
@@ -170,13 +173,13 @@ public class ImportSMSTask extends c
         Map.Entry localEntry = (Map.Entry)localIterator.next();
         String str7 = (String)localEntry.getKey();
         Long localLong = (Long)localEntry.getValue();
-        g localg = new g(this.a, str7);
-        localg.a(localLong.longValue());
-        localg.n();
+        i locali = new i(this.a, str7);
+        locali.a(localLong.longValue());
+        locali.B();
       }
-      localr.d(l3);
-      localr.d(true);
-      localr.n();
+      localu.d(l3);
+      localu.d(true);
+      localu.B();
       return;
       label716: label729: 
       do
@@ -197,7 +200,7 @@ public class ImportSMSTask extends c
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.ImportSMSTask
  * JD-Core Version:    0.6.2
  */

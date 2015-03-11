@@ -12,69 +12,49 @@ public class jn
 {
   static void a(jm paramjm, Parcel paramParcel, int paramInt)
   {
-    int i = b.C(paramParcel);
-    b.b(paramParcel, 1, paramjm.Wc, false);
-    b.c(paramParcel, 1000, paramjm.xM);
-    b.a(paramParcel, 2, paramjm.jg(), false);
-    b.a(paramParcel, 3, paramjm.jh());
-    b.b(paramParcel, 4, paramjm.Wf, false);
-    b.a(paramParcel, 5, paramjm.ji(), false);
-    b.a(paramParcel, 6, paramjm.Wh, false);
-    b.G(paramParcel, i);
+    int i = b.D(paramParcel);
+    b.c(paramParcel, 1, paramjm.getVersionCode());
+    b.c(paramParcel, 2, paramjm.hu(), false);
+    b.a(paramParcel, 3, paramjm.hv(), false);
+    b.H(paramParcel, i);
   }
 
-  public jm bv(Parcel paramParcel)
+  public jm K(Parcel paramParcel)
   {
-    boolean bool = false;
-    ArrayList localArrayList1 = null;
-    int i = a.B(paramParcel);
-    String str1 = null;
-    ArrayList localArrayList2 = null;
-    String str2 = null;
-    ArrayList localArrayList3 = null;
+    String str = null;
+    int i = a.C(paramParcel);
     int j = 0;
+    ArrayList localArrayList = null;
     while (paramParcel.dataPosition() < i)
     {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
+      int k = a.B(paramParcel);
+      switch (a.aD(k))
       {
       default:
         a.b(paramParcel, k);
         break;
       case 1:
-        localArrayList3 = a.c(paramParcel, k, js.CREATOR);
-        break;
-      case 1000:
         j = a.g(paramParcel, k);
         break;
       case 2:
-        str2 = a.o(paramParcel, k);
+        localArrayList = a.c(paramParcel, k, jm.a.CREATOR);
         break;
       case 3:
-        bool = a.c(paramParcel, k);
-        break;
-      case 4:
-        localArrayList2 = a.c(paramParcel, k, jw.CREATOR);
-        break;
-      case 5:
-        str1 = a.o(paramParcel, k);
-        break;
-      case 6:
-        localArrayList1 = a.B(paramParcel, k);
+        str = a.o(paramParcel, k);
       }
     }
     if (paramParcel.dataPosition() != i)
       throw new a.a("Overread allowed size end=" + i, paramParcel);
-    return new jm(j, localArrayList3, str2, bool, localArrayList2, str1, localArrayList1);
+    return new jm(j, localArrayList, str);
   }
 
-  public jm[] cQ(int paramInt)
+  public jm[] aK(int paramInt)
   {
     return new jm[paramInt];
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.jn
  * JD-Core Version:    0.6.2
  */

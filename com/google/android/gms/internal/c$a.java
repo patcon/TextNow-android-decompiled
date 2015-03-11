@@ -1,11 +1,9 @@
 package com.google.android.gms.internal;
 
-import java.util.List;
-
-public final class c$a extends ma<a>
+public final class c$a extends ph<a>
 {
-  public int eE;
-  public int eF;
+  public int fn;
+  public int fo;
   public int level;
 
   public c$a()
@@ -13,20 +11,20 @@ public final class c$a extends ma<a>
     b();
   }
 
-  public final a a(ly paramly)
+  public final a a(pf parampf)
   {
     while (true)
     {
-      int i = paramly.nB();
+      int i = parampf.qi();
       switch (i)
       {
       default:
-        if (a(paramly, i))
+        if (a(parampf, i))
           continue;
       case 0:
         return this;
       case 8:
-        int j = paramly.nE();
+        int j = parampf.ql();
         switch (j)
         {
         default:
@@ -38,32 +36,32 @@ public final class c$a extends ma<a>
         this.level = j;
         break;
       case 16:
-        this.eE = paramly.nE();
+        this.fn = parampf.ql();
         break;
       case 24:
       }
-      this.eF = paramly.nE();
+      this.fo = parampf.ql();
     }
   }
 
-  public final void a(lz paramlz)
+  public final void a(pg parampg)
   {
     if (this.level != 1)
-      paramlz.p(1, this.level);
-    if (this.eE != 0)
-      paramlz.p(2, this.eE);
-    if (this.eF != 0)
-      paramlz.p(3, this.eF);
-    super.a(paramlz);
+      parampg.s(1, this.level);
+    if (this.fn != 0)
+      parampg.s(2, this.fn);
+    if (this.fo != 0)
+      parampg.s(3, this.fo);
+    super.a(parampg);
   }
 
   public final a b()
   {
     this.level = 1;
-    this.eE = 0;
-    this.eF = 0;
-    this.amX = null;
-    this.anb = -1;
+    this.fn = 0;
+    this.fo = 0;
+    this.awJ = null;
+    this.awU = -1;
     return this;
   }
 
@@ -71,48 +69,66 @@ public final class c$a extends ma<a>
   {
     int i = super.c();
     if (this.level != 1)
-      i += lz.r(1, this.level);
-    if (this.eE != 0)
-      i += lz.r(2, this.eE);
-    if (this.eF != 0)
-      i += lz.r(3, this.eF);
+      i += pg.u(1, this.level);
+    if (this.fn != 0)
+      i += pg.u(2, this.fn);
+    if (this.fo != 0)
+      i += pg.u(3, this.fo);
     return i;
   }
 
   public final boolean equals(Object paramObject)
   {
-    if (paramObject == this);
+    boolean bool2;
+    if (paramObject == this)
+      bool2 = true;
     a locala;
+    int n;
+    int i1;
     do
     {
-      return true;
-      if (!(paramObject instanceof a))
-        return false;
-      locala = (a)paramObject;
-      if (this.level != locala.level)
-        return false;
-      if (this.eE != locala.eE)
-        return false;
-      if (this.eF != locala.eF)
-        return false;
-      if ((this.amX != null) && (!this.amX.isEmpty()))
-        break;
+      int k;
+      int m;
+      do
+      {
+        int i;
+        int j;
+        do
+        {
+          boolean bool1;
+          do
+          {
+            return bool2;
+            bool1 = paramObject instanceof a;
+            bool2 = false;
+          }
+          while (!bool1);
+          locala = (a)paramObject;
+          i = this.level;
+          j = locala.level;
+          bool2 = false;
+        }
+        while (i != j);
+        k = this.fn;
+        m = locala.fn;
+        bool2 = false;
+      }
+      while (k != m);
+      n = this.fo;
+      i1 = locala.fo;
+      bool2 = false;
     }
-    while ((locala.amX == null) || (locala.amX.isEmpty()));
-    return false;
-    return this.amX.equals(locala.amX);
+    while (n != i1);
+    return a(locala);
   }
 
   public final int hashCode()
   {
-    int i = 31 * (31 * (31 * (527 + this.level) + this.eE) + this.eF);
-    if ((this.amX == null) || (this.amX.isEmpty()));
-    for (int j = 0; ; j = this.amX.hashCode())
-      return j + i;
+    return 31 * (31 * (31 * (527 + this.level) + this.fn) + this.fo) + qz();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.c.a
  * JD-Core Version:    0.6.2
  */

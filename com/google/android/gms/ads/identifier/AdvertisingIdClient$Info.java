@@ -2,27 +2,32 @@ package com.google.android.gms.ads.identifier;
 
 public final class AdvertisingIdClient$Info
 {
-  private final boolean kA;
-  private final String kz;
+  private final String ln;
+  private final boolean lo;
 
   public AdvertisingIdClient$Info(String paramString, boolean paramBoolean)
   {
-    this.kz = paramString;
-    this.kA = paramBoolean;
+    this.ln = paramString;
+    this.lo = paramBoolean;
   }
 
   public final String getId()
   {
-    return this.kz;
+    return this.ln;
   }
 
   public final boolean isLimitAdTrackingEnabled()
   {
-    return this.kA;
+    return this.lo;
+  }
+
+  public final String toString()
+  {
+    return "{" + this.ln + "}" + this.lo;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.ads.identifier.AdvertisingIdClient.Info
  * JD-Core Version:    0.6.2
  */

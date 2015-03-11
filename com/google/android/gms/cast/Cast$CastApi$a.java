@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.internal.gh;
+import com.google.android.gms.internal.ij;
 import java.io.IOException;
 
 public final class Cast$CastApi$a
@@ -13,22 +13,22 @@ public final class Cast$CastApi$a
 {
   public final ApplicationMetadata getApplicationMetadata(GoogleApiClient paramGoogleApiClient)
   {
-    return ((gh)paramGoogleApiClient.a(Cast.yH)).getApplicationMetadata();
+    return ((ij)paramGoogleApiClient.a(Cast.CU)).getApplicationMetadata();
   }
 
   public final String getApplicationStatus(GoogleApiClient paramGoogleApiClient)
   {
-    return ((gh)paramGoogleApiClient.a(Cast.yH)).getApplicationStatus();
+    return ((ij)paramGoogleApiClient.a(Cast.CU)).getApplicationStatus();
   }
 
   public final double getVolume(GoogleApiClient paramGoogleApiClient)
   {
-    return ((gh)paramGoogleApiClient.a(Cast.yH)).eh();
+    return ((ij)paramGoogleApiClient.a(Cast.CU)).fE();
   }
 
   public final boolean isMute(GoogleApiClient paramGoogleApiClient)
   {
-    return ((gh)paramGoogleApiClient.a(Cast.yH)).isMute();
+    return ((ij)paramGoogleApiClient.a(Cast.CU)).isMute();
   }
 
   public final PendingResult<Cast.ApplicationConnectionResult> joinApplication(GoogleApiClient paramGoogleApiClient)
@@ -47,16 +47,16 @@ public final class Cast$CastApi$a
   {
     return paramGoogleApiClient.b(new Cast.c(paramString)
     {
-      protected void a(gh paramAnonymousgh)
+      protected void a(ij paramAnonymousij)
       {
         try
         {
-          paramAnonymousgh.b(paramString, null, this);
+          paramAnonymousij.b(paramString, null, this);
           return;
         }
         catch (IllegalStateException localIllegalStateException)
         {
-          N(2001);
+          V(2001);
         }
       }
     });
@@ -66,16 +66,16 @@ public final class Cast$CastApi$a
   {
     return paramGoogleApiClient.b(new Cast.c(paramString1)
     {
-      protected void a(gh paramAnonymousgh)
+      protected void a(ij paramAnonymousij)
       {
         try
         {
-          paramAnonymousgh.b(paramString1, paramString2, this);
+          paramAnonymousij.b(paramString1, paramString2, this);
           return;
         }
         catch (IllegalStateException localIllegalStateException)
         {
-          N(2001);
+          V(2001);
         }
       }
     });
@@ -85,16 +85,16 @@ public final class Cast$CastApi$a
   {
     return paramGoogleApiClient.b(new Cast.c(paramString)
     {
-      protected void a(gh paramAnonymousgh)
+      protected void a(ij paramAnonymousij)
       {
         try
         {
-          paramAnonymousgh.a(paramString, false, this);
+          paramAnonymousij.a(paramString, false, this);
           return;
         }
         catch (IllegalStateException localIllegalStateException)
         {
-          N(2001);
+          V(2001);
         }
       }
     });
@@ -104,16 +104,16 @@ public final class Cast$CastApi$a
   {
     return paramGoogleApiClient.b(new Cast.c(paramString)
     {
-      protected void a(gh paramAnonymousgh)
+      protected void a(ij paramAnonymousij)
       {
         try
         {
-          paramAnonymousgh.a(paramString, paramLaunchOptions, this);
+          paramAnonymousij.a(paramString, paramLaunchOptions, this);
           return;
         }
         catch (IllegalStateException localIllegalStateException)
         {
-          N(2001);
+          V(2001);
         }
       }
     });
@@ -141,7 +141,7 @@ public final class Cast$CastApi$a
   {
     try
     {
-      ((gh)paramGoogleApiClient.a(Cast.yH)).aj(paramString);
+      ((ij)paramGoogleApiClient.a(Cast.CU)).aE(paramString);
       return;
     }
     catch (RemoteException localRemoteException)
@@ -154,7 +154,7 @@ public final class Cast$CastApi$a
   {
     try
     {
-      ((gh)paramGoogleApiClient.a(Cast.yH)).eg();
+      ((ij)paramGoogleApiClient.a(Cast.CU)).fD();
       return;
     }
     catch (RemoteException localRemoteException)
@@ -167,21 +167,21 @@ public final class Cast$CastApi$a
   {
     return paramGoogleApiClient.b(new Cast.b(paramString1)
     {
-      protected void a(gh paramAnonymousgh)
+      protected void a(ij paramAnonymousij)
       {
         try
         {
-          paramAnonymousgh.a(paramString1, paramString2, this);
+          paramAnonymousij.a(paramString1, paramString2, this);
           return;
         }
         catch (IllegalArgumentException localIllegalArgumentException)
         {
-          N(2001);
+          V(2001);
           return;
         }
         catch (IllegalStateException localIllegalStateException)
         {
-          N(2001);
+          V(2001);
         }
       }
     });
@@ -191,7 +191,7 @@ public final class Cast$CastApi$a
   {
     try
     {
-      ((gh)paramGoogleApiClient.a(Cast.yH)).a(paramString, paramMessageReceivedCallback);
+      ((ij)paramGoogleApiClient.a(Cast.CU)).a(paramString, paramMessageReceivedCallback);
       return;
     }
     catch (RemoteException localRemoteException)
@@ -204,7 +204,7 @@ public final class Cast$CastApi$a
   {
     try
     {
-      ((gh)paramGoogleApiClient.a(Cast.yH)).y(paramBoolean);
+      ((ij)paramGoogleApiClient.a(Cast.CU)).G(paramBoolean);
       return;
     }
     catch (RemoteException localRemoteException)
@@ -217,7 +217,7 @@ public final class Cast$CastApi$a
   {
     try
     {
-      ((gh)paramGoogleApiClient.a(Cast.yH)).a(paramDouble);
+      ((ij)paramGoogleApiClient.a(Cast.CU)).a(paramDouble);
       return;
     }
     catch (RemoteException localRemoteException)
@@ -242,28 +242,28 @@ public final class Cast$CastApi$a
   {
     return paramGoogleApiClient.b(new Cast.b(paramString)
     {
-      protected void a(gh paramAnonymousgh)
+      protected void a(ij paramAnonymousij)
       {
         if (TextUtils.isEmpty(paramString))
         {
-          c(2001, "IllegalArgument: sessionId cannot be null or empty");
+          e(2001, "IllegalArgument: sessionId cannot be null or empty");
           return;
         }
         try
         {
-          paramAnonymousgh.a(paramString, this);
+          paramAnonymousij.a(paramString, this);
           return;
         }
         catch (IllegalStateException localIllegalStateException)
         {
-          N(2001);
+          V(2001);
         }
       }
     });
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.cast.Cast.CastApi.a
  * JD-Core Version:    0.6.2
  */

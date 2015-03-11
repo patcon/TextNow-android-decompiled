@@ -1,26 +1,20 @@
 package com.google.android.gms.internal;
 
-import android.content.Context;
-import com.google.android.gms.common.api.Result;
-import com.google.android.gms.common.api.a.b;
-import com.google.android.gms.panorama.Panorama;
+import com.google.android.gms.drive.metadata.SearchableOrderedMetadataField;
+import com.google.android.gms.drive.metadata.SortableMetadataField;
+import com.google.android.gms.drive.metadata.internal.d;
+import java.util.Date;
 
-abstract class kf$d<R extends Result> extends a.b<R, kg>
+public class kf$d extends d
+  implements SearchableOrderedMetadataField<Date>, SortableMetadataField<Date>
 {
-  protected kf$d()
+  public kf$d(String paramString, int paramInt)
   {
-    super(Panorama.yH);
-  }
-
-  protected abstract void a(Context paramContext, ke paramke);
-
-  protected final void a(kg paramkg)
-  {
-    a(paramkg.getContext(), (ke)paramkg.ft());
+    super(paramString, paramInt);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.kf.d
  * JD-Core Version:    0.6.2
  */

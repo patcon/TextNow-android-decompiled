@@ -6,11 +6,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.text.TextUtils;
-import com.enflick.android.TextNow.persistence.contentproviders.f;
+import com.enflick.android.TextNow.persistence.contentproviders.g;
 import java.util.ArrayList;
-import textnow.q.b;
-import textnow.u.g;
-import textnow.u.r;
+import textnow.v.b;
+import textnow.z.i;
+import textnow.z.u;
 
 public class ImportSMSForConversationTask extends c
 {
@@ -26,9 +26,9 @@ public class ImportSMSForConversationTask extends c
 
   public void run()
   {
-    r localr = new r(this.a);
-    g localg = new g(this.a, this.g);
-    long l1 = localg.a();
+    u localu = new u(this.a);
+    i locali = new i(this.a, this.g);
+    long l1 = locali.a();
     String[] arrayOfString = new String[3];
     arrayOfString[0] = String.valueOf(l1);
     arrayOfString[1] = ("+1" + this.g);
@@ -89,8 +89,8 @@ public class ImportSMSForConversationTask extends c
               continue;
             }
             new StringBuilder().append("Bulk inserting ").append(localArrayList.size()).append(" messages into database").toString();
-            this.a.getContentResolver().bulkInsert(f.d, (ContentValues[])localArrayList.toArray(new ContentValues[0]));
-            localr.n();
+            this.a.getContentResolver().bulkInsert(g.d, (ContentValues[])localArrayList.toArray(new ContentValues[0]));
+            localu.B();
           }
       }
       finally
@@ -100,8 +100,8 @@ public class ImportSMSForConversationTask extends c
       }
       if (localCursor != null)
         localCursor.close();
-      localg.a(l2);
-      localg.n();
+      locali.a(l2);
+      locali.B();
       return;
       label537: 
       while (l3 >= l2)
@@ -113,7 +113,7 @@ public class ImportSMSForConversationTask extends c
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.ImportSMSForConversationTask
  * JD-Core Version:    0.6.2
  */

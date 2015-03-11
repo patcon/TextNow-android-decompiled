@@ -1,199 +1,218 @@
 package com.enflick.android.TextNow.activities;
 
-import android.content.ContentResolver;
-import android.database.Cursor;
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Bundle;
-import android.os.IBinder;
+import android.os.AsyncTask;
+import android.os.Parcelable;
 import android.text.Editable;
+import android.text.Editable.Factory;
 import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Filter;
-import android.widget.ListView;
-import android.widget.TextView;
-import com.enflick.android.TextNow.tasks.c;
-import com.enflick.android.TextNow.views.ExtendedEditText;
-import textnow.k.w;
-import textnow.k.x;
+import com.enflick.android.TextNow.tasks.a;
+import com.enflick.android.TextNow.views.k;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Locale;
+import textnow.v.b;
+import textnow.v.o;
+import textnow.v.z;
+import textnow.z.h;
+import textnow.z.u;
 
-public class aa extends ao
-  implements TextWatcher, AdapterView.OnItemClickListener, com.enflick.android.TextNow.views.d
+public final class aa
 {
-  private boolean a = false;
-  private ListView b;
-  private ExtendedEditText g;
-  private TextView h;
-  private View i;
-  private textnow.k.v j;
-
-  public static aa a()
+  public static ab a(Editable paramEditable)
   {
-    return new aa();
-  }
-
-  public final boolean B()
-  {
-    C();
-    return super.B();
-  }
-
-  protected final boolean a(c paramc, boolean paramBoolean)
-  {
-    return false;
-  }
-
-  public void afterTextChanged(Editable paramEditable)
-  {
-  }
-
-  public void beforeTextChanged(CharSequence paramCharSequence, int paramInt1, int paramInt2, int paramInt3)
-  {
-  }
-
-  protected final String k()
-  {
-    return "/Search";
-  }
-
-  protected final String l()
-  {
-    return "";
-  }
-
-  public final int m()
-  {
-    return 2131165272;
-  }
-
-  protected final boolean n()
-  {
-    return true;
-  }
-
-  public void onActivityCreated(Bundle paramBundle)
-  {
-    super.onActivityCreated(paramBundle);
-    this.b.setAdapter(this.j);
-    setHasOptionsMenu(true);
-  }
-
-  public void onCreate(Bundle paramBundle)
-  {
-    super.onCreate(paramBundle);
-    this.j = new textnow.k.v(this.e, null);
-  }
-
-  public void onCreateOptionsMenu(Menu paramMenu, MenuInflater paramMenuInflater)
-  {
-    super.onCreateOptionsMenu(paramMenu, paramMenuInflater);
-    paramMenuInflater.inflate(2131755019, paramMenu);
-    this.g = ((ExtendedEditText)android.support.v4.view.v.a(paramMenu.findItem(2131165790)).findViewById(2131165284));
-    this.g.setImeOptions(6);
-    this.g.addTextChangedListener(this);
-    this.g.a(this);
-    this.g.setText(this.j.c());
-  }
-
-  public View onCreateView(LayoutInflater paramLayoutInflater, ViewGroup paramViewGroup, Bundle paramBundle)
-  {
-    if (paramViewGroup != null)
-      this.f = paramViewGroup.getApplicationWindowToken();
-    View localView = paramLayoutInflater.inflate(2130903176, null);
-    this.i = localView.findViewById(2131165643);
-    this.h = ((TextView)localView.findViewById(2131165642));
-    this.e.a(true);
-    this.b = ((ListView)localView.findViewById(2131165644));
-    this.b.setOnItemClickListener(this);
-    this.a = true;
-    return localView;
-  }
-
-  public void onItemClick(AdapterView<?> paramAdapterView, View paramView, int paramInt, long paramLong)
-  {
-    x localx = (x)paramView.getTag();
-    C();
-    ContentResolver localContentResolver1 = this.e.getContentResolver();
-    String[] arrayOfString1 = new String[1];
-    arrayOfString1[0] = localx.a.a();
-    textnow.u.f localf = textnow.u.f.a(localContentResolver1, arrayOfString1);
-    if (TextUtils.isEmpty(localx.b.f()))
+    Editable localEditable = Editable.Factory.getInstance().newEditable(paramEditable);
+    k[] arrayOfk = (k[])localEditable.getSpans(0, localEditable.length(), k.class);
+    HashSet localHashSet = new HashSet();
+    ArrayList localArrayList1 = new ArrayList();
+    ArrayList localArrayList2 = new ArrayList();
+    int i = arrayOfk.length;
+    for (int j = 0; j < i; j++)
     {
-      localx.b.a("");
-      localx.b.a(-1);
-      this.e.a(2, localf, MessageViewFragment.MessageViewState.a, localx.b, null);
+      k localk = arrayOfk[j];
+      textnow.z.f localf4 = localk.a();
+      if ((localf4.b() != 3) || (b.a(localf4.a())))
+        if (localf4.b() == 2)
+        {
+          String str5 = b.b(localf4.a());
+          if (str5 != null)
+            localf4.a(str5);
+        }
+        else
+        {
+          if (!localHashSet.contains(localf4.a()))
+          {
+            localHashSet.add(localf4.a());
+            localArrayList1.add(localf4);
+          }
+          localEditable.replace(localEditable.getSpanStart(localk), localEditable.getSpanEnd(localk), "");
+        }
     }
-    Cursor localCursor;
-    do
+    String[] arrayOfString = localEditable.toString().split(",");
+    int k = arrayOfString.length;
+    int m = 0;
+    String str1;
+    String str4;
+    if (m < k)
     {
-      return;
-      ContentResolver localContentResolver2 = this.e.getContentResolver();
-      Uri localUri = com.enflick.android.TextNow.persistence.contentproviders.f.d;
-      String[] arrayOfString2 = { "_id" };
-      String[] arrayOfString3 = new String[1];
-      arrayOfString3[0] = localx.a.a();
-      localCursor = localContentResolver2.query(localUri, arrayOfString2, "contact_value=?", arrayOfString3, "date");
+      str1 = arrayOfString[m].trim();
+      if (!TextUtils.isEmpty(str1))
+      {
+        if (!str1.contains("@"))
+          break label346;
+        if (!b.a(str1))
+          break label335;
+        if (!str1.toLowerCase(Locale.US).endsWith("@textnow.me"))
+          break label521;
+        str4 = str1.substring(0, str1.indexOf("@"));
+      }
     }
-    while (localCursor == null);
-    if (!localCursor.moveToFirst())
+    for (int n = 1; ; n = 3)
     {
-      localCursor.close();
-      return;
+      textnow.z.f localf3 = new textnow.z.f(str4, n, "", null, true);
+      if (!localHashSet.contains(str4))
+      {
+        localHashSet.add(str4);
+        localArrayList1.add(localf3);
+      }
+      while (true)
+      {
+        m++;
+        break;
+        label335: localArrayList2.add(str1);
+        continue;
+        label346: if (b.b(str1.charAt(0)))
+        {
+          String str3 = str1 + "@textnow.me";
+          textnow.z.f localf2 = new textnow.z.f(str3, 3, str3, null, true);
+          if (!localHashSet.contains(str3))
+          {
+            localHashSet.add(str3);
+            localArrayList1.add(localf2);
+          }
+        }
+        else
+        {
+          if ("911".equals(b.e(str1)));
+          for (String str2 = "911"; ; str2 = b.b(str1))
+          {
+            if (str2 == null)
+              break label498;
+            textnow.z.f localf1 = new textnow.z.f(str2, 2, "", null, true);
+            if (localHashSet.contains(str2))
+              break;
+            localHashSet.add(str2);
+            localArrayList1.add(localf1);
+            break;
+          }
+          label498: localArrayList2.add(str1);
+        }
+      }
+      return new ab(localArrayList1, localArrayList2);
+      label521: str4 = str1;
     }
-    int k = -1;
-    do
-      if (localCursor.getLong(0) == localx.b.e())
-        k = localCursor.getPosition();
-    while ((k == -1) && (localCursor.moveToNext()));
-    localCursor.close();
-    localx.b.a(this.j.c());
-    localx.b.a(k + 1);
-    this.e.a(2, localf, MessageViewFragment.MessageViewState.a, localx.b, null);
   }
 
-  public void onPause()
+  public static void a(Context paramContext, final h paramh)
   {
-    super.onPause();
-    C();
+    new AsyncTask()
+    {
+      private Void a()
+      {
+        Intent localIntent1 = new Intent(aa.this, MainActivity.class);
+        localIntent1.putExtra("extra_msg_view_type", 2);
+        localIntent1.putExtra("extra_selected_cv", paramh.c());
+        localIntent1.setAction("android.intent.action.MAIN");
+        Intent localIntent2 = new Intent();
+        localIntent2.putExtra("android.intent.extra.shortcut.INTENT", localIntent1);
+        String str;
+        if ((paramh.d() == 2) && (TextUtils.isEmpty(paramh.e())))
+          str = b.g(paramh.c());
+        while (true)
+        {
+          if (str.length() > 12)
+            str = str.substring(0, 12);
+          localIntent2.putExtra("android.intent.extra.shortcut.NAME", str);
+          o localo = o.a(aa.this);
+          Uri localUri;
+          label161: Object localObject;
+          if (!h.c(paramh.h()))
+          {
+            localUri = Uri.parse(paramh.h());
+            localObject = localo.a(localUri, 0, true, false);
+            if (localObject != null)
+              break label269;
+          }
+          try
+          {
+            Resources localResources = aa.this.getResources();
+            int i;
+            label202: Bitmap localBitmap;
+            if (paramh.d() == 5)
+            {
+              i = 2130837862;
+              localBitmap = BitmapFactory.decodeResource(localResources, i);
+            }
+            label269: for (localObject = localBitmap; ; localObject = textnow.v.f.a((Bitmap)localObject, Math.min(((Bitmap)localObject).getWidth(), z.a(aa.this, 48)), 1))
+            {
+              label215: localIntent2.putExtra("android.intent.extra.shortcut.ICON", (Parcelable)localObject);
+              localIntent2.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+              aa.this.sendBroadcast(localIntent2);
+              return null;
+              str = paramh.p();
+              break;
+              localUri = null;
+              break label161;
+              i = 2130837861;
+              break label202;
+            }
+          }
+          catch (Exception localException)
+          {
+            break label215;
+          }
+        }
+      }
+    }
+    .execute(new Void[0]);
   }
 
-  public void onTextChanged(CharSequence paramCharSequence, int paramInt1, int paramInt2, int paramInt3)
+  public static final void a(Context paramContext, h paramh, boolean paramBoolean)
   {
-    if ((paramCharSequence != null) && (paramCharSequence.length() == 0))
-    {
-      this.i.setVisibility(4);
-      this.h.setVisibility(0);
-    }
+    if (paramh != null)
+      new a(paramContext, paramh, null, null, Boolean.valueOf(paramBoolean), paramh.a()).execute(new Void[0]);
+  }
+
+  public static final void a(ao paramao, h paramh)
+  {
+    String str = paramh.m();
+    Uri localUri;
+    if (!TextUtils.isEmpty(str))
+      localUri = Uri.parse(str);
     while (true)
     {
-      if (!paramCharSequence.toString().equalsIgnoreCase(this.j.c()))
-        this.j.getFilter().filter(paramCharSequence);
-      return;
-      this.i.setVisibility(0);
-      this.h.setVisibility(8);
+      Intent localIntent = new Intent("android.intent.action.RINGTONE_PICKER");
+      z.a(localIntent, localUri, paramao, z.a(paramao, new u(paramao).u()));
+      try
+      {
+        paramao.startActivityForResult(localIntent, 12);
+        return;
+        localUri = Uri.EMPTY;
+      }
+      catch (Exception localException)
+      {
+        paramao.b(2131296893);
+      }
     }
-  }
-
-  protected final IBinder x()
-  {
-    if (this.a)
-      return this.g.getApplicationWindowToken();
-    return super.x();
-  }
-
-  public final void y()
-  {
-    this.e.a(true);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.activities.aa
  * JD-Core Version:    0.6.2
  */

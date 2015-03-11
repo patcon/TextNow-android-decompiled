@@ -1,41 +1,21 @@
 package textnow.am;
 
-final class l extends k
+public final class l extends j
 {
-  d h;
-  float i;
+  public static final l a = new l();
 
-  public l(String paramString, float[] paramArrayOfFloat)
+  public final boolean equals(Object paramObject)
   {
-    super(paramString, (byte)0);
-    a(paramArrayOfFloat);
+    return (this == paramObject) || ((paramObject instanceof l));
   }
 
-  private l e()
+  public final int hashCode()
   {
-    l locall = (l)super.a();
-    locall.h = ((d)locall.e);
-    return locall;
-  }
-
-  final void a(float paramFloat)
-  {
-    this.i = this.h.b(paramFloat);
-  }
-
-  public final void a(float[] paramArrayOfFloat)
-  {
-    super.a(paramArrayOfFloat);
-    this.h = ((d)this.e);
-  }
-
-  final Object d()
-  {
-    return Float.valueOf(this.i);
+    return l.class.hashCode();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.am.l
  * JD-Core Version:    0.6.2
  */

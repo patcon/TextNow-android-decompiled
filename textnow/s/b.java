@@ -1,52 +1,56 @@
 package textnow.s;
 
-public abstract class b extends a
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import com.enflick.android.TextNow.activities.MainActivity;
+import com.enflick.android.TextNow.activities.av;
+import com.enflick.android.TextNow.tasks.c;
+
+public class b extends av
 {
-  protected abstract void execute();
-
-  protected void notifyListener(boolean paramBoolean)
+  protected final boolean a(c paramc, boolean paramBoolean)
   {
-    if (getResponseListener() != null)
-    {
-      if (paramBoolean)
-        getResponse();
-    }
-    else
-      return;
-    getResponse();
+    return false;
   }
 
-  protected void onAfterExecute()
+  protected final String l()
   {
+    return "/No_Wifi_Fragment";
   }
 
-  protected void onBeforeExecute()
+  protected final String m()
   {
+    return "";
   }
 
-  protected void prepare()
+  protected final boolean o()
   {
+    return true;
   }
 
-  public void run()
+  public void onCreate(Bundle paramBundle)
   {
-    prepare();
-    onBeforeExecute();
-    execute();
-    onAfterExecute();
-    i locali = getResponse();
-    if (locali != null)
-      if (locali.e())
-        break label40;
-    label40: for (boolean bool = true; ; bool = false)
-    {
-      notifyListener(bool);
-      return;
-    }
+    super.onCreate(paramBundle);
+    this.d.D();
+    this.d.f(false);
+  }
+
+  public View onCreateView(LayoutInflater paramLayoutInflater, ViewGroup paramViewGroup, Bundle paramBundle)
+  {
+    return paramLayoutInflater.inflate(2130903176, null);
+  }
+
+  public void onDestroyView()
+  {
+    super.onDestroyView();
+    this.d.E();
+    this.d.f(true);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.s.b
  * JD-Core Version:    0.6.2
  */

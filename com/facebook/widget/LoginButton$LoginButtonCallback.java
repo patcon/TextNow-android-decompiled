@@ -13,17 +13,17 @@ class LoginButton$LoginButtonCallback
 
   public void call(Session paramSession, SessionState paramSessionState, Exception paramException)
   {
-    LoginButton.access$1500(this.this$0);
-    LoginButton.access$1600(this.this$0);
-    if (LoginButton.LoginButtonProperties.access$1700(LoginButton.access$900(this.this$0)) != null)
-      LoginButton.LoginButtonProperties.access$1700(LoginButton.access$900(this.this$0)).call(paramSession, paramSessionState, paramException);
+    LoginButton.access$1700(this.this$0);
+    LoginButton.access$1800(this.this$0);
+    if (LoginButton.LoginButtonProperties.access$1900(LoginButton.access$1000(this.this$0)) != null)
+      LoginButton.LoginButtonProperties.access$1900(LoginButton.access$1000(this.this$0)).call(paramSession, paramSessionState, paramException);
     while (paramException == null)
       return;
     this.this$0.handleError(paramException);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.widget.LoginButton.LoginButtonCallback
  * JD-Core Version:    0.6.2
  */

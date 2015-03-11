@@ -23,7 +23,6 @@ import android.view.animation.Animation;
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import textnow.e.c;
-import textnow.e.l;
 
 public class Fragment
   implements ComponentCallbacks, View.OnCreateContextMenuListener
@@ -35,8 +34,8 @@ public class Fragment
   static final int STARTED = 4;
   static final int STOPPED = 3;
   static final Object USE_DEFAULT_TRANSITION = new Object();
-  private static final l<String, Class<?>> sClassMap = new l();
-  v mActivity;
+  private static final textnow.e.o<String, Class<?>> sClassMap = new textnow.e.o();
+  k mActivity;
   boolean mAdded;
   Boolean mAllowEnterTransitionOverlap;
   Boolean mAllowReturnTransitionOverlap;
@@ -45,24 +44,24 @@ public class Fragment
   int mBackStackNesting;
   boolean mCalled;
   boolean mCheckedForLoaderManager;
-  z mChildFragmentManager;
+  o mChildFragmentManager;
   ViewGroup mContainer;
   int mContainerId;
   boolean mDeferStart;
   boolean mDetached;
   Object mEnterTransition = null;
-  cc mEnterTransitionCallback = null;
+  ck mEnterTransitionCallback = null;
   Object mExitTransition = null;
-  cc mExitTransitionCallback = null;
+  ck mExitTransitionCallback = null;
   int mFragmentId;
-  z mFragmentManager;
+  o mFragmentManager;
   boolean mFromLayout;
   boolean mHasMenu;
   boolean mHidden;
   boolean mInLayout;
   int mIndex = -1;
   View mInnerView;
-  ai mLoaderManager;
+  ab mLoaderManager;
   boolean mLoadersStarted;
   boolean mMenuVisible = true;
   int mNextAnim;
@@ -113,15 +112,15 @@ public class Fragment
     }
     catch (ClassNotFoundException localClassNotFoundException)
     {
-      throw new u("Unable to instantiate fragment " + paramString + ": make sure class name exists, is public, and has an" + " empty constructor that is public", localClassNotFoundException);
+      throw new j("Unable to instantiate fragment " + paramString + ": make sure class name exists, is public, and has an" + " empty constructor that is public", localClassNotFoundException);
     }
     catch (InstantiationException localInstantiationException)
     {
-      throw new u("Unable to instantiate fragment " + paramString + ": make sure class name exists, is public, and has an" + " empty constructor that is public", localInstantiationException);
+      throw new j("Unable to instantiate fragment " + paramString + ": make sure class name exists, is public, and has an" + " empty constructor that is public", localInstantiationException);
     }
     catch (IllegalAccessException localIllegalAccessException)
     {
-      throw new u("Unable to instantiate fragment " + paramString + ": make sure class name exists, is public, and has an" + " empty constructor that is public", localIllegalAccessException);
+      throw new j("Unable to instantiate fragment " + paramString + ": make sure class name exists, is public, and has an" + " empty constructor that is public", localIllegalAccessException);
     }
   }
 
@@ -294,7 +293,7 @@ public class Fragment
     return null;
   }
 
-  public final v getActivity()
+  public final k getActivity()
   {
     return this.mActivity;
   }
@@ -318,7 +317,7 @@ public class Fragment
     return this.mArguments;
   }
 
-  public final y getChildFragmentManager()
+  public final n getChildFragmentManager()
   {
     if (this.mChildFragmentManager == null)
     {
@@ -349,7 +348,7 @@ public class Fragment
     return this.mExitTransition;
   }
 
-  public final y getFragmentManager()
+  public final n getFragmentManager()
   {
     return this.mFragmentManager;
   }
@@ -367,7 +366,7 @@ public class Fragment
     return localLayoutInflater;
   }
 
-  public ag getLoaderManager()
+  public z getLoaderManager()
   {
     if (this.mLoaderManager != null)
       return this.mLoaderManager;
@@ -498,8 +497,8 @@ public class Fragment
 
   void instantiateChildFragmentManager()
   {
-    this.mChildFragmentManager = new z();
-    this.mChildFragmentManager.a(this.mActivity, new x()
+    this.mChildFragmentManager = new o();
+    this.mChildFragmentManager.a(this.mActivity, new m()
     {
       public final View a(int paramAnonymousInt)
       {
@@ -713,7 +712,7 @@ public class Fragment
     this.mCalled = false;
     onActivityCreated(paramBundle);
     if (!this.mCalled)
-      throw new cd("Fragment " + this + " did not call through to super.onActivityCreated()");
+      throw new cl("Fragment " + this + " did not call through to super.onActivityCreated()");
     if (this.mChildFragmentManager != null)
       this.mChildFragmentManager.k();
   }
@@ -743,7 +742,7 @@ public class Fragment
     this.mCalled = false;
     onCreate(paramBundle);
     if (!this.mCalled)
-      throw new cd("Fragment " + this + " did not call through to super.onCreate()");
+      throw new cl("Fragment " + this + " did not call through to super.onCreate()");
     if (paramBundle != null)
     {
       Parcelable localParcelable = paramBundle.getParcelable("android:support:fragments");
@@ -795,7 +794,7 @@ public class Fragment
     this.mCalled = false;
     onDestroy();
     if (!this.mCalled)
-      throw new cd("Fragment " + this + " did not call through to super.onDestroy()");
+      throw new cl("Fragment " + this + " did not call through to super.onDestroy()");
   }
 
   void performDestroyView()
@@ -805,7 +804,7 @@ public class Fragment
     this.mCalled = false;
     onDestroyView();
     if (!this.mCalled)
-      throw new cd("Fragment " + this + " did not call through to super.onDestroyView()");
+      throw new cl("Fragment " + this + " did not call through to super.onDestroyView()");
     if (this.mLoaderManager != null)
       this.mLoaderManager.f();
   }
@@ -846,7 +845,7 @@ public class Fragment
     this.mCalled = false;
     onPause();
     if (!this.mCalled)
-      throw new cd("Fragment " + this + " did not call through to super.onPause()");
+      throw new cl("Fragment " + this + " did not call through to super.onPause()");
   }
 
   boolean performPrepareOptionsMenu(Menu paramMenu)
@@ -906,7 +905,7 @@ public class Fragment
     this.mCalled = false;
     onResume();
     if (!this.mCalled)
-      throw new cd("Fragment " + this + " did not call through to super.onResume()");
+      throw new cl("Fragment " + this + " did not call through to super.onResume()");
     if (this.mChildFragmentManager != null)
     {
       this.mChildFragmentManager.m();
@@ -935,7 +934,7 @@ public class Fragment
     this.mCalled = false;
     onStart();
     if (!this.mCalled)
-      throw new cd("Fragment " + this + " did not call through to super.onStart()");
+      throw new cl("Fragment " + this + " did not call through to super.onStart()");
     if (this.mChildFragmentManager != null)
       this.mChildFragmentManager.l();
     if (this.mLoaderManager != null)
@@ -949,7 +948,7 @@ public class Fragment
     this.mCalled = false;
     onStop();
     if (!this.mCalled)
-      throw new cd("Fragment " + this + " did not call through to super.onStop()");
+      throw new cl("Fragment " + this + " did not call through to super.onStop()");
   }
 
   public void registerForContextMenu(View paramView)
@@ -967,7 +966,7 @@ public class Fragment
     this.mCalled = false;
     onViewStateRestored(paramBundle);
     if (!this.mCalled)
-      throw new cd("Fragment " + this + " did not call through to super.onViewStateRestored()");
+      throw new cl("Fragment " + this + " did not call through to super.onViewStateRestored()");
   }
 
   public void setAllowEnterTransitionOverlap(boolean paramBoolean)
@@ -987,9 +986,9 @@ public class Fragment
     this.mArguments = paramBundle;
   }
 
-  public void setEnterSharedElementCallback(cc paramcc)
+  public void setEnterSharedElementCallback(ck paramck)
   {
-    this.mEnterTransitionCallback = paramcc;
+    this.mEnterTransitionCallback = paramck;
   }
 
   public void setEnterTransition(Object paramObject)
@@ -997,9 +996,9 @@ public class Fragment
     this.mEnterTransition = paramObject;
   }
 
-  public void setExitSharedElementCallback(cc paramcc)
+  public void setExitSharedElementCallback(ck paramck)
   {
-    this.mExitTransitionCallback = paramcc;
+    this.mExitTransitionCallback = paramck;
   }
 
   public void setExitTransition(Object paramObject)
@@ -1086,7 +1085,7 @@ public class Fragment
   public void setUserVisibleHint(boolean paramBoolean)
   {
     if ((!this.mUserVisibleHint) && (paramBoolean) && (this.mState < 4))
-      this.mFragmentManager.a(this);
+      this.mFragmentManager.b(this);
     this.mUserVisibleHint = paramBoolean;
     if (!paramBoolean);
     for (boolean bool = true; ; bool = false)
@@ -1139,7 +1138,7 @@ public class Fragment
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.app.Fragment
  * JD-Core Version:    0.6.2
  */

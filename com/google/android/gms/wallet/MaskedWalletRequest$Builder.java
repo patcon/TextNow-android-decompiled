@@ -12,9 +12,9 @@ public final class MaskedWalletRequest$Builder
 
   public final Builder addAllowedCountrySpecificationForShipping(CountrySpecification paramCountrySpecification)
   {
-    if (this.ajQ.ajP == null)
-      this.ajQ.ajP = new ArrayList();
-    this.ajQ.ajP.add(paramCountrySpecification);
+    if (this.atA.atz == null)
+      this.atA.atz = new ArrayList();
+    this.atA.atz.add(paramCountrySpecification);
     return this;
   }
 
@@ -22,92 +22,92 @@ public final class MaskedWalletRequest$Builder
   {
     if (paramCollection != null)
     {
-      if (this.ajQ.ajP == null)
-        this.ajQ.ajP = new ArrayList();
-      this.ajQ.ajP.addAll(paramCollection);
+      if (this.atA.atz == null)
+        this.atA.atz = new ArrayList();
+      this.atA.atz.addAll(paramCollection);
     }
     return this;
   }
 
   public final MaskedWalletRequest build()
   {
-    return this.ajQ;
+    return this.atA;
   }
 
   public final Builder setAllowDebitCard(boolean paramBoolean)
   {
-    this.ajQ.ajO = paramBoolean;
+    this.atA.aty = paramBoolean;
     return this;
   }
 
   public final Builder setAllowPrepaidCard(boolean paramBoolean)
   {
-    this.ajQ.ajN = paramBoolean;
+    this.atA.atx = paramBoolean;
     return this;
   }
 
   public final Builder setCart(Cart paramCart)
   {
-    this.ajQ.aja = paramCart;
+    this.atA.asL = paramCart;
     return this;
   }
 
   public final Builder setCurrencyCode(String paramString)
   {
-    this.ajQ.aiL = paramString;
+    this.atA.asw = paramString;
     return this;
   }
 
   public final Builder setEstimatedTotalPrice(String paramString)
   {
-    this.ajQ.ajI = paramString;
+    this.atA.ats = paramString;
     return this;
   }
 
   public final Builder setIsBillingAgreement(boolean paramBoolean)
   {
-    this.ajQ.ajL = paramBoolean;
+    this.atA.atv = paramBoolean;
     return this;
   }
 
   public final Builder setMerchantName(String paramString)
   {
-    this.ajQ.ajJ = paramString;
+    this.atA.att = paramString;
     return this;
   }
 
   public final Builder setMerchantTransactionId(String paramString)
   {
-    this.ajQ.aiR = paramString;
+    this.atA.asC = paramString;
     return this;
   }
 
   public final Builder setPhoneNumberRequired(boolean paramBoolean)
   {
-    this.ajQ.ajF = paramBoolean;
+    this.atA.atp = paramBoolean;
     return this;
   }
 
   public final Builder setShippingAddressRequired(boolean paramBoolean)
   {
-    this.ajQ.ajG = paramBoolean;
+    this.atA.atq = paramBoolean;
     return this;
   }
 
   public final Builder setShouldRetrieveWalletObjects(boolean paramBoolean)
   {
-    this.ajQ.ajK = paramBoolean;
+    this.atA.atu = paramBoolean;
     return this;
   }
 
   public final Builder setUseMinimalBillingAddress(boolean paramBoolean)
   {
-    this.ajQ.ajH = paramBoolean;
+    this.atA.atr = paramBoolean;
     return this;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.wallet.MaskedWalletRequest.Builder
  * JD-Core Version:    0.6.2
  */

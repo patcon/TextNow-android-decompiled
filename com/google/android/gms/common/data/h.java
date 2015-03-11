@@ -4,7 +4,7 @@ import java.util.NoSuchElementException;
 
 public class h<T> extends c<T>
 {
-  private T EW;
+  private T Kr;
 
   public h(DataBuffer<T> paramDataBuffer)
   {
@@ -14,23 +14,23 @@ public class h<T> extends c<T>
   public T next()
   {
     if (!hasNext())
-      throw new NoSuchElementException("Cannot advance the iterator beyond " + this.EB);
-    this.EB = (1 + this.EB);
-    if (this.EB == 0)
+      throw new NoSuchElementException("Cannot advance the iterator beyond " + this.JW);
+    this.JW = (1 + this.JW);
+    if (this.JW == 0)
     {
-      this.EW = this.EA.get(0);
-      if (!(this.EW instanceof d))
-        throw new IllegalStateException("DataBuffer reference of type " + this.EW.getClass() + " is not movable");
+      this.Kr = this.JV.get(0);
+      if (!(this.Kr instanceof d))
+        throw new IllegalStateException("DataBuffer reference of type " + this.Kr.getClass() + " is not movable");
     }
     else
     {
-      ((d)this.EW).ac(this.EB);
+      ((d)this.Kr).ap(this.JW);
     }
-    return this.EW;
+    return this.Kr;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.common.data.h
  * JD-Core Version:    0.6.2
  */

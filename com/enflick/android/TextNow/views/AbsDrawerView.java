@@ -23,9 +23,7 @@ public abstract class AbsDrawerView extends ScrollView
     super(paramContext, paramAttributeSet, paramInt);
   }
 
-  public static void a()
-  {
-  }
+  public abstract void a();
 
   public abstract void a(int paramInt);
 
@@ -34,18 +32,26 @@ public abstract class AbsDrawerView extends ScrollView
     this.a = parama;
   }
 
-  public void b()
+  public final void b()
   {
+    if (this.a != null)
+      this.a.g();
   }
 
   protected final void b(int paramInt)
   {
     if (this.a != null)
-      this.a.b(paramInt);
+      this.a.a(paramInt);
+  }
+
+  public void c()
+  {
+    if (this.a != null)
+      this.a.h();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.views.AbsDrawerView
  * JD-Core Version:    0.6.2
  */

@@ -1,17 +1,20 @@
 package com.google.android.gms.internal;
 
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.panorama.PanoramaApi.PanoramaResult;
+import com.google.android.gms.drive.metadata.SearchableOrderedMetadataField;
+import com.google.android.gms.drive.metadata.SortableMetadataField;
+import com.google.android.gms.drive.metadata.internal.d;
+import java.util.Date;
 
-abstract class kf$b extends kf.d<PanoramaApi.PanoramaResult>
+public class kf$b extends d
+  implements SearchableOrderedMetadataField<Date>, SortableMetadataField<Date>
 {
-  protected PanoramaApi.PanoramaResult ak(Status paramStatus)
+  public kf$b(String paramString, int paramInt)
   {
-    return new kh(paramStatus, null);
+    super(paramString, paramInt);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.kf.b
  * JD-Core Version:    0.6.2
  */

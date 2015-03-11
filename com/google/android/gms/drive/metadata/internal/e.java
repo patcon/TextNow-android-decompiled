@@ -1,9 +1,9 @@
 package com.google.android.gms.drive.metadata.internal;
 
 import com.google.android.gms.drive.metadata.MetadataField;
-import com.google.android.gms.internal.iq;
-import com.google.android.gms.internal.is;
-import com.google.android.gms.internal.iu;
+import com.google.android.gms.internal.kd;
+import com.google.android.gms.internal.kf;
+import com.google.android.gms.internal.kh;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -11,67 +11,71 @@ import java.util.Map;
 
 public final class e
 {
-  private static Map<String, MetadataField<?>> JR = new HashMap();
+  private static Map<String, MetadataField<?>> PK = new HashMap();
 
   static
   {
-    b(iq.JT);
-    b(iq.Kr);
-    b(iq.Kk);
-    b(iq.Kp);
-    b(iq.Ks);
-    b(iq.Ke);
-    b(iq.Kf);
-    b(iq.Kc);
-    b(iq.Kh);
-    b(iq.Kn);
-    b(iq.JU);
-    b(iq.Km);
-    b(iq.JW);
-    b(iq.Kd);
-    b(iq.JX);
-    b(iq.JY);
-    b(iq.JZ);
-    b(iq.Kj);
-    b(iq.Kg);
-    b(iq.Kl);
-    b(iq.Ko);
-    b(iq.Kt);
-    b(iq.Ku);
-    b(iq.Kb);
-    b(iq.Ka);
-    b(iq.Kq);
-    b(iq.Ki);
-    b(iq.JV);
-    b(iq.Kv);
-    b(is.Kw);
-    b(is.Ky);
-    b(is.Kz);
-    b(is.KA);
-    b(is.Kx);
-    b(iu.KC);
-    b(iu.KD);
-  }
-
-  public static MetadataField<?> aN(String paramString)
-  {
-    return (MetadataField)JR.get(paramString);
+    b(kd.PM);
+    b(kd.Qm);
+    b(kd.Qd);
+    b(kd.Qk);
+    b(kd.Qn);
+    b(kd.PX);
+    b(kd.PY);
+    b(kd.PV);
+    b(kd.Qa);
+    b(kd.Qi);
+    b(kd.PN);
+    b(kd.Qf);
+    b(kd.PP);
+    b(kd.PW);
+    b(kd.PQ);
+    b(kd.PR);
+    b(kd.PS);
+    b(kd.Qc);
+    b(kd.PZ);
+    b(kd.Qe);
+    b(kd.Qg);
+    b(kd.Qh);
+    b(kd.Qj);
+    b(kd.Qo);
+    b(kd.Qp);
+    b(kd.PU);
+    b(kd.PT);
+    b(kd.Ql);
+    b(kd.Qb);
+    b(kd.PO);
+    b(kd.Qq);
+    b(kd.Qr);
+    b(kd.Qs);
+    b(kf.Qt);
+    b(kf.Qv);
+    b(kf.Qw);
+    b(kf.Qx);
+    b(kf.Qu);
+    b(kh.Qz);
+    b(kh.QA);
   }
 
   private static void b(MetadataField<?> paramMetadataField)
   {
-    if (JR.containsKey(paramMetadataField.getName()))
+    if (PK.containsKey(paramMetadataField.getName()))
       throw new IllegalArgumentException("Duplicate field name registered: " + paramMetadataField.getName());
-    JR.put(paramMetadataField.getName(), paramMetadataField);
+    PK.put(paramMetadataField.getName(), paramMetadataField);
   }
 
-  public static Collection<MetadataField<?>> gE()
+  public static MetadataField<?> bj(String paramString)
   {
-    return Collections.unmodifiableCollection(JR.values());
+    return (MetadataField)PK.get(paramString);
+  }
+
+  public static Collection<MetadataField<?>> in()
+  {
+    return Collections.unmodifiableCollection(PK.values());
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.drive.metadata.internal.e
  * JD-Core Version:    0.6.2
  */

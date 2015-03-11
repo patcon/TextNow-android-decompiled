@@ -6,28 +6,28 @@ import java.util.List;
 
 public final class Batch$Builder
 {
-  private List<PendingResult<?>> DE = new ArrayList();
-  private Looper DF;
+  private List<PendingResult<?>> IG = new ArrayList();
+  private Looper IH;
 
   public Batch$Builder(GoogleApiClient paramGoogleApiClient)
   {
-    this.DF = paramGoogleApiClient.getLooper();
+    this.IH = paramGoogleApiClient.getLooper();
   }
 
   public final <R extends Result> BatchResultToken<R> add(PendingResult<R> paramPendingResult)
   {
-    BatchResultToken localBatchResultToken = new BatchResultToken(this.DE.size());
-    this.DE.add(paramPendingResult);
+    BatchResultToken localBatchResultToken = new BatchResultToken(this.IG.size());
+    this.IG.add(paramPendingResult);
     return localBatchResultToken;
   }
 
   public final Batch build()
   {
-    return new Batch(this.DE, this.DF, null);
+    return new Batch(this.IG, this.IH, null);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.common.api.Batch.Builder
  * JD-Core Version:    0.6.2
  */

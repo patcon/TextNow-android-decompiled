@@ -1,6 +1,5 @@
 package com.facebook;
 
-import android.annotation.TargetApi;
 import android.os.AsyncTask;
 import android.os.Handler;
 import java.lang.reflect.InvocationTargetException;
@@ -10,7 +9,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.Executor;
 
-@TargetApi(3)
 public class RequestAsyncTask extends AsyncTask<Void, Void, List<Response>>
 {
   private static final String TAG = RequestAsyncTask.class.getCanonicalName();
@@ -89,27 +87,26 @@ public class RequestAsyncTask extends AsyncTask<Void, Void, List<Response>>
 
   RequestAsyncTask executeOnSettingsExecutor()
   {
+    if (executeOnExecutorMethod != null);
     try
     {
-      if (executeOnExecutorMethod != null)
-      {
-        Method localMethod = executeOnExecutorMethod;
-        Object[] arrayOfObject = new Object[2];
-        arrayOfObject[0] = Settings.getExecutor();
-        arrayOfObject[1] = null;
-        localMethod.invoke(this, arrayOfObject);
-        return this;
-      }
+      Method localMethod = executeOnExecutorMethod;
+      Object[] arrayOfObject = new Object[2];
+      arrayOfObject[0] = Settings.getExecutor();
+      arrayOfObject[1] = null;
+      localMethod.invoke(this, arrayOfObject);
+      return this;
+      execute(new Void[0]);
+      return this;
     }
     catch (IllegalAccessException localIllegalAccessException)
     {
-      execute(new Void[0]);
       return this;
     }
     catch (InvocationTargetException localInvocationTargetException)
     {
-      label41: break label41;
     }
+    return this;
   }
 
   protected final Exception getException()
@@ -146,7 +143,7 @@ public class RequestAsyncTask extends AsyncTask<Void, Void, List<Response>>
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.facebook.RequestAsyncTask
  * JD-Core Version:    0.6.2
  */

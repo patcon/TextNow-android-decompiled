@@ -1,64 +1,120 @@
 package com.google.android.gms.internal;
 
-import android.os.Parcel;
-import android.os.Parcelable.Creator;
-import com.google.android.gms.common.internal.safeparcel.a;
-import com.google.android.gms.common.internal.safeparcel.a.a;
-import com.google.android.gms.common.internal.safeparcel.b;
+import java.util.concurrent.CancellationException;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
-public class gk
-  implements Parcelable.Creator<gj>
+@ez
+public class gk<T>
+  implements Future<T>
 {
-  static void a(gj paramgj, Parcel paramParcel, int paramInt)
-  {
-    int i = b.C(paramParcel);
-    b.c(paramParcel, 1, paramgj.getVersionCode());
-    b.a(paramParcel, 2, paramgj.eh());
-    b.a(paramParcel, 3, paramgj.en());
-    b.c(paramParcel, 4, paramgj.eo());
-    b.G(paramParcel, i);
-  }
+  private final Object mw = new Object();
+  private boolean pS = false;
+  private T wq = null;
+  private boolean wr = false;
 
-  public gj[] Y(int paramInt)
+  public void a(T paramT)
   {
-    return new gj[paramInt];
-  }
-
-  public gj v(Parcel paramParcel)
-  {
-    int i = 0;
-    int j = a.B(paramParcel);
-    double d = 0.0D;
-    boolean bool = false;
-    int k = 0;
-    while (paramParcel.dataPosition() < j)
+    synchronized (this.mw)
     {
-      int m = a.A(paramParcel);
-      switch (a.ar(m))
-      {
-      default:
-        a.b(paramParcel, m);
-        break;
-      case 1:
-        k = a.g(paramParcel, m);
-        break;
-      case 2:
-        d = a.m(paramParcel, m);
-        break;
-      case 3:
-        bool = a.c(paramParcel, m);
-        break;
-      case 4:
-        i = a.g(paramParcel, m);
-      }
+      if (this.wr)
+        throw new IllegalStateException("Provided CallbackFuture with multiple values.");
     }
-    if (paramParcel.dataPosition() != j)
-      throw new a.a("Overread allowed size end=" + j, paramParcel);
-    return new gj(k, d, bool, i);
+    this.wr = true;
+    this.wq = paramT;
+    this.mw.notifyAll();
+  }
+
+  public boolean cancel(boolean paramBoolean)
+  {
+    if (!paramBoolean)
+      return false;
+    synchronized (this.mw)
+    {
+      if (this.wr)
+        return false;
+    }
+    this.pS = true;
+    this.wr = true;
+    this.mw.notifyAll();
+    return true;
+  }
+
+  public T get()
+  {
+    synchronized (this.mw)
+    {
+      boolean bool = this.wr;
+      if (bool);
+    }
+    try
+    {
+      this.mw.wait();
+      label23: if (this.pS)
+      {
+        throw new CancellationException("CallbackFuture was cancelled.");
+        localObject2 = finally;
+        throw localObject2;
+      }
+      Object localObject3 = this.wq;
+      return localObject3;
+    }
+    catch (InterruptedException localInterruptedException)
+    {
+      break label23;
+    }
+  }
+
+  public T get(long paramLong, TimeUnit paramTimeUnit)
+  {
+    synchronized (this.mw)
+    {
+      boolean bool = this.wr;
+      if (bool);
+    }
+    try
+    {
+      long l = paramTimeUnit.toMillis(paramLong);
+      if (l != 0L)
+        this.mw.wait(l);
+      label43: if (!this.wr)
+      {
+        throw new TimeoutException("CallbackFuture timed out.");
+        localObject2 = finally;
+        throw localObject2;
+      }
+      if (this.pS)
+        throw new CancellationException("CallbackFuture was cancelled.");
+      Object localObject3 = this.wq;
+      return localObject3;
+    }
+    catch (InterruptedException localInterruptedException)
+    {
+      break label43;
+    }
+  }
+
+  public boolean isCancelled()
+  {
+    synchronized (this.mw)
+    {
+      boolean bool = this.pS;
+      return bool;
+    }
+  }
+
+  public boolean isDone()
+  {
+    synchronized (this.mw)
+    {
+      boolean bool = this.wr;
+      return bool;
+    }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.gk
  * JD-Core Version:    0.6.2
  */

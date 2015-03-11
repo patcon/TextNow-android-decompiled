@@ -1,53 +1,45 @@
 package android.support.v4.view;
 
-import android.database.DataSetObserver;
+import android.view.MotionEvent;
 
-final class ag extends DataSetObserver
-  implements bs, bt
+final class ag
+  implements ai
 {
-  private int b;
-
-  private ag(PagerTitleStrip paramPagerTitleStrip)
+  public final int a(MotionEvent paramMotionEvent)
   {
+    return 1;
   }
 
-  public final void a()
+  public final int a(MotionEvent paramMotionEvent, int paramInt)
   {
-    if (this.b == 0)
-    {
-      this.a.a(this.a.a.b(), this.a.a.a());
-      boolean bool = PagerTitleStrip.a(this.a) < 0.0F;
-      float f = 0.0F;
-      if (!bool)
-        f = PagerTitleStrip.a(this.a);
-      this.a.a(this.a.a.b(), f, true);
-    }
+    if (paramInt == 0)
+      return 0;
+    return -1;
   }
 
-  public final void a(int paramInt)
+  public final int b(MotionEvent paramMotionEvent, int paramInt)
   {
-    this.b = paramInt;
+    if (paramInt == 0)
+      return 0;
+    throw new IndexOutOfBoundsException("Pre-Eclair does not support multiple pointers");
   }
 
-  public final void a(int paramInt, float paramFloat)
+  public final float c(MotionEvent paramMotionEvent, int paramInt)
   {
-    if (paramFloat > 0.5F)
-      paramInt++;
-    this.a.a(paramInt, paramFloat, false);
+    if (paramInt == 0)
+      return paramMotionEvent.getX();
+    throw new IndexOutOfBoundsException("Pre-Eclair does not support multiple pointers");
   }
 
-  public final void onChanged()
+  public final float d(MotionEvent paramMotionEvent, int paramInt)
   {
-    this.a.a(this.a.a.b(), this.a.a.a());
-    boolean bool = PagerTitleStrip.a(this.a) < 0.0F;
-    float f = 0.0F;
-    if (!bool)
-      f = PagerTitleStrip.a(this.a);
-    this.a.a(this.a.a.b(), f, true);
+    if (paramInt == 0)
+      return paramMotionEvent.getY();
+    throw new IndexOutOfBoundsException("Pre-Eclair does not support multiple pointers");
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.view.ag
  * JD-Core Version:    0.6.2
  */

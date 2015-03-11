@@ -1,6 +1,9 @@
 package com.enflick.android.TextNow.views;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,47 +19,55 @@ public class PageIndicator extends LinearLayout
 {
   protected LayoutInflater a;
   protected Context b;
-  protected e c;
+  protected f c;
   protected ArrayList<ImageView> d = new ArrayList();
   protected LinearLayout e;
   protected int f;
   protected int g = 0;
+  private int h;
+  private int i;
 
   public PageIndicator(Context paramContext, AttributeSet paramAttributeSet)
   {
     super(paramContext, paramAttributeSet);
     this.a = LayoutInflater.from(paramContext);
-    this.a.inflate(2130903161, this);
+    this.a.inflate(2130903177, this);
     this.b = paramContext;
+    this.h = this.b.getResources().getColor(2131230805);
+    this.i = this.b.getResources().getColor(2131230806);
   }
 
-  private void c(int paramInt)
+  private static void a(ImageView paramImageView, int paramInt)
   {
-    int i = 0;
-    if (i < this.d.size())
+    paramImageView.getDrawable().mutate().setColorFilter(paramInt, PorterDuff.Mode.MULTIPLY);
+  }
+
+  private void f(int paramInt)
+  {
+    int j = 0;
+    if (j < this.d.size())
     {
-      if (i == paramInt)
-        ((ImageView)this.d.get(i)).setImageResource(2130837922);
+      if (j == paramInt)
+        a((ImageView)this.d.get(j), this.h);
       while (true)
       {
-        i++;
+        j++;
         break;
-        ((ImageView)this.d.get(i)).setImageResource(2130837923);
+        a((ImageView)this.d.get(j), this.i);
       }
     }
   }
 
   public final void a()
   {
-    int i = -1 + this.d.size();
-    this.d.remove(i);
-    this.e.removeViewAt(i);
+    int j = -1 + this.d.size();
+    this.d.remove(j);
+    this.e.removeViewAt(j);
   }
 
   public final void a(int paramInt)
   {
-    b(paramInt);
-    ((ImageView)this.d.get(paramInt)).setImageResource(2130837923);
+    this.h = this.b.getResources().getColor(2131230808);
   }
 
   public final void a(View paramView)
@@ -65,9 +76,9 @@ public class PageIndicator extends LinearLayout
     this.d.add((ImageView)paramView);
   }
 
-  public final void a(e parame)
+  public final void a(f paramf)
   {
-    this.c = parame;
+    this.c = paramf;
   }
 
   public final void b()
@@ -78,16 +89,14 @@ public class PageIndicator extends LinearLayout
 
   public final void b(int paramInt)
   {
-    this.f = paramInt;
-    c(paramInt);
+    this.i = this.b.getResources().getColor(2131230807);
   }
 
   public final void c()
   {
     ImageView localImageView = new ImageView(this.b);
     localImageView.setLayoutParams(((ImageView)this.d.get(0)).getLayoutParams());
-    localImageView.setImageResource(2130837923);
-    localImageView.setBackgroundResource(2130838063);
+    localImageView.setImageResource(2130837886);
     localImageView.setTag("page" + this.d.size());
     localImageView.setFocusable(true);
     localImageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
@@ -96,15 +105,26 @@ public class PageIndicator extends LinearLayout
     this.e.addView(localImageView, -1 + this.d.size());
   }
 
+  public final void c(int paramInt)
+  {
+    for (int j = 0; j < paramInt; j++)
+      c();
+  }
+
   public final void d()
   {
     this.g = this.f;
     if (this.f == -1 + this.d.size());
     for (this.f = 0; ; this.f = (1 + this.f))
     {
-      c(this.f);
+      f(this.f);
       return;
     }
+  }
+
+  public final void d(int paramInt)
+  {
+    e(paramInt);
   }
 
   public final void e()
@@ -113,9 +133,15 @@ public class PageIndicator extends LinearLayout
     if (this.f == 0);
     for (this.f = (-1 + this.d.size()); ; this.f = (-1 + this.f))
     {
-      c(this.f);
+      f(this.f);
       return;
     }
+  }
+
+  public final void e(int paramInt)
+  {
+    this.f = paramInt;
+    f(paramInt);
   }
 
   public final int f()
@@ -131,14 +157,14 @@ public class PageIndicator extends LinearLayout
   protected void onFinishInflate()
   {
     super.onFinishInflate();
-    this.e = ((LinearLayout)findViewById(2131165595));
+    this.e = ((LinearLayout)findViewById(2131558891));
     this.e.setOnClickListener(new View.OnClickListener()
     {
       public final void onClick(View paramAnonymousView)
       {
       }
     });
-    ImageView localImageView = (ImageView)findViewById(2131165596);
+    ImageView localImageView = (ImageView)findViewById(2131558767);
     localImageView.setOnFocusChangeListener(this);
     this.d.add(localImageView);
     this.f = 0;
@@ -157,17 +183,17 @@ public class PageIndicator extends LinearLayout
     if (paramBoolean)
     {
       String str = (String)paramView.getTag();
-      int i = Integer.valueOf(str.substring(-1 + str.length())).intValue();
-      a(i);
-      this.c.a(i, this.g);
+      int j = Integer.valueOf(str.substring(-1 + str.length())).intValue();
+      e(j);
+      this.c.a(j, this.g);
       return;
     }
-    ((ImageView)paramView).setImageResource(2130837922);
+    a((ImageView)paramView, this.h);
     this.g = this.f;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.views.PageIndicator
  * JD-Core Version:    0.6.2
  */

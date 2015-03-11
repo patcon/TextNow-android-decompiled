@@ -1,63 +1,74 @@
 package com.google.android.gms.internal;
 
 import android.os.Parcel;
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
+import android.os.Parcelable.Creator;
+import com.google.android.gms.common.internal.safeparcel.a;
+import com.google.android.gms.common.internal.safeparcel.a.a;
+import com.google.android.gms.common.internal.safeparcel.b;
 
 public class ht
-  implements SafeParcelable
+  implements Parcelable.Creator<hs>
 {
-  public static final hu CREATOR = new hu();
-  private final hv GV;
-  private final int xM;
-
-  ht(int paramInt, hv paramhv)
+  static void a(hs paramhs, Parcel paramParcel, int paramInt)
   {
-    this.xM = paramInt;
-    this.GV = paramhv;
+    int i = b.D(paramParcel);
+    b.a(paramParcel, 1, paramhs.CD, paramInt, false);
+    b.c(paramParcel, 1000, paramhs.BR);
+    b.a(paramParcel, 2, paramhs.CE);
+    b.c(paramParcel, 3, paramhs.CF);
+    b.a(paramParcel, 4, paramhs.oT, false);
+    b.a(paramParcel, 5, paramhs.CG, paramInt, false);
+    b.H(paramParcel, i);
   }
 
-  private ht(hv paramhv)
+  public hs[] R(int paramInt)
   {
-    this.xM = 1;
-    this.GV = paramhv;
+    return new hs[paramInt];
   }
 
-  public static ht a(hy.b<?, ?> paramb)
+  public hs s(Parcel paramParcel)
   {
-    if ((paramb instanceof hv))
-      return new ht((hv)paramb);
-    throw new IllegalArgumentException("Unsupported safe parcelable field converter class.");
-  }
-
-  public int describeContents()
-  {
-    return 0;
-  }
-
-  hv fB()
-  {
-    return this.GV;
-  }
-
-  public hy.b<?, ?> fC()
-  {
-    if (this.GV != null)
-      return this.GV;
-    throw new IllegalStateException("There was no converter wrapped in this ConverterWrapper.");
-  }
-
-  int getVersionCode()
-  {
-    return this.xM;
-  }
-
-  public void writeToParcel(Parcel paramParcel, int paramInt)
-  {
-    hu.a(this, paramParcel, paramInt);
+    int i = 0;
+    he localhe = null;
+    int j = a.C(paramParcel);
+    long l = 0L;
+    String str = null;
+    hg localhg = null;
+    int k = 0;
+    while (paramParcel.dataPosition() < j)
+    {
+      int m = a.B(paramParcel);
+      switch (a.aD(m))
+      {
+      default:
+        a.b(paramParcel, m);
+        break;
+      case 1:
+        localhg = (hg)a.a(paramParcel, m, hg.CREATOR);
+        break;
+      case 1000:
+        k = a.g(paramParcel, m);
+        break;
+      case 2:
+        l = a.i(paramParcel, m);
+        break;
+      case 3:
+        i = a.g(paramParcel, m);
+        break;
+      case 4:
+        str = a.o(paramParcel, m);
+        break;
+      case 5:
+        localhe = (he)a.a(paramParcel, m, he.CREATOR);
+      }
+    }
+    if (paramParcel.dataPosition() != j)
+      throw new a.a("Overread allowed size end=" + j, paramParcel);
+    return new hs(k, localhg, l, i, str, localhe);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.ht
  * JD-Core Version:    0.6.2
  */

@@ -1,36 +1,19 @@
 package textnow.m;
 
-import android.content.Context;
-import android.database.Cursor;
-import android.os.Bundle;
-import android.support.v4.app.ah;
-import android.support.v4.content.j;
-import textnow.k.g;
+import android.os.Handler;
+import android.os.Looper;
+import java.util.concurrent.Executor;
 
-public final class b
-  implements ah<Cursor>
+final class b
+  implements Executor
 {
-  private Context a;
-  private g b;
-
-  public b(Context paramContext, g paramg)
+  public final void execute(Runnable paramRunnable)
   {
-    this.a = paramContext;
-    this.b = paramg;
-  }
-
-  public final j<Cursor> onCreateLoader(int paramInt, Bundle paramBundle)
-  {
-    return new a(this.a);
-  }
-
-  public final void onLoaderReset(j<Cursor> paramj)
-  {
-    this.b.b(null);
+    new Handler(Looper.getMainLooper()).post(paramRunnable);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.m.b
  * JD-Core Version:    0.6.2
  */

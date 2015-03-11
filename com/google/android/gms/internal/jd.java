@@ -1,18 +1,63 @@
 package com.google.android.gms.internal;
 
-import android.app.PendingIntent;
-import android.os.IInterface;
+import android.os.Parcel;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
-public abstract interface jd extends IInterface
+public class jd
+  implements SafeParcelable
 {
-  public abstract void onAddGeofencesResult(int paramInt, String[] paramArrayOfString);
+  public static final je CREATOR = new je();
+  private final int BR;
+  private final jf Ms;
 
-  public abstract void onRemoveGeofencesByPendingIntentResult(int paramInt, PendingIntent paramPendingIntent);
+  jd(int paramInt, jf paramjf)
+  {
+    this.BR = paramInt;
+    this.Ms = paramjf;
+  }
 
-  public abstract void onRemoveGeofencesByRequestIdsResult(int paramInt, String[] paramArrayOfString);
+  private jd(jf paramjf)
+  {
+    this.BR = 1;
+    this.Ms = paramjf;
+  }
+
+  public static jd a(ji.b<?, ?> paramb)
+  {
+    if ((paramb instanceof jf))
+      return new jd((jf)paramb);
+    throw new IllegalArgumentException("Unsupported safe parcelable field converter class.");
+  }
+
+  public int describeContents()
+  {
+    return 0;
+  }
+
+  int getVersionCode()
+  {
+    return this.BR;
+  }
+
+  jf ha()
+  {
+    return this.Ms;
+  }
+
+  public ji.b<?, ?> hb()
+  {
+    if (this.Ms != null)
+      return this.Ms;
+    throw new IllegalStateException("There was no converter wrapped in this ConverterWrapper.");
+  }
+
+  public void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    je.a(this, paramParcel, paramInt);
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.jd
  * JD-Core Version:    0.6.2
  */

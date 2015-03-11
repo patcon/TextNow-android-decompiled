@@ -1,59 +1,74 @@
 package com.google.android.gms.internal;
 
-import android.os.Parcel;
-import android.os.Parcelable.Creator;
-import com.google.android.gms.common.internal.safeparcel.a;
-import com.google.android.gms.common.internal.safeparcel.a.a;
-import com.google.android.gms.common.internal.safeparcel.b;
-
-public class if
-  implements Parcelable.Creator<ie>
+public enum if
 {
-  static void a(ie paramie, Parcel paramParcel, int paramInt)
+  public static String Ev = "Error";
+  public static String Ew = "status";
+  private final String Ex;
+
+  static
   {
-    int i = b.C(paramParcel);
-    b.c(paramParcel, 1, paramie.getVersionCode());
-    b.a(paramParcel, 2, paramie.fY(), false);
-    b.a(paramParcel, 3, paramie.fZ(), paramInt, false);
-    b.G(paramParcel, i);
+    if[] arrayOfif = new if[45];
+    arrayOfif[0] = DC;
+    arrayOfif[1] = DD;
+    arrayOfif[2] = DE;
+    arrayOfif[3] = DF;
+    arrayOfif[4] = DG;
+    arrayOfif[5] = DH;
+    arrayOfif[6] = DI;
+    arrayOfif[7] = DJ;
+    arrayOfif[8] = DK;
+    arrayOfif[9] = DL;
+    arrayOfif[10] = DM;
+    arrayOfif[11] = DN;
+    arrayOfif[12] = DO;
+    arrayOfif[13] = DP;
+    arrayOfif[14] = DQ;
+    arrayOfif[15] = DR;
+    arrayOfif[16] = DS;
+    arrayOfif[17] = DT;
+    arrayOfif[18] = DU;
+    arrayOfif[19] = DV;
+    arrayOfif[20] = DW;
+    arrayOfif[21] = DX;
+    arrayOfif[22] = DY;
+    arrayOfif[23] = DZ;
+    arrayOfif[24] = Ea;
+    arrayOfif[25] = Eb;
+    arrayOfif[26] = Ec;
+    arrayOfif[27] = Ed;
+    arrayOfif[28] = Ee;
+    arrayOfif[29] = Ef;
+    arrayOfif[30] = Eg;
+    arrayOfif[31] = Eh;
+    arrayOfif[32] = Ei;
+    arrayOfif[33] = Ej;
+    arrayOfif[34] = Ek;
+    arrayOfif[35] = El;
+    arrayOfif[36] = Em;
+    arrayOfif[37] = En;
+    arrayOfif[38] = Eo;
+    arrayOfif[39] = Ep;
+    arrayOfif[40] = Eq;
+    arrayOfif[41] = Er;
+    arrayOfif[42] = Es;
+    arrayOfif[43] = Et;
+    arrayOfif[44] = Eu;
+    Ey = arrayOfif;
   }
 
-  public ie L(Parcel paramParcel)
+  private if(String paramString)
   {
-    ib localib = null;
-    int i = a.B(paramParcel);
-    int j = 0;
-    Parcel localParcel = null;
-    while (paramParcel.dataPosition() < i)
-    {
-      int k = a.A(paramParcel);
-      switch (a.ar(k))
-      {
-      default:
-        a.b(paramParcel, k);
-        break;
-      case 1:
-        j = a.g(paramParcel, k);
-        break;
-      case 2:
-        localParcel = a.C(paramParcel, k);
-        break;
-      case 3:
-        localib = (ib)a.a(paramParcel, k, ib.CREATOR);
-      }
-    }
-    if (paramParcel.dataPosition() != i)
-      throw new a.a("Overread allowed size end=" + i, paramParcel);
-    return new ie(j, localParcel, localib);
+    this.Ex = paramString;
   }
 
-  public ie[] aA(int paramInt)
+  public final String ft()
   {
-    return new ie[paramInt];
+    return this.Ex;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.if
  * JD-Core Version:    0.6.2
  */

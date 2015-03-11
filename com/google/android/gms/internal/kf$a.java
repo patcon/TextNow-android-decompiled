@@ -1,34 +1,19 @@
 package com.google.android.gms.internal;
 
-import android.app.PendingIntent;
-import android.content.Intent;
-import android.os.Bundle;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.common.api.a.d;
-import com.google.android.gms.panorama.PanoramaApi.a;
+import com.google.android.gms.drive.metadata.SortableMetadataField;
+import com.google.android.gms.drive.metadata.internal.d;
+import java.util.Date;
 
-final class kf$a extends kd.a
+public class kf$a extends d
+  implements SortableMetadataField<Date>
 {
-  private final a.d<PanoramaApi.a> yR;
-
-  public kf$a(a.d<PanoramaApi.a> paramd)
+  public kf$a(String paramString, int paramInt)
   {
-    this.yR = paramd;
-  }
-
-  public final void a(int paramInt1, Bundle paramBundle, int paramInt2, Intent paramIntent)
-  {
-    if (paramBundle != null);
-    for (PendingIntent localPendingIntent = (PendingIntent)paramBundle.getParcelable("pendingIntent"); ; localPendingIntent = null)
-    {
-      Status localStatus = new Status(paramInt1, null, localPendingIntent);
-      this.yR.a(new kc(localStatus, paramIntent, paramInt2));
-      return;
-    }
+    super(paramString, paramInt);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.internal.kf.a
  * JD-Core Version:    0.6.2
  */

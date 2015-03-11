@@ -1,11 +1,18 @@
 package android.support.v4.app;
 
-final class aa
+import android.os.Bundle;
+import android.support.v4.content.j;
+
+public abstract interface aa<D>
 {
-  public static final int[] a = { 16842755, 16842960, 16842961 };
+  public abstract j<D> onCreateLoader(int paramInt, Bundle paramBundle);
+
+  public abstract void onLoadFinished(j<D> paramj, D paramD);
+
+  public abstract void onLoaderReset(j<D> paramj);
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     android.support.v4.app.aa
  * JD-Core Version:    0.6.2
  */

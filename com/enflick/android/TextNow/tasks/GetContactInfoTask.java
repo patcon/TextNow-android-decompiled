@@ -3,7 +3,7 @@ package com.enflick.android.TextNow.tasks;
 import com.enflick.android.TextNow.api.ContactsGet;
 import com.enflick.android.TextNow.api.a;
 import java.util.HashMap;
-import textnow.s.i;
+import textnow.x.i;
 
 public class GetContactInfoTask extends c
 {
@@ -25,7 +25,7 @@ public class GetContactInfoTask extends c
     return this.d;
   }
 
-  protected final boolean d_()
+  protected final boolean e_()
   {
     return true;
   }
@@ -46,7 +46,7 @@ public class GetContactInfoTask extends c
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.tasks.GetContactInfoTask
  * JD-Core Version:    0.6.2
  */

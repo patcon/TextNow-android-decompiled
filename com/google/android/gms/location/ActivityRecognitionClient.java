@@ -6,64 +6,64 @@ import android.os.RemoteException;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallbacks;
 import com.google.android.gms.common.GooglePlayServicesClient.OnConnectionFailedListener;
-import com.google.android.gms.internal.jg;
+import com.google.android.gms.internal.lz;
 
 @Deprecated
 public class ActivityRecognitionClient
   implements GooglePlayServicesClient
 {
-  private final jg UU;
+  private final lz aea;
 
   public ActivityRecognitionClient(Context paramContext, GooglePlayServicesClient.ConnectionCallbacks paramConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener paramOnConnectionFailedListener)
   {
-    this.UU = new jg(paramContext, paramConnectionCallbacks, paramOnConnectionFailedListener, "activity_recognition");
+    this.aea = new lz(paramContext, paramConnectionCallbacks, paramOnConnectionFailedListener, "activity_recognition");
   }
 
   public void connect()
   {
-    this.UU.connect();
+    this.aea.connect();
   }
 
   public void disconnect()
   {
-    this.UU.disconnect();
+    this.aea.disconnect();
   }
 
   public boolean isConnected()
   {
-    return this.UU.isConnected();
+    return this.aea.isConnected();
   }
 
   public boolean isConnecting()
   {
-    return this.UU.isConnecting();
+    return this.aea.isConnecting();
   }
 
   public boolean isConnectionCallbacksRegistered(GooglePlayServicesClient.ConnectionCallbacks paramConnectionCallbacks)
   {
-    return this.UU.isConnectionCallbacksRegistered(paramConnectionCallbacks);
+    return this.aea.isConnectionCallbacksRegistered(paramConnectionCallbacks);
   }
 
   public boolean isConnectionFailedListenerRegistered(GooglePlayServicesClient.OnConnectionFailedListener paramOnConnectionFailedListener)
   {
-    return this.UU.isConnectionFailedListenerRegistered(paramOnConnectionFailedListener);
+    return this.aea.isConnectionFailedListenerRegistered(paramOnConnectionFailedListener);
   }
 
   public void registerConnectionCallbacks(GooglePlayServicesClient.ConnectionCallbacks paramConnectionCallbacks)
   {
-    this.UU.registerConnectionCallbacks(paramConnectionCallbacks);
+    this.aea.registerConnectionCallbacks(paramConnectionCallbacks);
   }
 
   public void registerConnectionFailedListener(GooglePlayServicesClient.OnConnectionFailedListener paramOnConnectionFailedListener)
   {
-    this.UU.registerConnectionFailedListener(paramOnConnectionFailedListener);
+    this.aea.registerConnectionFailedListener(paramOnConnectionFailedListener);
   }
 
   public void removeActivityUpdates(PendingIntent paramPendingIntent)
   {
     try
     {
-      this.UU.removeActivityUpdates(paramPendingIntent);
+      this.aea.removeActivityUpdates(paramPendingIntent);
       return;
     }
     catch (RemoteException localRemoteException)
@@ -76,7 +76,7 @@ public class ActivityRecognitionClient
   {
     try
     {
-      this.UU.requestActivityUpdates(paramLong, paramPendingIntent);
+      this.aea.requestActivityUpdates(paramLong, paramPendingIntent);
       return;
     }
     catch (RemoteException localRemoteException)
@@ -87,16 +87,16 @@ public class ActivityRecognitionClient
 
   public void unregisterConnectionCallbacks(GooglePlayServicesClient.ConnectionCallbacks paramConnectionCallbacks)
   {
-    this.UU.unregisterConnectionCallbacks(paramConnectionCallbacks);
+    this.aea.unregisterConnectionCallbacks(paramConnectionCallbacks);
   }
 
   public void unregisterConnectionFailedListener(GooglePlayServicesClient.OnConnectionFailedListener paramOnConnectionFailedListener)
   {
-    this.UU.unregisterConnectionFailedListener(paramOnConnectionFailedListener);
+    this.aea.unregisterConnectionFailedListener(paramOnConnectionFailedListener);
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.location.ActivityRecognitionClient
  * JD-Core Version:    0.6.2
  */

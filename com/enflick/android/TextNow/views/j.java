@@ -1,26 +1,26 @@
 package com.enflick.android.TextNow.views;
 
-import android.graphics.drawable.Drawable;
-import android.text.style.ImageSpan;
-import textnow.u.d;
+import android.text.Editable;
+import android.text.Selection;
+import android.text.style.ClickableSpan;
+import android.view.View;
 
-public class j extends ImageSpan
+public class j extends ClickableSpan
 {
-  d a;
-
-  j(Drawable paramDrawable, d paramd, int paramInt)
+  public void onClick(View paramView)
   {
-    super(paramDrawable, 0);
-    this.a = paramd;
-  }
-
-  public final d a()
-  {
-    return this.a;
+    if ((paramView instanceof RecipientField))
+    {
+      Editable localEditable = ((RecipientField)paramView).getEditableText();
+      int i = localEditable.getSpanStart(this);
+      for (int j = localEditable.getSpanEnd(this); (j < localEditable.length()) && (localEditable.charAt(j) == ' '); j++);
+      localEditable.replace(i, j, "");
+      Selection.setSelection(localEditable, localEditable.length());
+    }
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.views.j
  * JD-Core Version:    0.6.2
  */

@@ -1,18 +1,64 @@
 package textnow.f;
 
-import android.os.Bundle;
+import android.os.Build.VERSION;
 import java.util.List;
 
-abstract interface o
+public final class o
 {
-  public abstract Object a(int paramInt);
+  private static final p a = new s();
+  private final Object b;
 
-  public abstract List<Object> a(String paramString, int paramInt);
+  static
+  {
+    if (Build.VERSION.SDK_INT >= 19)
+    {
+      a = new r();
+      return;
+    }
+    if (Build.VERSION.SDK_INT >= 16)
+    {
+      a = new q();
+      return;
+    }
+  }
 
-  public abstract boolean a(int paramInt1, int paramInt2, Bundle paramBundle);
+  public o()
+  {
+    this.b = a.a(this);
+  }
+
+  public o(Object paramObject)
+  {
+    this.b = paramObject;
+  }
+
+  public static e b()
+  {
+    return null;
+  }
+
+  public static boolean c()
+  {
+    return false;
+  }
+
+  public static List<e> d()
+  {
+    return null;
+  }
+
+  public static e e()
+  {
+    return null;
+  }
+
+  public final Object a()
+  {
+    return this.b;
+  }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.f.o
  * JD-Core Version:    0.6.2
  */

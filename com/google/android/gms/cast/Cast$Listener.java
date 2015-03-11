@@ -2,7 +2,11 @@ package com.google.android.gms.cast;
 
 public class Cast$Listener
 {
-  public void O(int paramInt)
+  public void W(int paramInt)
+  {
+  }
+
+  public void X(int paramInt)
   {
   }
 
@@ -19,7 +23,7 @@ public class Cast$Listener
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.google.android.gms.cast.Cast.Listener
  * JD-Core Version:    0.6.2
  */

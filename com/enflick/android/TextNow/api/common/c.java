@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import textnow.t.a;
-import textnow.t.f;
+import textnow.y.a;
+import textnow.y.f;
 
 public abstract class c
 {
@@ -110,7 +110,7 @@ public abstract class c
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.enflick.android.TextNow.api.common.c
  * JD-Core Version:    0.6.2
  */

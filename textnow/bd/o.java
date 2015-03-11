@@ -1,38 +1,28 @@
 package textnow.bd;
 
-final class o
+final class o extends n
 {
-  public final int a;
-  public final int b;
-  public final int c;
-  public final int d;
+  private final int a;
+  private final int b;
 
-  public final boolean equals(Object paramObject)
+  private o(int paramInt1, int paramInt2)
   {
-    if (this == paramObject);
-    o localo;
-    do
-    {
-      return true;
-      if (paramObject == null)
-        return false;
-      if (getClass() != paramObject.getClass())
-        return false;
-      localo = (o)paramObject;
-      if (this.a != localo.a)
-        return false;
-    }
-    while (this.b == localo.b);
-    return false;
+    this.a = paramInt1;
+    this.b = paramInt2;
   }
 
-  public final int hashCode()
+  public static o a(int paramInt1, int paramInt2)
   {
-    return 31 * (31 + this.a) + this.b;
+    return new o(paramInt1, paramInt2);
+  }
+
+  public final String a()
+  {
+    return "screenSize: { width: " + this.a + ", height: " + this.b + " }";
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.bd.o
  * JD-Core Version:    0.6.2
  */

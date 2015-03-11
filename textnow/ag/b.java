@@ -1,20 +1,18 @@
 package textnow.ag;
 
-import java.lang.reflect.Field;
-import textnow.ai.a;
+import java.lang.annotation.Annotation;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-public final class b
+@Retention(RetentionPolicy.RUNTIME)
+@Target({java.lang.annotation.ElementType.FIELD})
+public @interface b
 {
-  private final Field a;
-
-  public b(Field paramField)
-  {
-    a.a(paramField);
-    this.a = paramField;
-  }
+  public abstract String a();
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.ag.b
  * JD-Core Version:    0.6.2
  */

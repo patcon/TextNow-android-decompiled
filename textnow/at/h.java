@@ -1,44 +1,42 @@
 package textnow.at;
 
-import android.net.Uri;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import java.net.URI;
-
-final class h extends WebViewClient
+final class h extends g
 {
-  private h(f paramf)
+  float d;
+
+  h(float paramFloat)
   {
+    this.a = paramFloat;
+    this.b = Float.TYPE;
   }
 
-  public final void onPageFinished(WebView paramWebView, String paramString)
+  h(float paramFloat1, float paramFloat2)
   {
-    if (!f.a(this.a))
-    {
-      this.a.c();
-      this.a.a();
-      this.a.b();
-      this.a.d();
-    }
+    this.a = paramFloat1;
+    this.d = paramFloat2;
+    this.b = Float.TYPE;
+    this.c = true;
   }
 
-  public final void onReceivedError(WebView paramWebView, int paramInt, String paramString1, String paramString2)
+  private h f()
   {
-    super.onReceivedError(paramWebView, paramInt, paramString1, paramString2);
+    h localh = new h(this.a, this.d);
+    localh.a(c());
+    return localh;
   }
 
-  public final boolean shouldOverrideUrlLoading(WebView paramWebView, String paramString)
+  public final Object a()
   {
-    if (Uri.parse(paramString).getScheme().equals("tremorvideo"))
-    {
-      f.a(this.a, URI.create(paramString));
-      return true;
-    }
-    return false;
+    return Float.valueOf(this.d);
+  }
+
+  public final float e()
+  {
+    return this.d;
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     textnow.at.h
  * JD-Core Version:    0.6.2
  */

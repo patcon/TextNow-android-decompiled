@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
-import textnow.bi.e;
+import textnow.bp.e;
 
 public class FeedbackActivity extends Activity
   implements View.OnClickListener
@@ -44,14 +44,14 @@ public class FeedbackActivity extends Activity
   private ScrollView k;
   private LinearLayout l;
   private ListView m;
-  private textnow.bh.d n;
+  private textnow.bo.d n;
   private Handler o;
-  private textnow.bh.c p;
+  private textnow.bo.c p;
   private Handler q;
   private String r;
-  private textnow.bg.a s;
-  private textnow.be.a t;
-  private ArrayList<textnow.bg.c> u;
+  private textnow.bn.a s;
+  private textnow.bl.a t;
+  private ArrayList<textnow.bn.c> u;
   private boolean v;
   private String w;
 
@@ -69,7 +69,7 @@ public class FeedbackActivity extends Activity
 
   private void a(String paramString1, String paramString2, String paramString3, String paramString4, String paramString5, String paramString6, Handler paramHandler, boolean paramBoolean)
   {
-    this.n = new textnow.bh.d(this.b, paramString1, paramString2, paramString3, paramString4, paramString5, paramString6, paramHandler, paramBoolean);
+    this.n = new textnow.bo.d(this.b, paramString1, paramString2, paramString3, paramString4, paramString5, paramString6, paramHandler, paramBoolean);
     this.n.execute(new Void[0]);
   }
 
@@ -139,7 +139,7 @@ public class FeedbackActivity extends Activity
       b(false);
       if ((this.d.getText().toString().trim().length() <= 0) || (this.e.getText().toString().trim().length() <= 0) || (this.f.getText().toString().trim().length() <= 0) || (this.g.getText().toString().trim().length() <= 0))
       {
-        this.s = new textnow.bg.a();
+        this.s = new textnow.bn.a();
         this.s.a("Please provide all details");
         showDialog(0);
         b(true);
@@ -172,7 +172,7 @@ public class FeedbackActivity extends Activity
       public final void handleMessage(Message paramAnonymousMessage)
       {
         int i = 0;
-        FeedbackActivity.a(FeedbackActivity.this, new textnow.bg.a());
+        FeedbackActivity.a(FeedbackActivity.this, new textnow.bn.a());
         String str1;
         String str2;
         String str3;
@@ -217,11 +217,11 @@ public class FeedbackActivity extends Activity
     {
       public final void handleMessage(Message paramAnonymousMessage)
       {
-        FeedbackActivity.a(FeedbackActivity.this, new textnow.bg.a());
+        FeedbackActivity.a(FeedbackActivity.this, new textnow.bn.a());
         int i;
         if ((paramAnonymousMessage != null) && (paramAnonymousMessage.getData() != null))
         {
-          textnow.bg.d locald = (textnow.bg.d)paramAnonymousMessage.getData().getSerializable("parse_feedback_response");
+          textnow.bn.d locald = (textnow.bn.d)paramAnonymousMessage.getData().getSerializable("parse_feedback_response");
           if (locald != null)
             if (locald.a().equalsIgnoreCase("success"))
             {
@@ -317,7 +317,7 @@ public class FeedbackActivity extends Activity
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     net.hockeyapp.android.FeedbackActivity
  * JD-Core Version:    0.6.2
  */

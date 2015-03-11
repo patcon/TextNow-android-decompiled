@@ -2,7 +2,7 @@ package com.admarvel.android.admarvelmologiqadapter;
 
 import android.content.Context;
 import com.admarvel.android.ads.AdMarvelAnalyticsAdapter;
-import com.mologiq.analytics.r;
+import com.mologiq.analytics.a;
 import java.lang.ref.WeakReference;
 import java.util.Map;
 
@@ -16,70 +16,80 @@ public class AdMarvelMologiqAdapter extends AdMarvelAnalyticsAdapter
     this.contextReference = new WeakReference(paramContext);
   }
 
-  public String getAdapterAnalyticsVersion()
-  {
-    return "1.2.9 2014-07-08";
-  }
-
-  protected Map getEnhancedTargetParams(String paramString, Map paramMap)
+  public void enableAppInstallCheck(boolean paramBoolean)
   {
     Context localContext = (Context)this.contextReference.get();
     if (localContext != null)
-      return r.a(localContext).a(paramString, paramMap);
+    {
+      a.a(localContext);
+      a.a(localContext, paramBoolean);
+    }
+  }
+
+  public String getAdapterAnalyticsVersion()
+  {
+    return "1.3.6 2014-11-17";
+  }
+
+  public Map getEnhancedTargetParams(String paramString, Map paramMap)
+  {
+    Context localContext = (Context)this.contextReference.get();
+    if (localContext != null)
+      return a.a(localContext).a(paramString, paramMap);
     return null;
   }
 
-  protected void onAdClick(String paramString1, int paramInt, Map paramMap, String paramString2, String paramString3)
+  public void onAdClick(String paramString1, int paramInt, Map paramMap, String paramString2, String paramString3)
   {
     Context localContext = (Context)this.contextReference.get();
     if (localContext != null)
-      r.a(localContext).c(paramString1, paramInt, paramMap, paramString3);
+      a.a(localContext).c(paramString1, paramInt, paramMap, paramString3);
   }
 
-  protected void onFailedToReceiveAd(String paramString1, int paramInt, Map paramMap, String paramString2)
+  public void onFailedToReceiveAd(String paramString1, int paramInt, Map paramMap, String paramString2)
   {
     Context localContext = (Context)this.contextReference.get();
     if (localContext != null)
-      r.a(localContext).a(paramString1, paramInt, paramMap, paramString2);
+      a.a(localContext).a(paramString1, paramInt, paramMap, paramString2);
   }
 
-  protected void onReceiveAd(String paramString1, int paramInt, Map paramMap, String paramString2)
+  public void onReceiveAd(String paramString1, int paramInt, Map paramMap, String paramString2)
   {
     Context localContext = (Context)this.contextReference.get();
     if (localContext != null)
-      r.a(localContext).b(paramString1, paramInt, paramMap, paramString2);
+      a.a(localContext).b(paramString1, paramInt, paramMap, paramString2);
   }
 
-  protected void pause()
+  public void pause()
   {
     Context localContext = (Context)this.contextReference.get();
     if (localContext != null)
-      r.a(localContext);
+      a.a(localContext);
   }
 
-  protected void resume()
+  public void resume()
   {
     Context localContext = (Context)this.contextReference.get();
     if (localContext != null)
-      r.a(localContext);
+      a.a(localContext);
   }
 
-  protected void start()
+  public void start()
   {
     Context localContext = (Context)this.contextReference.get();
     if (localContext != null)
-      r.a(localContext).a();
+      a.a(localContext).a();
   }
 
-  protected void stop()
+  public void stop()
   {
     Context localContext = (Context)this.contextReference.get();
     if (localContext != null)
-      r.a(localContext).b();
+      a.a(localContext).b();
   }
 }
 
-/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-dex2jar.jar
+/* Location:           /home/patcon/Downloads/com.enflick.android.TextNow-2-dex2jar.jar
  * Qualified Name:     com.admarvel.android.admarvelmologiqadapter.AdMarvelMologiqAdapter
  * JD-Core Version:    0.6.2
  */
